@@ -101,7 +101,7 @@
                                         </svg>
                                     </div>
 
-                                    <img class="w-100 pb-4 productImage p-4" src="./asssets/images/category_tv.webp" alt="" />
+                                    <img class="w-100 pb-4 productImage p-4" src="./assets/images/category_tv.webp" alt="" />
                                     <div class="d-flex flex-column justify-content-between product-text p-4 rounded-bottom">
                                         <div class="d-flex align-items-end gap-3 pt-2">
                                             <div class="fw-bold">5 300 000 UZS</div>
@@ -118,7 +118,7 @@
 
                                         <div class="d-flex gap-4 mt-3">
                                             <button class="border-orange bg-transparent rounded p-1 px-3">
-                                                <img src="./asssets/icons/shopping-cart.svg" alt="" />
+                                                <img src="./assets/icons/shopping-cart.svg" alt="" />
                                             </button>
                                             <button data-bs-toggle="modal" data-bs-target="#largeModal" class="btn-orange rounded w-100 d-flex align-items-center gap-2 justify-content-center">
                                                 <span>Купить сразу</span>
@@ -140,7 +140,7 @@
                                         </svg>
                                     </div>
 
-                                    <img class="w-100 pb-4 productImage p-4" src="./asssets/images/category_clock.jpg" alt="" />
+                                    <img class="w-100 pb-4 productImage p-4" src="./assets/images/category_clock.jpg" alt="" />
                                     <div class="d-flex flex-column justify-content-between product-text p-4 rounded-bottom">
                                         <div class="d-flex align-items-end gap-3 pt-2">
                                             <div class="fw-bold">5 300 000 UZS</div>
@@ -157,7 +157,7 @@
 
                                         <div class="d-flex gap-4 mt-3">
                                             <button class="border-orange bg-transparent rounded p-1 px-3">
-                                                <img src="./asssets/icons/shopping-cart.svg" alt="" />
+                                                <img src="./assets/icons/shopping-cart.svg" alt="" />
                                             </button>
                                             <button data-bs-toggle="modal" data-bs-target="#largeModal" class="btn-orange rounded w-100 d-flex align-items-center gap-2 justify-content-center">
                                                 <span>Купить сразу</span>
@@ -179,7 +179,7 @@
                                         </svg>
                                     </div>
 
-                                    <img class="w-100 pb-4 productImage p-4" src="./asssets/images/category_laptop.webp" alt="" />
+                                    <img class="w-100 pb-4 productImage p-4" src="./assets/images/category_laptop.webp" alt="" />
                                     <div class="d-flex flex-column justify-content-between product-text p-4 rounded-bottom">
                                         <div class="d-flex align-items-end gap-3 pt-2">
                                             <div class="fw-bold">5 300 000 UZS</div>
@@ -196,7 +196,7 @@
 
                                         <div class="d-flex gap-4 mt-3">
                                             <button class="border-orange bg-transparent rounded p-1 px-3">
-                                                <img src="./asssets/icons/shopping-cart.svg" alt="" />
+                                                <img src="./assets/icons/shopping-cart.svg" alt="" />
                                             </button>
                                             <button data-bs-toggle="modal" data-bs-target="#largeModal" class="btn-orange rounded w-100 d-flex align-items-center gap-2 justify-content-center">
                                                 <span>Купить сразу</span>
@@ -218,7 +218,7 @@
                                         </svg>
                                     </div>
 
-                                    <img class="w-100 pb-4 productImage p-4" src="./asssets/images/category_pilesos.webp" alt="" />
+                                    <img class="w-100 pb-4 productImage p-4" src="./assets/images/category_pilesos.webp" alt="" />
                                     <div class="d-flex flex-column justify-content-between product-text p-4 rounded-bottom">
                                         <div class="d-flex align-items-end gap-3 pt-2">
                                             <div class="fw-bold">5 300 000 UZS</div>
@@ -235,7 +235,7 @@
 
                                         <div class="d-flex gap-4 mt-3">
                                             <button class="border-orange bg-transparent rounded p-1 px-3">
-                                                <img src="./asssets/icons/shopping-cart.svg" alt="" />
+                                                <img src="./assets/icons/shopping-cart.svg" alt="" />
                                             </button>
                                             <button data-bs-toggle="modal" data-bs-target="#largeModal" class="btn-orange rounded w-100 d-flex align-items-center gap-2 justify-content-center">
                                                 <span>Купить сразу</span>
@@ -257,7 +257,7 @@
                                         </svg>
                                     </div>
 
-                                    <img class="w-100 pb-4 productImage p-4" src="./asssets/images/knopka.webp" alt="" />
+                                    <img class="w-100 pb-4 productImage p-4" src="./assets/images/knopka.webp" alt="" />
                                     <div class="d-flex flex-column justify-content-between product-text p-4 rounded-bottom">
                                         <div class="d-flex align-items-end gap-3 pt-2">
                                             <div class="fw-bold">5 300 000 UZS</div>
@@ -274,7 +274,7 @@
 
                                         <div class="d-flex gap-4 mt-3">
                                             <button class="border-orange bg-transparent rounded p-1 px-3">
-                                                <img src="./asssets/icons/shopping-cart.svg" alt="" />
+                                                <img src="./assets/icons/shopping-cart.svg" alt="" />
                                             </button>
                                             <button data-bs-toggle="modal" data-bs-target="#largeModal" class="btn-orange rounded w-100 d-flex align-items-center gap-2 justify-content-center">
                                                 <span>Купить сразу</span>
@@ -296,7 +296,7 @@
                                         </svg>
                                     </div>
 
-                                    <img class="w-100 pb-4 productImage p-4" src="./asssets/images/category_tv.webp" alt="" />
+                                    <img class="w-100 pb-4 productImage p-4" src="./assets/images/category_tv.webp" alt="" />
                                     <div class="d-flex flex-column justify-content-between product-text p-4 rounded-bottom">
                                         <div class="d-flex align-items-end gap-3 pt-2">
                                             <div class="fw-bold">5 300 000 UZS</div>
@@ -313,7 +313,7 @@
 
                                         <div class="d-flex gap-4 mt-3">
                                             <button class="border-orange bg-transparent rounded p-1 px-3">
-                                                <img src="./asssets/icons/shopping-cart.svg" alt="" />
+                                                <img src="./assets/icons/shopping-cart.svg" alt="" />
                                             </button>
                                             <button data-bs-toggle="modal" data-bs-target="#largeModal" class="btn-orange rounded w-100 d-flex align-items-center gap-2 justify-content-center">
                                                 <span>Купить сразу</span>
@@ -343,7 +343,7 @@
                                             <rect x="91" y="45" width="11" height="47" rx="2" fill="#000" />
                                         </svg>
                                     </div>
-                                    <img class="w-100 pb-4 productImage p-4" src="./asssets/images/category_tv.webp" alt="" />
+                                    <img class="w-100 pb-4 productImage p-4" src="./assets/images/category_tv.webp" alt="" />
                                     <div class="d-flex flex-column justify-content-between product-text p-4 rounded-bottom">
                                         <div class="d-flex align-items-end gap-3 pt-2">
                                             <div class="fw-bold">5 300 000 UZS</div>
@@ -360,7 +360,7 @@
 
                                         <div class="d-flex gap-4 mt-3">
                                             <button class="border-orange bg-transparent rounded p-1 px-3">
-                                                <img src="./asssets/icons/shopping-cart.svg" alt="" />
+                                                <img src="./assets/icons/shopping-cart.svg" alt="" />
                                             </button>
                                             <button data-bs-toggle="modal" data-bs-target="#largeModal" class="btn-orange rounded w-100 d-flex align-items-center gap-2 justify-content-center">
                                                 <span>Купить сразу</span>
@@ -381,7 +381,7 @@
                                             <rect x="91" y="45" width="11" height="47" rx="2" fill="#000" />
                                         </svg>
                                     </div>
-                                    <img class="w-100 pb-4 productImage p-4" src="./asssets/images/category_photo.jpg" alt="" />
+                                    <img class="w-100 pb-4 productImage p-4" src="./assets/images/category_photo.jpg" alt="" />
                                     <div class="d-flex flex-column justify-content-between product-text p-4 rounded-bottom">
                                         <div class="d-flex align-items-end gap-3 pt-2">
                                             <div class="fw-bold">5 300 000 UZS</div>
@@ -398,7 +398,7 @@
 
                                         <div class="d-flex gap-4 mt-3">
                                             <button class="border-orange bg-transparent rounded p-1 px-3">
-                                                <img src="./asssets/icons/shopping-cart.svg" alt="" />
+                                                <img src="./assets/icons/shopping-cart.svg" alt="" />
                                             </button>
                                             <button data-bs-toggle="modal" data-bs-target="#largeModal" class="btn-orange rounded w-100 d-flex align-items-center gap-2 justify-content-center">
                                                 <span>Купить сразу</span>
@@ -419,7 +419,7 @@
                                             <rect x="91" y="45" width="11" height="47" rx="2" fill="#000" />
                                         </svg>
                                     </div>
-                                    <img class="w-100 pb-4 productImage p-4" src="./asssets/images/category_transport.jpg" alt="" />
+                                    <img class="w-100 pb-4 productImage p-4" src="./assets/images/category_transport.jpg" alt="" />
                                     <div class="d-flex flex-column justify-content-between product-text p-4 rounded-bottom">
                                         <div class="d-flex align-items-end gap-3 pt-2">
                                             <div class="fw-bold">5 300 000 UZS</div>
@@ -436,7 +436,7 @@
 
                                         <div class="d-flex gap-4 mt-3">
                                             <button class="border-orange bg-transparent rounded p-1 px-3">
-                                                <img src="./asssets/icons/shopping-cart.svg" alt="" />
+                                                <img src="./assets/icons/shopping-cart.svg" alt="" />
                                             </button>
                                             <button data-bs-toggle="modal" data-bs-target="#largeModal" class="btn-orange rounded w-100 d-flex align-items-center gap-2 justify-content-center">
                                                 <span>Купить сразу</span>
@@ -457,7 +457,7 @@
                                             <rect x="91" y="45" width="11" height="47" rx="2" fill="#000" />
                                         </svg>
                                     </div>
-                                    <img class="w-100 pb-4 productImage p-4" src="./asssets/images/category_laptop.webp" alt="" />
+                                    <img class="w-100 pb-4 productImage p-4" src="./assets/images/category_laptop.webp" alt="" />
                                     <div class="d-flex flex-column justify-content-between product-text p-4 rounded-bottom">
                                         <div class="d-flex align-items-end gap-3 pt-2">
                                             <div class="fw-bold">5 300 000 UZS</div>
@@ -474,7 +474,7 @@
 
                                         <div class="d-flex gap-4 mt-3">
                                             <button class="border-orange bg-transparent rounded p-1 px-3">
-                                                <img src="./asssets/icons/shopping-cart.svg" alt="" />
+                                                <img src="./assets/icons/shopping-cart.svg" alt="" />
                                             </button>
                                             <button data-bs-toggle="modal" data-bs-target="#largeModal" class="btn-orange rounded w-100 d-flex align-items-center gap-2 justify-content-center">
                                                 <span>Купить сразу</span>
@@ -495,7 +495,7 @@
                                             <rect x="91" y="45" width="11" height="47" rx="2" fill="#000" />
                                         </svg>
                                     </div>
-                                    <img class="w-100 pb-4 productImage p-4" src="./asssets/images/category_powerbank.webp" alt="" />
+                                    <img class="w-100 pb-4 productImage p-4" src="./assets/images/category_powerbank.webp" alt="" />
                                     <div class="d-flex flex-column justify-content-between product-text p-4 rounded-bottom">
                                         <div class="d-flex align-items-end gap-3 pt-2">
                                             <div class="fw-bold">5 300 000 UZS</div>
@@ -512,7 +512,7 @@
 
                                         <div class="d-flex gap-4 mt-3">
                                             <button class="border-orange bg-transparent rounded p-1 px-3">
-                                                <img src="./asssets/icons/shopping-cart.svg" alt="" />
+                                                <img src="./assets/icons/shopping-cart.svg" alt="" />
                                             </button>
                                             <button data-bs-toggle="modal" data-bs-target="#largeModal" class="btn-orange rounded w-100 d-flex align-items-center gap-2 justify-content-center">
                                                 <span>Купить сразу</span>
@@ -533,7 +533,7 @@
                                             <rect x="91" y="45" width="11" height="47" rx="2" fill="#000" />
                                         </svg>
                                     </div>
-                                    <img class="w-100 pb-4 productImage p-4" src="./asssets/images/category_phone.webp" alt="" />
+                                    <img class="w-100 pb-4 productImage p-4" src="./assets/images/category_phone.webp" alt="" />
                                     <div class="d-flex flex-column justify-content-between product-text p-4 rounded-bottom">
                                         <div class="d-flex align-items-end gap-3 pt-2">
                                             <div class="fw-bold">5 300 000 UZS</div>
@@ -550,7 +550,7 @@
 
                                         <div class="d-flex gap-4 mt-3">
                                             <button class="border-orange bg-transparent rounded p-1 px-3">
-                                                <img src="./asssets/icons/shopping-cart.svg" alt="" />
+                                                <img src="./assets/icons/shopping-cart.svg" alt="" />
                                             </button>
                                             <button data-bs-toggle="modal" data-bs-target="#largeModal" class="btn-orange rounded w-100 d-flex align-items-center gap-2 justify-content-center">
                                                 <span>Купить сразу</span>
@@ -580,7 +580,7 @@
                                             <rect x="91" y="45" width="11" height="47" rx="2" fill="#000" />
                                         </svg>
                                     </div>
-                                    <img class="w-100 pb-4 productImage p-4" src="./asssets/images/schetka.webp" alt="" />
+                                    <img class="w-100 pb-4 productImage p-4" src="./assets/images/schetka.webp" alt="" />
                                     <div class="d-flex flex-column justify-content-between product-text p-4 rounded-bottom">
                                         <div class="d-flex align-items-end gap-3 pt-2">
                                             <div class="fw-bold">5 300 000 UZS</div>
@@ -597,7 +597,7 @@
 
                                         <div class="d-flex gap-4 mt-3">
                                             <button class="border-orange bg-transparent rounded p-1 px-3">
-                                                <img src="./asssets/icons/shopping-cart.svg" alt="" />
+                                                <img src="./assets/icons/shopping-cart.svg" alt="" />
                                             </button>
                                             <button data-bs-toggle="modal" data-bs-target="#largeModal" class="btn-orange rounded w-100 d-flex align-items-center gap-2 justify-content-center">
                                                 <span>Купить сразу</span>
@@ -618,7 +618,7 @@
                                             <rect x="91" y="45" width="11" height="47" rx="2" fill="#000" />
                                         </svg>
                                     </div>
-                                    <img class="w-100 pb-4 productImage p-4" src="./asssets/images/category_powerbank.webp" alt="" />
+                                    <img class="w-100 pb-4 productImage p-4" src="./assets/images/category_powerbank.webp" alt="" />
                                     <div class="d-flex flex-column justify-content-between product-text p-4 rounded-bottom">
                                         <div class="d-flex align-items-end gap-3 pt-2">
                                             <div class="fw-bold">5 300 000 UZS</div>
@@ -635,7 +635,7 @@
 
                                         <div class="d-flex gap-4 mt-3">
                                             <button class="border-orange bg-transparent rounded p-1 px-3">
-                                                <img src="./asssets/icons/shopping-cart.svg" alt="" />
+                                                <img src="./assets/icons/shopping-cart.svg" alt="" />
                                             </button>
                                             <button data-bs-toggle="modal" data-bs-target="#largeModal" class="btn-orange rounded w-100 d-flex align-items-center gap-2 justify-content-center">
                                                 <span>Купить сразу</span>
@@ -656,7 +656,7 @@
                                             <rect x="91" y="45" width="11" height="47" rx="2" fill="#000" />
                                         </svg>
                                     </div>
-                                    <img class="w-100 pb-4 productImage p-4" src="./asssets/images/category_photo.jpg" alt="" />
+                                    <img class="w-100 pb-4 productImage p-4" src="./assets/images/category_photo.jpg" alt="" />
                                     <div class="d-flex flex-column justify-content-between product-text p-4 rounded-bottom">
                                         <div class="d-flex align-items-end gap-3 pt-2">
                                             <div class="fw-bold">5 300 000 UZS</div>
@@ -673,7 +673,7 @@
 
                                         <div class="d-flex gap-4 mt-3">
                                             <button class="border-orange bg-transparent rounded p-1 px-3">
-                                                <img src="./asssets/icons/shopping-cart.svg" alt="" />
+                                                <img src="./assets/icons/shopping-cart.svg" alt="" />
                                             </button>
                                             <button data-bs-toggle="modal" data-bs-target="#largeModal" class="btn-orange rounded w-100 d-flex align-items-center gap-2 justify-content-center">
                                                 <span>Купить сразу</span>
@@ -694,7 +694,7 @@
                                             <rect x="91" y="45" width="11" height="47" rx="2" fill="#000" />
                                         </svg>
                                     </div>
-                                    <img class="w-100 pb-4 productImage p-4" src="./asssets/images/category_tv.webp" alt="" />
+                                    <img class="w-100 pb-4 productImage p-4" src="./assets/images/category_tv.webp" alt="" />
                                     <div class="d-flex flex-column justify-content-between product-text p-4 rounded-bottom">
                                         <div class="d-flex align-items-end gap-3 pt-2">
                                             <div class="fw-bold">5 300 000 UZS</div>
@@ -711,7 +711,7 @@
 
                                         <div class="d-flex gap-4 mt-3">
                                             <button class="border-orange bg-transparent rounded p-1 px-3">
-                                                <img src="./asssets/icons/shopping-cart.svg" alt="" />
+                                                <img src="./assets/icons/shopping-cart.svg" alt="" />
                                             </button>
                                             <button data-bs-toggle="modal" data-bs-target="#largeModal" class="btn-orange rounded w-100 d-flex align-items-center gap-2 justify-content-center">
                                                 <span>Купить сразу</span>
@@ -732,7 +732,7 @@
                                             <rect x="91" y="45" width="11" height="47" rx="2" fill="#000" />
                                         </svg>
                                     </div>
-                                    <img class="w-100 pb-4 productImage p-4" src="./asssets/images/schetka.webp" alt="" />
+                                    <img class="w-100 pb-4 productImage p-4" src="./assets/images/schetka.webp" alt="" />
                                     <div class="d-flex flex-column justify-content-between product-text p-4 rounded-bottom">
                                         <div class="d-flex align-items-end gap-3 pt-2">
                                             <div class="fw-bold">5 300 000 UZS</div>
@@ -749,7 +749,7 @@
 
                                         <div class="d-flex gap-4 mt-3">
                                             <button class="border-orange bg-transparent rounded p-1 px-3">
-                                                <img src="./asssets/icons/shopping-cart.svg" alt="" />
+                                                <img src="./assets/icons/shopping-cart.svg" alt="" />
                                             </button>
                                             <button data-bs-toggle="modal" data-bs-target="#largeModal" class="btn-orange rounded w-100 d-flex align-items-center gap-2 justify-content-center">
                                                 <span>Купить сразу</span>
@@ -770,7 +770,7 @@
                                             <rect x="91" y="45" width="11" height="47" rx="2" fill="#000" />
                                         </svg>
                                     </div>
-                                    <img class="w-100 pb-4 productImage p-4" src="./asssets/images/schetka.webp" alt="" />
+                                    <img class="w-100 pb-4 productImage p-4" src="./assets/images/schetka.webp" alt="" />
                                     <div class="d-flex flex-column justify-content-between product-text p-4 rounded-bottom">
                                         <div class="d-flex align-items-end gap-3 pt-2">
                                             <div class="fw-bold">5 300 000 UZS</div>
@@ -787,7 +787,7 @@
 
                                         <div class="d-flex gap-4 mt-3">
                                             <button class="border-orange bg-transparent rounded p-1 px-3">
-                                                <img src="./asssets/icons/shopping-cart.svg" alt="" />
+                                                <img src="./assets/icons/shopping-cart.svg" alt="" />
                                             </button>
                                             <button data-bs-toggle="modal" data-bs-target="#largeModal" class="btn-orange rounded w-100 d-flex align-items-center gap-2 justify-content-center">
                                                 <span>Купить сразу</span>
@@ -820,7 +820,7 @@
                                 <rect x="91" y="45" width="11" height="47" rx="2" fill="#000" />
                             </svg>
                         </div>
-                        <img class="w-100 pb-4 productImage p-4" src="/asssets/images/category_clock.jpg" alt="" />
+                        <img class="w-100 pb-4 productImage p-4" src="/assets/images/category_clock.jpg" alt="" />
                         <div class="d-flex flex-column justify-content-between product-text p-4 rounded-bottom">
                             <div class="d-flex align-items-end gap-3 pt-2">
                                 <div class="fw-bold">5 300 000 UZS</div>
@@ -837,7 +837,7 @@
 
                             <div class="d-flex gap-4 mt-3">
                                 <button class="border-orange bg-transparent rounded p-1 px-3">
-                                    <img src="/asssets/icons/shopping-cart.svg" alt="" />
+                                    <img src="/assets/icons/shopping-cart.svg" alt="" />
                                 </button>
                                 <button data-bs-toggle="modal" data-bs-target="#largeModal" class="btn-orange rounded w-100 d-flex align-items-center gap-2 justify-content-center">
                                     <span>Купить сразу</span>
@@ -858,7 +858,7 @@
                                 <rect x="91" y="45" width="11" height="47" rx="2" fill="#000" />
                             </svg>
                         </div>
-                        <img class="w-100 pb-4 productImage p-4" src="/asssets/images/category_tv.webp" alt="" />
+                        <img class="w-100 pb-4 productImage p-4" src="/assets/images/category_tv.webp" alt="" />
                         <div class="d-flex flex-column justify-content-between product-text p-4 rounded-bottom">
                             <div class="d-flex align-items-end gap-3 pt-2">
                                 <div class="fw-bold">5 300 000 UZS</div>
@@ -875,7 +875,7 @@
 
                             <div class="d-flex gap-4 mt-3">
                                 <button class="border-orange bg-transparent rounded p-1 px-3">
-                                    <img src="/asssets/icons/shopping-cart.svg" alt="" />
+                                    <img src="/assets/icons/shopping-cart.svg" alt="" />
                                 </button>
                                 <button data-bs-toggle="modal" data-bs-target="#largeModal" class="btn-orange rounded w-100 d-flex align-items-center gap-2 justify-content-center">
                                     <span>Купить сразу</span>
@@ -897,7 +897,7 @@
                             </svg>
                         </div>
 
-                        <img class="w-100 pb-4 productImage p-4" src="/asssets/images/category_tv.webp" alt="" />
+                        <img class="w-100 pb-4 productImage p-4" src="/assets/images/category_tv.webp" alt="" />
                         <div class="d-flex flex-column justify-content-between product-text p-4 rounded-bottom">
                             <div class="d-flex align-items-end gap-3 pt-2">
                                 <div class="fw-bold">5 300 000 UZS</div>
@@ -914,7 +914,7 @@
 
                             <div class="d-flex gap-4 mt-3">
                                 <button class="border-orange bg-transparent rounded p-1 px-3">
-                                    <img src="/asssets/icons/shopping-cart.svg" alt="" />
+                                    <img src="/assets/icons/shopping-cart.svg" alt="" />
                                 </button>
                                 <button data-bs-toggle="modal" data-bs-target="#largeModal" class="btn-orange rounded w-100 d-flex align-items-center gap-2 justify-content-center">
                                     <span>Купить сразу</span>
@@ -935,7 +935,7 @@
                                 <rect x="91" y="45" width="11" height="47" rx="2" fill="#000" />
                             </svg>
                         </div>
-                        <img class="w-100 pb-4 productImage p-4" src="/asssets/images/category_tv.webp" alt="" />
+                        <img class="w-100 pb-4 productImage p-4" src="/assets/images/category_tv.webp" alt="" />
                         <div class="d-flex flex-column justify-content-between product-text p-4 rounded-bottom">
                             <div class="d-flex align-items-end gap-3 pt-2">
                                 <div class="fw-bold">5 300 000 UZS</div>
@@ -952,7 +952,7 @@
 
                             <div class="d-flex gap-4 mt-3">
                                 <button class="border-orange bg-transparent rounded p-1 px-3">
-                                    <img src="/asssets/icons/shopping-cart.svg" alt="" />
+                                    <img src="/assets/icons/shopping-cart.svg" alt="" />
                                 </button>
                                 <button data-bs-toggle="modal" data-bs-target="#largeModal" class="btn-orange rounded w-100 d-flex align-items-center gap-2 justify-content-center">
                                     <span>Купить сразу</span>
@@ -972,25 +972,25 @@
                 <h2>Наши преимущества</h2>
                 <div class="d-flex justify-content-between advantages py-4 gap-5">
                     <div class="d-flex flex-column gap-3 align-items-center">
-                        <img src="/asssets/icons/check-icon.svg" alt="" />
+                        <img src="/assets/icons/check-icon.svg" alt="" />
                         <div class="text-center text-nowrap"><span class="fw-bold">Xiaomi</span> <br />Авторизованный магазин</div>
                     </div>
                     <div class="d-flex flex-column align-items-center">
-                        <img src="/asssets/icons/truck-icon.svg" alt="" />
+                        <img src="/assets/icons/truck-icon.svg" alt="" />
                         <div class="text-center text-nowrap">
                             <span class="fw-bold">Доставка</span> <br />
                             по всему Узбекистану
                         </div>
                     </div>
                     <div class="d-flex flex-column gap-3 align-items-center">
-                        <img src="/asssets/icons/shop-icon.svg" alt="" />
+                        <img src="/assets/icons/shop-icon.svg" alt="" />
                         <div class="text-center text-nowrap">
                             <span class="fw-bold">Самовывоз</span> <br />
                             из ближайшего магазина
                         </div>
                     </div>
                     <div class="d-flex flex-column gap-3 align-items-center">
-                        <img src="/asssets/icons/calendar.svg" alt="" />
+                        <img src="/assets/icons/calendar.svg" alt="" />
 
                         <div class="text-center text-nowrap">
                             <span class="fw-bold">Выгодная рассрочка</span> <br />
@@ -998,8 +998,8 @@
                         </div>
                     </div>
                     <div class="d-flex flex-column gap-3 align-items-center">
-                        <!-- <img src="./asssets/icons/tools.svg" alt="" /> -->
-                        <img src="/asssets/icons/settings.svg" alt="" />
+                        <!-- <img src="./assets/icons/tools.svg" alt="" /> -->
+                        <img src="/assets/icons/settings.svg" alt="" />
                         <div class="text-center text-nowrap">
                             <span class="fw-bold">Бесплатная</span> <br />
                             настройка устройства
@@ -1193,7 +1193,7 @@
                 <div class="d-flex align-items-center justify-content-between">
                     <h1>Видеообзоры</h1>
                     <button class="border border-white border-1 bg-transparent rounded text-white p-2 d-sm-block d-none">
-                        Все видео-обзоры <img src="./asssets/icons/arrow_white.svg" alt="" />
+                        Все видео-обзоры <img src="./assets/icons/arrow_white.svg" alt="" />
                     </button>
                 </div>
                 <div class="videoBanner my-2 rounded d-flex align-items-center justify-content-center">
@@ -1224,7 +1224,7 @@
                     <div class="col-lg-5 mb-3">
                         <div class="product w-100 rounded bannerProduct p-3">
                             <div class="d-flex align-items-start gap-3">
-                                <img width="120px" height="100px" class="fit-cover rounded" src="./asssets/images/videoProductImage.jpg" alt="" />
+                                <img width="120px" height="100px" class="fit-cover rounded" src="./assets/images/videoProductImage.jpg" alt="" />
                                 <div class="d-flex flex-column">
                                     <h6 class="text-grey fw-bold">Следующий видео-обзор</h6>
                                     <div class="fw-semibold">Xiaomi Fan Unboxing | Titan Gray</div>
