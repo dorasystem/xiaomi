@@ -44,6 +44,10 @@ Route::middleware(['auth'])->group(function () {
 });
 
 Route::get('/', [MainController::class, 'index'])->name('home');
+Route::get('/contact', [MainController::class, 'contact'])->name('contact');
+Route::get('/blog', [MainController::class, 'blog'])->name('blog');
+Route::get('/blog/{slug}', [MainController::class, 'singleBlog'])->name('single.blog');
+
 
 Route::get('/products', [MainController::class, 'products'])->name('products');
 Route::get('/single-product', [MainController::class, 'singleProduct'])->name('single.product');

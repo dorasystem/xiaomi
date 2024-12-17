@@ -26,11 +26,11 @@
 </head>
 
 <body>
-    <x-frontend.header></x-frontend.header>
+    <x-page.header></x-page.header>
 
     @yield('content')
 
-    <x-frontend.footer></x-frontend.footer>
+    <x-page.footer></x-page.footer>
     <nav class="navbar navbar-white bg-white text-grey fixed-bottom d-lg-none">
         <div class="container-fluid">
             <ul class="navbar-nav d-flex flex-row justify-content-around w-100 align-items-end">

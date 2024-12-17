@@ -1,7 +1,6 @@
-@extends('layouts.frontend')
+@extends('layouts.page')
 
 @section('content')
-
     <main class="container">
         <div class="my-4">
             <div class="d-flex align-items-center gap-3">
@@ -86,5 +85,4 @@
             <div id="products-prev" class="swiper-button-prev start-0"></div>
         </div>
     </main>
-
 @endsection

@@ -22,7 +22,7 @@ class AdminController extends Controller
         if (!Auth::check() || !in_array(Auth::user()->role, [1, 2])) {
             abort(403, 'Ushbu sahifaga kirish ruxsati yo‘q.');
         }
-        return view('dashboard.admin');
+        return view('admin.dashboard.admin');
     }
 
     public function index()

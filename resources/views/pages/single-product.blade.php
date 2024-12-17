@@ -1,7 +1,6 @@
-@extends('layouts.frontend')
+@extends('layouts.page')
 
 @section('content')
-
     <main>
         <div class="mt-4 container d-sm-block d-none">
             <div class="d-flex align-items-center gap-3">
@@ -1001,5 +1000,4 @@
             </div>
         </div>
     </main>
-
 @endsection

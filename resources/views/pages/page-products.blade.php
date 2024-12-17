@@ -1,11 +1,10 @@
-@extends('layouts.frontend')
+@extends('layouts.page')
 
 @section('content')
-
     <main>
         <div class="container mt-4">
             <div class="d-flex align-items-center gap-3">
-                <a href="/" class="text-grey fw-bold text-lowercase fs-14">Главная страница / <span class="text-dark">Результаты поиска</span></a>
+                <a href="./index.html" class="text-grey fw-bold text-lowercase fs-14">Главная страница / <span class="text-dark">Результаты поиска</span></a>
             </div>
             <hr />
         </div>
@@ -21,14 +20,14 @@
                 </div>
                 <div class="productbanner align-items-start gap-4 mt-5">
                     <div class="product_list d-flex align-items-center justify-content-center">
-                        <img src="/assets/images/headphones.png" width="250px" alt="" />
+                        <img src="./assets/images/headphones.png" width="250px" alt="" />
                     </div>
                     <div class="">
                         <div class="little_product d-flex align-items-center justify-content-center">
-                            <img src="/assets/images/airpods.png" width="120px" alt="" />
+                            <img src="./assets/images/airpods.png" width="120px" alt="" />
                         </div>
                         <div class="position-relative">
-                            <img class="bottom_product border-orange" src="/assets/images/bottom_product.png" width="120px" alt="" />
+                            <img class="bottom_product border-orange" src="./assets/images/bottom_product.png" width="120px" alt="" />
                         </div>
                     </div>
                 </div>
@@ -412,5 +411,4 @@
             </div>
         </div>
     </main>
-
 @endsection
