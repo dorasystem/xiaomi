@@ -19,13 +19,13 @@
                         <!-- Carousel inner (slides) -->
                         <div class="carousel-inner rounded">
                             <div class="carousel-item active">
-                                <img src="./asssets/images/slider1.webp" class="d-block w-100" alt="Slide 1" />
+                                <img src="/assets/images/slider1.webp" class="d-block w-100" alt="Slide 1" />
                             </div>
                             <div class="carousel-item">
-                                <img src="./asssets/images/slider2.webp" class="d-block w-100" alt="Slide 2" />
+                                <img src="/assets/images/slider2.webp" class="d-block w-100" alt="Slide 2" />
                             </div>
                             <div class="carousel-item">
-                                <img src="./asssets/images/slider3.webp" class="d-block w-100" alt="Slide 3" />
+                                <img src="/assets/images/slider3.webp" class="d-block w-100" alt="Slide 3" />
                                 <div class="carousel-caption d-none d-md-block">
                                     <h5>Slide 3</h5>
                                     <p>Slide 3 description</p>
