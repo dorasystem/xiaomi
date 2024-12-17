@@ -16,7 +16,7 @@ class SuperAdminController extends Controller
     }
     public function superAdmin()
     {
-        return view('dashboard.super_admin');
+        return view('admin.dashboard.super_admin');
     }
 
 }
