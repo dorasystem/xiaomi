@@ -45,6 +45,14 @@ Route::middleware(['auth'])->group(function () {
 
 Route::get('/', [MainController::class, 'index'])->name('home');
 
+Route::get('/products', [MainController::class, 'products'])->name('products');
+Route::get('/single-product', [MainController::class, 'singleProduct'])->name('single.product');
+//Route::get('/product{slug}', [MainController::class, 'singleProduct'])->name('single.product');
+Route::get('/news', [MainController::class, 'news'])->name('news');
+Route::get('/single-news', [MainController::class, 'singleNews'])->name('single.news');
+//Route::get('/news{slug}', [MainController::class, 'singleNews'])->name('single.news');
+
+
 Route::get('/cart', [CartController::class, 'cart'])->name('cart');
 Route::post('add-to-cart/{id}', [CartController::class, 'addToCart'])->name('addToCart');
 Route::post('/add-to-cart', [CartController::class, 'addToCart'])->name('cart.add');

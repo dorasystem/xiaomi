@@ -128,5 +128,6 @@
     <script src="https://unpkg.com/swiper/swiper-bundle.min.js"></script>
 
     <script src="/assets/script.js"></script>
+    <script src="/assets/range.js"></script>
 </body>
 </html>

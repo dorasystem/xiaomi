@@ -49,13 +49,13 @@
                         <div class="col-sm-6 col-md-12 mt-md-0 mt-4">
                             <div class="banner1 rounded p-lg-4 p-2 d-flex flex-column justify-content-between align-items-start">
                                 <div class="fw-bold">Смартфоны</div>
-                                <a href="./product-list.html" class="btn-orange rounded px-4 py-1">Смотреть все</a>
+                                <a href="{{ route('products') }}" class="btn-orange rounded px-4 py-1">Смотреть все</a>
                             </div>
                         </div>
                         <div class="col-sm-6 col-md-12 mt-4">
                             <div class="banner2 rounded p-lg-4 p-2 d-flex flex-column justify-content-between align-items-start">
                                 <div class="fw-bold">Умный дом</div>
-                                <a href="./product-list.html" class="btn-orange rounded px-4 py-1">Смотреть все</a>
+                                <a href="{{ route('products') }}" class="btn-orange rounded px-4 py-1">Смотреть все</a>
                             </div>
                         </div>
                     </div>
@@ -89,7 +89,7 @@
                     <div style="overflow: hidden" class="productSale container py-3 position-relative">
                         <div class="swiper-wrapper">
                             <div class="swiper-slide product shadow-sm position-relative rounded">
-                                <a href="./single-product.html" class=" ">
+                                <a href="{{ route('single.product') }}" class=" ">
                                     <div class="position-absolute like d-flex flex-column gap-3 justify-content-end">
                                         <i class="fa-regular fa-heart fs-4 hover-orange ps-1"></i>
                                         <svg class="hover-svg" width="30" height="20" viewBox="0 0 102 92" fill="none" xmlns="http://www.w3.org/2000/svg">
