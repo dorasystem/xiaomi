@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\admin\AboutController;
+use App\Http\Controllers\admin\ArticleController;
 use App\Http\Controllers\admin\CartController;
 use App\Http\Controllers\admin\ContactController;
 use App\Http\Controllers\admin\FaqController;
@@ -29,6 +30,7 @@ Route::middleware(['auth'])->prefix('dashboard')->group(function () {
     Route::get('/admin',[AdminController::class, 'admin'])->name('admins.dashboard');
     Route::resource('abouts', AboutController::class);
     Route::resource('news', NewsController::class);
+    Route::resource('articles', ArticleController::class);
     Route::resource('blogs', NewsController::class);
     Route::resource('services', ServiceController::class);
     Route::resource('contacts', ContactController::class);

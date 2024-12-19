@@ -30,9 +30,7 @@
                             <thead class="">
                             <tr>
                                 <th scope="col">№</th>
-                                <th scope="col">Заголовок (УЗ)</th>
                                 <th scope="col">Заголовок (РУ)</th>
-                                <th scope="col">Заголовок (АН)</th>
                                 <th scope="col">Дата</th>
                                 <th scope="col">Изображение</th>
                                 <th scope="col" class="text-end">Действия</th>
@@ -42,9 +40,7 @@
                             @foreach ($blogs as $item)
                                 <tr>
                                     <td>{{ $loop->iteration }}</td>
-                                    <td>{{ $item->title_uz }}</td>
                                     <td>{{ $item->title_ru }}</td>
-                                    <td>{{ $item->title_en }}</td>
                                     <td>{{ $item->date }}</td>
                                     <td>
                                         @if ($item->image)

@@ -1,3 +1,8 @@
+<?php
+$contact = \App\Models\Contact::first();
+$about = \App\Models\About::first();
+?>
+
 <nav class="nxl-navigation">
     <div class="navbar-wrapper">
         <div class="m-header">
@@ -22,7 +27,7 @@
                     </a>
                 </li>
                 <li class="nxl-item nxl-hasmenu">
-                    <a href="{{ route('abouts.index') }}" class="nxl-link">
+                    <a href="{{ route('abouts.edit', $about->id) }}" class="nxl-link">
                         <span class="nxl-micon"><i class="feather-info"></i></span> <!-- About icon -->
                         <span class="nxl-mtext">О нас</span>
                     </a>
@@ -31,12 +36,6 @@
                     <a href="{{ route('news.index') }}" class="nxl-link">
                         <span class="nxl-micon"><i class="feather-globe"></i></span> <!-- News icon -->
                         <span class="nxl-mtext">Новости</span>
-                    </a>
-                </li>
-                <li class="nxl-item nxl-hasmenu">
-                    <a href="{{ route('services.index') }}" class="nxl-link">
-                        <span class="nxl-micon"><i class="feather-briefcase"></i></span> <!-- Services icon -->
-                        <span class="nxl-mtext">Услуга</span>
                     </a>
                 </li>
                 <li class="nxl-item nxl-hasmenu">
@@ -52,13 +51,19 @@
                     </a>
                 </li>
                 <li class="nxl-item nxl-hasmenu">
+                    <a href="{{ route('articles.index') }}" class="nxl-link">
+                        <span class="nxl-micon"><i class="feather-globe"></i></span> <!-- News icon -->
+                        <span class="nxl-mtext">Полезные статьи </span>
+                    </a>
+                </li>
+                <li class="nxl-item nxl-hasmenu">
                     <a href="{{ route('faqs.index') }}" class="nxl-link">
                         <span class="nxl-micon"><i class="feather-help-circle"></i></span> <!-- FAQ icon -->
                         <span class="nxl-mtext">Часто задаваемые вопросы</span>
                     </a>
                 </li>
                 <li class="nxl-item nxl-hasmenu">
-                    <a href="{{ route('contacts.index') }}" class="nxl-link">
+                    <a href="{{ route('contacts.edit', $contact->id) }}" class="nxl-link">
                         <span class="nxl-micon"><i class="feather-mail"></i></span> <!-- Contact icon -->
                         <span class="nxl-mtext">Контакт</span>
                     </a>

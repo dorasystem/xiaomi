@@ -32,6 +32,6 @@ class AboutController extends Controller
     {
         $about = About::findOrFail($id);
         $about->update($request->all());
-        return redirect()->route('abouts.index')->with('success', 'Data updated successfully');
+        return redirect()->back()->with('success', 'Data updated successfully');
     }
 }

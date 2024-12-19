@@ -30,31 +30,33 @@ class MainController extends Controller
 
     public function products()
     {
-        return view('frontend.page-products');
+        return view('pages.page-products');
     }
 
     public function singleProduct()
     {
-        return view('frontend.single-products');
+        return view('pages.single-product');
     }
 //    public function singleProduct($slug)
 //    {
 //        $product = Product::where('slug', $slug)->firstOrFail();
-//        return view('frontend.single-products', compact('product'));
+//        return view('pages.single-product', compact('product'));
 //    }
 
     public function news()
     {
-        return view('frontend.page-news');
+        $news = News::all();
+        return view('pages.page-news', compact('news'));
     }
 
     public function singleNews()
     {
-        return view('frontend.single-news');
+        $news = News::first();
+        return view('pages.single-news', compact('news'));
     }
 //    public function singleNews($slug)
 //    {
 //        $news = News::where('slug', $slug)->firstOrFail();
-//        return view('frontend.single-news', compact('news'));
+//        return view('pages.single-news', compact('news'));
 //    }
 }

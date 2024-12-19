@@ -30,9 +30,7 @@
                             <thead class="">
                             <tr>
                                 <th scope="col">№</th>
-                                <th scope="col">Вопрос (UZ)</th>
                                 <th scope="col">Вопрос (RU)</th>
-                                <th scope="col">Вопрос (EN)</th>
                                 <th scope="col">Действия</th>
                             </tr>
                             </thead>
@@ -40,9 +38,7 @@
                             @foreach ($faqs as $item)
                                 <tr>
                                     <td>{{ $loop->iteration }}</td>
-                                    <td>{{ $item->question_uz }}</td>
                                     <td>{{ $item->question_ru }}</td>
-                                    <td>{{ $item->question_en }}</td>
                                     <td class="text-end">
                                         <div class="btn-group" role="group">
                                             <a href="{{ route('faqs.edit', $item->id) }}"
