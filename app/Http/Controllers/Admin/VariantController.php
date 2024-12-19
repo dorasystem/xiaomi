@@ -6,6 +6,7 @@ use App\Http\Controllers\Controller;
 use App\Models\Variant;
 use App\Models\Product;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Storage;
 
 class VariantController extends Controller
 {
@@ -40,6 +41,11 @@ class VariantController extends Controller
             'image' => 'nullable|image|mimes:jpeg,png,jpg,gif,svg|max:2048',
             'images' => 'nullable|array',
             'images.*' => 'nullable|image|mimes:jpeg,png,jpg,gif,svg|max:2048',
+            'discount_price' => 'nullable',
+            'price_3' => 'nullable',
+            'price_6' => 'nullable',
+            'price_12' => 'nullable',
+            'price_24' => 'nullable',
         ]);
 
 
@@ -64,6 +70,11 @@ class VariantController extends Controller
             'color_en' => $request->color_en,
             'image' => isset($primaryImagePath) ? $primaryImagePath : null,
             'images' => $imagePaths,
+            'discount_price' => $request->discount_price,
+            'price_3' => $request->price_3,
+            'price_6' => $request->price_6,
+            'price_12' => $request->price_12,
+            'price_24' => $request->price_12,
         ]);
 
         return redirect()->route('variants.index')->with('success', 'Variant muvaffaqiyatli yaratildi.');
@@ -91,7 +102,13 @@ class VariantController extends Controller
             'image' => 'nullable|image|mimes:jpeg,png,jpg,gif,svg|max:2048', // Primary image
             'images' => 'nullable|array', // Multiple images
             'images.*' => 'nullable|image|mimes:jpeg,png,jpg,gif,svg|max:2048', // Image validation for each file
+            'discount_price' => 'nullable',
+            'price_3' => 'nullable',
+            'price_6' => 'nullable',
+            'price_12' => 'nullable',
+            'price_24' => 'nullable',
         ]);
+
 
         if ($request->hasFile('image')) {
             if ($variant->image && file_exists(storage_path('app/public/' . $variant->image))) {
@@ -99,12 +116,29 @@ class VariantController extends Controller
             }
 
             $primaryImagePath = $request->file('image')->store('variants', 'public');
+            $variant->image = $primaryImagePath;
         }
 
         $imagePaths = $variant->images ?? [];
         if ($request->hasFile('images')) {
             foreach ($request->file('images') as $image) {
                 $imagePaths[] = $image->store('variants', 'public');
+            }
+        }
+
+        if ($request->has('image_delete')) {
+            foreach ($request->image_delete as $imagePath) {
+                Storage::delete($imagePath);
+                $imagePaths = array_diff($imagePaths, [$imagePath]); // Remove from array
+            }
+        }
+
+        if ($request->has('image_edit')) {
+            foreach ($request->file('image_edit') as $index => $newImage) {
+                if ($newImage) {
+                    $newImagePath = $newImage->store('variants', 'public'); // Save new image
+                    $imagePaths[$index] = $newImagePath; // Replace old image
+                }
             }
         }
 
@@ -115,12 +149,18 @@ class VariantController extends Controller
             'color_uz' => $request->color_uz,
             'color_ru' => $request->color_ru,
             'color_en' => $request->color_en,
-            'image' => isset($primaryImagePath) ? $primaryImagePath : $variant->image,
+            'image' => $variant->image,
             'images' => $imagePaths,
+            'discount_price' => $request->discount_price,
+            'price_3' => $request->price_3,
+            'price_6' => $request->price_6,
+            'price_12' => $request->price_12,
+            'price_24' => $request->price_24,
         ]);
 
         return redirect()->route('variants.index')->with('success', 'Variant muvaffaqiyatli yangilandi.');
     }
+
 
     public function destroy($id)
     {

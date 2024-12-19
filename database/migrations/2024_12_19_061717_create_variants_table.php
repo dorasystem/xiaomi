@@ -20,6 +20,11 @@ return new class extends Migration
             $table->text('color_uz')->nullable();
             $table->text('color_ru')->nullable();
             $table->text('color_en')->nullable();
+            $table->text('discount_price')->nullable();  // chegirma narxi
+            $table->text('price_3')->nullable();  // 3 oy bo'lib to'lash narxi
+            $table->text('price_6')->nullable();  // 6 oy bo'lib to'lash narxi
+            $table->text('price_12')->nullable();  // 12 oy bo'lib to'lash narxi
+            $table->text('price_24')->nullable();  // 24 oy bo'lib to'lash narxi
             $table->text('image')->nullable();
             $table->json('images')->nullable();
             $table->text('status')->nullable();
