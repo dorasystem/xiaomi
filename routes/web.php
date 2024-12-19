@@ -1,17 +1,17 @@
 <?php
 
-use App\Http\Controllers\admin\AboutController;
-use App\Http\Controllers\admin\CartController;
-use App\Http\Controllers\admin\ContactController;
-use App\Http\Controllers\admin\FaqController;
-use App\Http\Controllers\admin\NewsController;
-use App\Http\Controllers\admin\ProductController;
-use App\Http\Controllers\admin\ServiceController;
-use App\Http\Controllers\auth\AdminController;
-use App\Http\Controllers\auth\AuthController;
-use App\Http\Controllers\auth\SuperAdminController;
-use App\Http\Controllers\auth\UserController;
-use App\Http\Controllers\frontend\MainController;
+use App\Http\Controllers\Admin\AboutController;
+use App\Http\Controllers\Admin\CartController;
+use App\Http\Controllers\Admin\ContactController;
+use App\Http\Controllers\Admin\FaqController;
+use App\Http\Controllers\Admin\NewsController;
+use App\Http\Controllers\Admin\ProductController;
+use App\Http\Controllers\Admin\ServiceController;
+use App\Http\Controllers\Auth\AdminController;
+use App\Http\Controllers\Auth\AuthController;
+use App\Http\Controllers\Auth\SuperAdminController;
+use App\Http\Controllers\Auth\UserController;
+use App\Http\Controllers\Page\MainController;
 use Illuminate\Support\Facades\Route;
 
 
@@ -46,7 +46,7 @@ Route::middleware(['auth'])->group(function () {
 Route::get('/', [MainController::class, 'index'])->name('home');
 Route::get('/contact', [MainController::class, 'contact'])->name('contact');
 Route::get('/blog', [MainController::class, 'blog'])->name('blog');
-Route::get('/blog/{slug}', [MainController::class, 'singleBlog'])->name('single.blog');
+Route::get('/blog/{id}', [MainController::class, 'singleBlog'])->name('single.blog');
 
 
 Route::get('/products', [MainController::class, 'products'])->name('products');
