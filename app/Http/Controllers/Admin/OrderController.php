@@ -1,12 +1,12 @@
 <?php
 
-namespace App\Http\Controllers\admin;
+namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
-use App\Models\History;
+use App\Models\Order;
 use Illuminate\Http\Request;
 
-class HistoryController extends Controller
+class OrderController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -35,7 +35,7 @@ class HistoryController extends Controller
     /**
      * Display the specified resource.
      */
-    public function show(History $history)
+    public function show(Order $order)
     {
         //
     }
@@ -43,7 +43,7 @@ class HistoryController extends Controller
     /**
      * Show the form for editing the specified resource.
      */
-    public function edit(History $history)
+    public function edit(Order $order)
     {
         //
     }
@@ -51,7 +51,7 @@ class HistoryController extends Controller
     /**
      * Update the specified resource in storage.
      */
-    public function update(Request $request, History $history)
+    public function update(Request $request, Order $order)
     {
         //
     }
@@ -59,7 +59,7 @@ class HistoryController extends Controller
     /**
      * Remove the specified resource from storage.
      */
-    public function destroy(History $history)
+    public function destroy(Order $order)
     {
         //
     }

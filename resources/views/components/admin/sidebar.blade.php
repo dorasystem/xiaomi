@@ -46,10 +46,23 @@ $about = \App\Models\About::first();
                 </li>
                 <li class="nxl-item nxl-hasmenu">
                     <a href="{{ route('products.index') }}" class="nxl-link">
-                        <span class="nxl-micon"><i class="feather-briefcase"></i></span> <!-- Products icon -->
-                        <span class="nxl-mtext">Продукция</span>
+                        <span class="nxl-micon"><i class="feather-box"></i></span> <!-- Product icon updated -->
+                        <span class="nxl-mtext">Продукты</span>
                     </a>
                 </li>
+                <li class="nxl-item nxl-hasmenu">
+                    <a href="{{ route('categories.index') }}" class="nxl-link">
+                        <span class="nxl-micon"><i class="feather-tag"></i></span> <!-- Category icon updated -->
+                        <span class="nxl-mtext">Категории</span>
+                    </a>
+                </li>
+                <li class="nxl-item nxl-hasmenu">
+                    <a href="{{ route('variants.index') }}" class="nxl-link">
+                        <span class="nxl-micon"><i class="feather-layers"></i></span> <!-- Variants icon updated -->
+                        <span class="nxl-mtext">Варианты</span>
+                    </a>
+                </li>
+
                 <li class="nxl-item nxl-hasmenu">
                     <a href="{{ route('articles.index') }}" class="nxl-link">
                         <span class="nxl-micon"><i class="feather-globe"></i></span> <!-- News icon -->

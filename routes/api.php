@@ -1,6 +1,6 @@
 <?php
 
-use App\Http\Controllers\admin\TestimonialController;
+use App\Http\Controllers\Admin\TestimonialController;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 

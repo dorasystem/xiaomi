@@ -9,7 +9,7 @@
         <hr />
     </div>
     <div style="background-image: url('./asssets/images/single-blogimage.jpg')" class="text-white rounded mb-3 singleblogbanner px-5 w-100 d-flex flex-column justify-content-center">
-        <h1>Обзор Redmi 14C:</h1>
+        <h1>{{ $blog->title_ru }}:</h1>
         <h4 class="">самый демократичный смартфон с экраном 120 герц</h4>
     </div>
     <div class="">

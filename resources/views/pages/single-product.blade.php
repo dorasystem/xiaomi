@@ -11,184 +11,184 @@
             </div>
         </div>
 
-        <!--Single prodtct  -->
-        <div class="container mt-4">
-            <div class="container border rounded-3 shadow-sm bg-white">
-                <div class="row align-items-center justify-content-between border-bottom">
-                    <div class="col-md-9 d-flex align-items-center gap-5 py-3">
-                        <div class="d-lg-flex d-none align-items-center gap-2">
-                            <img width="24px" style="transform: rotate(225deg)" src="./assets/icons/arrow.svg" alt="" />
-                            <span>Назад</span>
+            <!--Single prodtct  -->
+            <div class="container mt-4">
+                <div class="container border rounded-3 shadow-sm bg-white">
+                    <div class="row align-items-center justify-content-between border-bottom">
+                        <div class="col-md-9 d-flex align-items-center gap-5 py-3">
+                            <div class="d-lg-flex d-none align-items-center gap-2">
+                                <img width="24px" style="transform: rotate(225deg)" src="./assets/icons/arrow.svg" alt="" />
+                                <span>Назад</span>
+                            </div>
+                            <div class="productName text-end fs-24">Xiaomi 14T 12/256 Gb Titan Gray</div>
                         </div>
-                        <div class="productName text-end fs-24">Xiaomi 14T 12/256 Gb Titan Gray</div>
-                    </div>
-                    <div class="col-md-3 d-flex align-items-center justify-content-md-end gap-3">
-                        <button class="w-100 my-md-0 my-2 bg-transparent px-3 justify-content-center py-1 d-flex align-items-center gap-3 border rounded-2">
-                            <svg version="1.0" xmlns="http://www.w3.org/2000/svg" width="13" height="13" viewBox="0 0 512.000000 512.000000" preserveAspectRatio="xMidYMid meet">
-                                <g transform="translate(0.000000,512.000000) scale(0.100000,-0.100000)" fill="#000" stroke="none">
-                                    <path
-                                        d="M2015 4786 c-41 -18 -83 -69 -90 -109 -3 -18 -4 -982 -3 -2144 l3
-                                                -2112 21 -27 c11 -15 33 -37 48 -48 27 -21 38 -21 566 -21 528 0 539 0 566 21
-                                                15 11 37 33 48 48 l21 27 0 2139 0 2139 -21 27 c-11 15 -33 37 -48 48 -27 21
-                                                -40 21 -554 23 -423 2 -533 0 -557 -11z m865 -2226 l0 -1920 -320 0 -320 0 0
-                                                1920 0 1920 320 0 320 0 0 -1920z"
-                                    />
-                                    <path
-                                        d="M3615 3506 c-41 -18 -83 -69 -90 -109 -3 -18 -4 -694 -3 -1504 3
-                                                -1468 3 -1472 24 -1499 11 -15 33 -37 48 -48 27 -21 38 -21 566 -21 528 0 539
-                                                0 566 21 15 11 37 33 48 48 21 27 21 28 21 1526 0 1498 0 1499 -21 1526 -11
-                                                15 -33 37 -48 48 -27 21 -40 21 -554 23 -423 2 -533 0 -557 -11z m865 -1586
-                                                l0 -1280 -320 0 -320 0 0 1280 0 1280 320 0 320 0 0 -1280z"
-                                    />
-                                    <path
-                                        d="M415 2226 c-41 -18 -83 -69 -90 -109 -3 -18 -5 -406 -3 -864 3 -822
-                                                3 -832 24 -859 11 -15 33 -37 48 -48 27 -21 38 -21 566 -21 528 0 539 0 566
-                                                21 15 11 37 33 48 48 21 27 21 34 21 886 0 852 0 859 -21 886 -11 15 -33 37
-                                                -48 48 -27 21 -40 21 -554 23 -423 2 -533 0 -557 -11z m865 -946 l0 -640 -320
-                                                0 -320 0 0 640 0 640 320 0 320 0 0 -640z"
-                                    />
-                                </g>
-                            </svg>
-                            <span class="fs-14">Сравнить</span>
-                        </button>
-                        <button class="w-100 my-md-0 my-2 bg-transparent fs-14 px-3 justify-content-center py-1 d-flex align-items-center gap-3 border rounded-2">
-                            <i class="fa-regular fa-heart"></i>
-                            <span class="fs-14">Сохранить</span>
-                        </button>
-                    </div>
-                </div>
-                <div class="container p-0">
-                    <div class="row">
-                        <!-- Kichik rasmlar -->
-                        <div class="col-lg-1 thumbnail-images p-0 d-lg-block d-none">
-                            <button class="border p-0 bg-transparent" type="button" data-bs-target="#productCarousel" data-bs-slide-to="0" aria-current="true">
-                                <img src="./assets/images/product_1.webp" alt="Image 1" class="img-fluid little_active" />
+                        <div class="col-md-3 d-flex align-items-center justify-content-md-end gap-3">
+                            <button class="w-100 my-md-0 my-2 bg-transparent px-3 justify-content-center py-1 d-flex align-items-center gap-3 border rounded-2">
+                                <svg version="1.0" xmlns="http://www.w3.org/2000/svg" width="13" height="13" viewBox="0 0 512.000000 512.000000" preserveAspectRatio="xMidYMid meet">
+                                    <g transform="translate(0.000000,512.000000) scale(0.100000,-0.100000)" fill="#000" stroke="none">
+                                        <path
+                                            d="M2015 4786 c-41 -18 -83 -69 -90 -109 -3 -18 -4 -982 -3 -2144 l3
+                                                    -2112 21 -27 c11 -15 33 -37 48 -48 27 -21 38 -21 566 -21 528 0 539 0 566 21
+                                                    15 11 37 33 48 48 l21 27 0 2139 0 2139 -21 27 c-11 15 -33 37 -48 48 -27 21
+                                                    -40 21 -554 23 -423 2 -533 0 -557 -11z m865 -2226 l0 -1920 -320 0 -320 0 0
+                                                    1920 0 1920 320 0 320 0 0 -1920z"
+                                        />
+                                        <path
+                                            d="M3615 3506 c-41 -18 -83 -69 -90 -109 -3 -18 -4 -694 -3 -1504 3
+                                                    -1468 3 -1472 24 -1499 11 -15 33 -37 48 -48 27 -21 38 -21 566 -21 528 0 539
+                                                    0 566 21 15 11 37 33 48 48 21 27 21 28 21 1526 0 1498 0 1499 -21 1526 -11
+                                                    15 -33 37 -48 48 -27 21 -40 21 -554 23 -423 2 -533 0 -557 -11z m865 -1586
+                                                    l0 -1280 -320 0 -320 0 0 1280 0 1280 320 0 320 0 0 -1280z"
+                                        />
+                                        <path
+                                            d="M415 2226 c-41 -18 -83 -69 -90 -109 -3 -18 -5 -406 -3 -864 3 -822
+                                                    3 -832 24 -859 11 -15 33 -37 48 -48 27 -21 38 -21 566 -21 528 0 539 0 566
+                                                    21 15 11 37 33 48 48 21 27 21 34 21 886 0 852 0 859 -21 886 -11 15 -33 37
+                                                    -48 48 -27 21 -40 21 -554 23 -423 2 -533 0 -557 -11z m865 -946 l0 -640 -320
+                                                    0 -320 0 0 640 0 640 320 0 320 0 0 -640z"
+                                        />
+                                    </g>
+                                </svg>
+                                <span class="fs-14">Сравнить</span>
                             </button>
-                            <button class="border p-0 bg-transparent" type="button" data-bs-target="#productCarousel" data-bs-slide-to="1">
-                                <img src="./assets/images/product_2.webp" alt="Image 2" class="img-fluid" />
-                            </button>
-                            <button class="border p-0 bg-transparent" type="button" data-bs-target="#productCarousel" data-bs-slide-to="2">
-                                <img src="./assets/images/product_3.webp" alt="Image 3" class="img-fluid" />
-                            </button>
-                            <button class="border p-0 bg-transparent" type="button" data-bs-target="#productCarousel" data-bs-slide-to="3">
-                                <img src="./assets/images/product_4.webp" alt="Image 4" class="img-fluid" />
+                            <button class="w-100 my-md-0 my-2 bg-transparent fs-14 px-3 justify-content-center py-1 d-flex align-items-center gap-3 border rounded-2">
+                                <i class="fa-regular fa-heart"></i>
+                                <span class="fs-14">Сохранить</span>
                             </button>
                         </div>
-
-                        <!-- Katta rasm va o'q tugmalari -->
-                        <div class="col-lg-7 pt-5">
-                            <div id="productCarousel" class="carousel slide" data-bs-ride="false">
-                                <div class="carousel-inner">
-                                    <div class="carousel-item active">
-                                        <img src="./assets/images/product_1.webp" class="d-block w-100" alt="Image 1" />
-                                    </div>
-                                    <div class="carousel-item">
-                                        <img src="./assets/images/product_2.webp" class="d-block w-100" alt="Image 2" />
-                                    </div>
-                                    <div class="carousel-item">
-                                        <img src="./assets/images/product_3.webp" class="d-block w-100" alt="Image 3" />
-                                    </div>
-                                    <div class="carousel-item">
-                                        <img src="./assets/images/product_4.webp" class="d-block w-100" alt="Image 4" />
-                                    </div>
-                                </div>
-
-                                <!-- Chapga o'tish tugmasi -->
-                                <button class="carousel-control-prev rounded-pill" type="button" data-bs-target="#productCarousel" data-bs-slide="prev">
-                                    <span class="carousel-control-prev-icon" aria-hidden="true"></span>
-                                    <span class="visually-hidden">Oldingi</span>
+                    </div>
+                    <div class="container p-0">
+                        <div class="row">
+                            <!-- Kichik rasmlar -->
+                            <div class="col-lg-1 thumbnail-images p-0 d-lg-block d-none">
+                                <button class="border p-0 bg-transparent" type="button" data-bs-target="#productCarousel" data-bs-slide-to="0" aria-current="true">
+                                    <img src="./assets/images/product_1.webp" alt="Image 1" class="img-fluid little_active" />
                                 </button>
-
-                                <!-- O'ngga o'tish tugmasi -->
-                                <button class="carousel-control-next rounded-pill" type="button" data-bs-target="#productCarousel" data-bs-slide="next">
-                                    <span class="carousel-control-next-icon" aria-hidden="true"></span>
-                                    <span class="visually-hidden">Keyingi</span>
+                                <button class="border p-0 bg-transparent" type="button" data-bs-target="#productCarousel" data-bs-slide-to="1">
+                                    <img src="./assets/images/product_2.webp" alt="Image 2" class="img-fluid" />
+                                </button>
+                                <button class="border p-0 bg-transparent" type="button" data-bs-target="#productCarousel" data-bs-slide-to="2">
+                                    <img src="./assets/images/product_3.webp" alt="Image 3" class="img-fluid" />
+                                </button>
+                                <button class="border p-0 bg-transparent" type="button" data-bs-target="#productCarousel" data-bs-slide-to="3">
+                                    <img src="./assets/images/product_4.webp" alt="Image 4" class="img-fluid" />
                                 </button>
                             </div>
-                            <div class="rounded-2 bg-grey p-4 mx-lg-5 d-flex justify-content-between gap-3">
-                                <div class="d-flex gap-3">
-                                    <div class="rounded-pill p-3 bg-orange plus d-flex align-items-center justify-content-center">
-                                        <img src="./assets/icons/white-plus.svg" alt="" />
+
+                            <!-- Katta rasm va o'q tugmalari -->
+                            <div class="col-lg-7 pt-5">
+                                <div id="productCarousel" class="carousel slide" data-bs-ride="false">
+                                    <div class="carousel-inner">
+                                        <div class="carousel-item active">
+                                            <img src="./assets/images/product_1.webp" class="d-block w-100" alt="Image 1" />
+                                        </div>
+                                        <div class="carousel-item">
+                                            <img src="./assets/images/product_2.webp" class="d-block w-100" alt="Image 2" />
+                                        </div>
+                                        <div class="carousel-item">
+                                            <img src="./assets/images/product_3.webp" class="d-block w-100" alt="Image 3" />
+                                        </div>
+                                        <div class="carousel-item">
+                                            <img src="./assets/images/product_4.webp" class="d-block w-100" alt="Image 4" />
+                                        </div>
+                                    </div>
+
+                                    <!-- Chapga o'tish tugmasi -->
+                                    <button class="carousel-control-prev rounded-pill" type="button" data-bs-target="#productCarousel" data-bs-slide="prev">
+                                        <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+                                        <span class="visually-hidden">Oldingi</span>
+                                    </button>
+
+                                    <!-- O'ngga o'tish tugmasi -->
+                                    <button class="carousel-control-next rounded-pill" type="button" data-bs-target="#productCarousel" data-bs-slide="next">
+                                        <span class="carousel-control-next-icon" aria-hidden="true"></span>
+                                        <span class="visually-hidden">Keyingi</span>
+                                    </button>
+                                </div>
+                                <div class="rounded-2 bg-grey p-4 mx-lg-5 d-flex justify-content-between gap-3">
+                                    <div class="d-flex gap-3">
+                                        <div class="rounded-pill p-3 bg-orange plus d-flex align-items-center justify-content-center">
+                                            <img src="./assets/icons/white-plus.svg" alt="" />
+                                        </div>
+                                        <div class="">
+                                            <div class="d-flex align-items-center text-orange gap-1">
+                                                <img src="./assets/icons/orange_gift.svg" alt="" />
+                                                <span>Подарок</span>
+                                            </div>
+                                            <div class="fs-14 fw-semibold">Фитнес браслет Xiomi Smart Band 9</div>
+                                        </div>
                                     </div>
                                     <div class="">
-                                        <div class="d-flex align-items-center text-orange gap-1">
-                                            <img src="./assets/icons/orange_gift.svg" alt="" />
-                                            <span>Подарок</span>
-                                        </div>
-                                        <div class="fs-14 fw-semibold">Фитнес браслет Xiomi Smart Band 9</div>
+                                        <img width="70px" src="./assets/images/category_phone.webp" alt="" />
                                     </div>
                                 </div>
-                                <div class="">
-                                    <img width="70px" src="./assets/images/category_phone.webp" alt="" />
-                                </div>
-                            </div>
-                        </div>
-
-                        <!-- O'ng tarafdagi ma'lumotlar -->
-                        <div class="col-lg-4 p-4 border-start">
-                            <div class="text-grey my-1">Код товара : MI000025007</div>
-                            <h6>Xiaomi 14T 12/256 Gb Titan Gray</h6>
-                            <div class="fs-14">
-                                Non aute minim enim commodo ad in. Consectetur velit amet laboris ea culpa minim irure. Elit amet eiusmod exercitation fugiat in ad ad proident ea proident sunt
-                                culpa quis ad velit magna sunt. Minim excepteur ipsum non in ullamco sit mollit ex amet velit et tempor in. Ex elit
-                            </div>
-                            <div class="my-3 d-flex align-items-center gap-3 text-orange">
-                                Читать дальше
-                                <img src="./assets/icons/arrow-orange.svg" alt="" />
                             </div>
 
-                            <div class="d-flex align-items-center gap-3 mt-2">
-                                <div class="text-grey fs-14">Выбранный цвет</div>
-                                <div class="blue text-white rounded px-3 py-1 fs-14">Синий</div>
-                            </div>
-                            <div class="productsColor d-flex align-items-center mb-4 pb-2 gap-3 py-3">
-                                <div class="border-orange rounded p-2 bg-lightorange">
-                                    <img width="60px" src="./assets/images/product_1.webp" alt="" />
+                            <!-- O'ng tarafdagi ma'lumotlar -->
+                            <div class="col-lg-4 p-4 border-start">
+                                <div class="text-grey my-1">Код товара : MI000025007</div>
+                                <h6>Xiaomi 14T 12/256 Gb Titan Gray</h6>
+                                <div class="fs-14">
+                                    Non aute minim enim commodo ad in. Consectetur velit amet laboris ea culpa minim irure. Elit amet eiusmod exercitation fugiat in ad ad proident ea proident sunt
+                                    culpa quis ad velit magna sunt. Minim excepteur ipsum non in ullamco sit mollit ex amet velit et tempor in. Ex elit
                                 </div>
-                                <div class="border-grey rounded p-2">
-                                    <img width="60px" src="./assets/images/product_1.webp" alt="" />
+                                <div class="my-3 d-flex align-items-center gap-3 text-orange">
+                                    Читать дальше
+                                    <img src="./assets/icons/arrow-orange.svg" alt="" />
                                 </div>
-                                <div class="border-grey rounded p-2">
-                                    <img width="60px" src="./assets/images/product_1.webp" alt="" />
+
+                                <div class="d-flex align-items-center gap-3 mt-2">
+                                    <div class="text-grey fs-14">Выбранный цвет</div>
+                                    <div class="blue text-white rounded px-3 py-1 fs-14">Синий</div>
                                 </div>
-                                <div class="border-grey rounded p-2">
-                                    <img width="60px" src="./assets/images/product_1.webp" alt="" />
+                                <div class="productsColor d-flex align-items-center mb-4 pb-2 gap-3 py-3">
+                                    <div class="border-orange rounded p-2 bg-lightorange">
+                                        <img width="60px" src="./assets/images/product_1.webp" alt="" />
+                                    </div>
+                                    <div class="border-grey rounded p-2">
+                                        <img width="60px" src="./assets/images/product_1.webp" alt="" />
+                                    </div>
+                                    <div class="border-grey rounded p-2">
+                                        <img width="60px" src="./assets/images/product_1.webp" alt="" />
+                                    </div>
+                                    <div class="border-grey rounded p-2">
+                                        <img width="60px" src="./assets/images/product_1.webp" alt="" />
+                                    </div>
+                                    <div class="border-grey rounded p-2">
+                                        <img width="60px" src="./assets/images/product_1.webp" alt="" />
+                                    </div>
                                 </div>
-                                <div class="border-grey rounded p-2">
-                                    <img width="60px" src="./assets/images/product_1.webp" alt="" />
+                                <div class="text-grey mb-2 fs-14">Объем памяти</div>
+                                <div class="d-flex align-items-center gap-2 mb-3">
+                                    <div class="fs-12 px-3 py-1 rounded border-orange rouonded bg-lightorange">256 ГБ</div>
+                                    <div class="fs-12 px-3 py-1 rounded bg-darkgrey">256 ГБ</div>
                                 </div>
-                            </div>
-                            <div class="text-grey mb-2 fs-14">Объем памяти</div>
-                            <div class="d-flex align-items-center gap-2 mb-3">
-                                <div class="fs-12 px-3 py-1 rounded border-orange rouonded bg-lightorange">256 ГБ</div>
-                                <div class="fs-12 px-3 py-1 rounded bg-darkgrey">256 ГБ</div>
-                            </div>
-                            <div class="text-grey mb-2 fs-14">RAM</div>
-                            <div class="d-flex align-items-center gap-2 border-bottom pb-3 mb-2">
-                                <div class="fs-12 px-3 py-1 rounded border-orange rouonded bg-lightorange">12 ГБ</div>
-                                <div class="fs-12 px-3 py-1 rounded bg-darkgrey">8 ГБ</div>
-                            </div>
-                            <div class="fs-24 fw-bold mb-2">1 000 000 <span>сум</span></div>
-                            <div class="fs-14 text-grey mb-2">Вы можете выбрать рассрочку на срок от 6 до 24 месяцев при оформлении заказа</div>
-                            <div class="rounded bg-darkgrey py-2 px-3 mb-3 d-flex flex-wrap justify-content-between">
-                                <div class="d-flex flex-wrap align-items-center gap-sm-4 gap-2">
-                                    <span class="text-nowrap">В рассрочку</span>
-                                    <div class="bg-orange text-nowrap text-white rounded px-1">100 000 сум</div>
-                                    <span class="text-nowrap">24/ мес. </span>
+                                <div class="text-grey mb-2 fs-14">RAM</div>
+                                <div class="d-flex align-items-center gap-2 border-bottom pb-3 mb-2">
+                                    <div class="fs-12 px-3 py-1 rounded border-orange rouonded bg-lightorange">12 ГБ</div>
+                                    <div class="fs-12 px-3 py-1 rounded bg-darkgrey">8 ГБ</div>
                                 </div>
-                                <div type="button" class="" data-bs-toggle="tooltip" title="Tooltip text here">
-                                    <img src="./assets/icons/question.svg" alt="" />
+                                <div class="fs-24 fw-bold mb-2">1 000 000 <span>сум</span></div>
+                                <div class="fs-14 text-grey mb-2">Вы можете выбрать рассрочку на срок от 6 до 24 месяцев при оформлении заказа</div>
+                                <div class="rounded bg-darkgrey py-2 px-3 mb-3 d-flex flex-wrap justify-content-between">
+                                    <div class="d-flex flex-wrap align-items-center gap-sm-4 gap-2">
+                                        <span class="text-nowrap">В рассрочку</span>
+                                        <div class="bg-orange text-nowrap text-white rounded px-1">100 000 сум</div>
+                                        <span class="text-nowrap">24/ мес. </span>
+                                    </div>
+                                    <div type="button" class="" data-bs-toggle="tooltip" title="Tooltip text here">
+                                        <img src="./assets/icons/question.svg" alt="" />
+                                    </div>
                                 </div>
-                            </div>
-                            <div class="d-flex flex-lg-row flex-column d-block align-items-center gap-3">
-                                <button class="btn-orange rounded w-100">В корзину</button>
-                                <button class="border-0 w-100 bg-darkgrey rounded py-2 px-3">Купить в один клик</button>
+                                <div class="d-flex flex-lg-row flex-column d-block align-items-center gap-3">
+                                    <button class="btn-orange rounded w-100">В корзину</button>
+                                    <button class="border-0 w-100 bg-darkgrey rounded py-2 px-3">Купить в один клик</button>
+                                </div>
                             </div>
                         </div>
                     </div>
                 </div>
             </div>
-        </div>
 
         <!-- product description -->
         <div class="container">

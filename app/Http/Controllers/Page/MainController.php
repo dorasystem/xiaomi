@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Http\Controllers\frontend;
+namespace App\Http\Controllers\Page;
 
 use App\Http\Controllers\Controller;
 use App\Models\Blog;
@@ -20,17 +20,20 @@ class MainController extends Controller
     }
     public function blog()
     {
-        $blogs = Blog::all();
-        return view('pages.blog', compact('blogs'));
+        $blogs = News::all();
+//        dd($blogs);
+        return view('pages.page-blog', compact('blogs'));
     }
-    public function singleBlog($slug){
-        $blog = Blog::where('slug', $slug)->firstOrFail();
+    public function singleBlog($id){
+
+        $blog = News::findOrFail($id);
         return view('pages.single-blog', compact('blog'));
     }
 
     public function products()
     {
-        return view('pages.page-products');
+        $products = Product::paginate(8);
+        return view('pages.page-products',compact('products'));
     }
 
     public function singleProduct()

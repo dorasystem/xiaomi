@@ -12,7 +12,9 @@ use App\Http\Controllers\auth\AdminController;
 use App\Http\Controllers\auth\AuthController;
 use App\Http\Controllers\auth\SuperAdminController;
 use App\Http\Controllers\auth\UserController;
-use App\Http\Controllers\frontend\MainController;
+use App\Http\Controllers\Admin\CategoryController;
+use App\Http\Controllers\Admin\VariantController;
+use App\Http\Controllers\Page\MainController;
 use Illuminate\Support\Facades\Route;
 
 
@@ -35,7 +37,9 @@ Route::middleware(['auth'])->prefix('dashboard')->group(function () {
     Route::resource('services', ServiceController::class);
     Route::resource('contacts', ContactController::class);
     Route::resource('faqs', FaqController::class);
+    Route::resource('categories', CategoryController::class);
     Route::resource('products', ProductController::class);
+    Route::resource('variants', VariantController::class);
 });
 
 Route::middleware(['auth'])->group(function () {
@@ -48,7 +52,7 @@ Route::middleware(['auth'])->group(function () {
 Route::get('/', [MainController::class, 'index'])->name('home');
 Route::get('/contact', [MainController::class, 'contact'])->name('contact');
 Route::get('/blog', [MainController::class, 'blog'])->name('blog');
-Route::get('/blog/{slug}', [MainController::class, 'singleBlog'])->name('single.blog');
+Route::get('/blog/{id}', [MainController::class, 'singleBlog'])->name('single.blog');
 
 
 Route::get('/products', [MainController::class, 'products'])->name('products');
