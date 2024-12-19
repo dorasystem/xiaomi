@@ -32,12 +32,13 @@ class MainController extends Controller
 
     public function products()
     {
-        return view('frontend.page-products');
+        $products = Product::paginate(8);
+        return view('pages.page-products',compact('products'));
     }
 
     public function singleProduct()
     {
-        return view('frontend.single-products');
+        return view('pages.single-product');
     }
 //    public function singleProduct($slug)
 //    {
@@ -47,12 +48,12 @@ class MainController extends Controller
 
     public function news()
     {
-        return view('frontend.page-news');
+        return view('pages.page-news');
     }
 
     public function singleNews()
     {
-        return view('frontend.single-news');
+        return view('pages.single-news');
     }
 //    public function singleNews($slug)
 //    {

@@ -2,11 +2,13 @@
 
 use App\Http\Controllers\Admin\AboutController;
 use App\Http\Controllers\Admin\CartController;
+use App\Http\Controllers\Admin\CategoryController;
 use App\Http\Controllers\Admin\ContactController;
 use App\Http\Controllers\Admin\FaqController;
 use App\Http\Controllers\Admin\NewsController;
 use App\Http\Controllers\Admin\ProductController;
 use App\Http\Controllers\Admin\ServiceController;
+use App\Http\Controllers\Admin\VariantController;
 use App\Http\Controllers\Auth\AdminController;
 use App\Http\Controllers\Auth\AuthController;
 use App\Http\Controllers\Auth\SuperAdminController;
@@ -33,7 +35,9 @@ Route::middleware(['auth'])->prefix('dashboard')->group(function () {
     Route::resource('services', ServiceController::class);
     Route::resource('contacts', ContactController::class);
     Route::resource('faqs', FaqController::class);
+    Route::resource('categories', CategoryController::class);
     Route::resource('products', ProductController::class);
+    Route::resource('variants', VariantController::class);
 });
 
 Route::middleware(['auth'])->group(function () {

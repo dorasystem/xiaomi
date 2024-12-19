@@ -28,8 +28,8 @@
                         <div class="row">
                             <!-- Image -->
                             <div class="col-md-4 text-center">
-                                @if ($product->image)
-                                    <img src="{{ asset('storage/' . $product->image) }}" alt="{{ $product->name }}" class="img-thumbnail" style="max-width: 100%;">
+                                @if ($product->gift_image)
+                                    <img src="{{ asset('storage/' . $product->gift_image) }}" alt="{{ $product->gift_name }}" class="img-thumbnail" style="max-width: 100%;">
                                 @else
                                     <p class="text-muted">Изображение отсутствует</p>
                                 @endif
@@ -54,6 +54,10 @@
                                         <td>{{ $product->category->name ?? 'Без категории' }}</td>
                                     </tr>
                                     <tr>
+                                        <th>Подарок:</th>
+                                        <td>{{ $product->gift_name ?? 'Не указан' }}</td>
+                                    </tr>
+                                    <tr>
                                         <th>Дата создания:</th>
                                         <td>{{ $product->created_at->format('d-m-Y H:i') }}</td>
                                     </tr>
@@ -62,7 +66,7 @@
                                         <td>{{ $product->updated_at->format('d-m-Y H:i') }}</td>
                                     </tr>
                                     <tr>
-                                        <th>Последнее обновление:</th>
+                                        <th>Просмотры:</th>
                                         <td>{{ $product->views }}</td>
                                     </tr>
                                 </table>

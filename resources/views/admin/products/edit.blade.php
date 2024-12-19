@@ -3,7 +3,7 @@
 @section('content')
     <form action="{{ route('products.update', $product->id) }}" method="POST" enctype="multipart/form-data" novalidate class="needs-validation" onsubmit="updateEditorContent()">
         @csrf
-        @method('PUT')
+        @method('PUT')  <!-- This is important for update requests in Laravel -->
 
         <main class="nxl-container">
             <div class="nxl-content">
@@ -15,10 +15,11 @@
                         <ul class="breadcrumb">
                             <li class="breadcrumb-item"><a href="{{ route('admins.dashboard') }}">Главная</a></li>
                             <li class="breadcrumb-item">Продукты</li>
+                            <li class="breadcrumb-item active">Редактировать</li>
                         </ul>
                     </div>
                     <div class="page-header-right ms-auto">
-                        <button type="submit" class="btn btn-primary">Сохранить</button>
+                        <button type="submit" class="btn btn-primary">Обновить</button>
                     </div>
                 </div>
 
@@ -57,23 +58,20 @@
                                                 <div class="form-group pb-3">
                                                     <label for="name_{{ $lang }}">Заголовок ({{ strtoupper($lang) }}):</label>
                                                     <input type="text" class="form-control" id="name_{{ $lang }}" name="name_{{ $lang }}"
-                                                           value="{{ old('name_' . $lang, $product->{'name_' . $lang} ?? '') }}" required>
+                                                           value="{{ old('name_' . $lang, $product->{'name_' . $lang}) }}" required>
                                                 </div>
                                                 <div class="form-group pb-3">
-                                                    <label for="description_{{ $lang }}">Oписание ({{ strtoupper($lang) }}):</label>
-                                                    <div id="descriptionEditor_{{ $lang }}" style="height:200px;">{!! old('description_' . $lang, $product->{'description_' . $lang} ?? '') !!}</div>
-                                                    <input type="hidden" id="description_{{ $lang }}" name="description_{{ $lang }}" value="{{ old('description_' . $lang, $product->{'description_' . $lang} ?? '') }}">
+                                                    <label for="description_{{ $lang }}">Описание ({{ strtoupper($lang) }}):</label>
+                                                    <div id="descriptionEditor_{{ $lang }}" style="height:200px;">{!! old('description_' . $lang, $product->{'description_' . $lang}) !!}</div>
+                                                    <input type="hidden" id="description_{{ $lang }}" name="description_{{ $lang }}" value="{{ old('description_' . $lang, $product->{'description_' . $lang}) }}">
                                                 </div>
                                             </div>
                                         @endforeach
                                     </div>
-                                    <div class="form-group pb-3">
-                                        <label for="price">Цена:</label>
-                                        <input type="number" class="form-control" id="price" name="price" value="{{ old('price', $product->price) }}" required>
-                                    </div>
                                 </div>
                             </div>
                         </div>
+
                         <div class="col-lg-4">
                             <div class="card stretch">
                                 <div class="card-header">
@@ -81,17 +79,29 @@
                                 </div>
                                 <div class="card-body p-4">
                                     <div class="form-group pb-3">
-                                        <label for="image">Изображение продукта:</label>
-                                        <input type="file" class="form-control" id="image" name="image">
-                                        @if($product->image)
-                                            <div class="mt-2">
-                                                <img src="{{ asset('storage/' . $product->image) }}" alt="Изображение продукта" style="max-width: 100px;">
-                                            </div>
+                                        <label for="image">Изображение Подарок:</label>
+                                        <input type="file" class="form-control" id="image" name="gift_image">
+                                        @if ($product->gift_image)
+                                            <img src="{{ asset('storage/' . $product->gift_image) }}" alt="gift image" class="img-thumbnail mt-2" width="100">
                                         @endif
                                     </div>
                                     <div class="form-group pb-3">
-                                        <label for="stock">Количество в наличии:</label>
-                                        <input type="number" class="form-control" id="stock" name="stock" value="{{ old('stock', $product->stock) }}">
+                                        <label for="gift_name">Подарок название:</label>
+                                        <input type="text" class="form-control" id="gift_name" name="gift_name" value="{{ old('gift_name', $product->gift_name) }}">
+                                    </div>
+                                    <div class="form-group pb-3">
+                                        <label for="category_id">Категория:</label>
+                                        <select id="category_id" name="category_id" class="form-control" required>
+                                            @foreach ($categories as $category)
+                                                <option value="{{ $category->id }}" {{ $category->id == $product->category_id ? 'selected' : '' }}>
+                                                    {{ $category->name_ru }}
+                                                </option>
+                                            @endforeach
+                                        </select>
+                                    </div>
+                                    <div class="form-group pb-3">
+                                        <label for="slug">Slug:</label>
+                                        <input type="text" class="form-control" id="slug" name="slug" value="{{ old('slug', $product->slug) }}" required>
                                     </div>
                                 </div>
                             </div>

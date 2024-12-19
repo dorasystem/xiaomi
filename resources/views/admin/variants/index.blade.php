@@ -1,5 +1,5 @@
 @extends('layouts.admin')
-@section('title', 'Список продуктов')
+@section('title', 'Список вариантов')
 
 @section('content')
     <main class="nxl-container">
@@ -7,57 +7,66 @@
             <div class="page-header">
                 <div class="page-header-left d-flex align-items-center">
                     <div class="page-header-title">
-                        <h5 class="m-b-10">Список продуктов</h5>
+                        <h5 class="m-b-10">Список вариантов</h5>
                     </div>
                     <ul class="breadcrumb">
                         <li class="breadcrumb-item"><a href="{{ route('admins.dashboard') }}">Главная</a></li>
-                        <li class="breadcrumb-item">Продукты</li>
+                        <li class="breadcrumb-item">Варианты</li>
                     </ul>
                 </div>
                 <div class="page-header-right ms-auto">
-                    <a href="{{ route('products.create') }}" class="btn btn-primary">Добавить продукт</a>
+                    <a href="{{ route('variants.create') }}" class="btn btn-primary">Добавить вариант</a>
                 </div>
             </div>
             <div class="main-content">
 
-                <!-- Products Table -->
+                <!-- Variants Table -->
                 <div class="card">
                     <div class="card-header">
-                        <h5 class="mb-0">Продукты</h5>
+                        <h5 class="mb-0">Варианты</h5>
                     </div>
                     <div class="table-responsive">
                         <table class="table mb-0">
                             <thead>
                             <tr>
                                 <th scope="col">№</th>
-                                <th scope="col">Название</th>
-                                <th scope="col">Описание</th>
-                                <th scope="col">Категория</th>
+                                <th scope="col">Продукт</th>
+                                <th scope="col">Место хранения</th>
+                                <th scope="col">RAM</th>
+                                <th scope="col">Цена</th>
+                                <th scope="col">Цвет</th>
+                                <th scope="col">Изображение</th>
                                 <th scope="col" class="text-end">Действия</th>
                             </tr>
                             </thead>
                             <tbody>
-                            @foreach ($products as $product)
+                            @foreach ($variants as $variant)
                                 <tr>
                                     <td>{{ $loop->iteration }}</td>
-                                    <td>{{ $product->name_uz }}</td>
-                                    <td>{!! \Illuminate\Support\Str::limit($product->description_uz, 50) !!}</td>
-                                    <td>{{ $product->category->name_ru ?? 'Без категории' }}</td>
-
+                                    <td>{{ $variant->product->name_uz ?? 'Без продукта' }}</td>
+                                    <td>{{ $variant->storage }}</td>
+                                    <td>{{ $variant->ram }}</td>
+                                    <td>{{ $variant->price }} UZS</td>
+                                    <td>{{ $variant->color_ru }}</td>
+                                    <td>
+                                        @if ($variant->image)
+                                            <img src="{{ asset('storage/' . $variant->image) }}" alt="{{ $variant->product->name_uz }}" width="50" class="img-thumbnail">
+                                        @endif
+                                    </td>
                                     <td class="text-end">
                                         <div class="btn-group" role="group">
-                                            <a href="{{ route('products.show', $product->id) }}"
+                                            <a href="{{ route('variants.show', $variant->id) }}"
                                                class="avatar-text avatar-md">
                                                 <i class="feather feather-eye"></i>
                                             </a>
-                                            <a href="{{ route('products.edit', $product->id) }}"
+                                            <a href="{{ route('variants.edit', $variant->id) }}"
                                                class="avatar-text avatar-md">
                                                 <i class="feather feather-edit"></i>
                                             </a>
-                                            <form action="{{ route('products.destroy', $product->id) }}" method="POST" style="display: inline;">
+                                            <form action="{{ route('variants.destroy', $variant->id) }}" method="POST" style="display: inline;">
                                                 @csrf
                                                 @method('DELETE')
-                                                <button class="border-0 bg-transparent js-delete-btn" type="submit" onclick="return confirm('Вы действительно хотите удалить этот продукт?')">
+                                                <button class="border-0 bg-transparent js-delete-btn" type="submit" onclick="return confirm('Вы действительно хотите удалить этот вариант?')">
                                                     <a href="javascript:void(0)" class="avatar-text avatar-md" data-bs-toggle="tooltip" data-bs-trigger="hover" title="Удалить">
                                                         <i class="feather-trash-2"></i>
                                                     </a>
@@ -70,36 +79,13 @@
                             </tbody>
                         </table>
                     </div>
-                    @if ($products->isEmpty())
+                    @if ($variants->isEmpty())
                         <div class="card-body">
-                            <p class="text-center">На данный момент продукты отсутствуют.</p>
+                            <p class="text-center">На данный момент варианты отсутствуют.</p>
                         </div>
                     @endif
                 </div>
             </div>
         </div>
     </main>
-    <script>
-        function addToCart(productId) {
-            $.ajax({
-                url: `/add-to-cart/${productId}`,
-                type: 'POST',
-                data: {
-                    _token: '{{ csrf_token() }}',
-                },
-                success: function(response) {
-                    updateCartCount(response.cart_count); // Badge raqamini yangilash
-                    // alert(response.message); // Foydalanuvchiga xabar ko'rsatish
-                },
-                error: function(xhr) {
-                    alert('Xatolik yuz berdi: ' + xhr.responseText);
-                }
-            });
-        }
-
-        function updateCartCount(count) {
-            document.getElementById('cart-count').innerText = count;
-        }
-
-    </script>
 @endsection
