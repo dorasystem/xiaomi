@@ -3,10 +3,12 @@
 namespace App\Http\Controllers\Page;
 
 use App\Http\Controllers\Controller;
+use App\Models\Article;
 use App\Models\Blog;
 use App\Models\News;
 use App\Models\Product;
-use Illuminate\Http\Request;
+use Illuminate\Http\Request;use Illuminate\Support\Facades\DB;
+
 
 class MainController extends Controller
 {
@@ -20,13 +22,16 @@ class MainController extends Controller
     }
     public function blog()
     {
-        $blogs = News::all();
+        $blogs = Blog::all();
 //        dd($blogs);
         return view('pages.page-blog', compact('blogs'));
     }
-    public function singleBlog($id){
-
-        $blog = News::findOrFail($id);
+    public function singleBlog($slug)
+    {
+        $locale = app()->getLocale();
+        $blog = Blog::all()->filter(function ($blog) use ($locale, $slug) {
+            return $blog->getSlugByLanguage($locale) === $slug;
+        })->first();
         return view('pages.single-blog', compact('blog'));
     }
 
@@ -49,17 +54,20 @@ class MainController extends Controller
     public function news()
     {
         $news = News::all();
-        return view('pages.page-news', compact('news'));
+        $articles = Article::all();
+        return view('pages.page-news', compact('news', 'articles'));
     }
 
-    public function singleNews()
+    public function singleNews($slug)
     {
-        $news = News::first();
+        $locale = app()->getLocale();
+        $column = 'slug_' . $locale; // Hozirgi tilga mos ustunni aniqlash
+        $news = News::where($column, $slug)->firstOrFail();
         return view('pages.single-news', compact('news'));
     }
-//    public function singleNews($slug)
-//    {
-//        $news = News::where('slug', $slug)->firstOrFail();
-//        return view('pages.single-news', compact('news'));
-//    }
+    public function singleArticle($slug)
+    {
+        $articles = Article::find('slug', $slug);
+        return view('pages.single-article', compact('articles'));
+    }
 }

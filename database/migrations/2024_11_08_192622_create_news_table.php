@@ -16,6 +16,7 @@ return new class extends Migration
             $table->string('title_uz')->nullable();
             $table->string('title_ru')->nullable();
             $table->string('title_en')->nullable();
+            $table->text('slug')->nullable();
             $table->text('description_uz')->nullable();
             $table->text('description_ru')->nullable();
             $table->text('description_en')->nullable();

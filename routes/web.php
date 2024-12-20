@@ -2,6 +2,7 @@
 
 use App\Http\Controllers\admin\AboutController;
 use App\Http\Controllers\admin\ArticleController;
+use App\Http\Controllers\Admin\BlogController;
 use App\Http\Controllers\admin\CartController;
 use App\Http\Controllers\admin\ContactController;
 use App\Http\Controllers\admin\FaqController;
@@ -15,6 +16,7 @@ use App\Http\Controllers\auth\UserController;
 use App\Http\Controllers\Admin\CategoryController;
 use App\Http\Controllers\Admin\VariantController;
 use App\Http\Controllers\Page\MainController;
+use App\Http\Controllers\LanguageController;
 use Illuminate\Support\Facades\Route;
 
 
@@ -33,7 +35,7 @@ Route::middleware(['auth'])->prefix('dashboard')->group(function () {
     Route::resource('abouts', AboutController::class);
     Route::resource('news', NewsController::class);
     Route::resource('articles', ArticleController::class);
-    Route::resource('blogs', NewsController::class);
+    Route::resource('blogs', BlogController::class);
     Route::resource('services', ServiceController::class);
     Route::resource('contacts', ContactController::class);
     Route::resource('faqs', FaqController::class);
@@ -52,18 +54,19 @@ Route::middleware(['auth'])->group(function () {
 Route::get('/', [MainController::class, 'index'])->name('home');
 Route::get('/contact', [MainController::class, 'contact'])->name('contact');
 Route::get('/blog', [MainController::class, 'blog'])->name('blog');
-Route::get('/blog/{id}', [MainController::class, 'singleBlog'])->name('single.blog');
+Route::get('/blog/{slug}', [MainController::class, 'singleBlog'])->name('single.blog');
 
 
 Route::get('/products', [MainController::class, 'products'])->name('products');
 Route::get('/single-product', [MainController::class, 'singleProduct'])->name('single.product');
 //Route::get('/product{slug}', [MainController::class, 'singleProduct'])->name('single.product');
 Route::get('/news', [MainController::class, 'news'])->name('news');
-Route::get('/single-news', [MainController::class, 'singleNews'])->name('single.news');
-//Route::get('/news{slug}', [MainController::class, 'singleNews'])->name('single.news');
-
+Route::get('/news/{slug}', [MainController::class, 'singleNews'])->name('single.news');
+Route::get('/article/{slug}', [MainController::class, 'singleArticle'])->name('single.article');
 
 Route::get('/cart', [CartController::class, 'cart'])->name('cart');
 Route::post('add-to-cart/{id}', [CartController::class, 'addToCart'])->name('addToCart');
 Route::post('/add-to-cart', [CartController::class, 'addToCart'])->name('cart.add');
 Route::delete('/remove-from-cart', [CartController::class, 'removeFromCart'])->name('removeFromCart');
+
+Route::get('locale/{lang}',[LanguageController::class, 'setLocale']);

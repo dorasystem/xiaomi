@@ -37,7 +37,7 @@ class CartController extends Controller
     {
 //        dd('salom');
         $cart = session()->get('cart', []); // Savatdagi barcha mahsulotlarni oladi
-        return view('dashboard.cart', compact('cart'));
+        return view('admin.dashboard.cart', compact('cart'));
     }
     public function removeFromCart(Request $request)
     {

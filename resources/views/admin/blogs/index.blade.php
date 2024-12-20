@@ -15,7 +15,7 @@
                     </ul>
                 </div>
                 <div class="page-header-right ms-auto">
-                    <a href="{{ route('news.create') }}" class="btn btn-primary">Добавить Блог</a>
+                    <a href="{{ route('blogs.create') }}" class="btn btn-primary">Добавить Блог</a>
                 </div>
             </div>
             <div class="main-content">
@@ -73,7 +73,7 @@
                             </tbody>
                         </table>
                     </div>
-                    @if ($news->isEmpty())
+                    @if ($blogs->isEmpty())
                         <div class="card-body">
                             <p class="text-center">На данный момент Блоги отсутствуют.</p>
                         </div>

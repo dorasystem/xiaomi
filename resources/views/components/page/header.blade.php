@@ -33,11 +33,24 @@
                     </div>
                     <div class="position-relative w-max d-flex align-items-center justify-content-end justify-content-md-start text-nowrap align-items-center">
                         <div class="dropdown">
-                            <button class="border-0 bg-transparent pe-4 py-1 dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false">Русский</button>
+                            <button class="border-0 bg-transparent pe-4 py-1 dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false">
+                                @php
+                                    $currentLocale = app()->getLocale();
+                                @endphp
+                                @if ($currentLocale === 'ru')
+                                    Русский
+                                @elseif ($currentLocale === 'en')
+                                    English
+                                @elseif ($currentLocale === 'uz')
+                                    O'zbek
+                                @else
+                                    Language
+                                @endif
+                            </button>
                             <ul class="dropdown-menu">
-                                <li><a class="dropdown-item" href="#">Русский</a></li>
-                                <li><a class="dropdown-item" href="#">English</a></li>
-                                <li><a class="dropdown-item" href="#">O'zbek</a></li>
+                                <li><a class="dropdown-item" href="{{ url('locale/ru') }}">Русский</a></li>
+                                <li><a class="dropdown-item" href="{{ url('locale/en') }}">English</a></li>
+                                <li><a class="dropdown-item" href="{{ url('locale/uz') }}">O'zbek</a></li>
                             </ul>
                         </div>
                         <i id="select-icon" class="fa-solid fa-angle-down position-absolute end-0 top-50 translate-middle-y pe-2 text-dark"></i>
@@ -231,7 +244,7 @@
                             <small class="">Сравнение</small>
                         </li>
                         <li class="d-flex flex-column align-items-center">
-                            <a href="/shopping-cart" class="icon position-relative">
+                            <a href="{{ route('cart') }}" class="icon position-relative">
                                 <svg width="30" height="35" viewBox="0 0 16 15" fill="none" xmlns="http://www.w3.org/2000/svg">
                                     <path
                                         d="M5 14.0625C5.55228 14.0625 6 13.6428 6 13.125C6 12.6072 5.55228 12.1875 5 12.1875C4.44772 12.1875 4 12.6072 4 13.125C4 13.6428 4.44772 14.0625 5 14.0625Z"
@@ -246,7 +259,7 @@
                                         fill="#fff"
                                     />
                                 </svg>
-                                <span class="badge badge-pill badge-danger badge-position rounded-circle">1</span>
+                                <span class="badge badge-pill badge-danger badge-position rounded-circle">{{ session('cart') ? count(session('cart')) : 0 }}</span>
                             </a>
                             <small class="">Корзина</small>
                         </li>

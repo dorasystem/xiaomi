@@ -1,5 +1,7 @@
 @extends('layouts.page')
-
+<?php
+$lang = \Illuminate\Support\Facades\App::getLocale()
+?>
 @section('content')
 <main class="container">
     <div class="my-4">
@@ -39,9 +41,9 @@
     </div>
     <div class="row mt-5">
         @foreach ($blogs as $blog)
-            <a href="{{ route('single.blog', ['id' => $blog->id]) }}" class="col-lg-3 col-md-4 col-sm-6 mb-4">
+            <a href="{{ route('single.blog', ['slug' => $blog->getSlugByLanguage($lang)]) }}" class="col-lg-3 col-md-4 col-sm-6 mb-4">
                 <img height="220px" class="mb-2 w-100 rounded-top fit-cover"
-                     src="{{ asset('storage/' . $blog->image) }}" alt="{{ $blog->title_ru }}" />
+                     src="{{ asset('storage/' . $blog->image) }}" alt="{{ $blog['title_' . $lang] }}" />
 
                 <div class="text-grey fs-14">Обзоры</div>
                 <h6 class="fw-bold">{{ $blog->title_ru }}</h6>
