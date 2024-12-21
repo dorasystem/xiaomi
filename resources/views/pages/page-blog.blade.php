@@ -6,7 +6,7 @@ $lang = \Illuminate\Support\Facades\App::getLocale()
 <main class="container">
     <div class="my-4">
         <div class="d-flex align-items-center gap-3">
-            <a href="/" class="text-grey fw-bold text-lowercase fs-14">Главная страница / <span class="text-dark">О нас</span></a>
+            <a href="/" class="text-grey fw-bold text-lowercase fs-14">@lang('home.home') / <span class="text-dark">@lang('footer.blog')</span></a>
         </div>
         <hr />
     </div>
@@ -74,7 +74,7 @@ $lang = \Illuminate\Support\Facades\App::getLocale()
     </div>
 
     <div class="w-100 text-center mb-5">
-        <button class="text-uppercase border-1 mb-5 rounded py-1 px-4 bg-transparent text-center">показать ещё</button>
+        <button class="text-uppercase border-1 mb-5 rounded py-1 px-4 bg-transparent text-center">@lang('home.show_more')</button>
     </div>
 </main>
 @endsection

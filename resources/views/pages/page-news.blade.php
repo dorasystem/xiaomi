@@ -6,11 +6,11 @@ $lang = \Illuminate\Support\Facades\App::getLocale();
     <main class="container">
         <div class="my-4">
             <div class="d-flex align-items-center gap-3">
-                <a href="/" class="text-grey fw-bold text-lowercase fs-14">Главная страница / <span class="text-dark">О нас</span></a>
+                <a href="/" class="text-grey fw-bold text-lowercase fs-14">@lang('home.home') / <span class="text-dark">@lang('footer.news')</span></a>
             </div>
             <hr />
         </div>
-        <h1 class="fw-normal hover-orange mb-4 mt-4">Новости Xiaomi →</h1>
+        <h1 class="fw-normal hover-orange mb-4 mt-4">@lang('home.new_items') Xiaomi →</h1>
         <div class="row">
             @if(!empty($news) && $news->count(0))
                 @foreach($news as $new)
@@ -68,7 +68,7 @@ $lang = \Illuminate\Support\Facades\App::getLocale();
                 </a>
             @endif
         </div>
-        <h1 class="fw-normal hover-orange mb-4 mt-4">Полезные статьи →</h1>
+        <h1 class="fw-normal hover-orange mb-4 mt-4">@lang('home.useful_articles') →</h1>
         <div class="row">
             @if(!empty($articles) && $articles->count(0))
                 @foreach($articles as $item)

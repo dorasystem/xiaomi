@@ -1,13 +1,16 @@
+@php
+    $currentLocale = app()->getLocale();
+@endphp
 <nav class="container p-0">
     <div class="container navbar-1 py-2 d-sm-block d-none">
         <div class="row align-items-center nav1">
             <div class="col-lg-7 text-grey d-lg-block d-none">
                 <ul class="nav gap-3 justify-content-between justify-content-lg-start">
-                    <li class=""><a class="text-grey hover-orange" href="{{ route('news') }}">Новости</a></li>
-                    <li class=""><a class="text-grey hover-orange" href="{{ route('products') }}">Обзоры</a></li>
-                    <li class=""><a class="text-grey hover-orange" href="/about">О нас</a></li>
-                    <li class=""><a class="text-grey hover-orange" href="/contacts">Контакты</a></li>
-                    <li class=""><a class="text-grey hover-orange" href="{{ route('blog') }}">Блог</a></li>
+                    <li class=""><a class="text-grey hover-orange" href="{{ route('news') }}">@lang('footer.news')</a></li>
+                    <li class=""><a class="text-grey hover-orange" href="{{ route('products') }}">@lang('footer.products')</a></li>
+                    <li class=""><a class="text-grey hover-orange" href="/about">@lang('footer.about_us')</a></li>
+                    <li class=""><a class="text-grey hover-orange" href="/contact">@lang('footer.contacts')</a></li>
+                    <li class=""><a class="text-grey hover-orange" href="{{ route('blog') }}">@lang('footer.blog')</a></li>
                 </ul>
             </div>
             <div class="col-lg-5 mt-lg-0 mt-2 ps-0">
@@ -34,9 +37,6 @@
                     <div class="position-relative w-max d-flex align-items-center justify-content-end justify-content-md-start text-nowrap align-items-center">
                         <div class="dropdown">
                             <button class="border-0 bg-transparent pe-4 py-1 dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false">
-                                @php
-                                    $currentLocale = app()->getLocale();
-                                @endphp
                                 @if ($currentLocale === 'ru')
                                     Русский
                                 @elseif ($currentLocale === 'en')
@@ -63,7 +63,7 @@
         <div style="z-index: 20" class="container bg-white d-sm-none py-2 d-block position-relative pe-0">
             <div class="row align-items-center justify-content-between w-100">
                 <div class="col-4">
-                    <a class="logo" href="/"><img class="w-100" src="/assets/images/xiaomiStoreBlack.png" alt="Mi Logo" /> </a>
+                    <a class="logo" href="/"><img class="w-100" src="/assets/images/xiaomiStoreBlack.webp" alt="Mi Logo" /> </a>
                 </div>
                 <div class="col-8 d-flex align-items-center justify-content-end pe-0 gap-4">
                     <div class="">
@@ -110,7 +110,7 @@
             <div class="container pe-0">
                 <div class="row align-items-center w-100">
                     <div class="col-lg-2 col-4 mb-lg-0 mb-3 d-lg-block d-none">
-                        <a class="logo" href="/"><img class="w-100" src="/assets/images/xiaomiStoreWhite.png" alt="Mi Logo" /> </a>
+                        <a class="logo" href="/"><img class="w-100" src="/assets/images/xiaomiStoreWhite.webp" alt="Mi Logo" /> </a>
                     </div>
                     <div class="col-lg-7 px-sm-2 px-0">
                         <div class="d-flex align-items-center gap-4">
@@ -120,7 +120,7 @@
                                     <div class="line line2"></div>
                                     <div class="line line3"></div>
                                 </div>
-                                <span class="d-lg-block d-none text-nowrap"> Каталог</span>
+                                <span class="d-lg-block d-none text-nowrap"> @lang('footer.catalog')</span>
                             </button>
                             <div class="w-100">
                                 <form class="">
@@ -133,7 +133,7 @@
                                             class="form-control border-0 bg-transparent mr-sm-2 search-bar focus_none"
                                             type="search"
                                             aria-label="Search"
-                                            placeholder="Поиск товаров"
+                                            placeholder="@lang('home.search')"
                                         />
                                         <button class="border-0 bg-transparent text-white search-btn" type="submit">
                                             <i class="fas fa-search"></i>
@@ -210,7 +210,7 @@
                                 </div>
                                 <span class="badge badge-pill badge-danger badge-position rounded-circle">1</span>
                             </a>
-                            <small class="">Избранное</small>
+                            <small class="">@lang('home.featured')</small>
                         </li>
                         <li class="d-flex flex-column align-items-center">
                             <a href="/compare" class="icon position-relative">
@@ -241,7 +241,7 @@
                                 </svg>
                                 <span class="badge badge-pill badge-danger badge-position rounded-circle">1</span>
                             </a>
-                            <small class="">Сравнение</small>
+                            <small class="">@lang('home.comparison')</small>
                         </li>
                         <li class="d-flex flex-column align-items-center">
                             <a href="{{ route('cart') }}" class="icon position-relative">
@@ -261,7 +261,7 @@
                                 </svg>
                                 <span class="badge badge-pill badge-danger badge-position rounded-circle">{{ session('cart') ? count(session('cart')) : 0 }}</span>
                             </a>
-                            <small class="">Корзина</small>
+                            <small class="">@lang('home.basket')</small>
                         </li>
                     </div>
                 </div>

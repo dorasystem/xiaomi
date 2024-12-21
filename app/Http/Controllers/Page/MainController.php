@@ -14,7 +14,14 @@ class MainController extends Controller
 {
     public function index()
     {
-        return view('pages.home');
+        $new = News::latest()->first();
+        $news1 = News::latest()->skip(1)->take(4)->get();
+        $news2 = News::latest()->skip(4)->take(4)->get();
+        return view('pages.home', compact('new', 'news1', 'news2'));
+    }
+    public function about()
+    {
+        return view('pages.about');
     }
     public function contact()
     {
@@ -61,13 +68,18 @@ class MainController extends Controller
     public function singleNews($slug)
     {
         $locale = app()->getLocale();
-        $column = 'slug_' . $locale; // Hozirgi tilga mos ustunni aniqlash
-        $news = News::where($column, $slug)->firstOrFail();
-        return view('pages.single-news', compact('news'));
+        $news = News::all()->filter(function ($news) use ($locale, $slug) {
+            return $news->getSlugByLanguage($locale) === $slug;
+        })->first();
+        $otherNews = News::latest()->skip(1)->take(4)->get();
+        return view('pages.single-news', compact('news', 'otherNews', 'locale'));
     }
     public function singleArticle($slug)
     {
-        $articles = Article::find('slug', $slug);
-        return view('pages.single-article', compact('articles'));
+        $locale = app()->getLocale();
+        $articles = Blog::all()->filter(function ($articles) use ($locale, $slug) {
+            return $articles->getSlugByLanguage($locale) === $slug;
+        })->first();
+        return view('pages.single-article', compact('articles', 'locale'));
     }
 }

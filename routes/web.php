@@ -3,12 +3,14 @@
 use App\Http\Controllers\admin\AboutController;
 use App\Http\Controllers\admin\ArticleController;
 use App\Http\Controllers\Admin\BlogController;
+use App\Http\Controllers\Admin\CandidantController;
 use App\Http\Controllers\admin\CartController;
 use App\Http\Controllers\admin\ContactController;
 use App\Http\Controllers\admin\FaqController;
 use App\Http\Controllers\admin\NewsController;
 use App\Http\Controllers\admin\ProductController;
 use App\Http\Controllers\admin\ServiceController;
+use App\Http\Controllers\Admin\VacancyController;
 use App\Http\Controllers\auth\AdminController;
 use App\Http\Controllers\auth\AuthController;
 use App\Http\Controllers\auth\SuperAdminController;
@@ -42,6 +44,8 @@ Route::middleware(['auth'])->prefix('dashboard')->group(function () {
     Route::resource('categories', CategoryController::class);
     Route::resource('products', ProductController::class);
     Route::resource('variants', VariantController::class);
+    Route::resource('vacancies', VacancyController::class);
+    Route::resource('candidants', CandidantController::class);
 });
 
 Route::middleware(['auth'])->group(function () {
@@ -52,6 +56,7 @@ Route::middleware(['auth'])->group(function () {
 });
 
 Route::get('/', [MainController::class, 'index'])->name('home');
+Route::get('/about', [MainController::class, 'about'])->name('abput');
 Route::get('/contact', [MainController::class, 'contact'])->name('contact');
 Route::get('/blog', [MainController::class, 'blog'])->name('blog');
 Route::get('/blog/{slug}', [MainController::class, 'singleBlog'])->name('single.blog');

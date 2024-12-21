@@ -418,7 +418,6 @@ a.active {
     color: white;
 }
 .newbanner {
-    background-image: url("../images/newbanner.png");
     height: 600px;
     padding: 37px 45px;
     background-size: cover;
@@ -542,7 +541,7 @@ a.active {
     height: 100px;
 }
 .news_card1 {
-    background-image: url("../images/news1.jpg");
+    background-image: url("/assets/images/news1.jpg");
     height: 200px;
     background-size: cover;
     background-position: center;
@@ -612,7 +611,7 @@ input:focus {
 }
 
 .videoBanner {
-    background-image: url("../images/videoBanner.png");
+    background-image: url("/assets/images/videoBanner.webp");
     height: 80vh;
     background-size: cover;
     background-position: center;
@@ -641,14 +640,14 @@ input:focus {
     height: 150px;
 }
 .banner1 {
-    background-image: url("../images/banner1.png");
+    background-image: url("/assets/images/banner1.webp");
     height: 100%;
     min-height: 100px;
     background-size: cover;
     background-position: center;
 }
 .banner2 {
-    background-image: url("../images/banner2.png");
+    background-image: url("/assets/images/banner2.webp");
     height: 100%;
     min-height: 100px;
     background-size: cover;
@@ -736,13 +735,13 @@ input:focus {
 
 .product_list {
     filter: drop-shadow(-20px -20px 0px rgba(255, 120, 1, 0.774));
-    background-image: url("../images/product_list.svg");
+    background-image: url("/assets/images/product_list.svg");
     width: 301px;
     height: 337px;
     background-repeat: no-repeat;
 }
 .little_product {
-    background-image: url("../images/little_product.svg");
+    background-image: url("/assets/images/little_product.svg");
     width: 165px;
     height: 165px;
 }
@@ -900,7 +899,7 @@ input[type="range"]:nth-child(2) {
     background-size: cover;
     background-repeat: no-repeat;
     /* padding: 25px 35px; */
-    background-image: url("../images/product-filter-inputs-bg.png");
+    background-image: url("/assets/images/product-filter-inputs-bg.png");
 }
 .messageInputs {
     background: #ffffff26;
@@ -1040,7 +1039,7 @@ input[type="range"]:nth-child(2) {
 }
 /* blog */
 .blogbanner {
-    background-image: url("../images/blogbanner.jpg");
+    background-image: url("/assets/images/blogbanner.webp");
     height: 430px;
     padding-left: 130px;
     background-size: cover;

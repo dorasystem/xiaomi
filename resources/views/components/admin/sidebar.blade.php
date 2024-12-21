@@ -7,7 +7,7 @@ $about = \App\Models\About::first();
     <div class="navbar-wrapper">
         <div class="m-header">
             <a href="/dashboard" class="b-brand">
-                <h3 class="logo logo-lg">HIAOMI</h3>
+                <h3 class="logo logo-lg">XIAOMI</h3>
                 <h6 class="logo logo-sm"> </h6>
             </a>
         </div>
@@ -34,7 +34,7 @@ $about = \App\Models\About::first();
                 </li>
                 <li class="nxl-item nxl-hasmenu">
                     <a href="javascript:void(0);" class="nxl-link">
-                        <span class="nxl-micon"><i class="fa-solid fa-info"></i></span>
+                        <span class="nxl-micon"><i class="fa-solid fa-newspaper"></i></span> <!-- Main icon for News -->
                         <span class="nxl-mtext">Новости</span>
                         <span class="nxl-arrow"><i class="feather-chevron-right"></i></span>
                     </a>
@@ -42,20 +42,20 @@ $about = \App\Models\About::first();
                     <ul class="nxl-submenu">
                         <li class="nxl-item">
                             <a href="{{ route('news.index') }}" class="nxl-link">
-                                <span class="nxl-micon"><i class="feather-globe"></i></span> <!-- News icon -->
+                                <span class="nxl-micon"><i class="feather-rss"></i></span> <!-- RSS feed icon for News -->
                                 <span class="nxl-mtext">Новости</span>
                             </a>
                         </li>
                         <li class="nxl-item">
                             <a href="{{ route('blogs.index') }}" class="nxl-link">
-                                <span class="nxl-micon"><i class="feather-globe"></i></span> <!-- News icon -->
+                                <span class="nxl-micon"><i class="fa-solid fa-blog"></i></span> <!-- Blog icon -->
                                 <span class="nxl-mtext">Блоги</span>
                             </a>
                         </li>
                         <li class="nxl-item">
                             <a href="{{ route('articles.index') }}" class="nxl-link">
-                                <span class="nxl-micon"><i class="feather-globe"></i></span> <!-- News icon -->
-                                <span class="nxl-mtext">Полезные статьи </span>
+                                <span class="nxl-micon"><i class="feather-book"></i></span> <!-- Book icon for Articles -->
+                                <span class="nxl-mtext">Полезные статьи</span>
                             </a>
                         </li>
                     </ul>
@@ -88,6 +88,18 @@ $about = \App\Models\About::first();
                     <a href="{{ route('contacts.edit', $contact->id) }}" class="nxl-link">
                         <span class="nxl-micon"><i class="feather-mail"></i></span> <!-- Contact icon -->
                         <span class="nxl-mtext">Контакт</span>
+                    </a>
+                </li>
+                <li class="nxl-item nxl-hasmenu">
+                    <a href="{{ route('vacancies.index') }}" class="nxl-link">
+                        <span class="nxl-micon"><i class="feather-briefcase"></i></span> <!-- Briefcase icon for vacancies -->
+                        <span class="nxl-mtext">Вакансии</span>
+                    </a>
+                </li>
+                <li class="nxl-item nxl-hasmenu">
+                    <a href="{{ route('candidants.index') }}" class="nxl-link">
+                        <span class="nxl-micon"><i class="feather-users"></i></span> <!-- Users icon for candidates -->
+                        <span class="nxl-mtext">Кандидаты</span>
                     </a>
                 </li>
 
