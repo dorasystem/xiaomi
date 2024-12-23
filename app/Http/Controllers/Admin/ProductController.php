@@ -1,110 +1,264 @@
 <?php
 
 namespace App\Http\Controllers\Admin;
-use App\Http\Controllers\Controller;
 
+use App\Http\Controllers\Controller;
 use App\Models\Product;
+use App\Models\Variant;
 use App\Models\Category;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Storage;
-
+use Illuminate\Support\Str; // Add this import
 class ProductController extends Controller
 {
+    public function deleteVariant($id)
+    {
+        // Variantni topish
+        $variant = Variant::find($id);
+
+        if (!$variant) {
+            return response()->json(['success' => false, 'message' => 'Variant topilmadi']);
+        }
+
+        // Variantni o'chirish
+        $variant->delete();
+
+        return response()->json(['success' => true]);
+    }
+
+    // Display list of products
     public function index()
     {
-        $products = Product::with('category')->get();
+        $products = Product::all(); // You can paginate or filter this based on requirements
         return view('admin.products.index', compact('products'));
     }
 
-    public function show($id)
-    {
-        $product = Product::with('category', 'variants')->findOrFail($id);
-        return view('admin.products.show', compact('product'));
-    }
-
+    // Show the form to create a new product
     public function create()
     {
-        $categories = Category::all();
+        $categories = Category::all(); // Get categories to display in the form
         return view('admin.products.create', compact('categories'));
     }
 
+    // Store a newly created product in the database
     public function store(Request $request)
     {
-
+        // Validate form data
         $request->validate([
             'category_id' => 'required|exists:categories,id',
-            'slug' => 'required|unique:products',
-            'name_uz' => 'nullable|string|max:255',
-            'name_ru' => 'nullable|string|max:255',
-            'name_en' => 'nullable|string|max:255',
-            'description_uz' => 'nullable|string|max:255',
-            'description_ru' => 'nullable|string|max:255',
-            'description_en' => 'nullable|string|max:255',
-            'gift_name' => 'nullable|string|max:255',
-            'gift_image' => 'nullable|image|mimes:jpeg,png,jpg,gif,svg|max:2048',
+            'name_uz' => 'required|string',
+            'name_ru' => 'required|string',
+            'name_en' => 'required|string',
+            'description_uz' => 'nullable|string',
+            'description_ru' => 'nullable|string',
+            'description_en' => 'nullable|string',
+            'color_uz' => 'nullable|string',
+            'color_ru' => 'nullable|string',
+            'color_en' => 'nullable|string',
+            'image' => 'nullable|image|mimes:jpg,png,jpeg,gif',
+            'images.*' => 'nullable|image|mimes:jpg,png,jpeg,gif', // multiple image validation
+            'gift_name' => 'nullable|string',
+            'gift_image' => 'nullable|image|mimes:jpg,png,jpeg,gif',
+            'storage' => 'nullable|array',
+            'price' => 'nullable|array',
+            'discount_price' => 'nullable|array',
+            'price_3' => 'nullable|array',
+            'price_6' => 'nullable|array',
+            'price_12' => 'nullable|array',
+            'price_24' => 'nullable|array',
         ]);
 
-        $giftImagePath = null;
-        if ($request->hasFile('gift_image')) {
-            $giftImagePath = $request->file('gift_image')->store('images/products', 'public');
+        // Handle image uploads
+        $primaryImagePath = $request->file('image') ? $request->file('image')->store('products', 'public') : null;
+        $giftImagePath = $request->file('gift_image') ? $request->file('gift_image')->store('products', 'public') : null;
+
+        // Handle multiple image uploads for 'images' field
+        $additionalImages = [];
+        if ($request->hasFile('images')) {
+            foreach ($request->file('images') as $image) {
+                $additionalImages[] = $image->store('products', 'public');
+            }
         }
 
+        // Create the product
         $product = Product::create([
             'category_id' => $request->category_id,
-            'slug' => $request->slug,
+            'slug' => Str::slug($request->input('name_uz')),
             'name_uz' => $request->name_uz,
             'name_ru' => $request->name_ru,
             'name_en' => $request->name_en,
             'description_uz' => $request->description_uz,
             'description_ru' => $request->description_ru,
             'description_en' => $request->description_en,
+            'color_uz' => $request->color_uz,
+            'color_ru' => $request->color_ru,
+            'color_en' => $request->color_en,
+            'image' => $primaryImagePath,
+            'images' => $additionalImages, // Store array of image paths directly
             'gift_name' => $request->gift_name,
             'gift_image' => $giftImagePath,
         ]);
 
-        return redirect()->route('products.index')->with('success', 'Mahsulot muvaffaqiyatli yaratildi.');
+        // Store variants (pricing and storage details)
+        if ($request->has('storage')) {
+
+            foreach ($request->storage as $index => $storage) {
+               $ok = Variant::create([
+                    'product_id' => $product->id,
+                    'storage' => $storage,
+                    'price' => $request->price[$index] ?? null,
+                    'discount_price' => $request->discount_price[$index] ?? null,
+                    'price_3' => $request->price_3[$index] ?? null,
+                    'price_6' => $request->price_6[$index] ?? null,
+                    'price_12' => $request->price_12[$index] ?? null,
+                    'price_24' => $request->price_24[$index] ?? null,
+                ]);
+            }
+        }
+
+        return redirect()->route('products.index')->with('success', 'Product created successfully!');
     }
 
-    public function edit($id)
+
+
+    // Display a specific product
+    public function show(Product $product)
     {
-        $product = Product::findOrFail($id);
-        $categories = Category::all();
+        return view('admin.products.show', compact('product'));
+    }
+
+    // Show the form to edit a product
+    public function edit(Product $product)
+    {
+        $categories = Category::all(); // Get categories to display in the form
         return view('admin.products.edit', compact('product', 'categories'));
     }
 
-    public function update(Request $request, $id)
+    // Update a product in the database
+    public function update(Request $request, Product $product)
     {
-        $product = Product::findOrFail($id);
-
+        // Validate form data
         $request->validate([
-            'category_id' => 'nullable|exists:categories,id',
-            'slug' => 'nullable|unique:products,slug,' . $product->id,
-            'gift_image' => 'nullable|image|mimes:jpeg,png,jpg,gif,svg|max:2048',
+            'category_id' => 'required|exists:categories,id',
+            'name_uz' => 'required|string',
+            'name_ru' => 'required|string',
+            'name_en' => 'required|string',
+            'description_uz' => 'nullable|string',
+            'description_ru' => 'nullable|string',
+            'description_en' => 'nullable|string',
+            'color_ru' => 'nullable|string',
+            'image' => 'nullable|image|mimes:jpg,png,jpeg,gif',
+            'images.*' => 'nullable|image|mimes:jpg,png,jpeg,gif',
+            'gift_name' => 'nullable|string',
+            'gift_image' => 'nullable|image|mimes:jpg,png,jpeg,gif',
+            'storage' => 'nullable|array',
+            'price' => 'nullable|array',
+            'discount_price' => 'nullable|array',
+            'price_3' => 'nullable|array',
+            'price_6' => 'nullable|array',
+            'price_12' => 'nullable|array',
+            'price_24' => 'nullable|array',
+            'deleted_variants' => 'nullable|array',
         ]);
 
 
+        if ($request->hasFile('image')) {
+            if ($product->image) {
+                Storage::delete($product->image);
+            }
+            $product->image = $request->file('image')->store('products', 'public');
+        }
+
         if ($request->hasFile('gift_image')) {
-            if ($product->gift_image && Storage::exists($product->gift_image)) {
+            if ($product->gift_image) {
                 Storage::delete($product->gift_image);
             }
-            $product->gift_image = $request->file('gift_image')->store('images/products', 'public');
+            $product->gift_image = $request->file('gift_image')->store('gift_images', 'public');
         }
 
-        $product->update($request->only(['category_id', 'slug', 'name_uz', 'name_ru', 'name_en', 'gift_name','description_uz', 'description_ru', 'description_en',]));
+        if ($request->hasFile('images')) {
+            // Agar $product->images mavjud bo'lsa va u string bo'lsa, uni json_decode qiling
+            $images = is_string($product->images) ? json_decode($product->images) : [];
 
-        return redirect()->route('products.index')->with('success', 'Mahsulot muvaffaqiyatli yangilandi.');
+            // Eski rasmlarni o'chirish
+            foreach ($images as $oldImage) {
+                if ($oldImage) {
+                    Storage::delete($oldImage);
+                }
+            }
+
+            // Yangi rasmlarni saqlash
+            $product->images = json_encode(array_map(
+                fn($image) => $image->store('products', 'public'),
+                $request->file('images')
+            ));
+        }
+
+
+        // Update product details
+        $product->update([
+            'category_id' => $request->category_id,
+            'slug' => Str::slug($request->input('name_uz')),
+            'name_uz' => $request->name_uz,
+            'name_ru' => $request->name_ru,
+            'name_en' => $request->name_en,
+            'description_uz' => $request->description_uz,
+            'description_ru' => $request->description_ru,
+            'description_en' => $request->description_en,
+            'color_uz' => $request->color_uz,
+            'color_ru' => $request->color_ru,
+            'color_en' => $request->color_en,
+            'gift_name' => $request->gift_name,
+        ]);
+
+        // Delete variants marked for removal
+        if ($request->has('deleted_variants')) {
+            $deletedVariants = array_map('intval', $request->input('deleted_variants'));
+            Variant::whereIn('id', $deletedVariants)->delete();
+        }
+
+        // Save new or updated variants
+        if ($request->has('storage')) {
+//            dd($request->all());
+            foreach ($request->storage as $index => $storage) {
+
+                    $variant = new Variant([
+                        'product_id' => $product->id,
+                        'storage' => $storage,
+                        'price' => $request->price[$index] ?? null,
+                        'discount_price' => $request->discount_price[$index] ?? null,
+                        'price_3' => $request->price_3[$index] ?? null,
+                        'price_6' => $request->price_6[$index] ?? null,
+                        'price_12' => $request->price_12[$index] ?? null,
+                        'price_24' => $request->price_24[$index] ?? null,
+                    ]);
+
+                $variant->save();
+            }
+        }
+
+
+        return redirect()->route('products.index')->with('success', 'Product updated successfully');
     }
 
-    public function destroy($id)
+
+
+
+
+
+    // Delete a product
+    public function destroy(Product $product)
     {
-        $product = Product::findOrFail($id);
+        // Delete associated images from storage
+        Storage::delete($product->image);
+        Storage::delete($product->gift_image);
 
-        if ($product->gift_image && Storage::exists($product->gift_image)) {
-            Storage::delete($product->gift_image);
-        }
+        // Delete all variants associated with the product
+        Variant::where('product_id', $product->id)->delete();
 
+        // Delete the product
         $product->delete();
 
-        return redirect()->route('products.index')->with('success', 'Mahsulot muvaffaqiyatli o\'chirildi.');
+        return redirect()->route('products.index')->with('success', 'Product deleted successfully!');
     }
 }

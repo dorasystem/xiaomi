@@ -54,7 +54,7 @@ Route::get('/blog/{id}', [MainController::class, 'singleBlog'])->name('single.bl
 
 
 Route::get('/products', [MainController::class, 'products'])->name('products');
-Route::get('/single-product', [MainController::class, 'singleProduct'])->name('single.product');
+Route::get('/single-product/{slug}', [MainController::class, 'singleProduct'])->name('single.product');
 //Route::get('/product{slug}', [MainController::class, 'singleProduct'])->name('single.product');
 Route::get('/news', [MainController::class, 'news'])->name('news');
 Route::get('/single-news', [MainController::class, 'singleNews'])->name('single.news');
@@ -65,3 +65,5 @@ Route::get('/cart', [CartController::class, 'cart'])->name('cart');
 Route::post('add-to-cart/{id}', [CartController::class, 'addToCart'])->name('addToCart');
 Route::post('/add-to-cart', [CartController::class, 'addToCart'])->name('cart.add');
 Route::delete('/remove-from-cart', [CartController::class, 'removeFromCart'])->name('removeFromCart');
+Route::delete('/variants/{id}', [ProductController::class, 'deleteVariant']);
+

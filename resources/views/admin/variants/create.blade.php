@@ -57,6 +57,9 @@
                                         <div class="form-group pb-3 col-md-4">
                                             <label for="storage">Место хранения:</label>
                                             <select class="form-control" id="storage" name="storage">
+                                                <option value="null" {{ old('storage') == 'null' ? 'selected' : '' }}>
+                                                    Null
+                                                </option>
                                                 <option value="32GB" {{ old('storage') == '32GB' ? 'selected' : '' }}>
                                                     32GB
                                                 </option>
@@ -81,6 +84,9 @@
                                         <div class="form-group pb-3 col-md-4">
                                             <label for="ram">RAM (память):</label>
                                             <select class="form-control" id="ram" name="ram">
+                                                <option value="null" {{ old('ram') == 'null' ? 'selected' : '' }}>
+                                                    Null
+                                                </option>
                                                 <option value="2GB" {{ old('ram') == '2GB' ? 'selected' : '' }}>2GB
                                                 </option>
                                                 <option value="4GB" {{ old('ram') == '4GB' ? 'selected' : '' }}>4GB
@@ -100,6 +106,9 @@
                                         <div class="form-group pb-3 col-md-4">
                                             <label for="color_uz">Цвет UZ:</label>
                                             <select class="form-control" id="color_uz" name="color_uz">
+                                                <option value="null" {{ old('color_uz') == 'null' ? 'selected' : '' }}>
+                                                    Null
+                                                </option>
                                                 <option value="red" {{ old('color_uz') == 'red' ? 'selected' : '' }}>
                                                     Qizil
                                                 </option> <!-- Uzbek for Red -->
@@ -124,6 +133,9 @@
                                         <div class="form-group pb-3 col-md-4">
                                             <label for="color_ru">Цвет RU:</label>
                                             <select class="form-control" id="color_ru" name="color_ru">
+                                                <option value="null" {{ old('color_ru') == 'null' ? 'selected' : '' }}>
+                                                    Null
+                                                </option>
                                                 <option value="red" {{ old('color_ru') == 'red' ? 'selected' : '' }}>
                                                     Красный
                                                 </option> <!-- Russian for Red -->
@@ -148,6 +160,9 @@
                                         <div class="form-group pb-3 col-md-4">
                                             <label for="color_en">Цвет EN:</label>
                                             <select class="form-control" id="color_en" name="color_en">
+                                                <option value="null" {{ old('color_en') == 'null' ? 'selected' : '' }}>
+                                                    Null
+                                                </option>
                                                 <option value="red" {{ old('color_en') == 'red' ? 'selected' : '' }}>
                                                     Red
                                                 </option> <!-- English for Red -->

@@ -36,10 +36,12 @@ class MainController extends Controller
         return view('pages.page-products',compact('products'));
     }
 
-    public function singleProduct()
+    public function singleProduct($slug)
     {
-        return view('pages.single-product');
+        $product = Product::where('slug', $slug)->firstOrFail();
+        return view('pages.single-product', compact('product'));
     }
+
 //    public function singleProduct($slug)
 //    {
 //        $product = Product::where('slug', $slug)->firstOrFail();

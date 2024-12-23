@@ -19,15 +19,24 @@ class Product extends Model
         'description_ru',
         'description_en',
         'gift_name',
-        'gift_image'
+        'gift_image',
+        'image',
+        'images',
+        'color_uz',
+        'color_ru',
+        'color_en'
     ];
 
+    protected $casts = [
+        'images' => 'array',
+        'price' => 'array',
+        'storage' => 'array',
+    ];
 
     public function category()
     {
         return $this->belongsTo(Category::class);
     }
-
 
     public function variants()
     {
