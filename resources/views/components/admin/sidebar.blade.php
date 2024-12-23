@@ -32,6 +32,12 @@ $about = \App\Models\About::first();
                         <span class="nxl-mtext">О нас</span>
                     </a>
                 </li>
+                <li class="nxl-item">
+                    <a href="{{ route('histories.index') }}" class="nxl-link">
+                        <span class="nxl-micon"><i class="feather-calendar"></i></span> <!-- Год feed icon for News -->
+                        <span class="nxl-mtext">история</span>
+                    </a>
+                </li>
                 <li class="nxl-item nxl-hasmenu">
                     <a href="javascript:void(0);" class="nxl-link">
                         <span class="nxl-micon"><i class="fa-solid fa-newspaper"></i></span> <!-- Main icon for News -->

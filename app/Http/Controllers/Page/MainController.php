@@ -3,10 +3,13 @@
 namespace App\Http\Controllers\Page;
 
 use App\Http\Controllers\Controller;
+use App\Models\About;
 use App\Models\Article;
 use App\Models\Blog;
+use App\Models\History;
 use App\Models\News;
 use App\Models\Product;
+use App\Models\Vacancy;
 use Illuminate\Http\Request;use Illuminate\Support\Facades\DB;
 
 
@@ -21,7 +24,11 @@ class MainController extends Controller
     }
     public function about()
     {
-        return view('pages.about');
+        $lang = app()->getLocale();
+        $about = About::first();
+        $histories = History::take(4)->get();
+        $careers = Vacancy::latest()->take(4)->get();
+        return view('pages.about', compact('about', 'lang', 'histories', 'careers'));
     }
     public function contact()
     {
@@ -63,6 +70,12 @@ class MainController extends Controller
         $news = News::all();
         $articles = Article::all();
         return view('pages.page-news', compact('news', 'articles'));
+    }
+    public function career()
+    {
+        $careers = Vacancy::all();
+        $lang = app()->getLocale();
+        return view('pages.career', compact('careers', 'lang'));
     }
 
     public function singleNews($slug)

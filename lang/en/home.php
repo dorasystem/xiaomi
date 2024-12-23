@@ -14,6 +14,10 @@ return [
     'useful_articles' => 'Полезные статьи',
     'show_more' => 'Show more',
     'other_news' => 'Other news',
+    'about_or_company' => 'About or Company',
+    'command' => 'Do you want to join our team?',
+    'all_vacancy' => 'All vacancies',
+    'vacancy' => 'vacancies',
 
     'bestsellers' => 'Bestsellers',
     'buy_now' => 'Buy now',

@@ -14,6 +14,10 @@ return [
     'useful_articles' => 'Foydali maqolalar',
     'show_more' => 'Ko\'proq ko\'rish',
     'other_news' => 'Boshqa yangiliklar',
+    'about_or_company' => 'Kompaniyamiz haqida',
+    'command' => 'Bizning jamoamizga qo\'shilishni xohlaysizmi?',
+    'all_vacancy' => 'Barcha vakansiyalar',
+    'vacancy' => 'vakansiyalar',
 
     'bestsellers' => 'Eng ko\'p sotilganlar',
     'buy_now' => 'Xoziroq sotib olish',

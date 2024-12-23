@@ -16,6 +16,10 @@ return [
     'useful_articles' => 'Полезные статьи',
     'show_more' => 'показать ещё',
     'other_news' => 'Другие новости',
+    'about_or_company' => 'О нашей компании',
+    'command' => 'Хочешь в нашу команду?',
+    'all_vacancy' => 'Все вакансии',
+    'vacancy' => 'вакансии',
 
     'bestsellers' => 'Хиты продаж',
     'buy_now' => 'Купить сразу',

@@ -7,6 +7,7 @@ use App\Http\Controllers\Admin\CandidantController;
 use App\Http\Controllers\admin\CartController;
 use App\Http\Controllers\admin\ContactController;
 use App\Http\Controllers\admin\FaqController;
+use App\Http\Controllers\Admin\HistoryController;
 use App\Http\Controllers\admin\NewsController;
 use App\Http\Controllers\admin\ProductController;
 use App\Http\Controllers\admin\ServiceController;
@@ -44,6 +45,7 @@ Route::middleware(['auth'])->prefix('dashboard')->group(function () {
     Route::resource('categories', CategoryController::class);
     Route::resource('products', ProductController::class);
     Route::resource('variants', VariantController::class);
+    Route::resource('histories', HistoryController::class);
     Route::resource('vacancies', VacancyController::class);
     Route::resource('candidants', CandidantController::class);
 });
@@ -66,6 +68,7 @@ Route::get('/products', [MainController::class, 'products'])->name('products');
 Route::get('/single-product', [MainController::class, 'singleProduct'])->name('single.product');
 //Route::get('/product{slug}', [MainController::class, 'singleProduct'])->name('single.product');
 Route::get('/news', [MainController::class, 'news'])->name('news');
+Route::get('/career', [MainController::class, 'career'])->name('career');
 Route::get('/news/{slug}', [MainController::class, 'singleNews'])->name('single.news');
 Route::get('/article/{slug}', [MainController::class, 'singleArticle'])->name('single.article');
 
