@@ -57,9 +57,6 @@
                                                 <td>{{ $candidant->status }}</td>
                                                 <td>
                                                     <div class="hstack gap-2 justify-content-end">
-                                                        <a href="{{ route('candidants.show', $candidant->id) }}" class="avatar-text avatar-md">
-                                                            <i class="feather feather-eye"></i>
-                                                        </a>
                                                         <a href="{{ route('candidants.edit', $candidant->id) }}" class="avatar-text avatar-md">
                                                             <i class="feather feather-edit-3"></i>
                                                         </a>

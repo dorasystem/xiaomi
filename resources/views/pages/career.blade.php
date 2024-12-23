@@ -17,8 +17,8 @@
                         <div class="bg-white rounded">
                             <img height="300" class="w-100 fit-cover" src="{{ asset('storage/' . $item->image) ?? '/assets/images/vacancy1.webp'}}" alt="" />
                             <div style="font-size: 11px" class="px-3 small fw-bold text-grey">{{ $item['title_' . $lang] ?? 'Мунчештское шоссе, 41'}}</div>
-                            <h6 class="px-3 fw-semibold">{{ $item['title_' . $lang] ?? 'Промоутер'}}</h6>
-                            {!! $item['description_' . $lang] !!}
+                            <h6 class="px-3 fw-semibold">{{ $item['name_' . $lang] ?? 'Промоутер'}}</h6>
+                            {!! $item['content_' . $lang] !!}
                         </div>
                     </div>
                 @endforeach

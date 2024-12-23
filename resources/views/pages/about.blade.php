@@ -16,14 +16,14 @@
                         </div>
                     </div>
                 </div>
-                <div class="col-md-1"></div>
-                <div class="col-md-3 text-center">
-                    <h1 class="fw-bold fs-85">100+</h1>
-                    <div class="text-grey">
-                        стран и регионов в которых <br />
-                        доступна продукция Xiaomi
-                    </div>
-                </div>
+{{--                <div class="col-md-1"></div>--}}
+{{--                <div class="col-md-3 text-center">--}}
+{{--                    <h1 class="fw-bold fs-85">100+</h1>--}}
+{{--                    <div class="text-grey">--}}
+{{--                        стран и регионов в которых <br />--}}
+{{--                        доступна продукция Xiaomi--}}
+{{--                    </div>--}}
+{{--                </div>--}}
             </div>
         </div>
 

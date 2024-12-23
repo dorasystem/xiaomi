@@ -53,7 +53,7 @@
 
                                     <div class="tab-content pt-3">
 
-                                            <div class="tab-pane fade show {{ $loop->first ? 'active' : '' }}" id="comment">
+                                            <div class="tab-pane fade show" id="comment">
 
                                                 <div class="form-group pb-3">
                                                     <label for="comment">Comment</label>
