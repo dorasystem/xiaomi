@@ -2,11 +2,12 @@
 
 
 use App\Http\Controllers\Admin\AboutController;
-use App\Http\Controllers\admin\ArticleController;
+use App\Http\Controllers\Admin\ArticleController;
 use App\Http\Controllers\Admin\BlogController;
 use App\Http\Controllers\Admin\CandidantController;
 use App\Http\Controllers\Admin\CartController;
 use App\Http\Controllers\Admin\CategoryController;
+use App\Http\Controllers\Admin\CommentController;
 use App\Http\Controllers\Admin\ContactController;
 use App\Http\Controllers\Admin\DescImageController;
 use App\Http\Controllers\Admin\FaqController;
@@ -83,6 +84,8 @@ Route::post('add-to-cart/{id}', [CartController::class, 'addToCart'])->name('add
 Route::post('/add-to-cart', [CartController::class, 'addToCart'])->name('cart.add');
 Route::delete('/remove-from-cart', [CartController::class, 'removeFromCart'])->name('removeFromCart');
 Route::delete('/variants/{id}', [ProductController::class, 'deleteVariant']);
+
+Route::post('/comments', [CommentController::class, 'store'])->name('comments.store');
 
 
 Route::get('locale/{lang}',[LanguageController::class, 'setLocale']);
