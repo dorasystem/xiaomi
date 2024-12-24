@@ -2,6 +2,7 @@
 namespace App\Http\Controllers\Admin;
 use App\Http\Controllers\Controller;
 use App\Models\Order;
+use App\Models\Vacancy;
 use Illuminate\Http\Request;
 use App\Models\Product;
 class CartController extends Controller
@@ -57,30 +58,9 @@ class CartController extends Controller
         }
         return response()->json(['success' => false]);
     }
-    public function checkout(Request $request)
+    public function favorites()
     {
-        $cart = session()->get('cart');
-        if (!$cart) {
-            return redirect()->back()->with('error', 'Savatchangiz bo\'sh.');
-        }
-        $order = Order::create([
-            'tel_number' => $request->tel_number,
-            'name' => $request->name,
-            'total_amount' => array_sum(array_map(function ($item) {
-                return $item['price'] * $item['quantity'];
-            }, $cart)),
-            'status' => 'new'
-        ]);
-        foreach ($cart as $id => $details) {
-            OrderProduct::create([
-                'order_id' => $order->id,
-                'product_id' => $id,
-                'quantity' => $details['quantity'],
-                'price' => $details['price']
-            ]);
-        }
-        session()->forget('cart');
-        session()->flash('order_success', 'Buyurtmangiz qabul qilindi, tez orada aloqaga chiqamiz.');
-        return redirect()->route('home')->with('success', 'Buyurtma muvaffaqiyatli saqlandi.');
+        return view('pages.favorites');
     }
+
 }

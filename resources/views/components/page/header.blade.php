@@ -203,7 +203,7 @@
                     </div>
                     <div class="col-3 d-lg-flex d-none justify-content-around align-items-end">
                         <li class="d-flex flex-column align-items-center">
-                            <a href="/favorites" class="icon position-relative">
+                            <a href="{{route('favorites')}}" class="icon position-relative">
                                 <div class="icon-wrapper">
                                     <i class="fa-regular fa-heart"></i>
                                     <i class="fa-solid fa-heart"></i>
