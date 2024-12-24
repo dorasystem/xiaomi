@@ -62,9 +62,16 @@
                                                 </div>
                                                 <div class="form-group pb-3">
                                                     <label for="description_{{ $lang }}">Описание ({{ strtoupper($lang) }}):</label>
-                                                    <textarea class="form-control" id="description_{{ $lang }}" name="description_{{ $lang }}" rows="5">{{ old('description_' . $lang, $product->{'description_' . $lang}) }}</textarea>
+                                                    <div id="descriptionEditor_{{ $lang }}" style="height:200px;">{!! old('description_' . $lang , $product['description_' . $lang]) !!}</div>
+                                                    <input type="hidden" id="description_{{ $lang }}" name="description_{{ $lang }}" value="{{ old('description_' . $lang   , $product['description_' . $lang]) }}">
+                                                </div>
+                                                <div class="form-group pb-3">
+                                                    <label for="content_{{ $lang }}">Характеристики ({{ strtoupper($lang) }}):</label>
+                                                    <div id="contentEditor_{{ $lang }}" style="height:200px;">{!! old('content_' . $lang, $product['content_' . $lang]) !!}</div>
+                                                    <input type="hidden" id="content_{{ $lang }}" name="content_{{ $lang }}" value="{{ old('content_' . $lang , $product['content_' . $lang]) }}">
                                                 </div>
                                             </div>
+
                                         @endforeach
                                     </div>
                                 </div>
@@ -132,126 +139,7 @@
                                     @endforeach
                                 </div>
                                 <button type="button" id="add-more" class="btn btn-primary mt-3">Добавить ещё</button>
-                                <script>
-                                    // Function to initialize the delete functionality for variants
-                                    function initializeRemoveVariant() {
-                                        document.querySelectorAll('.remove-variant').forEach(function (button) {
-                                            button.addEventListener('click', function () {
-                                                const variantElement = this.closest('.product-form');
-                                                const variantId = variantElement.querySelector('input[name="deleted_variants[]"]').value;
 
-                                                // If the variant ID is present, send an AJAX request to delete it from the database
-                                                if (variantId) {
-                                                    fetch(`/variants/${variantId}`, {
-                                                        method: 'DELETE',
-                                                        headers: {
-                                                            'Content-Type': 'application/json',
-                                                            'X-CSRF-TOKEN': document.querySelector('meta[name="csrf-token"]').getAttribute('content')
-                                                        }
-                                                    })
-                                                        .then(response => {
-
-                                                            const userConfirmed = confirm('Вы уверены, что хотите удалить?');
-
-                                                            if (userConfirmed) {
-                                                                // Foydalanuvchi tasdiqlagan bo'lsa, variantni o\'chirish
-                                                                if (response.ok) {
-
-                                                                    variantElement.remove(); // Variantni DOM dan o'chirish
-                                                                } else {
-                                                                    alert('Ошибка при удалении варианта');
-                                                                }
-                                                            } else {
-                                                                alert('Удаление отменено');
-                                                            }
-
-                                                        })
-                                                        .catch(error => {
-                                                            console.error('Error:', error);
-                                                            alert('Error deleting variant');
-                                                        });
-                                                } else {
-                                                    // If no ID, simply remove from DOM
-                                                    variantElement.remove();
-                                                }
-                                            });
-                                        });
-                                    }
-
-                                    // Add new variant
-                                    document.getElementById('add-more').addEventListener('click', function () {
-                                        const newVariant = document.createElement('div');
-                                        newVariant.classList.add('row', 'px-4', 'pb-2', 'product-form');
-                                        newVariant.innerHTML = `
-                                        <div class="form-group pb-3 col-md-4">
-                                            <label for="storage">Место хранения:</label>
-                                            <select class="form-control" name="storage[]">
-                                                <option value="null">Null</option>
-                                                <option value="2/32GB">2/32 GB</option>
-                                                <option value="4/64GB">4/64 GB</option>
-                                                <option value="6/128GB">6/128 GB</option>
-                                                <option value="8/256GB">8/256 GB</option>
-                                                <option value="12/512GB">12/512 GB</option>
-                                            </select>
-                                        </div>
-                                        <div class="form-group pb-3 col-md-4">
-                                            <label for="price">Цена:</label>
-                                            <div class="input-group">
-                                                <input type="text" class="form-control" name="price[]" >
-                                                <span class="input-group-text">UZS</span>
-                                            </div>
-                                        </div>
-                                        <div class="form-group pb-3 col-md-4">
-                                            <label for="discount_price">Скидочная цена:</label>
-                                            <div class="input-group">
-                                                <input type="text" class="form-control" name="discount_price[]" >
-                                                <span class="input-group-text">UZS</span>
-                                            </div>
-                                        </div>
-                                        <div class="form-group pb-3 col-md-3">
-                                            <label for="price_3">Цена за 3 месяца:</label>
-                                            <div class="input-group">
-                                                <input type="text" class="form-control" name="price_3[]" >
-                                                <span class="input-group-text">UZS</span>
-                                            </div>
-                                        </div>
-                                        <div class="form-group pb-3 col-md-3">
-                                            <label for="price_6">Цена за 6 месяцев:</label>
-                                            <div class="input-group">
-                                                <input type="text" class="form-control" name="price_6[]" >
-                                                <span class="input-group-text">UZS</span>
-                                            </div>
-                                        </div>
-                                        <div class="form-group pb-3 col-md-3">
-                                            <label for="price_12">Цена за 12 месяцев:</label>
-                                            <div class="input-group">
-                                                <input type="text" class="form-control" name="price_12[]" >
-                                                <span class="input-group-text">UZS</span>
-                                            </div>
-                                        </div>
-                                        <div class="form-group pb-3 col-md-3">
-                                            <label for="price_24">Цена за 24 месяца:</label>
-                                            <div class="input-group">
-                                                <input type="text" class="form-control" name="price_24[]">
-                                                <span class="input-group-text">UZS</span>
-                                            </div>
-                                        </div>
-                                        <input type="hidden" name="deleted_variants[]" >
-                                        <div class="col-md-12">
-                                            <button type="button" class="btn btn-danger btn-sm remove-variant">Удалить</button>
-                                        </div>
-    `;
-                                        document.getElementById('product-forms').appendChild(newVariant);
-
-                                        // Re-initialize remove functionality for new variants
-                                        initializeRemoveVariant();
-                                    });
-
-                                    // Initialize remove functionality for existing variants
-                                    initializeRemoveVariant();
-
-
-                                </script>
                             </div>
                         </div>
 
@@ -330,18 +218,25 @@
                         </div>
                     </div>
                 </div>
+
             </div>
         </main>
     </form>
-
+    <script src="https://cdn.quilljs.com/1.3.6/quill.js"></script>
+    <link href="https://cdn.quilljs.com/1.3.6/quill.snow.css" rel="stylesheet">
     <script>
+
         @foreach (['uz', 'en', 'ru'] as $lang)
         var descriptionEditor{{ ucfirst($lang) }} = new Quill('#descriptionEditor_{{ $lang }}', { theme: 'snow' });
+        var contentEditor{{ ucfirst($lang) }} = new Quill('#contentEditor_{{ $lang }}', { theme: 'snow' });
         @endforeach
 
         function updateEditorContent() {
             @foreach (['uz', 'en', 'ru'] as $lang)
             document.getElementById('description_{{ $lang }}').value = descriptionEditor{{ ucfirst($lang) }}.root.innerHTML;
+            @endforeach
+            @foreach (['uz', 'en', 'ru'] as $lang)
+            document.getElementById('content_{{ $lang }}').value = contentEditor{{ ucfirst($lang) }}.root.innerHTML;
             @endforeach
         }
     </script>
@@ -369,6 +264,125 @@
             checkbox.checked = true; // Rasimni o'chirish uchun belgilang
             container.style.display = 'none'; // Rasimni yashirish
         }
+
+    </script>
+    <script>
+        function initializeRemoveVariant() {
+            document.querySelectorAll('.remove-variant').forEach(function (button) {
+                button.addEventListener('click', function () {
+                    const variantElement = this.closest('.product-form');
+                    const variantId = variantElement.querySelector('input[name="deleted_variants[]"]').value;
+
+                    // If the variant ID is present, send an AJAX request to delete it from the database
+                    if (variantId) {
+                        fetch(`/variants/${variantId}`, {
+                            method: 'DELETE',
+                            headers: {
+                                'Content-Type': 'application/json',
+                                'X-CSRF-TOKEN': document.querySelector('meta[name="csrf-token"]').getAttribute('content')
+                            }
+                        })
+                            .then(response => {
+
+                                const userConfirmed = confirm('Вы уверены, что хотите удалить?');
+
+                                if (userConfirmed) {
+                                    // Foydalanuvchi tasdiqlagan bo'lsa, variantni o\'chirish
+                                    if (response.ok) {
+
+                                        variantElement.remove(); // Variantni DOM dan o'chirish
+                                    } else {
+                                        alert('Ошибка при удалении варианта');
+                                    }
+                                } else {
+                                    alert('Удаление отменено');
+                                }
+
+                            })
+                            .catch(error => {
+                                console.error('Error:', error);
+                                alert('Error deleting variant');
+                            });
+                    } else {
+                        // If no ID, simply remove from DOM
+                        variantElement.remove();
+                    }
+                });
+            });
+        }
+
+        // Add new variant
+        document.getElementById('add-more').addEventListener('click', function () {
+            const newVariant = document.createElement('div');
+            newVariant.classList.add('row', 'px-4', 'pb-2', 'product-form');
+            newVariant.innerHTML = `
+                                        <div class="form-group pb-3 col-md-4">
+                                            <label for="storage">Место хранения:</label>
+                                            <select class="form-control" name="storage[]">
+                                                <option value="null">Null</option>
+                                                <option value="2/32GB">2/32 GB</option>
+                                                <option value="4/64GB">4/64 GB</option>
+                                                <option value="6/128GB">6/128 GB</option>
+                                                <option value="8/256GB">8/256 GB</option>
+                                                <option value="12/512GB">12/512 GB</option>
+                                            </select>
+                                        </div>
+                                        <div class="form-group pb-3 col-md-4">
+                                            <label for="price">Цена:</label>
+                                            <div class="input-group">
+                                                <input type="text" class="form-control" name="price[]" >
+                                                <span class="input-group-text">UZS</span>
+                                            </div>
+                                        </div>
+                                        <div class="form-group pb-3 col-md-4">
+                                            <label for="discount_price">Скидочная цена:</label>
+                                            <div class="input-group">
+                                                <input type="text" class="form-control" name="discount_price[]" >
+                                                <span class="input-group-text">UZS</span>
+                                            </div>
+                                        </div>
+                                        <div class="form-group pb-3 col-md-3">
+                                            <label for="price_3">Цена за 3 месяца:</label>
+                                            <div class="input-group">
+                                                <input type="text" class="form-control" name="price_3[]" >
+                                                <span class="input-group-text">UZS</span>
+                                            </div>
+                                        </div>
+                                        <div class="form-group pb-3 col-md-3">
+                                            <label for="price_6">Цена за 6 месяцев:</label>
+                                            <div class="input-group">
+                                                <input type="text" class="form-control" name="price_6[]" >
+                                                <span class="input-group-text">UZS</span>
+                                            </div>
+                                        </div>
+                                        <div class="form-group pb-3 col-md-3">
+                                            <label for="price_12">Цена за 12 месяцев:</label>
+                                            <div class="input-group">
+                                                <input type="text" class="form-control" name="price_12[]" >
+                                                <span class="input-group-text">UZS</span>
+                                            </div>
+                                        </div>
+                                        <div class="form-group pb-3 col-md-3">
+                                            <label for="price_24">Цена за 24 месяца:</label>
+                                            <div class="input-group">
+                                                <input type="text" class="form-control" name="price_24[]">
+                                                <span class="input-group-text">UZS</span>
+                                            </div>
+                                        </div>
+                                        <input type="hidden" name="deleted_variants[]" >
+                                        <div class="col-md-12">
+                                            <button type="button" class="btn btn-danger btn-sm remove-variant">Удалить</button>
+                                        </div>
+    `;
+            document.getElementById('product-forms').appendChild(newVariant);
+
+            // Re-initialize remove functionality for new variants
+            initializeRemoveVariant();
+        });
+
+        // Initialize remove functionality for existing variants
+        initializeRemoveVariant();
+
 
     </script>
     <style>

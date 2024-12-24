@@ -63,11 +63,15 @@
                                                     <div id="descriptionEditor_{{ $lang }}" style="height:200px;">{!! old('description_' . $lang) !!}</div>
                                                     <input type="hidden" id="description_{{ $lang }}" name="description_{{ $lang }}" value="{{ old('description_' . $lang) }}">
                                                 </div>
+                                                <div class="form-group pb-3">
+                                                    <label for="content_{{ $lang }}">Характеристики ({{ strtoupper($lang) }}):</label>
+                                                    <div id="contentEditor_{{ $lang }}" style="height:200px;">{!! old('content_' . $lang) !!}</div>
+                                                    <input type="hidden" id="content_{{ $lang }}" name="content_{{ $lang }}" value="{{ old('content_' . $lang) }}">
+                                                </div>
                                             </div>
                                         @endforeach
                                     </div>
                                 </div>
-
                                     <div id="product-forms">
                                         <div class="row px-4 pb-2 product-form">
                                             <div class="form-group pb-3 col-md-4">
@@ -126,18 +130,14 @@
                                         </div>
                                     </div>
                                     <button type="button" id="add-more" class="btn btn-primary mt-3">Добавить ещё</button>
-
                             </div>
 
                         </div>
-
                         <div class="col-lg-4 pb-5">
                             <div class="card stretch">
                                 <div class="card-header">
                                     <h5 class="card-title">Дополнительно</h5>
                                 </div>
-
-
                                 <div class="card-body p-4">
                                     <div class="form-group pb-3">
                                         <label for="category_id">Категория:</label>
@@ -215,11 +215,15 @@
 
         @foreach (['uz', 'en', 'ru'] as $lang)
         var descriptionEditor{{ ucfirst($lang) }} = new Quill('#descriptionEditor_{{ $lang }}', { theme: 'snow' });
+        var contentEditor{{ ucfirst($lang) }} = new Quill('#contentEditor_{{ $lang }}', { theme: 'snow' });
         @endforeach
 
         function updateEditorContent() {
             @foreach (['uz', 'en', 'ru'] as $lang)
             document.getElementById('description_{{ $lang }}').value = descriptionEditor{{ ucfirst($lang) }}.root.innerHTML;
+            @endforeach
+            @foreach (['uz', 'en', 'ru'] as $lang)
+            document.getElementById('content_{{ $lang }}').value = contentEditor{{ ucfirst($lang) }}.root.innerHTML;
             @endforeach
         }
 
