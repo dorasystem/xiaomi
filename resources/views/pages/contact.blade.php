@@ -4,7 +4,7 @@
         <!-- contact -->
         <div class="container my-4">
             <div class="d-flex align-items-center gap-3">
-                <a href="./index.html" class="text-grey fw-bold text-lowercase fs-14">Главная страница / <span class="text-dark">О нас</span></a>
+                <a href="/" class="text-grey fw-bold text-lowercase fs-14">@lang('home.home') / <span class="text-dark">@lang('footer.contacts')</span></a>
             </div>
             <hr />
         </div>
@@ -12,7 +12,7 @@
             <div class="container">
                 <div class="row">
                     <div class="col-lg-6 pt-5 pe-lg-5 pe-2">
-                        <h1 class="mb-4">Наши магазины</h1>
+                        <h1 class="mb-4">@lang('home.our_shops')</h1>
                         <!-- Tabs Navigation -->
                         <ul class="border-0 flex-wrap ps-0 nav-tabs gap-3 addresses mb-0" id="tabsNavigation" role="tablist">
                             <li class="nav-item" role="presentation">
@@ -28,7 +28,7 @@
                                 >
                                     <div class="shop-icon p-2 rounded"><i class="fa-solid fa-shop"></i></div>
                                     <div class="d-flex flex-column align-items-start">
-                                        <h5 class="" class="">Location 1</h5>
+                                        <h5 class="">Location 1</h5>
                                         <div class="">Laborum et magna est officia es</div>
                                     </div>
                                 </button>

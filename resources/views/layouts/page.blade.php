@@ -36,13 +36,13 @@
             <ul class="navbar-nav d-flex flex-row justify-content-around w-100 align-items-end">
                 <a href="tel:+998772820080" class="d-flex flex-column align-items-center nav-link text-center nav-item">
                     <div class="icon position-relative p-0 mb-1">
-                        <img src="./asssets/icons/phone.svg" alt="Phone icon" />
+                        <img src="/asssets/icons/phone.svg" alt="Phone icon" />
                     </div>
                     <small class="text-lowercase">позванить</small>
                 </a>
 
                 <li class="d-flex flex-column align-items-center nav-link text-center nav-item">
-                    <a href="./shopping-cart.html" class="icon position-relative p-0">
+                    <a href="{{ route('cart') }}" class="icon position-relative p-0">
                         <svg width="26" height="25" viewBox="0 0 30 29" fill="none" xmlns="http://www.w3.org/2000/svg">
                             <path
                                 d="M9.375 26.3672C10.4105 26.3672 11.25 25.5802 11.25 24.6094C11.25 23.6386 10.4105 22.8516 9.375 22.8516C8.33947 22.8516 7.5 23.6386 7.5 24.6094C7.5 25.5802 8.33947 26.3672 9.375 26.3672Z"
@@ -63,7 +63,7 @@
                     <small class="text-lowercase">Корзина</small>
                 </li>
                 <li class="d-flex flex-column align-items-center nav-link text-center nav-item">
-                    <a href="./favorites.html" class="icon position-relative p-0">
+                    <a href="/favorites" class="icon position-relative p-0">
                         <i class="fa-regular fa-heart text-black"></i>
                         <span class="badge badge-pill badge-danger badge-position rounded-circle">2</span>
                     </a>
@@ -95,7 +95,7 @@
                     <div class="col-lg-8 order-lg-2 order-1">
                         <div class="d-flex flex-column justify-content-between h-100">
                             <div class="d-flex align-items-start gap-3">
-                                <img class="rounded fit-cover" src="./asssets/images/category_phone.webp" alt="" />
+                                <img class="rounded fit-cover" src="/asssets/images/category_phone.webp" alt="" />
                                 <div class="d-flex flex-column">
                                     <h6>Телевизор Xiaomi Mi TV A Pro 55" 2025 L55MA-SRU</h6>
                                     <div class="">150 000</div>

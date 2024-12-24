@@ -5,62 +5,65 @@ namespace App\Http\Controllers\Admin;
 use App\Http\Controllers\Controller;
 use App\Models\History;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 
 class HistoryController extends Controller
 {
-    /**
-     * Display a listing of the resource.
-     */
+    public function __construct()
+    {
+        if (!Auth::check() || !in_array(Auth::user()->role, [1, 2])) {
+            abort(403, 'Ushbu sahifaga kirish ruxsati yo‘q.');
+        }
+    }
+
     public function index()
     {
-        //
+        $histories = History::all();
+        return view('admin.histories.index', compact('histories'));
     }
 
-    /**
-     * Show the form for creating a new resource.
-     */
     public function create()
     {
-        //
+        return view('admin.histories.create');
     }
 
-    /**
-     * Store a newly created resource in storage.
-     */
     public function store(Request $request)
     {
-        //
+        $validated = $request->validate([
+            'description_uz' => 'nullable|string',
+            'description_ru' => 'nullable|string',
+            'description_en' => 'nullable|string',
+            'year' => 'nullable|integer',
+        ]);
+
+        History::create($validated);
+
+        return redirect()->route('histories.index')->with('success', 'History muvaffaqiyatli yaratildi.');
     }
 
-    /**
-     * Display the specified resource.
-     */
-    public function show(History $history)
-    {
-        //
-    }
-
-    /**
-     * Show the form for editing the specified resource.
-     */
     public function edit(History $history)
     {
-        //
+        return view('admin.histories.edit', compact('history'));
     }
 
-    /**
-     * Update the specified resource in storage.
-     */
     public function update(Request $request, History $history)
     {
-        //
+        $validated = $request->validate([
+            'description_uz' => 'nullable|string',
+            'description_ru' => 'nullable|string',
+            'description_en' => 'nullable|string',
+            'year' => 'nullable|integer',
+        ]);
+
+        $history->update($validated);
+
+        return redirect()->route('histories.index')->with('success', 'History muvaffaqiyatli yangilandi.');
     }
 
-    /**
-     * Remove the specified resource from storage.
-     */
     public function destroy(History $history)
     {
-        //
+        $history->delete();
+
+        return redirect()->route('histories.index')->with('success', 'History muvaffaqiyatli o\'chirildi.');
     }
 }

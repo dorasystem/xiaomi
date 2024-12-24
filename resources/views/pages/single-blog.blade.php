@@ -1,15 +1,17 @@
 @extends('layouts.page')
-
+<?php
+$lang = \Illuminate\Support\Facades\App::getLocale()
+?>
 @section('content')
 <main class="container">
     <div class="my-4">
         <div class="d-flex align-items-center gap-3">
-            <a href="./index.html" class="text-grey fw-bold text-lowercase fs-14">Главная страница / <span class="text-dark">Блог</span></a>
+            <a href="/" class="text-grey fw-bold text-lowercase fs-14">@lang('home.home') / <span class="text-dark">@lang('footer.blog')</span></a>
         </div>
         <hr />
     </div>
-    <div style="background-image: url('./asssets/images/single-blogimage.jpg')" class="text-white rounded mb-3 singleblogbanner px-5 w-100 d-flex flex-column justify-content-center">
-        <h1>{{ $blog->title_ru }}:</h1>
+    <div style="background-image: url('./assets/images/single-blogimage.jpg')" class="text-black rounded mb-3 singleblogbanner px-5 w-100 d-flex flex-column justify-content-center">
+        <h1>{{ $blog['title_' . $lang] }}</h1>
         <h4 class="">самый демократичный смартфон с экраном 120 герц</h4>
     </div>
     <div class="">
@@ -20,19 +22,19 @@
     <div style="overflow: hidden" class="blogimages container py-3 pt-5 px-0 position-relative">
         <div class="swiper-wrapper pt-3">
             <div class="swiper-slide product shadow-sm position-relative rounded">
-                <img class="w-100 fit-cover rounded blogcard" src="./asssets/images/aksiya1.webp" alt="" />
+                <img class="w-100 fit-cover rounded blogcard" src="/assets/images/aksiya1.webp" alt="" />
             </div>
             <div class="swiper-slide product shadow-sm position-relative rounded">
-                <img class="w-100 fit-cover rounded blogcard" src="./asssets/images/aksiya2.webp" alt="" />
+                <img class="w-100 fit-cover rounded blogcard" src="/assets/images/aksiya2.webp" alt="" />
             </div>
             <div class="swiper-slide product shadow-sm position-relative rounded">
-                <img class="w-100 fit-cover rounded blogcard" src="./asssets/images/aksiya3.webp" alt="" />
+                <img class="w-100 fit-cover rounded blogcard" src="/assets/images/aksiya3.webp" alt="" />
             </div>
             <div class="swiper-slide product shadow-sm position-relative rounded">
-                <img class="w-100 fit-cover rounded blogcard" src="./asssets/images/aksiya4.webp" alt="" />
+                <img class="w-100 fit-cover rounded blogcard" src="/assets/images/aksiya4.webp" alt="" />
             </div>
             <div class="swiper-slide product shadow-sm position-relative rounded">
-                <img class="w-100 fit-cover rounded blogcard" src="./asssets/images/aksiya2.webp" alt="" />
+                <img class="w-100 fit-cover rounded blogcard" src="/assets/images/aksiya2.webp" alt="" />
             </div>
         </div>
         <div class="text-center mt-3">
@@ -55,7 +57,7 @@
                 <h4 class="">На первый взгляд кажется, что Lite получили металлический корпус, но на деле и здесь, и в Active используется пластик с металлическим напылением.</h4>
                 <h5 class="">На первый взгляд кажется, что Lite получили металлический корпус, но на деле и здесь, и в Active используется пластик с металлическим напылением.</h5>
             </div>
-            <img class="col-md-6 my-3 rounded" width="500px" height="300px" src="./asssets/images/banner1.webp" alt="" />
+            <img class="col-md-6 my-3 rounded" width="500px" height="300px" src="/assets/images/banner1.webp" alt="" />
         </div>
     </div>
     <div class="blogdes">

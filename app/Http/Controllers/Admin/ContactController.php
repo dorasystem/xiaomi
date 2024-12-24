@@ -39,6 +39,6 @@ class ContactController extends Controller
 
         $contact->update($validatedData);
 
-        return redirect()->route('contacts.index')->with('success', 'Contact successfully updated!');
+        return redirect()->back()->with('success', 'Contact successfully updated!');
     }
 }

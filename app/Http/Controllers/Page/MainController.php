@@ -3,17 +3,32 @@
 namespace App\Http\Controllers\Page;
 
 use App\Http\Controllers\Controller;
+use App\Models\About;
+use App\Models\Article;
 use App\Models\Blog;
+use App\Models\History;
 use App\Models\News;
 use App\Models\Product;
-use Illuminate\Http\Request;
-use Illuminate\Support\Facades\App;
+use App\Models\Vacancy;
+use Illuminate\Http\Request;use Illuminate\Support\Facades\DB;
+
 
 class MainController extends Controller
 {
     public function index()
     {
-        return view('pages.home');
+        $new = News::latest()->first();
+        $news1 = News::latest()->skip(1)->take(4)->get();
+        $news2 = News::latest()->skip(4)->take(4)->get();
+        return view('pages.home', compact('new', 'news1', 'news2'));
+    }
+    public function about()
+    {
+        $lang = app()->getLocale();
+        $about = About::first();
+        $histories = History::take(4)->get();
+        $careers = Vacancy::latest()->take(4)->get();
+        return view('pages.about', compact('about', 'lang', 'histories', 'careers'));
     }
     public function contact()
     {
@@ -21,13 +36,16 @@ class MainController extends Controller
     }
     public function blog()
     {
-        $blogs = News::all();
+        $blogs = Blog::all();
 //        dd($blogs);
         return view('pages.page-blog', compact('blogs'));
     }
-    public function singleBlog($id){
-
-        $blog = News::findOrFail($id);
+    public function singleBlog($slug)
+    {
+        $locale = app()->getLocale();
+        $blog = Blog::all()->filter(function ($blog) use ($locale, $slug) {
+            return $blog->getSlugByLanguage($locale) === $slug;
+        })->first();
         return view('pages.single-blog', compact('blog'));
     }
 
@@ -37,32 +55,44 @@ class MainController extends Controller
         return view('pages.page-products',compact('products'));
     }
 
-    public function singleProduct($slug)
+    public function singleProduct()
     {
-        $product = Product::where('slug', $slug)->firstOrFail();
-
-        // Check if images is a string before calling json_decode
-        $images = is_string($product->images) ? json_decode($product->images, true) : $product->images;
-
-        $lang = App::getLocale();
-        $variants = $product->variants;
-
-        return view('pages.single-product', compact('product', 'images', 'lang', 'variants'));
+        return view('pages.single-product');
     }
-
+//    public function singleProduct($slug)
+//    {
+//        $product = Product::where('slug', $slug)->firstOrFail();
+//        return view('pages.single-product', compact('product'));
+//    }
 
     public function news()
     {
-        return view('pages.page-news');
+        $news = News::all();
+        $articles = Article::all();
+        return view('pages.page-news', compact('news', 'articles'));
+    }
+    public function career()
+    {
+        $careers = Vacancy::all();
+        $lang = app()->getLocale();
+        return view('pages.career', compact('careers', 'lang'));
     }
 
-    public function singleNews()
+    public function singleNews($slug)
     {
-        return view('pages.single-news');
+        $locale = app()->getLocale();
+        $news = News::all()->filter(function ($news) use ($locale, $slug) {
+            return $news->getSlugByLanguage($locale) === $slug;
+        })->first();
+        $otherNews = News::latest()->skip(1)->take(4)->get();
+        return view('pages.single-news', compact('news', 'otherNews', 'locale'));
     }
-//    public function singleNews($slug)
-//    {
-//        $news = News::where('slug', $slug)->firstOrFail();
-//        return view('frontend.single-news', compact('news'));
-//    }
+    public function singleArticle($slug)
+    {
+        $locale = app()->getLocale();
+        $articles = Blog::all()->filter(function ($articles) use ($locale, $slug) {
+            return $articles->getSlugByLanguage($locale) === $slug;
+        })->first();
+        return view('pages.single-article', compact('articles', 'locale'));
+    }
 }

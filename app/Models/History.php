@@ -2,9 +2,17 @@
 
 namespace App\Models;
 
+use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
 class History extends Model
 {
-    //
+    use HasFactory;
+
+    protected $fillable = [
+        'description_uz',
+        'description_ru',
+        'description_en',
+        'year',
+    ];
 }

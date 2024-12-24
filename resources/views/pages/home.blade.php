@@ -1,9 +1,11 @@
 @extends('layouts.page')
-
+<?php
+    $lang = \Illuminate\Support\Facades\App::getLocale();
+?>
 @section('content')
 
     <main class="">
-        <div class="my-4 text-grey container">Официальный магазин Xiaomi в Узбекистане</div>
+        <div class="my-4 text-grey container">@lang('home.official')</div>
         <!-- Slider banner -->
         <div class="container">
             <div class="row">
@@ -48,14 +50,14 @@
                     <div class="row headerbanners">
                         <div class="col-sm-6 col-md-12 mt-md-0 mt-4">
                             <div class="banner1 rounded p-lg-4 p-2 d-flex flex-column justify-content-between align-items-start">
-                                <div class="fw-bold">Смартфоны</div>
-                                <a href="{{ route('products') }}" class="btn-orange rounded px-4 py-1">Смотреть все</a>
+                                <div class="fw-bold">@lang('footer.smartphones')</div>
+                                <a href="{{ route('products') }}" class="btn-orange rounded px-4 py-1">@lang('home.smartphonesAll')</a>
                             </div>
                         </div>
                         <div class="col-sm-6 col-md-12 mt-4">
                             <div class="banner2 rounded p-lg-4 p-2 d-flex flex-column justify-content-between align-items-start">
-                                <div class="fw-bold">Умный дом</div>
-                                <a href="{{ route('products') }}" class="btn-orange rounded px-4 py-1">Смотреть все</a>
+                                <div class="fw-bold">@lang('footer.smart_home')</div>
+                                <a href="{{ route('products') }}" class="btn-orange rounded px-4 py-1">@lang('home.smartphonesAll')</a>
                             </div>
                         </div>
                     </div>
@@ -64,23 +66,23 @@
         </div>
         <!-- Products -->
         <div class="container mt-5 p-0">
-            <div class="m-0 fs-2 fw-bold container">Специальные предложения</div>
+            <div class="m-0 fs-2 fw-bold container">@lang('home.special_offers')</div>
             <div class="d-lg-flex align-items-center justify-content-between d-block container">
                 <div class="col-lg-9 d-flex flex-column gap-4 my-3 align-items-start">
                     <ul class="nav nav-tabs mb-1 overflow-auto w-100" id="myTab" role="tablist" style="white-space: nowrap">
                         <li class="me-3 mb-3" role="presentation">
-                            <a class="fs-5 p-2 active" id="home-tab" data-bs-toggle="tab" href="#home" role="tab" aria-controls="home" aria-selected="true">Товары на акции</a>
+                            <a class="fs-5 p-2 active" id="home-tab" data-bs-toggle="tab" href="#home" role="tab" aria-controls="home" aria-selected="true">@lang('home.product_on_sale')</a>
                         </li>
                         <li class="me-3 mb-3" role="presentation">
-                            <a class="fs-5 pb-2" id="profile-tab" data-bs-toggle="tab" href="#profile" role="tab" aria-controls="profile" aria-selected="false">Новинки</a>
+                            <a class="fs-5 pb-2" id="profile-tab" data-bs-toggle="tab" href="#profile" role="tab" aria-controls="profile" aria-selected="false">@lang('home.new_items')</a>
                         </li>
                         <li class="me-3 mb-3" role="presentation">
-                            <a class="fs-5 pb-2" id="phones-tab" data-bs-toggle="tab" href="#phones" role="tab" aria-controls="phones" aria-selected="false">Хиты продаж</a>
+                            <a class="fs-5 pb-2" id="phones-tab" data-bs-toggle="tab" href="#phones" role="tab" aria-controls="phones" aria-selected="false">@lang('home.bestsellers')</a>
                         </li>
                     </ul>
                 </div>
                 <div class="my-lg-3 my-0 col-lg-3 d-lg-block d-none text-end">
-                    <button class="view_all_btn text-orange border-0 bg-transparent mb-4">Смотреть все</button>
+                    <button class="view_all_btn text-orange border-0 bg-transparent mb-4">@lang('home.smartphonesAll')</button>
                 </div>
             </div>
 
@@ -121,7 +123,7 @@
                                                 <img src="./assets/icons/shopping-cart.svg" alt="" />
                                             </button>
                                             <button data-bs-toggle="modal" data-bs-target="#largeModal" class="btn-orange rounded w-100 d-flex align-items-center gap-2 justify-content-center">
-                                                <span>Купить сразу</span>
+                                                <span>@lang('home.buy_now')</span>
                                             </button>
                                         </div>
                                     </div>
@@ -806,7 +808,7 @@
         </div>
         <!-- products you have seen -->
         <div style="overflow: hidden" class="seenProducts container py-3 position-relative">
-            <div class="mb-4 fs-2 fw-bold">Вы смотрели</div>
+            <div class="mb-4 fs-2 fw-bold">@lang('home.looked_product')</div>
             <div class="swiper-wrapper">
                 <div class="swiper-slide product shadow-sm position-relative rounded">
                     <a href="javascript:void(0)" class=" ">
@@ -840,7 +842,7 @@
                                     <img src="/assets/icons/shopping-cart.svg" alt="" />
                                 </button>
                                 <button data-bs-toggle="modal" data-bs-target="#largeModal" class="btn-orange rounded w-100 d-flex align-items-center gap-2 justify-content-center">
-                                    <span>Купить сразу</span>
+                                    <span>@lang('home.buy_now')</span>
                                 </button>
                             </div>
                         </div>
@@ -969,40 +971,40 @@
         <!-- Our advantages -->
         <div class="banner py-5 my-5">
             <div class="container">
-                <h2>Наши преимущества</h2>
+                <h2>@lang('home.our_advantages')</h2>
                 <div class="d-flex justify-content-between advantages py-4 gap-5">
                     <div class="d-flex flex-column gap-3 align-items-center">
                         <img src="/assets/icons/check-icon.svg" alt="" />
-                        <div class="text-center text-nowrap"><span class="fw-bold">Xiaomi</span> <br />Авторизованный магазин</div>
+                        <div class="text-center text-nowrap"><span class="fw-bold">Xiaomi</span> <br />@lang('home.authorized_store')</div>
                     </div>
                     <div class="d-flex flex-column align-items-center">
                         <img src="/assets/icons/truck-icon.svg" alt="" />
                         <div class="text-center text-nowrap">
-                            <span class="fw-bold">Доставка</span> <br />
-                            по всему Узбекистану
+                            <span class="fw-bold">@lang('home.delivery')</span> <br />
+                            @lang('home.all_over_uzbekistan')
                         </div>
                     </div>
                     <div class="d-flex flex-column gap-3 align-items-center">
                         <img src="/assets/icons/shop-icon.svg" alt="" />
                         <div class="text-center text-nowrap">
-                            <span class="fw-bold">Самовывоз</span> <br />
-                            из ближайшего магазина
+                            <span class="fw-bold">@lang('home.pickup')</span> <br />
+                            @lang('home.from_the_nearest_store')
                         </div>
                     </div>
                     <div class="d-flex flex-column gap-3 align-items-center">
                         <img src="/assets/icons/calendar.svg" alt="" />
 
                         <div class="text-center text-nowrap">
-                            <span class="fw-bold">Выгодная рассрочка</span> <br />
-                            без предоплаты
+                            <span class="fw-bold">@lang('home.favorable_installment_plan')</span> <br />
+                            @lang('home.without_prepayment')
                         </div>
                     </div>
                     <div class="d-flex flex-column gap-3 align-items-center">
                         <!-- <img src="./assets/icons/tools.svg" alt="" /> -->
                         <img src="/assets/icons/settings.svg" alt="" />
                         <div class="text-center text-nowrap">
-                            <span class="fw-bold">Бесплатная</span> <br />
-                            настройка устройства
+                            <span class="fw-bold">@lang('home.free')</span> <br />
+                            @lang('home.device_setup')
                         </div>
                     </div>
                 </div>
@@ -1010,15 +1012,14 @@
         </div>
         <!-- News -->
         <div class="container">
-            <div class="fs-2 fw-bold">Новости</div>
+            <div class="fs-2 fw-bold">@lang('footer.news')</div>
             <div class="row mt-3">
                 <div class="col-lg-7 pe-lg-5 pe-2 mb-4">
-                    <div class="newbanner w-100 rounded text-white d-flex flex-column justify-content-between">
+                    <div class="newbanner w-100 rounded text-white d-flex flex-column justify-content-between" style="background-image: url('/storage/{{ $new->image ?? '/assets/images/newbanner.png' }}');">
                         <div class="productName fs-5">
-                            Сравнение Xiaomi 14T и Xiaomi 14T Pro: Какой <br />
-                            выбрать?
+                            {!! $new['title_' . $lang] ?? 'Сравнение Xiaomi 14T и Xiaomi 14T Pro: Какой <br/> выбрать?' !!}
                         </div>
-                        <small class="fw-bold border-top pt-3">Опубликовано 7 октября в 15:31</small>
+                        <small class="fw-bold border-top pt-3"> {{ $new->date ?? 'Опубликовано 7 октября в 15:31' }}</small>
                     </div>
                 </div>
 
@@ -1027,15 +1028,15 @@
                         <ul class="nav justify-content-between nav-tabs new-borderbottom mb-2 overflow-auto w-100" id="newTab" role="tablist" style="white-space: nowrap">
                             <div class="d-flex">
                                 <li class="pe-3 fs-5" role="presentation">
-                                    <a class="pb-2 ps-0 active newtab" id="new-tab" data-bs-toggle="tab" href="#new" role="tab" aria-controls="home" aria-selected="true">Новинки</a>
+                                    <a class="pb-2 ps-0 active newtab" id="new-tab" data-bs-toggle="tab" href="#new" role="tab" aria-controls="home" aria-selected="true">@lang('home.new_items')</a>
                                 </li>
                                 <li class="pe-3 fs-5" role="presentation">
-                                    <a class="pb-2 newtab" id="popular-tab" data-bs-toggle="tab" href="#popular" role="tab" aria-controls="profile" aria-selected="false">Популярные</a>
+                                    <a class="pb-2 newtab" id="popular-tab" data-bs-toggle="tab" href="#popular" role="tab" aria-controls="profile" aria-selected="false">@lang('home.popular')</a>
                                 </li>
                             </div>
                             <li class="me-3 fs-5 mb-2" role="presentation">
-                                <a href="./news.html" class="pb-2 view_all_btn text-orange border-0 bg-transparent mb-4 text-end"
-                                >Все статьи
+                                <a href="/news" class="pb-2 view_all_btn text-orange border-0 bg-transparent mb-4 text-end"
+                                >@lang('home.smartphonesAll')
                                     <svg width="16" height="16" viewBox="0 0 23 23" fill="none" xmlns="http://www.w3.org/2000/svg">
                                         <g clip-path="url(#clip0_43_12)">
                                             <path
@@ -1055,88 +1056,118 @@
                     </div>
                     <div class="tab-content mt-4" id="newTabContent">
                         <div class="tab-pane fade show active" id="new" role="tabpanel" aria-labelledby="new-tab">
-                            <div class="d-flex align-items-start gap-3 justify-content-between">
-                                <div class="">
-                                    <div class="text-grey">7 октября в 15:31</div>
-                                    <h5>Сравнение Xiaomi 14T и Xiaomi 14T Pro</h5>
+                            @if(!empty($news1 && $news1->count(4)))
+                                @foreach($news1 as $item)
+                                    <div class="d-flex align-items-start gap-3 justify-content-between">
+                                        <div class="">
+                                            <div class="text-grey">{{ $item->date }}</div>
+                                            <h5>{{ $item['title_' . $lang] ?? 'Сравнение Xiaomi 14T и Xiaomi 14T Pro' }}</h5>
+                                        </div>
+                                        <div class="">
+                                            <img class="newImg rounded" src="{{ asset('storage/' . $item->image) ?? 'https://xiaomistore.md/media/newsxiaomi-14t-and-14t-pro-2.webp' }}" alt="" />
+                                        </div>
+                                    </div>
+                                    <hr />
+                                @endforeach
+                            @else
+                                <div class="d-flex align-items-start gap-3 justify-content-between">
+                                    <div class="">
+                                        <div class="text-grey">7 октября в 15:31</div>
+                                        <h5>Сравнение Xiaomi 14T и Xiaomi 14T Pro</h5>
+                                    </div>
+                                    <div class="">
+                                        <img class="newImg rounded" src="https://xiaomistore.md/media/newsxiaomi-14t-and-14t-pro-2.webp" alt="" />
+                                    </div>
                                 </div>
-                                <div class="">
-                                    <img class="newImg rounded" src="https://xiaomistore.md/media/newsxiaomi-14t-and-14t-pro-2.webp" alt="" />
+                                <hr />
+                                <div class="d-flex align-items-start gap-3 justify-content-between">
+                                    <div class="">
+                                        <div class="text-grey">7 октября в 15:31</div>
+                                        <h5>Сравнение Xiaomi 14T и Xiaomi 14T Pro</h5>
+                                    </div>
+                                    <div class="">
+                                        <img class="newImg rounded" src="https://xiaomistore.md/media/newsxiaomi-14t-and-14t-pro-2.webp" alt="" />
+                                    </div>
                                 </div>
-                            </div>
-                            <hr />
-                            <div class="d-flex align-items-start gap-3 justify-content-between">
-                                <div class="">
-                                    <div class="text-grey">7 октября в 15:31</div>
-                                    <h5>Сравнение Xiaomi 14T и Xiaomi 14T Pro</h5>
+                                <hr />
+                                <div class="d-flex align-items-start gap-3 justify-content-between">
+                                    <div class="">
+                                        <div class="text-grey">7 октября в 15:31</div>
+                                        <h5>Сравнение Xiaomi 14T и Xiaomi 14T Pro</h5>
+                                    </div>
+                                    <div class="">
+                                        <img class="newImg rounded" src="https://xiaomistore.md/media/newsxiaomi-14t-and-14t-pro-2.webp" alt="" />
+                                    </div>
                                 </div>
-                                <div class="">
-                                    <img class="newImg rounded" src="https://xiaomistore.md/media/newsxiaomi-14t-and-14t-pro-2.webp" alt="" />
+                                <hr />
+                                <div class="d-flex align-items-start gap-3 justify-content-between">
+                                    <div class="">
+                                        <div class="text-grey">7 октября в 15:31</div>
+                                        <h5>Сравнение Xiaomi 14T и Xiaomi 14T Pro</h5>
+                                    </div>
+                                    <div class="">
+                                        <img class="newImg rounded" src="https://xiaomistore.md/media/newsxiaomi-14t-and-14t-pro-2.webp" alt="" />
+                                    </div>
                                 </div>
-                            </div>
-                            <hr />
-                            <div class="d-flex align-items-start gap-3 justify-content-between">
-                                <div class="">
-                                    <div class="text-grey">7 октября в 15:31</div>
-                                    <h5>Сравнение Xiaomi 14T и Xiaomi 14T Pro</h5>
-                                </div>
-                                <div class="">
-                                    <img class="newImg rounded" src="https://xiaomistore.md/media/newsxiaomi-14t-and-14t-pro-2.webp" alt="" />
-                                </div>
-                            </div>
-                            <hr />
-                            <div class="d-flex align-items-start gap-3 justify-content-between">
-                                <div class="">
-                                    <div class="text-grey">7 октября в 15:31</div>
-                                    <h5>Сравнение Xiaomi 14T и Xiaomi 14T Pro</h5>
-                                </div>
-                                <div class="">
-                                    <img class="newImg rounded" src="https://xiaomistore.md/media/newsxiaomi-14t-and-14t-pro-2.webp" alt="" />
-                                </div>
-                            </div>
-                            <hr />
+                                <hr />
+                            @endif
                         </div>
                         <div class="tab-pane fade show" id="popular" role="tabpanel" aria-labelledby="popular-tab">
-                            <div class="d-flex align-items-start gap-3 justify-content-between">
-                                <div class="">
-                                    <div class="text-grey">7 октября в 15:31</div>
-                                    <h5>Сравнение Xiaomi 14T и Xiaomi 14T Pro</h5>
+                            @if($news2 && $news2->count(4))
+                                @foreach($news2 as $item)
+                                    <div class="d-flex align-items-start gap-3 justify-content-between">
+                                        <div class="">
+                                            <div class="text-grey">{{ $item->date }}</div>
+                                            <h5>{{ $item['title_' . $lang] }}</h5>
+                                        </div>
+                                        <div class="">
+                                            <img class="newImg rounded" src="{{ asset('storage/' . $item->image) }}" alt="" />
+                                        </div>
+                                    </div>
+                                    <hr />
+                                @endforeach
+                            @else
+                                <div class="d-flex align-items-start gap-3 justify-content-between">
+                                    <div class="">
+                                        <div class="text-grey">7 октября в 15:31</div>
+                                        <h5>Сравнение Xiaomi 14T и Xiaomi 14T Pro</h5>
+                                    </div>
+                                    <div class="">
+                                        <img class="newImg rounded" src="https://xiaomistore.md/media/news/poco-m6-pro-9blnk72.webp" alt="" />
+                                    </div>
                                 </div>
-                                <div class="">
-                                    <img class="newImg rounded" src="https://xiaomistore.md/media/news/poco-m6-pro-9blnk72.webp" alt="" />
+                                <hr />
+                                <div class="d-flex align-items-start gap-3 justify-content-between">
+                                    <div class="">
+                                        <div class="text-grey">7 октября в 15:31</div>
+                                        <h5>Сравнение Xiaomi 14T и Xiaomi 14T Pro</h5>
+                                    </div>
+                                    <div class="">
+                                        <img class="newImg rounded" src="https://xiaomistore.md/media/news/poco-m6-pro-9blnk72.webp" alt="" />
+                                    </div>
                                 </div>
-                            </div>
-                            <hr />
-                            <div class="d-flex align-items-start gap-3 justify-content-between">
-                                <div class="">
-                                    <div class="text-grey">7 октября в 15:31</div>
-                                    <h5>Сравнение Xiaomi 14T и Xiaomi 14T Pro</h5>
+                                <hr />
+                                <div class="d-flex align-items-start gap-3 justify-content-between">
+                                    <div class="">
+                                        <div class="text-grey">7 октября в 15:31</div>
+                                        <h5>Сравнение Xiaomi 14T и Xiaomi 14T Pro</h5>
+                                    </div>
+                                    <div class="">
+                                        <img class="newImg rounded" src="https://xiaomistore.md/media/news/poco-m6-pro-9blnk72.webp" alt="" />
+                                    </div>
                                 </div>
-                                <div class="">
-                                    <img class="newImg rounded" src="https://xiaomistore.md/media/news/poco-m6-pro-9blnk72.webp" alt="" />
+                                <hr />
+                                <div class="d-flex align-items-start gap-3 justify-content-between">
+                                    <div class="">
+                                        <div class="text-grey">7 октября в 15:31</div>
+                                        <h5>Сравнение Xiaomi 14T и Xiaomi 14T Pro</h5>
+                                    </div>
+                                    <div class="">
+                                        <img class="newImg rounded" src="https://xiaomistore.md/media/news/poco-m6-pro-9blnk72.webp" alt="" />
+                                    </div>
                                 </div>
-                            </div>
-                            <hr />
-                            <div class="d-flex align-items-start gap-3 justify-content-between">
-                                <div class="">
-                                    <div class="text-grey">7 октября в 15:31</div>
-                                    <h5>Сравнение Xiaomi 14T и Xiaomi 14T Pro</h5>
-                                </div>
-                                <div class="">
-                                    <img class="newImg rounded" src="https://xiaomistore.md/media/news/poco-m6-pro-9blnk72.webp" alt="" />
-                                </div>
-                            </div>
-                            <hr />
-                            <div class="d-flex align-items-start gap-3 justify-content-between">
-                                <div class="">
-                                    <div class="text-grey">7 октября в 15:31</div>
-                                    <h5>Сравнение Xiaomi 14T и Xiaomi 14T Pro</h5>
-                                </div>
-                                <div class="">
-                                    <img class="newImg rounded" src="https://xiaomistore.md/media/news/poco-m6-pro-9blnk72.webp" alt="" />
-                                </div>
-                            </div>
-                            <hr />
+                                <hr />
+                            @endif
                         </div>
                     </div>
                 </div>
@@ -1191,9 +1222,9 @@
         <div class="bg-black text-white pt-4 mt-5">
             <div class="container py-4">
                 <div class="d-flex align-items-center justify-content-between">
-                    <h1>Видеообзоры</h1>
+                    <h1>@lang('home.video_reviews')</h1>
                     <button class="border border-white border-1 bg-transparent rounded text-white p-2 d-sm-block d-none">
-                        Все видео-обзоры <img src="./assets/icons/arrow_white.svg" alt="" />
+                        @lang('home.all_video_reviews') <img src="/assets/icons/arrow_white.svg" alt="" />
                     </button>
                 </div>
                 <div class="videoBanner my-2 rounded d-flex align-items-center justify-content-center">
@@ -1239,7 +1270,7 @@
         <div class="container">
             <div class="row">
                 <div class="col-lg-6 pt-5 pe-lg-5 pe-2">
-                    <h1 class="mb-4">Наши магазины</h1>
+                    <h1 class="mb-4">@lang('home.our_shops')</h1>
                     <!-- Tabs Navigation -->
                     <ul class="border-0 flex-wrap ps-0 nav-tabs gap-3 addresses mb-0" id="tabsNavigation" role="tablist">
                         <li class="nav-item" role="presentation">
@@ -1378,5 +1409,30 @@
             </div>
         </div>
     </main>
+{{--    <a href="javascript: void(0);" type="button" onclick="addToCart({{ $product->id }}, '{{ $product->name_uz }}', {{ $product->price }})" class="icon-cart d-block border-0"></a>--}}
 
+
+    <script>
+        function addToCart(productId) {
+            $.ajax({
+                url: `/add-to-cart/${productId}`,
+                type: 'POST',
+                data: {
+                    _token: '{{ csrf_token() }}',
+                },
+                success: function(response) {
+                    updateCartCount(response.cart_count); // Badge raqamini yangilash
+                    // alert(response.message); // Foydalanuvchiga xabar ko'rsatish
+                },
+                error: function(xhr) {
+                    alert('Xatolik yuz berdi: ' + xhr.responseText);
+                }
+            });
+        }
+
+        function updateCartCount(count) {
+            document.getElementById('cart-count').innerText = count;
+        }
+
+    </script>
 @endsection

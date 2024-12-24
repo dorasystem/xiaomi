@@ -26,9 +26,7 @@
                             <thead class="">
                             <tr>
                                 <th scope="col">№</th>
-                                <th scope="col">Заголовок (UZ)</th>
                                 <th scope="col">Заголовок (RU)</th>
-                                <th scope="col">Заголовок (EN)</th>
                                 <th scope="col">Описание (RU)</th>
                                 <th scope="col">Изображение</th>
                                 <th scope="col" class="text-end">Действия</th>
@@ -38,9 +36,7 @@
                             @foreach ($abouts as $item)
                                 <tr>
                                     <td>{{ $loop->iteration }}</td>
-                                    <td>{{ $item->title_uz }}</td>
                                     <td>{{ $item->title_ru }}</td>
-                                    <td>{{ $item->title_en }}</td>
                                     <td>{!! $item->description_ru !!}</td>
                                     <td>
                                         @if ($item->image)

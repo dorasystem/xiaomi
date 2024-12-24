@@ -1,7 +1,21 @@
 <?php
 
-use App\Http\Controllers\Admin\AboutController;
-use App\Http\Controllers\Admin\CartController;
+use App\Http\Controllers\admin\AboutController;
+use App\Http\Controllers\admin\ArticleController;
+use App\Http\Controllers\Admin\BlogController;
+use App\Http\Controllers\Admin\CandidantController;
+use App\Http\Controllers\admin\CartController;
+use App\Http\Controllers\admin\ContactController;
+use App\Http\Controllers\admin\FaqController;
+use App\Http\Controllers\Admin\HistoryController;
+use App\Http\Controllers\admin\NewsController;
+use App\Http\Controllers\admin\ProductController;
+use App\Http\Controllers\admin\ServiceController;
+use App\Http\Controllers\Admin\VacancyController;
+use App\Http\Controllers\auth\AdminController;
+use App\Http\Controllers\auth\AuthController;
+use App\Http\Controllers\auth\SuperAdminController;
+use App\Http\Controllers\auth\UserController;
 use App\Http\Controllers\Admin\CategoryController;
 use App\Http\Controllers\Admin\ContactController;
 use App\Http\Controllers\Admin\DescImageController;
@@ -32,13 +46,17 @@ Route::middleware(['auth'])->prefix('dashboard')->group(function () {
     Route::get('/admin',[AdminController::class, 'admin'])->name('admins.dashboard');
     Route::resource('abouts', AboutController::class);
     Route::resource('news', NewsController::class);
-    Route::resource('blogs', NewsController::class);
+    Route::resource('articles', ArticleController::class);
+    Route::resource('blogs', BlogController::class);
     Route::resource('services', ServiceController::class);
     Route::resource('contacts', ContactController::class);
     Route::resource('faqs', FaqController::class);
     Route::resource('categories', CategoryController::class);
     Route::resource('products', ProductController::class);
     Route::resource('variants', VariantController::class);
+    Route::resource('histories', HistoryController::class);
+    Route::resource('vacancies', VacancyController::class);
+    Route::resource('candidants', CandidantController::class);
     Route::resource('desc-images', DescImageController::class);
 
 });
@@ -52,18 +70,19 @@ Route::middleware(['auth'])->group(function () {
 });
 
 Route::get('/', [MainController::class, 'index'])->name('home');
+Route::get('/about', [MainController::class, 'about'])->name('abput');
 Route::get('/contact', [MainController::class, 'contact'])->name('contact');
 Route::get('/blog', [MainController::class, 'blog'])->name('blog');
-Route::get('/blog/{id}', [MainController::class, 'singleBlog'])->name('single.blog');
+Route::get('/blog/{slug}', [MainController::class, 'singleBlog'])->name('single.blog');
 
 
 Route::get('/products', [MainController::class, 'products'])->name('products');
 Route::get('/single-product/{slug}', [MainController::class, 'singleProduct'])->name('single.product');
 //Route::get('/product{slug}', [MainController::class, 'singleProduct'])->name('single.product');
 Route::get('/news', [MainController::class, 'news'])->name('news');
-Route::get('/single-news', [MainController::class, 'singleNews'])->name('single.news');
-//Route::get('/news{slug}', [MainController::class, 'singleNews'])->name('single.news');
-
+Route::get('/career', [MainController::class, 'career'])->name('career');
+Route::get('/news/{slug}', [MainController::class, 'singleNews'])->name('single.news');
+Route::get('/article/{slug}', [MainController::class, 'singleArticle'])->name('single.article');
 
 Route::get('/cart', [CartController::class, 'cart'])->name('cart');
 Route::post('add-to-cart/{id}', [CartController::class, 'addToCart'])->name('addToCart');
@@ -71,3 +90,5 @@ Route::post('/add-to-cart', [CartController::class, 'addToCart'])->name('cart.ad
 Route::delete('/remove-from-cart', [CartController::class, 'removeFromCart'])->name('removeFromCart');
 Route::delete('/variants/{id}', [ProductController::class, 'deleteVariant']);
 
+
+Route::get('locale/{lang}',[LanguageController::class, 'setLocale']);
