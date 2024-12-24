@@ -79,13 +79,6 @@ $about = \App\Models\About::first();
                     </a>
                 </li>
                 <li class="nxl-item nxl-hasmenu">
-                    <a href="{{ route('variants.index') }}" class="nxl-link">
-                        <span class="nxl-micon"><i class="feather-layers"></i></span> <!-- Variants icon updated -->
-                        <span class="nxl-mtext">Варианты</span>
-                    </a>
-                </li>
-
-                <li class="nxl-item nxl-hasmenu">
                     <a href="{{ route('faqs.index') }}" class="nxl-link">
                         <span class="nxl-micon"><i class="feather-help-circle"></i></span> <!-- FAQ icon -->
                         <span class="nxl-mtext">Часто задаваемые вопросы</span>

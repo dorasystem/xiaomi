@@ -18,6 +18,7 @@ return [
     'command' => 'Do you want to join our team?',
     'all_vacancy' => 'All vacancies',
     'vacancy' => 'vacancies',
+    'compare' => 'Comparison',
 
     'bestsellers' => 'Bestsellers',
     'buy_now' => 'Buy now',

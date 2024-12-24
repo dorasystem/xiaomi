@@ -15,114 +15,26 @@
                         <h1 class="mb-4">@lang('home.our_shops')</h1>
                         <!-- Tabs Navigation -->
                         <ul class="border-0 flex-wrap ps-0 nav-tabs gap-3 addresses mb-0" id="tabsNavigation" role="tablist">
-                            <li class="nav-item" role="presentation">
-                                <button
-                                    class="locationtab d-flex gap-4 align-items-center active w-100 border-0 border-top py-4 bg-transparent"
-                                    id="tab1-button"
-                                    data-bs-toggle="tab"
-                                    data-bs-target="#tab1-content"
-                                    type="button"
-                                    role="tab"
-                                    aria-controls="tab1-content"
-                                    aria-selected="true"
-                                >
-                                    <div class="shop-icon p-2 rounded"><i class="fa-solid fa-shop"></i></div>
-                                    <div class="d-flex flex-column align-items-start">
-                                        <h5 class="">Location 1</h5>
-                                        <div class="">Laborum et magna est officia es</div>
-                                    </div>
-                                </button>
-                            </li>
-                            <li class="nav-item" role="presentation">
-                                <button
-                                    class="locationtab d-flex gap-4 align-items-center w-100 border-0 border-top py-4 bg-transparent"
-                                    id="tab2-button"
-                                    data-bs-toggle="tab"
-                                    data-bs-target="#tab2-content"
-                                    type="button"
-                                    role="tab"
-                                    aria-controls="tab2-content"
-                                    aria-selected="false"
-                                >
-                                    <div class="shop-icon p-2 rounded"><i class="fa-solid fa-shop"></i></div>
-                                    <div class="d-flex flex-column align-items-start">
-                                        <h5 class="" class="">Location 2</h5>
-                                        <div class="">Laborum et magna est officia es</div>
-                                    </div>
-                                </button>
-                            </li>
-                            <li class="nav-item" role="presentation">
-                                <button
-                                    class="locationtab d-flex gap-4 align-items-center w-100 border-0 border-top py-4 bg-transparent"
-                                    id="tab3-button"
-                                    data-bs-toggle="tab"
-                                    data-bs-target="#tab3-content"
-                                    type="button"
-                                    role="tab"
-                                    aria-controls="tab3-content"
-                                    aria-selected="false"
-                                >
-                                    <div class="shop-icon p-2 rounded"><i class="fa-solid fa-shop"></i></div>
-                                    <div class="d-flex flex-column align-items-start">
-                                        <h5 class="" class="">Location 3</h5>
-                                        <div class="">Laborum et magna est officia es</div>
-                                    </div>
-                                </button>
-                            </li>
-                            <li class="nav-item" role="presentation">
-                                <button
-                                    class="locationtab d-flex gap-4 align-items-center w-100 border-0 border-top py-4 bg-transparent"
-                                    id="tab4-button"
-                                    data-bs-toggle="tab"
-                                    data-bs-target="#tab4-content"
-                                    type="button"
-                                    role="tab"
-                                    aria-controls="tab4-content"
-                                    aria-selected="false"
-                                >
-                                    <div class="shop-icon p-2 rounded"><i class="fa-solid fa-shop"></i></div>
-                                    <div class="d-flex flex-column align-items-start">
-                                        <h5 class="" class="">Location 4</h5>
-                                        <div class="">Laborum et magna est officia es</div>
-                                    </div>
-                                </button>
-                            </li>
-                            <li class="nav-item" role="presentation">
-                                <button
-                                    class="locationtab d-flex gap-4 align-items-center w-100 border-0 border-top py-4 bg-transparent"
-                                    id="tab5-button"
-                                    data-bs-toggle="tab"
-                                    data-bs-target="#tab5-content"
-                                    type="button"
-                                    role="tab"
-                                    aria-controls="tab5-content"
-                                    aria-selected="false"
-                                >
-                                    <div class="shop-icon p-2 rounded"><i class="fa-solid fa-shop"></i></div>
-                                    <div class="d-flex flex-column align-items-start">
-                                        <h5 class="">Location 5</h5>
-                                        <div>Laborum et magna est officia es</div>
-                                    </div>
-                                </button>
-                            </li>
-                            <li class="nav-item" role="presentation">
-                                <button
-                                    class="locationtab d-flex gap-4 align-items-center w-100 border-0 border-top py-4 bg-transparent"
-                                    id="tab6-button"
-                                    data-bs-toggle="tab"
-                                    data-bs-target="#tab6-content"
-                                    type="button"
-                                    role="tab"
-                                    aria-controls="tab6-content"
-                                    aria-selected="false"
-                                >
-                                    <div class="shop-icon p-2 rounded"><i class="fa-solid fa-shop"></i></div>
-                                    <div class="d-flex flex-column align-items-start">
-                                        <h5 class="">Location 6</h5>
-                                        <div>Laborum et magna est officia es</div>
-                                    </div>
-                                </button>
-                            </li>
+                            @foreach ($locations as $key => $location)
+                                <li class="nav-item" role="presentation">
+                                    <button
+                                        class="locationtab d-flex gap-4 align-items-center w-100 border-0 border-top py-4 bg-transparent {{ $key === 0 ? 'active' : '' }}"
+                                        id="tab{{ $location['id'] }}-button"
+                                        data-bs-toggle="tab"
+                                        data-bs-target="#tab{{ $location['id'] }}-content"
+                                        type="button"
+                                        role="tab"
+                                        aria-controls="tab{{ $location['id'] }}-content"
+                                        aria-selected="{{ $key === 0 ? 'true' : 'false' }}"
+                                    >
+                                        <div class="shop-icon p-2 rounded"><i class="fa-solid fa-shop"></i></div>
+                                        <div class="d-flex flex-column align-items-start">
+                                            <h5>{{ $location['address_'.$lang] }}</h5>
+                                            <div>{{ $location['title_'.$lang] }}</div>
+                                        </div>
+                                    </button>
+                                </li>
+                            @endforeach
                         </ul>
                     </div>
                     <div class="col-lg-6">

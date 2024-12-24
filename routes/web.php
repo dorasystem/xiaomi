@@ -15,12 +15,14 @@ use App\Http\Controllers\Admin\HistoryController;
 use App\Http\Controllers\Admin\NewsController;
 use App\Http\Controllers\Admin\ProductController;
 use App\Http\Controllers\Admin\ServiceController;
+use App\Http\Controllers\Admin\StoreController;
 use App\Http\Controllers\Admin\VacancyController;
 use App\Http\Controllers\Admin\VariantController;
 use App\Http\Controllers\Auth\AdminController;
 use App\Http\Controllers\Auth\AuthController;
 use App\Http\Controllers\Auth\SuperAdminController;
 use App\Http\Controllers\Auth\UserController;
+use App\Http\Controllers\CompareController;
 use App\Http\Controllers\LanguageController;
 use App\Http\Controllers\Page\MainController;
 use Illuminate\Support\Facades\Route;
@@ -41,6 +43,7 @@ Route::middleware(['auth'])->prefix('dashboard')->group(function () {
     Route::resource('abouts', AboutController::class);
     Route::resource('news', NewsController::class);
     Route::resource('articles', ArticleController::class);
+    Route::resource('stores', StoreController::class);
     Route::resource('blogs', BlogController::class);
     Route::resource('services', ServiceController::class);
     Route::resource('contacts', ContactController::class);
@@ -71,13 +74,17 @@ Route::get('/blog/{slug}', [MainController::class, 'singleBlog'])->name('single.
 
 
 Route::get('/products', [MainController::class, 'products'])->name('products');
-Route::get('/single-product/{slug}', [MainController::class, 'singleProduct'])->name('single.product');
+Route::get('/product/{slug}', [MainController::class, 'singleProduct'])->name('single.product');
 //Route::get('/product{slug}', [MainController::class, 'singleProduct'])->name('single.product');
 
 Route::get('/news', [MainController::class, 'news'])->name('news');
 Route::get('/career', [MainController::class, 'career'])->name('career');
 Route::get('/news/{slug}', [MainController::class, 'singleNews'])->name('single.news');
 Route::get('/article/{slug}', [MainController::class, 'singleArticle'])->name('single.article');
+
+Route::get('/compare', [CompareController::class, 'compare'])->name('compare');
+
+
 
 Route::get('/cart', [CartController::class, 'cart'])->name('cart');
 Route::post('add-to-cart/{id}', [CartController::class, 'addToCart'])->name('addToCart');

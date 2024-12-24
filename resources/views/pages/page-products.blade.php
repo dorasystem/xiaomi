@@ -293,8 +293,13 @@
                                                             @endif
                                                         </div>
 
-                                                        <div class="productName fw-bold">{{ $product->name_uz }}</div>
-                                                        <p class="text-grey">{!! $product->description_uz !!}  </p>
+                                                        <div class="productName fw-bold">
+                                                            {{ \Str::words($product->name_uz, 3) }}
+                                                        </div>
+                                                        <p class="text-grey">
+                                                            {!! \Str::words($product->description_uz, 15) !!}
+                                                        </p>
+
                                                         <div class="d-flex align-items-center justify-content-between w-100">
                                                             <span class="small bg-transparent px-0">{{ number_format($cheapestVariant->discount_price, 0, ',', ' ') }} UZS <span class="text-orange">за наличные</span></span>
                                                             <span class="px-2 productmonth-border small text-grey">from {{ number_format($cheapestVariant->price_12, 0, ',', ' ') }} UZS/month</span>
