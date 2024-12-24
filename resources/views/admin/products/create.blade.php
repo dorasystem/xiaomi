@@ -33,7 +33,7 @@
 
                 <div class="main-content">
                     <div class="row">
-                        <div class="col-lg-8">
+                        <div class="col-lg-8 pb-5">
                             <div class="card stretch">
                                 <div class="card-header">
                                     <h5 class="card-title">Детали продукта</h5>
@@ -63,27 +63,82 @@
                                                     <div id="descriptionEditor_{{ $lang }}" style="height:200px;">{!! old('description_' . $lang) !!}</div>
                                                     <input type="hidden" id="description_{{ $lang }}" name="description_{{ $lang }}" value="{{ old('description_' . $lang) }}">
                                                 </div>
+                                                <div class="form-group pb-3">
+                                                    <label for="content_{{ $lang }}">Характеристики ({{ strtoupper($lang) }}):</label>
+                                                    <div id="contentEditor_{{ $lang }}" style="height:200px;">{!! old('content_' . $lang) !!}</div>
+                                                    <input type="hidden" id="content_{{ $lang }}" name="content_{{ $lang }}" value="{{ old('content_' . $lang) }}">
+                                                </div>
                                             </div>
                                         @endforeach
                                     </div>
                                 </div>
+                                    <div id="product-forms">
+                                        <div class="row px-4 pb-2 product-form">
+                                            <div class="form-group pb-3 col-md-4">
+                                                <label for="storage">Место хранения:</label>
+                                                <select class="form-control" id="storage" name="storage[]">
+                                                    <option value="null">Null</option>
+                                                    <option value="2/32GB">2/32 GB</option>
+                                                    <option value="4/64GB">4/64 GB</option>
+                                                    <option value="6/128GB">6/128 GB</option>
+                                                    <option value="8/256GB">8/256 GB</option>
+                                                    <option value="12/512GB">12/512 GB</option>
+                                                </select>
+                                            </div>
+                                            <div class="form-group pb-3 col-md-4">
+                                                <label for="price">Цена:</label>
+                                                <div class="input-group">
+                                                    <input type="text" class="form-control" name="price[]" value="">
+                                                    <span class="input-group-text">UZS</span>
+                                                </div>
+                                            </div>
+                                            <div class="form-group pb-3 col-md-4">
+                                                <label for="discount_price">Скидочная цена:</label>
+                                                <div class="input-group">
+                                                    <input type="text" class="form-control" name="discount_price[]" value="">
+                                                    <span class="input-group-text">UZS</span>
+                                                </div>
+                                            </div>
+                                            <div class="form-group pb-3 col-md-3">
+                                                <label for="price_3">Цена за 3 месяца:</label>
+                                                <div class="input-group">
+                                                    <input type="text" class="form-control" name="price_3[]" value="">
+                                                    <span class="input-group-text">UZS</span>
+                                                </div>
+                                            </div>
+                                            <div class="form-group pb-3 col-md-3">
+                                                <label for="price_6">Цена за 6 месяцев:</label>
+                                                <div class="input-group">
+                                                    <input type="text" class="form-control" name="price_6[]" value="">
+                                                    <span class="input-group-text">UZS</span>
+                                                </div>
+                                            </div>
+                                            <div class="form-group pb-3 col-md-3">
+                                                <label for="price_12">Цена за 12 месяцев:</label>
+                                                <div class="input-group">
+                                                    <input type="text" class="form-control" name="price_12[]" value="">
+                                                    <span class="input-group-text">UZS</span>
+                                                </div>
+                                            </div>
+                                            <div class="form-group pb-3 col-md-3">
+                                                <label for="price_24">Цена за 24 месяца:</label>
+                                                <div class="input-group">
+                                                    <input type="text" class="form-control" name="price_24[]" value="">
+                                                    <span class="input-group-text">UZS</span>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <button type="button" id="add-more" class="btn btn-primary mt-3">Добавить ещё</button>
                             </div>
-                        </div>
 
-                        <div class="col-lg-4">
+                        </div>
+                        <div class="col-lg-4 pb-5">
                             <div class="card stretch">
                                 <div class="card-header">
                                     <h5 class="card-title">Дополнительно</h5>
                                 </div>
                                 <div class="card-body p-4">
-                                    <div class="form-group pb-3">
-                                        <label for="image">Изображение Подарок:</label>
-                                        <input type="file" class="form-control" id="image" name="gift_image">
-                                    </div>
-                                    <div class="form-group pb-3">
-                                        <label for="gift_name">Подарок название:</label>
-                                        <input type="text" class="form-control" id="gift_name" name="gift_name" value="{{ old('gift_name') }}">
-                                    </div>
                                     <div class="form-group pb-3">
                                         <label for="category_id">Категория:</label>
                                         <select id="category_id" name="category_id" class="form-control" required>
@@ -92,11 +147,58 @@
                                             @endforeach
                                         </select>
                                     </div>
+                                    <div class="form-group pb-3 ">
+                                        <label for="color_ru">Цвет RU:</label>
+                                        <select class="form-control" id="color_ru" name="color_ru">
+                                            <option value="null" {{ old('color_ru') == 'null' ? 'selected' : '' }}>
+                                                Null
+                                            </option>
+                                            <option value="red" {{ old('color_ru') == 'red' ? 'selected' : '' }}>
+                                                Красный
+                                            </option> <!-- Russian for Red -￼
+->
+                                            <option
+                                                value="green" {{ old('color_ru') == 'green' ? 'selected' : '' }}>
+                                                Зеленый
+                                            </option> <!-- Russian for Green -->
+                                            <option value="blue" {{ old('color_ru') == 'blue' ? 'selected' : '' }}>
+                                                Синий
+                                            </option> <!-- Russian for Blue -->
+                                            <option
+                                                value="black" {{ old('color_ru') == 'black' ? 'selected' : '' }}>
+                                                Черный
+                                            </option> <!-- Russian for Black -->
+                                            <option
+                                                value="brown" {{ old('color_ru') == 'brown' ? 'selected' : '' }}>
+                                                Коричневый
+                                            </option> <!-- Russian for Brown -->
+                                        </select>
+                                    </div>
+                                    <div class="form-group pb-3">
+                                        <label for="image">Первое изображение:</label>
+                                        <input type="file" class="form-control" id="image" name="image">
+                                    </div>
 
                                     <div class="form-group pb-3">
-                                        <label for="slug">Slug:</label>
-                                        <input type="text" class="form-control" id="slug" name="slug" value="{{ old('slug') }}" required>
+                                        <label for="images">Дополнительные изображения:</label>
+                                        <input type="file" class="form-control" id="images" name="images[]" multiple>
                                     </div>
+                                    <div class="form-group pb-3">
+                                        <label for="gift_name">Подарок название:</label>
+                                        <input type="text" class="form-control" id="gift_name" name="gift_name" value="{{ old('gift_name') }}">
+                                    </div>
+
+                                    <div class="form-group pb-3">
+                                        <label for="image">Изображение Подарок:</label>
+                                        <input type="file" class="form-control" id="image" name="gift_image">
+                                    </div>
+
+
+
+{{--                                    <div class="form-group pb-3">--}}
+{{--                                        <label for="slug">Slug:</label>--}}
+{{--                                        <input type="text" class="form-control" id="slug" name="slug" value="{{ old('slug') }}" required>--}}
+{{--                                    </div>--}}
                                 </div>
                             </div>
                         </div>
@@ -110,14 +212,36 @@
     <link href="https://cdn.quilljs.com/1.3.6/quill.snow.css" rel="stylesheet">
 
     <script>
+
         @foreach (['uz', 'en', 'ru'] as $lang)
         var descriptionEditor{{ ucfirst($lang) }} = new Quill('#descriptionEditor_{{ $lang }}', { theme: 'snow' });
+        var contentEditor{{ ucfirst($lang) }} = new Quill('#contentEditor_{{ $lang }}', { theme: 'snow' });
         @endforeach
 
         function updateEditorContent() {
             @foreach (['uz', 'en', 'ru'] as $lang)
             document.getElementById('description_{{ $lang }}').value = descriptionEditor{{ ucfirst($lang) }}.root.innerHTML;
             @endforeach
+            @foreach (['uz', 'en', 'ru'] as $lang)
+            document.getElementById('content_{{ $lang }}').value = contentEditor{{ ucfirst($lang) }}.root.innerHTML;
+            @endforeach
         }
+
+
+
+        document.getElementById('add-more').addEventListener('click', function () {
+            // Select the first form group to clone
+            const formGroup = document.querySelector('.product-form');
+            // Clone the form group
+            const clone = formGroup.cloneNode(true);
+
+            // Clear the input values in the cloned form group
+            const inputs = clone.querySelectorAll('input');
+            inputs.forEach(input => input.value = '');
+
+            // Append the cloned form group to the container
+            document.getElementById('product-forms').appendChild(clone);
+        });
+
     </script>
 @endsection

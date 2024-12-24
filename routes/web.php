@@ -1,25 +1,27 @@
 <?php
 
-use App\Http\Controllers\admin\AboutController;
+
+use App\Http\Controllers\Admin\AboutController;
 use App\Http\Controllers\admin\ArticleController;
 use App\Http\Controllers\Admin\BlogController;
 use App\Http\Controllers\Admin\CandidantController;
-use App\Http\Controllers\admin\CartController;
-use App\Http\Controllers\admin\ContactController;
-use App\Http\Controllers\admin\FaqController;
-use App\Http\Controllers\Admin\HistoryController;
-use App\Http\Controllers\admin\NewsController;
-use App\Http\Controllers\admin\ProductController;
-use App\Http\Controllers\admin\ServiceController;
-use App\Http\Controllers\Admin\VacancyController;
-use App\Http\Controllers\auth\AdminController;
-use App\Http\Controllers\auth\AuthController;
-use App\Http\Controllers\auth\SuperAdminController;
-use App\Http\Controllers\auth\UserController;
+use App\Http\Controllers\Admin\CartController;
 use App\Http\Controllers\Admin\CategoryController;
+use App\Http\Controllers\Admin\ContactController;
+use App\Http\Controllers\Admin\DescImageController;
+use App\Http\Controllers\Admin\FaqController;
+use App\Http\Controllers\Admin\HistoryController;
+use App\Http\Controllers\Admin\NewsController;
+use App\Http\Controllers\Admin\ProductController;
+use App\Http\Controllers\Admin\ServiceController;
+use App\Http\Controllers\Admin\VacancyController;
 use App\Http\Controllers\Admin\VariantController;
-use App\Http\Controllers\Page\MainController;
+use App\Http\Controllers\Auth\AdminController;
+use App\Http\Controllers\Auth\AuthController;
+use App\Http\Controllers\Auth\SuperAdminController;
+use App\Http\Controllers\Auth\UserController;
 use App\Http\Controllers\LanguageController;
+use App\Http\Controllers\Page\MainController;
 use Illuminate\Support\Facades\Route;
 
 
@@ -48,6 +50,8 @@ Route::middleware(['auth'])->prefix('dashboard')->group(function () {
     Route::resource('histories', HistoryController::class);
     Route::resource('vacancies', VacancyController::class);
     Route::resource('candidants', CandidantController::class);
+    Route::resource('desc-images', DescImageController::class);
+
 });
 
 Route::middleware(['auth'])->group(function () {
@@ -55,6 +59,7 @@ Route::middleware(['auth'])->group(function () {
     Route::get('orders', [UserController::class, 'orders'])->name('orders');
     Route::get('cart', [UserController::class, 'cart'])->name('cart');
     Route::get('checkout', [UserController::class, 'checkout'])->name('checkout');
+
 });
 
 Route::get('/', [MainController::class, 'index'])->name('home');
@@ -65,7 +70,7 @@ Route::get('/blog/{slug}', [MainController::class, 'singleBlog'])->name('single.
 
 
 Route::get('/products', [MainController::class, 'products'])->name('products');
-Route::get('/single-product', [MainController::class, 'singleProduct'])->name('single.product');
+Route::get('/single-product/{slug}', [MainController::class, 'singleProduct'])->name('single.product');
 //Route::get('/product{slug}', [MainController::class, 'singleProduct'])->name('single.product');
 
 Route::get('/news', [MainController::class, 'news'])->name('news');
@@ -77,5 +82,7 @@ Route::get('/cart', [CartController::class, 'cart'])->name('cart');
 Route::post('add-to-cart/{id}', [CartController::class, 'addToCart'])->name('addToCart');
 Route::post('/add-to-cart', [CartController::class, 'addToCart'])->name('cart.add');
 Route::delete('/remove-from-cart', [CartController::class, 'removeFromCart'])->name('removeFromCart');
+Route::delete('/variants/{id}', [ProductController::class, 'deleteVariant']);
+
 
 Route::get('locale/{lang}',[LanguageController::class, 'setLocale']);

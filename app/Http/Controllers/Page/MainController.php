@@ -10,7 +10,9 @@ use App\Models\History;
 use App\Models\News;
 use App\Models\Product;
 use App\Models\Vacancy;
-use Illuminate\Http\Request;use Illuminate\Support\Facades\DB;
+use Illuminate\Http\Request;
+use Illuminate\Support\Facades\App;
+use Illuminate\Support\Facades\DB;
 
 
 class MainController extends Controller
@@ -55,15 +57,18 @@ class MainController extends Controller
         return view('pages.page-products',compact('products'));
     }
 
-    public function singleProduct()
+    public function singleProduct($slug)
     {
-        return view('pages.single-product');
+        $product = Product::where('slug', $slug)->firstOrFail();
+
+        // Check if images is a string before calling json_decode
+        $images = is_string($product->images) ? json_decode($product->images, true) : $product->images;
+
+        $lang = App::getLocale();
+        $variants = $product->variants;
+
+        return view('pages.single-product', compact('product', 'images', 'lang', 'variants'));
     }
-//    public function singleProduct($slug)
-//    {
-//        $product = Product::where('slug', $slug)->firstOrFail();
-//        return view('pages.single-product', compact('product'));
-//    }
 
 
     public function news()

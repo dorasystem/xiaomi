@@ -19,7 +19,12 @@ class Variant extends Model
         'color_en',
         'image',
         'images',
-        'status'
+        'status',
+        'discount_price',
+        'price_3',
+        'price_6',
+        'price_12',
+        'price_24',
     ];
 
     protected $casts = [
