@@ -38,7 +38,9 @@ class MainController extends Controller
     }
     public function contact()
     {
-        return view('pages.contact');
+        $lang = app()->getLocale();
+        $locations = Store::all();
+        return view('pages.contact',compact('locations','lang'));
     }
     public function blog()
     {
