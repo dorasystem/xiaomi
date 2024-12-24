@@ -21,7 +21,8 @@
                             <img width="24px" style="transform: rotate(225deg)" src="/assets/icons/arrow.svg" alt=""/>
                             <span>Назад</span>
                         </div>
-                        <div class="productName text-end fs-24">{{$product['name_'.$lang]}} {{$product['color_'.$lang]}}</div>
+                        <div
+                            class="productName text-end fs-24">{{$product['name_'.$lang]}} {{$product['color_'.$lang]}}</div>
                     </div>
                     <div class="col-md-3 d-flex align-items-center justify-content-md-end gap-3">
                         <button
@@ -64,11 +65,14 @@
                 </div>
                 <div class="container p-0">
                     <div class="row">
-                        <div class="col-lg-1 thumbnail-images p-0 d-lg-block d-none" style="overflow: auto; height: 530px">
+                        <div class="col-lg-1 thumbnail-images p-0 d-lg-block d-none"
+                             style="overflow: auto; height: 530px">
                             @foreach ($images as $key => $image)
-                                <button class="border p-0 bg-transparent" type="button" data-bs-target="#productCarousel"
+                                <button class="border p-0 bg-transparent" type="button"
+                                        data-bs-target="#productCarousel"
                                         data-bs-slide-to="{{ $key }}" {{ $key === 0 ? 'aria-current="true"' : '' }}>
-                                    <img src="{{ asset('storage/' . $image) }}" alt="Image {{ $key + 1 }}" class="img-fluid {{ $key === 0 ? 'little_active' : '' }}"/>
+                                    <img src="{{ asset('storage/' . $image) }}" alt="Image {{ $key + 1 }}"
+                                         class="img-fluid {{ $key === 0 ? 'little_active' : '' }}"/>
                                 </button>
                             @endforeach
                         </div>
@@ -78,20 +82,23 @@
                                 <div class="carousel-inner">
                                     @foreach ($images as $key => $image)
                                         <div class="carousel-item {{ $key === 0 ? 'active' : '' }}">
-                                            <img src="{{ asset('storage/' . $image) }}" class="d-block w-100 h-100" alt="Image {{ $key + 1 }}"/>
+                                            <img src="{{ asset('storage/' . $image) }}" class="d-block w-100 h-100"
+                                                 alt="Image {{ $key + 1 }}"/>
                                         </div>
                                     @endforeach
                                 </div>
 
                                 <!-- Chapga o'tish tugmasi -->
-                                <button class="carousel-control-prev rounded-pill" type="button" data-bs-target="#productCarousel"
+                                <button class="carousel-control-prev rounded-pill" type="button"
+                                        data-bs-target="#productCarousel"
                                         data-bs-slide="prev">
                                     <span class="carousel-control-prev-icon" aria-hidden="true"></span>
                                     <span class="visually-hidden">Oldingi</span>
                                 </button>
 
                                 <!-- O'ngga o'tish tugmasi -->
-                                <button class="carousel-control-next rounded-pill" type="button" data-bs-target="#productCarousel"
+                                <button class="carousel-control-next rounded-pill" type="button"
+                                        data-bs-target="#productCarousel"
                                         data-bs-slide="next">
                                     <span class="carousel-control-next-icon" aria-hidden="true"></span>
                                     <span class="visually-hidden">Keyingi</span>
@@ -117,7 +124,11 @@
                                     <div style="cursor: pointer"
                                          class="fs-12 px-3 py-1 rounded storage-option bg-darkgrey"
                                          data-storage="{{ $variant->storage }}"
-                                         data-price="{{ $variant->price }}">
+                                         data-price="{{ $variant->price }}"
+                                         data-price-3="{{ $variant->price_3 }}"
+                                         data-price-6="{{ $variant->price_6 }}"
+                                         data-price-12="{{ $variant->price_12 }}"
+                                         data-price-24="{{ $variant->price_24 }}">
                                         {{ $variant->storage }}
                                     </div>
                                 @endforeach
@@ -127,27 +138,34 @@
                                 {{$variants->first()->price ?? '0'}} <span>сум</span>
                             </div>
                             <div class="">
-                                @foreach($variants as $variant)
-                                <div class="text-grey mb-2 fs-14">В рассрочку</div>
-                                <div class="text-center justify-content-center mb-3 fs-14 p-1 rounded bg-lightorange border-orange">не в кредит</div>
-                                <div class="">
-                                    <div class="d-flex gap-2 justify-content-center mb-3 fs-14 p-1 rounded bg-darkgrey">
-                                        <span class="text-orange">3</span> месяцев от <span class="text-orange">{{$variant->price_3}} р./мес</span>
-                                    </div>
-                                    <div class="d-flex gap-2 justify-content-center mb-3 fs-14 p-1 rounded bg-darkgrey">
-                                        <span class="text-orange">6</span> месяцев от <span class="text-orange">{{$variant->price_6}} р./мес</span>
-                                    </div>
-                                    <div class="d-flex gap-2 justify-content-center mb-3 fs-14 p-1 rounded bg-darkgrey">
-                                        <span class="text-orange">12</span> месяцев от <span class="text-orange">{{$variant->price_12}} р./мес</span>
-                                    </div>
-                                    <div class="d-flex gap-2 justify-content-center mb-3 fs-14 p-1 rounded bg-darkgrey">
-                                        <span class="text-orange">24</span> месяцев от <span class="text-orange">{{$variant->price_24}} р./мес</span>
-                                    </div>
-                                    @endforeach
-                                </div>
-                            </div>
-                            <hr />
 
+                                <div class="text-grey mb-2 fs-14">В рассрочку</div>
+                                <div
+                                    class="text-center justify-content-center mb-3 fs-14 p-1 rounded bg-lightorange border-orange">
+                                    не в кредит
+                                </div>
+                                <div class="">
+                                    <div
+                                        class="d-flex gap-2 justify-content-center mb-3 fs-14 p-1 rounded bg-darkgrey price-3">
+                                        <span class="text-orange">3</span> месяцев от <span class="text-orange">{{$variants->first()->price_3 ?? '0'}} р./мес</span>
+                                    </div>
+                                    <div
+                                        class="d-flex gap-2 justify-content-center mb-3 fs-14 p-1 rounded bg-darkgrey price-6">
+                                        <span class="text-orange">6</span> месяцев от <span class="text-orange">{{$variants->first()->price_6 ?? '0'}} р./мес</span>
+                                    </div>
+                                    <div
+                                        class="d-flex gap-2 justify-content-center mb-3 fs-14 p-1 rounded bg-darkgrey price-12">
+                                        <span class="text-orange">12</span> месяцев от <span class="text-orange">{{$variants->first()->price_12 ?? '0'}} р./мес</span>
+                                    </div>
+                                    <div
+                                        class="d-flex gap-2 justify-content-center mb-3 fs-14 p-1 rounded bg-darkgrey price-24">
+                                        <span class="text-orange">24</span> месяцев от <span class="text-orange">{{$variants->first()->price_24 ?? '0'}} р./мес</span>
+                                    </div>
+                                </div>
+
+
+                            </div>
+                            <hr/>
 
 
                             <!-- Other UI elements... -->
@@ -208,7 +226,7 @@
                     <li class="nav-item" role="presentation">
                         <a class="py-2 fs-14" id="reviews-tab" data-bs-toggle="tab" data-bs-target="#reviews"
                            type="button" role="tab" aria-controls="reviews" aria-selected="false"
-                        >Отзывы (<span>3</span>)</a
+                        >Отзывы (<span>{{$product->comments->count()}}</span>)</a
                         >
                     </li>
                     <li class="nav-item" role="presentation">
@@ -328,42 +346,43 @@
                         <div class="pt-3 border-top">
 
                             <div style="display: flex;  margin-top: 20px;">
-                                <div style="width: 50%; word-wrap: break-word; list-style:disc!important;  " class="str_replace">
+                                <div style="width: 50%; word-wrap: break-word; list-style:disc!important;  "
+                                     class="str_replace">
                                     {!! str_replace('<br>', '', $product->content_uz) !!}
                                 </div>
                             </div>
 
 
-{{--                            <table class="table mb-0">--}}
-{{--                                <thead class="bg-light">--}}
-{{--                                <tr>--}}
-{{--                                    <th class="px-4 fs-14" scope="col">Общая информация</th>--}}
-{{--                                    <th class="px-4 fs-14" scope="col"></th>--}}
-{{--                                </tr>--}}
-{{--                                </thead>--}}
-{{--                                <tbody>--}}
-{{--                                <tr>--}}
-{{--                                    <td class="px-4 text-grey fs-14">Дата выхода на рынок</td>--}}
-{{--                                    <td class="px-4 fs-14">2024 г.</td>--}}
-{{--                                </tr>--}}
-{{--                                <tr>--}}
-{{--                                    <td class="px-4 text-grey fs-14">Тип</td>--}}
-{{--                                    <td class="px-4 fs-14">Смартфон</td>--}}
-{{--                                </tr>--}}
-{{--                                <tr>--}}
-{{--                                    <td class="px-4 text-grey fs-14">Операционная система</td>--}}
-{{--                                    <td class="px-4 fs-14">Android</td>--}}
-{{--                                </tr>--}}
-{{--                                <tr>--}}
-{{--                                    <td class="px-4 text-grey fs-14">RAM</td>--}}
-{{--                                    <td class="px-4 fs-14">12 GB</td>--}}
-{{--                                </tr>--}}
-{{--                                <tr>--}}
-{{--                                    <td class="px-4 border-0 text-grey fs-14">STORAGE</td>--}}
-{{--                                    <td class="px-4 border-0 fs-14">256 GB</td>--}}
-{{--                                </tr>--}}
-{{--                                </tbody>--}}
-{{--                            </table>--}}
+                            {{--                            <table class="table mb-0">--}}
+                            {{--                                <thead class="bg-light">--}}
+                            {{--                                <tr>--}}
+                            {{--                                    <th class="px-4 fs-14" scope="col">Общая информация</th>--}}
+                            {{--                                    <th class="px-4 fs-14" scope="col"></th>--}}
+                            {{--                                </tr>--}}
+                            {{--                                </thead>--}}
+                            {{--                                <tbody>--}}
+                            {{--                                <tr>--}}
+                            {{--                                    <td class="px-4 text-grey fs-14">Дата выхода на рынок</td>--}}
+                            {{--                                    <td class="px-4 fs-14">2024 г.</td>--}}
+                            {{--                                </tr>--}}
+                            {{--                                <tr>--}}
+                            {{--                                    <td class="px-4 text-grey fs-14">Тип</td>--}}
+                            {{--                                    <td class="px-4 fs-14">Смартфон</td>--}}
+                            {{--                                </tr>--}}
+                            {{--                                <tr>--}}
+                            {{--                                    <td class="px-4 text-grey fs-14">Операционная система</td>--}}
+                            {{--                                    <td class="px-4 fs-14">Android</td>--}}
+                            {{--                                </tr>--}}
+                            {{--                                <tr>--}}
+                            {{--                                    <td class="px-4 text-grey fs-14">RAM</td>--}}
+                            {{--                                    <td class="px-4 fs-14">12 GB</td>--}}
+                            {{--                                </tr>--}}
+                            {{--                                <tr>--}}
+                            {{--                                    <td class="px-4 border-0 text-grey fs-14">STORAGE</td>--}}
+                            {{--                                    <td class="px-4 border-0 fs-14">256 GB</td>--}}
+                            {{--                                </tr>--}}
+                            {{--                                </tbody>--}}
+                            {{--                            </table>--}}
 
                         </div>
                     </div>
@@ -464,112 +483,64 @@
                             </div>
                         </div>
                     </div>
+                    <!-- reviews tab -->
                     <div class="tab-pane fade" id="reviews" role="tabpanel" aria-labelledby="reviews-tab">
                         <div class="pt-3 border-top">
-                            <div class="mt-4">
-                                <div class="">Test Testov</div>
-                                <div class="d-flex align-items-center gap-3 my-2">
-                                    <div class="d-flex align-items-center gap-1">
-                                        <img src="./assets/icons/star-orange.svg" alt=""/>
-                                        <img src="./assets/icons/star-orange.svg" alt=""/>
-                                        <img src="./assets/icons/star-orange.svg" alt=""/>
-                                        <img src="./assets/icons/star-orange.svg" alt=""/>
-                                        <img src="./assets/icons/star-grey.svg" alt=""/>
+                            @foreach ($comments as $comment)
+                                <div class="mt-4">
+                                    <div class="">{{ $comment->name }} {{ $comment->lastname }}</div>
+                                    <div class="d-flex align-items-center gap-3 my-2">
+                                        <div class="d-flex align-items-center gap-1">
+                                            @for ($i = 1; $i <= 5; $i++)
+                                                <img src="{{ asset($i <= $comment->rating ? 'assets/icons/star-orange.svg' : 'assets/icons/star-grey.svg') }}" alt=""/>
+                                            @endfor
+                                        </div>
+                                        <div style="width: 1px; height: 15px; background-color: #bcc1caff"></div>
+                                        <div class="">{{ $comment->created_at->format('d F Y') }}</div>
                                     </div>
-                                    <div style="width: 1px; height: 15px; background-color: #bcc1caff" class=""></div>
-                                    <div class="">25 ноября 2024</div>
+                                    <div class="fs-14">{{ $comment->message }}</div>
                                 </div>
-                                <div class="fs-14">
-                                    Приобрел смартфон около месяца назад. До этого пользовался телефоном от другого
-                                    бренда, но не пожалел, что сменил. Особенно поразила камера: фотографии
-                                    получаются четкими и яркими. Дисплей с хорошей видимостью на солнце. Заряд держится
-                                    долго. По соотношению «цена–качество» для меня лучшая модель.
-                                </div>
-                            </div>
-                            <div class="mt-4">
-                                <div class="">Test Testov</div>
-                                <div class="d-flex align-items-center gap-3 my-2">
-                                    <div class="d-flex align-items-center gap-1">
-                                        <img src="./assets/icons/star-orange.svg" alt=""/>
-                                        <img src="./assets/icons/star-orange.svg" alt=""/>
-                                        <img src="./assets/icons/star-orange.svg" alt=""/>
-                                        <img src="./assets/icons/star-orange.svg" alt=""/>
-                                        <img src="./assets/icons/star-grey.svg" alt=""/>
-                                    </div>
-                                    <div style="width: 1px; height: 15px; background-color: #bcc1caff" class=""></div>
-                                    <div class="">25 ноября 2024</div>
-                                </div>
-                                <div class="fs-14">
-                                    Приобрел смартфон около месяца назад. До этого пользовался телефоном от другого
-                                    бренда, но не пожалел, что сменил. Особенно поразила камера: фотографии
-                                    получаются четкими и яркими. Дисплей с хорошей видимостью на солнце. Заряд держится
-                                    долго. По соотношению «цена–качество» для меня лучшая модель.
-                                </div>
-                            </div>
-                            <div class="mt-4">
-                                <div class="">Test Testov</div>
-                                <div class="d-flex align-items-center gap-3 my-2">
-                                    <div class="d-flex align-items-center gap-1">
-                                        <img src="./assets/icons/star-orange.svg" alt=""/>
-                                        <img src="./assets/icons/star-orange.svg" alt=""/>
-                                        <img src="./assets/icons/star-orange.svg" alt=""/>
-                                        <img src="./assets/icons/star-orange.svg" alt=""/>
-                                        <img src="./assets/icons/star-grey.svg" alt=""/>
-                                    </div>
-                                    <div style="width: 1px; height: 15px; background-color: #bcc1caff" class=""></div>
-                                    <div class="">25 ноября 2024</div>
-                                </div>
-                                <div class="fs-14">
-                                    Приобрел смартфон около месяца назад. До этого пользовался телефоном от другого
-                                    бренда, но не пожалел, что сменил. Особенно поразила камера: фотографии
-                                    получаются четкими и яркими. Дисплей с хорошей видимостью на солнце. Заряд держится
-                                    долго. По соотношению «цена–качество» для меня лучшая модель.
-                                </div>
-                            </div>
+                            @endforeach
                         </div>
+
                         <div class="mt-5">
                             <h1 class="fw-normal">Ваша оценка товара</h1>
-                            <div class="d-flex align-items-center gap-2 my-3">
-                                <div class="">Оценка</div>
-                                <div id="testimonials" class="rating">
-                                    <input type="radio" name="testimonials" value="5" id="5"/><label for="5">☆</label>
-                                    <input type="radio" name="testimonials" value="4" id="4"/><label for="4"
-                                    >☆</label
-                                    >
-                                    <input type="radio" name="testimonials" value="3" id="3"/><label for="3">☆</label>
-                                    <input type="radio" name="testimonials" value="2" id="2"/><label for="2"
-                                    >☆</label
-                                    >
-                                    <input type="radio" name="testimonials" value="1" id="1"/><label for="1">☆</label>
-                                </div>
-                            </div>
 
-                            <form class="container p-0">
+                            <form id="comment-form" action="{{ route('comments.store') }}" method="POST" class="container p-0">
+                                @csrf
+                                <input type="hidden" id="product-id" name="product_id" value="{{ $product->id }}">
+
                                 <div class="row justify-content-end">
+                                    <div class="col-md-12 mb-3">
+                                        <label for="rating" class="form-label">Оценка</label>
+                                        <div id="testimonials" class="rating d-flex justify-content-end">
+                                            @for ($i = 5; $i >= 1; $i--)
+                                                <input type="radio" name="rating" value="{{ $i }}" id="rating-{{ $i }}" required />
+                                                <label for="rating-{{ $i }}">☆</label>
+                                            @endfor
+                                        </div>
+                                    </div>
                                     <div class="col-md-6 mb-3">
                                         <label for="testi_name" class="form-label">Имя</label>
-                                        <input type="text" class="form-control focus_none bg-grey py-2"
-                                               id="testi_name"/>
+                                        <input type="text" class="form-control focus_none bg-grey py-2" id="testi_name" name="name" required />
                                     </div>
                                     <div class="col-md-6 mb-3">
                                         <label for="testi_lastname" class="form-label">Фамилия</label>
-                                        <input type="text" class="form-control focus_none bg-grey py-2"
-                                               id="testi_lastname"/>
+                                        <input type="text" class="form-control focus_none bg-grey py-2" id="testi_lastname" name="lastname" required />
                                     </div>
                                     <div class="col-12 mb-3">
                                         <label for="testi_message" class="form-label">Комментарий</label>
-                                        <textarea class="form-control focus_none bg-grey py-2" id="testi_message"
-                                                  rows="3"></textarea>
+                                        <textarea class="form-control focus_none bg-grey py-2" id="testi_message" name="message" rows="3" required></textarea>
                                     </div>
+
                                     <div class="col-md-4">
-                                        <button type="submit" class="btn-orange rounded w-100 mb-3 py-3">Отправить
-                                            отзыв
-                                        </button>
+                                        <button type="submit" class="btn-orange rounded w-100 mb-3 py-3">Отправить отзыв</button>
                                     </div>
                                 </div>
                             </form>
                         </div>
                     </div>
+
                     <div class="tab-pane fade" id="delivery" role="tabpanel" aria-labelledby="delivery-tab">
                         <div class="container pt-3 border-top">
                             <div class="row">
@@ -1006,6 +977,7 @@
         document.addEventListener('DOMContentLoaded', function () {
             const storageOptions = document.querySelectorAll('.storage-option');
             const priceDisplay = document.getElementById('price-display');
+
             function updatePriceAndHighlight(option) {
                 const price = option.getAttribute('data-price');
 
@@ -1013,7 +985,7 @@
                 priceDisplay.innerHTML = `${price} <span>сум</span>`;
 
                 // Reset background color for all options
-                storageOptions.forEach(function(opt) {
+                storageOptions.forEach(function (opt) {
                     opt.classList.remove('bg-lightorange');
                     opt.classList.add('bg-darkgrey');
                     opt.classList.remove('border-orange');
@@ -1028,16 +1000,51 @@
             updatePriceAndHighlight(storageOptions[0]);
 
             // Add event listeners to each storage option
-            storageOptions.forEach(function(option) {
-                option.addEventListener('click', function() {
+            storageOptions.forEach(function (option) {
+                option.addEventListener('click', function () {
                     updatePriceAndHighlight(option);
                 });
             });
         });
 
+
+    </script>
+    <script>
+        document.addEventListener('DOMContentLoaded', function () {
+            const storageOptions = document.querySelectorAll('.storage-option');
+            const priceDisplay = document.getElementById('price-display');
+            const installmentOptions = {
+                3: document.querySelector('.price-3'),
+                6: document.querySelector('.price-6'),
+                12: document.querySelector('.price-12'),
+                24: document.querySelector('.price-24')
+            };
+
+            storageOptions.forEach(option => {
+                option.addEventListener('click', function () {
+                    // Tanlangan `storage-option` elementining qiymatlarini o'qing
+                    const selectedPrice = this.getAttribute('data-price');
+                    const selectedStorage = this.getAttribute('data-storage');
+
+                    // Tanlangan elementni faol qilish
+                    storageOptions.forEach(opt => opt.classList.remove('active'));
+                    this.classList.add('active');
+
+                    // Narxni yangilang
+                    priceDisplay.innerHTML = `${selectedPrice} <span>сум</span>`;
+
+                    // Bo'lib to'lash qiymatlarini yangilang
+                    Object.keys(installmentOptions).forEach(period => {
+                        const element = installmentOptions[period];
+                        const monthlyPrice = (selectedPrice / period).toFixed(2); // Har oy uchun hisob
+                        element.innerHTML = `<span class="text-orange">${period}</span> месяцев от <span class="text-orange">${monthlyPrice} р./мес</span>`;
+                    });
+                });
+            });
+        });
     </script>
     <style>
-        .str_replace ul li{
+        .str_replace ul li {
             list-style-type: disc !important;
         }
     </style>

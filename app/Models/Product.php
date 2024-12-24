@@ -50,6 +50,11 @@ class Product extends Model
     {
         return $this->hasMany(DescImage::class);
     }
+    public function comments()
+    {
+        return $this->hasMany(Comment::class);
+    }
+
 
     protected static function boot()
     {
