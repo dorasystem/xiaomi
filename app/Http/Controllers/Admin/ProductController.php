@@ -41,6 +41,7 @@ class ProductController extends Controller
     }
 
     // Store a newly created product in the database
+
     public function store(Request $request)
     {
         // Validate form data
@@ -55,10 +56,10 @@ class ProductController extends Controller
             'color_uz' => 'nullable|string',
             'color_ru' => 'nullable|string',
             'color_en' => 'nullable|string',
-            'image' => 'nullable|image|mimes:jpg,png,jpeg,gif',
-            'images.*' => 'nullable|image|mimes:jpg,png,jpeg,gif', // multiple image validation
+            'image' => 'nullable|image|mimes:jpg,png,jpeg,gif,webp',
+            'images.*' => 'nullable|image|mimes:jpg,png,jpeg,gif,webp', // multiple image validation
             'gift_name' => 'nullable|string',
-            'gift_image' => 'nullable|image|mimes:jpg,png,jpeg,gif',
+            'gift_image' => 'nullable|image|mimes:jpg,png,jpeg,gif,webp',
             'storage' => 'nullable|array',
             'price' => 'nullable|array',
             'discount_price' => 'nullable|array',
@@ -83,7 +84,6 @@ class ProductController extends Controller
         // Create the product
         $product = Product::create([
             'category_id' => $request->category_id,
-            'slug' => Str::slug($request->input('name_uz')),
             'name_uz' => $request->name_uz,
             'name_ru' => $request->name_ru,
             'name_en' => $request->name_en,
@@ -99,11 +99,15 @@ class ProductController extends Controller
             'gift_image' => $giftImagePath,
         ]);
 
+        // Generate and set the slug
+        $slug = Str::slug($request->name_uz) . '-' . $product->id; // Combine name and id to create slug
+        $product->slug = $slug;
+        $product->save(); // Save the product again to store the slug
+
         // Store variants (pricing and storage details)
         if ($request->has('storage')) {
-
             foreach ($request->storage as $index => $storage) {
-               $ok = Variant::create([
+                Variant::create([
                     'product_id' => $product->id,
                     'storage' => $storage,
                     'price' => $request->price[$index] ?? null,
@@ -121,6 +125,9 @@ class ProductController extends Controller
 
 
 
+
+
+
     // Display a specific product
     public function show(Product $product)
     {
@@ -135,10 +142,11 @@ class ProductController extends Controller
     }
 
     // Update a product in the database
+
     public function update(Request $request, Product $product)
     {
         // Validate form data
-        $request->validate([
+        $validatedData = $request->validate([
             'category_id' => 'required|exists:categories,id',
             'name_uz' => 'required|string',
             'name_ru' => 'required|string',
@@ -146,11 +154,15 @@ class ProductController extends Controller
             'description_uz' => 'nullable|string',
             'description_ru' => 'nullable|string',
             'description_en' => 'nullable|string',
+            'color_uz' => 'nullable|string',
             'color_ru' => 'nullable|string',
-            'image' => 'nullable|image|mimes:jpg,png,jpeg,gif',
-            'images.*' => 'nullable|image|mimes:jpg,png,jpeg,gif',
+            'color_en' => 'nullable|string',
+            'image' => 'nullable|image|mimes:jpg,png,jpeg,gif,webp|max:2048',
+            'images.*' => 'nullable|image|mimes:jpg,png,jpeg,gif,webp|max:2048',
+            'edit_images.*' => 'nullable|image|mimes:jpg,png,jpeg,gif,webp|max:2048',
+            'deleted_images' => 'nullable|array',
             'gift_name' => 'nullable|string',
-            'gift_image' => 'nullable|image|mimes:jpg,png,jpeg,gif',
+            'gift_image' => 'nullable|image|mimes:jpg,png,jpeg,gif,webp|max:2048',
             'storage' => 'nullable|array',
             'price' => 'nullable|array',
             'discount_price' => 'nullable|array',
@@ -161,7 +173,7 @@ class ProductController extends Controller
             'deleted_variants' => 'nullable|array',
         ]);
 
-
+        // Handle main product image
         if ($request->hasFile('image')) {
             if ($product->image) {
                 Storage::delete($product->image);
@@ -169,6 +181,7 @@ class ProductController extends Controller
             $product->image = $request->file('image')->store('products', 'public');
         }
 
+        // Handle gift image
         if ($request->hasFile('gift_image')) {
             if ($product->gift_image) {
                 Storage::delete($product->gift_image);
@@ -176,73 +189,80 @@ class ProductController extends Controller
             $product->gift_image = $request->file('gift_image')->store('gift_images', 'public');
         }
 
-        if ($request->hasFile('images')) {
-            // Agar $product->images mavjud bo'lsa va u string bo'lsa, uni json_decode qiling
-            $images = is_string($product->images) ? json_decode($product->images) : [];
+        // Process images array
+        $images = is_string($product->images) ? json_decode($product->images, true) : [];
 
-            // Eski rasmlarni o'chirish
-            foreach ($images as $oldImage) {
-                if ($oldImage) {
-                    Storage::delete($oldImage);
+        // Handle deleted images
+        if ($request->has('deleted_images')) {
+            foreach ($request->deleted_images as $deletedImage) {
+                if (($key = array_search($deletedImage, $images)) !== false) {
+                    Storage::delete($deletedImage);
+                    unset($images[$key]);
                 }
             }
-
-            // Yangi rasmlarni saqlash
-            $product->images = json_encode(array_map(
-                fn($image) => $image->store('products', 'public'),
-                $request->file('images')
-            ));
         }
 
+        // Handle edited images
+        if ($request->hasFile('edit_images')) {
+            foreach ($request->file('edit_images') as $key => $newImage) {
+                if (isset($images[$key])) {
+                    // Delete the old image if it exists
+                    Storage::delete($images[$key]);
+                    // Store the new image
+                    $images[$key] = $newImage->store('products', 'public');
+                }
+            }
+        }
+
+        // Handle new images
+        if ($request->hasFile('images')) {
+            foreach ($request->file('images') as $image) {
+                $images[] = $image->store('products', 'public');
+            }
+        }
+
+        // Update the images in the product
+        $product->images = json_encode(array_values($images));
 
         // Update product details
         $product->update([
-            'category_id' => $request->category_id,
-            'slug' => Str::slug($request->input('name_uz')),
-            'name_uz' => $request->name_uz,
-            'name_ru' => $request->name_ru,
-            'name_en' => $request->name_en,
-            'description_uz' => $request->description_uz,
-            'description_ru' => $request->description_ru,
-            'description_en' => $request->description_en,
-            'color_uz' => $request->color_uz,
-            'color_ru' => $request->color_ru,
-            'color_en' => $request->color_en,
-            'gift_name' => $request->gift_name,
+            'category_id' => $validatedData['category_id'],
+            'slug' => Str::slug($validatedData['name_uz']) . '-' . $product->id, // Update slug here
+            'name_uz' => $validatedData['name_uz'],
+            'name_ru' => $validatedData['name_ru'],
+            'name_en' => $validatedData['name_en'],
+            'description_uz' => $validatedData['description_uz'],
+            'description_ru' => $validatedData['description_ru'],
+            'description_en' => $validatedData['description_en'],
+            'color_ru' => $validatedData['color_ru'],
+            'gift_name' => $validatedData['gift_name'],
         ]);
 
-        // Delete variants marked for removal
+        // Handle deleted variants
         if ($request->has('deleted_variants')) {
-            $deletedVariants = array_map('intval', $request->input('deleted_variants'));
-            Variant::whereIn('id', $deletedVariants)->delete();
+            Variant::whereIn('id', $validatedData['deleted_variants'])->delete();
         }
 
         // Save new or updated variants
         if ($request->has('storage')) {
-//            dd($request->all());
             foreach ($request->storage as $index => $storage) {
-
-                    $variant = new Variant([
-                        'product_id' => $product->id,
-                        'storage' => $storage,
-                        'price' => $request->price[$index] ?? null,
-                        'discount_price' => $request->discount_price[$index] ?? null,
-                        'price_3' => $request->price_3[$index] ?? null,
-                        'price_6' => $request->price_6[$index] ?? null,
-                        'price_12' => $request->price_12[$index] ?? null,
-                        'price_24' => $request->price_24[$index] ?? null,
-                    ]);
+                $variant = new Variant([
+                    'product_id' => $product->id,
+                    'storage' => $storage,
+                    'price' => $request->price[$index] ?? null,
+                    'discount_price' => $request->discount_price[$index] ?? null,
+                    'price_3' => $request->price_3[$index] ?? null,
+                    'price_6' => $request->price_6[$index] ?? null,
+                    'price_12' => $request->price_12[$index] ?? null,
+                    'price_24' => $request->price_24[$index] ?? null,
+                ]);
 
                 $variant->save();
             }
         }
 
-
         return redirect()->route('products.index')->with('success', 'Product updated successfully');
     }
-
-
-
 
 
 

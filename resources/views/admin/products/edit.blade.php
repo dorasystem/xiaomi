@@ -295,26 +295,29 @@
                                         <input type="file" class="form-control" id="images" name="images[]" multiple>
 
                                         @php
-                                            // Agar $product->images string bo'lsa, uni array ga aylantiring
                                             $images = is_string($product->images) ? json_decode($product->images) : $product->images;
                                         @endphp
 
-                                        @foreach($images as $image)
-                                            <img src="{{ asset('storage/' . $image) }}" alt="Additional Image" class="img-fluid mt-2" width="100">
+
+                                        @foreach($images as $key => $image)
+                                            <div class="image-container">
+                                                <img src="{{ asset('storage/' . $image) }}" alt="Image" data-key="{{ $key }}">
+                                                <button type="button" class="delete-icon" onclick="deleteImage('{{ $image }}', this)">x</button>
+                                                <input type="file" name="edit_images[{{ $key }}]" class="hidden-input" id="edit_image_{{ $key }}" accept="image/*">
+                                                <input type="hidden" name="current_images[{{ $key }}]" value="{{ $image }}">
+                                                <input type="checkbox" name="deleted_images[]" value="{{ $image }}" class="hidden-checkbox d-none">
+                                            </div>
                                         @endforeach
+
                                     </div>
 
-                                    <div class="form-group pb-3">
-                                        <label for="has_gift">Подарок имеется:</label>
-                                        <input type="checkbox" class="" id="has_gift" name="has_gift" value="1" {{ old('has_gift', $product->has_gift) ? 'checked' : '' }}>
-                                    </div>
 
-                                    <div class="form-group pb-3 gift-fields {{ old('has_gift', $product->has_gift) ? 'd-block' : 'd-none' }}">
+                                    <div class="form-group pb-3 gift-fields ">
                                         <label for="gift_name">Подарок название:</label>
                                         <input type="text" class="form-control" id="gift_name" name="gift_name" value="{{ old('gift_name', $product->gift_name) }}">
                                     </div>
 
-                                    <div class="form-group pb-3 gift-fields {{ old('has_gift', $product->has_gift) ? 'd-block' : 'd-none' }}">
+                                    <div class="form-group pb-3 gift-fields ">
                                         <label for="gift_image">Изображение Подарок:</label>
                                         <input type="file" class="form-control" id="gift_image" name="gift_image">
                                         @if ($product->gift_image)
@@ -343,32 +346,64 @@
         }
     </script>
     <script>
-        document.addEventListener("DOMContentLoaded", function() {
-            // Get the checkbox and gift fields
-            const giftCheckbox = document.getElementById('has_gift');
-            const giftFields = document.querySelectorAll('.gift-fields');
-
-            // Function to toggle gift fields visibility
-            function toggleGiftFields() {
-                if (giftCheckbox.checked) {
-                    giftFields.forEach(function(field) {
-                        field.classList.remove('d-none');
-                        field.classList.add('d-block');
-                    });
-                } else {
-                    giftFields.forEach(function(field) {
-                        field.classList.remove('d-block');
-                        field.classList.add('d-none');
-                    });
-                }
-            }
-
-            // Initialize visibility on page load
-            toggleGiftFields();
-
-            // Add event listener to toggle visibility when checkbox changes
-            giftCheckbox.addEventListener('change', toggleGiftFields);
+        document.querySelectorAll('.image-container img').forEach(img => {
+            img.addEventListener('click', function () {
+                const fileInput = this.nextElementSibling.nextElementSibling;
+                fileInput.click(); // Hidden inputni ochish
+                fileInput.addEventListener('change', function () {
+                    const file = fileInput.files[0];
+                    if (file) {
+                        const reader = new FileReader();
+                        reader.onload = function (e) {
+                            img.src = e.target.result; // Tasvirni yangilash
+                        };
+                        reader.readAsDataURL(file);
+                    }
+                });
+            });
         });
+
+        function deleteImage(imagePath, button) {
+            const container = button.closest('.image-container');
+            const checkbox = container.querySelector('.hidden-checkbox');
+            checkbox.checked = true; // Rasimni o'chirish uchun belgilang
+            container.style.display = 'none'; // Rasimni yashirish
+        }
+
     </script>
+    <style>
+        .image-container {
+            position: relative;
+            display: inline-block;
+            margin-bottom: 10px;
+        }
+
+        .image-container img {
+            width: 100px;
+            height: 100px;
+            object-fit: cover;
+            cursor: pointer;
+        }
+
+        .delete-icon {
+            position: absolute;
+            top: 5px;
+            right: 5px;
+            background-color: red;
+            color: white;
+            border: none;
+            border-radius: 50%;
+            width: 20px;
+            height: 20px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            cursor: pointer;
+        }
+
+        .hidden-input {
+            display: none;
+        }
+    </style>
 
 @endsection

@@ -4,10 +4,10 @@
     <main>
         <div class="mt-4 container d-sm-block d-none">
             <div class="d-flex align-items-center gap-3">
-                <a href="./index.html" class="text-grey fw-bold text-lowercase fs-14"
-                >Главная страница / <a href="./product-list.html" class="text-grey fw-bold text-lowercase fs-14">Телефоны
+                <a href="/" class="text-grey fw-bold text-lowercase fs-14"
+                >Главная страница / <a href="{{route('products')}}" class="text-grey fw-bold text-lowercase fs-14">Телефоны
                         /</a>
-                    <span class="text-dark fw-bold text-lowercase fs-14">{{$product->name_en}}</span></a
+                    <span class="text-dark fw-bold text-lowercase fs-14">{{$product['name_'.$lang]}}</span></a
                 >
             </div>
         </div>
@@ -21,7 +21,7 @@
                             <img width="24px" style="transform: rotate(225deg)" src="/assets/icons/arrow.svg" alt=""/>
                             <span>Назад</span>
                         </div>
-                        <div class="productName text-end fs-24">{{$product->name_en}}</div>
+                        <div class="productName text-end fs-24">{{$product['name_'.$lang]}} {{$product['color_'.$lang]}}</div>
                     </div>
                     <div class="col-md-3 d-flex align-items-center justify-content-md-end gap-3">
                         <button
@@ -64,167 +64,81 @@
                 </div>
                 <div class="container p-0">
                     <div class="row">
-                        <!-- Kichik rasmlar -->
-                        <div class="col-lg-1 thumbnail-images p-0 d-lg-block d-none">
-                            <button class="border p-0 bg-transparent" type="button" data-bs-target="#productCarousel"
-                                    data-bs-slide-to="0" aria-current="true">
-                                <img src="/assets/images/product_1.webp" alt="Image 1" class="img-fluid little_active"/>
-                            </button>
-                            <button class="border p-0 bg-transparent" type="button" data-bs-target="#productCarousel"
-                                    data-bs-slide-to="1">
-                                <img src="/assets/images/product_2.webp" alt="Image 2" class="img-fluid"/>
-                            </button>
-                            <button class="border p-0 bg-transparent" type="button" data-bs-target="#productCarousel"
-                                    data-bs-slide-to="2">
-                                <img src="/assets/images/product_3.webp" alt="Image 3" class="img-fluid"/>
-                            </button>
-                            <button class="border p-0 bg-transparent" type="button" data-bs-target="#productCarousel"
-                                    data-bs-slide-to="3">
-                                <img src="/assets/images/product_4.webp" alt="Image 4" class="img-fluid"/>
-                            </button>
+                        <div class="col-lg-1 thumbnail-images p-0 d-lg-block d-none" style="overflow: auto; height: 530px">
+                            @foreach ($images as $key => $image)
+                                <button class="border p-0 bg-transparent" type="button" data-bs-target="#productCarousel"
+                                        data-bs-slide-to="{{ $key }}" {{ $key === 0 ? 'aria-current="true"' : '' }}>
+                                    <img src="{{ asset('storage/' . $image) }}" alt="Image {{ $key + 1 }}" class="img-fluid {{ $key === 0 ? 'little_active' : '' }}"/>
+                                </button>
+                            @endforeach
                         </div>
 
-                        <!-- Katta rasm va o'q tugmalari -->
                         <div class="col-lg-7 pt-5">
-                            <div id="productCarousel" class="carousel slide" data-bs-ride="false">
+                            <div id="productCarousel" class="carousel slide" data-bs-ride="carousel">
                                 <div class="carousel-inner">
-                                    <div class="carousel-item active">
-                                        <img src="/assets/images/product_1.webp" class="d-block w-100" alt="Image 1"/>
-                                    </div>
-                                    <div class="carousel-item">
-                                        <img src="/assets/images/product_2.webp" class="d-block w-100" alt="Image 2"/>
-                                    </div>
-                                    <div class="carousel-item">
-                                        <img src="/assets/images/product_3.webp" class="d-block w-100" alt="Image 3"/>
-                                    </div>
-                                    <div class="carousel-item">
-                                        <img src="/assets/images/product_4.webp" class="d-block w-100" alt="Image 4"/>
-                                    </div>
+                                    @foreach ($images as $key => $image)
+                                        <div class="carousel-item {{ $key === 0 ? 'active' : '' }}">
+                                            <img src="{{ asset('storage/' . $image) }}" class="d-block w-100 h-100" alt="Image {{ $key + 1 }}"/>
+                                        </div>
+                                    @endforeach
                                 </div>
 
                                 <!-- Chapga o'tish tugmasi -->
-                                <button class="carousel-control-prev rounded-pill" type="button"
-                                        data-bs-target="#productCarousel" data-bs-slide="prev">
+                                <button class="carousel-control-prev rounded-pill" type="button" data-bs-target="#productCarousel"
+                                        data-bs-slide="prev">
                                     <span class="carousel-control-prev-icon" aria-hidden="true"></span>
                                     <span class="visually-hidden">Oldingi</span>
                                 </button>
 
                                 <!-- O'ngga o'tish tugmasi -->
-                                <button class="carousel-control-next rounded-pill" type="button"
-                                        data-bs-target="#productCarousel" data-bs-slide="next">
+                                <button class="carousel-control-next rounded-pill" type="button" data-bs-target="#productCarousel"
+                                        data-bs-slide="next">
                                     <span class="carousel-control-next-icon" aria-hidden="true"></span>
                                     <span class="visually-hidden">Keyingi</span>
                                 </button>
-                            </div>
-                            <div class="rounded-2 bg-grey p-4 mx-lg-5 d-flex justify-content-between gap-3">
-                                <div class="d-flex gap-3">
-                                    <div
-                                        class="rounded-pill p-3 bg-orange plus d-flex align-items-center justify-content-center">
-                                        <img src="/assets/icons/white-plus.svg" alt=""/>
-                                    </div>
-                                    <div class="">
-                                        <div class="d-flex align-items-center text-orange gap-1">
-                                            <img src="/assets/icons/orange_gift.svg" alt=""/>
-                                            <span>Подарок</span>
-                                        </div>
-                                        <div class="fs-14 fw-semibold">Фитнес браслет Xiomi Smart Band 9</div>
-                                    </div>
-                                </div>
-                                <div class="">
-                                    <img width="70px" src="/assets/images/category_phone.webp" alt=""/>
-                                </div>
                             </div>
                         </div>
 
                         <!-- O'ng tarafdagi ma'lumotlar -->
                         <div class="col-lg-4 p-4 border-start">
                             <div class="text-grey my-1">Код товара : MI000025007</div>
-                            <h6>Xiaomi 14T 12/256 Gb Titan Gray</h6>
+                            <h6>{{$product['name_'.$lang]}}</h6>
                             <div class="fs-14">
-                                Non aute minim enim commodo ad in. Consectetur velit amet laboris ea culpa minim irure.
-                                Elit amet eiusmod exercitation fugiat in ad ad proident ea proident sunt
-                                culpa quis ad velit magna sunt. Minim excepteur ipsum non in ullamco sit mollit ex amet
-                                velit et tempor in. Ex elit
+                                {!! $product['description_'.$lang] !!}
                             </div>
                             <div class="my-3 d-flex align-items-center gap-3 text-orange">
                                 Читать дальше
                                 <img src="/assets/icons/arrow-orange.svg" alt=""/>
                             </div>
 
-                            <div class="d-flex align-items-center gap-3 mt-2">
-                                <div class="text-grey fs-14">Выбранный цвет</div>
-                                <div id="selectedColor" class="blue text-white rounded px-3 py-1 fs-14">
-                                    Выберите цвет
-                                </div>
-                            </div>
-
-                            <div class="productsColor d-flex align-items-center mb-4 pb-2 gap-3 py-3">
-                                @foreach ($product->variants as $variant)
-                                    <div class="border-grey rounded p-2"
-                                         onclick="setSelectedColor('{{ $variant->color_en }}', this)">
-                                        <img
-                                            src="{{ asset('storage/' . $variant->image) }}"
-                                            alt="Текущее изображение"
-                                            width="60"
-                                            height="80">
+                            <div class="text-grey mb-2 fs-14">Объем памяти</div>
+                            <div class="d-flex align-items-center gap-2 mb-3" id="storage-options">
+                                @foreach($variants as $variant)
+                                    <div style="cursor: pointer"
+                                         class="fs-12 px-3 py-1 rounded storage-option bg-darkgrey"
+                                         data-storage="{{ $variant->storage }}"
+                                         data-price="{{ $variant->price }}">
+                                        {{ $variant->storage }}
                                     </div>
                                 @endforeach
                             </div>
 
-                            <script>
-                                let lastSelected = null; // Oldingi tanlangan elementni saqlash uchun
-
-                                function setSelectedColor(color, element) {
-                                    // Rangni yangilang
-                                    const selectedColorDiv = document.getElementById('selectedColor');
-                                    selectedColorDiv.textContent = color;
-
-                                    // Oldingi tanlangan elementdan border-orange va bg-lightorange ni olib tashlang
-                                    if (lastSelected) {
-                                        lastSelected.classList.remove('border-orange', 'bg-lightorange');
-                                        lastSelected.classList.add('border-grey');
-                                    }
-
-                                    // Hozirgi elementga border-orange va bg-lightorange ni qo'shing
-                                    element.classList.remove('border-grey');
-                                    element.classList.add('border-orange', 'bg-lightorange');
-
-                                    // Tanlangan elementni eslab qoling
-                                    lastSelected = element;
-                                }
-                            </script>
-
-
-
-                            <div class="text-grey mb-2 fs-14">Объем памяти</div>
-                            <div class="d-flex align-items-center gap-2 mb-3">
-                                <div class="fs-12 px-3 py-1 rounded border-orange rouonded bg-lightorange">256 ГБ</div>
-                                <div class="fs-12 px-3 py-1 rounded bg-darkgrey">256 ГБ</div>
+                            <div class="fs-24 fw-bold mb-2" id="price-display">
+                                {{$variants->first()->price ?? '0'}} <span>сум</span>
                             </div>
-                            <div class="text-grey mb-2 fs-14">RAM</div>
-                            <div class="d-flex align-items-center gap-2 border-bottom pb-3 mb-2">
-                                <div class="fs-12 px-3 py-1 rounded border-orange rouonded bg-lightorange">12 ГБ</div>
-                                <div class="fs-12 px-3 py-1 rounded bg-darkgrey">8 ГБ</div>
+                            <div class="fs-14 text-grey mb-2">
+                                Вы можете выбрать рассрочку на срок от 6 до 24 месяцев при оформлении заказа
                             </div>
-                            <div class="fs-24 fw-bold mb-2">1 000 000 <span>сум</span></div>
-                            <div class="fs-14 text-grey mb-2">Вы можете выбрать рассрочку на срок от 6 до 24 месяцев при
-                                оформлении заказа
-                            </div>
-                            <div class="rounded bg-darkgrey py-2 px-3 mb-3 d-flex flex-wrap justify-content-between">
-                                <div class="d-flex flex-wrap align-items-center gap-sm-4 gap-2">
-                                    <span class="text-nowrap">В рассрочку</span>
-                                    <div class="bg-orange text-nowrap text-white rounded px-1">100 000 сум</div>
-                                    <span class="text-nowrap">24/ мес. </span>
-                                </div>
-                                <div type="button" class="" data-bs-toggle="tooltip" title="Tooltip text here">
-                                    <img src="./assets/icons/question.svg" alt=""/>
-                                </div>
-                            </div>
+
+
+                            <!-- Other UI elements... -->
+
                             <div class="d-flex flex-lg-row flex-column d-block align-items-center gap-3">
                                 <button class="btn-orange rounded w-100">В корзину</button>
                                 <button class="border-0 w-100 bg-darkgrey rounded py-2 px-3">Купить в один клик</button>
                             </div>
                         </div>
+
                     </div>
                 </div>
             </div>
@@ -414,75 +328,16 @@
                                     <td class="px-4 fs-14">Android</td>
                                 </tr>
                                 <tr>
-                                    <td class="px-4 text-grey fs-14">Тип</td>
-                                    <td class="px-4 fs-14">Смартфон</td>
+                                    <td class="px-4 text-grey fs-14">RAM</td>
+                                    <td class="px-4 fs-14">12 GB</td>
                                 </tr>
                                 <tr>
-                                    <td class="px-4 border-0 text-grey fs-14">Операционная система</td>
-                                    <td class="px-4 border-0 fs-14">Android</td>
+                                    <td class="px-4 border-0 text-grey fs-14">STORAGE</td>
+                                    <td class="px-4 border-0 fs-14">256 GB</td>
                                 </tr>
                                 </tbody>
                             </table>
-                            <table class="table mb-0">
-                                <thead class="bg-light">
-                                <tr>
-                                    <th class="px-4 fs-14" scope="col">Общая информация</th>
-                                    <th class="px-4 fs-14" scope="col"></th>
-                                </tr>
-                                </thead>
-                                <tbody>
-                                <tr>
-                                    <td class="px-4 text-grey fs-14">Дата выхода на рынок</td>
-                                    <td class="px-4 fs-14">2024 г.</td>
-                                </tr>
-                                <tr>
-                                    <td class="px-4 text-grey fs-14">Тип</td>
-                                    <td class="px-4 fs-14">Смартфон</td>
-                                </tr>
-                                <tr>
-                                    <td class="px-4 text-grey fs-14">Операционная система</td>
-                                    <td class="px-4 fs-14">Android</td>
-                                </tr>
-                                <tr>
-                                    <td class="px-4 text-grey fs-14">Тип</td>
-                                    <td class="px-4 fs-14">Смартфон</td>
-                                </tr>
-                                <tr>
-                                    <td class="px-4 border-0 text-grey fs-14">Операционная система</td>
-                                    <td class="px-4 border-0 fs-14">Android</td>
-                                </tr>
-                                </tbody>
-                            </table>
-                            <table class="table mb-0">
-                                <thead class="bg-light">
-                                <tr>
-                                    <th class="px-4 fs-14" scope="col">Общая информация</th>
-                                    <th class="px-4 fs-14" scope="col"></th>
-                                </tr>
-                                </thead>
-                                <tbody>
-                                <tr>
-                                    <td class="px-4 text-grey fs-14">Дата выхода на рынок</td>
-                                    <td class="px-4 fs-14">2024 г.</td>
-                                </tr>
-                                <tr>
-                                    <td class="px-4 text-grey fs-14">Тип</td>
-                                    <td class="px-4 fs-14">Смартфон</td>
-                                </tr>
-                                <tr>
-                                    <td class="px-4 text-grey fs-14">Операционная система</td>
-                                    <td class="px-4 fs-14">Android</td>
-                                </tr>
-                                <tr>
-                                    <td class="px-4 text-grey fs-14">Тип</td>
-                                    <td class="px-4 fs-14">Смартфон</td>
-                                </tr>
-                                <tr>
-                                    <td class="px-4 border-0 text-grey fs-14">Операционная система</td>
-                                    <td class="px-4 border-0 fs-14">Android</td>
-                                </tr>
-                                </tbody>
-                            </table>
+
                         </div>
                     </div>
                     <div class="tab-pane fade" id="availability" role="tabpanel" aria-labelledby="availability-tab">
@@ -1119,4 +974,38 @@
             </div>
         </div>
     </main>
+    <script>
+        document.addEventListener('DOMContentLoaded', function () {
+            const storageOptions = document.querySelectorAll('.storage-option');
+            const priceDisplay = document.getElementById('price-display');
+            function updatePriceAndHighlight(option) {
+                const price = option.getAttribute('data-price');
+
+                // Update the price display
+                priceDisplay.innerHTML = `${price} <span>сум</span>`;
+
+                // Reset background color for all options
+                storageOptions.forEach(function(opt) {
+                    opt.classList.remove('bg-lightorange');
+                    opt.classList.add('bg-darkgrey');
+                    opt.classList.remove('border-orange');
+
+                });
+
+                option.classList.remove('bg-darkgrey');
+                option.classList.add('border-orange');
+            }
+
+            // Set the default active storage option (4/256 ГБ)
+            updatePriceAndHighlight(storageOptions[0]);
+
+            // Add event listeners to each storage option
+            storageOptions.forEach(function(option) {
+                option.addEventListener('click', function() {
+                    updatePriceAndHighlight(option);
+                });
+            });
+        });
+
+    </script>
 @endsection

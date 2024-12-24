@@ -4,6 +4,7 @@ use App\Http\Controllers\Admin\AboutController;
 use App\Http\Controllers\Admin\CartController;
 use App\Http\Controllers\Admin\CategoryController;
 use App\Http\Controllers\Admin\ContactController;
+use App\Http\Controllers\Admin\DescImageController;
 use App\Http\Controllers\Admin\FaqController;
 use App\Http\Controllers\Admin\NewsController;
 use App\Http\Controllers\Admin\ProductController;
@@ -38,6 +39,8 @@ Route::middleware(['auth'])->prefix('dashboard')->group(function () {
     Route::resource('categories', CategoryController::class);
     Route::resource('products', ProductController::class);
     Route::resource('variants', VariantController::class);
+    Route::resource('desc-images', DescImageController::class);
+
 });
 
 Route::middleware(['auth'])->group(function () {
@@ -45,6 +48,7 @@ Route::middleware(['auth'])->group(function () {
     Route::get('orders', [UserController::class, 'orders'])->name('orders');
     Route::get('cart', [UserController::class, 'cart'])->name('cart');
     Route::get('checkout', [UserController::class, 'checkout'])->name('checkout');
+
 });
 
 Route::get('/', [MainController::class, 'index'])->name('home');

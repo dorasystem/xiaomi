@@ -42,4 +42,9 @@ class Product extends Model
     {
         return $this->hasMany(Variant::class);
     }
+    public function descImages()
+    {
+        return $this->hasMany(DescImage::class);
+    }
+
 }

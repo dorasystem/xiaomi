@@ -155,7 +155,8 @@
                                             </option>
                                             <option value="red" {{ old('color_ru') == 'red' ? 'selected' : '' }}>
                                                 Красный
-                                            </option> <!-- Russian for Red -->
+                                            </option> <!-- Russian for Red -￼
+->
                                             <option
                                                 value="green" {{ old('color_ru') == 'green' ? 'selected' : '' }}>
                                                 Зеленый

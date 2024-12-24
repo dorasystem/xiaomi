@@ -14,14 +14,14 @@
                 <div class="d-flex justify-content-between align-items-center">
                     <div class="d-md-block d-none">
                         <div class="social-icons d-flex align-items-center justify-content-between gap-2">
-                            <a target="_blank" href="https://www.youtube.com/@xiaomi"><img src="./asssets/icons/youtube.svg" alt="" /></a>
-                            <a target="_blank" href="https://www.instagram.com/xiaomi.uzbekistan/"><img src="./asssets/icons/insta.svg" alt="" /></a>
-                            <a href="#"><img src="./asssets/icons/telegram.svg" alt="" /></a>
+                            <a target="_blank" href="https://www.youtube.com/@xiaomi"><img src="/assets/icons/youtube.svg" alt="" /></a>
+                            <a target="_blank" href="https://www.instagram.com/xiaomi.uzbekistan/"><img src="/assets/icons/insta.svg" alt="" /></a>
+                            <a href="#"><img src="/assets/icons/telegram.svg" alt="" /></a>
                         </div>
                     </div>
                     <div class="text-nowrap">
                         <a href="tel:+998 77 282 00 80" class="d-flex align-items-center gap-1">
-                            <img src="./asssets/icons/phone.svg" alt="" />
+                            <img src="/assets/icons/phone.svg" alt="" />
                             <small class="phone_clock_color">+998 77 282 00 80 </small>
                         </a>
                     </div>
@@ -50,7 +50,7 @@
         <div style="z-index: 20" class="container bg-white d-sm-none py-2 d-block position-relative pe-0">
             <div class="row align-items-center justify-content-between w-100">
                 <div class="col-4">
-                    <a class="logo" href="./index.html"><img class="w-100" src="./asssets/images/xiaomiStoreBlack.png" alt="Mi Logo" /> </a>
+                    <a class="logo" href="./index.html"><img class="w-100" src="/assets/images/xiaomiStoreBlack.png" alt="Mi Logo" /> </a>
                 </div>
                 <div class="col-8 d-flex align-items-center justify-content-end pe-0 gap-4">
                     <div class="">
@@ -97,7 +97,7 @@
             <div class="container pe-0">
                 <div class="row align-items-center w-100">
                     <div class="col-lg-2 col-4 mb-lg-0 mb-3 d-lg-block d-none">
-                        <a class="logo" href="./index.html"><img class="w-100" src="./asssets/images/xiaomiStoreWhite.png" alt="Mi Logo" /> </a>
+                        <a class="logo" href="./index.html"><img class="w-100" src="/assets/images/xiaomiStoreWhite.png" alt="Mi Logo" /> </a>
                     </div>
                     <div class="col-lg-7 px-sm-2 px-0">
                         <div class="d-flex align-items-center gap-4">
@@ -124,7 +124,7 @@
                                         />
                                         <button class="border-0 bg-transparent text-white search-btn" type="submit">
                                             <i class="fas fa-search"></i>
-                                            <!-- <img  class="xmark pe-4" src="./asssets/icons/x-mark.svg" alt=""> -->
+                                            <!-- <img  class="xmark pe-4" src="./assets/icons/x-mark.svg" alt=""> -->
                                         </button>
                                     </div>
                                     <div style="display: none" class="position-absolute border-top bg-white start-0 text-dark w-100" id="searchProduct">
@@ -133,21 +133,21 @@
                                                 <div class="col-md-8 p-0 pt-3 border-end">
                                                     <div class="resultProducts">
                                                         <div class="d-flex gap-2 align-items-center px-3">
-                                                            <img src="./asssets/images/airpods.png" width="80px" alt="" />
+                                                            <img src="/assets/images/airpods.png" width="80px" alt="" />
                                                             <div class="d-flex flex-column">
                                                                 <div class="">Airpods</div>
                                                                 <div class="fw-bold fs-14">250 000 сум</div>
                                                             </div>
                                                         </div>
                                                         <div class="d-flex gap-2 align-items-center px-3">
-                                                            <img src="./asssets/images/airpods.png" width="80px" alt="" />
+                                                            <img src="/assets/images/airpods.png" width="80px" alt="" />
                                                             <div class="d-flex flex-column">
                                                                 <div class="">Airpods</div>
                                                                 <div class="fw-bold fs-14">250 000 сум</div>
                                                             </div>
                                                         </div>
                                                         <div class="d-flex gap-2 align-items-center px-3">
-                                                            <img src="./asssets/images/airpods.png" width="80px" alt="" />
+                                                            <img src="/assets/images/airpods.png" width="80px" alt="" />
                                                             <div class="d-flex flex-column">
                                                                 <div class="">Airpods</div>
                                                                 <div class="fw-bold fs-14">250 000 сум</div>
@@ -261,25 +261,25 @@
             <div class="d-flex">
                 <div class="left">
                     <p class="hover-content hover-catalog d-flex align-items-center gap-2" data-target="content1">
-                        <img src="./asssets/icons/phone_icon.svg" width="30px" alt="Смартфоны" /> Смартфоны
+                        <img src="./assets/icons/phone_icon.svg" width="30px" alt="Смартфоны" /> Смартфоны
                     </p>
                     <p class="hover-content d-flex align-items-center gap-2" data-target="content2">
-                        <img src="./asssets/icons/accessories_icon.png" width="30px" alt="Аксессуары" /> Аксессуары для смартфонов
+                        <img src="./assets/icons/accessories_icon.png" width="30px" alt="Аксессуары" /> Аксессуары для смартфонов
                     </p>
-                    <p class="hover-content d-flex align-items-center gap-2" data-target="content3"><img src="./asssets/icons/tv_icon.png" width="30px" alt="" />Телевизоры</p>
-                    <p class="hover-content d-flex align-items-center gap-2" data-target="content4"><img src="./asssets/icons/sumka.svg" width="30px" alt="" />Рюкзаки и чемоданы</p>
-                    <p class="hover-content d-flex align-items-center gap-2" data-target="content5"><img src="./asssets/icons/fitnes_icon.png" width="30px" alt="" /> Фитнес и здоровоье</p>
-                    <p class="hover-content d-flex align-items-center gap-2" data-target="content6"><img src="./asssets/icons/scooter_icon.png" width="30px" alt="" /> Электротранспорт</p>
-                    <p class="hover-content d-flex align-items-center gap-2" data-target="content7"><img src="./asssets/icons/pilesos_icon.png" width="30px" alt="" /> Пылесосы</p>
-                    <p class="hover-content d-flex align-items-center gap-2" data-target="content8"><img src="./asssets/icons/headphone.svg" width="30px" alt="" /> Наушники и колонки</p>
-                    <p class="hover-content d-flex align-items-center gap-2" data-target="content9"><img src="./asssets/icons/radio.svg" width="30px" alt="" /> Сетевое оборудование</p>
-                    <p class="hover-content d-flex align-items-center gap-2" data-target="content10"><img src="./asssets/icons/home.png" width="30px" alt="" />Умный дом</p>
-                    <p class="hover-content d-flex align-items-center gap-2" data-target="content11"><img src="./asssets/icons/print.svg" width="30px" alt="" />Фото и видео</p>
-                    <p class="hover-content d-flex align-items-center gap-2" data-target="content12"><img src="./asssets/icons/weather.png" width="30px" alt="" />Климатическая техника</p>
-                    <p class="hover-content d-flex align-items-center gap-2" data-target="content13"><img src="./asssets/icons/planshet.svg" width="30px" alt="" />Планшеты</p>
-                    <p class="hover-content d-flex align-items-center gap-2" data-target="content14"><img src="./asssets/icons/periphery.png" width="30px" alt="" />Периферия</p>
-                    <p class="hover-content d-flex align-items-center gap-2" data-target="content15"><img src="./asssets/icons/gift.png" width="30px" alt="" />Подарочные сертификаты</p>
-                    <p class="hover-content d-flex align-items-center gap-2" data-target="content16"><img src="./asssets/icons/car.png" width="30px" alt="" />Все для авто</p>
+                    <p class="hover-content d-flex align-items-center gap-2" data-target="content3"><img src="./assets/icons/tv_icon.png" width="30px" alt="" />Телевизоры</p>
+                    <p class="hover-content d-flex align-items-center gap-2" data-target="content4"><img src="./assets/icons/sumka.svg" width="30px" alt="" />Рюкзаки и чемоданы</p>
+                    <p class="hover-content d-flex align-items-center gap-2" data-target="content5"><img src="./assets/icons/fitnes_icon.png" width="30px" alt="" /> Фитнес и здоровоье</p>
+                    <p class="hover-content d-flex align-items-center gap-2" data-target="content6"><img src="./assets/icons/scooter_icon.png" width="30px" alt="" /> Электротранспорт</p>
+                    <p class="hover-content d-flex align-items-center gap-2" data-target="content7"><img src="./assets/icons/pilesos_icon.png" width="30px" alt="" /> Пылесосы</p>
+                    <p class="hover-content d-flex align-items-center gap-2" data-target="content8"><img src="./assets/icons/headphone.svg" width="30px" alt="" /> Наушники и колонки</p>
+                    <p class="hover-content d-flex align-items-center gap-2" data-target="content9"><img src="./assets/icons/radio.svg" width="30px" alt="" /> Сетевое оборудование</p>
+                    <p class="hover-content d-flex align-items-center gap-2" data-target="content10"><img src="./assets/icons/home.png" width="30px" alt="" />Умный дом</p>
+                    <p class="hover-content d-flex align-items-center gap-2" data-target="content11"><img src="./assets/icons/print.svg" width="30px" alt="" />Фото и видео</p>
+                    <p class="hover-content d-flex align-items-center gap-2" data-target="content12"><img src="./assets/icons/weather.png" width="30px" alt="" />Климатическая техника</p>
+                    <p class="hover-content d-flex align-items-center gap-2" data-target="content13"><img src="./assets/icons/planshet.svg" width="30px" alt="" />Планшеты</p>
+                    <p class="hover-content d-flex align-items-center gap-2" data-target="content14"><img src="./assets/icons/periphery.png" width="30px" alt="" />Периферия</p>
+                    <p class="hover-content d-flex align-items-center gap-2" data-target="content15"><img src="./assets/icons/gift.png" width="30px" alt="" />Подарочные сертификаты</p>
+                    <p class="hover-content d-flex align-items-center gap-2" data-target="content16"><img src="./assets/icons/car.png" width="30px" alt="" />Все для авто</p>
                 </div>
                 <div class="right d-sm-block d-none w-75">
                     <div class="content-change default container h-100 p-0" id="content1">
@@ -296,7 +296,7 @@
                                 </a>
                             </div>
                             <div class="border-top p-4 py-2">
-                                <button class="d-flex align-items-center gap-2 border bg-transparent p-3 py-1 rounded">Все Смартфоны <img src="./asssets/icons/arrow.svg" alt="" /></button>
+                                <button class="d-flex align-items-center gap-2 border bg-transparent p-3 py-1 rounded">Все Смартфоны <img src="./assets/icons/arrow.svg" alt="" /></button>
                             </div>
                         </div>
                     </div>
@@ -311,7 +311,7 @@
                                 </a>
                             </div>
                             <div class="border-top p-4 py-2">
-                                <button class="d-flex align-items-center gap-2 border bg-transparent p-3 py-1 rounded">Все Смартфоны <img src="./asssets/icons/arrow.svg" alt="" /></button>
+                                <button class="d-flex align-items-center gap-2 border bg-transparent p-3 py-1 rounded">Все Смартфоны <img src="./assets/icons/arrow.svg" alt="" /></button>
                             </div>
                         </div>
                     </div>
@@ -323,7 +323,7 @@
                                 </a>
                             </div>
                             <div class="border-top p-4 py-2">
-                                <button class="d-flex align-items-center gap-2 border bg-transparent p-3 py-1 rounded">Все Смартфоны <img src="./asssets/icons/arrow.svg" alt="" /></button>
+                                <button class="d-flex align-items-center gap-2 border bg-transparent p-3 py-1 rounded">Все Смартфоны <img src="./assets/icons/arrow.svg" alt="" /></button>
                             </div>
                         </div>
                     </div>
@@ -341,7 +341,7 @@
                                 </a>
                             </div>
                             <div class="border-top p-4 py-2">
-                                <button class="d-flex align-items-center gap-2 border bg-transparent p-3 py-1 rounded">Все TV <img src="./asssets/icons/arrow.svg" alt="" /></button>
+                                <button class="d-flex align-items-center gap-2 border bg-transparent p-3 py-1 rounded">Все TV <img src="./assets/icons/arrow.svg" alt="" /></button>
                             </div>
                         </div>
                     </div>
@@ -362,7 +362,7 @@
                                 </a>
                             </div>
                             <div class="border-top p-4 py-2">
-                                <button class="d-flex align-items-center gap-2 border bg-transparent p-3 py-1 rounded">Все Смартфоны <img src="./asssets/icons/arrow.svg" alt="" /></button>
+                                <button class="d-flex align-items-center gap-2 border bg-transparent p-3 py-1 rounded">Все Смартфоны <img src="./assets/icons/arrow.svg" alt="" /></button>
                             </div>
                         </div>
                     </div>
@@ -380,7 +380,7 @@
                                 </a>
                             </div>
                             <div class="border-top p-4 py-2">
-                                <button class="d-flex align-items-center gap-2 border bg-transparent p-3 py-1 rounded">Все Смартфоны <img src="./asssets/icons/arrow.svg" alt="" /></button>
+                                <button class="d-flex align-items-center gap-2 border bg-transparent p-3 py-1 rounded">Все Смартфоны <img src="./assets/icons/arrow.svg" alt="" /></button>
                             </div>
                         </div>
                     </div>
@@ -392,7 +392,7 @@
                                 </a>
                             </div>
                             <div class="border-top p-4 py-2">
-                                <button class="d-flex align-items-center gap-2 border bg-transparent p-3 py-1 rounded">Все Смартфоны <img src="./asssets/icons/arrow.svg" alt="" /></button>
+                                <button class="d-flex align-items-center gap-2 border bg-transparent p-3 py-1 rounded">Все Смартфоны <img src="./assets/icons/arrow.svg" alt="" /></button>
                             </div>
                         </div>
                     </div>
@@ -404,7 +404,7 @@
                                 </a>
                             </div>
                             <div class="border-top p-4 py-2">
-                                <button class="d-flex align-items-center gap-2 border bg-transparent p-3 py-1 rounded">Все Смартфоны <img src="./asssets/icons/arrow.svg" alt="" /></button>
+                                <button class="d-flex align-items-center gap-2 border bg-transparent p-3 py-1 rounded">Все Смартфоны <img src="./assets/icons/arrow.svg" alt="" /></button>
                             </div>
                         </div>
                     </div>
@@ -416,7 +416,7 @@
                                 </a>
                             </div>
                             <div class="border-top p-4 py-2">
-                                <button class="d-flex align-items-center gap-2 border bg-transparent p-3 py-1 rounded">Все Смартфоны <img src="./asssets/icons/arrow.svg" alt="" /></button>
+                                <button class="d-flex align-items-center gap-2 border bg-transparent p-3 py-1 rounded">Все Смартфоны <img src="./assets/icons/arrow.svg" alt="" /></button>
                             </div>
                         </div>
                     </div>
@@ -434,7 +434,7 @@
                                 </a>
                             </div>
                             <div class="border-top p-4 py-2">
-                                <button class="d-flex align-items-center gap-2 border bg-transparent p-3 py-1 rounded">Все Смартфоны <img src="./asssets/icons/arrow.svg" alt="" /></button>
+                                <button class="d-flex align-items-center gap-2 border bg-transparent p-3 py-1 rounded">Все Смартфоны <img src="./assets/icons/arrow.svg" alt="" /></button>
                             </div>
                         </div>
                     </div>
@@ -452,7 +452,7 @@
                                 </a>
                             </div>
                             <div class="border-top p-4 py-2">
-                                <button class="d-flex align-items-center gap-2 border bg-transparent p-3 py-1 rounded">Все Смартфоны <img src="./asssets/icons/arrow.svg" alt="" /></button>
+                                <button class="d-flex align-items-center gap-2 border bg-transparent p-3 py-1 rounded">Все Смартфоны <img src="./assets/icons/arrow.svg" alt="" /></button>
                             </div>
                         </div>
                     </div>
@@ -464,7 +464,7 @@
                                 </a>
                             </div>
                             <div class="border-top p-4 py-2">
-                                <button class="d-flex align-items-center gap-2 border bg-transparent p-3 py-1 rounded">Все Смартфоны <img src="./asssets/icons/arrow.svg" alt="" /></button>
+                                <button class="d-flex align-items-center gap-2 border bg-transparent p-3 py-1 rounded">Все Смартфоны <img src="./assets/icons/arrow.svg" alt="" /></button>
                             </div>
                         </div>
                     </div>
@@ -482,7 +482,7 @@
                                 </a>
                             </div>
                             <div class="border-top p-4 py-2">
-                                <button class="d-flex align-items-center gap-2 border bg-transparent p-3 py-1 rounded">Все Смартфоны <img src="./asssets/icons/arrow.svg" alt="" /></button>
+                                <button class="d-flex align-items-center gap-2 border bg-transparent p-3 py-1 rounded">Все Смартфоны <img src="./assets/icons/arrow.svg" alt="" /></button>
                             </div>
                         </div>
                     </div>
@@ -500,7 +500,7 @@
                                 </a>
                             </div>
                             <div class="border-top p-4 py-2">
-                                <button class="d-flex align-items-center gap-2 border bg-transparent p-3 py-1 rounded">Все Смартфоны <img src="./asssets/icons/arrow.svg" alt="" /></button>
+                                <button class="d-flex align-items-center gap-2 border bg-transparent p-3 py-1 rounded">Все Смартфоны <img src="./assets/icons/arrow.svg" alt="" /></button>
                             </div>
                         </div>
                     </div>
@@ -518,7 +518,7 @@
                                 </a>
                             </div>
                             <div class="border-top p-4 py-2">
-                                <button class="d-flex align-items-center gap-2 border bg-transparent p-3 py-1 rounded">Все Смартфоны <img src="./asssets/icons/arrow.svg" alt="" /></button>
+                                <button class="d-flex align-items-center gap-2 border bg-transparent p-3 py-1 rounded">Все Смартфоны <img src="./assets/icons/arrow.svg" alt="" /></button>
                             </div>
                         </div>
                     </div>
@@ -536,7 +536,7 @@
                                 </a>
                             </div>
                             <div class="border-top p-4 py-2">
-                                <button class="d-flex align-items-center gap-2 border bg-transparent p-3 py-1 rounded">Все Смартфоны <img src="./asssets/icons/arrow.svg" alt="" /></button>
+                                <button class="d-flex align-items-center gap-2 border bg-transparent p-3 py-1 rounded">Все Смартфоны <img src="./assets/icons/arrow.svg" alt="" /></button>
                             </div>
                         </div>
                     </div>

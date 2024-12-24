@@ -7,6 +7,7 @@ use App\Models\Blog;
 use App\Models\News;
 use App\Models\Product;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\App;
 
 class MainController extends Controller
 {
@@ -39,14 +40,16 @@ class MainController extends Controller
     public function singleProduct($slug)
     {
         $product = Product::where('slug', $slug)->firstOrFail();
-        return view('pages.single-product', compact('product'));
+
+        // Check if images is a string before calling json_decode
+        $images = is_string($product->images) ? json_decode($product->images, true) : $product->images;
+
+        $lang = App::getLocale();
+        $variants = $product->variants;
+
+        return view('pages.single-product', compact('product', 'images', 'lang', 'variants'));
     }
 
-//    public function singleProduct($slug)
-//    {
-//        $product = Product::where('slug', $slug)->firstOrFail();
-//        return view('frontend.single-products', compact('product'));
-//    }
 
     public function news()
     {

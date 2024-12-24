@@ -20,14 +20,14 @@
                 </div>
                 <div class="productbanner align-items-start gap-4 mt-5">
                     <div class="product_list d-flex align-items-center justify-content-center">
-                        <img src="./assets/images/headphones.png" width="250px" alt="" />
+                        <img src="/assets/images/headphones.png" width="250px" alt="" />
                     </div>
                     <div class="">
                         <div class="little_product d-flex align-items-center justify-content-center">
-                            <img src="./assets/images/airpods.png" width="120px" alt="" />
+                            <img src="/assets/images/airpods.png" width="120px" alt="" />
                         </div>
                         <div class="position-relative">
-                            <img class="bottom_product border-orange" src="./assets/images/bottom_product.png" width="120px" alt="" />
+                            <img class="bottom_product border-orange" src="/assets/images/bottom_product.png" width="120px" alt="" />
                         </div>
                     </div>
                 </div>
@@ -280,7 +280,7 @@
                                                     </svg>
                                                 </div>
                                                 @if($cheapestVariant)
-                                                    <img class="w-100 pb-4 productImage p-4" src="{{ asset('storage/' . $cheapestVariant->image) }}" alt="" />
+                                                    <img class="w-100 pb-4 productImage p-4" src="{{ asset('storage/' . $product->image) }}" alt="" />
                                                     <div class="d-flex flex-column justify-content-between product-text p-4 rounded-bottom">
                                                         <div class="d-flex align-items-end gap-3 pt-2">
                                                             @if($cheapestVariant->discount_price)

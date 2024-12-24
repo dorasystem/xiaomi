@@ -2,7 +2,7 @@
     <div class="container">
         <div class="row">
             <div class="col-lg-3 col-sm-6 mb-5 h-100">
-                <img class="w-sm-75 w-50 h-50 mb-2 rounded" src="./asssets/images/xiaomiStoreWhite.png" alt="" />
+                <img class="w-sm-75 w-50 h-50 mb-2 rounded" src="./assets/images/xiaomiStoreWhite.png" alt="" />
                 <div class="mt-3">Присоединиться к нам</div>
                 <div class="social-icons d-flex align-items-center mt-3">
                     <a target="_blank" href="https://www.youtube.com/@xiaomi">
@@ -17,7 +17,7 @@
                     </a>
                     <a href="#">
                         <div class="social">
-                            <img src="./asssets/icons/white_tg.svg" alt="" />
+                            <img src="./assets/icons/white_tg.svg" alt="" />
                         </div>
                     </a>
                 </div>
