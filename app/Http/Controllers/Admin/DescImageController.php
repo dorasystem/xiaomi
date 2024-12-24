@@ -11,116 +11,98 @@ use Illuminate\Support\Facades\Storage;
 
 class DescImageController extends Controller
 {
-    /**
-     * Display a listing of the resource.
-     */
     public function index()
     {
         $descImages = DescImage::with('product')->paginate(10);
         return view('admin.desc_images.index', compact('descImages'));
     }
-
-    /**
-     * Show the form for creating a new resource.
-     */
     public function create()
     {
         $products = Product::all();
         return view('admin.desc_images.create', compact('products'));
     }
-
-    /**
-     * Store a newly created resource in storage.
-     */
-
-
     public function store(Request $request)
     {
+        $request->validate([
+            'product_id' => 'required|exists:products,id',
+            'images.image.*' => 'required|file|mimes:jpeg,png,jpg,webp,svg,gif|max:2048',
+            'images.description_uz.*' => 'nullable|string',
+            'images.description_ru.*' => 'nullable|string',
+            'images.description_en.*' => 'nullable|string',
+        ]);
 
         foreach ($request->images['image'] as $key => $image) {
-            // Handle image upload
-            $imagePath = $image->store('desc_images', 'public');
+            $path = $image->store('products', 'public');
 
-            // Save image and descriptions in the database
-          DescImage::create([
+            DescImage::create([
                 'product_id' => $request->product_id,
-                'image' => $imagePath,  // Save image path
-                'description_uz' => $request->images['description_uz'][$key] ?? null,  // Uzbek description
-                'description_ru' => $request->images['description_ru'][$key] ?? null,  // Russian description
-                'description_en' => $request->images['description_en'][$key] ?? null,  // English description
+                'image' => $path,
+                'description_uz' => $request->images['description_uz'][$key] ?? null,
+                'description_ru' => $request->images['description_ru'][$key] ?? null,
+                'description_en' => $request->images['description_en'][$key] ?? null,
             ]);
         }
 
-        return redirect()->route('desc-images.index');
+        return redirect()->route('desc-images.index')->with('success', 'Изображения успешно добавлены.');
     }
 
-
-
-
-
-
-
-
-
-
-
-    /**
-     * Show the form for editing the specified resource.
-     */
     public function edit(DescImage $descImage)
     {
         $products = Product::all();
         return view('admin.desc_images.edit', compact('descImage', 'products'));
     }
-
-    /**
-     * Update the specified resource in storage.
-     */
-    public function update(Request $request, DescImage $descImage)
+    public function update(Request $request, $id)
     {
-        $validated = $request->validate([
-            'product_id' => 'required|exists:products,id',
-            'image' => 'nullable|image|mimes:jpeg,png,jpg,gif|max:2048',
-            'description_uz' => 'nullable|string|max:500',
-            'description_ru' => 'nullable|string|max:500',
-            'description_en' => 'nullable|string|max:500',
+        $request->validate([
+            'images.image.*' => 'nullable|file|mimes:jpeg,png,jpg',
+            'images.description_uz.*' => 'nullable|string',
+            'images.description_ru.*' => 'nullable|string',
+            'images.description_en.*' => 'nullable|string',
         ]);
 
-        // If a new image is uploaded, update the image
-        if ($request->hasFile('image')) {
-            // Delete the old image from storage
-            if ($descImage->image && Storage::exists('public/' . $descImage->image)) {
-                Storage::delete('public/' . $descImage->image);
+        $product = DescImage::findOrFail($id);
+
+        foreach ($request->images['image'] ?? [] as $index => $image) {
+            $existingImage = $product->images[$index] ?? null;
+
+            if ($image) {
+                $path = $image->store('products', 'public');
+            } else {
+                $path = $existingImage->image ?? null;
             }
 
-            // Store the new image
-            $path = $request->file('image')->store('desc_images', 'public');
-            $descImage->image = $path;
+            if ($existingImage) {
+                $existingImage->update([
+                    'image' => $path,
+                    'description_uz' => $request->images['description_uz'][$index] ?? $existingImage->description_uz,
+                    'description_ru' => $request->images['description_ru'][$index] ?? $existingImage->description_ru,
+                    'description_en' => $request->images['description_en'][$index] ?? $existingImage->description_en,
+                ]);
+            } else {
+                DescImage::create([
+                    'product_id' => $product->id,
+                    'image' => $path,
+                    'description_uz' => $request->images['description_uz'][$index] ?? null,
+                    'description_ru' => $request->images['description_ru'][$index] ?? null,
+                    'description_en' => $request->images['description_en'][$index] ?? null,
+                ]);
+            }
         }
 
-        // Update the descriptions
-        $descImage->product_id = $validated['product_id'];
-        $descImage->description_uz = $validated['description_uz'] ?? $descImage->description_uz;
-        $descImage->description_ru = $validated['description_ru'] ?? $descImage->description_ru;
-        $descImage->description_en = $validated['description_en'] ?? $descImage->description_en;
-        $descImage->save();
-
-        return redirect()->route('desc-images.index')->with('success', 'Image and descriptions updated successfully!');
+        return redirect()->route('desc-images.index')->with('success', 'Изображения успешно обновлены.');
     }
 
-    /**
-     * Remove the specified resource from storage.
-     */
-    public function destroy(DescImage $descImage)
+    public function destroy($id)
     {
-        // Delete the image from storage
-        if ($descImage->image && Storage::exists('public/' . $descImage->image)) {
-            Storage::delete('public/' . $descImage->image);
+        $image = DescImage::findOrFail($id);
+
+        if (Storage::disk('public')->exists($image->image)) {
+            Storage::disk('public')->delete($image->image);
         }
 
-        // Delete the descImage record
-        $descImage->delete();
+        $image->delete();
 
-        return redirect()->route('desc-images.index')->with('success', 'Image and description deleted successfully!');
+        return response()->json(['success' => true]);
     }
+
 }

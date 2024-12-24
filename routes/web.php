@@ -22,6 +22,7 @@ use App\Http\Controllers\Auth\AdminController;
 use App\Http\Controllers\Auth\AuthController;
 use App\Http\Controllers\Auth\SuperAdminController;
 use App\Http\Controllers\Auth\UserController;
+use App\Http\Controllers\CompareController;
 use App\Http\Controllers\LanguageController;
 use App\Http\Controllers\Page\MainController;
 use Illuminate\Support\Facades\Route;
@@ -80,6 +81,10 @@ Route::get('/news', [MainController::class, 'news'])->name('news');
 Route::get('/career', [MainController::class, 'career'])->name('career');
 Route::get('/news/{slug}', [MainController::class, 'singleNews'])->name('single.news');
 Route::get('/article/{slug}', [MainController::class, 'singleArticle'])->name('single.article');
+
+Route::get('/compare', [CompareController::class, 'compare'])->name('compare');
+
+
 
 Route::get('/cart', [CartController::class, 'cart'])->name('cart');
 Route::post('add-to-cart/{id}', [CartController::class, 'addToCart'])->name('addToCart');

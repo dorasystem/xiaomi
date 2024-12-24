@@ -18,6 +18,7 @@ return [
     'command' => 'Bizning jamoamizga qo\'shilishni xohlaysizmi?',
     'all_vacancy' => 'Barcha vakansiyalar',
     'vacancy' => 'vakansiyalar',
+    'compare' => 'Taqqoslash',
 
     'bestsellers' => 'Eng ko\'p sotilganlar',
     'buy_now' => 'Xoziroq sotib olish',

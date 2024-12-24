@@ -40,7 +40,7 @@
                                 <div class="card-header">
                                     <h5 class="card-title">Редактирование изображения для продукта</h5>
                                 </div>
-                                <div class="card-body p-4">
+                                <div class="card-body p-4" id="dynamic-images">
 
                                     <!-- Image Input Section -->
                                     <div class="form-group pb-3">
@@ -68,6 +68,10 @@
                                     </div>
 
                                 </div>
+                                <div id=""></div>
+
+                                <button type="button" id="add-more" class="btn btn-secondary mt-3">Добавить</button>
+
                             </div>
                         </div>
 
@@ -93,4 +97,44 @@
             </div>
         </main>
     </form>
+
+    <script>
+        document.getElementById('add-more').addEventListener('click', function() {
+            const container = document.getElementById('dynamic-images');
+            const newIndex = container.children.length;
+
+            const newField = `
+            <div class="form-group mt-3">
+                <label>Изображение</label>
+                <input type="file" name="images[image][${newIndex}]" class="form-control" />
+                <label for="description_uz">Описание (uz)</label>
+                <textarea name="images[description_uz][${newIndex}]" class="form-control" rows="3"></textarea>
+                <label for="description_ru">Описание (ru)</label>
+                <textarea name="images[description_ru][${newIndex}]" class="form-control" rows="3"></textarea>
+                <label for="description_en">Описание (en)</label>
+                <textarea name="images[description_en][${newIndex}]" class="form-control" rows="3"></textarea>
+            </div>
+        `;
+            container.insertAdjacentHTML('beforeend', newField);
+        });
+
+        document.querySelectorAll('.remove-image').forEach(button => {
+            button.addEventListener('click', function() {
+                const imageId = this.dataset.id;
+                fetch(`/images/${imageId}`, {
+                    method: 'DELETE',
+                    headers: {
+                        'X-CSRF-TOKEN': '{{ csrf_token() }}',
+                        'Content-Type': 'application/json',
+                    }
+                }).then(response => {
+                    if (response.ok) {
+                        this.parentElement.remove();
+                    } else {
+                        alert('Ошибка удаления изображения.');
+                    }
+                });
+            });
+        });
+    </script>
 @endsection
