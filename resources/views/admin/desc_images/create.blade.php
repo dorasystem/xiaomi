@@ -56,6 +56,7 @@
                                             </div>
                                         @endforeach
                                     </div>
+                                    <button type="button" id="add-more" class="btn btn-secondary mt-3">Добавить</button>
                                     <button type="submit" class="btn btn-primary mt-3">Save</button>
                                 </div>
                             </div>
@@ -83,4 +84,22 @@
             </div>
         </main>
     </form>
+    <script>
+        document.getElementById('add-more').addEventListener('click', function() {
+            const container = document.getElementById('dynamic-images');
+            const newField = `
+            <div class="form-group mt-3">
+                <label>Изображение</label>
+                <input type="file" name="images[image][]" class="form-control" required />
+                <label for="description_uz">Описание (uz)</label>
+                <textarea name="images[description_uz][]" class="form-control" placeholder="Описание на уз" rows="3"></textarea>
+                <label for="description_ru">Описание (ru)</label>
+                <textarea name="images[description_ru][]" class="form-control" placeholder="Описание на ру" rows="3"></textarea>
+                <label for="description_en">Описание (en)</label>
+                <textarea name="images[description_en][]" class="form-control" placeholder="Описание на англ" rows="3"></textarea>
+            </div>
+        `;
+            container.insertAdjacentHTML('beforeend', newField);
+        });
+    </script>
 @endsection
