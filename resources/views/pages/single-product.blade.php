@@ -126,9 +126,26 @@
                             <div class="fs-24 fw-bold mb-2" id="price-display">
                                 {{$variants->first()->price ?? '0'}} <span>сум</span>
                             </div>
-                            <div class="fs-14 text-grey mb-2">
-                                Вы можете выбрать рассрочку на срок от 6 до 24 месяцев при оформлении заказа
+                            <div class="">
+                                <div class="text-grey mb-2 fs-14">В рассрочку</div>
+                                <div class="text-center justify-content-center mb-3 fs-14 p-1 rounded bg-lightorange border-orange">не в кредит</div>
+                                <div class="">
+                                    <div class="d-flex gap-2 justify-content-center mb-3 fs-14 p-1 rounded bg-darkgrey">
+                                        <span class="text-orange">6</span> месяцев от <span class="text-orange">59.83 р./мес</span>
+                                    </div>
+                                    <div class="d-flex gap-2 justify-content-center mb-3 fs-14 p-1 rounded bg-darkgrey">
+                                        <span class="text-orange">12</span> месяцев от <span class="text-orange">59.83 р./мес</span>
+                                    </div>
+                                    <div class="d-flex gap-2 justify-content-center mb-3 fs-14 p-1 rounded bg-darkgrey">
+                                        <span class="text-orange">18</span> месяцев от <span class="text-orange">59.83 р./мес</span>
+                                    </div>
+                                    <div class="d-flex gap-2 justify-content-center mb-3 fs-14 p-1 rounded bg-darkgrey">
+                                        <span class="text-orange">24</span> месяцев от <span class="text-orange">59.83 р./мес</span>
+                                    </div>
+                                </div>
                             </div>
+                            <hr />
+
 
 
                             <!-- Other UI elements... -->
@@ -307,41 +324,50 @@
                     </div>
                     <div class="tab-pane fade" id="specifications" role="tabpanel" aria-labelledby="specifications-tab">
                         <div class="pt-3 border-top">
-                            <table class="table mb-0">
-                                <thead class="bg-light">
-                                <tr>
-                                    <th class="px-4 fs-14" scope="col">Общая информация</th>
-                                    <th class="px-4 fs-14" scope="col"></th>
-                                </tr>
-                                </thead>
-                                <tbody>
-                                <tr>
-                                    <td class="px-4 text-grey fs-14">Дата выхода на рынок</td>
-                                    <td class="px-4 fs-14">2024 г.</td>
-                                </tr>
-                                <tr>
-                                    <td class="px-4 text-grey fs-14">Тип</td>
-                                    <td class="px-4 fs-14">Смартфон</td>
-                                </tr>
-                                <tr>
-                                    <td class="px-4 text-grey fs-14">Операционная система</td>
-                                    <td class="px-4 fs-14">Android</td>
-                                </tr>
-                                <tr>
-                                    <td class="px-4 text-grey fs-14">RAM</td>
-                                    <td class="px-4 fs-14">12 GB</td>
-                                </tr>
-                                <tr>
-                                    <td class="px-4 border-0 text-grey fs-14">STORAGE</td>
-                                    <td class="px-4 border-0 fs-14">256 GB</td>
-                                </tr>
-                                </tbody>
-                            </table>
+
+                            <div style="display: flex;  margin-top: 20px;">
+                                <div style="width: 50%; word-wrap: break-word; list-style:disc!important;  " class="str_replace">
+                                    {!! str_replace('<br>', '', $product->content_uz) !!}
+                                </div>
+                            </div>
+
+
+{{--                            <table class="table mb-0">--}}
+{{--                                <thead class="bg-light">--}}
+{{--                                <tr>--}}
+{{--                                    <th class="px-4 fs-14" scope="col">Общая информация</th>--}}
+{{--                                    <th class="px-4 fs-14" scope="col"></th>--}}
+{{--                                </tr>--}}
+{{--                                </thead>--}}
+{{--                                <tbody>--}}
+{{--                                <tr>--}}
+{{--                                    <td class="px-4 text-grey fs-14">Дата выхода на рынок</td>--}}
+{{--                                    <td class="px-4 fs-14">2024 г.</td>--}}
+{{--                                </tr>--}}
+{{--                                <tr>--}}
+{{--                                    <td class="px-4 text-grey fs-14">Тип</td>--}}
+{{--                                    <td class="px-4 fs-14">Смартфон</td>--}}
+{{--                                </tr>--}}
+{{--                                <tr>--}}
+{{--                                    <td class="px-4 text-grey fs-14">Операционная система</td>--}}
+{{--                                    <td class="px-4 fs-14">Android</td>--}}
+{{--                                </tr>--}}
+{{--                                <tr>--}}
+{{--                                    <td class="px-4 text-grey fs-14">RAM</td>--}}
+{{--                                    <td class="px-4 fs-14">12 GB</td>--}}
+{{--                                </tr>--}}
+{{--                                <tr>--}}
+{{--                                    <td class="px-4 border-0 text-grey fs-14">STORAGE</td>--}}
+{{--                                    <td class="px-4 border-0 fs-14">256 GB</td>--}}
+{{--                                </tr>--}}
+{{--                                </tbody>--}}
+{{--                            </table>--}}
 
                         </div>
                     </div>
                     <div class="tab-pane fade" id="availability" role="tabpanel" aria-labelledby="availability-tab">
                         <div class="pt-3 border-top">
+
                             <table class="table tableshop mb-0">
                                 <thead class="bg-light">
                                 <tr>
@@ -1008,4 +1034,9 @@
         });
 
     </script>
+    <style>
+        .str_replace ul li{
+            list-style-type: disc !important;
+        }
+    </style>
 @endsection
