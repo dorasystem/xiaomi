@@ -11,7 +11,6 @@
                 >
             </div>
         </div>
-
         <!--Single prodtct  -->
         <div class="container mt-4">
             <div class="container border rounded-3 shadow-sm bg-white">
@@ -66,7 +65,7 @@
                 <div class="container p-0">
                     <div class="row">
                         <div class="col-lg-1 thumbnail-images p-0 d-lg-block d-none"
-                             style="overflow: auto; height: 530px">
+                             style="overflow: auto; height: 610px">
                             @foreach ($images as $key => $image)
                                 <button class="border p-0 bg-transparent" type="button"
                                         data-bs-target="#productCarousel"
@@ -112,10 +111,6 @@
                             <h6>{{$product['name_'.$lang]}}</h6>
                             <div class="fs-14">
                                 {!! $product['description_'.$lang] !!}
-                            </div>
-                            <div class="my-3 d-flex align-items-center gap-3 text-orange">
-                                Читать дальше
-                                <img src="/assets/icons/arrow-orange.svg" alt=""/>
                             </div>
 
                             <div class="text-grey mb-2 fs-14">Объем памяти</div>
@@ -175,7 +170,6 @@
                                 <button class="border-0 w-100 bg-darkgrey rounded py-2 px-3">Купить в один клик</button>
                             </div>
                         </div>
-
                     </div>
                 </div>
             </div>
@@ -492,7 +486,9 @@
                                     <div class="d-flex align-items-center gap-3 my-2">
                                         <div class="d-flex align-items-center gap-1">
                                             @for ($i = 1; $i <= 5; $i++)
-                                                <img src="{{ asset($i <= $comment->rating ? 'assets/icons/star-orange.svg' : 'assets/icons/star-grey.svg') }}" alt=""/>
+                                                <img
+                                                    src="{{ asset($i <= $comment->rating ? 'assets/icons/star-orange.svg' : 'assets/icons/star-grey.svg') }}"
+                                                    alt=""/>
                                             @endfor
                                         </div>
                                         <div style="width: 1px; height: 15px; background-color: #bcc1caff"></div>
@@ -506,7 +502,8 @@
                         <div class="mt-5">
                             <h1 class="fw-normal">Ваша оценка товара</h1>
 
-                            <form id="comment-form" action="{{ route('comments.store') }}" method="POST" class="container p-0">
+                            <form id="comment-form" action="{{ route('comments.store') }}" method="POST"
+                                  class="container p-0">
                                 @csrf
                                 <input type="hidden" id="product-id" name="product_id" value="{{ $product->id }}">
 
@@ -515,26 +512,32 @@
                                         <label for="rating" class="form-label">Оценка</label>
                                         <div id="testimonials" class="rating d-flex justify-content-end">
                                             @for ($i = 5; $i >= 1; $i--)
-                                                <input type="radio" name="rating" value="{{ $i }}" id="rating-{{ $i }}" required />
+                                                <input type="radio" name="rating" value="{{ $i }}" id="rating-{{ $i }}"
+                                                       required/>
                                                 <label for="rating-{{ $i }}">☆</label>
                                             @endfor
                                         </div>
                                     </div>
                                     <div class="col-md-6 mb-3">
                                         <label for="testi_name" class="form-label">Имя</label>
-                                        <input type="text" class="form-control focus_none bg-grey py-2" id="testi_name" name="name" required />
+                                        <input type="text" class="form-control focus_none bg-grey py-2" id="testi_name"
+                                               name="name" required/>
                                     </div>
                                     <div class="col-md-6 mb-3">
                                         <label for="testi_lastname" class="form-label">Фамилия</label>
-                                        <input type="text" class="form-control focus_none bg-grey py-2" id="testi_lastname" name="lastname" required />
+                                        <input type="text" class="form-control focus_none bg-grey py-2"
+                                               id="testi_lastname" name="lastname" required/>
                                     </div>
                                     <div class="col-12 mb-3">
                                         <label for="testi_message" class="form-label">Комментарий</label>
-                                        <textarea class="form-control focus_none bg-grey py-2" id="testi_message" name="message" rows="3" required></textarea>
+                                        <textarea class="form-control focus_none bg-grey py-2" id="testi_message"
+                                                  name="message" rows="3" required></textarea>
                                     </div>
 
                                     <div class="col-md-4">
-                                        <button type="submit" class="btn-orange rounded w-100 mb-3 py-3">Отправить отзыв</button>
+                                        <button type="submit" class="btn-orange rounded w-100 mb-3 py-3">Отправить
+                                            отзыв
+                                        </button>
                                     </div>
                                 </div>
                             </form>
@@ -658,173 +661,9 @@
                 <a href="javascript:void(0)" class="view_all_btn text-orange border-0 bg-transparent mb-4">Смотреть
                     все</a>
             </div>
-            <div class="swiper-wrapper">
-                <div class="swiper-slide product shadow-sm position-relative rounded">
-                    <a href="javascript:void(0)" class=" ">
-                        <div class="position-absolute like d-flex flex-column gap-3 justify-content-end">
-                            <i class="fa-regular fa-heart fs-4 hover-orange ps-1"></i>
-                            <svg class="hover-svg" width="30" height="20" viewBox="0 0 102 92" fill="none"
-                                 xmlns="http://www.w3.org/2000/svg">
-                                <rect width="11" height="92" rx="2" fill="#000"/>
-                                <rect x="23" y="22" width="11" height="70" rx="2" fill="#000"/>
-                                <rect x="46" y="45" width="11" height="47" rx="2" fill="#000"/>
-                                <rect x="69" y="23" width="11" height="69" rx="2" fill="#000"/>
-                                <rect x="91" y="45" width="11" height="47" rx="2" fill="#000"/>
-                            </svg>
-                        </div>
-                        <img class="w-100 pb-4 productImage p-4" src="./assets/images/category_tv.webp" alt=""/>
-                        <div class="d-flex flex-column justify-content-between product-text p-4 rounded-bottom">
-                            <div class="d-flex align-items-end gap-3 pt-2">
-                                <div class="fw-bold">5 300 000 UZS</div>
-                                <del class="text-grey">
-                                    <small>3 300 000 UZS</small>
-                                </del>
-                            </div>
-                            <div class="productName fw-bold">Телевизоры Xiaomi</div>
-                            <p class="text-grey">Cupidatat veniam ad officia cupidatat sit esse ex esse. Commodo culpa
-                                incididunt duis cillu</p>
-                            <div class="d-flex align-items-center justify-content-between w-100">
-                                <span class="small bg-transparent px-0">490.000 UZS <span class="text-orange">за наличные</span></span>
-                                <span class="px-2 productmonth-border small text-grey">from 500 UZS/month</span>
-                            </div>
-
-                            <div class="d-flex gap-4 mt-3">
-                                <button class="border-orange bg-transparent rounded p-1 px-3">
-                                    <img src="./assets/icons/shopping-cart.svg" alt=""/>
-                                </button>
-                                <button data-bs-toggle="modal" data-bs-target="#largeModal"
-                                        class="btn-orange rounded w-100 d-flex align-items-center gap-2 justify-content-center">
-                                    <span>Купить сразу</span>
-                                </button>
-                            </div>
-                        </div>
-                    </a>
-                </div>
-                <div class="swiper-slide product shadow-sm position-relative rounded">
-                    <a href="javascript:void(0)" class=" ">
-                        <div class="position-absolute like d-flex flex-column gap-3 justify-content-end">
-                            <i class="fa-regular fa-heart fs-4 hover-orange ps-1"></i>
-                            <svg class="hover-svg" width="30" height="20" viewBox="0 0 102 92" fill="none"
-                                 xmlns="http://www.w3.org/2000/svg">
-                                <rect width="11" height="92" rx="2" fill="#000"/>
-                                <rect x="23" y="22" width="11" height="70" rx="2" fill="#000"/>
-                                <rect x="46" y="45" width="11" height="47" rx="2" fill="#000"/>
-                                <rect x="69" y="23" width="11" height="69" rx="2" fill="#000"/>
-                                <rect x="91" y="45" width="11" height="47" rx="2" fill="#000"/>
-                            </svg>
-                        </div>
-                        <img class="w-100 pb-4 productImage p-4" src="./assets/images/category_tv.webp" alt=""/>
-                        <div class="d-flex flex-column justify-content-between product-text p-4 rounded-bottom">
-                            <div class="d-flex align-items-end gap-3 pt-2">
-                                <div class="fw-bold">5 300 000 UZS</div>
-                                <del class="text-grey">
-                                    <small>3 300 000 UZS</small>
-                                </del>
-                            </div>
-                            <div class="productName fw-bold">Телевизоры Xiaomi</div>
-                            <p class="text-grey">Cupidatat veniam ad officia cupidatat sit esse ex esse. Commodo culpa
-                                incididunt duis cillu</p>
-                            <div class="d-flex align-items-center justify-content-between w-100">
-                                <span class="small bg-transparent px-0">490.000 UZS <span class="text-orange">за наличные</span></span>
-                                <span class="px-2 productmonth-border small text-grey">from 500 UZS/month</span>
-                            </div>
-
-                            <div class="d-flex gap-4 mt-3">
-                                <button class="border-orange bg-transparent rounded p-1 px-3">
-                                    <img src="./assets/icons/shopping-cart.svg" alt=""/>
-                                </button>
-                                <button data-bs-toggle="modal" data-bs-target="#largeModal"
-                                        class="btn-orange rounded w-100 d-flex align-items-center gap-2 justify-content-center">
-                                    <span>Купить сразу</span>
-                                </button>
-                            </div>
-                        </div>
-                    </a>
-                </div>
-                <div class="swiper-slide product shadow-sm position-relative rounded">
-                    <a href="javascript:void(0)" class=" ">
-                        <div class="position-absolute like d-flex flex-column gap-3 justify-content-end">
-                            <i class="fa-regular fa-heart fs-4 hover-orange ps-1"></i>
-                            <svg class="hover-svg" width="30" height="20" viewBox="0 0 102 92" fill="none"
-                                 xmlns="http://www.w3.org/2000/svg">
-                                <rect width="11" height="92" rx="2" fill="#000"/>
-                                <rect x="23" y="22" width="11" height="70" rx="2" fill="#000"/>
-                                <rect x="46" y="45" width="11" height="47" rx="2" fill="#000"/>
-                                <rect x="69" y="23" width="11" height="69" rx="2" fill="#000"/>
-                                <rect x="91" y="45" width="11" height="47" rx="2" fill="#000"/>
-                            </svg>
-                        </div>
-
-                        <img class="w-100 pb-4 productImage p-4" src="./assets/images/category_tv.webp" alt=""/>
-                        <div class="d-flex flex-column justify-content-between product-text p-4 rounded-bottom">
-                            <div class="d-flex align-items-end gap-3 pt-2">
-                                <div class="fw-bold">5 300 000 UZS</div>
-                                <del class="text-grey">
-                                    <small>3 300 000 UZS</small>
-                                </del>
-                            </div>
-                            <div class="productName fw-bold">Телевизоры Xiaomi</div>
-                            <p class="text-grey">Cupidatat veniam ad officia cupidatat sit esse ex esse. Commodo culpa
-                                incididunt duis cillu</p>
-                            <div class="d-flex align-items-center justify-content-between w-100">
-                                <span class="small bg-transparent px-0">490.000 UZS <span class="text-orange">за наличные</span></span>
-                                <span class="px-2 productmonth-border small text-grey">from 500 UZS/month</span>
-                            </div>
-
-                            <div class="d-flex gap-4 mt-3">
-                                <button class="border-orange bg-transparent rounded p-1 px-3">
-                                    <img src="./assets/icons/shopping-cart.svg" alt=""/>
-                                </button>
-                                <button data-bs-toggle="modal" data-bs-target="#largeModal"
-                                        class="btn-orange rounded w-100 d-flex align-items-center gap-2 justify-content-center">
-                                    <span>Купить сразу</span>
-                                </button>
-                            </div>
-                        </div>
-                    </a>
-                </div>
-                <div class="swiper-slide product shadow-sm position-relative rounded">
-                    <a href="javascript:void(0)" class=" ">
-                        <div class="position-absolute like d-flex flex-column gap-3 justify-content-end">
-                            <i class="fa-regular fa-heart fs-4 hover-orange ps-1"></i>
-                            <svg class="hover-svg" width="30" height="20" viewBox="0 0 102 92" fill="none"
-                                 xmlns="http://www.w3.org/2000/svg">
-                                <rect width="11" height="92" rx="2" fill="#000"/>
-                                <rect x="23" y="22" width="11" height="70" rx="2" fill="#000"/>
-                                <rect x="46" y="45" width="11" height="47" rx="2" fill="#000"/>
-                                <rect x="69" y="23" width="11" height="69" rx="2" fill="#000"/>
-                                <rect x="91" y="45" width="11" height="47" rx="2" fill="#000"/>
-                            </svg>
-                        </div>
-                        <img class="w-100 pb-4 productImage p-4" src="./assets/images/category_tv.webp" alt=""/>
-                        <div class="d-flex flex-column justify-content-between product-text p-4 rounded-bottom">
-                            <div class="d-flex align-items-end gap-3 pt-2">
-                                <div class="fw-bold">5 300 000 UZS</div>
-                                <del class="text-grey">
-                                    <small>3 300 000 UZS</small>
-                                </del>
-                            </div>
-                            <div class="productName fw-bold">Телевизоры Xiaomi</div>
-                            <p class="text-grey">Cupidatat veniam ad officia cupidatat sit esse ex esse. Commodo culpa
-                                incididunt duis cillu</p>
-                            <div class="d-flex align-items-center justify-content-between w-100">
-                                <span class="small bg-transparent px-0">490.000 UZS <span class="text-orange">за наличные</span></span>
-                                <span class="px-2 productmonth-border small text-grey">from 500 UZS/month</span>
-                            </div>
-
-                            <div class="d-flex gap-4 mt-3">
-                                <button class="border-orange bg-transparent rounded p-1 px-3">
-                                    <img src="./assets/icons/shopping-cart.svg" alt=""/>
-                                </button>
-                                <button data-bs-toggle="modal" data-bs-target="#largeModal"
-                                        class="btn-orange rounded w-100 d-flex align-items-center gap-2 justify-content-center">
-                                    <span>Купить сразу</span>
-                                </button>
-                            </div>
-                        </div>
-                    </a>
-                </div>
-            </div>
+            {{--   Product slide start--}}
+            <x-page.product.product-slide />
+            {{--   Product slide end--}}
             <!-- Navigation buttons (optional) -->
             <div id="product-next" class="swiper-button-next end-0"></div>
             <div id="product-prev" class="swiper-button-prev start-0"></div>
