@@ -65,6 +65,7 @@ class MainController extends Controller
 //        return view('pages.single-product', compact('product'));
 //    }
 
+
     public function news()
     {
         $news = News::all();

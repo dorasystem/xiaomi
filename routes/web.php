@@ -67,6 +67,7 @@ Route::get('/blog/{slug}', [MainController::class, 'singleBlog'])->name('single.
 Route::get('/products', [MainController::class, 'products'])->name('products');
 Route::get('/single-product', [MainController::class, 'singleProduct'])->name('single.product');
 //Route::get('/product{slug}', [MainController::class, 'singleProduct'])->name('single.product');
+
 Route::get('/news', [MainController::class, 'news'])->name('news');
 Route::get('/career', [MainController::class, 'career'])->name('career');
 Route::get('/news/{slug}', [MainController::class, 'singleNews'])->name('single.news');
