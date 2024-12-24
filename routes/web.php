@@ -91,6 +91,7 @@ Route::post('add-to-cart/{id}', [CartController::class, 'addToCart'])->name('add
 Route::post('/add-to-cart', [CartController::class, 'addToCart'])->name('cart.add');
 Route::delete('/remove-from-cart', [CartController::class, 'removeFromCart'])->name('removeFromCart');
 Route::delete('/variants/{id}', [ProductController::class, 'deleteVariant']);
+Route::get('/favorites', [CartController::class, 'favorites'])->name('favorites');
 
 Route::post('/comments', [CommentController::class, 'store'])->name('comments.store');
 
