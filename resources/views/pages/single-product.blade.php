@@ -127,21 +127,23 @@
                                 {{$variants->first()->price ?? '0'}} <span>сум</span>
                             </div>
                             <div class="">
+                                @foreach($variants as $variant)
                                 <div class="text-grey mb-2 fs-14">В рассрочку</div>
                                 <div class="text-center justify-content-center mb-3 fs-14 p-1 rounded bg-lightorange border-orange">не в кредит</div>
                                 <div class="">
                                     <div class="d-flex gap-2 justify-content-center mb-3 fs-14 p-1 rounded bg-darkgrey">
-                                        <span class="text-orange">6</span> месяцев от <span class="text-orange">59.83 р./мес</span>
+                                        <span class="text-orange">3</span> месяцев от <span class="text-orange">{{$variant->price_3}} р./мес</span>
                                     </div>
                                     <div class="d-flex gap-2 justify-content-center mb-3 fs-14 p-1 rounded bg-darkgrey">
-                                        <span class="text-orange">12</span> месяцев от <span class="text-orange">59.83 р./мес</span>
+                                        <span class="text-orange">6</span> месяцев от <span class="text-orange">{{$variant->price_6}} р./мес</span>
                                     </div>
                                     <div class="d-flex gap-2 justify-content-center mb-3 fs-14 p-1 rounded bg-darkgrey">
-                                        <span class="text-orange">18</span> месяцев от <span class="text-orange">59.83 р./мес</span>
+                                        <span class="text-orange">12</span> месяцев от <span class="text-orange">{{$variant->price_12}} р./мес</span>
                                     </div>
                                     <div class="d-flex gap-2 justify-content-center mb-3 fs-14 p-1 rounded bg-darkgrey">
-                                        <span class="text-orange">24</span> месяцев от <span class="text-orange">59.83 р./мес</span>
+                                        <span class="text-orange">24</span> месяцев от <span class="text-orange">{{$variant->price_24}} р./мес</span>
                                     </div>
+                                    @endforeach
                                 </div>
                             </div>
                             <hr />
