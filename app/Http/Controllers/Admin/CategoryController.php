@@ -33,7 +33,7 @@ class CategoryController extends Controller
             'name_ru' => 'required|string|max:255',
             'name_en' => 'required|string|max:255',
             'slug' => 'required|unique:categories',
-            'image' => 'nullable|image|mimes:jpeg,png,jpg,gif,svg|max:2048',
+            'image' => 'nullable|image|mimes:jpeg,png,jpg,gif,svg,webp|max:2048',
         ]);
 
         $imagePath = null;
@@ -70,7 +70,7 @@ class CategoryController extends Controller
             'name_ru' => 'nullable|string|max:255',
             'name_en' => 'nullable|string|max:255',
             'slug' => 'nullable|unique:categories,slug,' . $category->id,
-            'image' => 'nullable|image|mimes:jpeg,png,jpg,gif,svg|max:2048',
+            'image' => 'nullable|image|mimes:jpeg,png,jpg,gif,svg,webp|max:2048',
         ]);
 
         if ($request->hasFile('image')) {
