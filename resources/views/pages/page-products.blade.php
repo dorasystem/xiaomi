@@ -268,7 +268,7 @@
                                     @endphp
                                     <div class="col-lg-4 col-md-6 mb-4">
                                         <div class="product border position-relative rounded">
-                                            <a href="{{ route('single.product', $product->slug) }}" class="">
+                                            <a href="{{ route('single.product', ['slug' => $product->slug]) }}" class="">
                                             <div class="position-absolute like d-flex flex-column gap-3 justify-content-end">
                                                     <i class="fa-regular fa-heart fs-4 hover-orange ps-1"></i>
                                                     <svg class="hover-svg" width="30" height="20" viewBox="0 0 102 92" fill="none" xmlns="http://www.w3.org/2000/svg">
