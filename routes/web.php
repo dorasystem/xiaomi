@@ -95,5 +95,7 @@ Route::get('/favorites', [CartController::class, 'favorites'])->name('favorites'
 
 Route::post('/comments', [CommentController::class, 'store'])->name('comments.store');
 
+Route::get('/products/search', [MainController::class, 'productSearch'])->name('products.search');
+
 
 Route::get('locale/{lang}',[LanguageController::class, 'setLocale']);

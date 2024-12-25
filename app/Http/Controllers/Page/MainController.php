@@ -108,4 +108,15 @@ class MainController extends Controller
         })->first();
         return view('pages.single-article', compact('articles', 'locale'));
     }
+
+    public function  productSearch(Request $request)
+    {
+        $lang = app()->getLocale();
+        $search = $request->input('search');
+        $products = Product::where('name_'.$lang, 'like', '%' . $search . '%')
+        ->orWhere('description_'.$lang, 'like', '%' . $search . '%')
+        ->get();
+
+        return view('pages.search-products', compact('products'));
+    }
 }
