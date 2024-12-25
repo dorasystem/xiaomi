@@ -193,7 +193,7 @@ $lang = \Illuminate\Support\Facades\App::getLocale();
                             {!! $new['title_' . $lang] ?? 'Сравнение Xiaomi 14T и Xiaomi 14T Pro: Какой <br/> выбрать?' !!}
                         </div>
                         <small class="fw-bold border-top pt-3">
-                            {{ $new->date ?? 'Опубликовано 7 октября в 15:31' }}</small>
+                            {{ \Carbon\Carbon::parse($new->date)->format('d.m.Y') }}</small>
                     </div>
                 </div>
 
@@ -241,7 +241,8 @@ $lang = \Illuminate\Support\Facades\App::getLocale();
                                     <a href="{{ route('single.news', ['slug' => $item->getSlugByLanguage($lang)]) }}"
                                         class="d-flex align-items-start gap-3 justify-content-between">
                                         <div class="">
-                                            <div class="text-grey">{{ $item->date }}</div>
+                                            <div class="text-grey">
+                                                {{ \Carbon\Carbon::parse($item->date)->format('d.m.Y') }}</div>
                                             <h5>{{ $item['title_' . $lang] ?? 'Сравнение Xiaomi 14T и Xiaomi 14T Pro' }}
                                             </h5>
                                         </div>
@@ -254,54 +255,7 @@ $lang = \Illuminate\Support\Facades\App::getLocale();
                                     <hr />
                                 @endforeach
                             @else
-                                <div class="d-flex align-items-start gap-3 justify-content-between">
-                                    <div class="">
-                                        <div class="text-grey">7 октября в 15:31</div>
-                                        <h5>Сравнение Xiaomi 14T и Xiaomi 14T Pro</h5>
-                                    </div>
-                                    <div class="">
-                                        <img class="newImg rounded"
-                                            src="https://xiaomistore.md/media/newsxiaomi-14t-and-14t-pro-2.webp"
-                                            alt="" />
-                                    </div>
-                                </div>
-                                <hr />
-                                <div class="d-flex align-items-start gap-3 justify-content-between">
-                                    <div class="">
-                                        <div class="text-grey">7 октября в 15:31</div>
-                                        <h5>Сравнение Xiaomi 14T и Xiaomi 14T Pro</h5>
-                                    </div>
-                                    <div class="">
-                                        <img class="newImg rounded"
-                                            src="https://xiaomistore.md/media/newsxiaomi-14t-and-14t-pro-2.webp"
-                                            alt="" />
-                                    </div>
-                                </div>
-                                <hr />
-                                <div class="d-flex align-items-start gap-3 justify-content-between">
-                                    <div class="">
-                                        <div class="text-grey">7 октября в 15:31</div>
-                                        <h5>Сравнение Xiaomi 14T и Xiaomi 14T Pro</h5>
-                                    </div>
-                                    <div class="">
-                                        <img class="newImg rounded"
-                                            src="https://xiaomistore.md/media/newsxiaomi-14t-and-14t-pro-2.webp"
-                                            alt="" />
-                                    </div>
-                                </div>
-                                <hr />
-                                <div class="d-flex align-items-start gap-3 justify-content-between">
-                                    <div class="">
-                                        <div class="text-grey">7 октября в 15:31</div>
-                                        <h5>Сравнение Xiaomi 14T и Xiaomi 14T Pro</h5>
-                                    </div>
-                                    <div class="">
-                                        <img class="newImg rounded"
-                                            src="https://xiaomistore.md/media/newsxiaomi-14t-and-14t-pro-2.webp"
-                                            alt="" />
-                                    </div>
-                                </div>
-                                <hr />
+                                <h4>@lang('home.no_other_news')</h4>
                             @endif
                         </div>
                         <div class="tab-pane fade show" id="popular" role="tabpanel" aria-labelledby="popular-tab">
@@ -309,7 +263,8 @@ $lang = \Illuminate\Support\Facades\App::getLocale();
                                 @foreach ($news2 as $item)
                                     <div class="d-flex align-items-start gap-3 justify-content-between">
                                         <div class="">
-                                            <div class="text-grey">{{ $item->date }}</div>
+                                            <div class="text-grey">
+                                                {{ \Carbon\Carbon::parse($item->date)->format('d.m.Y') }}</div>
                                             <h5>{{ $item['title_' . $lang] }}</h5>
                                         </div>
                                         <div class="">
@@ -320,54 +275,7 @@ $lang = \Illuminate\Support\Facades\App::getLocale();
                                     <hr />
                                 @endforeach
                             @else
-                                <div class="d-flex align-items-start gap-3 justify-content-between">
-                                    <div class="">
-                                        <div class="text-grey">7 октября в 15:31</div>
-                                        <h5>Сравнение Xiaomi 14T и Xiaomi 14T Pro</h5>
-                                    </div>
-                                    <div class="">
-                                        <img class="newImg rounded"
-                                            src="https://xiaomistore.md/media/news/poco-m6-pro-9blnk72.webp"
-                                            alt="" />
-                                    </div>
-                                </div>
-                                <hr />
-                                <div class="d-flex align-items-start gap-3 justify-content-between">
-                                    <div class="">
-                                        <div class="text-grey">7 октября в 15:31</div>
-                                        <h5>Сравнение Xiaomi 14T и Xiaomi 14T Pro</h5>
-                                    </div>
-                                    <div class="">
-                                        <img class="newImg rounded"
-                                            src="https://xiaomistore.md/media/news/poco-m6-pro-9blnk72.webp"
-                                            alt="" />
-                                    </div>
-                                </div>
-                                <hr />
-                                <div class="d-flex align-items-start gap-3 justify-content-between">
-                                    <div class="">
-                                        <div class="text-grey">7 октября в 15:31</div>
-                                        <h5>Сравнение Xiaomi 14T и Xiaomi 14T Pro</h5>
-                                    </div>
-                                    <div class="">
-                                        <img class="newImg rounded"
-                                            src="https://xiaomistore.md/media/news/poco-m6-pro-9blnk72.webp"
-                                            alt="" />
-                                    </div>
-                                </div>
-                                <hr />
-                                <div class="d-flex align-items-start gap-3 justify-content-between">
-                                    <div class="">
-                                        <div class="text-grey">7 октября в 15:31</div>
-                                        <h5>Сравнение Xiaomi 14T и Xiaomi 14T Pro</h5>
-                                    </div>
-                                    <div class="">
-                                        <img class="newImg rounded"
-                                            src="https://xiaomistore.md/media/news/poco-m6-pro-9blnk72.webp"
-                                            alt="" />
-                                    </div>
-                                </div>
-                                <hr />
+                                <h4>@lang('home.no_other_news')</h4>
                             @endif
                         </div>
                     </div>
@@ -424,9 +332,7 @@ $lang = \Illuminate\Support\Facades\App::getLocale();
             <div class="container py-4">
                 <div class="d-flex align-items-center justify-content-between">
                     <h1>@lang('home.video_reviews')</h1>
-                    <button class="border border-white border-1 bg-transparent rounded text-white p-2 d-sm-block d-none">
-                        @lang('home.all_video_reviews') <img src="/assets/icons/arrow_white.svg" alt="" />
-                    </button>
+
                 </div>
                 <div class="videoBanner my-2 rounded d-flex align-items-center justify-content-center">
                     <div class="video bg-white rounded-circle d-flex align-items-center justify-content-center">
@@ -440,7 +346,7 @@ $lang = \Illuminate\Support\Facades\App::getLocale();
                         allowfullscreen></iframe>
                 </div>
 
-                <div class="row mt-5">
+                <div class="row mt-5 d-none">
                     <div class="col-lg-7 mb-3">
                         <div class="fs-2">Xiaomi Fan Unboxing | Titan Gray | Xiaomi 14T Pro</div>
                         <hr />
@@ -464,59 +370,10 @@ $lang = \Illuminate\Support\Facades\App::getLocale();
                 </div>
             </div>
         </div>
-        <!-- contact -->
-        <div class="container">
-            <div class="row">
-                <div class="col-lg-6 pt-5 pe-lg-5 pe-2">
-                    <h1 class="mb-4">@lang('home.our_shops')</h1>
-                    <!-- Tabs Navigation -->
-                    <ul class="border-0 flex-wrap ps-0 nav-tabs gap-3 addresses mb-0" id="tabsNavigation" role="tablist">
-                        @foreach ($locations as $key => $location)
-                            <li class="nav-item" role="presentation">
-                                <button
-                                    class="locationtab d-flex gap-4 align-items-center w-100 border-0 border-top py-4 bg-transparent {{ $key === 0 ? 'active' : '' }}"
-                                    id="tab{{ $location['id'] }}-button" data-bs-toggle="tab"
-                                    data-bs-target="#tab{{ $location['id'] }}-content" type="button" role="tab"
-                                    aria-controls="tab{{ $location['id'] }}-content"
-                                    aria-selected="{{ $key === 0 ? 'true' : 'false' }}">
-                                    <div class="shop-icon p-2 rounded"><i class="fa-solid fa-shop"></i></div>
-                                    <div class="d-flex flex-column align-items-start">
-                                        <h5>{{ $location['address_' . $lang] }}</h5>
-                                        <div>{{ $location['title_' . $lang] }}</div>
-                                    </div>
-                                </button>
-                            </li>
-                        @endforeach
-                    </ul>
-
-                </div>
-                <div class="col-lg-6">
-                    <!-- Tabs Content -->
-                    <div class="tab-content" id="tabsContent">
-                        <div class="tab-pane fade show active" id="tab1-content" role="tabpanel"
-                            aria-labelledby="tab1-button">
-                            <div id="map1" class="map-container"></div>
-                        </div>
-                        <div class="tab-pane fade pt-3" id="tab2-content" role="tabpanel" aria-labelledby="tab2-button">
-                            <div id="map2" class="map-container"></div>
-                        </div>
-                        <div class="tab-pane fade pt-3" id="tab3-content" role="tabpanel" aria-labelledby="tab3-button">
-                            <div id="map3" class="map-container"></div>
-                        </div>
-                        <div class="tab-pane fade pt-3" id="tab4-content" role="tabpanel" aria-labelledby="tab4-button">
-                            <div id="map4" class="map-container"></div>
-                        </div>
-                        <div class="tab-pane fade pt-3" id="tab5-content" role="tabpanel" aria-labelledby="tab5-button">
-                            <div id="map5" class="map-container"></div>
-                        </div>
-                        <div class="tab-pane fade pt-3" id="tab6-content" role="tabpanel" aria-labelledby="tab6-button">
-                            <div id="map6" class="map-container"></div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
+        {{-- Contact --}}
+        <x-page.contact />
     </main>
+
     {{--    <a href="javascript: void(0);" type="button" onclick="addToCart({{ $product->id }}, '{{ $product->name_uz }}', {{ $product->price }})" class="icon-cart d-block border-0"></a> --}}
 
 

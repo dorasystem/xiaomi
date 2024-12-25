@@ -56,4 +56,8 @@ return [
     'full_payment' => 'Полная оплата',
     'month' => 'месяц',
     'basket' => 'В корзину',
+    'katalog' => 'Каталог',
+    'similar_product' => 'Похожие товары',
+    'no_other_news' => 'Других новостей пока нет',
+
 ];

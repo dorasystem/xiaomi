@@ -1,5 +1,6 @@
 <?php
 $products = \App\Models\Product::all();
+$lang = \Illuminate\Support\Facades\App::getLocale();
 ?>
 
 <div class="swiper-wrapper">
@@ -41,10 +42,10 @@ $products = \App\Models\Product::all();
                         @endif
                     </div>
                     <a href="{{ route('single.product', $product->slug) }}">
-                        <div class="productName fw-bold"> {{ \Str::words($product->name_uz, 3) }}</div>
+                        <div class="productName fw-bold"> {{ \Str::words($product->{'name_' . $lang}, 3) }}</div>
                     </a>
                     <a href="{{ route('single.product', $product->slug) }}">
-                        <p class="text-grey"> {!! \Str::words($product->description_uz, 15) !!}</p>
+                        <p class="text-grey"> {!! \Str::words($product->{'description_' . $lang}, 15) !!}</p>
                     </a>
                     <div class="d-flex align-items-center justify-content-between w-100">
                         <span
