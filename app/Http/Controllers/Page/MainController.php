@@ -10,6 +10,7 @@ use App\Models\Comment;
 use App\Models\History;
 use App\Models\News;
 use App\Models\Product;
+use App\Models\Store;
 use App\Models\Vacancy;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\App;
@@ -20,10 +21,12 @@ class MainController extends Controller
 {
     public function index()
     {
+        $locations = Store::all();
+        $products = Product::latest()->take(6)->get();
         $new = News::latest()->first();
         $news1 = News::latest()->skip(1)->take(4)->get();
         $news2 = News::latest()->skip(4)->take(4)->get();
-        return view('pages.home', compact('new', 'news1', 'news2'));
+        return view('pages.home', compact('new', 'news1', 'news2', 'products','locations'));
     }
     public function about()
     {
@@ -35,7 +38,9 @@ class MainController extends Controller
     }
     public function contact()
     {
-        return view('pages.contact');
+        $lang = app()->getLocale();
+        $locations = Store::all();
+        return view('pages.contact',compact('locations','lang'));
     }
     public function blog()
     {
@@ -60,15 +65,15 @@ class MainController extends Controller
 
     public function singleProduct($slug)
     {
+        $products = Product::latest()->take(6)->get();
         $product = Product::where('slug', $slug)->firstOrFail();
         $comments = Comment::where('product_id', $product->id)->latest()->get();
-        // Check if images is a string before calling json_decode
         $images = is_string($product->images) ? json_decode($product->images, true) : $product->images;
 
         $lang = App::getLocale();
         $variants = $product->variants;
 
-        return view('pages.single-product', compact('product', 'images', 'lang', 'variants','comments'));
+        return view('pages.single-product', compact('product', 'images', 'lang', 'variants','comments','products'));
     }
 
 
@@ -87,12 +92,13 @@ class MainController extends Controller
 
     public function singleNews($slug)
     {
+        $products = Product::latest()->take(6)->get();
         $locale = app()->getLocale();
         $news = News::all()->filter(function ($news) use ($locale, $slug) {
             return $news->getSlugByLanguage($locale) === $slug;
         })->first();
         $otherNews = News::latest()->skip(1)->take(4)->get();
-        return view('pages.single-news', compact('news', 'otherNews', 'locale'));
+        return view('pages.single-news', compact('news', 'otherNews', 'locale','products'));
     }
     public function singleArticle($slug)
     {
@@ -101,5 +107,16 @@ class MainController extends Controller
             return $articles->getSlugByLanguage($locale) === $slug;
         })->first();
         return view('pages.single-article', compact('articles', 'locale'));
+    }
+
+    public function  productSearch(Request $request)
+    {
+        $lang = app()->getLocale();
+        $search = $request->input('search');
+        $products = Product::where('name_'.$lang, 'like', '%' . $search . '%')
+        ->orWhere('description_'.$lang, 'like', '%' . $search . '%')
+        ->get();
+
+        return view('pages.search-products', compact('products'));
     }
 }

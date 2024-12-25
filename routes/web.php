@@ -15,6 +15,7 @@ use App\Http\Controllers\Admin\HistoryController;
 use App\Http\Controllers\Admin\NewsController;
 use App\Http\Controllers\Admin\ProductController;
 use App\Http\Controllers\Admin\ServiceController;
+use App\Http\Controllers\Admin\StoreController;
 use App\Http\Controllers\Admin\VacancyController;
 use App\Http\Controllers\Admin\VariantController;
 use App\Http\Controllers\Auth\AdminController;
@@ -42,6 +43,7 @@ Route::middleware(['auth'])->prefix('dashboard')->group(function () {
     Route::resource('abouts', AboutController::class);
     Route::resource('news', NewsController::class);
     Route::resource('articles', ArticleController::class);
+    Route::resource('stores', StoreController::class);
     Route::resource('blogs', BlogController::class);
     Route::resource('services', ServiceController::class);
     Route::resource('contacts', ContactController::class);
@@ -72,7 +74,7 @@ Route::get('/blog/{slug}', [MainController::class, 'singleBlog'])->name('single.
 
 
 Route::get('/products', [MainController::class, 'products'])->name('products');
-Route::get('/single-product/{slug}', [MainController::class, 'singleProduct'])->name('single.product');
+Route::get('/product/{slug}', [MainController::class, 'singleProduct'])->name('single.product');
 //Route::get('/product{slug}', [MainController::class, 'singleProduct'])->name('single.product');
 
 Route::get('/news', [MainController::class, 'news'])->name('news');
@@ -89,8 +91,11 @@ Route::post('add-to-cart/{id}', [CartController::class, 'addToCart'])->name('add
 Route::post('/add-to-cart', [CartController::class, 'addToCart'])->name('cart.add');
 Route::delete('/remove-from-cart', [CartController::class, 'removeFromCart'])->name('removeFromCart');
 Route::delete('/variants/{id}', [ProductController::class, 'deleteVariant']);
+Route::get('/favorites', [CartController::class, 'favorites'])->name('favorites');
 
 Route::post('/comments', [CommentController::class, 'store'])->name('comments.store');
+
+Route::get('/products/search', [MainController::class, 'productSearch'])->name('products.search');
 
 
 Route::get('locale/{lang}',[LanguageController::class, 'setLocale']);

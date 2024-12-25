@@ -28,7 +28,7 @@
                             <img src="/assets/images/airpods.png" width="120px" alt="" />
                         </div>
                         <div class="position-relative">
-                            <img class="bottom_product border-orange" src="/assets/images/bottom_product.webp" width="120px"
+                            <img class="bottom_product border-orange" src="/assets/images/bottom_product.png" width="120px"
                                 alt="" />
                         </div>
                     </div>
@@ -290,8 +290,7 @@
                                 @endphp
                                 <div class="col-lg-4 col-md-6 mb-4">
                                     <div class="product border position-relative rounded">
-                                        <a href="{{ route('single.product', ['slug' => $product->slug]) }}"
-                                            class="">
+                                        <a href="{{ route('single.product', $product->slug) }}" class="">
                                             <div
                                                 class="position-absolute like d-flex flex-column gap-3 justify-content-end">
                                                 <i class="fa-regular fa-heart fs-4 hover-orange ps-1"></i>
@@ -360,8 +359,6 @@
                                     </div>
                                 </div>
                             @endforeach
-
-
                         </div>
                     </div>
                 </div>

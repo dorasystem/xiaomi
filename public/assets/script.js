@@ -164,7 +164,7 @@ toggleButtons.forEach((toggleButton) => {
 });
 
 katalog.addEventListener("click", (event) => {
-    event.stopPropagation(); 
+    event.stopPropagation();
 });
 
 
@@ -187,6 +187,7 @@ document.addEventListener("click", function (event) {
         document.body.style.overflow = "auto";
     }
 });
+
 
 // Tashqi joyga bosilganda Katalogni yopish
 document.addEventListener("click", function (event) {

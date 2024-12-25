@@ -421,6 +421,7 @@ a.active {
     height: 600px;
     padding: 37px 45px;
     background-size: cover;
+    background-position: center;
 }
 .newImg {
     width: 150px;

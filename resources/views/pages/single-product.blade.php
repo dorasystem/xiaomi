@@ -1,17 +1,19 @@
 @extends('layouts.page')
+<?php
+    $lang = \Illuminate\Support\Facades\App::getLocale();
+?>
 
 @section('content')
     <main>
         <div class="mt-4 container d-sm-block d-none">
             <div class="d-flex align-items-center gap-3">
                 <a href="/" class="text-grey fw-bold text-lowercase fs-14"
-                >Главная страница / <a href="{{route('products')}}" class="text-grey fw-bold text-lowercase fs-14">Телефоны
+                >@lang('home.home') / <a href="{{route('products')}}" class="text-grey fw-bold text-lowercase fs-14">Телефоны
                         /</a>
                     <span class="text-dark fw-bold text-lowercase fs-14">{{$product['name_'.$lang]}}</span></a
                 >
             </div>
         </div>
-
         <!--Single prodtct  -->
         <div class="container mt-4">
             <div class="container border rounded-3 shadow-sm bg-white">
@@ -19,7 +21,7 @@
                     <div class="col-md-9 d-flex align-items-center gap-5 py-3">
                         <div class="d-lg-flex d-none align-items-center gap-2">
                             <img width="24px" style="transform: rotate(225deg)" src="/assets/icons/arrow.svg" alt=""/>
-                            <span>Назад</span>
+                            <span>@lang('home.back')</span>
                         </div>
                         <div
                             class="productName text-end fs-24">{{$product['name_'.$lang]}} {{$product['color_'.$lang]}}</div>
@@ -54,19 +56,19 @@
                                     />
                                 </g>
                             </svg>
-                            <span class="fs-14">Сравнить</span>
+                            <span class="fs-14">@lang('home.compare')</span>
                         </button>
                         <button
                             class="w-100 my-md-0 my-2 bg-transparent fs-14 px-3 justify-content-center py-1 d-flex align-items-center gap-3 border rounded-2">
                             <i class="fa-regular fa-heart"></i>
-                            <span class="fs-14">Сохранить</span>
+                            <span class="fs-14">@lang('home.save')</span>
                         </button>
                     </div>
                 </div>
                 <div class="container p-0">
                     <div class="row">
                         <div class="col-lg-1 thumbnail-images p-0 d-lg-block d-none"
-                             style="overflow: auto; height: 530px">
+                             style="overflow: auto; height: 610px">
                             @foreach ($images as $key => $image)
                                 <button class="border p-0 bg-transparent" type="button"
                                         data-bs-target="#productCarousel"
@@ -108,17 +110,12 @@
 
                         <!-- O'ng tarafdagi ma'lumotlar -->
                         <div class="col-lg-4 p-4 border-start">
-                            <div class="text-grey my-1">Код товара : MI000025007</div>
                             <h6>{{$product['name_'.$lang]}}</h6>
                             <div class="fs-14">
                                 {!! $product['description_'.$lang] !!}
                             </div>
-                            <div class="my-3 d-flex align-items-center gap-3 text-orange">
-                                Читать дальше
-                                <img src="/assets/icons/arrow-orange.svg" alt=""/>
-                            </div>
 
-                            <div class="text-grey mb-2 fs-14">Объем памяти</div>
+                            <div class="text-grey mb-2 fs-14">@lang('home.memory')</div>
                             <div class="d-flex align-items-center gap-2 mb-3" id="storage-options">
                                 @foreach($variants as $variant)
                                     <div style="cursor: pointer"
@@ -135,31 +132,30 @@
                             </div>
 
                             <div class="fs-24 fw-bold mb-2" id="price-display">
-                                {{$variants->first()->price ?? '0'}} <span>сум</span>
+                                {{$variants->first()->price ?? '0'}} <span>UZS</span>
                             </div>
                             <div class="">
-
-                                <div class="text-grey mb-2 fs-14">В рассрочку</div>
+                                <div class="text-grey mb-2 fs-14">@lang('home.installments')</div>
                                 <div
                                     class="text-center justify-content-center mb-3 fs-14 p-1 rounded bg-lightorange border-orange">
-                                    не в кредит
+                                    @lang('home.full_payment')
                                 </div>
                                 <div class="">
                                     <div
                                         class="d-flex gap-2 justify-content-center mb-3 fs-14 p-1 rounded bg-darkgrey price-3">
-                                        <span class="text-orange">3</span> месяцев от <span class="text-orange">{{$variants->first()->price_3 ?? '0'}} р./мес</span>
+                                        <span class="text-orange">3</span> @lang('home.month') <span class="text-orange">{{$variants->first()->price_3 ?? '0'}} UZS</span>
                                     </div>
                                     <div
                                         class="d-flex gap-2 justify-content-center mb-3 fs-14 p-1 rounded bg-darkgrey price-6">
-                                        <span class="text-orange">6</span> месяцев от <span class="text-orange">{{$variants->first()->price_6 ?? '0'}} р./мес</span>
+                                        <span class="text-orange">6</span> @lang('home.month') <span class="text-orange">{{$variants->first()->price_6 ?? '0'}} UZS</span>
                                     </div>
                                     <div
                                         class="d-flex gap-2 justify-content-center mb-3 fs-14 p-1 rounded bg-darkgrey price-12">
-                                        <span class="text-orange">12</span> месяцев от <span class="text-orange">{{$variants->first()->price_12 ?? '0'}} р./мес</span>
+                                        <span class="text-orange">12</span> @lang('home.month') <span class="text-orange">{{$variants->first()->price_12 ?? '0'}} UZS</span>
                                     </div>
                                     <div
                                         class="d-flex gap-2 justify-content-center mb-3 fs-14 p-1 rounded bg-darkgrey price-24">
-                                        <span class="text-orange">24</span> месяцев от <span class="text-orange">{{$variants->first()->price_24 ?? '0'}} р./мес</span>
+                                        <span class="text-orange">24</span> @lang('home.month') <span class="text-orange">{{$variants->first()->price_24 ?? '0'}} UZS</span>
                                     </div>
                                 </div>
 
@@ -167,15 +163,13 @@
                             </div>
                             <hr/>
 
-
                             <!-- Other UI elements... -->
 
                             <div class="d-flex flex-lg-row flex-column d-block align-items-center gap-3">
-                                <button class="btn-orange rounded w-100">В корзину</button>
-                                <button class="border-0 w-100 bg-darkgrey rounded py-2 px-3">Купить в один клик</button>
+                                <button class="btn-orange rounded w-100"> @lang('home.basket')</button>
+                                <button class="border-0 w-100 bg-darkgrey rounded py-2 px-3"> @lang('home.buy_now')</button>
                             </div>
                         </div>
-
                     </div>
                 </div>
             </div>
@@ -492,7 +486,9 @@
                                     <div class="d-flex align-items-center gap-3 my-2">
                                         <div class="d-flex align-items-center gap-1">
                                             @for ($i = 1; $i <= 5; $i++)
-                                                <img src="{{ asset($i <= $comment->rating ? 'assets/icons/star-orange.svg' : 'assets/icons/star-grey.svg') }}" alt=""/>
+                                                <img
+                                                    src="{{ asset($i <= $comment->rating ? 'assets/icons/star-orange.svg' : 'assets/icons/star-grey.svg') }}"
+                                                    alt=""/>
                                             @endfor
                                         </div>
                                         <div style="width: 1px; height: 15px; background-color: #bcc1caff"></div>
@@ -506,7 +502,8 @@
                         <div class="mt-5">
                             <h1 class="fw-normal">Ваша оценка товара</h1>
 
-                            <form id="comment-form" action="{{ route('comments.store') }}" method="POST" class="container p-0">
+                            <form id="comment-form" action="{{ route('comments.store') }}" method="POST"
+                                  class="container p-0">
                                 @csrf
                                 <input type="hidden" id="product-id" name="product_id" value="{{ $product->id }}">
 
@@ -515,26 +512,32 @@
                                         <label for="rating" class="form-label">Оценка</label>
                                         <div id="testimonials" class="rating d-flex justify-content-end">
                                             @for ($i = 5; $i >= 1; $i--)
-                                                <input type="radio" name="rating" value="{{ $i }}" id="rating-{{ $i }}" required />
+                                                <input type="radio" name="rating" value="{{ $i }}" id="rating-{{ $i }}"
+                                                       required/>
                                                 <label for="rating-{{ $i }}">☆</label>
                                             @endfor
                                         </div>
                                     </div>
                                     <div class="col-md-6 mb-3">
                                         <label for="testi_name" class="form-label">Имя</label>
-                                        <input type="text" class="form-control focus_none bg-grey py-2" id="testi_name" name="name" required />
+                                        <input type="text" class="form-control focus_none bg-grey py-2" id="testi_name"
+                                               name="name" required/>
                                     </div>
                                     <div class="col-md-6 mb-3">
                                         <label for="testi_lastname" class="form-label">Фамилия</label>
-                                        <input type="text" class="form-control focus_none bg-grey py-2" id="testi_lastname" name="lastname" required />
+                                        <input type="text" class="form-control focus_none bg-grey py-2"
+                                               id="testi_lastname" name="lastname" required/>
                                     </div>
                                     <div class="col-12 mb-3">
                                         <label for="testi_message" class="form-label">Комментарий</label>
-                                        <textarea class="form-control focus_none bg-grey py-2" id="testi_message" name="message" rows="3" required></textarea>
+                                        <textarea class="form-control focus_none bg-grey py-2" id="testi_message"
+                                                  name="message" rows="3" required></textarea>
                                     </div>
 
                                     <div class="col-md-4">
-                                        <button type="submit" class="btn-orange rounded w-100 mb-3 py-3">Отправить отзыв</button>
+                                        <button type="submit" class="btn-orange rounded w-100 mb-3 py-3">Отправить
+                                            отзыв
+                                        </button>
                                     </div>
                                 </div>
                             </form>
@@ -613,27 +616,27 @@
             <div class="container">
                 <div class="d-flex justify-content-between advantages py-4 gap-5">
                     <div class="d-flex flex-column gap-3 align-items-center">
-                        <img src="./assets/icons/check-icon.svg" alt=""/>
+                        <img src="/assets/icons/check-icon.svg" alt=""/>
                         <div class="text-center text-nowrap"><span class="fw-bold">Xiaomi</span> <br/>Авторизованный
                             магазин
                         </div>
                     </div>
                     <div class="d-flex flex-column align-items-center">
-                        <img src="./assets/icons/truck-icon.svg" alt=""/>
+                        <img src="/assets/icons/truck-icon.svg" alt=""/>
                         <div class="text-center text-nowrap">
                             <span class="fw-bold">Доставка</span> <br/>
                             по всему Узбекистану
                         </div>
                     </div>
                     <div class="d-flex flex-column gap-3 align-items-center">
-                        <img src="./assets/icons/shop-icon.svg" alt=""/>
+                        <img src="/assets/icons/shop-icon.svg" alt=""/>
                         <div class="text-center text-nowrap">
                             <span class="fw-bold">Самовывоз</span> <br/>
                             из ближайшего магазина
                         </div>
                     </div>
                     <div class="d-flex flex-column gap-3 align-items-center">
-                        <img src="./assets/icons/calendar.svg" alt=""/>
+                        <img src="/assets/icons/calendar.svg" alt=""/>
 
                         <div class="text-center text-nowrap">
                             <span class="fw-bold">Выгодная рассрочка</span> <br/>
@@ -642,7 +645,7 @@
                     </div>
                     <div class="d-flex flex-column gap-3 align-items-center">
                         <!-- <img src="./assets/icons/tools.svg" alt="" /> -->
-                        <img src="./assets/icons/settings.svg" alt=""/>
+                        <img src="/assets/icons/settings.svg" alt=""/>
                         <div class="text-center text-nowrap">
                             <span class="fw-bold">Бесплатная</span> <br/>
                             настройка устройства
@@ -658,173 +661,9 @@
                 <a href="javascript:void(0)" class="view_all_btn text-orange border-0 bg-transparent mb-4">Смотреть
                     все</a>
             </div>
-            <div class="swiper-wrapper">
-                <div class="swiper-slide product shadow-sm position-relative rounded">
-                    <a href="javascript:void(0)" class=" ">
-                        <div class="position-absolute like d-flex flex-column gap-3 justify-content-end">
-                            <i class="fa-regular fa-heart fs-4 hover-orange ps-1"></i>
-                            <svg class="hover-svg" width="30" height="20" viewBox="0 0 102 92" fill="none"
-                                 xmlns="http://www.w3.org/2000/svg">
-                                <rect width="11" height="92" rx="2" fill="#000"/>
-                                <rect x="23" y="22" width="11" height="70" rx="2" fill="#000"/>
-                                <rect x="46" y="45" width="11" height="47" rx="2" fill="#000"/>
-                                <rect x="69" y="23" width="11" height="69" rx="2" fill="#000"/>
-                                <rect x="91" y="45" width="11" height="47" rx="2" fill="#000"/>
-                            </svg>
-                        </div>
-                        <img class="w-100 pb-4 productImage p-4" src="./assets/images/category_tv.webp" alt=""/>
-                        <div class="d-flex flex-column justify-content-between product-text p-4 rounded-bottom">
-                            <div class="d-flex align-items-end gap-3 pt-2">
-                                <div class="fw-bold">5 300 000 UZS</div>
-                                <del class="text-grey">
-                                    <small>3 300 000 UZS</small>
-                                </del>
-                            </div>
-                            <div class="productName fw-bold">Телевизоры Xiaomi</div>
-                            <p class="text-grey">Cupidatat veniam ad officia cupidatat sit esse ex esse. Commodo culpa
-                                incididunt duis cillu</p>
-                            <div class="d-flex align-items-center justify-content-between w-100">
-                                <span class="small bg-transparent px-0">490.000 UZS <span class="text-orange">за наличные</span></span>
-                                <span class="px-2 productmonth-border small text-grey">from 500 UZS/month</span>
-                            </div>
-
-                            <div class="d-flex gap-4 mt-3">
-                                <button class="border-orange bg-transparent rounded p-1 px-3">
-                                    <img src="./assets/icons/shopping-cart.svg" alt=""/>
-                                </button>
-                                <button data-bs-toggle="modal" data-bs-target="#largeModal"
-                                        class="btn-orange rounded w-100 d-flex align-items-center gap-2 justify-content-center">
-                                    <span>Купить сразу</span>
-                                </button>
-                            </div>
-                        </div>
-                    </a>
-                </div>
-                <div class="swiper-slide product shadow-sm position-relative rounded">
-                    <a href="javascript:void(0)" class=" ">
-                        <div class="position-absolute like d-flex flex-column gap-3 justify-content-end">
-                            <i class="fa-regular fa-heart fs-4 hover-orange ps-1"></i>
-                            <svg class="hover-svg" width="30" height="20" viewBox="0 0 102 92" fill="none"
-                                 xmlns="http://www.w3.org/2000/svg">
-                                <rect width="11" height="92" rx="2" fill="#000"/>
-                                <rect x="23" y="22" width="11" height="70" rx="2" fill="#000"/>
-                                <rect x="46" y="45" width="11" height="47" rx="2" fill="#000"/>
-                                <rect x="69" y="23" width="11" height="69" rx="2" fill="#000"/>
-                                <rect x="91" y="45" width="11" height="47" rx="2" fill="#000"/>
-                            </svg>
-                        </div>
-                        <img class="w-100 pb-4 productImage p-4" src="./assets/images/category_tv.webp" alt=""/>
-                        <div class="d-flex flex-column justify-content-between product-text p-4 rounded-bottom">
-                            <div class="d-flex align-items-end gap-3 pt-2">
-                                <div class="fw-bold">5 300 000 UZS</div>
-                                <del class="text-grey">
-                                    <small>3 300 000 UZS</small>
-                                </del>
-                            </div>
-                            <div class="productName fw-bold">Телевизоры Xiaomi</div>
-                            <p class="text-grey">Cupidatat veniam ad officia cupidatat sit esse ex esse. Commodo culpa
-                                incididunt duis cillu</p>
-                            <div class="d-flex align-items-center justify-content-between w-100">
-                                <span class="small bg-transparent px-0">490.000 UZS <span class="text-orange">за наличные</span></span>
-                                <span class="px-2 productmonth-border small text-grey">from 500 UZS/month</span>
-                            </div>
-
-                            <div class="d-flex gap-4 mt-3">
-                                <button class="border-orange bg-transparent rounded p-1 px-3">
-                                    <img src="./assets/icons/shopping-cart.svg" alt=""/>
-                                </button>
-                                <button data-bs-toggle="modal" data-bs-target="#largeModal"
-                                        class="btn-orange rounded w-100 d-flex align-items-center gap-2 justify-content-center">
-                                    <span>Купить сразу</span>
-                                </button>
-                            </div>
-                        </div>
-                    </a>
-                </div>
-                <div class="swiper-slide product shadow-sm position-relative rounded">
-                    <a href="javascript:void(0)" class=" ">
-                        <div class="position-absolute like d-flex flex-column gap-3 justify-content-end">
-                            <i class="fa-regular fa-heart fs-4 hover-orange ps-1"></i>
-                            <svg class="hover-svg" width="30" height="20" viewBox="0 0 102 92" fill="none"
-                                 xmlns="http://www.w3.org/2000/svg">
-                                <rect width="11" height="92" rx="2" fill="#000"/>
-                                <rect x="23" y="22" width="11" height="70" rx="2" fill="#000"/>
-                                <rect x="46" y="45" width="11" height="47" rx="2" fill="#000"/>
-                                <rect x="69" y="23" width="11" height="69" rx="2" fill="#000"/>
-                                <rect x="91" y="45" width="11" height="47" rx="2" fill="#000"/>
-                            </svg>
-                        </div>
-
-                        <img class="w-100 pb-4 productImage p-4" src="./assets/images/category_tv.webp" alt=""/>
-                        <div class="d-flex flex-column justify-content-between product-text p-4 rounded-bottom">
-                            <div class="d-flex align-items-end gap-3 pt-2">
-                                <div class="fw-bold">5 300 000 UZS</div>
-                                <del class="text-grey">
-                                    <small>3 300 000 UZS</small>
-                                </del>
-                            </div>
-                            <div class="productName fw-bold">Телевизоры Xiaomi</div>
-                            <p class="text-grey">Cupidatat veniam ad officia cupidatat sit esse ex esse. Commodo culpa
-                                incididunt duis cillu</p>
-                            <div class="d-flex align-items-center justify-content-between w-100">
-                                <span class="small bg-transparent px-0">490.000 UZS <span class="text-orange">за наличные</span></span>
-                                <span class="px-2 productmonth-border small text-grey">from 500 UZS/month</span>
-                            </div>
-
-                            <div class="d-flex gap-4 mt-3">
-                                <button class="border-orange bg-transparent rounded p-1 px-3">
-                                    <img src="./assets/icons/shopping-cart.svg" alt=""/>
-                                </button>
-                                <button data-bs-toggle="modal" data-bs-target="#largeModal"
-                                        class="btn-orange rounded w-100 d-flex align-items-center gap-2 justify-content-center">
-                                    <span>Купить сразу</span>
-                                </button>
-                            </div>
-                        </div>
-                    </a>
-                </div>
-                <div class="swiper-slide product shadow-sm position-relative rounded">
-                    <a href="javascript:void(0)" class=" ">
-                        <div class="position-absolute like d-flex flex-column gap-3 justify-content-end">
-                            <i class="fa-regular fa-heart fs-4 hover-orange ps-1"></i>
-                            <svg class="hover-svg" width="30" height="20" viewBox="0 0 102 92" fill="none"
-                                 xmlns="http://www.w3.org/2000/svg">
-                                <rect width="11" height="92" rx="2" fill="#000"/>
-                                <rect x="23" y="22" width="11" height="70" rx="2" fill="#000"/>
-                                <rect x="46" y="45" width="11" height="47" rx="2" fill="#000"/>
-                                <rect x="69" y="23" width="11" height="69" rx="2" fill="#000"/>
-                                <rect x="91" y="45" width="11" height="47" rx="2" fill="#000"/>
-                            </svg>
-                        </div>
-                        <img class="w-100 pb-4 productImage p-4" src="./assets/images/category_tv.webp" alt=""/>
-                        <div class="d-flex flex-column justify-content-between product-text p-4 rounded-bottom">
-                            <div class="d-flex align-items-end gap-3 pt-2">
-                                <div class="fw-bold">5 300 000 UZS</div>
-                                <del class="text-grey">
-                                    <small>3 300 000 UZS</small>
-                                </del>
-                            </div>
-                            <div class="productName fw-bold">Телевизоры Xiaomi</div>
-                            <p class="text-grey">Cupidatat veniam ad officia cupidatat sit esse ex esse. Commodo culpa
-                                incididunt duis cillu</p>
-                            <div class="d-flex align-items-center justify-content-between w-100">
-                                <span class="small bg-transparent px-0">490.000 UZS <span class="text-orange">за наличные</span></span>
-                                <span class="px-2 productmonth-border small text-grey">from 500 UZS/month</span>
-                            </div>
-
-                            <div class="d-flex gap-4 mt-3">
-                                <button class="border-orange bg-transparent rounded p-1 px-3">
-                                    <img src="./assets/icons/shopping-cart.svg" alt=""/>
-                                </button>
-                                <button data-bs-toggle="modal" data-bs-target="#largeModal"
-                                        class="btn-orange rounded w-100 d-flex align-items-center gap-2 justify-content-center">
-                                    <span>Купить сразу</span>
-                                </button>
-                            </div>
-                        </div>
-                    </a>
-                </div>
-            </div>
+            {{--   Product slide start--}}
+            <x-page.product.product-slide />
+            {{--   Product slide end--}}
             <!-- Navigation buttons (optional) -->
             <div id="product-next" class="swiper-button-next end-0"></div>
             <div id="product-prev" class="swiper-button-prev start-0"></div>
