@@ -12,6 +12,7 @@ use App\Http\Controllers\Admin\ContactController;
 use App\Http\Controllers\Admin\DescImageController;
 use App\Http\Controllers\Admin\FaqController;
 use App\Http\Controllers\Admin\HistoryController;
+use App\Http\Controllers\Admin\MainBannerController;
 use App\Http\Controllers\Admin\NewsController;
 use App\Http\Controllers\Admin\ProductController;
 use App\Http\Controllers\Admin\ServiceController;
@@ -55,6 +56,7 @@ Route::middleware(['auth'])->prefix('dashboard')->group(function () {
     Route::resource('vacancies', VacancyController::class);
     Route::resource('candidants', CandidantController::class);
     Route::resource('desc-images', DescImageController::class);
+    Route::resource('main_banners', MainBannerController::class);
 
 });
 
