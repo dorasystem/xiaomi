@@ -13,117 +13,154 @@ $about = \App\Models\About::first();
         </div>
         <div class="navbar-content ps">
             <ul class="nxl-navbar">
+                <!-- Navigation Header -->
                 <li class="nxl-item nxl-caption">
                     <label>Навигация</label>
                 </li>
-                <li class="nxl-item nxl-hasmenu">
-                    <a @if( auth()->user()->role == '2')
+
+                <!-- Dashboard -->
+                <li class="nxl-item">
+                    <a @if(auth()->user()->role == '2')
                            href="{{ route('superAdmin.dashboard') }}"
-                       @elseif( auth()->user()->role == '1')
+                       @elseif(auth()->user()->role == '1')
                            href="{{ route('admins.dashboard') }}"
                        @endif class="nxl-link">
-                        <span class="nxl-micon"><i class="feather-home"></i></span> <!-- Dashboard icon -->
+                        <span class="nxl-micon"><i class="feather-home"></i></span>
                         <span class="nxl-mtext">Панель инструментов</span>
                     </a>
                 </li>
-                <li class="nxl-item nxl-hasmenu">
-                    <a href="{{ route('abouts.edit', $about->id) }}" class="nxl-link">
-                        <span class="nxl-micon"><i class="feather-info"></i></span> <!-- About icon -->
-                        <span class="nxl-mtext">О нас</span>
-                    </a>
-                </li>
+
+                <!-- About Us -->
                 <li class="nxl-item">
-                    <a href="{{ route('histories.index') }}" class="nxl-link">
-                        <span class="nxl-micon"><i class="feather-calendar"></i></span> <!-- Год feed icon for News -->
-                        <span class="nxl-mtext">история</span>
+                    <a href="{{ route('abouts.edit', $about->id) }}" class="nxl-link">
+                        <span class="nxl-micon"><i class="feather-info"></i></span>
+                        <span class="nxl-mtext">О нас</span>
                     </a>
                 </li>
                 <li class="nxl-item nxl-hasmenu">
                     <a href="javascript:void(0);" class="nxl-link">
-                        <span class="nxl-micon"><i class="fa-solid fa-newspaper"></i></span> <!-- Main icon for News -->
-                        <span class="nxl-mtext">Новости</span>
+                        <span class="nxl-micon"><i class="fa-solid fa-boxes"></i></span>
+                        <span class="nxl-mtext">Продукты и Категории</span>
                         <span class="nxl-arrow"><i class="feather-chevron-right"></i></span>
                     </a>
 
                     <ul class="nxl-submenu">
+                        <!-- Phone Descriptions -->
+                        <li class="nxl-item">
+                            <a href="{{ route('desc-images.index') }}" class="nxl-link">
+                                <span class="nxl-micon"><i class="feather-image"></i></span>
+                                <span class="nxl-mtext">Телефоны Описание</span>
+                            </a>
+                        </li>
+
+                        <!-- Products -->
+                        <li class="nxl-item">
+                            <a href="{{ route('products.index') }}" class="nxl-link">
+                                <span class="nxl-micon"><i class="feather-box"></i></span>
+                                <span class="nxl-mtext">Продукты</span>
+                            </a>
+                        </li>
+
+                        <!-- Categories -->
+                        <li class="nxl-item">
+                            <a href="{{ route('categories.index') }}" class="nxl-link">
+                                <span class="nxl-micon"><i class="feather-tag"></i></span>
+                                <span class="nxl-mtext">Категории</span>
+                            </a>
+                        </li>
+                    </ul>
+                </li>
+
+
+                <!-- News Section -->
+                <li class="nxl-item nxl-hasmenu">
+                    <a href="javascript:void(0);" class="nxl-link">
+                        <span class="nxl-micon"><i class="fa-solid fa-newspaper"></i></span>
+                        <span class="nxl-mtext">Новости</span>
+                        <span class="nxl-arrow"><i class="feather-chevron-right"></i></span>
+                    </a>
+                    <ul class="nxl-submenu">
                         <li class="nxl-item">
                             <a href="{{ route('news.index') }}" class="nxl-link">
-                                <span class="nxl-micon"><i class="feather-rss"></i></span> <!-- RSS feed icon for News -->
+                                <span class="nxl-micon"><i class="feather-rss"></i></span>
                                 <span class="nxl-mtext">Новости</span>
                             </a>
                         </li>
                         <li class="nxl-item">
                             <a href="{{ route('blogs.index') }}" class="nxl-link">
-                                <span class="nxl-micon"><i class="fa-solid fa-blog"></i></span> <!-- Blog icon -->
+                                <span class="nxl-micon"><i class="fa-solid fa-blog"></i></span>
                                 <span class="nxl-mtext">Блоги</span>
                             </a>
                         </li>
                         <li class="nxl-item">
                             <a href="{{ route('articles.index') }}" class="nxl-link">
-                                <span class="nxl-micon"><i class="feather-book"></i></span> <!-- Book icon for Articles -->
+                                <span class="nxl-micon"><i class="feather-book"></i></span>
                                 <span class="nxl-mtext">Полезные статьи</span>
                             </a>
                         </li>
                     </ul>
                 </li>
-                <li class="nxl-item nxl-hasmenu">
-                    <a href="{{ route('products.index') }}" class="nxl-link">
-                        <span class="nxl-micon"><i class="feather-box"></i></span> <!-- Product icon updated -->
-                        <span class="nxl-mtext">Продукты</span>
-                    </a>
-                </li>
-                <li class="nxl-item nxl-hasmenu">
-                    <a href="{{ route('categories.index') }}" class="nxl-link">
-                        <span class="nxl-micon"><i class="feather-tag"></i></span> <!-- Category icon updated -->
-                        <span class="nxl-mtext">Категории</span>
-                    </a>
-                </li>
-                <li class="nxl-item nxl-hasmenu">
-                    <a href="{{ route('faqs.index') }}" class="nxl-link">
-                        <span class="nxl-micon"><i class="feather-help-circle"></i></span> <!-- FAQ icon -->
-                        <span class="nxl-mtext">Часто задаваемые вопросы</span>
-                    </a>
-                </li>
-                <li class="nxl-item nxl-hasmenu">
-                    <a href="{{ route('contacts.edit', $contact->id) }}" class="nxl-link">
-                        <span class="nxl-micon"><i class="feather-mail"></i></span> <!-- Contact icon -->
-                        <span class="nxl-mtext">Контакт</span>
-                    </a>
-                </li>
-                <li class="nxl-item nxl-hasmenu">
-                    <a href="{{ route('vacancies.index') }}" class="nxl-link">
-                        <span class="nxl-micon"><i class="feather-briefcase"></i></span> <!-- Briefcase icon for vacancies -->
-                        <span class="nxl-mtext">Вакансии</span>
-                    </a>
-                </li>
-                <li class="nxl-item nxl-hasmenu">
-                    <a href="{{ route('candidants.index') }}" class="nxl-link">
-                        <span class="nxl-micon"><i class="feather-users"></i></span> <!-- Users icon for candidates -->
-                        <span class="nxl-mtext">Кандидаты</span>
-                    </a>
-                </li>
-                <li class="nxl-item nxl-hasmenu">
-                    <a href="{{ route('desc-images.index') }}" class="nxl-link">
-                        <span class="nxl-micon"><i class="feather-users"></i></span> <!-- Users icon for candidates -->
-                        <span class="nxl-mtext"> Телефоны Описание</span>
-                    </a>
-                </li>
-                <li class="nxl-item nxl-hasmenu">
-                    <a href="{{ route('stores.index') }}" class="nxl-link">
-                        <span class="nxl-micon"><i class="feather-users"></i></span> <!-- Users icon for candidates -->
-                        <span class="nxl-mtext"> Address</span>
+                <!-- History -->
+                <li class="nxl-item">
+                    <a href="{{ route('histories.index') }}" class="nxl-link">
+                        <span class="nxl-micon"><i class="feather-calendar"></i></span>
+                        <span class="nxl-mtext">История</span>
                     </a>
                 </li>
 
-                {{--                @can('admins')--}}
-{{--                    <li class="nxl-item nxl-hasmenu">--}}
-{{--                        <a href="{{ route('news.index') }}" class="nxl-link">--}}
-{{--                            <span class="nxl-micon"><i class="feather-users"></i></span> <!-- Admins icon -->--}}
-{{--                            <span class="nxl-mtext">News</span>--}}
-{{--                        </a>--}}
-{{--                    </li>--}}
-{{--                @endcan--}}
+
+
+                <!-- FAQ -->
+                <li class="nxl-item">
+                    <a href="{{ route('faqs.index') }}" class="nxl-link">
+                        <span class="nxl-micon"><i class="feather-help-circle"></i></span>
+                        <span class="nxl-mtext">Часто задаваемые вопросы</span>
+                    </a>
+                </li>
+
+                <!-- Contact -->
+                <li class="nxl-item">
+                    <a href="{{ route('contacts.edit', $contact->id) }}" class="nxl-link">
+                        <span class="nxl-micon"><i class="feather-mail"></i></span>
+                        <span class="nxl-mtext">Контакт</span>
+                    </a>
+                </li>
+
+                <!-- Vacancies -->
+                <li class="nxl-item">
+                    <a href="{{ route('vacancies.index') }}" class="nxl-link">
+                        <span class="nxl-micon"><i class="feather-briefcase"></i></span>
+                        <span class="nxl-mtext">Вакансии</span>
+                    </a>
+                </li>
+
+                <!-- Candidates -->
+                <li class="nxl-item">
+                    <a href="{{ route('candidants.index') }}" class="nxl-link">
+                        <span class="nxl-micon"><i class="feather-users"></i></span>
+                        <span class="nxl-mtext">Кандидаты</span>
+                    </a>
+                </li>
+
+
+
+                <!-- Store Addresses -->
+                <li class="nxl-item">
+                    <a href="{{ route('stores.index') }}" class="nxl-link">
+                        <span class="nxl-micon"><i class="feather-map-pin"></i></span>
+                        <span class="nxl-mtext">Адреса магазинов</span>
+                    </a>
+                </li>
+
+                <!-- Main Banners -->
+                <li class="nxl-item">
+                    <a href="{{ route('main_banners.index') }}" class="nxl-link">
+                        <span class="nxl-micon"><i class="feather-image"></i></span>
+                        <span class="nxl-mtext">Главные баннеры</span>
+                    </a>
+                </li>
             </ul>
+
             <div class="ps__rail-x" style="left: 0px; bottom: 0px;">
                 <div class="ps__thumb-x" tabindex="0" style="left: 0px; width: 0px;"></div>
             </div>
