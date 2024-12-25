@@ -1,11 +1,14 @@
 @extends('layouts.page')
+<?php
+    $lang = \Illuminate\Support\Facades\App::getLocale();
+?>
 
 @section('content')
     <main>
         <div class="mt-4 container d-sm-block d-none">
             <div class="d-flex align-items-center gap-3">
                 <a href="/" class="text-grey fw-bold text-lowercase fs-14"
-                >Главная страница / <a href="{{route('products')}}" class="text-grey fw-bold text-lowercase fs-14">Телефоны
+                >@lang('home.home') / <a href="{{route('products')}}" class="text-grey fw-bold text-lowercase fs-14">Телефоны
                         /</a>
                     <span class="text-dark fw-bold text-lowercase fs-14">{{$product['name_'.$lang]}}</span></a
                 >
@@ -18,7 +21,7 @@
                     <div class="col-md-9 d-flex align-items-center gap-5 py-3">
                         <div class="d-lg-flex d-none align-items-center gap-2">
                             <img width="24px" style="transform: rotate(225deg)" src="/assets/icons/arrow.svg" alt=""/>
-                            <span>Назад</span>
+                            <span>@lang('home.back')</span>
                         </div>
                         <div
                             class="productName text-end fs-24">{{$product['name_'.$lang]}} {{$product['color_'.$lang]}}</div>
@@ -53,12 +56,12 @@
                                     />
                                 </g>
                             </svg>
-                            <span class="fs-14">Сравнить</span>
+                            <span class="fs-14">@lang('home.compare')</span>
                         </button>
                         <button
                             class="w-100 my-md-0 my-2 bg-transparent fs-14 px-3 justify-content-center py-1 d-flex align-items-center gap-3 border rounded-2">
                             <i class="fa-regular fa-heart"></i>
-                            <span class="fs-14">Сохранить</span>
+                            <span class="fs-14">@lang('home.save')</span>
                         </button>
                     </div>
                 </div>
@@ -107,13 +110,12 @@
 
                         <!-- O'ng tarafdagi ma'lumotlar -->
                         <div class="col-lg-4 p-4 border-start">
-                            <div class="text-grey my-1">Код товара : MI000025007</div>
                             <h6>{{$product['name_'.$lang]}}</h6>
                             <div class="fs-14">
                                 {!! $product['description_'.$lang] !!}
                             </div>
 
-                            <div class="text-grey mb-2 fs-14">Объем памяти</div>
+                            <div class="text-grey mb-2 fs-14">@lang('home.memory')</div>
                             <div class="d-flex align-items-center gap-2 mb-3" id="storage-options">
                                 @foreach($variants as $variant)
                                     <div style="cursor: pointer"
@@ -130,31 +132,30 @@
                             </div>
 
                             <div class="fs-24 fw-bold mb-2" id="price-display">
-                                {{$variants->first()->price ?? '0'}} <span>сум</span>
+                                {{$variants->first()->price ?? '0'}} <span>UZS</span>
                             </div>
                             <div class="">
-
-                                <div class="text-grey mb-2 fs-14">В рассрочку</div>
+                                <div class="text-grey mb-2 fs-14">@lang('home.installments')</div>
                                 <div
                                     class="text-center justify-content-center mb-3 fs-14 p-1 rounded bg-lightorange border-orange">
-                                    не в кредит
+                                    @lang('home.full_payment')
                                 </div>
                                 <div class="">
                                     <div
                                         class="d-flex gap-2 justify-content-center mb-3 fs-14 p-1 rounded bg-darkgrey price-3">
-                                        <span class="text-orange">3</span> месяцев от <span class="text-orange">{{$variants->first()->price_3 ?? '0'}} р./мес</span>
+                                        <span class="text-orange">3</span> @lang('home.month') <span class="text-orange">{{$variants->first()->price_3 ?? '0'}} UZS</span>
                                     </div>
                                     <div
                                         class="d-flex gap-2 justify-content-center mb-3 fs-14 p-1 rounded bg-darkgrey price-6">
-                                        <span class="text-orange">6</span> месяцев от <span class="text-orange">{{$variants->first()->price_6 ?? '0'}} р./мес</span>
+                                        <span class="text-orange">6</span> @lang('home.month') <span class="text-orange">{{$variants->first()->price_6 ?? '0'}} UZS</span>
                                     </div>
                                     <div
                                         class="d-flex gap-2 justify-content-center mb-3 fs-14 p-1 rounded bg-darkgrey price-12">
-                                        <span class="text-orange">12</span> месяцев от <span class="text-orange">{{$variants->first()->price_12 ?? '0'}} р./мес</span>
+                                        <span class="text-orange">12</span> @lang('home.month') <span class="text-orange">{{$variants->first()->price_12 ?? '0'}} UZS</span>
                                     </div>
                                     <div
                                         class="d-flex gap-2 justify-content-center mb-3 fs-14 p-1 rounded bg-darkgrey price-24">
-                                        <span class="text-orange">24</span> месяцев от <span class="text-orange">{{$variants->first()->price_24 ?? '0'}} р./мес</span>
+                                        <span class="text-orange">24</span> @lang('home.month') <span class="text-orange">{{$variants->first()->price_24 ?? '0'}} UZS</span>
                                     </div>
                                 </div>
 
@@ -162,12 +163,11 @@
                             </div>
                             <hr/>
 
-
                             <!-- Other UI elements... -->
 
                             <div class="d-flex flex-lg-row flex-column d-block align-items-center gap-3">
-                                <button class="btn-orange rounded w-100">В корзину</button>
-                                <button class="border-0 w-100 bg-darkgrey rounded py-2 px-3">Купить в один клик</button>
+                                <button class="btn-orange rounded w-100"> @lang('home.basket')</button>
+                                <button class="border-0 w-100 bg-darkgrey rounded py-2 px-3"> @lang('home.buy_now')</button>
                             </div>
                         </div>
                     </div>
@@ -616,27 +616,27 @@
             <div class="container">
                 <div class="d-flex justify-content-between advantages py-4 gap-5">
                     <div class="d-flex flex-column gap-3 align-items-center">
-                        <img src="./assets/icons/check-icon.svg" alt=""/>
+                        <img src="/assets/icons/check-icon.svg" alt=""/>
                         <div class="text-center text-nowrap"><span class="fw-bold">Xiaomi</span> <br/>Авторизованный
                             магазин
                         </div>
                     </div>
                     <div class="d-flex flex-column align-items-center">
-                        <img src="./assets/icons/truck-icon.svg" alt=""/>
+                        <img src="/assets/icons/truck-icon.svg" alt=""/>
                         <div class="text-center text-nowrap">
                             <span class="fw-bold">Доставка</span> <br/>
                             по всему Узбекистану
                         </div>
                     </div>
                     <div class="d-flex flex-column gap-3 align-items-center">
-                        <img src="./assets/icons/shop-icon.svg" alt=""/>
+                        <img src="/assets/icons/shop-icon.svg" alt=""/>
                         <div class="text-center text-nowrap">
                             <span class="fw-bold">Самовывоз</span> <br/>
                             из ближайшего магазина
                         </div>
                     </div>
                     <div class="d-flex flex-column gap-3 align-items-center">
-                        <img src="./assets/icons/calendar.svg" alt=""/>
+                        <img src="/assets/icons/calendar.svg" alt=""/>
 
                         <div class="text-center text-nowrap">
                             <span class="fw-bold">Выгодная рассрочка</span> <br/>
@@ -645,7 +645,7 @@
                     </div>
                     <div class="d-flex flex-column gap-3 align-items-center">
                         <!-- <img src="./assets/icons/tools.svg" alt="" /> -->
-                        <img src="./assets/icons/settings.svg" alt=""/>
+                        <img src="/assets/icons/settings.svg" alt=""/>
                         <div class="text-center text-nowrap">
                             <span class="fw-bold">Бесплатная</span> <br/>
                             настройка устройства

@@ -1,5 +1,7 @@
 @extends('layouts.page')
-
+<?php
+    $lang = \Illuminate\Support\Facades\App::getLocale();
+?>
 @section('content')
     <main class="container">
         <div class="my-4">
@@ -37,7 +39,7 @@
                 @if (!empty($otherNews) && $otherNews->count())
                     @foreach ($otherNews as $item)
                         <div class="swiper-slide product shadow-sm position-relative rounded">
-                            <a href="/" class="mb-3">
+                            <a href="{{ route('single.news', ['slug' => $item->getSlugByLanguage($lang)]) }}" class="mb-3">
                                 <img height="250px" class="w-100 fit-cover"
                                     src="{{ asset('storage/' . $item->image) ?? '/assets/images/news1.jpg' }}"
                                     alt="" />

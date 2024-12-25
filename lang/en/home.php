@@ -46,5 +46,15 @@ return [
     'all_video_reviews' => 'All video reviews',
     'our_shops' => 'Our shops',
 
-    'home' => 'Home'
+    'home' => 'Home',
+    'back' => 'Back',
+    'compare' => 'Compare',
+    'save' => 'Save',
+    'memory' => 'Memory capacity',
+    'installments' => 'In installments',
+    'full_payment' => 'Full payment',
+    'month' => 'month',
+    'basket' => 'To cart',
+
+
 ];

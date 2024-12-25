@@ -46,5 +46,14 @@ return [
     'all_video_reviews' => 'Barcha video sharhlar',
     'our_shops' => 'Bizning doʻkonlarimiz',
 
-    'home' => 'Bosh saxifa',
+    'home' => 'Bosh sahifa',
+    'back' => 'Ortga',
+    'compare' => 'Taqqoslash',
+    'save' => 'Saqlash',
+    'memory' => 'Xotira hajmi',
+    'installments' => "Bo'lib to'lash",
+    'full_payment' => "To'liq to'lov",
+    'month' => "oy",
+    'basket' => "Savatga",
+
 ];

@@ -60,7 +60,7 @@ $products = \App\Models\Product::all();
                         </button>
                         <button data-bs-toggle="modal" data-bs-target="#largeModal"
                             class="btn-orange rounded w-100 d-flex align-items-center gap-2 justify-content-center">
-                            <span>Купить сразу</span>
+                            <span>@lang('home.buy_now')</span>
                         </button>
                     </div>
                 </div>
