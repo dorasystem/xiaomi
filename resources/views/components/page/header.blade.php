@@ -132,80 +132,83 @@
                     </div>
                     <div class="col-lg-7 px-sm-2 px-0">
                         <div class="d-flex align-items-center gap-4">
-                            <button
-                                class="toggleButton btn-white d-none rounded d-sm-flex gap-3 align-items-center border-0 px-4">
-                                <div class="d-flex flex-column katalogicon">
-                                    <div class="line line1"></div>
-                                    <div class="line line2"></div>
-                                    <div class="line line3"></div>
-                                </div>
-                                <span class="d-lg-block d-none text-nowrap"> @lang('footer.catalog')</span>
+                            <button class="toggleButton btn-white d-none rounded d-sm-flex  align-items-center border-0 "
+                                >
+                                <a href="{{route('products')}}" class=" btn-white d-none d-sm-flex gap-3 align-items-center border-0 ">
+                                    <div class="d-flex flex-column katalogicon">
+                                        <div class="line line1"></div>
+                                        <div class="line line2"></div>
+                                        <div class="line line3"></div>
+                                    </div>
+                                    <span class="d-lg-block d-none text-nowrap"> @lang('footer.catalog')</span>
+                                </a>
                             </button>
                             <div class="w-100">
-                                <form class="">
+                                <form method="GET" action="{{ route('products.search') }}">
                                     <div class="d-flex align-items-center w-100 nav_form">
-                                        <button class="border-0 bg-transparent text-dark search-btn-dark ps-4"
-                                                type="submit">
+                                        <button class="border-0 bg-transparent text-dark search-btn-dark ps-4" type="submit">
                                             <i class="fas fa-search"></i>
                                         </button>
                                         <input
                                             id="searchInput"
-                                            class="form-control border-0 bg-transparent mr-sm-2 search-bar focus_none"
-                                            type="search"
-                                            aria-label="Search"
-                                            placeholder="@lang('home.search')"
+                                            name="search"
+                                        class="form-control border-0 bg-transparent mr-sm-2 search-bar focus_none text-white"
+                                        type="search"
+                                        aria-label="Search"
+                                        placeholder="@lang('home.search')"
+                                        value="{{ request()->query('search') }}"
                                         />
                                         <button class="border-0 bg-transparent text-white search-btn" type="submit">
                                             <i class="fas fa-search"></i>
-                                            <!-- <img  class="xmark pe-4" src="./assets/icons/x-mark.svg" alt=""> -->
                                         </button>
                                     </div>
-                                    <div style="display: none"
-                                         class="position-absolute border-top bg-white start-0 text-dark w-100"
-                                         id="searchProduct">
-                                        <div class="container">
-                                            <div class="row">
-                                                <div class="col-md-8 p-0 pt-3 border-end">
-                                                    <div class="resultProducts">
-                                                        @foreach($products as $product)
-                                                            @php
-                                                                $cheapestVariant = $product->variants->sortBy('price')->first();
-                                                            @endphp
-                                                            <div class="d-flex gap-2 align-items-center px-3">
-                                                                <img src="{{ asset('storage/' . $product->image) }}"
-                                                                     width="60px"
-                                                                     alt="{{ $product['name_'. $lang] }}"/>
-                                                                <div class="d-flex flex-column">
-                                                                    <div> {{ \Str::words($product->name_uz, 6) }}</div>
-                                                                    <div
-                                                                        class="fw-bold fs-14">{{ number_format($cheapestVariant->discount_price, 0, '', ' ') }}
-                                                                        сум
-                                                                    </div>
-                                                                </div>
-                                                            </div>
-                                                        @endforeach
-                                                    </div>
-
-                                                    <a href="{{route('products')}}" class=" ">
-                                                        <div
-                                                            class="text-orange w-100 py-3 px-4 allproductresult text-center">
-                                                            Все Продукты  [100 товаров]
-                                                        </div>
-                                                    </a>
-                                                </div>
-                                                <div class="col-md-4 d-md-flex flex-column gap-2 d-none p-3">
-                                                    <div class="text-grey">Все в категориях</div>
-                                                    @foreach($categories as $category)
-                                                    <div class="fw-bold d-flex justify-content-between">
-                                                        <div class="fs-14">{{$category['name_'.$lang]}}</div>
-                                                        <div class="fs-14">{{$category->count()}}</div>
-                                                    </div>
-                                                    @endforeach
-                                                </div>
-                                            </div>
-                                        </div>
-                                    </div>
                                 </form>
+
+{{--                                    <div style="display: none"--}}
+{{--                                         class="position-absolute border-top bg-white start-0 text-dark w-100"--}}
+{{--                                         id="searchProduct">--}}
+{{--                                        <div class="container">--}}
+{{--                                            <div class="row">--}}
+{{--                                                <div class="col-md-8 p-0 pt-3 border-end">--}}
+{{--                                                    <div class="resultProducts">--}}
+{{--                                                        @foreach($products as $product)--}}
+{{--                                                            @php--}}
+{{--                                                                $cheapestVariant = $product->variants->sortBy('price')->first();--}}
+{{--                                                            @endphp--}}
+{{--                                                            <div class="d-flex gap-2 align-items-center px-3">--}}
+{{--                                                                <img src="{{ asset('storage/' . $product->image) }}"--}}
+{{--                                                                     width="60px"--}}
+{{--                                                                     alt="{{ $product['name_'. $lang] }}"/>--}}
+{{--                                                                <div class="d-flex flex-column">--}}
+{{--                                                                    <div> {{ \Str::words($product->name_uz, 6) }}</div>--}}
+{{--                                                                    <div--}}
+{{--                                                                        class="fw-bold fs-14">{{ number_format($cheapestVariant->discount_price, 0, '', ' ') }}--}}
+{{--                                                                        сум--}}
+{{--                                                                    </div>--}}
+{{--                                                                </div>--}}
+{{--                                                            </div>--}}
+{{--                                                        @endforeach--}}
+{{--                                                    </div>--}}
+
+{{--                                                    <a href="{{route('products')}}" class=" ">--}}
+{{--                                                        <div--}}
+{{--                                                            class="text-orange w-100 py-3 px-4 allproductresult text-center">--}}
+{{--                                                            Все Продукты  [100 товаров]--}}
+{{--                                                        </div>--}}
+{{--                                                    </a>--}}
+{{--                                                </div>--}}
+{{--                                                <div class="col-md-4 d-md-flex flex-column gap-2 d-none p-3">--}}
+{{--                                                    <div class="text-grey">Все в категориях</div>--}}
+{{--                                                    @foreach($categories as $category)--}}
+{{--                                                    <div class="fw-bold d-flex justify-content-between">--}}
+{{--                                                        <div class="fs-14">{{$category['name_'.$lang]}}</div>--}}
+{{--                                                        <div class="fs-14">{{$category->count()}}</div>--}}
+{{--                                                    </div>--}}
+{{--                                                    @endforeach--}}
+{{--                                                </div>--}}
+{{--                                            </div>--}}
+{{--                                        </div>--}}
+{{--                                    </div>--}}
                             </div>
                         </div>
                     </div>
