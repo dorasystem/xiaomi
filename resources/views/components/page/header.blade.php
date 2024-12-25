@@ -132,14 +132,16 @@
                     </div>
                     <div class="col-lg-7 px-sm-2 px-0">
                         <div class="d-flex align-items-center gap-4">
-                            <button
-                                class="toggleButton btn-white d-none rounded d-sm-flex gap-3 align-items-center border-0 px-4">
-                                <div class="d-flex flex-column katalogicon">
-                                    <div class="line line1"></div>
-                                    <div class="line line2"></div>
-                                    <div class="line line3"></div>
-                                </div>
-                                <span class="d-lg-block d-none text-nowrap"> @lang('footer.catalog')</span>
+                            <button class="toggleButton btn-white d-none rounded d-sm-flex  align-items-center border-0 "
+                                >
+                                <a href="{{route('products')}}" class=" btn-white d-none d-sm-flex gap-3 align-items-center border-0 ">
+                                    <div class="d-flex flex-column katalogicon">
+                                        <div class="line line1"></div>
+                                        <div class="line line2"></div>
+                                        <div class="line line3"></div>
+                                    </div>
+                                    <span class="d-lg-block d-none text-nowrap"> @lang('footer.catalog')</span>
+                                </a>
                             </button>
                             <div class="w-100">
                                 <form method="GET" action="{{ route('products.search') }}">

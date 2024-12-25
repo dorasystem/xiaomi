@@ -102,7 +102,12 @@ $about = \App\Models\About::first();
                         <span class="nxl-mtext">Кандидаты</span>
                     </a>
                 </li>
-
+                <li class="nxl-item nxl-hasmenu">
+                    <a href="{{ route('desc-images.index') }}" class="nxl-link">
+                        <span class="nxl-micon"><i class="feather-users"></i></span> <!-- Users icon for candidates -->
+                        <span class="nxl-mtext"> Телефоны Описание</span>
+                    </a>
+                </li>
 
                 {{--                @can('admins')--}}
 {{--                    <li class="nxl-item nxl-hasmenu">--}}
