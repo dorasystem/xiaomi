@@ -22,7 +22,7 @@ return [
 
     'bestsellers' => 'Eng ko\'p sotilganlar',
     'buy_now' => 'Xoziroq sotib olish',
-    'looked_product' => 'Ushbu mahsulotni ko\'rib chiqdingizmi?',
+    'looked_product' => 'Ko\'rilgan mahsulotlar',
 
     'our_advantages' => 'Bizning afzalliklarimiz',
 

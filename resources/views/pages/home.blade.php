@@ -28,10 +28,7 @@
                             </div>
                             <div class="carousel-item">
                                 <img src="/assets/images/slider3.webp" class="d-block w-100" alt="Slide 3" />
-                                <div class="carousel-caption d-none d-md-block">
-                                    <h5>Slide 3</h5>
-                                    <p>Slide 3 description</p>
-                                </div>
+
                             </div>
                         </div>
 
@@ -221,7 +218,7 @@
                         <div class="tab-pane fade show active" id="new" role="tabpanel" aria-labelledby="new-tab">
                             @if(!empty($news1 && $news1->count(4)))
                                 @foreach($news1 as $item)
-                                    <div class="d-flex align-items-start gap-3 justify-content-between">
+                                    <a href="{{ route('single.news', ['slug' => $new->getSlugByLanguage($lang)]) }}" class="d-flex align-items-start gap-3 justify-content-between">
                                         <div class="">
                                             <div class="text-grey">{{ $item->date }}</div>
                                             <h5>{{ $item['title_' . $lang] ?? 'Сравнение Xiaomi 14T и Xiaomi 14T Pro' }}</h5>
@@ -229,7 +226,7 @@
                                         <div class="">
                                             <img class="newImg rounded" src="{{ asset('storage/' . $item->image) ?? 'https://xiaomistore.md/media/newsxiaomi-14t-and-14t-pro-2.webp' }}" alt="" />
                                         </div>
-                                    </div>
+                                    </a>
                                     <hr />
                                 @endforeach
                             @else
