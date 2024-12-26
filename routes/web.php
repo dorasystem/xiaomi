@@ -86,12 +86,15 @@ Route::get('/compare', [CompareController::class, 'compare'])->name('compare');
 
 
 
-Route::get('/cart', [CartController::class, 'cart'])->name('cart');
-Route::post('add-to-cart/{id}', [CartController::class, 'addToCart'])->name('addToCart');
+Route::get('cart', [CartController::class, 'cart'])->name('cart');
 Route::post('/add-to-cart', [CartController::class, 'addToCart'])->name('cart.add');
+Route::post('add-to-cart/{id}', [CartController::class, 'addToCart'])->name('addToCart');
 Route::delete('/remove-from-cart', [CartController::class, 'removeFromCart'])->name('removeFromCart');
+Route::post('/update-cart', [CartController::class, 'updateCart'])->name('cart.update');
+
 Route::delete('/variants/{id}', [ProductController::class, 'deleteVariant']);
 Route::get('/favorites', [CartController::class, 'favorites'])->name('favorites');
+Route::post('/toggle-favorite', [CartController::class, 'toggleFavorite'])->name('toggle.favorite');
 
 Route::post('/comments', [CommentController::class, 'store'])->name('comments.store');
 

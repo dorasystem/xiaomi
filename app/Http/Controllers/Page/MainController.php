@@ -60,7 +60,8 @@ class MainController extends Controller
     public function products()
     {
         $products = Product::paginate(8);
-        return view('pages.page-products',compact('products'));
+        $lang = app()->getLocale();
+        return view('pages.page-products',compact('products', 'lang'));
     }
 
     public function singleProduct($slug)

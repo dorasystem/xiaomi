@@ -219,7 +219,9 @@
                                     <i class="fa-regular fa-heart"></i>
                                     <i class="fa-solid fa-heart"></i>
                                 </div>
-                                <span class="badge badge-pill badge-danger badge-position rounded-circle">1</span>
+                                <span class="badge badge-pill badge-danger badge-position rounded-circle">
+        {{ session('favorites') ? count(session('favorites')) : 0 }}
+    </span>
                             </a>
                             <small class="">@lang('home.featured')</small>
                         </li>
@@ -274,7 +276,7 @@
                                     />
                                 </svg>
                                 <span
-                                    class="badge badge-pill badge-danger badge-position rounded-circle">{{ session('cart') ? count(session('cart')) : 0 }}</span>
+                                    class="badge badge-pill badge-danger badge-position rounded-circle cart-label">{{ session('cart') ? count(session('cart')) : 0 }}</span>
                             </a>
                             <small class="">@lang('home.basket')</small>
                         </li>
