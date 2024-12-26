@@ -38,22 +38,22 @@ $lang = \Illuminate\Support\Facades\App::getLocale();
                                     stroke="none">
                                     <path
                                         d="M2015 4786 c-41 -18 -83 -69 -90 -109 -3 -18 -4 -982 -3 -2144 l3
-                                                                                                        -2112 21 -27 c11 -15 33 -37 48 -48 27 -21 38 -21 566 -21 528 0 539 0 566 21
-                                                                                                        15 11 37 33 48 48 l21 27 0 2139 0 2139 -21 27 c-11 15 -33 37 -48 48 -27 21
-                                                                                                        -40 21 -554 23 -423 2 -533 0 -557 -11z m865 -2226 l0 -1920 -320 0 -320 0 0
-                                                                                                        1920 0 1920 320 0 320 0 0 -1920z" />
+                                                                                                            -2112 21 -27 c11 -15 33 -37 48 -48 27 -21 38 -21 566 -21 528 0 539 0 566 21
+                                                                                                            15 11 37 33 48 48 l21 27 0 2139 0 2139 -21 27 c-11 15 -33 37 -48 48 -27 21
+                                                                                                            -40 21 -554 23 -423 2 -533 0 -557 -11z m865 -2226 l0 -1920 -320 0 -320 0 0
+                                                                                                            1920 0 1920 320 0 320 0 0 -1920z" />
                                     <path
                                         d="M3615 3506 c-41 -18 -83 -69 -90 -109 -3 -18 -4 -694 -3 -1504 3
-                                                                                                        -1468 3 -1472 24 -1499 11 -15 33 -37 48 -48 27 -21 38 -21 566 -21 528 0 539
-                                                                                                        0 566 21 15 11 37 33 48 48 21 27 21 28 21 1526 0 1498 0 1499 -21 1526 -11
-                                                                                                        15 -33 37 -48 48 -27 21 -40 21 -554 23 -423 2 -533 0 -557 -11z m865 -1586
-                                                                                                        l0 -1280 -320 0 -320 0 0 1280 0 1280 320 0 320 0 0 -1280z" />
+                                                                                                            -1468 3 -1472 24 -1499 11 -15 33 -37 48 -48 27 -21 38 -21 566 -21 528 0 539
+                                                                                                            0 566 21 15 11 37 33 48 48 21 27 21 28 21 1526 0 1498 0 1499 -21 1526 -11
+                                                                                                            15 -33 37 -48 48 -27 21 -40 21 -554 23 -423 2 -533 0 -557 -11z m865 -1586
+                                                                                                            l0 -1280 -320 0 -320 0 0 1280 0 1280 320 0 320 0 0 -1280z" />
                                     <path
                                         d="M415 2226 c-41 -18 -83 -69 -90 -109 -3 -18 -5 -406 -3 -864 3 -822
-                                                                                                        3 -832 24 -859 11 -15 33 -37 48 -48 27 -21 38 -21 566 -21 528 0 539 0 566
-                                                                                                        21 15 11 37 33 48 48 21 27 21 34 21 886 0 852 0 859 -21 886 -11 15 -33 37
-                                                                                                        -48 48 -27 21 -40 21 -554 23 -423 2 -533 0 -557 -11z m865 -946 l0 -640 -320
-                                                                                                        0 -320 0 0 640 0 640 320 0 320 0 0 -640z" />
+                                                                                                            3 -832 24 -859 11 -15 33 -37 48 -48 27 -21 38 -21 566 -21 528 0 539 0 566
+                                                                                                            21 15 11 37 33 48 48 21 27 21 34 21 886 0 852 0 859 -21 886 -11 15 -33 37
+                                                                                                            -48 48 -27 21 -40 21 -554 23 -423 2 -533 0 -557 -11z m865 -946 l0 -640 -320
+                                                                                                            0 -320 0 0 640 0 640 320 0 320 0 0 -640z" />
                                 </g>
                             </svg>
                             <span class="fs-14">@lang('home.compare')</span>
@@ -209,104 +209,22 @@ $lang = \Illuminate\Support\Facades\App::getLocale();
                     <div class="tab-pane fade show active" id="description" role="tabpanel"
                         aria-labelledby="description-tab">
                         <div class="pt-3 border-top container">
-                            <div class="row align-items-center mt-4">
-                                <div class="col-md-8">
-                                    <img class="w-100 rounded" src="./assets/images/product_des1.png" alt="" />
-                                </div>
-                                <div class="col-md-4 py-3">
-                                    <h6>Металлические корпус</h6>
-                                    <div class="fs-14">Корпус смартфона изготовлен из высокопрочного алюминиевого сплава
-                                        6M13, что делает его не только практичным, но и стильным.
-                                    </div>
-                                </div>
-                            </div>
                             <div class="row align-items-center">
-                                <div class="mt-4 col-lg-4 rounded-2">
-                                    <img class="w-100 fit-cover rounded-top" src="./assets/images/product_des2.png"
-                                        alt="" />
-                                    <div class="bg-darkgrey p-4 rounded-bottom">
-                                        <h6 class="fw-bold">Интелектуальная система связи</h6>
-                                        <div class="fs-sm-14">
-                                            Интеллектуальная система связи Al, оптимизированная для 16 различных
-                                            сценариев использования, в сочетании с эффективным расположением антенн
-                                            обеспечивает повышение производительности сети в играх.
+                                @foreach ($descImages as $descImage)
+                                    <div class="mt-4 col-lg-4 rounded-2">
+                                        <img class="w-100 fit-cover rounded-top"
+                                            src="{{ asset('storage/' . $descImage->image) }}" alt="" />
+                                        <div class="bg-darkgrey p-4 rounded-bottom">
+                                            <h6 class="fw-bold d-none">Интелектуальная система связи</h6>
+                                            <div class="fs-sm-14">
+                                                {{ $descImage['description_' . $lang] }}
+                                            </div>
                                         </div>
                                     </div>
-                                </div>
-                                <div class="mt-4 col-lg-4 rounded-2">
-                                    <img class="w-100 fit-cover rounded-top" src="./assets/images/product_des2.png"
-                                        alt="" />
-                                    <div class="bg-darkgrey p-4 rounded-bottom">
-                                        <h6 class="fw-bold">Интелектуальная система связи</h6>
-                                        <div class="fs-sm-14">
-                                            Интеллектуальная система связи Al, оптимизированная для 16 различных
-                                            сценариев использования, в сочетании с эффективным расположением антенн
-                                            обеспечивает повышение производительности сети в играх.
-                                        </div>
-                                    </div>
-                                </div>
-                                <div class="mt-4 col-lg-4 rounded-2">
-                                    <img class="w-100 fit-cover rounded-top" src="./assets/images/product_des2.png"
-                                        alt="" />
-                                    <div class="bg-darkgrey p-4 rounded-bottom">
-                                        <h6 class="fw-bold">Интелектуальная система связи</h6>
-                                        <div class="fs-sm-14">
-                                            Интеллектуальная система связи Al, оптимизированная для 16 различных
-                                            сценариев использования, в сочетании с эффективным расположением антенн
-                                            обеспечивает повышение производительности сети в играх.
-                                        </div>
-                                    </div>
-                                </div>
+                                @endforeach
+
                             </div>
-                            <div class="row align-items-center mt-4">
-                                <div class="col-md-4 order-md-1 order-2">
-                                    <h6>Металлические корпус</h6>
-                                    <div class="fs-14">Корпус смартфона изготовлен из высокопрочного алюминиевого сплава
-                                        6M13, что делает его не только практичным, но и стильным.
-                                    </div>
-                                </div>
-                                <div class="col-md-8 order-md-2 order-1">
-                                    <img class="w-100 rounded" src="./assets/images/product_des1.png" alt="" />
-                                </div>
-                            </div>
-                            <div class="row align-items-center">
-                                <div class="mt-4 col-lg-4 rounded-2">
-                                    <img class="w-100 fit-cover rounded-top" src="./assets/images/product_des2.png"
-                                        alt="" />
-                                    <div class="bg-darkgrey p-4 rounded-bottom">
-                                        <h6 class="fw-bold">Интелектуальная система связи</h6>
-                                        <div class="fs-sm-14">
-                                            Интеллектуальная система связи Al, оптимизированная для 16 различных
-                                            сценариев использования, в сочетании с эффективным расположением антенн
-                                            обеспечивает повышение производительности сети в играх.
-                                        </div>
-                                    </div>
-                                </div>
-                                <div class="mt-4 col-lg-4 rounded-2">
-                                    <img class="w-100 fit-cover rounded-top" src="./assets/images/product_des2.png"
-                                        alt="" />
-                                    <div class="bg-darkgrey p-4 rounded-bottom">
-                                        <h6 class="fw-bold">Интелектуальная система связи</h6>
-                                        <div class="fs-sm-14">
-                                            Интеллектуальная система связи Al, оптимизированная для 16 различных
-                                            сценариев использования, в сочетании с эффективным расположением антенн
-                                            обеспечивает повышение производительности сети в играх.
-                                        </div>
-                                    </div>
-                                </div>
-                                <div class="mt-4 col-lg-4 rounded-2">
-                                    <img class="w-100 fit-cover rounded-top" src="./assets/images/product_des2.png"
-                                        alt="" />
-                                    <div class="bg-darkgrey p-4 rounded-bottom">
-                                        <h6 class="fw-bold">Интелектуальная система связи</h6>
-                                        <div class="fs-sm-14">
-                                            Интеллектуальная система связи Al, оптимизированная для 16 различных
-                                            сценариев использования, в сочетании с эффективным расположением антенн
-                                            обеспечивает повышение производительности сети в играх.
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
+
                         </div>
                     </div>
                     <div class="tab-pane fade" id="specifications" role="tabpanel" aria-labelledby="specifications-tab">

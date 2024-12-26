@@ -8,6 +8,7 @@ use App\Models\Article;
 use App\Models\Blog;
 use App\Models\Category;
 use App\Models\Comment;
+use App\Models\DescImage;
 use App\Models\History;
 use App\Models\MainBanner;
 use App\Models\News;
@@ -84,10 +85,11 @@ class MainController extends Controller
         $comments = Comment::where('product_id', $product->id)->latest()->get();
         $images = is_string($product->images) ? json_decode($product->images, true) : $product->images;
 
+        $descImages = DescImage::all();
         $lang = App::getLocale();
         $variants = $product->variants;
 
-        return view('pages.single-product', compact('product', 'images', 'lang', 'variants', 'comments', 'products'));
+        return view('pages.single-product', compact('product', 'images', 'lang', 'variants', 'comments', 'products', 'descImages'));
     }
 
 
