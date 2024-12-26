@@ -4,7 +4,7 @@
     <main>
         <div class="container mt-4">
             <div class="d-flex align-items-center gap-3">
-                <a href="/" class="text-grey fw-bold text-lowercase fs-14">Главная страница / <span
+                <a href="/" class="text-grey fw-bold  fs-14">@lang('home.home') / <span
                         class="text-dark">Результаты поиска</span></a>
             </div>
             <hr/>
@@ -231,7 +231,7 @@
                                                 <a onclick="toggleFavourite({{ $product->id }})">
                                                     <i id="favourite-icon-{{ $product->id }}"
                                                        class="fa-regular fa-heart fs-4 hover-orange ps-1
-                                              {{ in_array($product->id, session('favorites', [])) ? 'text-danger' : '' }}">
+                                              {{ in_array($product->id, session('favorites', [])) ? 'text-orange' : '' }}">
                                                     </i>
                                                 </a>
                                                 <svg class="hover-svg" width="30" height="20"
@@ -402,9 +402,9 @@
 
                         // Ico'ni yangilash
                         if (response.message.includes('qo\'shildi')) {
-                            $('#favourite-icon-' + productId).addClass('text-danger'); // Qo'shilganini ko'rsatish
+                            $('#favourite-icon-' + productId).addClass('text-orange'); // Qo'shilganini ko'rsatish
                         } else {
-                            $('#favourite-icon-' + productId).removeClass('text-danger'); // O'chirilganini ko'rsatish
+                            $('#favourite-icon-' + productId).removeClass('text-orange'); // O'chirilganini ko'rsatish
                         }
                     }
                 },
