@@ -129,5 +129,35 @@ class CartController extends Controller
         $products = Product::whereIn('id', $favorites)->get(); // Faqat sevimli mahsulotlar
         return view('pages.favorites', compact('products', 'lang'));
     }
+    public function toggleCompare(Request $request)
+    {
+        $compares = session()->get('compares', []);
+
+        $productId = $request->id;
+
+        if (in_array($productId, $compares)) {
+            $compares = array_filter($compares, fn($id) => $id != $productId);
+            $message = 'Mahsulot Taqqoslashdan olib tashlandi!';
+        } else {
+            $compares[] = $productId;
+            $message = 'Mahsulot Taqqoslash qo\'shildi!';
+        }
+
+        session()->put('compares', $compares);
+
+        return response()->json([
+            'success' => true,
+            'message' => $message,
+            'favorites_count' => count($compares), // Yangilangan Taqqoslash soni
+        ]);
+    }
+
+    public function compare()
+    {
+        $lang = app()->getLocale();
+        $compares = session()->get('compares', []);
+        $products = Product::whereIn('id', $compares)->get();
+        return view('pages.compare', compact('products', 'lang'));
+    }
 
 }
