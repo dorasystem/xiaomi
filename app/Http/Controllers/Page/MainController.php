@@ -171,5 +171,23 @@ class MainController extends Controller
         return view('pages.checkout');
     }
 
+    public function categorySort($slug)
+    {
+        // Get the locale (e.g., from the request or session)
+        $locale = app()->getLocale(); // Or $request->get('locale') if you're passing it in the URL
+
+        // Find the category by its language-specific slug
+        $category = Category::all()->filter(function ($category) use ($locale, $slug) {
+            return $category->getSlugByLanguage($locale) === $slug;
+        })->firstOrFail();
+
+        // Get the products associated with this category
+        $products = $category->products()->get();
+
+        return view('pages.search-products', compact('products', 'category'));
+    }
+
+
+
 
 }

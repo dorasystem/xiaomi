@@ -76,6 +76,7 @@ Route::get('/about', [MainController::class, 'about'])->name('about');
 Route::get('/contact', [MainController::class, 'contact'])->name('contact');
 Route::get('/blog', [MainController::class, 'blog'])->name('blog');
 Route::get('/blog/{slug}', [MainController::class, 'singleBlog'])->name('single.blog');
+Route::get('/category/{slug}', [MainController::class, 'categorySort'])->name('category.sort');
 
 
 Route::get('/products', [MainController::class, 'products'])->name('products');
@@ -107,5 +108,6 @@ Route::get('/products/search', [MainController::class, 'productSearch'])->name('
 Route::get('/products/filter', [MainController::class, 'filterProducts'])->name('products.filter');
 Route::get('checkout', [MainController::class, 'checkout'])->name('checkout');
 Route::post('/save-order', [OrderController::class, 'store'])->name('orders.store');
-
+Route::post('/form-order', [OrderController::class, 'storeForm'])->name('orders.store.form');
+Route::post('/product-order', [OrderController::class, 'productsStore'])->name('orders.products.store');
 Route::get('locale/{lang}',[LanguageController::class, 'setLocale']);

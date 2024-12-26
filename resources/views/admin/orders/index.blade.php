@@ -29,6 +29,7 @@
                                 <th scope="col">№</th>
                                 <th scope="col">Имя клиента</th>
                                 <th scope="col">Телефон</th>
+                                <th scope="col">Message</th>
                                 <th scope="col">Статус</th>
                                 <th scope="col">Продукты</th>
                                 <th scope="col" class="text-end">Действия</th>
@@ -40,6 +41,7 @@
                                     <td>{{ $loop->iteration }}</td>
                                     <td>{{ $order->first_name }} {{ $order->last_name }}</td>
                                     <td>{{ $order->phone }}</td>
+                                    <td> {{ \Illuminate\Support\Str::words($order->message, 5) }}</td>
                                     <td>
                                         <form action="{{ route('orders.update', $order->id) }}" method="POST">
                                             @csrf

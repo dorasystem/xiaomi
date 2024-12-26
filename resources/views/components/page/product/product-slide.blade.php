@@ -66,8 +66,15 @@ $lang = app()->getLocale();
                             onclick="addToCart({{ $product->id }}, '{{ $product['name_' . $lang] }}', {{ $cheapestVariant->price ? $cheapestVariant->discount_price : $cheapestVariant->price }}, {{ $cheapestVariant->id }})">
                             <img src="/assets/icons/shopping-cart.svg" alt="" />
                         </a>
-                        <button data-bs-toggle="modal" data-bs-target="#largeModal"
-                            class="btn-orange rounded w-100 d-flex align-items-center gap-2 justify-content-center">
+                        <button
+                            data-bs-toggle="modal"
+                            data-bs-target="#largeModal"
+                            class="btn-orange rounded w-100 d-flex align-items-center gap-2 justify-content-center"
+                            data-product-id="{{ $product->id }}"
+                            data-product-name="{{ $product['name_'.$lang] }}"
+                            data-product-price="{{ $cheapestVariant->discount_price ?: $cheapestVariant->price }}"
+                            data-product-image="{{ asset('storage/' . $product->image) }}"
+                        >
                             <span>@lang('home.buy_now')</span>
                         </button>
                     </div>
@@ -76,6 +83,29 @@ $lang = app()->getLocale();
         </div>
     @endforeach
 </div>
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/toastify-js/src/toastify.min.css">
+
+<script src="https://cdn.jsdelivr.net/npm/toastify-js"></script>
+
+@if(session('success'))
+    <script>
+        Toastify({
+            text: "{{ session('success') }}",
+            duration: 3000,
+            close: true,
+            gravity: "top",
+            position: "right",
+            backgroundColor: "#4CAF50",
+            stopOnFocus: true,
+            className: "toast-success",
+            animation: "fade",
+            offset: {
+                x: 30,
+                y: 50
+            }
+        }).showToast();
+    </script>
+@endif
 <script>
     function addToCart(productId, productName, productPrice, variantId) {
         $.ajax({

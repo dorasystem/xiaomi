@@ -1,7 +1,10 @@
 @extends('layouts.page')
 
 @section('content')
+
     <main>
+
+
         <div class="container mt-4">
             <div class="d-flex align-items-center gap-3">
                 <a href="/" class="text-grey fw-bold  fs-14">@lang('home.home') / <span
@@ -323,29 +326,50 @@
                 <h1 class="text-center">Не нашли товар? Мы можем вам помочь!</h1>
                 <p class="text-center">Оставьте нам свой номер!</p>
                 <div class="messageInputs p-4 rounded-4 container">
-                    <form class="row align-items-center" action="">
+                    <form class="row align-items-center" action="{{ route('orders.store.form') }}" method="POST">
+                        @csrf
                         <div class="col-lg-3 col-md-6 mb-lg-0 mb-3">
-                            <input class="form-control focus_none py-3" placeholder="Какой товар вы ищите?"
-                                   type="text"/>
+                            <input class="form-control focus_none py-3" placeholder="Какой товар вы ищите?" type="text" name="message" />
                         </div>
                         <div class="col-lg-3 col-md-6 mb-lg-0 mb-3">
-                            <input class="form-control focus_none py-3" placeholder="Введите имя и фамилию"
-                                   type="text"/>
+                            <input class="form-control focus_none py-3" placeholder="Введите имя и фамилию" type="text" name="first_name" />
                         </div>
                         <div class="col-lg-3 col-md-6 mb-lg-0 mb-3">
-                            <input class="form-control focus_none py-3" placeholder="+998 __ ___ ___ ___" type="tel"
-                                   name="tel"/>
+                            <input class="form-control focus_none py-3" placeholder="+998 __ ___ ___ ___" type="tel" name="phone"/>
                         </div>
                         <div class="col-lg-3 col-md-6">
                             <button class="btn-orange rounded px-5 py-3 w-100" type="submit">Отправить</button>
                         </div>
                     </form>
+
                 </div>
             </div>
         </div>
     </main>
 
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/toastify-js/src/toastify.min.css">
 
+    <script src="https://cdn.jsdelivr.net/npm/toastify-js"></script>
+
+    @if(session('success'))
+        <script>
+            Toastify({
+                text: "{{ session('success') }}",
+                duration: 3000,
+                close: true,
+                gravity: "top",
+                position: "right",
+                backgroundColor: "#4CAF50",
+                stopOnFocus: true,
+                className: "toast-success",
+                animation: "fade",
+                offset: {
+                    x: 30,
+                    y: 50
+                }
+            }).showToast();
+        </script>
+    @endif
 
     <script>
         function addToCart(productId, productName, productPrice, variantId) {

@@ -14,7 +14,8 @@ class OrderController extends Controller
      */
     public function index()
     {
-        $orders = Order::all();
+        $orders = Order::orderBy('created_at', 'desc')->get();
+
         return view('admin.orders.index',compact('orders'));
     }
 
@@ -58,8 +59,58 @@ class OrderController extends Controller
         ]);
 
         // Redirect or return success message
-        return redirect()->back(); // Or wherever you want to redirect
+        return redirect()->back()->with('success', 'Операция выполнена успешно!');
     }
+
+    public function storeForm(Request $request)
+    {
+        // Validate the request data
+        $validated = $request->all();
+
+        // Create the new order record
+        $order = Order::create([
+            'first_name' => $validated['first_name'] ?? null,
+            'phone' => $validated['phone'] ?? null,
+            'message' => $validated['message']  ?? null,
+            'product' => $validated['product'] ?? null,
+        ]);
+
+
+        return redirect()->back()->with('success', 'Операция выполнена успешно!');
+    }
+    public function productsStore(Request $request)
+    {
+        // Validate the request data
+        $validated = $request->validate([
+            'first_name' => 'required|string|max:255',
+            'phone' => 'required|string|max:255',
+            'cart_items' => 'required|json',  // Ensure cart_items is a valid JSON
+        ]);
+
+        // Decode cart_items from JSON
+        $cartItems = json_decode($validated['cart_items'], true);
+
+        // Create the order
+        $order = Order::create([
+            'first_name' => $validated['first_name'],
+            'phone' => $validated['phone'],
+        ]);
+
+        // Loop through the cart items and create order items
+        foreach ($cartItems as $cartItem) {
+            OrderItem::create([
+                'order_id' => $order->id,
+                'product_id' => $cartItem['id'] ?? null,
+                'quantity' => $cartItem['quantity'], // Default to 1
+                'price' => $cartItem['price'] ?? $cartItem['discount_price'],
+                'total' => $cartItem['total_price'],
+            ]);
+        }
+
+        // Redirect or return success message
+        return redirect()->back()->with('success', 'Операция выполнена успешно!');
+    }
+
 
     /**
      * Display the specified resource.

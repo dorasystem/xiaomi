@@ -123,14 +123,12 @@
 
 
     <script>
+
         document.addEventListener('DOMContentLoaded', function () {
             const modal = document.getElementById('largeModal');
 
-            // Add an event listener for the modal show event
             modal.addEventListener('show.bs.modal', function (event) {
                 const button = event.relatedTarget; // Button that triggered the modal
-
-                // Extract the data attributes from the button
                 const productName = button.getAttribute('data-product-name');
                 const productPrice = button.getAttribute('data-product-price');
                 const productImage = button.getAttribute('data-product-image');
@@ -161,5 +159,6 @@
 
     <script src="/assets/script.js"></script>
     <script src="/assets/range.js"></script>
+
 </body>
 </html>
