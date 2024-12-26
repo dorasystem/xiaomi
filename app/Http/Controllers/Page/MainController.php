@@ -162,8 +162,6 @@ class MainController extends Controller
 
         return view('pages.search-products', compact('products', 'categories'));
     }
-<<<<<<< HEAD
-=======
 
 
     public function checkout()
@@ -172,5 +170,4 @@ class MainController extends Controller
     }
 
 
->>>>>>> 4dcf38d2bec92a4e063ec7ee32a879d0431663d8
 }
