@@ -279,7 +279,6 @@ $lang = \Illuminate\Support\Facades\App::getLocale();
         </div>
         <!-- Category -->
         <div class="container my-5">
-            <pre>{{ $category6 }}</pre>
             <div class="container text-white d-lg-block d-none">
                 <div class="row">
                     <div class="col-lg-4 ps-0">
