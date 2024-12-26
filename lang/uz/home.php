@@ -6,7 +6,6 @@ return [
     'search' => 'Mahsulotlarni qidirish',
     'comparison' => 'Taqqoslash',
     'featured' => 'Sevimlilar',
-    'basket' => 'Savatcha',
     'special_offers' => 'Maxsus takliflar',
     'product_on_sale' => 'Sotuvdagi mahsulotlar',
     'new_items' => 'Yangi elementlar',
@@ -54,7 +53,7 @@ return [
     'installments' => "Bo'lib to'lash",
     'full_payment' => "To'liq to'lov",
     'month' => "oy",
-    'basket' => "Savatga",
+    'basket' => "Savat",
     'katalog' => 'Katalog',
     'similar_product' => 'O‘xshash mahsulotlar',
     'no_other_news' => 'Boshqa yangiliklar hozircha yo‘q',
@@ -84,6 +83,13 @@ return [
     'title_des4' => 'To‘lov usullari',
     'title_des5' => 'Yuridik shaxslar uchun hisob orqali to‘lov',
 
+    "full_name" => "To'liq ism",
+    "phone_number" => "Telefon raqami",
+    "your_order" => "Buyurtmangiz",
+    "total_amount" => "Jami summa",
+    "discount" => "Chegirma",
+    "place_order" => "Buyurtma berish",
+    "products" => "Mahsulotlar",
 
 
 ];

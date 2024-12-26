@@ -288,7 +288,7 @@ $lang = \Illuminate\Support\Facades\App::getLocale();
                     <div class="col-lg-4 ps-0">
                         <a href="{{ route('category.sort', ['slug' => $category3->getSlugByLanguage($lang)]) }}">
                             <div style="background-image: url('{{ asset('storage/' . $category3->image) }}')"
-                                 class="fs-5 rounded category1 p-3 w-100">
+                                 class="fs-5 rounded category1 p-3 w-100 text-white text-shadow">
                                 {{ $category3['name_' . $lang] }}
                             </div>
                         </a>
@@ -299,7 +299,7 @@ $lang = \Illuminate\Support\Facades\App::getLocale();
                                 <a href="{{ route('category.sort', ['slug' => $category4->getSlugByLanguage($lang)]) }}">
                                     <div
                                         style="background-image: url('{{ asset('storage/' . $category4->image) }}')"
-                                        class="fs-5 p-3 category2 rounded h-95">
+                                        class="fs-5 p-3 category2 rounded h-95 text-white text-shadow">
                                         {{ $category4['name_' . $lang] }}
                                     </div>
                                 </a>
@@ -308,7 +308,7 @@ $lang = \Illuminate\Support\Facades\App::getLocale();
                                 <a href="{{ route('category.sort', ['slug' => $category5->getSlugByLanguage($lang)]) }}">
                                     <div
                                         style="background-image: url('{{ asset('storage/' . $category5->image) }}')"
-                                        class="p-3 category3 rounded h-100">
+                                        class="p-3 category3 rounded h-100 text-white text-shadow">
                                         {{ $category5['name_' . $lang] }}
                                     </div>
                                 </a>
@@ -317,7 +317,7 @@ $lang = \Illuminate\Support\Facades\App::getLocale();
                                 <a href="{{ route('category.sort', ['slug' => $category1->getSlugByLanguage($lang)]) }}">
                                     <div
                                         style="background-image: url('{{ asset('storage/' . $category1->image) }}')"
-                                        class="p-3 category4 rounded h-100">
+                                        class="p-3 category4 rounded h-100 text-white text-shadow">
                                         {{ $category1['name_' . $lang] }}
                                     </div>
                                 </a>
@@ -330,7 +330,7 @@ $lang = \Illuminate\Support\Facades\App::getLocale();
                                 <a href="{{ route('category.sort', ['slug' => $category6->getSlugByLanguage($lang)]) }}">
                                     <div
                                         style="background-image: url('{{ asset('storage/' . $category6->image) }}')"
-                                        class="p-3 category5 rounded h-100">
+                                        class="p-3 category5 rounded h-100 text-white text-shadow">
                                         {{ $category6['name_' . $lang] }}
                                     </div>
                                 </a>
@@ -339,7 +339,7 @@ $lang = \Illuminate\Support\Facades\App::getLocale();
                                 <a href="{{ route('category.sort', ['slug' => $category7->getSlugByLanguage($lang)]) }}">
                                     <div
                                         style="background-image: url('{{ asset('storage/' . $category7->image) }}')"
-                                        class="p-3 category6 rounded h-100">
+                                        class="p-3 category6 rounded h-100 text-white text-shadow">
                                         {{ $category7['name_' . $lang] }}
                                     </div>
                                 </a>
@@ -348,7 +348,7 @@ $lang = \Illuminate\Support\Facades\App::getLocale();
                                 <a href="{{ route('category.sort', ['slug' => $category2->getSlugByLanguage($lang)]) }}">
                                     <div
                                          style="background-image: url('{{ asset('storage/' . $category2->image) }}')"
-                                         class="fs-5 p-3 mt-3 category7 rounded h-95">
+                                         class="fs-5 p-3 mt-3 category7 rounded h-95 text-white text-shadow">
                                         {{ $category2['name_' . $lang] }}
                                     </div>
                                 </a>

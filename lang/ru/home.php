@@ -78,5 +78,14 @@ return [
     'title_des4' => 'Способы оплаты',
     'title_des5' => 'Оплата по счету для юрлиц',
 
+    "full_name" => "Полное имя",
+    "phone_number" => "Номер телефона",
+    "your_order" => "Ваш заказ",
+    "total_amount" => "Итоговая сумма",
+    "discount" => "Скидка",
+    "place_order" => "Оформить заказ",
+    "products" => "Товаров"
+
+
 
 ];

@@ -1043,6 +1043,9 @@ input[type="range"]:nth-child(2) {
 .productsColor .border-grey:hover {
     box-shadow: 0px 0px 21px -6px rgba(255, 103, 0, 0.53);
 }
+.text-shadow {
+    text-shadow: 3px 3px 5px rgba(0, 0, 0, 0.5);
+}
 .productsColor {
     width: 100%;
     overflow-y: auto;

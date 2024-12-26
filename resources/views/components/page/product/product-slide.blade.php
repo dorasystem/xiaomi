@@ -14,7 +14,7 @@ $lang = app()->getLocale();
                     <a onclick="toggleFavourite({{ $product->id }})">
                         <i id="favourite-icon-{{ $product->id }}"
                             class="fa-regular fa-heart fs-4 hover-orange ps-1
-       {{ in_array($product->id, session('favorites', [])) ? 'text-orange' : '' }}">
+                                 {{ in_array($product->id, session('favorites', [])) ? 'text-orange' : '' }}">
                         </i>
                     </a>
                     <svg class="hover-svg" width="30" height="20" viewBox="0 0 102 92" fill="none"

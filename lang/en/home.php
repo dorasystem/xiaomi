@@ -85,5 +85,13 @@ return [
     'title_des4' => 'Payment methods',
     'title_des5' => 'Payment by invoice for legal entities',
 
+    "full_name" => "Full name",
+    "phone_number" => "Phone number",
+    "your_order" => "Your order",
+    "total_amount" => "Total amount",
+    "discount" => "Discount",
+    "place_order" => "Place order",
+    "products" => "Products",
+
 
 ];
