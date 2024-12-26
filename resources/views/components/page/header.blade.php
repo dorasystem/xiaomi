@@ -15,11 +15,11 @@
                     <li class=""><a class="text-grey hover-orange" href="{{ route('news') }}">@lang('footer.news')</a>
                     </li>
                     <li class=""><a class="text-grey hover-orange"
-                            href="{{ route('products') }}">@lang('footer.products')</a></li>
+                                    href="{{ route('products') }}">@lang('footer.products')</a></li>
                     <li class=""><a class="text-grey hover-orange" href="/about">@lang('footer.about_us')</a></li>
                     <li class=""><a class="text-grey hover-orange" href="/contact">@lang('footer.contacts')</a></li>
                     <li class=""><a class="text-grey hover-orange"
-                            href="{{ route('blog') }}">@lang('footer.blog')</a>
+                                    href="{{ route('blog') }}">@lang('footer.blog')</a>
                     </li>
                 </ul>
             </div>
@@ -50,7 +50,7 @@
                         class="position-relative w-max d-flex align-items-center justify-content-end justify-content-md-start text-nowrap align-items-center">
                         <div class="dropdown">
                             <button class="border-0 bg-transparent pe-4 py-1 dropdown-toggle" type="button"
-                                data-bs-toggle="dropdown" aria-expanded="false">
+                                    data-bs-toggle="dropdown" aria-expanded="false">
                                 @if ($currentLocale === 'ru')
                                     Русский
                                 @elseif ($currentLocale === 'en')
@@ -68,7 +68,7 @@
                             </ul>
                         </div>
                         <i id="select-icon"
-                            class="fa-solid fa-angle-down position-absolute end-0 top-50 translate-middle-y pe-2 text-dark"></i>
+                           class="fa-solid fa-angle-down position-absolute end-0 top-50 translate-middle-y pe-2 text-dark"></i>
                     </div>
                 </div>
             </div>
@@ -79,15 +79,15 @@
             <div class="row align-items-center justify-content-between w-100">
                 <div class="col-4">
                     <a class="logo" href="/"><img class="w-100" src="/assets/images/xiaomiStoreBlack.webp"
-                            alt="Mi Logo" /> </a>
+                                                  alt="Mi Logo" /> </a>
                 </div>
                 <div class="col-8 d-flex align-items-center justify-content-end pe-0 gap-4">
                     <div class="">
                         <a href="/compare" class="icon position-relative">
                             <svg version="1.0" xmlns="http://www.w3.org/2000/svg" width="30" height="30"
-                                viewBox="0 0 512.000000 512.000000" preserveAspectRatio="xMidYMid meet">
+                                 viewBox="0 0 512.000000 512.000000" preserveAspectRatio="xMidYMid meet">
                                 <g transform="translate(0.000000,512.000000) scale(0.100000,-0.100000)" fill="#000"
-                                    stroke="none">
+                                   stroke="none">
                                     <path d="M2015 4786 c-41 -18 -83 -69 -90 -109 -3 -18 -4 -982 -3 -2144 l3
                                                     -2112 21 -27 c11 -15 33 -37 48 -48 27 -21 38 -21 566 -21 528 0 539 0 566 21
                                                     15 11 37 33 48 48 l21 27 0 2139 0 2139 -21 27 c-11 15 -33 37 -48 48 -27 21
@@ -123,7 +123,7 @@
                 <div class="row align-items-center w-100">
                     <div class="col-lg-2 col-4 mb-lg-0 mb-3 d-lg-block d-none">
                         <a class="logo" href="/"><img class="w-100" src="/assets/images/xiaomiStoreWhite.webp"
-                                alt="Mi Logo" /> </a>
+                                                      alt="Mi Logo" /> </a>
                     </div>
                     <div class="col-lg-7 px-sm-2 px-0">
                         <div class="d-flex align-items-center gap-4">
@@ -140,13 +140,13 @@
                                 <form method="GET" action="{{ route('products.search') }}">
                                     <div class="d-flex align-items-center w-100 nav_form">
                                         <button class="border-0 bg-transparent text-dark search-btn-dark ps-4"
-                                            type="submit">
+                                                type="submit">
                                             <i class="fas fa-search"></i>
                                         </button>
                                         <input id="searchInput" name="search"
-                                            class="form-control border-0 bg-transparent mr-sm-2 search-bar focus_none text-white"
-                                            type="search" aria-label="Search" placeholder="@lang('home.search')"
-                                            value="{{ request()->query('search') }}" />
+                                               class="form-control border-0 bg-transparent mr-sm-2 search-bar focus_none text-white"
+                                               type="search" aria-label="Search" placeholder="@lang('home.search')"
+                                               value="{{ request()->query('search') }}" />
                                         <button class="border-0 bg-transparent text-white search-btn" type="submit">
                                             <i class="fas fa-search"></i>
                                         </button>
@@ -217,9 +217,9 @@
                         <li class="d-flex flex-column align-items-center">
                             <a href="/compare" class="icon position-relative">
                                 <svg version="1.0" xmlns="http://www.w3.org/2000/svg" width="30" height="30"
-                                    viewBox="0 0 512.000000 512.000000" preserveAspectRatio="xMidYMid meet">
+                                     viewBox="0 0 512.000000 512.000000" preserveAspectRatio="xMidYMid meet">
                                     <g transform="translate(0.000000,512.000000) scale(0.100000,-0.100000)"
-                                        fill="#fff" stroke="none">
+                                       fill="#fff" stroke="none">
                                         <path d="M2015 4786 c-41 -18 -83 -69 -90 -109 -3 -18 -4 -982 -3 -2144 l3
     -2112 21 -27 c11 -15 33 -37 48 -48 27 -21 38 -21 566 -21 528 0 539 0 566 21
     15 11 37 33 48 48 l21 27 0 2139 0 2139 -21 27 c-11 15 -33 37 -48 48 -27 21
@@ -244,7 +244,7 @@
                         <li class="d-flex flex-column align-items-center">
                             <a href="{{ route('cart') }}" class="icon position-relative">
                                 <svg width="30" height="35" viewBox="0 0 16 15" fill="none"
-                                    xmlns="http://www.w3.org/2000/svg">
+                                     xmlns="http://www.w3.org/2000/svg">
                                     <path
                                         d="M5 14.0625C5.55228 14.0625 6 13.6428 6 13.125C6 12.6072 5.55228 12.1875 5 12.1875C4.44772 12.1875 4 12.6072 4 13.125C4 13.6428 4.44772 14.0625 5 14.0625Z"
                                         fill="#fff" />
@@ -597,16 +597,16 @@
         </div>
     </div> --}}
     <div style="display: none" class="rounded-bottom container px-0 katalog" id="Katalog">
-                <div class="py-2 pt-4">
+        <div class="py-2 pt-4">
 
-                    <ul class="gap-3 d-sm-none d-block">
-                        <li class="mb-3"><a class="hover-orange" href="{{ route('news') }}">Новости</a></li>
-                        <li class="mb-3"><a class="hover-orange" href="{{ route('products') }}">Обзоры</a></li>
-                        <li class="mb-3"><a class="hover-orange" href="{{ route('about') }}">О нас</a></li>
-                        <li class="mb-3"><a class="hover-orange" href="{{ route('about') }}">Контакты</a></li>
-                        <li class="mb-3"><a class="hover-orange" href="{{ route('blog') }}">Блог</a></li>
-                    </ul>
-                </div>
-            </div>
+            <ul class="gap-3 d-sm-none d-block">
+                <li class="mb-3"><a class="hover-orange" href="{{ route('news') }}">Новости</a></li>
+                <li class="mb-3"><a class="hover-orange" href="{{ route('products') }}">Обзоры</a></li>
+                <li class="mb-3"><a class="hover-orange" href="{{ route('about') }}">О нас</a></li>
+                <li class="mb-3"><a class="hover-orange" href="{{ route('contact') }}">Контакты</a></li>
+                <li class="mb-3"><a class="hover-orange" href="{{ route('blog') }}">Блог</a></li>
+            </ul>
+        </div>
+    </div>
 
 </nav>

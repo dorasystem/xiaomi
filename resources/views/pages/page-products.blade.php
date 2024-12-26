@@ -43,6 +43,31 @@
                         <form method="GET" action="{{ route('products.filter') }}">
                             <div class="accordion" id="accordionPanelsStayOpenExample">
                                 <div class="accordion-item">
+                                    <h2 class="accordion-header" id="panelsStayOpen-headingOne">
+                                        <button class="accordion-button " type="button" data-bs-toggle="collapse"
+                                                data-bs-target="#panelsStayOpen-collapseOne" aria-expanded="true"
+                                                aria-controls="panelsStayOpen-collapseOne">
+                                            Категории
+                                        </button>
+                                    </h2>
+                                    <div id="panelsStayOpen-collapseOne" class="accordion-collapse collapse show"
+                                         aria-labelledby="panelsStayOpen-headingOne">
+                                        <div class="accordion-body">
+                                            @foreach($categories as $category)
+                                                <div class="form-check mb-3">
+                                                    <input class="form-check-input" type="checkbox"
+                                                           name="categories[]" value="{{ $category->id }}"
+                                                           id="category-{{ $category->id }}"
+                                                        {{ in_array($category->id, request('categories', [])) ? 'checked' : '' }} />
+                                                    <label class="form-check-label" for="category-{{ $category->id }}">
+                                                        <small>{{ $category['name_'.$lang] }}</small>
+                                                    </label>
+                                                </div>
+                                            @endforeach
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="accordion-item">
                                     <h2 class="accordion-header" id="panelsStayOpen-headingTwo">
                                         <button class="accordion-button" type="button" data-bs-toggle="collapse"
                                                 data-bs-target="#panelsStayOpen-collapseTwo" aria-expanded="true"
@@ -70,31 +95,7 @@
                                         </div>
                                     </div>
                                 </div>
-                                <div class="accordion-item">
-                                    <h2 class="accordion-header" id="panelsStayOpen-headingOne">
-                                        <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse"
-                                                data-bs-target="#panelsStayOpen-collapseOne" aria-expanded="false"
-                                                aria-controls="panelsStayOpen-collapseOne">
-                                            Категории
-                                        </button>
-                                    </h2>
-                                    <div id="panelsStayOpen-collapseOne" class="accordion-collapse collapse"
-                                         aria-labelledby="panelsStayOpen-headingOne">
-                                        <div class="accordion-body">
-                                            @foreach($categories as $category)
-                                                <div class="form-check mb-3">
-                                                    <input class="form-check-input" type="checkbox"
-                                                           name="categories[]" value="{{ $category->id }}"
-                                                           id="category-{{ $category->id }}"
-                                                        {{ in_array($category->id, request('categories', [])) ? 'checked' : '' }} />
-                                                    <label class="form-check-label" for="category-{{ $category->id }}">
-                                                        <small>{{ $category['name_'.$lang] }}</small>
-                                                    </label>
-                                                </div>
-                                            @endforeach
-                                        </div>
-                                    </div>
-                                </div>
+
                             </div>
                             <button type="submit" class="w-100 btn-orange rounded text-center mb-3">Поиск</button>
                             <button class="w-100 text-orange bg-transparent rounded text-center border-orange rounded py-1">
@@ -126,6 +127,33 @@
                                                             aria-label="Close"></button>
                                                 </div>
                                                 <div class="accordion" id="accordionPanelsStayOpenExample">
+                                                    <div class="accordion-item">
+                                                        <h2 class="accordion-header" id="panelsStayOpen-headingOne">
+                                                            <button class="accordion-button " type="button"
+                                                                    data-bs-toggle="collapse"
+                                                                    data-bs-target="#panelsStayOpen-collapseOne"
+                                                                    aria-expanded="true"
+                                                                    aria-controls="panelsStayOpen-collapseOne">
+                                                                Категории
+                                                            </button>
+                                                        </h2>
+                                                        <div id="panelsStayOpen-collapseOne"
+                                                             class="accordion-collapse collapse show"
+                                                             aria-labelledby="panelsStayOpen-headingOne">
+                                                            <div class="accordion-body">
+                                                                @foreach($categories as $category)
+                                                                    <div class="form-check mb-3">
+                                                                        <input class="form-check-input" type="checkbox"
+                                                                               value="" id="flexCheckChecked"/>
+                                                                        <label class="form-check-label"
+                                                                               for="flexCheckChecked">
+                                                                            <small>{{$category['name_'.$lang]}}</small>
+                                                                        </label>
+                                                                    </div>
+                                                                @endforeach
+                                                            </div>
+                                                        </div>
+                                                    </div>
                                                     <div class="accordion-item">
                                                         <h2 class="accordion-header" id="panelsStayOpen-headingTwo">
                                                             <button class="accordion-button collapsed" type="button"
@@ -163,62 +191,7 @@
                                                             </div>
                                                         </div>
                                                     </div>
-                                                    <div class="accordion-item">
-                                                        <h2 class="accordion-header" id="panelsStayOpen-headingOne">
-                                                            <button class="accordion-button collapsed" type="button"
-                                                                    data-bs-toggle="collapse"
-                                                                    data-bs-target="#panelsStayOpen-collapseOne"
-                                                                    aria-expanded="false"
-                                                                    aria-controls="panelsStayOpen-collapseOne">
-                                                                Категории
-                                                            </button>
-                                                        </h2>
-                                                        <div id="panelsStayOpen-collapseOne"
-                                                             class="accordion-collapse collapse"
-                                                             aria-labelledby="panelsStayOpen-headingOne">
-                                                            <div class="accordion-body">
-                                                                @foreach($categories as $category)
-                                                                    <div class="form-check mb-3">
-                                                                        <input class="form-check-input" type="checkbox"
-                                                                               value="" id="flexCheckChecked"/>
-                                                                        <label class="form-check-label"
-                                                                               for="flexCheckChecked">
-                                                                            <small>{{$category['name_'.$lang]}}</small>
-                                                                        </label>
-                                                                    </div>
-                                                                @endforeach
-                                                            </div>
-                                                        </div>
-                                                    </div>
-                                                    <div class="accordion-item mb-2">
-                                                        <h2 class="accordion-header" id="panelsStayOpen-headingThree">
-                                                            <button class="accordion-button collapsed" type="button"
-                                                                    data-bs-toggle="collapse"
-                                                                    data-bs-target="#panelsStayOpen-collapseThree"
-                                                                    aria-expanded="false"
-                                                                    aria-controls="panelsStayOpen-collapseThree">
-                                                                Рейтинг
-                                                            </button>
-                                                        </h2>
-                                                        <div id="panelsStayOpen-collapseThree"
-                                                             class="accordion-collapse collapse"
-                                                             aria-labelledby="panelsStayOpen-headingThree">
-                                                            <div class="accordion-body">
-                                                                <div class="rating">
-                                                                    <input type="radio" name="rating" value="5"
-                                                                           id="5"/><label for="5">☆</label>
-                                                                    <input type="radio" name="rating" value="4"
-                                                                           id="4"/><label for="4">☆</label>
-                                                                    <input type="radio" name="rating" value="3"
-                                                                           id="3"/><label for="3">☆</label>
-                                                                    <input type="radio" name="rating" value="2"
-                                                                           id="2"/><label for="2">☆</label>
-                                                                    <input type="radio" name="rating" value="1"
-                                                                           id="1"/><label for="1">☆</label>
-                                                                </div>
-                                                            </div>
-                                                        </div>
-                                                    </div>
+
                                                 </div>
                                             </div>
                                             <div class="p-3 position-sticky bottom-0 z-3 bg-white">
