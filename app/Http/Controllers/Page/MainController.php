@@ -40,6 +40,7 @@ class MainController extends Controller
     {
         $lang = app()->getLocale();
         $locations = Store::all();
+        // return view('components.page.contact',compact('locations','lang'));
         return view('pages.contact',compact('locations','lang'));
     }
     public function blog()

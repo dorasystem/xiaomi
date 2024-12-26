@@ -55,6 +55,10 @@ return [
     'full_payment' => 'Full payment',
     'month' => 'month',
     'basket' => 'To cart',
+    'katalog' => 'Katalog',
+    'similar_product' => 'Similar products',
+    'no_other_news' => 'No other news for now',
+
 
 
 ];

@@ -21,7 +21,7 @@ return [
     'compare' => 'Taqqoslash',
 
     'bestsellers' => 'Eng ko\'p sotilganlar',
-    'buy_now' => 'Xoziroq sotib olish',
+    'buy_now' => 'Hoziroq sotib olish',
     'looked_product' => 'Ko\'rilgan mahsulotlar',
 
     'our_advantages' => 'Bizning afzalliklarimiz',
@@ -42,7 +42,7 @@ return [
 
     'popular' => 'Ommabop',
 
-    'video_reviews' => 'Video sharhlar',
+    'video_reviews' => 'Video sharh',
     'all_video_reviews' => 'Barcha video sharhlar',
     'our_shops' => 'Bizning doʻkonlarimiz',
 
@@ -55,5 +55,15 @@ return [
     'full_payment' => "To'liq to'lov",
     'month' => "oy",
     'basket' => "Savatga",
+    'katalog' => 'Katalog',
+    'similar_product' => 'O‘xshash mahsulotlar',
+    'no_other_news' => 'Boshqa yangiliklar hozircha yo‘q',
+
+
+
+
+
+
+
 
 ];
