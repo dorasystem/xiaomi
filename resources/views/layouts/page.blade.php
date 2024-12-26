@@ -21,6 +21,8 @@
     <link rel="stylesheet" href="/assets/css/main.css" />
     <!-- Favicon  -->
     <link rel="shortcut icon" href="https://xiaomistore.md/media/site_settings/logo/Logo.png" />
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/toastify-js/src/toastify.min.css">
+
     <!-- for map -->
     <script src="https://api-maps.yandex.ru/2.1/?lang=ru_RU" type="text/javascript"></script>
 </head>
@@ -126,6 +128,7 @@
     <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/slick-carousel@1.8.1/slick/slick.min.js"></script>
     <script src="https://unpkg.com/swiper/swiper-bundle.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/toastify-js"></script>
 
     <script src="/assets/script.js"></script>
     <script src="/assets/range.js"></script>

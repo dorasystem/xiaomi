@@ -6,6 +6,7 @@ use App\Http\Controllers\Controller;
 use App\Models\About;
 use App\Models\Article;
 use App\Models\Blog;
+use App\Models\Category;
 use App\Models\Comment;
 use App\Models\History;
 use App\Models\MainBanner;
@@ -62,8 +63,10 @@ class MainController extends Controller
 
     public function products()
     {
+        $categories = Category::all();
         $products = Product::paginate(8);
-        return view('pages.page-products',compact('products'));
+        $lang = app()->getLocale();
+        return view('pages.page-products',compact('products', 'lang','categories'));
     }
 
     public function singleProduct($slug)
@@ -120,6 +123,38 @@ class MainController extends Controller
         ->orWhere('description_'.$lang, 'like', '%' . $search . '%')
         ->get();
 
-        return view('pages.search-products', compact('products'));
+        return view('pages.search-products', compact('products', 'lang'));
     }
+    public function filterProducts(Request $request)
+    {
+        $minPrice = $request->input('min_price', 0);
+        $maxPrice = $request->input('max_price', 1000);
+        $categories = $request->input('categories', []);
+
+        // Kategoriyalar bo‘yicha mahsulotlarni olish
+        $products = Product::query();
+
+        if (!empty($categories)) {
+            $products->whereIn('category_id', $categories);
+        }
+
+        // Narxga mos keladigan mahsulotlarni tekshirish
+        $filteredProducts = $products->whereHas('variants', function ($query) use ($minPrice, $maxPrice) {
+            $query->whereBetween('price', [$minPrice, $maxPrice]);
+        })->get();
+
+        // Agar narxga mos keladigan mahsulotlar bo‘lmasa, faqat kategoriyaga tegishli mahsulotlarni qaytaramiz
+        if ($filteredProducts->isEmpty() && !empty($categories)) {
+            $products = $products->get();
+        } else {
+            $products = $filteredProducts;
+        }
+
+        $categories = Category::all();
+
+        return view('pages.search-products', compact('products', 'categories'));
+    }
+
+
+
 }
