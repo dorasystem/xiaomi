@@ -36,23 +36,24 @@ $lang = \Illuminate\Support\Facades\App::getLocale();
                                 viewBox="0 0 512.000000 512.000000" preserveAspectRatio="xMidYMid meet">
                                 <g transform="translate(0.000000,512.000000) scale(0.100000,-0.100000)" fill="#000"
                                     stroke="none">
-                                    <path d="M2015 4786 c-41 -18 -83 -69 -90 -109 -3 -18 -4 -982 -3 -2144 l3
-                                                                                    -2112 21 -27 c11 -15 33 -37 48 -48 27 -21 38 -21 566 -21 528 0 539 0 566 21
-                                                                                    15 11 37 33 48 48 l21 27 0 2139 0 2139 -21 27 c-11 15 -33 37 -48 48 -27 21
-                                                                                    -40 21 -554 23 -423 2 -533 0 -557 -11z m865 -2226 l0 -1920 -320 0 -320 0 0
-                                                                                    1920 0 1920 320 0 320 0 0 -1920z" />
+                                    <path
+                                        d="M2015 4786 c-41 -18 -83 -69 -90 -109 -3 -18 -4 -982 -3 -2144 l3
+                                                                                                            -2112 21 -27 c11 -15 33 -37 48 -48 27 -21 38 -21 566 -21 528 0 539 0 566 21
+                                                                                                            15 11 37 33 48 48 l21 27 0 2139 0 2139 -21 27 c-11 15 -33 37 -48 48 -27 21
+                                                                                                            -40 21 -554 23 -423 2 -533 0 -557 -11z m865 -2226 l0 -1920 -320 0 -320 0 0
+                                                                                                            1920 0 1920 320 0 320 0 0 -1920z" />
                                     <path
                                         d="M3615 3506 c-41 -18 -83 -69 -90 -109 -3 -18 -4 -694 -3 -1504 3
-                                                                                    -1468 3 -1472 24 -1499 11 -15 33 -37 48 -48 27 -21 38 -21 566 -21 528 0 539
-                                                                                    0 566 21 15 11 37 33 48 48 21 27 21 28 21 1526 0 1498 0 1499 -21 1526 -11
-                                                                                    15 -33 37 -48 48 -27 21 -40 21 -554 23 -423 2 -533 0 -557 -11z m865 -1586
-                                                                                    l0 -1280 -320 0 -320 0 0 1280 0 1280 320 0 320 0 0 -1280z" />
+                                                                                                            -1468 3 -1472 24 -1499 11 -15 33 -37 48 -48 27 -21 38 -21 566 -21 528 0 539
+                                                                                                            0 566 21 15 11 37 33 48 48 21 27 21 28 21 1526 0 1498 0 1499 -21 1526 -11
+                                                                                                            15 -33 37 -48 48 -27 21 -40 21 -554 23 -423 2 -533 0 -557 -11z m865 -1586
+                                                                                                            l0 -1280 -320 0 -320 0 0 1280 0 1280 320 0 320 0 0 -1280z" />
                                     <path
                                         d="M415 2226 c-41 -18 -83 -69 -90 -109 -3 -18 -5 -406 -3 -864 3 -822
-                                                                                    3 -832 24 -859 11 -15 33 -37 48 -48 27 -21 38 -21 566 -21 528 0 539 0 566
-                                                                                    21 15 11 37 33 48 48 21 27 21 34 21 886 0 852 0 859 -21 886 -11 15 -33 37
-                                                                                    -48 48 -27 21 -40 21 -554 23 -423 2 -533 0 -557 -11z m865 -946 l0 -640 -320
-                                                                                    0 -320 0 0 640 0 640 320 0 320 0 0 -640z" />
+                                                                                                            3 -832 24 -859 11 -15 33 -37 48 -48 27 -21 38 -21 566 -21 528 0 539 0 566
+                                                                                                            21 15 11 37 33 48 48 21 27 21 34 21 886 0 852 0 859 -21 886 -11 15 -33 37
+                                                                                                            -48 48 -27 21 -40 21 -554 23 -423 2 -533 0 -557 -11z m865 -946 l0 -640 -320
+                                                                                                            0 -320 0 0 640 0 640 320 0 320 0 0 -640z" />
                                 </g>
                             </svg>
                             <span class="fs-14">@lang('home.compare')</span>
@@ -162,7 +163,8 @@ $lang = \Illuminate\Support\Facades\App::getLocale();
 
                             <div class="d-flex flex-lg-row flex-column d-block align-items-center gap-3">
                                 <button class="btn-orange rounded w-100"> @lang('home.basket')</button>
-                                <button class="border-0 w-100 bg-darkgrey rounded py-2 px-3"> @lang('home.buy_now')</button>
+                                <button data-bs-toggle="modal" data-bs-target="#largeModal"
+                                    class="border-0 w-100 bg-darkgrey rounded py-2 px-3"> @lang('home.buy_now')</button>
                             </div>
                         </div>
                     </div>
@@ -177,32 +179,28 @@ $lang = \Illuminate\Support\Facades\App::getLocale();
                     <li class="nav-item" role="presentation">
                         <a class="py-2 fs-14 ps-0 active" id="description-tab" data-bs-toggle="tab"
                             data-bs-target="#description" type="button" role="tab" aria-controls="description"
-                            aria-selected="true">Описание</a>
+                            aria-selected="true">@lang('home.desc')</a>
                     </li>
                     <li class="nav-item" role="presentation">
                         <a class="py-2 fs-14" id="specifications-tab" data-bs-toggle="tab"
                             data-bs-target="#specifications" type="button" role="tab"
-                            aria-controls="specifications" aria-selected="false">Характеристики</a>
-                    </li>
-                    <li class="nav-item" role="presentation">
-                        <a class="py-2 fs-14" id="availability-tab" data-bs-toggle="tab" data-bs-target="#availability"
-                            type="button" role="tab" aria-controls="availability" aria-selected="false">Наличие в
-                            магазинах</a>
+                            aria-controls="specifications" aria-selected="false">@lang('home.specifications')</a>
                     </li>
                     <li class="nav-item" role="presentation">
                         <a class="py-2 fs-14" id="installments-tab" data-bs-toggle="tab" data-bs-target="#installments"
-                            type="button" role="tab" aria-controls="installments" aria-selected="false">Рассрочка и
-                            кредит</a>
+                            type="button" role="tab" aria-controls="installments"
+                            aria-selected="false">@lang('home.installment')</a>
                     </li>
                     <li class="nav-item" role="presentation">
                         <a class="py-2 fs-14" id="reviews-tab" data-bs-toggle="tab" data-bs-target="#reviews"
-                            type="button" role="tab" aria-controls="reviews" aria-selected="false">Отзывы
+                            type="button" role="tab" aria-controls="reviews"
+                            aria-selected="false">@lang('home.review')
                             (<span>{{ $product->comments->count() }}</span>)</a>
                     </li>
                     <li class="nav-item" role="presentation">
                         <a class="py-2 fs-14 pe-0" id="delivery-tab" data-bs-toggle="tab" data-bs-target="#delivery"
-                            type="button" role="tab" aria-controls="delivery" aria-selected="false">Доставка и
-                            оплата</a>
+                            type="button" role="tab" aria-controls="delivery"
+                            aria-selected="false">@lang('home.payment')</a>
                     </li>
                 </ul>
 
@@ -211,104 +209,22 @@ $lang = \Illuminate\Support\Facades\App::getLocale();
                     <div class="tab-pane fade show active" id="description" role="tabpanel"
                         aria-labelledby="description-tab">
                         <div class="pt-3 border-top container">
-                            <div class="row align-items-center mt-4">
-                                <div class="col-md-8">
-                                    <img class="w-100 rounded" src="./assets/images/product_des1.png" alt="" />
-                                </div>
-                                <div class="col-md-4 py-3">
-                                    <h6>Металлические корпус</h6>
-                                    <div class="fs-14">Корпус смартфона изготовлен из высокопрочного алюминиевого сплава
-                                        6M13, что делает его не только практичным, но и стильным.
-                                    </div>
-                                </div>
-                            </div>
                             <div class="row align-items-center">
-                                <div class="mt-4 col-lg-4 rounded-2">
-                                    <img class="w-100 fit-cover rounded-top" src="./assets/images/product_des2.png"
-                                        alt="" />
-                                    <div class="bg-darkgrey p-4 rounded-bottom">
-                                        <h6 class="fw-bold">Интелектуальная система связи</h6>
-                                        <div class="fs-sm-14">
-                                            Интеллектуальная система связи Al, оптимизированная для 16 различных
-                                            сценариев использования, в сочетании с эффективным расположением антенн
-                                            обеспечивает повышение производительности сети в играх.
+                                @foreach ($descImages as $descImage)
+                                    <div class="mt-4 col-lg-4 rounded-2">
+                                        <img class="w-100 fit-cover rounded-top"
+                                            src="{{ asset('storage/' . $descImage->image) }}" alt="" />
+                                        <div class="bg-darkgrey p-4 rounded-bottom">
+                                            <h6 class="fw-bold d-none">Интелектуальная система связи</h6>
+                                            <div class="fs-sm-14">
+                                                {{ $descImage['description_' . $lang] }}
+                                            </div>
                                         </div>
                                     </div>
-                                </div>
-                                <div class="mt-4 col-lg-4 rounded-2">
-                                    <img class="w-100 fit-cover rounded-top" src="./assets/images/product_des2.png"
-                                        alt="" />
-                                    <div class="bg-darkgrey p-4 rounded-bottom">
-                                        <h6 class="fw-bold">Интелектуальная система связи</h6>
-                                        <div class="fs-sm-14">
-                                            Интеллектуальная система связи Al, оптимизированная для 16 различных
-                                            сценариев использования, в сочетании с эффективным расположением антенн
-                                            обеспечивает повышение производительности сети в играх.
-                                        </div>
-                                    </div>
-                                </div>
-                                <div class="mt-4 col-lg-4 rounded-2">
-                                    <img class="w-100 fit-cover rounded-top" src="./assets/images/product_des2.png"
-                                        alt="" />
-                                    <div class="bg-darkgrey p-4 rounded-bottom">
-                                        <h6 class="fw-bold">Интелектуальная система связи</h6>
-                                        <div class="fs-sm-14">
-                                            Интеллектуальная система связи Al, оптимизированная для 16 различных
-                                            сценариев использования, в сочетании с эффективным расположением антенн
-                                            обеспечивает повышение производительности сети в играх.
-                                        </div>
-                                    </div>
-                                </div>
+                                @endforeach
+
                             </div>
-                            <div class="row align-items-center mt-4">
-                                <div class="col-md-4 order-md-1 order-2">
-                                    <h6>Металлические корпус</h6>
-                                    <div class="fs-14">Корпус смартфона изготовлен из высокопрочного алюминиевого сплава
-                                        6M13, что делает его не только практичным, но и стильным.
-                                    </div>
-                                </div>
-                                <div class="col-md-8 order-md-2 order-1">
-                                    <img class="w-100 rounded" src="./assets/images/product_des1.png" alt="" />
-                                </div>
-                            </div>
-                            <div class="row align-items-center">
-                                <div class="mt-4 col-lg-4 rounded-2">
-                                    <img class="w-100 fit-cover rounded-top" src="./assets/images/product_des2.png"
-                                        alt="" />
-                                    <div class="bg-darkgrey p-4 rounded-bottom">
-                                        <h6 class="fw-bold">Интелектуальная система связи</h6>
-                                        <div class="fs-sm-14">
-                                            Интеллектуальная система связи Al, оптимизированная для 16 различных
-                                            сценариев использования, в сочетании с эффективным расположением антенн
-                                            обеспечивает повышение производительности сети в играх.
-                                        </div>
-                                    </div>
-                                </div>
-                                <div class="mt-4 col-lg-4 rounded-2">
-                                    <img class="w-100 fit-cover rounded-top" src="./assets/images/product_des2.png"
-                                        alt="" />
-                                    <div class="bg-darkgrey p-4 rounded-bottom">
-                                        <h6 class="fw-bold">Интелектуальная система связи</h6>
-                                        <div class="fs-sm-14">
-                                            Интеллектуальная система связи Al, оптимизированная для 16 различных
-                                            сценариев использования, в сочетании с эффективным расположением антенн
-                                            обеспечивает повышение производительности сети в играх.
-                                        </div>
-                                    </div>
-                                </div>
-                                <div class="mt-4 col-lg-4 rounded-2">
-                                    <img class="w-100 fit-cover rounded-top" src="./assets/images/product_des2.png"
-                                        alt="" />
-                                    <div class="bg-darkgrey p-4 rounded-bottom">
-                                        <h6 class="fw-bold">Интелектуальная система связи</h6>
-                                        <div class="fs-sm-14">
-                                            Интеллектуальная система связи Al, оптимизированная для 16 различных
-                                            сценариев использования, в сочетании с эффективным расположением антенн
-                                            обеспечивает повышение производительности сети в играх.
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
+
                         </div>
                     </div>
                     <div class="tab-pane fade" id="specifications" role="tabpanel" aria-labelledby="specifications-tab">
@@ -325,7 +241,7 @@ $lang = \Illuminate\Support\Facades\App::getLocale();
                             <div style="display: flex;  margin-top: 20px;">
                                 <div style="width: 100%; word-wrap: break-word; list-style:disc!important;  "
                                     class="str_replace">
-                                    {!! str_replace('<br>', '', $product->content_uz) !!}
+                                    {!! str_replace('<br>', '', $product['content_' . $lang]) !!}
                                 </div>
                             </div>
 
@@ -363,100 +279,14 @@ $lang = \Illuminate\Support\Facades\App::getLocale();
 
                         </div>
                     </div>
-                    <div class="tab-pane fade" id="availability" role="tabpanel" aria-labelledby="availability-tab">
-                        <div class="pt-3 border-top">
 
-                            <table class="table tableshop mb-0">
-                                <thead class="bg-light">
-                                    <tr>
-                                        <th class="px-4 fs-14" scope="col">Магазин</th>
-                                        <th class="px-4 fs-14" scope="col">Адрес</th>
-                                        <th class="px-4 fs-14" scope="col">Наличие</th>
-                                        <th class="px-4 fs-14" scope="col">Часы работы</th>
-                                    </tr>
-                                </thead>
-                                <tbody>
-                                    <tr class="">
-                                        <td class="py-lg-4 py-2 px-4 fs-14 fw-bold">Xiomi Store Малика</td>
-                                        <td class="py-lg-4 py-2 px-4 fs-14 text-grey">Velit sunt Lorem aliquip ut
-                                            consectetur mollit mini
-                                        </td>
-                                        <td class="py-lg-4 py-2 px-4 fs-14">
-                                            <div class="d-flex align-items-center gap-2"><span
-                                                    class="bg-success rounded-pill circle"></span> с 28 ноября
-                                            </div>
-                                        </td>
-                                        <td class="py-lg-4 py-2 px-4 fs-14">
-                                            <div class="">с 10:00 до 20:00</div>
-                                            <div class="">Без выходных</div>
-                                        </td>
-                                    </tr>
-                                    <tr class="">
-                                        <td class="py-lg-4 py-2 px-4 fs-14 fw-bold">Xiomi Store Малика</td>
-                                        <td class="py-lg-4 py-2 px-4 fs-14 text-grey">Velit sunt Lorem aliquip ut
-                                            consectetur mollit mini
-                                        </td>
-                                        <td class="py-lg-4 py-2 px-4 fs-14">
-                                            <div class="d-flex align-items-center gap-2"><span
-                                                    class="bg-success rounded-pill circle"></span> с 28 ноября
-                                            </div>
-                                        </td>
-                                        <td class="py-3 px-4 fs-14">
-                                            <div class="">с 10:00 до 20:00</div>
-                                            <div class="">Без выходных</div>
-                                        </td>
-                                    </tr>
-                                    <tr class="">
-                                        <td class="py-lg-4 py-2 px-4 fs-14 fw-bold">Xiomi Store Малика</td>
-                                        <td class="py-lg-4 py-2 px-4 fs-14 text-grey">Velit sunt Lorem aliquip ut
-                                            consectetur mollit mini
-                                        </td>
-                                        <td class="py-lg-4 py-2 px-4 fs-14">
-                                            <div class="d-flex align-items-center gap-2"><span
-                                                    class="bg-success rounded-pill circle"></span> с 28 ноября
-                                            </div>
-                                        </td>
-                                        <td class="py-3 px-4 fs-14">
-                                            <div class="">с 10:00 до 20:00</div>
-                                            <div class="">Без выходных</div>
-                                        </td>
-                                    </tr>
-                                    <tr class="">
-                                        <td class="py-lg-4 py-2 px-4 fs-14 fw-bold">Xiomi Store Малика</td>
-                                        <td class="py-lg-4 py-2 px-4 fs-14 text-grey">Velit sunt Lorem aliquip ut
-                                            consectetur mollit mini
-                                        </td>
-                                        <td class="py-lg-4 py-2 px-4 fs-14">
-                                            <div class="d-flex align-items-center gap-2"><span
-                                                    class="bg-success rounded-pill circle"></span> с 28 ноября
-                                            </div>
-                                        </td>
-                                        <td class="py-3 px-4 fs-14">
-                                            <div class="">с 10:00 до 20:00</div>
-                                            <div class="">Без выходных</div>
-                                        </td>
-                                    </tr>
-                                </tbody>
-                            </table>
-                        </div>
-                    </div>
                     <div class="tab-pane fade" id="installments" role="tabpanel" aria-labelledby="installments-tab">
                         <div class="pt-3 border-top row align-items-start pb-5">
                             <div class="col-lg-6 order-lg-1 order-2 pt-5">
-                                Покупайте сейчас, платите потом с помощью кредитных программ и рассрочки! Оформите
-                                покупку в кредит или рассрочку до 36 месяцев без первого взноса и переплат.
-                                <br /><br />
-                                Для оформления потребуется всего несколько простых шагов: <br /><br />
-                                Выберите понравившийся товар на сумму от 3 000 до 1 000 000 руб. Выберите в корзине
-                                способ оплаты "Рассрочка", авторизуйтесь в Сбербанк Онлайн и заполните заявку на
-                                рассрочку или кредит Дождитесь рассмотрения заявки банком - это займет несколько минут
-                                Если заявка будет одобрена, то деньги будут автоматически перечислены в
-                                магазин Заберите заказ удобным для вас способом Кредит предоставляет ПАО «Сбербанк
-                                России», генеральная лицензия Банка России на осуществление банковских операций
-                                №1481 от 11.08.2015
+                                @lang('home.inst_desc')
                             </div>
                             <div class="col-lg-6 order-lg-2 order-1 pt-5">
-                                <img class="w-100" src="./assets/images/product-installment.png" alt="" />
+                                <img class="w-100" src="/assets/images/product-installment.png" alt="" />
                             </div>
                         </div>
                     </div>
@@ -530,61 +360,46 @@ $lang = \Illuminate\Support\Facades\App::getLocale();
                             <div class="row">
                                 <div class="col-lg-4 col-sm-6 mt-3">
                                     <div class="d-flex align-items-center gap-1 mb-3">
-                                        <img width="30px" src="./assets/icons/yandex-logo.png" alt="" />
-                                        <h6 class="text-orange mb-0">Яндекс. Доставка за 4 часа</h6>
+                                        <img width="30px" src="/assets/icons/yandex-logo.png" alt="" />
+                                        <h6 class="text-orange mb-0">@lang('home.title_des1')</h6>
                                     </div>
                                     <div class="fs-14 mt-2 text-history fw-normal lh-22">
-                                        Срочная доставка осуществляется при онлайн-оплате. заказ будет доставлен в тот
-                                        же день, если он был оформлен до 20:00
+                                        @lang('home.pay_des1')
                                     </div>
                                 </div>
                                 <div class="col-lg-4 col-sm-6 mt-3">
                                     <div class="d-flex align-items-center gap-1 mb-3">
-                                        <img width="30px" src="./assets/icons/truck-logo.svg" alt="" />
-                                        <h6 class="text-orange mb-0">Доставка курьером</h6>
+                                        <img width="30px" src="/assets/icons/truck-logo.svg" alt="" />
+                                        <h6 class="text-orange mb-0">@lang('home.title_des2')</h6>
                                     </div>
                                     <div class="fs-14 mt-2 text-history fw-normal lh-22">
-                                        Если заказ оформлен до 18:00, доставка курьерской службой по Ташкенту
-                                        производится на следующий день при любой сумме заказа. Cтоимость стандартной
-                                        доставки
-                                        составляет 490 ₽, при заказе на сумму от 10 000 ₽ доставка бесплатна. Стоимость
-                                        доставки крупногабаритных товаров указана в карточке товара и корзине.
+                                        @lang('home.pay_des2') </div>
+                                </div>
+                                <div class="col-lg-4 col-sm-6 mt-3">
+                                    <div class="d-flex align-items-center gap-1 mb-3">
+                                        <img width="30px" src="/assets/icons/location-logo.svg" alt="" />
+                                        <h6 class="text-orange mb-0">@lang('home.title_des3')</h6>
+                                    </div>
+                                    <div class="fs-14 mt-2 text-history fw-normal lh-22">
+                                        @lang('home.pay_des3')
                                     </div>
                                 </div>
                                 <div class="col-lg-4 col-sm-6 mt-3">
                                     <div class="d-flex align-items-center gap-1 mb-3">
-                                        <img width="30px" src="./assets/icons/location-logo.svg" alt="" />
-                                        <h6 class="text-orange mb-0">Забрать в магазине</h6>
+                                        <img width="30px" src="/assets/icons/payment-logo.svg" alt="" />
+                                        <h6 class="text-orange mb-0">@lang('home.title_des4')</h6>
                                     </div>
                                     <div class="fs-14 mt-2 text-history fw-normal lh-22">
-                                        Забронируйте нужный вам товар в одном из 26 фирменных магазинов Xiaomi. Сразу
-                                        после получения подтверждения заказа вы можете оплатить и забрать заказ в
-                                        выбранном магазине
+                                        @lang('home.pay_des4')
                                     </div>
                                 </div>
                                 <div class="col-lg-4 col-sm-6 mt-3">
                                     <div class="d-flex align-items-center gap-1 mb-3">
-                                        <img width="30px" src="./assets/icons/payment-logo.svg" alt="" />
-                                        <h6 class="text-orange mb-0">Способы оплаты</h6>
+                                        <img width="30px" src="/assets/icons/bill-logo.svg" alt="" />
+                                        <h6 class="text-orange mb-0">@lang('home.title_des5')</h6>
                                     </div>
                                     <div class="fs-14 mt-2 text-history fw-normal lh-22">
-                                        Оплатить заказ можно банковскими картами или наличными накассе магазина или при
-                                        получении у курьера. Cчёт выставляется менеджером при подтверждении заказа.
-                                        После выставления счёта товар резервируется на 2 дня. В течение этого времени
-                                        необходимо оплатить товар и сообщить менеджеру об оплате.
-                                    </div>
-                                </div>
-                                <div class="col-lg-4 col-sm-6 mt-3">
-                                    <div class="d-flex align-items-center gap-1 mb-3">
-                                        <img width="30px" src="./assets/icons/bill-logo.svg" alt="" />
-                                        <h6 class="text-orange mb-0">Оплата по счету для юрлиц</h6>
-                                    </div>
-                                    <div class="fs-14 mt-2 text-history fw-normal lh-22">
-                                        Если вас интересуют закупки для нужд компании, мы можем предложить вам оплату по
-                                        счету для юридических лиц. Счёт выставляется менеджером при подтверждении
-                                        заказа. После выставления счета товар резервируется на 3 дня. В течение этого
-                                        времени необходимо оплатить товар и сообщить менеджеру об оплате
-                                    </div>
+                                        @lang('home.pay_des5') </div>
                                 </div>
                             </div>
                         </div>
@@ -637,7 +452,7 @@ $lang = \Illuminate\Support\Facades\App::getLocale();
         <div style="overflow: hidden" class="similarProducts container py-3 mb-5 position-relative">
             <div class="d-flex align-items-center justify-content-between mt-5">
                 <div class="mb-4 fs-2 fw-bold">@lang('home.similar_product')</div>
-                <a href="javascript:void(0)"
+                <a href="{{ route('products') }}"
                     class="view_all_btn text-orange border-0 bg-transparent mb-4">@lang('home.smartphonesAll')</a>
             </div>
             {{--   Product slide start --}}
@@ -650,6 +465,61 @@ $lang = \Illuminate\Support\Facades\App::getLocale();
         <!-- contact -->
         <x-page.contact />
     </main>
+    <div class="modal fade" id="largeModal" tabindex="-1" aria-labelledby="largeModalLabel" aria-hidden="true">
+        <div class="modal-dialog modal-lg modal-dialog-centered">
+            <!-- Added modal-dialog-centered -->
+            <div class="modal-content px-4">
+                <div class="modal-header border-0">
+                    <h5 class="modal-title" id="largeModalLabel">Instant Purchase</h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body application_modal row">
+                    <form class="col-lg-4 order-lg-1 order-2">
+                        <div class="mb-3">
+                            <label for="name" class="form-label">Full name*</label>
+                            <input type="text" class="form-control focus_none" id="name"
+                                placeholder="Enter your name" />
+                        </div>
+                        <div class="mb-3">
+                            <label for="email" class="form-label">Phone number*</label>
+                            <input type="email" class="form-control focus_none" id="email"
+                                placeholder="+998 (90) 123-45-67" />
+                        </div>
+                        <button type="submit" class="btn-orange rounded w-100 mb-3">Send</button>
+                    </form>
+                    <div class="col-lg-8 order-lg-2 order-1">
+                        <div class="d-flex flex-column justify-content-between h-100">
+                            <div class="d-flex align-items-start gap-3">
+                                <img class="rounded fit-cover" src="/assets/images/category_phone.webp" alt="" />
+                                <div class="d-flex flex-column">
+                                    <h6>Телевизор Xiaomi Mi TV A Pro 55" 2025 L55MA-SRU</h6>
+                                    <div class="">150 000</div>
+                                </div>
+                                <div class="d-sm-block d-none">1X</div>
+                            </div>
+                            <div class="row align-items-start mt-2">
+                                <div class="col-sm-6 mb-2">
+                                    <div class="phone text-nowrap border-orange rounded text-center px-2 py-1 w-100 mb-1">
+                                        <a href="tel: +998772828080 " class="text-orange"> <i
+                                                class="fa-solid fa-phone-volume text-orange me-2"></i> +998 77 282 80 80
+                                        </a>
+                                    </div>
+                                </div>
+                                <div class="col-sm-6 mb-2">
+                                    <div class="phone text-nowrap border-orange rounded text-center px-2 py-1 w-100 mb-1">
+                                        <a href="tel: +998772828080 " class="text-orange"> <i
+                                                class="fa-solid fa-phone-volume text-orange me-2"></i> +998 77 282 80 80
+                                        </a>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div id="overlay"></div>
     <script>
         document.addEventListener('DOMContentLoaded', function() {
             const storageOptions = document.querySelectorAll('.storage-option');

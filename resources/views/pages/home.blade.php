@@ -282,31 +282,32 @@ $lang = \Illuminate\Support\Facades\App::getLocale();
             <div class="container text-white d-lg-block d-none">
                 <div class="row">
                     <div class="col-lg-4 ps-0">
-                        <div class="fs-5 rounded category1 p-3 w-100">Умные часы</div>
+                        <div style="    background-image: url('{{ asset('storage/' . $category3->image) }}')"
+                            class="fs-5 rounded category1 p-3 w-100">{{ $category3['name_' . $lang] }}</div>
                     </div>
                     <div class="col-lg-4 p-0">
                         <div class="row h-100">
                             <div class="col-12">
-                                <div class="fs-5 p-3 category2 rounded h-95">транспорт</div>
+                                <div style="    background-image: url('{{ asset('storage/' . $category4->image) }}')" class="fs-5 p-3 category2 rounded h-95">{{ $category4['name_' . $lang] }}</div>
                             </div>
                             <div class="col-lg-6">
-                                <div class="p-3 category3 rounded h-100">Наушники</div>
+                                <div style="    background-image: url('{{ asset('storage/' . $category5->image) }}')"  class="p-3 category3 rounded h-100">{{ $category5['name_' . $lang] }}</div>
                             </div>
-                            <div class="col-lg-6 ps-0">
-                                <div class="p-3 category4 rounded h-100">телевизор</div>
+                            <div  class="col-lg-6 ps-0">
+                                <div style="    background-image: url('{{ asset('storage/' . $category1->image) }}')" class="p-3 category4 rounded h-100">{{ $category1['name_' . $lang] }}</div>
                             </div>
                         </div>
                     </div>
                     <div class="col-lg-4 pe-0">
                         <div class="row h-100">
                             <div class="col-lg-6">
-                                <div class="p-3 category5 rounded h-100">регистраторы</div>
+                                <div style="    background-image: url('{{ asset('storage/' . $category6->image) }}')" class="p-3 category5 rounded h-100">{{ $category6['name_' . $lang] }}</div>
                             </div>
                             <div class="col-lg-6 ps-0">
-                                <div class="p-3 category6 rounded h-100">пылесосы</div>
+                                <div style="    background-image: url('{{ asset('storage/' . $category7->image) }}')" class="p-3 category6 rounded h-100">{{ $category7['name_' . $lang] }}</div>
                             </div>
                             <div class="col-12">
-                                <div class="fs-5 p-3 mt-3 category7 rounded h-95">смартфон</div>
+                                <div style="    background-image: url('{{ asset('storage/' . $category2->image) }}')" class="fs-5 p-3 mt-3 category7 rounded h-95">{{ $category2['name_' . $lang] }}</div>
                             </div>
                         </div>
                     </div>
@@ -368,30 +369,4 @@ $lang = \Illuminate\Support\Facades\App::getLocale();
         {{-- Contact --}}
         <x-page.contact />
     </main>
-
-    {{--    <a href="javascript: void(0);" type="button" onclick="addToCart({{ $product->id }}, '{{ $product->name_uz }}', {{ $product->price }})" class="icon-cart d-block border-0"></a> --}}
-
-
-    <script>
-        function addToCart(productId) {
-            $.ajax({
-                url: `/add-to-cart/${productId}`,
-                type: 'POST',
-                data: {
-                    _token: '{{ csrf_token() }}',
-                },
-                success: function(response) {
-                    updateCartCount(response.cart_count); // Badge raqamini yangilash
-                    // alert(response.message); // Foydalanuvchiga xabar ko'rsatish
-                },
-                error: function(xhr) {
-                    alert('Xatolik yuz berdi: ' + xhr.responseText);
-                }
-            });
-        }
-
-        function updateCartCount(count) {
-            document.getElementById('cart-count').innerText = count;
-        }
-    </script>
 @endsection

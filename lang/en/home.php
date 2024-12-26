@@ -58,7 +58,32 @@ return [
     'katalog' => 'Katalog',
     'similar_product' => 'Similar products',
     'no_other_news' => 'No other news for now',
+    'desc' => 'Description',
+    'specifications' => 'Specifications',
+    'installment' => 'Installments and Credit',
+    'review' => 'Reviews',
+    'payment' => 'Delivery and Payment',
+    'inst_desc' => 'Buy now, pay later with credit programs and installment plans! Make a purchase on credit or in installments for up to 36 months without a down payment or overpayments.
 
+                    To complete the process, just follow a few simple steps:
+
+                    Select the product you like for an amount ranging from 3,000 to 1,000,000 rubles.
+                    Choose the "Installment" payment method in the cart, log in to Sberbank Online, and fill out the application for an installment plan or credit.
+                    Wait for the bank to review your application — this will take just a few minutes.
+                    If the application is approved, the funds will be automatically transferred to the store.
+                    Collect your order in a way that is convenient for you.
+                    Credit is provided by PJSC "Sberbank of Russia," under the general license of the Bank of Russia for banking operations.',
+
+    'pay_des1' => 'Express delivery is available with online payment. The order will be delivered on the same day if it is placed before 8:00 PM',
+    'pay_des2' => 'If the order is placed before 6:00 PM, courier delivery within Tashkent will be made the next day regardless of the order amount. The standard delivery fee is 490 ₽, and delivery is free for orders over 10,000 ₽. The delivery cost for bulky items is specified in the product card and cart.',
+    'pay_des3' => 'Reserve the product you need in one of the 26 official Xiaomi stores. Once your order is confirmed, you can pay for and collect it at the selected store',
+    'pay_des4' => 'You can pay for the order using bank cards or cash at the store checkout or upon receipt from the courier. The invoice is issued by the manager upon order confirmation. After the invoice is issued, the product is reserved for 2 days. During this time, you need to pay for the product and inform the manager about the payment.',
+    'pay_des5' => 'If you are interested in purchasing for company needs, we can offer payment via invoice for legal entities. The invoice is issued by the manager upon order confirmation. After the invoice is issued, the product is reserved for 3 days. During this time, you need to pay for the product and inform the manager about the payment.',
+    'title_des1' => 'Yandex. Delivery in 4 hours',
+    'title_des2' => 'Courier delivery',
+    'title_des3' => 'Pick up at the store',
+    'title_des4' => 'Payment methods',
+    'title_des5' => 'Payment by invoice for legal entities',
 
 
 ];

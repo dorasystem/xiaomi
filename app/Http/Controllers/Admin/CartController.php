@@ -124,9 +124,10 @@ class CartController extends Controller
 
     public function favorites()
     {
+        $lang = app()->getLocale();
         $favorites = session()->get('favorites', []);
         $products = Product::whereIn('id', $favorites)->get(); // Faqat sevimli mahsulotlar
-        return view('pages.favorites', compact('products'));
+        return view('pages.favorites', compact('products', 'lang'));
     }
 
 }

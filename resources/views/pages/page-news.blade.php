@@ -6,134 +6,56 @@ $lang = \Illuminate\Support\Facades\App::getLocale();
     <main class="container">
         <div class="my-4">
             <div class="d-flex align-items-center gap-3">
-                <a href="/" class="text-grey fw-bold text-lowercase fs-14">@lang('home.home') / <span class="text-dark">@lang('footer.news')</span></a>
+                <a href="/" class="text-grey fw-bold  fs-14">@lang('home.home') / <span
+                        class="text-dark">@lang('footer.news')</span></a>
             </div>
             <hr />
         </div>
-        <h1 class="fw-normal hover-orange mb-4 mt-4">@lang('home.new_items') Xiaomi →</h1>
+        <h1 class="fw-normal hover-orange mb-4 mt-4">@lang('home.new_items') Xiaomi </h1>
         <div class="row">
-            @if(!empty($news) && $news->count(0))
-                @foreach($news as $new)
-                    <a href="{{ route('single.news', ['slug' => $new->getSlugByLanguage($lang)]) }}" class="col-md-4 col-sm-6 mb-3">
-                        <img height="250px" class="w-100 fit-cover rounded-top" src="{{ asset('storage/' . $new->image) ?? '/assets/images/news1.jpg'}}" alt="" />
+            @if (!empty($news) && $news->count(0))
+                @foreach ($news as $new)
+                    <a href="{{ route('single.news', ['slug' => $new->getSlugByLanguage($lang)]) }}"
+                        class="col-md-4 col-sm-6 mb-3">
+                        <img height="250px" class="w-100 fit-cover rounded-top"
+                            src="{{ asset('storage/' . $new->image) ?? '/assets/images/news1.jpg' }}" alt="" />
                         <div class="p-4 bg-cardgrey rounded-bottom">
                             <div class="d-flex align-items-center gap-2">
                                 <img src="/assets/icons/calendar-icon.svg" alt="" />
-                                <div class="text-grey">{{ $new->date ?? '17.09.2024'}} г.</div>
+                                <div class="text-grey"> {{ \Carbon\Carbon::parse($new->date)->format('d.m.Y') }}</div>
                             </div>
-                            <h4 class="fw-normal">{{ $new['title_' . $lang] ?? 'Ожидаемый релиз: когда выйдет флагманская линейка Xiaomi 15'}}</h4>
+                            <h4 class="fw-normal">
+                                {{ $new['title_' . $lang] ?? 'Ожидаемый релиз: когда выйдет флагманская линейка Xiaomi 15' }}
+                            </h4>
                         </div>
                     </a>
                 @endforeach
             @else
-                <a href="javascript:void(0)" class="col-md-4 col-sm-6 mb-3">
-                    <img height="250px" class="w-100 fit-cover rounded-top" src="/assets/images/news1.jpg" alt="" />
-                    <div class="p-4 bg-cardgrey rounded-bottom">
-                        <div class="d-flex align-items-center gap-2">
-                            <img src="/assets/icons/calendar-icon.svg" alt="" />
-                            <div class="text-grey">17.09.2024 г.</div>
-                        </div>
-                        <h4 class="fw-normal">Ожидаемый релиз: когда выйдет флагманская линейка Xiaomi 15</h4>
-                    </div>
-                </a>
-                <a href="javascript:void(0)" class="col-md-4 col-sm-6 mb-3">
-                    <img height="250px" class="w-100 fit-cover rounded-top" src="/assets/images/news1.jpg" alt="" />
-                    <div class="p-4 bg-cardgrey rounded-bottom">
-                        <div class="d-flex align-items-center gap-2">
-                            <img src="/assets/icons/calendar-icon.svg" alt="" />
-                            <div class="text-grey">17.09.2024 г.</div>
-                        </div>
-                        <h4 class="fw-normal">Ожидаемый релиз: когда выйдет флагманская линейка Xiaomi 15</h4>
-                    </div>
-                </a>
-                <a href="javascript:void(0)" class="col-md-4 col-sm-6 mb-3">
-                    <img height="250px" class="w-100 fit-cover rounded-top" src="/assets/images/news1.jpg" alt="" />
-                    <div class="p-4 bg-cardgrey rounded-bottom">
-                        <div class="d-flex align-items-center gap-2">
-                            <img src="/assets/icons/calendar-icon.svg" alt="" />
-                            <div class="text-grey">17.09.2024 г.</div>
-                        </div>
-                        <h4 class="fw-normal">Ожидаемый релиз: когда выйдет флагманская линейка Xiaomi 15</h4>
-                    </div>
-                </a>
-                <a href="javascript:void(0)" class="col-md-4 col-sm-6 mb-3">
-                    <img height="250px" class="w-100 fit-cover rounded-top" src="/assets/images/news1.jpg" alt="" />
-                    <div class="p-4 bg-cardgrey rounded-bottom">
-                        <div class="d-flex align-items-center gap-2">
-                            <img src="/assets/icons/calendar-icon.svg" alt="" />
-                            <div class="text-grey">17.09.2024 г.</div>
-                        </div>
-                        <h4 class="fw-normal">Ожидаемый релиз: когда выйдет флагманская линейка Xiaomi 15</h4>
-                    </div>
-                </a>
+                <h2>@lang('home.no_other_news')</h2>
             @endif
         </div>
-        <h1 class="fw-normal hover-orange mb-4 mt-4">@lang('home.useful_articles') →</h1>
+        <h1 class="fw-normal hover-orange mb-4 mt-4">@lang('home.useful_articles') </h1>
         <div class="row">
-            @if(!empty($articles) && $articles->count(0))
-                @foreach($articles as $item)
-                    <a href="{{ route('single.article', ['slug' => $item->getSlugByLanguage($lang)]) }}" class="col-md-4 col-sm-6 mb-3">
-                            <img height="250px" class="w-100 fit-cover rounded-top" src="{{ asset('storage/' . $item->image ) ?? '/assets/images/category_pilesos.webp'}}" alt="" />
-                            <div class="p-4 bg-cardgrey rounded-bottom">
-                                <div class="d-flex align-items-center gap-2">
-                                    <img src="/assets/icons/calendar-icon.svg" alt="" />
-                                    <div class="text-grey">{{ $item->date ?? '17.12.2024' }}</div>
-                                </div>
-                                <h4 class="fw-normal">{{ $item['title_' . $lang] ?? 'Ожидаемый релиз: когда выйдет флагманская линейка Xiaomi 15' }}</h4>
+            @if (!empty($articles) && $articles->count(0))
+                @foreach ($articles as $item)
+                    <a href="{{ route('single.article', ['slug' => $item->getSlugByLanguage($lang)]) }}"
+                        class="col-md-4 col-sm-6 mb-3">
+                        <img height="250px" class="w-100 fit-cover rounded-top"
+                            src="{{ asset('storage/' . $item->image) ?? '/assets/images/category_pilesos.webp' }}"
+                            alt="" />
+                        <div class="p-4 bg-cardgrey rounded-bottom">
+                            <div class="d-flex align-items-center gap-2">
+                                <img src="/assets/icons/calendar-icon.svg" alt="" />
+                                <div class="text-grey"> {{ \Carbon\Carbon::parse($item->date)->format('d.m.Y') }}</div>
                             </div>
-                        </a>
+                            <h4 class="fw-normal">
+                                {{ $item['title_' . $lang] ?? 'Ожидаемый релиз: когда выйдет флагманская линейка Xiaomi 15' }}
+                            </h4>
+                        </div>
+                    </a>
                 @endforeach
             @else
-                <div class="col-md-4 col-sm-6 mb-3">
-                    <img height="250px" class="w-100 fit-cover rounded-top" src="./assets/images/product_3.webp" alt="" />
-                    <div class="p-4 bg-cardgrey rounded-bottom">
-                        <div class="d-flex align-items-center gap-2">
-                            <img src="./assets/icons/calendar-icon.svg" alt="" />
-                            <div class="text-grey">17.09.2024 г.</div>
-                        </div>
-                        <h4 class="fw-normal">Ожидаемый релиз: когда выйдет флагманская линейка Xiaomi 15</h4>
-                    </div>
-                </div>
-                <div class="col-md-4 col-sm-6 mb-3">
-                    <img height="250px" class="w-100 fit-cover rounded-top" src="./assets/images/category_photo.jpg" alt="" />
-                    <div class="p-4 bg-cardgrey rounded-bottom">
-                        <div class="d-flex align-items-center gap-2">
-                            <img src="./assets/icons/calendar-icon.svg" alt="" />
-                            <div class="text-grey">17.09.2024 г.</div>
-                        </div>
-                        <h4 class="fw-normal">Ожидаемый релиз: когда выйдет флагманская линейка Xiaomi 15</h4>
-                    </div>
-                </div>
-                <div class="col-md-4 col-sm-6 mb-3">
-                    <img height="250px" class="w-100 fit-cover rounded-top" src="./assets/images/product_2.webp" alt="" />
-                    <div class="p-4 bg-cardgrey rounded-bottom">
-                        <div class="d-flex align-items-center gap-2">
-                            <img src="./assets/icons/calendar-icon.svg" alt="" />
-                            <div class="text-grey">17.09.2024 г.</div>
-                        </div>
-                        <h4 class="fw-normal">Ожидаемый релиз: когда выйдет флагманская линейка Xiaomi 15</h4>
-                    </div>
-                </div>
-                <div class="col-md-4 col-sm-6 mb-3">
-                    <img height="250px" class="w-100 fit-cover rounded-top" src="./assets/images/product_2.webp" alt="" />
-                    <div class="p-4 bg-cardgrey rounded-bottom">
-                        <div class="d-flex align-items-center gap-2">
-                            <img src="./assets/icons/calendar-icon.svg" alt="" />
-                            <div class="text-grey">17.09.2024 г.</div>
-                        </div>
-                        <h4 class="fw-normal">Ожидаемый релиз: когда выйдет флагманская линейка Xiaomi 15</h4>
-                    </div>
-                </div>
-                <div class="col-md-4 col-sm-6 mb-3">
-                    <img height="250px" class="w-100 fit-cover rounded-top" src="./assets/images/product_2.webp" alt="" />
-                    <div class="p-4 bg-cardgrey rounded-bottom">
-                        <div class="d-flex align-items-center gap-2">
-                            <img src="./assets/icons/calendar-icon.svg" alt="" />
-                            <div class="text-grey">17.09.2024 г.</div>
-                        </div>
-                        <h4 class="fw-normal">Ожидаемый релиз: когда выйдет флагманская линейка Xiaomi 15</h4>
-                    </div>
-                </div>
+                <h2>@lang('home.no_other_news')</h2>
             @endif
         </div>
     </main>

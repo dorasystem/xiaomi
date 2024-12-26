@@ -999,11 +999,11 @@ input[type="range"]:nth-child(2) {
     border-right: 3px solid black;
 }
 .carousel-inner {
-    height: 450px;
+    min-height: 400px;
 }
 .carousel-inner img {
-    max-height: 450px;
-    object-fit: contain;
+    min-height: 400px;
+    object-fit: cover;
 }
 
 .carousel-control-prev,

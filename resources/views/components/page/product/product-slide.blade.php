@@ -1,6 +1,6 @@
 <?php
 $products = \App\Models\Product::all();
-$lang = app()->getLocale()
+$lang = app()->getLocale();
 ?>
 
 <div class="swiper-wrapper">
@@ -11,7 +11,12 @@ $lang = app()->getLocale()
         <div class="swiper-slide product shadow-sm position-relative rounded">
             <div class=" ">
                 <div class="position-absolute like d-flex flex-column gap-3 justify-content-end">
-                    <i class="fa-regular fa-heart fs-4 hover-orange ps-1"></i>
+                    <a onclick="toggleFavourite({{ $product->id }})">
+                        <i id="favourite-icon-{{ $product->id }}"
+                            class="fa-regular fa-heart fs-4 hover-orange ps-1
+       {{ in_array($product->id, session('favorites', [])) ? 'text-orange' : '' }}">
+                        </i>
+                    </a>
                     <svg class="hover-svg" width="30" height="20" viewBox="0 0 102 92" fill="none"
                         xmlns="http://www.w3.org/2000/svg">
                         <rect width="11" height="92" rx="2" fill="#000" />
@@ -56,10 +61,9 @@ $lang = app()->getLocale()
                     </div>
 
                     <div class="d-flex gap-4 mt-3">
-                        <a class="border-orange bg-transparent rounded p-1 px-3"
-                           href="javascript: void(0);"
-                           type="button"
-                           onclick="addToCart({{ $product->id }}, '{{ $product['name_' . $lang] }}', {{ $cheapestVariant->price ? $cheapestVariant->discount_price : $cheapestVariant->price }}, {{ $cheapestVariant->id }})">
+                        <a class="border-orange bg-transparent rounded p-1 px-3" href="javascript: void(0);"
+                            type="button"
+                            onclick="addToCart({{ $product->id }}, '{{ $product['name_' . $lang] }}', {{ $cheapestVariant->price ? $cheapestVariant->discount_price : $cheapestVariant->price }}, {{ $cheapestVariant->id }})">
                             <img src="/assets/icons/shopping-cart.svg" alt="" />
                         </a>
                         <button data-bs-toggle="modal" data-bs-target="#largeModal"
@@ -84,7 +88,7 @@ $lang = app()->getLocale()
                 price: productPrice,
                 storage: 1,
             },
-            success: function (response) {
+            success: function(response) {
                 // alert('ok')
                 if (response.success) {
                     updateCartCount(response.cart_count); // Update the cart count in real-time
@@ -98,13 +102,16 @@ $lang = app()->getLocale()
                         stopOnFocus: true,
                         className: "toast-success",
                         animation: "fade",
-                        offset: { x: 30, y: 50 },
+                        offset: {
+                            x: 30,
+                            y: 50
+                        },
                     }).showToast();
                 } else {
                     alert('Xatolik yuz berdi: ' + response.message);
                 }
             },
-            error: function (xhr) {
+            error: function(xhr) {
                 alert('Xatolik yuz berdi: ' + xhr.responseText);
             }
         });
@@ -114,5 +121,41 @@ $lang = app()->getLocale()
         document.querySelector('.cart-label').innerText = count; // Updates the cart count badge
     }
 
+    function toggleFavourite(productId) {
+        $.ajax({
+            url: '/toggle-favorite',
+            type: 'POST',
+            data: {
+                _token: '{{ csrf_token() }}',
+                id: productId
+            },
+            success: function(response) {
+                if (response.success) {
+                    Toastify({
+                        text: response.message,
+                        duration: 3000,
+                        close: true,
+                        gravity: "top",
+                        position: "right",
+                        backgroundColor: "#4CAF50",
+                    }).showToast();
 
+                    // Sevimlilar sonini yangilash
+                    $('.badge-position').text(response.favorites_count);
+
+                    // Ico'ni yangilash
+                    if (response.message.includes('qo\'shildi')) {
+                        $('#favourite-icon-' + productId).addClass(
+                            'text-orange'); // Qo'shilganini ko'rsatish
+                    } else {
+                        $('#favourite-icon-' + productId).removeClass(
+                            'text-orange'); // O'chirilganini ko'rsatish
+                    }
+                }
+            },
+            error: function(xhr) {
+                alert('Xatolik yuz berdi: ' + xhr.responseText);
+            }
+        });
+    }
 </script>
