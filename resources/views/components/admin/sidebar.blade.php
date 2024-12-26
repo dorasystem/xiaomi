@@ -159,6 +159,12 @@ $about = \App\Models\About::first();
                         <span class="nxl-mtext">Главные баннеры</span>
                     </a>
                 </li>
+                <li class="nxl-item">
+                    <a href="{{ route('orders.index') }}" class="nxl-link">
+                        <span class="nxl-micon"><i class="feather-image"></i></span>
+                        <span class="nxl-mtext">Order</span>
+                    </a>
+                </li>
             </ul>
 
             <div class="ps__rail-x" style="left: 0px; bottom: 0px;">

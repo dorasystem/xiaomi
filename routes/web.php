@@ -14,6 +14,7 @@ use App\Http\Controllers\Admin\FaqController;
 use App\Http\Controllers\Admin\HistoryController;
 use App\Http\Controllers\Admin\MainBannerController;
 use App\Http\Controllers\Admin\NewsController;
+use App\Http\Controllers\Admin\OrderController;
 use App\Http\Controllers\Admin\ProductController;
 use App\Http\Controllers\Admin\ServiceController;
 use App\Http\Controllers\Admin\StoreController;
@@ -57,12 +58,14 @@ Route::middleware(['auth'])->prefix('dashboard')->group(function () {
     Route::resource('candidants', CandidantController::class);
     Route::resource('desc-images', DescImageController::class);
     Route::resource('main_banners', MainBannerController::class);
+    Route::get('orders', [OrderController::class, 'index'])->name('orders.index');
+    Route::put('/orders/{order}', [OrderController::class, 'update'])->name('orders.update');
+    Route::delete('/orders/{order}', [OrderController::class, 'destroy'])->name('orders.destroy');
 
 });
 
 Route::middleware(['auth'])->group(function () {
     Route::get('/profile',[UserController::class, 'profile'])->name('user.profile');
-    Route::get('orders', [UserController::class, 'orders'])->name('orders');
     Route::get('cart', [UserController::class, 'cart'])->name('cart');
 
 
@@ -73,6 +76,7 @@ Route::get('/about', [MainController::class, 'about'])->name('about');
 Route::get('/contact', [MainController::class, 'contact'])->name('contact');
 Route::get('/blog', [MainController::class, 'blog'])->name('blog');
 Route::get('/blog/{slug}', [MainController::class, 'singleBlog'])->name('single.blog');
+Route::get('/category/{slug}', [MainController::class, 'categorySort'])->name('category.sort');
 
 
 Route::get('/products', [MainController::class, 'products'])->name('products');
@@ -84,7 +88,8 @@ Route::get('/career', [MainController::class, 'career'])->name('career');
 Route::get('/news/{slug}', [MainController::class, 'singleNews'])->name('single.news');
 Route::get('/article/{slug}', [MainController::class, 'singleArticle'])->name('single.article');
 
-Route::get('/compare', [CompareController::class, 'compare'])->name('compare');
+Route::get('/compare', [CartController::class, 'compare'])->name('compare');
+Route::post('/toggle-compare', [CartController::class, 'toggleCompare'])->name('toggle.compare');
 
 
 
@@ -97,11 +102,12 @@ Route::post('/update-cart', [CartController::class, 'updateCart'])->name('cart.u
 Route::delete('/variants/{id}', [ProductController::class, 'deleteVariant']);
 Route::get('/favorites', [CartController::class, 'favorites'])->name('favorites');
 Route::post('/toggle-favorite', [CartController::class, 'toggleFavorite'])->name('toggle.favorite');
-
 Route::post('/comments', [CommentController::class, 'store'])->name('comments.store');
 
 Route::get('/products/search', [MainController::class, 'productSearch'])->name('products.search');
 Route::get('/products/filter', [MainController::class, 'filterProducts'])->name('products.filter');
 Route::get('checkout', [MainController::class, 'checkout'])->name('checkout');
-
+Route::post('/save-order', [OrderController::class, 'store'])->name('orders.store');
+Route::post('/form-order', [OrderController::class, 'storeForm'])->name('orders.store.form');
+Route::post('/product-order', [OrderController::class, 'productsStore'])->name('orders.products.store');
 Route::get('locale/{lang}',[LanguageController::class, 'setLocale']);

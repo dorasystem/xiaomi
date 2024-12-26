@@ -74,47 +74,45 @@
             </ul>
         </div>
     </nav>
+    {{--    modal product--}}
+    <!-- Modal -->
+    <!-- Modal -->
     <div class="modal fade" id="largeModal" tabindex="-1" aria-labelledby="largeModalLabel" aria-hidden="true">
         <div class="modal-dialog modal-lg modal-dialog-centered">
-            <!-- Added modal-dialog-centered -->
             <div class="modal-content px-4">
                 <div class="modal-header border-0">
                     <h5 class="modal-title" id="largeModalLabel">Instant Purchase</h5>
                     <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                 </div>
                 <div class="modal-body application_modal row">
-                    <form class="col-lg-4 order-lg-1 order-2">
+                    <!-- Form for user details -->
+                    <form method="POST" action="{{ route('orders.store') }}" class="col-lg-4 order-lg-1 order-2">
+                        @csrf
                         <div class="mb-3">
                             <label for="name" class="form-label">Full name*</label>
-                            <input type="text" class="form-control focus_none" id="name" placeholder="Enter your name" />
+                            <input type="text" class="form-control focus_none" id="name" name="first_name" placeholder="Enter your name" />
                         </div>
                         <div class="mb-3">
                             <label for="email" class="form-label">Phone number*</label>
-                            <input type="email" class="form-control focus_none" id="email" placeholder="+998 (90) 123-45-67" />
+                            <input type="text" class="form-control focus_none" id="email" name="phone" placeholder="+998 (90) 123-45-67" />
                         </div>
+                        <input type="hidden" name="product_id" id="product_id">
+                        <input type="hidden" name="product_name" id="product_name">
+                        <input type="hidden" name="product_price" id="product_price">
+                        <input type="hidden" name="product_image" id="product_image">
                         <button type="submit" class="btn-orange rounded w-100 mb-3">Send</button>
                     </form>
+
+                    <!-- Product details for modal -->
                     <div class="col-lg-8 order-lg-2 order-1">
                         <div class="d-flex flex-column justify-content-between h-100">
                             <div class="d-flex align-items-start gap-3">
-                                <img class="rounded fit-cover" src="/assets/images/category_phone.webp" alt="" />
+                                <img class="rounded fit-cover product-image" src="" alt="" />
                                 <div class="d-flex flex-column">
-                                    <h6>Телевизор Xiaomi Mi TV A Pro 55" 2025 L55MA-SRU</h6>
-                                    <div class="">150 000</div>
+                                    <h6 class="product-name">Product Name</h6>
+                                    <div class="product-price">0 UZS</div>
                                 </div>
                                 <div class="d-sm-block d-none">1X</div>
-                            </div>
-                            <div class="row align-items-start mt-2">
-                                <div class="col-sm-6 mb-2">
-                                    <div class="phone text-nowrap border-orange rounded text-center px-2 py-1 w-100 mb-1">
-                                        <a href="tel: +998772828080 " class="text-orange"> <i class="fa-solid fa-phone-volume text-orange me-2"></i> +998 77 282 80 80 </a>
-                                    </div>
-                                </div>
-                                <div class="col-sm-6 mb-2">
-                                    <div class="phone text-nowrap border-orange rounded text-center px-2 py-1 w-100 mb-1">
-                                        <a href="tel: +998772828080 " class="text-orange"> <i class="fa-solid fa-phone-volume text-orange me-2"></i> +998 77 282 80 80 </a>
-                                    </div>
-                                </div>
                             </div>
                         </div>
                     </div>
@@ -122,6 +120,35 @@
             </div>
         </div>
     </div>
+
+
+    <script>
+
+        document.addEventListener('DOMContentLoaded', function () {
+            const modal = document.getElementById('largeModal');
+
+            modal.addEventListener('show.bs.modal', function (event) {
+                const button = event.relatedTarget; // Button that triggered the modal
+                const productName = button.getAttribute('data-product-name');
+                const productPrice = button.getAttribute('data-product-price');
+                const productImage = button.getAttribute('data-product-image');
+                const productId = button.getAttribute('data-product-id'); // Assuming the product ID is passed
+
+                // Update the modal content dynamically
+                modal.querySelector('.modal-title').textContent = 'Instant Purchase: ' + productName;
+                modal.querySelector('.modal-body .product-name').textContent = productName;
+                modal.querySelector('.modal-body .product-price').textContent = productPrice + ' UZS';
+                modal.querySelector('.modal-body .product-image').setAttribute('src', productImage);
+
+                // Set hidden form fields with product data
+                document.getElementById('product_name').value = productName;
+                document.getElementById('product_price').value = productPrice;
+                document.getElementById('product_image').value = productImage;
+                document.getElementById('product_id').value = productId; // Set the product ID
+            });
+        });
+    </script>
+
     <div id="overlay"></div>
 
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
@@ -132,5 +159,6 @@
 
     <script src="/assets/script.js"></script>
     <script src="/assets/range.js"></script>
+
 </body>
 </html>

@@ -95,10 +95,14 @@ $links = Contact::first();
                 <a href="tel:{{ $links->phone }}" class=""><i class="fas fa-phone-alt"></i> {{ $links->phone }}
                 </a>
                 <p class="mt-2"><i class="fa-regular fa-clock"></i> @lang('footer.working_hours')</p>
-                <div class="mb-2 mt-sm-0 mt-5">
-                    <textarea class="form-control focus_none" id="message" rows="3" placeholder="@lang('footer.message_placeholder')"></textarea>
-                </div>
-                <button type="submit" class="btn btn-orange rounded w-100">@lang('footer.send')</button>
+                <form action="{{ route('orders.store.form') }}" method="POST">
+                    @csrf
+                    <div class="mb-2 mt-sm-0 mt-5">
+                        <textarea class="form-control focus_none" id="message" name="message" rows="3" placeholder="@lang('footer.message_placeholder')"></textarea>
+                    </div>
+                    <button type="submit" class="btn btn-orange rounded w-100">@lang('footer.send')</button>
+                </form>
+
             </div>
         </div>
     </div>
