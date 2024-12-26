@@ -87,7 +87,8 @@ Route::get('/career', [MainController::class, 'career'])->name('career');
 Route::get('/news/{slug}', [MainController::class, 'singleNews'])->name('single.news');
 Route::get('/article/{slug}', [MainController::class, 'singleArticle'])->name('single.article');
 
-Route::get('/compare', [CompareController::class, 'compare'])->name('compare');
+Route::get('/compare', [CartController::class, 'compare'])->name('compare');
+Route::post('/toggle-compare', [CartController::class, 'toggleCompare'])->name('toggle.compare');
 
 
 
@@ -100,7 +101,6 @@ Route::post('/update-cart', [CartController::class, 'updateCart'])->name('cart.u
 Route::delete('/variants/{id}', [ProductController::class, 'deleteVariant']);
 Route::get('/favorites', [CartController::class, 'favorites'])->name('favorites');
 Route::post('/toggle-favorite', [CartController::class, 'toggleFavorite'])->name('toggle.favorite');
-
 Route::post('/comments', [CommentController::class, 'store'])->name('comments.store');
 
 Route::get('/products/search', [MainController::class, 'productSearch'])->name('products.search');
