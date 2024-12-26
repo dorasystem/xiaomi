@@ -27,7 +27,7 @@
         <div class="tab-content container" id="myTabContent">
             <div class="tab-pane fade show active" id="home" role="tabpanel" aria-labelledby="home-tab">
                 <div class="row">
-                    <div class="col-lg-3">
+                    <div class="col-lg-3 d-none">
                         <div class="d-flex align-items-center gap-3 ps-2">
                             <img src="/assets/icons/filter_icon.svg" alt="" />
                             <div class="">Фильтр</div>
@@ -51,7 +51,7 @@
                             <div class="fs-14 text-orange">Очистить список</div>
                         </div>
                     </div>
-                    <div style="overflow: hidden" class="col-lg-9 news container py-3 position-relative">
+                    <div style="overflow: hidden" class="col-12 news container py-3 position-relative">
                         <div class="swiper-wrapper">
                             <div class="swiper-slide product shadow-sm position-relative rounded">
                                 <a href="#" class=" ">
@@ -188,7 +188,7 @@
             </div>
             <div class="tab-pane fade" id="profile" role="tabpanel" aria-labelledby="profile-tab">
                 <div class="row">
-                    <div class="col-lg-3">
+                    <div class="col-lg-3 d-none">
                         <div class="d-flex align-items-center gap-3 ps-2">
                             <img src="/assets/icons/filter_icon.svg" alt="" />
                             <div class="">Фильтр</div>
@@ -203,7 +203,7 @@
                             <div class="fs-14 text-orange">Очистить список</div>
                         </div>
                     </div>
-                    <div style="overflow: hidden" class="col-lg-9 news container py-3 position-relative">
+                    <div style="overflow: hidden" class="col-12 news container py-3 position-relative">
                         <div class="swiper-wrapper">
                             <div class="swiper-slide product shadow-sm position-relative rounded">
                                 <a href="./single-product.html" class=" ">
@@ -340,7 +340,7 @@
             </div>
             <div class="tab-pane fade" id="phones" role="tabpanel" aria-labelledby="profile-tab">
                 <div class="row">
-                    <div class="col-lg-3">
+                    <div class="col-lg-3 d-none">
                         <div class="d-flex align-items-center gap-3 ps-2">
                             <img src="./assets/icons/filter_icon.svg" alt="" />
                             <div class="">Фильтр</div>
@@ -355,7 +355,7 @@
                             <div class="fs-14 text-orange">Очистить список</div>
                         </div>
                     </div>
-                    <div style="overflow: hidden" class="col-lg-9 news container py-3 position-relative">
+                    <div style="overflow: hidden" class="col-12 news container py-3 position-relative">
                         <div class="swiper-wrapper">
                             <div class="swiper-slide product shadow-sm position-relative rounded">
                                 <a href="javascript:void(0)" class=" ">
