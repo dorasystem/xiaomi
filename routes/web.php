@@ -14,6 +14,7 @@ use App\Http\Controllers\Admin\FaqController;
 use App\Http\Controllers\Admin\HistoryController;
 use App\Http\Controllers\Admin\MainBannerController;
 use App\Http\Controllers\Admin\NewsController;
+use App\Http\Controllers\Admin\OrderController;
 use App\Http\Controllers\Admin\ProductController;
 use App\Http\Controllers\Admin\ServiceController;
 use App\Http\Controllers\Admin\StoreController;
@@ -57,12 +58,14 @@ Route::middleware(['auth'])->prefix('dashboard')->group(function () {
     Route::resource('candidants', CandidantController::class);
     Route::resource('desc-images', DescImageController::class);
     Route::resource('main_banners', MainBannerController::class);
+    Route::get('orders', [OrderController::class, 'index'])->name('orders.index');
+    Route::put('/orders/{order}', [OrderController::class, 'update'])->name('orders.update');
+    Route::delete('/orders/{order}', [OrderController::class, 'destroy'])->name('orders.destroy');
 
 });
 
 Route::middleware(['auth'])->group(function () {
     Route::get('/profile',[UserController::class, 'profile'])->name('user.profile');
-    Route::get('orders', [UserController::class, 'orders'])->name('orders');
     Route::get('cart', [UserController::class, 'cart'])->name('cart');
 
 
@@ -103,5 +106,6 @@ Route::post('/comments', [CommentController::class, 'store'])->name('comments.st
 Route::get('/products/search', [MainController::class, 'productSearch'])->name('products.search');
 Route::get('/products/filter', [MainController::class, 'filterProducts'])->name('products.filter');
 Route::get('checkout', [MainController::class, 'checkout'])->name('checkout');
+Route::post('/save-order', [OrderController::class, 'store'])->name('orders.store');
 
 Route::get('locale/{lang}',[LanguageController::class, 'setLocale']);

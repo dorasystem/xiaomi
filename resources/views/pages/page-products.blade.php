@@ -294,10 +294,18 @@
                                                            onclick="addToCart({{ $product->id }}, '{{ $product['name_' . $lang] }}', {{ $cheapestVariant->price ? $cheapestVariant->discount_price : $cheapestVariant->price }}, {{ $cheapestVariant->id }})">
                                                             <img src="/assets/icons/shopping-cart.svg" alt=""/>
                                                         </a>
-                                                        <button data-bs-toggle="modal" data-bs-target="#largeModal"
-                                                                class="btn-orange rounded w-100 d-flex align-items-center gap-2 justify-content-center">
+                                                        <button
+                                                            data-bs-toggle="modal"
+                                                            data-bs-target="#largeModal"
+                                                            class="btn-orange rounded w-100 d-flex align-items-center gap-2 justify-content-center"
+                                                            data-product-id="{{ $product->id }}"
+                                                            data-product-name="{{ $product['name_'.$lang] }}"
+                                                            data-product-price="{{ $cheapestVariant->discount_price ?: $cheapestVariant->price }}"
+                                                            data-product-image="{{ asset('storage/' . $product->image) }}"
+                                                        >
                                                             <span>Купить сразу</span>
                                                         </button>
+
                                                     </div>
                                                 </div>
                                             @endif
@@ -336,6 +344,9 @@
             </div>
         </div>
     </main>
+
+
+
     <script>
         function addToCart(productId, productName, productPrice, variantId) {
             $.ajax({
