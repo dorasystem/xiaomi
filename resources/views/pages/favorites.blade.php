@@ -112,7 +112,7 @@
                         </div>
                         <div class="col-lg-3 col-md-4 col-sm-6 mb-3">
                             <div class="product shadow-sm position-relative rounded">
-                                <a href="./single-product.html" class="">
+                                <a href="/single-product.html" class="">
                                     <div class="position-absolute like d-flex flex-column gap-3 justify-content-end">
                                         <i class="fa-solid text-orange fa-heart fs-4 ps-1"></i>
                                         <svg class="hover-svg" width="30" height="20" viewBox="0 0 102 92" fill="none" xmlns="http://www.w3.org/2000/svg">
@@ -123,7 +123,7 @@
                                             <rect x="91" y="45" width="11" height="47" rx="2" fill="#000" />
                                         </svg>
                                     </div>
-                                    <img class="w-100 pb-4 productImage p-4" src="./assets/images/category_phone.webp" alt="" />
+                                    <img class="w-100 pb-4 productImage p-4" src="/assets/images/category_phone.webp" alt="" />
                                     <div class="d-flex flex-column justify-content-between product-text p-4 rounded-bottom">
                                         <div class="d-flex align-items-end gap-3 pt-2">
                                             <div class="fw-bold">5 300 000 UZS</div>
@@ -140,7 +140,7 @@
 
                                         <div class="d-flex gap-4 mt-3">
                                             <button class="border-orange bg-transparent rounded p-1 px-3">
-                                                <img src="./assets/icons/shopping-cart.svg" alt="" />
+                                                <img src="/assets/icons/shopping-cart.svg" alt="" />
                                             </button>
                                             <button data-bs-toggle="modal" data-bs-target="#largeModal" class="btn-orange rounded w-100 d-flex align-items-center gap-2 justify-content-center">
                                                 <span>Купить сразу</span>

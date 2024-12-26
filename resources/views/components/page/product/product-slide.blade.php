@@ -118,6 +118,7 @@ $lang = app()->getLocale()
     function updateCartCount(count) {
         document.querySelector('.cart-label').innerText = count; // Updates the cart count badge
     }
+
     function toggleFavourite(productId) {
         $.ajax({
             url: '/toggle-favorite',
