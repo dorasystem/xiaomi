@@ -141,32 +141,34 @@ const lines = document.querySelectorAll(".line");
 const searchInput = document.getElementById("searchInput");
 const searchProduct = document.getElementById("searchProduct");
 
+const windowWidth = window.innerWidth;
 toggleButtons.forEach((toggleButton) => {
-    toggleButton.addEventListener("click", function (event) {
-        if (katalog.style.display === "block") {
-            katalog.style.display = "none";
-            nav.style.borderRadius = "10px";
-            overlay.style.display = "none";
-            document.body.style.overflow = "auto";
-        } else {
-            navform.classList.remove("active");
-            katalog.style.display = "block";
-            nav.style.borderRadius = "10px 10px 0 0";
-            overlay.style.display = "block";
-            document.body.style.overflow = "hidden";
-            searchProduct.style.display = "none";
-            searchInput.value = "";
-        }
+    if (windowWidth <= 576) {
+        toggleButton.addEventListener("click", function (event) {
+            if (katalog.style.display === "block") {
+                katalog.style.display = "none";
+                nav.style.borderRadius = "10px";
+                overlay.style.display = "none";
+                document.body.style.overflow = "auto";
+            } else {
+                navform.classList.remove("active");
+                katalog.style.display = "block";
+                nav.style.borderRadius = "10px 10px 0 0";
+                overlay.style.display = "block";
+                document.body.style.overflow = "hidden";
+                // searchProduct.style.display = "none";
+                searchInput.value = "";
+            }
 
-        lines.forEach((line) => line.classList.toggle("open"));
-        event.stopPropagation();
-    });
+            lines.forEach((line) => line.classList.toggle("open"));
+            event.stopPropagation();
+        });
+    }
 });
 
 katalog.addEventListener("click", (event) => {
     event.stopPropagation();
 });
-
 
 searchInput.addEventListener("click", () => {
     katalog.style.display = "none";
@@ -179,19 +181,27 @@ searchInput.addEventListener("click", () => {
 });
 
 document.addEventListener("click", function (event) {
-    if (!searchProduct.contains(event.target) && !searchInput.contains(event.target)) {
-        searchProduct.style.display = "none";
-        searchInput.value = "";
-        navform.classList.remove("active");
-        overlay.style.display = "none";
-        document.body.style.overflow = "auto";
+    if (searchProduct) {
+        if (
+            !searchProduct.contains(event.target) &&
+            !searchInput.contains(event.target)
+        ) {
+            searchProduct.style.display = "none";
+            searchInput.value = "";
+            navform.classList.remove("active");
+            overlay.style.display = "none";
+            document.body.style.overflow = "auto";
+        }
     }
 });
 
-
 // Tashqi joyga bosilganda Katalogni yopish
 document.addEventListener("click", function (event) {
-    if (katalog.style.display === "block" && !katalog.contains(event.target) && !overlay.contains(event.target)) {
+    if (
+        katalog.style.display === "block" &&
+        !katalog.contains(event.target) &&
+        !overlay.contains(event.target)
+    ) {
         katalog.style.display = "none";
         overlay.style.display = "none";
         document.body.style.overflow = "auto";
@@ -217,7 +227,9 @@ hoverItems.forEach((item) => {
     item.addEventListener("mouseover", function () {
         const targetId = item.getAttribute("data-target");
 
-        hoverItems.forEach((hoverItem) => hoverItem.classList.remove("hover-catalog"));
+        hoverItems.forEach((hoverItem) =>
+            hoverItem.classList.remove("hover-catalog")
+        );
         item.classList.add("hover-catalog");
 
         contentChange.forEach((content) => {
@@ -346,7 +358,10 @@ window.addEventListener("scroll", () => {
     }
 
     // Navbar hide and show on scroll
-    if (scrollTop > lastScrollTop && scrollTop > navbar2OffsetTop + navbar2.offsetHeight) {
+    if (
+        scrollTop > lastScrollTop &&
+        scrollTop > navbar2OffsetTop + navbar2.offsetHeight
+    ) {
         // Scroll down: hide navbar
         navbar2.style.transform = "translateY(-100%)";
     } else if (scrollTop < lastScrollTop || scrollTop <= navbar2OffsetTop) {
@@ -384,7 +399,9 @@ carousel &&
     });
 
 // for tooltip
-var tooltipTriggerList = [].slice.call(document.querySelectorAll('[data-bs-toggle="tooltip"]'));
+var tooltipTriggerList = [].slice.call(
+    document.querySelectorAll('[data-bs-toggle="tooltip"]')
+);
 tooltipTriggerList.map(function (tooltipTriggerEl) {
     return new bootstrap.Tooltip(tooltipTriggerEl);
 });

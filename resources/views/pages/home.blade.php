@@ -13,26 +13,21 @@ $lang = \Illuminate\Support\Facades\App::getLocale();
                     <div id="carouselExample" class="carousel slide" data-bs-ride="carousel" data-bs-interval="3000">
                         <!-- Indicators (optional) -->
                         <div class="carousel-indicators">
-                            <button type="button" data-bs-target="#carouselExample" data-bs-slide-to="0" class="active"
-                                aria-current="true" aria-label="Slide 1"></button>
-                            <button type="button" data-bs-target="#carouselExample" data-bs-slide-to="1"
-                                aria-label="Slide 2"></button>
-                            <button type="button" data-bs-target="#carouselExample" data-bs-slide-to="2"
-                                aria-label="Slide 3"></button>
+                            @foreach ($banner->images as $index => $item)
+                                <button type="button" data-bs-target="#carouselExample"
+                                    data-bs-slide-to="{{ $index }}" class="{{ $index === 0 ? 'active' : '' }}"
+                                    aria-current="{{ $index === 0 ? 'true' : 'false' }}"
+                                    aria-label="Slide {{ $index + 1 }}"></button>
+                            @endforeach
                         </div>
 
                         <!-- Carousel inner (slides) -->
                         <div class="carousel-inner rounded">
-                            <div class="carousel-item active">
-                                <img src="/assets/images/slider1.webp" class="d-block w-100" alt="Slide 1" />
-                            </div>
-                            <div class="carousel-item">
-                                <img src="/assets/images/slider2.webp" class="d-block w-100" alt="Slide 2" />
-                            </div>
-                            <div class="carousel-item">
-                                <img src="/assets/images/slider3.webp" class="d-block w-100" alt="Slide 3" />
-
-                            </div>
+                            @foreach ($banner->images as $index => $item)
+                                <div class="carousel-item  {{ $index === 0 ? 'active' : '' }}">
+                                    <img src="{{ asset('storage/' . $item) }}" class="d-block w-100" alt="Slide 1" />
+                                </div>
+                            @endforeach
                         </div>
 
                         <!-- Carousel controls -->
@@ -51,14 +46,14 @@ $lang = \Illuminate\Support\Facades\App::getLocale();
                 <div class="col-md-4">
                     <div class="row headerbanners">
                         <div class="col-sm-6 col-md-12 mt-md-0 mt-4">
-                            <div
+                            <div style="background-image: url({{ asset('storage/' . $banner->image1) }});"
                                 class="banner1 rounded p-lg-4 p-2 d-flex flex-column justify-content-between align-items-start">
                                 <div class="fw-bold">@lang('footer.smartphones')</div>
                                 <a href="{{ route('products') }}" class="btn-orange rounded px-4 py-1">@lang('home.smartphonesAll')</a>
                             </div>
                         </div>
                         <div class="col-sm-6 col-md-12 mt-4">
-                            <div
+                            <div style="background-image: url({{ asset('storage/' . $banner->image2) }});"
                                 class="banner2 rounded p-lg-4 p-2 d-flex flex-column justify-content-between align-items-start">
                                 <div class="fw-bold">@lang('footer.smart_home')</div>
                                 <a href="{{ route('products') }}" class="btn-orange rounded px-4 py-1">@lang('home.smartphonesAll')</a>
@@ -287,31 +282,32 @@ $lang = \Illuminate\Support\Facades\App::getLocale();
             <div class="container text-white d-lg-block d-none">
                 <div class="row">
                     <div class="col-lg-4 ps-0">
-                        <div class="fs-5 rounded category1 p-3 w-100">Умные часы</div>
+                        <div style="    background-image: url('{{ asset('storage/' . $category3->image) }}')"
+                            class="fs-5 rounded category1 p-3 w-100">{{ $category3['name_' . $lang] }}</div>
                     </div>
                     <div class="col-lg-4 p-0">
                         <div class="row h-100">
                             <div class="col-12">
-                                <div class="fs-5 p-3 category2 rounded h-95">транспорт</div>
+                                <div style="    background-image: url('{{ asset('storage/' . $category4->image) }}')" class="fs-5 p-3 category2 rounded h-95">{{ $category4['name_' . $lang] }}</div>
                             </div>
                             <div class="col-lg-6">
-                                <div class="p-3 category3 rounded h-100">Наушники</div>
+                                <div style="    background-image: url('{{ asset('storage/' . $category5->image) }}')"  class="p-3 category3 rounded h-100">{{ $category5['name_' . $lang] }}</div>
                             </div>
-                            <div class="col-lg-6 ps-0">
-                                <div class="p-3 category4 rounded h-100">телевизор</div>
+                            <div  class="col-lg-6 ps-0">
+                                <div style="    background-image: url('{{ asset('storage/' . $category1->image) }}')" class="p-3 category4 rounded h-100">{{ $category1['name_' . $lang] }}</div>
                             </div>
                         </div>
                     </div>
                     <div class="col-lg-4 pe-0">
                         <div class="row h-100">
                             <div class="col-lg-6">
-                                <div class="p-3 category5 rounded h-100">регистраторы</div>
+                                <div style="    background-image: url('{{ asset('storage/' . $category6->image) }}')" class="p-3 category5 rounded h-100">{{ $category6['name_' . $lang] }}</div>
                             </div>
                             <div class="col-lg-6 ps-0">
-                                <div class="p-3 category6 rounded h-100">пылесосы</div>
+                                <div style="    background-image: url('{{ asset('storage/' . $category7->image) }}')" class="p-3 category6 rounded h-100">{{ $category7['name_' . $lang] }}</div>
                             </div>
                             <div class="col-12">
-                                <div class="fs-5 p-3 mt-3 category7 rounded h-95">смартфон</div>
+                                <div style="    background-image: url('{{ asset('storage/' . $category2->image) }}')" class="fs-5 p-3 mt-3 category7 rounded h-95">{{ $category2['name_' . $lang] }}</div>
                             </div>
                         </div>
                     </div>
