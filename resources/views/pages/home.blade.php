@@ -369,30 +369,4 @@ $lang = \Illuminate\Support\Facades\App::getLocale();
         {{-- Contact --}}
         <x-page.contact />
     </main>
-
-    {{--    <a href="javascript: void(0);" type="button" onclick="addToCart({{ $product->id }}, '{{ $product->name_uz }}', {{ $product->price }})" class="icon-cart d-block border-0"></a> --}}
-
-
-    <script>
-        function addToCart(productId) {
-            $.ajax({
-                url: `/add-to-cart/${productId}`,
-                type: 'POST',
-                data: {
-                    _token: '{{ csrf_token() }}',
-                },
-                success: function(response) {
-                    updateCartCount(response.cart_count); // Badge raqamini yangilash
-                    // alert(response.message); // Foydalanuvchiga xabar ko'rsatish
-                },
-                error: function(xhr) {
-                    alert('Xatolik yuz berdi: ' + xhr.responseText);
-                }
-            });
-        }
-
-        function updateCartCount(count) {
-            document.getElementById('cart-count').innerText = count;
-        }
-    </script>
 @endsection
