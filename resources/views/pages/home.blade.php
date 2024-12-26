@@ -13,26 +13,21 @@ $lang = \Illuminate\Support\Facades\App::getLocale();
                     <div id="carouselExample" class="carousel slide" data-bs-ride="carousel" data-bs-interval="3000">
                         <!-- Indicators (optional) -->
                         <div class="carousel-indicators">
-                            <button type="button" data-bs-target="#carouselExample" data-bs-slide-to="0" class="active"
-                                aria-current="true" aria-label="Slide 1"></button>
-                            <button type="button" data-bs-target="#carouselExample" data-bs-slide-to="1"
-                                aria-label="Slide 2"></button>
-                            <button type="button" data-bs-target="#carouselExample" data-bs-slide-to="2"
-                                aria-label="Slide 3"></button>
+                            @foreach ($banner->images as $index => $item)
+                                <button type="button" data-bs-target="#carouselExample"
+                                    data-bs-slide-to="{{ $index }}" class="{{ $index === 0 ? 'active' : '' }}"
+                                    aria-current="{{ $index === 0 ? 'true' : 'false' }}"
+                                    aria-label="Slide {{ $index + 1 }}"></button>
+                            @endforeach
                         </div>
 
                         <!-- Carousel inner (slides) -->
                         <div class="carousel-inner rounded">
-                            <div class="carousel-item active">
-                                <img src="/assets/images/slider1.webp" class="d-block w-100" alt="Slide 1" />
-                            </div>
-                            <div class="carousel-item">
-                                <img src="/assets/images/slider2.webp" class="d-block w-100" alt="Slide 2" />
-                            </div>
-                            <div class="carousel-item">
-                                <img src="/assets/images/slider3.webp" class="d-block w-100" alt="Slide 3" />
-
-                            </div>
+                            @foreach ($banner->images as $index => $item)
+                                <div class="carousel-item  {{ $index === 0 ? 'active' : '' }}">
+                                    <img src="{{ asset('storage/' . $item) }}" class="d-block w-100" alt="Slide 1" />
+                                </div>
+                            @endforeach
                         </div>
 
                         <!-- Carousel controls -->
@@ -51,14 +46,14 @@ $lang = \Illuminate\Support\Facades\App::getLocale();
                 <div class="col-md-4">
                     <div class="row headerbanners">
                         <div class="col-sm-6 col-md-12 mt-md-0 mt-4">
-                            <div
+                            <div style="background-image: url({{ asset('storage/' . $banner->image1) }});"
                                 class="banner1 rounded p-lg-4 p-2 d-flex flex-column justify-content-between align-items-start">
                                 <div class="fw-bold">@lang('footer.smartphones')</div>
                                 <a href="{{ route('products') }}" class="btn-orange rounded px-4 py-1">@lang('home.smartphonesAll')</a>
                             </div>
                         </div>
                         <div class="col-sm-6 col-md-12 mt-4">
-                            <div
+                            <div style="background-image: url({{ asset('storage/' . $banner->image2) }});"
                                 class="banner2 rounded p-lg-4 p-2 d-flex flex-column justify-content-between align-items-start">
                                 <div class="fw-bold">@lang('footer.smart_home')</div>
                                 <a href="{{ route('products') }}" class="btn-orange rounded px-4 py-1">@lang('home.smartphonesAll')</a>

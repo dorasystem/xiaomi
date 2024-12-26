@@ -8,6 +8,7 @@ use App\Models\Article;
 use App\Models\Blog;
 use App\Models\Comment;
 use App\Models\History;
+use App\Models\MainBanner;
 use App\Models\News;
 use App\Models\Product;
 use App\Models\Store;
@@ -22,11 +23,12 @@ class MainController extends Controller
     public function index()
     {
         $locations = Store::all();
+        $banner = MainBanner::first();
         $products = Product::latest()->take(6)->get();
         $new = News::latest()->first();
         $news1 = News::latest()->skip(1)->take(4)->get();
         $news2 = News::latest()->skip(4)->take(4)->get();
-        return view('pages.home', compact('new', 'news1', 'news2', 'products','locations'));
+        return view('pages.home', compact('new', 'news1', 'news2', 'products','locations', 'banner'));
     }
     public function about()
     {
