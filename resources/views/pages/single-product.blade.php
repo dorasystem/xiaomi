@@ -185,11 +185,6 @@ $lang = \Illuminate\Support\Facades\App::getLocale();
                             aria-controls="specifications" aria-selected="false">Характеристики</a>
                     </li>
                     <li class="nav-item" role="presentation">
-                        <a class="py-2 fs-14" id="availability-tab" data-bs-toggle="tab" data-bs-target="#availability"
-                            type="button" role="tab" aria-controls="availability" aria-selected="false">Наличие в
-                            магазинах</a>
-                    </li>
-                    <li class="nav-item" role="presentation">
                         <a class="py-2 fs-14" id="installments-tab" data-bs-toggle="tab" data-bs-target="#installments"
                             type="button" role="tab" aria-controls="installments" aria-selected="false">Рассрочка и
                             кредит</a>
@@ -363,83 +358,7 @@ $lang = \Illuminate\Support\Facades\App::getLocale();
 
                         </div>
                     </div>
-                    <div class="tab-pane fade" id="availability" role="tabpanel" aria-labelledby="availability-tab">
-                        <div class="pt-3 border-top">
 
-                            <table class="table tableshop mb-0">
-                                <thead class="bg-light">
-                                    <tr>
-                                        <th class="px-4 fs-14" scope="col">Магазин</th>
-                                        <th class="px-4 fs-14" scope="col">Адрес</th>
-                                        <th class="px-4 fs-14" scope="col">Наличие</th>
-                                        <th class="px-4 fs-14" scope="col">Часы работы</th>
-                                    </tr>
-                                </thead>
-                                <tbody>
-                                    <tr class="">
-                                        <td class="py-lg-4 py-2 px-4 fs-14 fw-bold">Xiomi Store Малика</td>
-                                        <td class="py-lg-4 py-2 px-4 fs-14 text-grey">Velit sunt Lorem aliquip ut
-                                            consectetur mollit mini
-                                        </td>
-                                        <td class="py-lg-4 py-2 px-4 fs-14">
-                                            <div class="d-flex align-items-center gap-2"><span
-                                                    class="bg-success rounded-pill circle"></span> с 28 ноября
-                                            </div>
-                                        </td>
-                                        <td class="py-lg-4 py-2 px-4 fs-14">
-                                            <div class="">с 10:00 до 20:00</div>
-                                            <div class="">Без выходных</div>
-                                        </td>
-                                    </tr>
-                                    <tr class="">
-                                        <td class="py-lg-4 py-2 px-4 fs-14 fw-bold">Xiomi Store Малика</td>
-                                        <td class="py-lg-4 py-2 px-4 fs-14 text-grey">Velit sunt Lorem aliquip ut
-                                            consectetur mollit mini
-                                        </td>
-                                        <td class="py-lg-4 py-2 px-4 fs-14">
-                                            <div class="d-flex align-items-center gap-2"><span
-                                                    class="bg-success rounded-pill circle"></span> с 28 ноября
-                                            </div>
-                                        </td>
-                                        <td class="py-3 px-4 fs-14">
-                                            <div class="">с 10:00 до 20:00</div>
-                                            <div class="">Без выходных</div>
-                                        </td>
-                                    </tr>
-                                    <tr class="">
-                                        <td class="py-lg-4 py-2 px-4 fs-14 fw-bold">Xiomi Store Малика</td>
-                                        <td class="py-lg-4 py-2 px-4 fs-14 text-grey">Velit sunt Lorem aliquip ut
-                                            consectetur mollit mini
-                                        </td>
-                                        <td class="py-lg-4 py-2 px-4 fs-14">
-                                            <div class="d-flex align-items-center gap-2"><span
-                                                    class="bg-success rounded-pill circle"></span> с 28 ноября
-                                            </div>
-                                        </td>
-                                        <td class="py-3 px-4 fs-14">
-                                            <div class="">с 10:00 до 20:00</div>
-                                            <div class="">Без выходных</div>
-                                        </td>
-                                    </tr>
-                                    <tr class="">
-                                        <td class="py-lg-4 py-2 px-4 fs-14 fw-bold">Xiomi Store Малика</td>
-                                        <td class="py-lg-4 py-2 px-4 fs-14 text-grey">Velit sunt Lorem aliquip ut
-                                            consectetur mollit mini
-                                        </td>
-                                        <td class="py-lg-4 py-2 px-4 fs-14">
-                                            <div class="d-flex align-items-center gap-2"><span
-                                                    class="bg-success rounded-pill circle"></span> с 28 ноября
-                                            </div>
-                                        </td>
-                                        <td class="py-3 px-4 fs-14">
-                                            <div class="">с 10:00 до 20:00</div>
-                                            <div class="">Без выходных</div>
-                                        </td>
-                                    </tr>
-                                </tbody>
-                            </table>
-                        </div>
-                    </div>
                     <div class="tab-pane fade" id="installments" role="tabpanel" aria-labelledby="installments-tab">
                         <div class="pt-3 border-top row align-items-start pb-5">
                             <div class="col-lg-6 order-lg-1 order-2 pt-5">
@@ -456,7 +375,7 @@ $lang = \Illuminate\Support\Facades\App::getLocale();
                                 №1481 от 11.08.2015
                             </div>
                             <div class="col-lg-6 order-lg-2 order-1 pt-5">
-                                <img class="w-100" src="./assets/images/product-installment.png" alt="" />
+                                <img class="w-100" src="/assets/images/product-installment.png" alt="" />
                             </div>
                         </div>
                     </div>
