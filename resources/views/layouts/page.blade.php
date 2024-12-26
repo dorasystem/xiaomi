@@ -38,7 +38,7 @@
             <ul class="navbar-nav d-flex flex-row justify-content-around w-100 align-items-end">
                 <a href="tel:+998772820080" class="d-flex flex-column align-items-center nav-link text-center nav-item">
                     <div class="icon position-relative p-0 mb-1">
-                        <img src="/asssets/icons/phone.svg" alt="Phone icon" />
+                        <img src="/assets/icons/phone.svg" alt="Phone icon" />
                     </div>
                     <small class="text-lowercase">позванить</small>
                 </a>
@@ -97,7 +97,7 @@
                     <div class="col-lg-8 order-lg-2 order-1">
                         <div class="d-flex flex-column justify-content-between h-100">
                             <div class="d-flex align-items-start gap-3">
-                                <img class="rounded fit-cover" src="/asssets/images/category_phone.webp" alt="" />
+                                <img class="rounded fit-cover" src="/assets/images/category_phone.webp" alt="" />
                                 <div class="d-flex flex-column">
                                     <h6>Телевизор Xiaomi Mi TV A Pro 55" 2025 L55MA-SRU</h6>
                                     <div class="">150 000</div>
