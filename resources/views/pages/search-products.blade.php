@@ -1,6 +1,7 @@
 @extends('layouts.page')
 <?php
 $lang = app()->getLocale();
+$categories = \App\Models\Category::all();
 ?>
 @section('content')
     <main>

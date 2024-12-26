@@ -64,7 +64,7 @@ Route::middleware(['auth'])->group(function () {
     Route::get('/profile',[UserController::class, 'profile'])->name('user.profile');
     Route::get('orders', [UserController::class, 'orders'])->name('orders');
     Route::get('cart', [UserController::class, 'cart'])->name('cart');
-    Route::get('checkout', [UserController::class, 'checkout'])->name('checkout');
+
 
 });
 
@@ -102,6 +102,6 @@ Route::post('/comments', [CommentController::class, 'store'])->name('comments.st
 
 Route::get('/products/search', [MainController::class, 'productSearch'])->name('products.search');
 Route::get('/products/filter', [MainController::class, 'filterProducts'])->name('products.filter');
-
+Route::get('checkout', [MainController::class, 'checkout'])->name('checkout');
 
 Route::get('locale/{lang}',[LanguageController::class, 'setLocale']);

@@ -156,5 +156,10 @@ class MainController extends Controller
     }
 
 
+    public function checkout()
+    {
+        return view('pages.checkout');
+    }
+
 
 }
