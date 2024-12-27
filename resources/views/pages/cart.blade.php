@@ -28,27 +28,23 @@
 
                             <div class="col-lg-4 d-flex flex-column align-items-end gap-4">
                                 <div class="d-flex align-items-center gap-3">
-                                    <div id="item-{{ $cartItem['id'] }}" class="d-flex align-items-center gap-3">
-                                        <!-- Kamaytirish tugmasi -->
+                                    <div class="d-flex align-items-center gap-3">
                                         <button onclick="updateQuantity({{ $cartItem['id'] }}, -1)"
-                                                id="decrement-{{ $cartItem['id'] }}"
-                                                class="decrement border-0 rounded-circle bg-history d-flex align-items-center justify-content-center"
+                                            id="decrement-{{ $cartItem['id'] }}"
+                                            class="decrement border-0 rounded-circle bg-history d-flex align-items-center justify-content-center"
                                             {{ $cartItem['quantity'] <= 1 ? 'disabled' : '' }}>
                                             <i class="fa-solid fa-minus fs-sm-12"></i>
                                         </button>
 
-                                        <!-- Miqdor ko'rsatiladigan joy -->
                                         <div class="count" data-value="{{ $cartItem['quantity'] }}">
-                                            {{ $cartItem['quantity'] }}
-                                        </div>
+                                            {{ $cartItem['quantity'] }}</div>
 
-                                        <!-- Oshirish tugmasi -->
                                         <button onclick="updateQuantity({{ $cartItem['id'] }}, 1)"
-                                                id="increment-{{ $cartItem['id'] }}"
-                                                class="increment border-0 rounded-circle bg-history d-flex align-items-center justify-content-center"
-                                            {{ $cartItem['quantity'] >= $cartItem['max_quantity'] ? 'disabled' : '' }}>
+                                            id="increment-{{ $cartItem['id'] }}"
+                                            class="increment decrement border-0 rounded-circle bg-history d-flex align-items-center justify-content-center">
                                             <i class="fa-solid fa-plus fs-sm-12"></i>
                                         </button>
+
                                     </div>
                                     <h5 class="fw-bold text-nowrap price">
                                         @if ($cartItem['discount_price'])
