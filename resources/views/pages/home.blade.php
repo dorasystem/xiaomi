@@ -359,13 +359,13 @@ $lang = \Illuminate\Support\Facades\App::getLocale();
 
             </div>
             <div class="categories d-lg-none d-grid">
-                <a href="" class="category1 rounded fs-5 fw-bold p-2 text-white">Умные часы</a>
-                <a href="" class="category2 rounded fs-5 fw-bold p-2 text-white">Умные часы</a>
-                <a href="" class="category3 rounded fs-5 fw-bold p-2 text-white">Умные часы</a>
-                <a href="" class="category4 rounded fs-5 fw-bold p-2 text-white">Умные часы</a>
-                <a href="" class="category5 rounded fs-5 fw-bold p-2 text-white">Умные часы</a>
-                <a href="" class="category6 rounded fs-5 fw-bold p-2 text-white">Умные часы</a>
-                <a href="" class="category7 rounded fs-5 fw-bold p-2 text-white">Умные часы</a>
+                <a style="background-image: url('{{ asset('storage/' . $category3->image) }}')" href="{{ route('category.sort', ['slug' => $category3->getSlugByLanguage($lang)]) }}" class="category1 rounded fs-5 fw-bold p-2 text-white">{{ $category3['name_' . $lang] }}</a>
+                <a style="background-image: url('{{ asset('storage/' . $category4->image) }}')" href="{{ route('category.sort', ['slug' => $category4->getSlugByLanguage($lang)]) }}" class="category2 rounded fs-5 fw-bold p-2 text-white">{{ $category4['name_' . $lang] }}</a>
+                <a style="background-image: url('{{ asset('storage/' . $category5->image) }}')" href="{{ route('category.sort', ['slug' => $category5->getSlugByLanguage($lang)]) }}" class="category3 rounded fs-5 fw-bold p-2 text-white">{{ $category5['name_' . $lang] }}</a>
+                <a style="background-image: url('{{ asset('storage/' . $category1->image) }}')" href="{{ route('category.sort', ['slug' => $category1->getSlugByLanguage($lang)]) }}" class="category4 rounded fs-5 fw-bold p-2 text-white">{{ $category1['name_' . $lang] }}</a>
+                <a style="background-image: url('{{ asset('storage/' . $category6->image) }}')" href="{{ route('category.sort', ['slug' => $category6->getSlugByLanguage($lang)]) }}" class="category5 rounded fs-5 fw-bold p-2 text-white">{{ $category6['name_' . $lang] }}</a>
+                <a style="background-image: url('{{ asset('storage/' . $category7->image) }}')" href="{{ route('category.sort', ['slug' => $category7->getSlugByLanguage($lang)]) }}" class="category6 rounded fs-5 fw-bold p-2 text-white">{{ $category7['name_' . $lang] }}</a>
+                <a style="background-image: url('{{ asset('storage/' . $category2->image) }}')" href="{{ route('category.sort', ['slug' => $category2->getSlugByLanguage($lang)]) }}" class="category7 rounded fs-5 fw-bold p-2 text-white">{{ $category2['name_' . $lang] }}</a>
             </div>
         </div>
         <!-- video obzor -->
