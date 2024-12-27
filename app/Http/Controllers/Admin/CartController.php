@@ -30,7 +30,7 @@ class CartController extends Controller
                 'name' => $product->name,
                 'variant_id' => $variant->id,
                 'storage' => $request->storage,
-                'price' => $request->price,
+                'price' => $variant->discount_price ?? $variant->price,
                 'quantity' => 1,
             ];
         }

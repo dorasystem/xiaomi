@@ -237,7 +237,9 @@
     0 -320 0 0 640 0 640 320 0 320 0 0 -640z" />
                                     </g>
                                 </svg>
-                                <span class="badge badge-pill badge-danger badge-position rounded-circle">1</span>
+                                <span class="badge badge-pill badge-danger badge-position rounded-circle">
+                                    {{ session('compares') ? count(session('compares')) : 0 }}
+                                </span>
                             </a>
                             <small class="">@lang('home.comparison')</small>
                         </li>
