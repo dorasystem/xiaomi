@@ -80,6 +80,7 @@ class OrderController extends Controller
     }
     public function productsStore(Request $request)
     {
+
         // Validate the request data
         $validated = $request->validate([
             'first_name' => 'required|string|max:255',
@@ -87,8 +88,10 @@ class OrderController extends Controller
             'cart_items' => 'required|json',  // Ensure cart_items is a valid JSON
         ]);
 
+
         // Decode cart_items from JSON
         $cartItems = json_decode($validated['cart_items'], true);
+
 
         // Create the order
         $order = Order::create([
@@ -103,7 +106,7 @@ class OrderController extends Controller
                 'product_id' => $cartItem['id'] ?? null,
                 'quantity' => $cartItem['quantity'], // Default to 1
                 'price' => $cartItem['price'] ?? $cartItem['discount_price'],
-                'total' => $cartItem['total_price'],
+                'total' => $cartItem['total_price'] ?? $cartItem['quantity'] * $cartItem['price'] ?? $cartItem['quantity'] * $cartItem['discount_price'],
             ]);
         }
 

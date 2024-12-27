@@ -26,7 +26,7 @@ $about = \App\Models\About::first();
                            href="{{ route('admins.dashboard') }}"
                        @endif class="nxl-link">
                         <span class="nxl-micon"><i class="feather-home"></i></span>
-                        <span class="nxl-mtext">Панель инструментов</span>
+                        <span class="nxl-mtext">Панель управления</span>
                     </a>
                 </li>
 
@@ -37,6 +37,8 @@ $about = \App\Models\About::first();
                         <span class="nxl-mtext">О нас</span>
                     </a>
                 </li>
+
+                <!-- Products and Categories -->
                 <li class="nxl-item nxl-hasmenu">
                     <a href="javascript:void(0);" class="nxl-link">
                         <span class="nxl-micon"><i class="fa-solid fa-boxes"></i></span>
@@ -45,15 +47,13 @@ $about = \App\Models\About::first();
                     </a>
 
                     <ul class="nxl-submenu">
-                        <!-- Phone Descriptions -->
                         <li class="nxl-item">
                             <a href="{{ route('desc-images.index') }}" class="nxl-link">
                                 <span class="nxl-micon"><i class="feather-image"></i></span>
-                                <span class="nxl-mtext">Телефоны Описание</span>
+                                <span class="nxl-mtext">Описание телефонов</span>
                             </a>
                         </li>
 
-                        <!-- Products -->
                         <li class="nxl-item">
                             <a href="{{ route('products.index') }}" class="nxl-link">
                                 <span class="nxl-micon"><i class="feather-box"></i></span>
@@ -61,7 +61,6 @@ $about = \App\Models\About::first();
                             </a>
                         </li>
 
-                        <!-- Categories -->
                         <li class="nxl-item">
                             <a href="{{ route('categories.index') }}" class="nxl-link">
                                 <span class="nxl-micon"><i class="feather-tag"></i></span>
@@ -70,7 +69,6 @@ $about = \App\Models\About::first();
                         </li>
                     </ul>
                 </li>
-
 
                 <!-- News Section -->
                 <li class="nxl-item nxl-hasmenu">
@@ -100,6 +98,7 @@ $about = \App\Models\About::first();
                         </li>
                     </ul>
                 </li>
+
                 <!-- History -->
                 <li class="nxl-item">
                     <a href="{{ route('histories.index') }}" class="nxl-link">
@@ -107,8 +106,6 @@ $about = \App\Models\About::first();
                         <span class="nxl-mtext">История</span>
                     </a>
                 </li>
-
-
 
                 <!-- FAQ -->
                 <li class="nxl-item">
@@ -142,8 +139,6 @@ $about = \App\Models\About::first();
                     </a>
                 </li>
 
-
-
                 <!-- Store Addresses -->
                 <li class="nxl-item">
                     <a href="{{ route('stores.index') }}" class="nxl-link">
@@ -159,10 +154,21 @@ $about = \App\Models\About::first();
                         <span class="nxl-mtext">Главные баннеры</span>
                     </a>
                 </li>
+
+                <!-- Orders -->
                 <li class="nxl-item">
                     <a href="{{ route('orders.index') }}" class="nxl-link">
-                        <span class="nxl-micon"><i class="feather-image"></i></span>
-                        <span class="nxl-mtext">Order</span>
+                        <span class="nxl-micon"><i class="feather-shopping-cart"></i></span>
+                        <span class="nxl-mtext">Заказы</span>
+                    </a>
+                </li>
+
+
+                <!-- Static Keywords -->
+                <li class="nxl-item">
+                    <a href="{{ route('keywords.index') }}" class="nxl-link">
+                        <span class="nxl-micon"><i class="feather-key"></i></span>
+                        <span class="nxl-mtext" style="font-size: 12px">Статические ключевые слова</span>
                     </a>
                 </li>
             </ul>
