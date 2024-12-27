@@ -13,6 +13,7 @@ use App\Models\History;
 use App\Models\MainBanner;
 use App\Models\News;
 use App\Models\Product;
+use App\Models\StaticKeyword;
 use App\Models\Store;
 use App\Models\Vacancy;
 use Illuminate\Http\Request;
@@ -24,6 +25,17 @@ class MainController extends Controller
 {
     public function index()
     {
+        // Bir nechta kalit so'zlarni olish
+        $keywords = StaticKeyword::all(); // yoki filterlab olish
+
+        // Har bir kalit so'zni tilga qarab olish      <h1>{{ $translations['welcome_message'] }}</h1> shunday chaqiriladi
+        $language = app()->getLocale();
+        $translations = [];
+
+        foreach ($keywords as $keyword) {
+            $translations[$keyword->key] = $keyword->{$language};
+        }
+
         $locations = Store::all();
         $banner = MainBanner::first();
         $products = Product::latest()->take(6)->get();
@@ -38,7 +50,7 @@ class MainController extends Controller
         $category5 = collect($categories)->firstWhere('id', 5);
         $category6 = collect($categories)->firstWhere('id', 6);
         $category7 = collect($categories)->firstWhere('id', 7);
-        return view('pages.home', compact('new', 'news1', 'news2', 'products', 'locations', 'banner', 'categories','category1', 'category2', 'category3', 'category4', 'category5', 'category6', 'category7'));
+        return view('pages.home', compact('new', 'news1', 'news2', 'products', 'locations', 'banner', 'categories','category1', 'category2', 'category3', 'category4', 'category5', 'category6', 'category7','translations'));
     }
     public function about()
     {
