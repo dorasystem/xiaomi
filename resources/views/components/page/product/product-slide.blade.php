@@ -9,7 +9,6 @@ $lang = app()->getLocale();
             $cheapestVariant = $product->variants->sortBy('price')->first();
         @endphp
         <div class="swiper-slide product shadow-sm position-relative rounded">
-            <div class=" ">
                 <div class="position-absolute like d-flex flex-column gap-3 justify-content-end">
                     <a onclick="toggleFavourite({{ $product->id }})">
                         <i id="favourite-icon-{{ $product->id }}"
@@ -51,8 +50,8 @@ $lang = app()->getLocale();
                     <a href="{{ route('single.product', $product->slug) }}">
                         <div class="productName fw-bold"> {{ \Str::words($product['name_' . $lang], 3) }}</div>
                     </a>
-                    <a href="{{ route('single.product', $product->slug) }}">
-                        <p class="text-grey"> {!! \Str::words($product['description_' . $lang], 15) !!}</p>
+                    <a class="truncate-text" href="{{ route('single.product', $product->slug) }}">
+                        <p class="text-grey"> {!! \Str::words($product['description_' . $lang], 10) !!}</p>
                     </a>
                     <div class="d-flex align-items-center justify-content-between w-100">
                         <span
@@ -81,7 +80,6 @@ $lang = app()->getLocale();
                         </button>
                     </div>
                 </div>
-            </div>
         </div>
     @endforeach
 </div>

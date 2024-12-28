@@ -92,6 +92,11 @@ return [
     "discount" => "Discount",
     "place_order" => "Place order",
     "products" => "Products",
+    "message_title" => "Didn't find the product? We can help you!",
+    "message_desc" => "Leave us your number!",
+    "message_input1" => "What product are you looking for?",
+    "message_input2" => "Enter your full name",
+    "send" => "Send",
 
 
 ];

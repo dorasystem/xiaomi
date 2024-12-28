@@ -17,6 +17,7 @@ use App\Http\Controllers\Admin\NewsController;
 use App\Http\Controllers\Admin\OrderController;
 use App\Http\Controllers\Admin\ProductController;
 use App\Http\Controllers\Admin\ServiceController;
+use App\Http\Controllers\Admin\StaticKeywordController;
 use App\Http\Controllers\Admin\StoreController;
 use App\Http\Controllers\Admin\VacancyController;
 use App\Http\Controllers\Admin\VariantController;
@@ -61,7 +62,7 @@ Route::middleware(['auth'])->prefix('dashboard')->group(function () {
     Route::get('orders', [OrderController::class, 'index'])->name('orders.index');
     Route::put('/orders/{order}', [OrderController::class, 'update'])->name('orders.update');
     Route::delete('/orders/{order}', [OrderController::class, 'destroy'])->name('orders.destroy');
-
+    Route::resource('keywords', StaticKeywordController::class);
 });
 
 Route::middleware(['auth'])->group(function () {
