@@ -554,6 +554,7 @@ $lang = \Illuminate\Support\Facades\App::getLocale();
             });
         });
     </script>
+    
     <script>
         document.addEventListener('DOMContentLoaded', function() {
             const storageOptions = document.querySelectorAll('.storage-option');

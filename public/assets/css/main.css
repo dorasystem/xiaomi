@@ -631,7 +631,7 @@ input:focus {
 }
 
 .videoBanner {
-    background-image: url("/assets/images/videoBanner.webp");
+    background-image: url("/assets/images/videoBanner.png");
     height: 80vh;
     background-size: cover;
     background-position: center;

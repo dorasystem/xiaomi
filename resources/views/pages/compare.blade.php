@@ -132,70 +132,8 @@
                                 </div>
                             @endforeach
                         @else
-                            <table class="table mb-0">
-                                <thead class="bg-white compareProdName position-sticky">
-                                    <tr>
-                                        <th class="px-4 py-3 fs-14" scope="col">Общая информация</th>
-                                        <th class="px-4 py-3 fs-14" scope="col">Телевизоры</th>
-                                    </tr>
-                                </thead>
-                                <thead class="bg-white border-top">
-                                    <tr>
-                                        <th class="px-4 py-3 fs-14" scope="col">Общая информация</th>
-                                        <th class="px-4 py-3 fs-14" scope="col"></th>
-                                    </tr>
-                                </thead>
-                                <tbody>
-                                    <tr>
-                                        <td class="px-4 py-3 text-grey fs-14">Дата выхода на рынок</td>
-                                        <td class="px-4 py-3 fs-14">2024 г.</td>
-                                    </tr>
-                                    <tr>
-                                        <td class="px-4 py-3 text-grey fs-14">Тип</td>
-                                        <td class="px-4 py-3 fs-14">Смартфон</td>
-                                    </tr>
-                                    <tr>
-                                        <td class="px-4 py-3 text-grey fs-14">Операционная система</td>
-                                        <td class="px-4 py-3 fs-14">Android</td>
-                                    </tr>
-                                    <tr>
-                                        <td class="px-4 py-3 text-grey fs-14">Тип</td>
-                                        <td class="px-4 py-3 fs-14">Смартфон</td>
-                                    </tr>
-                                    <tr>
-                                        <td class="px-4 py-3 border-0 text-grey fs-14">Операционная система</td>
-                                        <td class="px-4 py-3 border-0 fs-14">Android</td>
-                                    </tr>
-                                </tbody>
-                                <thead class="bg-white border-top">
-                                    <tr>
-                                        <th class="px-4 py-3 fs-14" scope="col">Общая информация</th>
-                                        <th class="px-4 py-3 fs-14" scope="col"></th>
-                                    </tr>
-                                </thead>
-                                <tbody>
-                                    <tr>
-                                        <td class="px-4 py-3 text-grey fs-14">Дата выхода на рынок</td>
-                                        <td class="px-4 py-3 fs-14">2024 г.</td>
-                                    </tr>
-                                    <tr>
-                                        <td class="px-4 py-3 text-grey fs-14">Тип</td>
-                                        <td class="px-4 py-3 fs-14">Смартфон</td>
-                                    </tr>
-                                    <tr>
-                                        <td class="px-4 py-3 text-grey fs-14">Операционная система</td>
-                                        <td class="px-4 py-3 fs-14">Android</td>
-                                    </tr>
-                                    <tr>
-                                        <td class="px-4 py-3 text-grey fs-14">Тип</td>
-                                        <td class="px-4 py-3 fs-14">Смартфон</td>
-                                    </tr>
-                                    <tr>
-                                        <td class="px-4 py-3 border-0 text-grey fs-14">Операционная система</td>
-                                        <td class="px-4 py-3 border-0 fs-14">Android</td>
-                                    </tr>
-                                </tbody>
-                            </table>
+                        <hr>
+                           <x-page.not-found/>
                         @endif
                     </div>
                 </div>
