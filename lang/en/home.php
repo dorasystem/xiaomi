@@ -100,6 +100,17 @@ return [
     "page_not_found" => "Page not found",
     "not_found" => "Not found",
     "go_to_home" => "Go to home",
+    "effers" => "Special offers",
+    "incash" => "In cash",
+    "filter_title" => "Absolutely hot collections",
+    "filter_desc" => 'The Best Place To <br />
+    Find And Buy <br class="d-lg-block d-none" />
+    Amazing <span class="text-orange">Product</span>',
+    "filter_res" => "Filter results",
+    "category" => "Category",
+    "price" => "Price",
+    "reset" => "Reset",
+    "all_filters" => "All filters",
 
 
 ];
