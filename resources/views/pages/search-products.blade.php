@@ -4,14 +4,13 @@ $lang = app()->getLocale();
 $categories = \App\Models\Category::all();
 ?>
 @section('content')
-
     <main>
 
 
         <div class="container mt-4">
             <div class="d-flex align-items-center gap-3">
-                <a href="/" class="text-grey fw-bold  fs-14">@lang('home.home') / <span class="text-dark">Результаты
-                        поиска</span></a>
+                <a href="/" class="text-grey fw-bold  fs-14">@lang('home.home') / <span
+                        class="text-dark">@lang('home.filter_res')</span></a>
             </div>
             <hr />
         </div>
@@ -50,7 +49,7 @@ $categories = \App\Models\Category::all();
                                         <button class="accordion-button " type="button" data-bs-toggle="collapse"
                                                 data-bs-target="#panelsStayOpen-collapseOne" aria-expanded="true"
                                                 aria-controls="panelsStayOpen-collapseOne">
-                                            Категории
+                                            @lang('home.category')
                                         </button>
                                     </h2>
                                     <div id="panelsStayOpen-collapseOne" class="accordion-collapse collapse show"
@@ -74,7 +73,7 @@ $categories = \App\Models\Category::all();
                                         <button class="accordion-button" type="button" data-bs-toggle="collapse"
                                                 data-bs-target="#panelsStayOpen-collapseTwo" aria-expanded="true"
                                                 aria-controls="panelsStayOpen-collapseTwo">
-                                            Цена
+                                            @lang('home.price')
                                         </button>
                                     </h2>
                                     <div id="panelsStayOpen-collapseTwo" class="accordion-collapse collapse show pt-3"
@@ -103,12 +102,11 @@ $categories = \App\Models\Category::all();
                                 </div>
 
                             </div>
-                            <button type="submit"
-                                class="w-100 btn-orange rounded text-center mb-3">@lang('home.search')</button>
+                            <button type="submit" class="w-100 btn-orange rounded text-center mb-3">@lang('home.search')</button>
                             <button class="w-100 text-orange bg-transparent rounded text-center border-orange rounded py-1">
                                 <a href="{{ route('products') }}"
                                    class="w-100 text-orange bg-transparent  text-center  py-1">
-                                    Сбросить
+                                    @lang('home.reset')
                                 </a>
                             </button>
                         </form>
@@ -119,7 +117,7 @@ $categories = \App\Models\Category::all();
                     <div class="container">
                         <div class="d-flex gap-2">
                             <div class="d-lg-none d-block">
-                                <button class="btn-orange rounded" type="button" data-bs-toggle="modal"
+                                <button class="btn-orange rounded mb-3" type="button" data-bs-toggle="modal"
                                         data-bs-target="#filtermodal">Filter
                                 </button>
                                 <div class="modal" id="filtermodal" tabindex="-1" aria-labelledby="filtermodalLabel"
@@ -141,7 +139,7 @@ $categories = \App\Models\Category::all();
                                                                     data-bs-target="#panelsStayOpen-collapseOne"
                                                                     aria-expanded="true"
                                                                     aria-controls="panelsStayOpen-collapseOne">
-                                                                Категории
+                                                                @lang('home.category')
                                                             </button>
                                                         </h2>
                                                         <div id="panelsStayOpen-collapseOne"
@@ -163,12 +161,12 @@ $categories = \App\Models\Category::all();
                                                     </div>
                                                     <div class="accordion-item">
                                                         <h2 class="accordion-header" id="panelsStayOpen-headingTwo">
-                                                            <button class="accordion-button collapsed" type="button"
+                                                            <button class="accordion-button " type="button"
                                                                     data-bs-toggle="collapse"
                                                                     data-bs-target="#panelsStayOpen-collapseTwo"
                                                                     aria-expanded="true"
                                                                     aria-controls="panelsStayOpen-collapseTwo">
-                                                                Цена
+                                                                @lang('home.price')
                                                             </button>
                                                         </h2>
                                                         <div id="panelsStayOpen-collapseTwo"
@@ -212,17 +210,6 @@ $categories = \App\Models\Category::all();
                                     </div>
                                 </div>
                             </div>
-                            <div
-                                class="position-relative w-max d-flex align-items-center justify-content-end justify-content-md-start text-nowrap align-items-center">
-                                <div class="">Сортировка:</div>
-                                <select class="form-select-sm border-0 bg-transparent pe-4 py-1">
-                                    <option class="option" value="populars">По популярности</option>
-                                    <option class="option" value="news">Новинки</option>
-                                    <option class="option" value="Хиты продаж">Хиты продаж</option>
-                                </select>
-                                <i id="select-icon"
-                                   class="fa-solid fa-angle-down position-absolute end-0 top-50 translate-middle-y pe-2 text-dark"></i>
-                            </div>
                         </div>
                         <div class="row">
                             @foreach ($products as $product)
@@ -231,24 +218,31 @@ $categories = \App\Models\Category::all();
                                 @endphp
                                 <div class="col-lg-4 col-md-6 mb-4">
                                     <div class="product border position-relative rounded">
-                                        <a href="{{ route('single.product', ['slug' => $product->slug]) }}"
-                                           class="">
+                                        <div
+                                            class="">
                                             <div
                                                 class="position-absolute like d-flex flex-column gap-3 justify-content-end">
                                                 <a onclick="toggleFavourite({{ $product->id }})">
                                                     <i id="favourite-icon-{{ $product->id }}"
-                                                       class="fa-regular fa-heart fs-4 hover-orange ps-1
+                                                       class="fa-{{ in_array($product->id, session('favorites', [])) ? 'solid' : 'regular' }} fa-heart fs-4 hover-orange ps-1
                                               {{ in_array($product->id, session('favorites', [])) ? 'text-orange' : '' }}">
                                                     </i>
                                                 </a>
                                                 <a onclick="toggleCompare({{ $product->id }})">
-                                                    <svg id="compare-icon-{{ $product->id }}" class="hover-svg {{ in_array($product->id, session('compares', [])) ? 'active-svg' : '' }}" width="30" height="20" viewBox="0 0 102 92" fill="none"
-                                                         xmlns="http://www.w3.org/2000/svg">
-                                                        <rect width="11" height="92" rx="2" fill="#000" />
-                                                        <rect x="23" y="22" width="11" height="70" rx="2" fill="#000" />
-                                                        <rect x="46" y="45" width="11" height="47" rx="2" fill="#000" />
-                                                        <rect x="69" y="23" width="11" height="69" rx="2" fill="#000" />
-                                                        <rect x="91" y="45" width="11" height="47" rx="2" fill="#000" />
+                                                    <svg id="compare-icon-{{ $product->id }}"
+                                                         class="hover-svg {{ in_array($product->id, session('compares', [])) ? 'active-svg' : '' }}"
+                                                         width="30" height="20" viewBox="0 0 102 92"
+                                                         fill="none" xmlns="http://www.w3.org/2000/svg">
+                                                        <rect width="11" height="92" rx="2"
+                                                              fill="#000" />
+                                                        <rect x="23" y="22" width="11" height="70" rx="2"
+                                                              fill="#000" />
+                                                        <rect x="46" y="45" width="11" height="47" rx="2"
+                                                              fill="#000" />
+                                                        <rect x="69" y="23" width="11" height="69" rx="2"
+                                                              fill="#000" />
+                                                        <rect x="91" y="45" width="11" height="47" rx="2"
+                                                              fill="#000" />
                                                     </svg>
                                                 </a>
                                             </div>
@@ -280,7 +274,7 @@ $categories = \App\Models\Category::all();
                                                             {{ \Str::words($product['name_' . $lang], 3) }}</div>
                                                     </a>
                                                     <a class="truncate-text"
-                                                        href="{{ route('single.product', $product->slug) }}">
+                                                       href="{{ route('single.product', $product->slug) }}">
                                                         <p class="text-grey">{!! \Str::words($product['description_' . $lang], 10) !!}</p>
                                                     </a>
 
@@ -304,7 +298,7 @@ $categories = \App\Models\Category::all();
                                                                 data-product-name="{{ $product['name_' . $lang] }}"
                                                                 data-product-price="{{ $cheapestVariant->discount_price ?: $cheapestVariant->price }}"
                                                                 data-product-image="{{ asset('storage/' . $product->image) }}">
-                                                            <span>Купить сразу</span>
+                                                            <span>@lang('home.buy_now')</span>
                                                         </button>
 
                                                     </div>
@@ -442,24 +436,31 @@ $categories = \App\Models\Category::all();
                         // Ico'ni yangilash
                         if (response.message.includes('qo\'shildi')) {
                             $('#favourite-icon-' + productId).addClass('text-orange');
-                            if (document.getElementById('favourite-icon-'  + productId).classList.contains("fa-regular")) {
-                                document.getElementById('favourite-icon-'  + productId).classList.remove('fa-regular')
-                                document.getElementById('favourite-icon-'  + productId).classList.add('fa-solid')
+                            if (document.getElementById('favourite-icon-' + productId).classList.contains(
+                                "fa-regular")) {
+                                document.getElementById('favourite-icon-' + productId).classList.remove(
+                                    'fa-regular')
+                                document.getElementById('favourite-icon-' + productId).classList.add('fa-solid')
                             }
                         } else {
-                            $('#favourite-icon-' + productId).removeClass('text-orange'); // O'chirilganini ko'rsatish
-                            if (document.getElementById('favourite-icon-'  + productId).classList.contains("fa-solid")) {
-                                document.getElementById('favourite-icon-'  + productId).classList.remove('fa-solid')
-                                document.getElementById('favourite-icon-'  + productId).classList.add('fa-regular')
+                            $('#favourite-icon-' + productId).removeClass(
+                                'text-orange'); // O'chirilganini ko'rsatish
+                            if (document.getElementById('favourite-icon-' + productId).classList.contains(
+                                "fa-solid")) {
+                                document.getElementById('favourite-icon-' + productId).classList.remove(
+                                    'fa-solid')
+                                document.getElementById('favourite-icon-' + productId).classList.add(
+                                    'fa-regular')
                             }
                         }
                     }
                 },
-                error: function (xhr) {
+                error: function(xhr) {
                     alert('Xatolik yuz berdi: ' + xhr.responseText);
                 }
             });
         }
+
         function toggleCompare(productId) {
             $.ajax({
                 url: '/toggle-compare',
@@ -497,6 +498,6 @@ $categories = \App\Models\Category::all();
                 }
             });
         }
-
     </script>
 @endsection
+
