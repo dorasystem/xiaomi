@@ -116,100 +116,110 @@ $categories = \App\Models\Category::all();
                 <div class="col-lg-9">
                     <div class="container">
                         <div class="d-flex gap-2">
-                            <div class="d-lg-none d-block">
-                                <button class="btn-orange rounded mb-3" type="button" data-bs-toggle="modal"
-                                        data-bs-target="#filtermodal">Filter
-                                </button>
-                                <div class="modal" id="filtermodal" tabindex="-1" aria-labelledby="filtermodalLabel"
-                                     aria-hidden="true">
-                                    <div class="modal-dialog modal-dialog-centered">
-                                        <div style="height: 650px; overflow-y: auto"
-                                             class="modal-content d-flex flex-column justify-content-between">
-                                            <div class="">
-                                                <div class="modal-header position-sticky top-0 bg-white z-3">
-                                                    <h2 class="fw-normal">@lang('home.all_filters')</h2>
-                                                    <button type="button" class="btn-close" data-bs-dismiss="modal"
-                                                            aria-label="Close"></button>
-                                                </div>
-                                                <div class="accordion" id="accordionPanelsStayOpenExample">
-                                                    <div class="accordion-item">
-                                                        <h2 class="accordion-header" id="panelsStayOpen-headingOne">
-                                                            <button class="accordion-button " type="button"
-                                                                    data-bs-toggle="collapse"
-                                                                    data-bs-target="#panelsStayOpen-collapseOne"
-                                                                    aria-expanded="true"
-                                                                    aria-controls="panelsStayOpen-collapseOne">
-                                                                @lang('home.category')
-                                                            </button>
-                                                        </h2>
-                                                        <div id="panelsStayOpen-collapseOne"
-                                                             class="accordion-collapse collapse show"
-                                                             aria-labelledby="panelsStayOpen-headingOne">
-                                                            <div class="accordion-body">
-                                                                @foreach ($categories as $category)
-                                                                    <div class="form-check mb-3">
-                                                                        <input class="form-check-input" type="checkbox"
-                                                                               value="" id="flexCheckChecked" />
-                                                                        <label class="form-check-label"
-                                                                               for="flexCheckChecked">
-                                                                            <small>{{ $category['name_' . $lang] }}</small>
-                                                                        </label>
-                                                                    </div>
-                                                                @endforeach
+                            <form method="GET" action="{{ route('products.filter') }}">
+                                <div class="d-lg-none d-block">
+                                    <button class="btn-orange rounded mb-3" type="button" data-bs-toggle="modal"
+                                            data-bs-target="#filtermodal">Filter
+                                    </button>
+                                    <div class="modal" id="filtermodal" tabindex="-1" aria-labelledby="filtermodalLabel"
+                                         aria-hidden="true">
+                                        <div class="modal-dialog modal-dialog-centered">
+                                            <div style="height: 650px; overflow-y: auto"
+                                                 class="modal-content d-flex flex-column justify-content-between">
+                                                <div class="">
+                                                    <div class="modal-header position-sticky top-0 bg-white z-3">
+                                                        <h2 class="fw-normal">@lang('home.all_filters')</h2>
+                                                        <button type="button" class="btn-close" data-bs-dismiss="modal"
+                                                                aria-label="Close"></button>
+                                                    </div>
+                                                    <div class="accordion" id="accordionPanelsStayOpenExample">
+                                                        <div class="accordion-item">
+                                                            <h2 class="accordion-header" id="panelsStayOpen-headingOne">
+                                                                <button class="accordion-button" type="button"
+                                                                        data-bs-toggle="collapse"
+                                                                        data-bs-target="#panelsStayOpen-collapseOne"
+                                                                        aria-expanded="true"
+                                                                        aria-controls="panelsStayOpen-collapseOne">
+                                                                    @lang('home.category')
+                                                                </button>
+                                                            </h2>
+                                                            <div id="panelsStayOpen-collapseOne"
+                                                                 class="accordion-collapse collapse show"
+                                                                 aria-labelledby="panelsStayOpen-headingOne">
+                                                                <div class="accordion-body">
+                                                                    @foreach ($categories as $category)
+                                                                        <div class="form-check mb-3">
+                                                                            <input class="form-check-input"
+                                                                                   type="checkbox" name="categories[]"
+                                                                                   value="{{ $category->id }}"
+                                                                                   id="category-{{ $category->id }}"
+                                                                                {{ in_array($category->id, request('categories', [])) ? 'checked' : '' }} />
+                                                                            <label class="form-check-label"
+                                                                                   for="category-{{ $category->id }}">
+                                                                                <small>{{ $category['name_' . $lang] }}</small>
+                                                                            </label>
+                                                                        </div>
+                                                                    @endforeach
+                                                                </div>
                                                             </div>
                                                         </div>
-                                                    </div>
-                                                    <div class="accordion-item">
-                                                        <h2 class="accordion-header" id="panelsStayOpen-headingTwo">
-                                                            <button class="accordion-button " type="button"
-                                                                    data-bs-toggle="collapse"
-                                                                    data-bs-target="#panelsStayOpen-collapseTwo"
-                                                                    aria-expanded="true"
-                                                                    aria-controls="panelsStayOpen-collapseTwo">
-                                                                @lang('home.price')
-                                                            </button>
-                                                        </h2>
-                                                        <div id="panelsStayOpen-collapseTwo"
-                                                             class="accordion-collapse collapse show pt-3"
-                                                             aria-labelledby="panelsStayOpen-headingTwo">
-                                                            <div class="accordion-body">
-                                                                <div class="range-slider">
-                                                                    <div class="inputs">
-                                                                        <input type="number" id="minValue2"
-                                                                               value="20" min="0"
-                                                                               max="600" />
-                                                                        <span>до</span>
-                                                                        <input type="number" id="maxValue2"
-                                                                               value="600" min="0"
-                                                                               max="600" />
-                                                                    </div>
-                                                                    <div class="slider-container">
-                                                                        <div class="slider-track2"></div>
-                                                                        <input type="range" id="rangeMin2"
-                                                                               min="20" max="600"
-                                                                               value="20" />
-                                                                        <input type="range" id="rangeMax2"
-                                                                               min="30" max="600"
-                                                                               value="600" />
+                                                        <div class="accordion-item">
+                                                            <h2 class="accordion-header" id="panelsStayOpen-headingTwo">
+                                                                <button class="accordion-button" type="button"
+                                                                        data-bs-toggle="collapse"
+                                                                        data-bs-target="#panelsStayOpen-collapseTwo"
+                                                                        aria-expanded="true"
+                                                                        aria-controls="panelsStayOpen-collapseTwo">
+                                                                    @lang('home.price')
+                                                                </button>
+                                                            </h2>
+                                                            <div id="panelsStayOpen-collapseTwo"
+                                                                 class="accordion-collapse collapse show pt-3"
+                                                                 aria-labelledby="panelsStayOpen-headingTwo">
+                                                                <div class="accordion-body">
+                                                                    <div class="range-slider">
+                                                                        <div class="inputs">
+                                                                            <input type="number" id="minValue2"
+                                                                                   name="min_price"
+                                                                                   value="{{ request('min_price', 20) }}"
+                                                                                   min="0" max="600"/>
+                                                                            <span>до</span>
+                                                                            <input type="number" id="maxValue2"
+                                                                                   name="max_price"
+                                                                                   value="{{ request('max_price', 600) }}"
+                                                                                   min="0" max="600"/>
+                                                                        </div>
+                                                                        <div class="slider-container">
+                                                                            <div class="slider-track2"></div>
+                                                                            <input type="range" id="rangeMin2" min="0"
+                                                                                   max="600" value="20"/>
+                                                                            <input type="range" id="rangeMax2" min="0"
+                                                                                   max="600" value="600"/>
+                                                                        </div>
                                                                     </div>
                                                                 </div>
                                                             </div>
                                                         </div>
                                                     </div>
-
                                                 </div>
-                                            </div>
-                                            <div class="p-3 position-sticky bottom-0 z-3 bg-white">
-                                                <button class="w-100 btn-orange rounded text-center mb-3">@lang('home.search')</button>
-                                                <button
-                                                    class="w-100 text-orange bg-transparent rounded text-center border-orange rounded py-1">
-                                                    @lang('home.reset')
-                                                </button>
+                                                <div class="p-3 position-sticky bottom-0 z-3 bg-white">
+                                                    <!-- Submit and Reset Button in Modal -->
+                                                    <button type="submit"
+                                                            class="w-100 btn-orange rounded text-center mb-3">@lang('home.search')</button>
+                                                    <button
+                                                        class="w-100 text-orange bg-transparent rounded text-center border-orange rounded py-1">
+                                                        <a href="{{ route('products') }}"
+                                                           class="w-100 text-orange bg-transparent text-center py-1">
+                                                            @lang('home.reset')
+                                                        </a>
+                                                    </button>
+                                                </div>
                                             </div>
                                         </div>
                                     </div>
                                 </div>
-                            </div>
+                            </form>
+
                         </div>
                         <div class="row">
                             @foreach ($products as $product)
