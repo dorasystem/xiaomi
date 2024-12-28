@@ -64,6 +64,9 @@
 .hover-svg:hover rect {
     fill: var(--orange);
 }
+.active-svg rect {
+    fill: var(--orange);
+}
 .circle {
     width: 10px;
     height: 10px;

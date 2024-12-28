@@ -237,19 +237,16 @@
                                               {{ in_array($product->id, session('favorites', [])) ? 'text-orange' : '' }}">
                                                     </i>
                                                 </a>
-                                                <svg class="hover-svg" width="30" height="20"
-                                                     viewBox="0 0 102 92" fill="none"
-                                                     xmlns="http://www.w3.org/2000/svg">
-                                                    <rect width="11" height="92" rx="2" fill="#000"/>
-                                                    <rect x="23" y="22" width="11" height="70" rx="2"
-                                                          fill="#000"/>
-                                                    <rect x="46" y="45" width="11" height="47" rx="2"
-                                                          fill="#000"/>
-                                                    <rect x="69" y="23" width="11" height="69" rx="2"
-                                                          fill="#000"/>
-                                                    <rect x="91" y="45" width="11" height="47" rx="2"
-                                                          fill="#000"/>
-                                                </svg>
+                                                <a onclick="toggleCompare({{ $product->id }})">
+                                                    <svg id="compare-icon-{{ $product->id }}" class="hover-svg {{ in_array($product->id, session('compares', [])) ? 'active-svg' : '' }}" width="30" height="20" viewBox="0 0 102 92" fill="none"
+                                                         xmlns="http://www.w3.org/2000/svg">
+                                                        <rect width="11" height="92" rx="2" fill="#000" />
+                                                        <rect x="23" y="22" width="11" height="70" rx="2" fill="#000" />
+                                                        <rect x="46" y="45" width="11" height="47" rx="2" fill="#000" />
+                                                        <rect x="69" y="23" width="11" height="69" rx="2" fill="#000" />
+                                                        <rect x="91" y="45" width="11" height="47" rx="2" fill="#000" />
+                                                    </svg>
+                                                </a>
                                             </div>
                                             @if ($cheapestVariant)
                                                 <img class="w-100 pb-4 productImage p-4"
@@ -437,13 +434,58 @@
 
                         // Ico'ni yangilash
                         if (response.message.includes('qo\'shildi')) {
-                            $('#favourite-icon-' + productId).addClass('text-orange'); // Qo'shilganini ko'rsatish
+                            $('#favourite-icon-' + productId).addClass('text-orange');
+                            if (document.getElementById('favourite-icon-'  + productId).classList.contains("fa-regular")) {
+                                document.getElementById('favourite-icon-'  + productId).classList.remove('fa-regular')
+                                document.getElementById('favourite-icon-'  + productId).classList.add('fa-solid')
+                            }
                         } else {
                             $('#favourite-icon-' + productId).removeClass('text-orange'); // O'chirilganini ko'rsatish
+                            if (document.getElementById('favourite-icon-'  + productId).classList.contains("fa-solid")) {
+                                document.getElementById('favourite-icon-'  + productId).classList.remove('fa-solid')
+                                document.getElementById('favourite-icon-'  + productId).classList.add('fa-regular')
+                            }
                         }
                     }
                 },
                 error: function (xhr) {
+                    alert('Xatolik yuz berdi: ' + xhr.responseText);
+                }
+            });
+        }
+        function toggleCompare(productId) {
+            $.ajax({
+                url: '/toggle-compare',
+                type: 'POST',
+                data: {
+                    _token: '{{ csrf_token() }}',
+                    id: productId
+                },
+                success: function(response) {
+                    if (response.success) {
+                        Toastify({
+                            text: response.message,
+                            duration: 3000,
+                            close: true,
+                            gravity: "top",
+                            position: "right",
+                            backgroundColor: "#4CAF50",
+                        }).showToast();
+
+                        // Sevimlilar sonini yangilash
+                        $('.compare').text(response.compares_count);
+
+                        // Ico'ni yangilash
+                        if (response.message.includes('qo\'shildi')) {
+                            $('#compare-icon-' + productId).addClass(
+                                'active-svg'); // Qo'shilganini ko'rsatish
+                        } else {
+                            $('#compare-icon-' + productId).removeClass(
+                                'active-svg'); // O'chirilganini ko'rsatish
+                        }
+                    }
+                },
+                error: function(xhr) {
                     alert('Xatolik yuz berdi: ' + xhr.responseText);
                 }
             });

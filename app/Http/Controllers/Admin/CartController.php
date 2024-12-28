@@ -148,7 +148,7 @@ class CartController extends Controller
         return response()->json([
             'success' => true,
             'message' => $message,
-            'favorites_count' => count($compares), // Yangilangan Taqqoslash soni
+            'compares_count' => count($compares), // Yangilangan Taqqoslash soni
         ]);
     }
 
