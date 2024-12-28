@@ -49,7 +49,9 @@
                                             @php
                                                 $cheapestVariant = $product->variants->sortBy('price')->first();
                                             @endphp
-                                            <img class="w-100 pb-4 productImage p-4" src="{{ asset('storage/' . $product->image) ?? '/assets/images/category_tv.webp'}}" alt="" />
+                                            <a href="{{ route('single.product', $product->slug) }}">
+                                                <img class="w-100 pb-4 productImage p-4" src="{{ asset('storage/' . $product->image) ?? '/assets/images/category_tv.webp'}}" alt="" />
+                                            </a>
                                             <div class="d-flex flex-column justify-content-between product-text p-4 rounded-bottom">
                                                 <div class="d-flex align-items-end gap-3 pt-2">
                                                     @if ($cheapestVariant->discount_price)
@@ -65,8 +67,12 @@
                                                         </del>
                                                     @endif
                                                 </div>
-                                                <div class="productName fw-bold">{!! $product['name_' . $lang] !!}</div>
-                                                <p class="text-grey">{!! \Str::words($product['description_' . $lang], 15) !!}</p>
+                                                <a href="{{ route('single.product', $product->slug) }}">
+                                                    <div class="productName fw-bold">{{ \Str::words($product['name_' . $lang], 3) }}</div>
+                                                </a>
+                                                <a class="truncate-text" href="{{ route('single.product', $product->slug) }}">
+                                                    <p class="text-grey">{!! \Str::words($product['description_' . $lang], 10) !!}</p>
+                                                </a>
                                                 <div class="d-flex align-items-center justify-content-between w-100">
                                                     <span class="small bg-transparent px-0">
                                                         @if ($cheapestVariant->discount_price)

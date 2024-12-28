@@ -12,7 +12,7 @@ $lang = app()->getLocale();
                 <div class="position-absolute like d-flex flex-column gap-3 justify-content-end">
                     <a onclick="toggleFavourite({{ $product->id }})">
                         <i id="favourite-icon-{{ $product->id }}"
-                            class="fa-regular fa-heart fs-4 hover-orange ps-1
+                            class="fa-{{ in_array($product->id, session('favorites', [])) ? 'solid' : 'regular' }} fa-heart fs-4 hover-orange ps-1
                                  {{ in_array($product->id, session('favorites', [])) ? 'text-orange' : '' }}">
                         </i>
                     </a>

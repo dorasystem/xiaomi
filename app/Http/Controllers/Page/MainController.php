@@ -25,6 +25,8 @@ class MainController extends Controller
 {
     public function index()
     {
+        $newProducts = Product::latest()->take(5)->get();
+
         // Bir nechta kalit so'zlarni olish
         $keywords = StaticKeyword::all(); // yoki filterlab olish
 
@@ -50,7 +52,7 @@ class MainController extends Controller
         $category5 = collect($categories)->firstWhere('id', 5);
         $category6 = collect($categories)->firstWhere('id', 6);
         $category7 = collect($categories)->firstWhere('id', 7);
-        return view('pages.home', compact('new', 'news1', 'news2', 'products', 'locations', 'banner', 'categories','category1', 'category2', 'category3', 'category4', 'category5', 'category6', 'category7','translations'));
+        return view('pages.home', compact('new', 'news1', 'news2', 'products', 'locations', 'banner', 'categories','category1', 'category2', 'category3', 'category4', 'category5', 'category6', 'category7','translations', 'newProducts'));
     }
     public function about()
     {

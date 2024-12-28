@@ -12,6 +12,9 @@
     /* transition: all 0.3s ease-in-out; */
     outline: none;
 }
+.swiper-wrapper{
+    height: auto !important;
+}
 .text-grey a {
     color: var(--grey);
 }
