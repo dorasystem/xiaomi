@@ -20,11 +20,11 @@ $lang = \Illuminate\Support\Facades\App::getLocale();
             <div class="container border rounded-3 shadow-sm bg-white">
                 <div class="row align-items-center justify-content-between border-bottom">
                     <div class="col-md-9 d-flex align-items-center gap-5 py-3">
-                        <div class="d-lg-flex d-none align-items-center gap-2">
+                        <a href="{{ url()->previous() }}" class="d-lg-flex d-none align-items-center gap-2">
                             <img width="24px" style="transform: rotate(225deg)" src="/assets/icons/arrow.svg"
                                 alt="" />
                             <span>@lang('home.back')</span>
-                        </div>
+                        </a>
                         <div class="productName text-end fs-24">{{ $product['name_' . $lang] }}
                             {{ $product['color_' . $lang] }}
                         </div>
