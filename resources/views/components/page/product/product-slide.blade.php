@@ -3,10 +3,10 @@
 use App\Models\Product;
 
 $lang = app()->getLocale();
-$products = Product::orderBy('created_at', 'desc')
-    ->limit(PHP_INT_MAX)
-    ->offset(5)
-    ->get();
+$products = Product::inRandomOrder()
+->skip(5)
+->take(10)
+->get();
 
 ?>
 
@@ -87,6 +87,7 @@ $products = Product::orderBy('created_at', 'desc')
         </div>
     @endforeach
 </div>
+
 <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/toastify-js/src/toastify.min.css">
 
 <script src="https://cdn.jsdelivr.net/npm/toastify-js"></script>
