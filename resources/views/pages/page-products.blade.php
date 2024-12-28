@@ -291,7 +291,7 @@
                                                     <div class="d-flex gap-4 mt-3">
                                                         <a class="border-orange bg-transparent rounded p-1 px-3"
                                                             href="javascript: void(0);" type="button"
-                                                            onclick="addToCart({{ $product->id }}, '{{ $product['name_' . $lang] }}', {{ $cheapestVariant->price ? $cheapestVariant->discount_price : $cheapestVariant->price }}, {{ $cheapestVariant->id }})">
+                                                            onclick="addToCart({{ $product->id }}, '{{ $product['name_' . $lang] }}', {{ $cheapestVariant->discount_price ?? $cheapestVariant->price }}, {{ $cheapestVariant->id }})">
                                                             <img src="/assets/icons/shopping-cart.svg" alt="" />
                                                         </a>
                                                         <button data-bs-toggle="modal" data-bs-target="#largeModal"
