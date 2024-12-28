@@ -57,8 +57,6 @@
                                 </div>
                                 <div style="height: 50px" class="d-flex align-items-center gap-4">
                                     <a onclick="toggleFavourite({{ $cartItem['id'] }})" class="">
-                                        {{-- <i class="fa-regular fa-heart text-orange fs-24"></i>
-                                        <i class="fa-solid fa-heart text-orange fs-24"></i> --}}
                                         <i id="favourite-icon-{{ $cartItem['id'] }}"
                                             class="fa-regular fa-heart fs-4 hover-orange ps-1
                                  {{ in_array($cartItem['id'], session('favorites', [])) ? 'text-orange' : '' }}">
@@ -140,9 +138,12 @@
                                 new Intl.NumberFormat('ru-RU').format(totalAmount) + ' сум'
                             );
 
-                            // Kamaytirish tugmasini boshqarish
-                            const decrementButton = $('#item-' + updatedItem.id + ' .decrement');
+                            // Kamaytirish va oshirish tugmalarini boshqarish
+                            const decrementButton = $('#decrement-' + updatedItem.id);
+                            const incrementButton = $('#increment-' + updatedItem.id);
+
                             decrementButton.prop('disabled', updatedItem.quantity <= 1);
+                            incrementButton.prop('disabled', updatedItem.quantity >= updatedItem.max_quantity);
                         }
                     },
                     error: function(xhr) {
@@ -150,7 +151,6 @@
                     }
                 });
             }
-
 
             // Remove mahsulot funksiyasi
             function removeFromCart(productId) {
@@ -172,7 +172,7 @@
                             );
 
                             // Tovarlar sonini yangilash
-                            $('.badge-position').text(response.cart.length);
+                            $('#cart-count').text(response.cart.length);
                         }
                     },
                     error: function(xhr) {
@@ -189,7 +189,7 @@
                         _token: '{{ csrf_token() }}',
                         id: productId
                     },
-                    success: function(response) {
+                    success: function (response) {
                         if (response.success) {
                             Toastify({
                                 text: response.message,
@@ -201,19 +201,25 @@
                             }).showToast();
 
                             // Sevimlilar sonini yangilash
-                            $('.badge-position').text(response.favorites_count);
+                            $('#favorite-count').text(response.favorites_count);
 
                             // Ico'ni yangilash
                             if (response.message.includes('qo\'shildi')) {
-                                $('#favourite-icon-' + productId).addClass(
-                                    'text-orange'); // Qo'shilganini ko'rsatish
+                                $('#favourite-icon-' + productId).addClass('text-orange');
+                                if (document.getElementById('favourite-icon-'  + productId).classList.contains("fa-regular")) {
+                                    document.getElementById('favourite-icon-'  + productId).classList.remove('fa-regular')
+                                    document.getElementById('favourite-icon-'  + productId).classList.add('fa-solid')
+                                }
                             } else {
-                                $('#favourite-icon-' + productId).removeClass(
-                                    'text-orange'); // O'chirilganini ko'rsatish
+                                $('#favourite-icon-' + productId).removeClass('text-orange'); // O'chirilganini ko'rsatish
+                                if (document.getElementById('favourite-icon-'  + productId).classList.contains("fa-solid")) {
+                                    document.getElementById('favourite-icon-'  + productId).classList.remove('fa-solid')
+                                    document.getElementById('favourite-icon-'  + productId).classList.add('fa-regular')
+                                }
                             }
                         }
                     },
-                    error: function(xhr) {
+                    error: function (xhr) {
                         alert('Xatolik yuz berdi: ' + xhr.responseText);
                     }
                 });
