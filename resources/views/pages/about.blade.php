@@ -60,10 +60,7 @@
             <div class="row">
                 <div class="row align-items-center justify-content-between">
                     <h1 class="col-md-8">@lang('home.command')</h1>
-                    <div class="col-md-4 text-md-end mb-3">
-                        <a href="/career" class="border-1 rounded-2 btn-blackborder py-1 px-3">@lang('home.all_vacancy') <img
-                                src="/assets/icons/arrow.svg" alt="" /></a>
-                    </div>
+                    
                 </div>
                 @if (!empty($careers) && $careers->count())
                     @foreach ($careers as $item)

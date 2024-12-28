@@ -67,7 +67,7 @@ class MainController extends Controller
         $category5 = collect($categories)->firstWhere('id', 5);
         $category6 = collect($categories)->firstWhere('id', 6);
         $category7 = collect($categories)->firstWhere('id', 7);
-        return view('pages.home', compact('new', 'news1', 'news2', 'products', 'locations', 'banner', 'categories','category1', 'category2', 'category3', 'category4', 'category5', 'category6', 'category7','translations', 'newProducts','randomProducts','products','productsWithoutRandom'));
+        return view('pages.home', compact('new', 'news1', 'news2', 'products', 'locations', 'banner', 'categories', 'category1', 'category2', 'category3', 'category4', 'category5', 'category6', 'category7', 'translations', 'newProducts', 'randomProducts', 'products', 'productsWithoutRandom'));
     }
     public function about()
     {
@@ -87,8 +87,9 @@ class MainController extends Controller
     public function blog()
     {
         $blogs = Blog::all();
-        //        dd($blogs);
-        return view('pages.page-blog', compact('blogs'));
+        $blog = Blog::orderBy('created_at', 'desc')->first();
+
+        return view('pages.page-blog', compact('blogs', 'blog'));
     }
     public function singleBlog($slug)
     {
@@ -215,8 +216,4 @@ class MainController extends Controller
 
         return view('pages.search-products', compact('products', 'category'));
     }
-
-
-
-
 }

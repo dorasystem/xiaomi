@@ -128,8 +128,8 @@
                                 </div>
                             @endforeach
                         @else
-                            <hr>
                             <x-page.not-found />
+                            <p class="border-bottom-dashed py-1  mt-4  w-100"></p>
                         @endif
 
                     </div>
@@ -138,18 +138,10 @@
         </div>
         <!-- products you have seen -->
         <div style="overflow: hidden" class="seenProducts container py-3 position-relative">
-            {{--            <div class="mb-4 fs-2 fw-bold">Вы смотрели</div> --}}
-            <div class="swiper-wrapper">
+            <div class="mb-4 fs-2 fw-bold">@lang('home.top_products')</div>
 
+            <x-page.product.product-slide />
 
-                {{--                <div class="swiper-slide product shadow-sm position-relative rounded"> --}}
-                {{--                    --}}{{--   Product slide start --}}
-                {{--                    <x-page.product.product-slide /> --}}
-                {{--                    --}}{{--   Product slide end --}}
-                {{--                </div> --}}
-
-            </div>
-            <!-- Navigation buttons (optional) -->
             <div id="product-next" class="swiper-button-next end-0"></div>
             <div id="product-prev" class="swiper-button-prev start-0"></div>
         </div>

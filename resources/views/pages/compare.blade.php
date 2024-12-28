@@ -124,7 +124,8 @@
                             @foreach ($products as $product)
                                 <p class="border-bottom-dashed py-1   w-100"></p>
                                 <div class="d-flex align-items-center gap-2">
-                                    <img width="50" height="50" class="fit-cover rounded" src="{{ asset('storage/' . $product->image) }}" alt="" />
+                                    <img width="50" height="50" class="fit-cover rounded"
+                                        src="{{ asset('storage/' . $product->image) }}" alt="" />
                                     <h4 class="mt-3 fw-bold">{!! $product['name_' . $lang] !!}</h4>
                                 </div>
                                 <div class="">
@@ -132,9 +133,17 @@
                                 </div>
                             @endforeach
                         @else
-                        <hr>
-                           <x-page.not-found/>
+                            <x-page.not-found />
                         @endif
+                    </div>
+                    <div style="overflow: hidden" class="seenProducts container py-3 position-relative">
+                        <p class="border-bottom-dashed py-1 mt-4   w-100"></p>
+                        <div class="mb-4 fs-2 fw-bold">@lang('home.top_products')</div>
+
+                        <x-page.product.product-slide />
+
+                        <div id="product-next" class="swiper-button-next end-0"></div>
+                        <div id="product-prev" class="swiper-button-prev start-0"></div>
                     </div>
                 </div>
             </div>
