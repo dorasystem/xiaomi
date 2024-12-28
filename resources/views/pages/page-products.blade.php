@@ -13,7 +13,7 @@ $lang = app()->getLocale();
                 <a href="/" class="text-grey fw-bold  fs-14">@lang('home.home') / <span
                         class="text-dark">@lang('home.filter_res')</span></a>
             </div>
-            <hr />
+            <hr/>
         </div>
         <div class="productHeader bg-grey">
             <div class="container py-5 d-flex align-items-center flex-lg-row flex-column justify-content-between">
@@ -25,15 +25,15 @@ $lang = app()->getLocale();
                 </div>
                 <div class="productbanner align-items-start gap-4 mt-5">
                     <div class="product_list d-flex align-items-center justify-content-center">
-                        <img src="/assets/images/headphones.png" width="250px" alt="" />
+                        <img src="/assets/images/headphones.png" width="250px" alt=""/>
                     </div>
                     <div class="">
                         <div class="little_product d-flex align-items-center justify-content-center">
-                            <img src="/assets/images/airpods.png" width="120px" alt="" />
+                            <img src="/assets/images/airpods.png" width="120px" alt=""/>
                         </div>
                         <div class="position-relative">
                             <img class="bottom_product border-orange" src="/assets/images/bottom_product.webp"
-                                width="120px" alt="" />
+                                 width="120px" alt=""/>
                         </div>
                     </div>
                 </div>
@@ -48,18 +48,18 @@ $lang = app()->getLocale();
                                 <div class="accordion-item">
                                     <h2 class="accordion-header" id="panelsStayOpen-headingOne">
                                         <button class="accordion-button " type="button" data-bs-toggle="collapse"
-                                            data-bs-target="#panelsStayOpen-collapseOne" aria-expanded="true"
-                                            aria-controls="panelsStayOpen-collapseOne">
+                                                data-bs-target="#panelsStayOpen-collapseOne" aria-expanded="true"
+                                                aria-controls="panelsStayOpen-collapseOne">
                                             @lang('home.category')
                                         </button>
                                     </h2>
                                     <div id="panelsStayOpen-collapseOne" class="accordion-collapse collapse show"
-                                        aria-labelledby="panelsStayOpen-headingOne">
+                                         aria-labelledby="panelsStayOpen-headingOne">
                                         <div class="accordion-body">
                                             @foreach ($categories as $category)
                                                 <div class="form-check mb-3">
                                                     <input class="form-check-input" type="checkbox" name="categories[]"
-                                                        value="{{ $category->id }}" id="category-{{ $category->id }}"
+                                                           value="{{ $category->id }}" id="category-{{ $category->id }}"
                                                         {{ in_array($category->id, request('categories', [])) ? 'checked' : '' }} />
                                                     <label class="form-check-label" for="category-{{ $category->id }}">
                                                         <small>{{ $category['name_' . $lang] }}</small>
@@ -72,30 +72,30 @@ $lang = app()->getLocale();
                                 <div class="accordion-item">
                                     <h2 class="accordion-header" id="panelsStayOpen-headingTwo">
                                         <button class="accordion-button" type="button" data-bs-toggle="collapse"
-                                            data-bs-target="#panelsStayOpen-collapseTwo" aria-expanded="true"
-                                            aria-controls="panelsStayOpen-collapseTwo">
+                                                data-bs-target="#panelsStayOpen-collapseTwo" aria-expanded="true"
+                                                aria-controls="panelsStayOpen-collapseTwo">
                                             @lang('home.price')
                                         </button>
                                     </h2>
                                     <div id="panelsStayOpen-collapseTwo" class="accordion-collapse collapse show pt-3"
-                                        aria-labelledby="panelsStayOpen-headingTwo">
+                                         aria-labelledby="panelsStayOpen-headingTwo">
                                         <div class="accordion-body">
                                             <div class="range-slider">
                                                 <div class="inputs">
                                                     <input type="number" id="minValue" name="min_price"
-                                                        value="{{ request('min_price', 20) }}" min="0"
-                                                        max="600" />
+                                                           value="{{ request('min_price', 20) }}" min="0"
+                                                           max="600"/>
                                                     <span>до</span>
                                                     <input type="number" id="maxValue" name="max_price"
-                                                        value="{{ request('max_price', 600) }}" min="0"
-                                                        max="600" />
+                                                           value="{{ request('max_price', 600) }}" min="0"
+                                                           max="600"/>
                                                 </div>
                                                 <div class="slider-container">
                                                     <div class="slider-track"></div>
                                                     <input type="range" id="rangeMin" min="0" max="600"
-                                                        value="20" />
+                                                           value="20"/>
                                                     <input type="range" id="rangeMax" min="0" max="600"
-                                                        value="600" />
+                                                           value="600"/>
                                                 </div>
                                             </div>
                                         </div>
@@ -103,10 +103,12 @@ $lang = app()->getLocale();
                                 </div>
 
                             </div>
-                            <button type="submit" class="w-100 btn-orange rounded text-center mb-3">@lang('home.search')</button>
-                            <button class="w-100 text-orange bg-transparent rounded text-center border-orange rounded py-1">
+                            <button type="submit"
+                                    class="w-100 btn-orange rounded text-center mb-3">@lang('home.search')</button>
+                            <button
+                                class="w-100 text-orange bg-transparent rounded text-center border-orange rounded py-1">
                                 <a href="{{ route('products') }}"
-                                    class="w-100 text-orange bg-transparent  text-center  py-1">
+                                   class="w-100 text-orange bg-transparent  text-center  py-1">
                                     @lang('home.reset')
                                 </a>
                             </button>
@@ -117,101 +119,110 @@ $lang = app()->getLocale();
                 <div class="col-lg-9">
                     <div class="container">
                         <div class="d-flex gap-2">
-                            <div class="d-lg-none d-block">
-                                <button class="btn-orange rounded mb-3" type="button" data-bs-toggle="modal"
-                                    data-bs-target="#filtermodal">Filter
-                                </button>
-                                <div class="modal" id="filtermodal" tabindex="-1" aria-labelledby="filtermodalLabel"
-                                    aria-hidden="true">
-                                    <div class="modal-dialog modal-dialog-centered">
-                                        <div style="height: 650px; overflow-y: auto"
-                                            class="modal-content d-flex flex-column justify-content-between">
-                                            <div class="">
-                                                <div class="modal-header position-sticky top-0 bg-white z-3">
-                                                    <h2 class="fw-normal">@lang('home.all_filters')</h2>
-                                                    <button type="button" class="btn-close" data-bs-dismiss="modal"
-                                                        aria-label="Close"></button>
-                                                </div>
-                                                <div class="accordion" id="accordionPanelsStayOpenExample">
-                                                    <div class="accordion-item">
-                                                        <h2 class="accordion-header" id="panelsStayOpen-headingOne">
-                                                            <button class="accordion-button " type="button"
-                                                                data-bs-toggle="collapse"
-                                                                data-bs-target="#panelsStayOpen-collapseOne"
-                                                                aria-expanded="true"
-                                                                aria-controls="panelsStayOpen-collapseOne">
-                                                                @lang('home.category')
-                                                            </button>
-                                                        </h2>
-                                                        <div id="panelsStayOpen-collapseOne"
-                                                            class="accordion-collapse collapse show"
-                                                            aria-labelledby="panelsStayOpen-headingOne">
-                                                            <div class="accordion-body">
-                                                                @foreach ($categories as $category)
-                                                                    <div class="form-check mb-3">
-                                                                        <input class="form-check-input" type="checkbox"
-                                                                            value="" id="flexCheckChecked" />
-                                                                        <label class="form-check-label"
-                                                                            for="flexCheckChecked">
-                                                                            <small>{{ $category['name_' . $lang] }}</small>
-                                                                        </label>
-                                                                    </div>
-                                                                @endforeach
+                            <!-- Mobile Filter Modal -->
+                            <form method="GET" action="{{ route('products.filter') }}">
+                                <div class="d-lg-none d-block">
+                                    <button class="btn-orange rounded mb-3" type="button" data-bs-toggle="modal"
+                                            data-bs-target="#filtermodal">Filter
+                                    </button>
+                                    <div class="modal" id="filtermodal" tabindex="-1" aria-labelledby="filtermodalLabel"
+                                         aria-hidden="true">
+                                        <div class="modal-dialog modal-dialog-centered">
+                                            <div style="height: 650px; overflow-y: auto"
+                                                 class="modal-content d-flex flex-column justify-content-between">
+                                                <div class="">
+                                                    <div class="modal-header position-sticky top-0 bg-white z-3">
+                                                        <h2 class="fw-normal">@lang('home.all_filters')</h2>
+                                                        <button type="button" class="btn-close" data-bs-dismiss="modal"
+                                                                aria-label="Close"></button>
+                                                    </div>
+                                                    <div class="accordion" id="accordionPanelsStayOpenExample">
+                                                        <div class="accordion-item">
+                                                            <h2 class="accordion-header" id="panelsStayOpen-headingOne">
+                                                                <button class="accordion-button" type="button"
+                                                                        data-bs-toggle="collapse"
+                                                                        data-bs-target="#panelsStayOpen-collapseOne"
+                                                                        aria-expanded="true"
+                                                                        aria-controls="panelsStayOpen-collapseOne">
+                                                                    @lang('home.category')
+                                                                </button>
+                                                            </h2>
+                                                            <div id="panelsStayOpen-collapseOne"
+                                                                 class="accordion-collapse collapse show"
+                                                                 aria-labelledby="panelsStayOpen-headingOne">
+                                                                <div class="accordion-body">
+                                                                    @foreach ($categories as $category)
+                                                                        <div class="form-check mb-3">
+                                                                            <input class="form-check-input"
+                                                                                   type="checkbox" name="categories[]"
+                                                                                   value="{{ $category->id }}"
+                                                                                   id="category-{{ $category->id }}"
+                                                                                {{ in_array($category->id, request('categories', [])) ? 'checked' : '' }} />
+                                                                            <label class="form-check-label"
+                                                                                   for="category-{{ $category->id }}">
+                                                                                <small>{{ $category['name_' . $lang] }}</small>
+                                                                            </label>
+                                                                        </div>
+                                                                    @endforeach
+                                                                </div>
                                                             </div>
                                                         </div>
-                                                    </div>
-                                                    <div class="accordion-item">
-                                                        <h2 class="accordion-header" id="panelsStayOpen-headingTwo">
-                                                            <button class="accordion-button " type="button"
-                                                                data-bs-toggle="collapse"
-                                                                data-bs-target="#panelsStayOpen-collapseTwo"
-                                                                aria-expanded="true"
-                                                                aria-controls="panelsStayOpen-collapseTwo">
-                                                                @lang('home.price')
-                                                            </button>
-                                                        </h2>
-                                                        <div id="panelsStayOpen-collapseTwo"
-                                                            class="accordion-collapse collapse show pt-3"
-                                                            aria-labelledby="panelsStayOpen-headingTwo">
-                                                            <div class="accordion-body">
-                                                                <div class="range-slider">
-                                                                    <div class="inputs">
-                                                                        <input type="number" id="minValue2"
-                                                                            value="20" min="0"
-                                                                            max="600" />
-                                                                        <span>до</span>
-                                                                        <input type="number" id="maxValue2"
-                                                                            value="600" min="0"
-                                                                            max="600" />
-                                                                    </div>
-                                                                    <div class="slider-container">
-                                                                        <div class="slider-track2"></div>
-                                                                        <input type="range" id="rangeMin2"
-                                                                            min="20" max="600"
-                                                                            value="20" />
-                                                                        <input type="range" id="rangeMax2"
-                                                                            min="30" max="600"
-                                                                            value="600" />
+                                                        <div class="accordion-item">
+                                                            <h2 class="accordion-header" id="panelsStayOpen-headingTwo">
+                                                                <button class="accordion-button" type="button"
+                                                                        data-bs-toggle="collapse"
+                                                                        data-bs-target="#panelsStayOpen-collapseTwo"
+                                                                        aria-expanded="true"
+                                                                        aria-controls="panelsStayOpen-collapseTwo">
+                                                                    @lang('home.price')
+                                                                </button>
+                                                            </h2>
+                                                            <div id="panelsStayOpen-collapseTwo"
+                                                                 class="accordion-collapse collapse show pt-3"
+                                                                 aria-labelledby="panelsStayOpen-headingTwo">
+                                                                <div class="accordion-body">
+                                                                    <div class="range-slider">
+                                                                        <div class="inputs">
+                                                                            <input type="number" id="minValue2"
+                                                                                   name="min_price"
+                                                                                   value="{{ request('min_price', 20) }}"
+                                                                                   min="0" max="600"/>
+                                                                            <span>до</span>
+                                                                            <input type="number" id="maxValue2"
+                                                                                   name="max_price"
+                                                                                   value="{{ request('max_price', 600) }}"
+                                                                                   min="0" max="600"/>
+                                                                        </div>
+                                                                        <div class="slider-container">
+                                                                            <div class="slider-track2"></div>
+                                                                            <input type="range" id="rangeMin2" min="0"
+                                                                                   max="600" value="20"/>
+                                                                            <input type="range" id="rangeMax2" min="0"
+                                                                                   max="600" value="600"/>
+                                                                        </div>
                                                                     </div>
                                                                 </div>
                                                             </div>
                                                         </div>
                                                     </div>
-
                                                 </div>
-                                            </div>
-                                            <div class="p-3 position-sticky bottom-0 z-3 bg-white">
-                                                <button class="w-100 btn-orange rounded text-center mb-3">@lang('home.search')</button>
-                                                <button
-                                                    class="w-100 text-orange bg-transparent rounded text-center border-orange rounded py-1">
-                                                    @lang('home.reset')
-                                                </button>
+                                                <div class="p-3 position-sticky bottom-0 z-3 bg-white">
+                                                    <!-- Submit and Reset Button in Modal -->
+                                                    <button type="submit"
+                                                            class="w-100 btn-orange rounded text-center mb-3">@lang('home.search')</button>
+                                                    <button
+                                                        class="w-100 text-orange bg-transparent rounded text-center border-orange rounded py-1">
+                                                        <a href="{{ route('products') }}"
+                                                           class="w-100 text-orange bg-transparent text-center py-1">
+                                                            @lang('home.reset')
+                                                        </a>
+                                                    </button>
+                                                </div>
                                             </div>
                                         </div>
                                     </div>
                                 </div>
-                            </div>
-
+                            </form>
                         </div>
                         <div class="row">
                             @foreach ($products as $product)
@@ -226,31 +237,31 @@ $lang = app()->getLocale();
                                                 class="position-absolute like d-flex flex-column gap-3 justify-content-end">
                                                 <a onclick="toggleFavourite({{ $product->id }})">
                                                     <i id="favourite-icon-{{ $product->id }}"
-                                                        class="fa-{{ in_array($product->id, session('favorites', [])) ? 'solid' : 'regular' }} fa-heart fs-4 hover-orange ps-1
+                                                       class="fa-{{ in_array($product->id, session('favorites', [])) ? 'solid' : 'regular' }} fa-heart fs-4 hover-orange ps-1
                                               {{ in_array($product->id, session('favorites', [])) ? 'text-orange' : '' }}">
                                                     </i>
                                                 </a>
                                                 <a onclick="toggleCompare({{ $product->id }})">
                                                     <svg id="compare-icon-{{ $product->id }}"
-                                                        class="hover-svg {{ in_array($product->id, session('compares', [])) ? 'active-svg' : '' }}"
-                                                        width="30" height="20" viewBox="0 0 102 92"
-                                                        fill="none" xmlns="http://www.w3.org/2000/svg">
+                                                         class="hover-svg {{ in_array($product->id, session('compares', [])) ? 'active-svg' : '' }}"
+                                                         width="30" height="20" viewBox="0 0 102 92"
+                                                         fill="none" xmlns="http://www.w3.org/2000/svg">
                                                         <rect width="11" height="92" rx="2"
-                                                            fill="#000" />
+                                                              fill="#000"/>
                                                         <rect x="23" y="22" width="11" height="70" rx="2"
-                                                            fill="#000" />
+                                                              fill="#000"/>
                                                         <rect x="46" y="45" width="11" height="47" rx="2"
-                                                            fill="#000" />
+                                                              fill="#000"/>
                                                         <rect x="69" y="23" width="11" height="69" rx="2"
-                                                            fill="#000" />
+                                                              fill="#000"/>
                                                         <rect x="91" y="45" width="11" height="47" rx="2"
-                                                            fill="#000" />
+                                                              fill="#000"/>
                                                     </svg>
                                                 </a>
                                             </div>
                                             @if ($cheapestVariant)
                                                 <img class="w-100 pb-4 productImage p-4"
-                                                    src="{{ asset('storage/' . $product->image) }}" alt="" />
+                                                     src="{{ asset('storage/' . $product->image) }}" alt=""/>
                                                 <div
                                                     class="d-flex flex-column justify-content-between product-text p-4 rounded-bottom">
                                                     <div class="d-flex align-items-end gap-3 pt-2">
@@ -276,30 +287,32 @@ $lang = app()->getLocale();
                                                             {{ \Str::words($product['name_' . $lang], 3) }}</div>
                                                     </a>
                                                     <a class="truncate-text"
-                                                        href="{{ route('single.product', $product->slug) }}">
+                                                       href="{{ route('single.product', $product->slug) }}">
                                                         <p class="text-grey">{!! \Str::words($product['description_' . $lang], 10) !!}</p>
                                                     </a>
 
-                                                    <div class="d-flex align-items-center justify-content-between w-100">
+                                                    <div
+                                                        class="d-flex align-items-center justify-content-between w-100">
                                                         <span
                                                             class="small bg-transparent px-0">{{ number_format($cheapestVariant->discount_price, 0, ',', ' ') }}
-                                                            UZS <span class="text-orange">@lang('home.incash')</span></span>
+                                                            UZS <span
+                                                                class="text-orange">@lang('home.incash')</span></span>
                                                         <span class="px-2 productmonth-border small text-grey">
                                                             {{ number_format($cheapestVariant->price_12, 0, ',', ' ') }}
                                                             UZS/@lang('home.month')</span>
                                                     </div>
                                                     <div class="d-flex gap-4 mt-3">
                                                         <a class="border-orange bg-transparent rounded p-1 px-3"
-                                                            href="javascript: void(0);" type="button"
-                                                            onclick="addToCart({{ $product->id }}, '{{ $product['name_' . $lang] }}', {{ $cheapestVariant->discount_price ?? $cheapestVariant->price }}, {{ $cheapestVariant->id }})">
-                                                            <img src="/assets/icons/shopping-cart.svg" alt="" />
+                                                           href="javascript: void(0);" type="button"
+                                                           onclick="addToCart({{ $product->id }}, '{{ $product['name_' . $lang] }}', {{ $cheapestVariant->discount_price ?? $cheapestVariant->price }}, {{ $cheapestVariant->id }})">
+                                                            <img src="/assets/icons/shopping-cart.svg" alt=""/>
                                                         </a>
                                                         <button data-bs-toggle="modal" data-bs-target="#largeModal"
-                                                            class="btn-orange rounded w-100 d-flex align-items-center gap-2 justify-content-center"
-                                                            data-product-id="{{ $product->id }}"
-                                                            data-product-name="{{ $product['name_' . $lang] }}"
-                                                            data-product-price="{{ $cheapestVariant->discount_price ?: $cheapestVariant->price }}"
-                                                            data-product-image="{{ asset('storage/' . $product->image) }}">
+                                                                class="btn-orange rounded w-100 d-flex align-items-center gap-2 justify-content-center"
+                                                                data-product-id="{{ $product->id }}"
+                                                                data-product-name="{{ $product['name_' . $lang] }}"
+                                                                data-product-price="{{ $cheapestVariant->discount_price ?: $cheapestVariant->price }}"
+                                                                data-product-image="{{ asset('storage/' . $product->image) }}">
                                                             <span>@lang('home.buy_now')</span>
                                                         </button>
 
@@ -323,16 +336,18 @@ $lang = app()->getLocale();
                     <form class="row align-items-center" action="{{ route('orders.store.form') }}" method="POST">
                         @csrf
                         <div class="col-lg-3 col-md-6 mb-lg-0 mb-3">
-                            <input class="form-control focus_none py-3" placeholder="@lang('home.message_input1')?" type="text"
-                                name="message" />
+                            <input class="form-control focus_none py-3" placeholder="@lang('home.message_input1')?"
+                                   type="text"
+                                   name="message"/>
                         </div>
                         <div class="col-lg-3 col-md-6 mb-lg-0 mb-3">
-                            <input class="form-control focus_none py-3" placeholder="@lang('home.message_input2')" type="text"
-                                name="first_name" />
+                            <input class="form-control focus_none py-3" placeholder="@lang('home.message_input2')"
+                                   type="text"
+                                   name="first_name"/>
                         </div>
                         <div class="col-lg-3 col-md-6 mb-lg-0 mb-3">
                             <input class="form-control focus_none py-3" placeholder="+998 __ ___ ___ ___" type="tel"
-                                name="phone" />
+                                   name="phone"/>
                         </div>
                         <div class="col-lg-3 col-md-6">
                             <button class="btn-orange rounded px-5 py-3 w-100" type="submit">@lang('home.send')</button>
@@ -380,7 +395,7 @@ $lang = app()->getLocale();
                     price: productPrice,
                     storage: 1,
                 },
-                success: function(response) {
+                success: function (response) {
                     // alert('ok')
                     if (response.success) {
                         updateCartCount(response.cart_count); // Update the cart count in real-time
@@ -403,7 +418,7 @@ $lang = app()->getLocale();
                         alert('Xatolik yuz berdi: ' + response.message);
                     }
                 },
-                error: function(xhr) {
+                error: function (xhr) {
                     alert('Xatolik yuz berdi: ' + xhr.responseText);
                 }
             });
@@ -421,7 +436,7 @@ $lang = app()->getLocale();
                     _token: '{{ csrf_token() }}',
                     id: productId
                 },
-                success: function(response) {
+                success: function (response) {
                     if (response.success) {
                         Toastify({
                             text: response.message,
@@ -439,7 +454,7 @@ $lang = app()->getLocale();
                         if (response.message.includes('qo\'shildi')) {
                             $('#favourite-icon-' + productId).addClass('text-orange');
                             if (document.getElementById('favourite-icon-' + productId).classList.contains(
-                                    "fa-regular")) {
+                                "fa-regular")) {
                                 document.getElementById('favourite-icon-' + productId).classList.remove(
                                     'fa-regular')
                                 document.getElementById('favourite-icon-' + productId).classList.add('fa-solid')
@@ -448,7 +463,7 @@ $lang = app()->getLocale();
                             $('#favourite-icon-' + productId).removeClass(
                                 'text-orange'); // O'chirilganini ko'rsatish
                             if (document.getElementById('favourite-icon-' + productId).classList.contains(
-                                    "fa-solid")) {
+                                "fa-solid")) {
                                 document.getElementById('favourite-icon-' + productId).classList.remove(
                                     'fa-solid')
                                 document.getElementById('favourite-icon-' + productId).classList.add(
@@ -457,7 +472,7 @@ $lang = app()->getLocale();
                         }
                     }
                 },
-                error: function(xhr) {
+                error: function (xhr) {
                     alert('Xatolik yuz berdi: ' + xhr.responseText);
                 }
             });
@@ -471,7 +486,7 @@ $lang = app()->getLocale();
                     _token: '{{ csrf_token() }}',
                     id: productId
                 },
-                success: function(response) {
+                success: function (response) {
                     if (response.success) {
                         Toastify({
                             text: response.message,
@@ -495,7 +510,7 @@ $lang = app()->getLocale();
                         }
                     }
                 },
-                error: function(xhr) {
+                error: function (xhr) {
                     alert('Xatolik yuz berdi: ' + xhr.responseText);
                 }
             });
