@@ -97,6 +97,9 @@ return [
     "message_input1" => "What product are you looking for?",
     "message_input2" => "Enter your full name",
     "send" => "Send",
+    "page_not_found" => "Page not found",
+    "not_found" => "Not found",
+    "go_to_home" => "Go to home",
 
 
 ];

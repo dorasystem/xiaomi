@@ -95,6 +95,7 @@ return [
     "message_input1" => "Qanday mahsulotni izlayapsiz?",
     "message_input2" => "Ismingiz va familiyangizni kiriting",
     "send" => "Yuborish",
-
-
+    "page_not_found" => "Sahifa topilmadi",
+    "not_found" => "Hech narsa topilmadi",
+    "go_to_home" => "Asosiy sahifaga qaytish",
 ];
