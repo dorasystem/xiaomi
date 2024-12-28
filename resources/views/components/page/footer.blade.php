@@ -3,6 +3,34 @@ $lang = \Illuminate\Support\Facades\App::getLocale();
 use App\Models\Contact;
 $links = Contact::first();
 
+use App\Models\Product;
+use App\Models\StaticKeyword;
+use Illuminate\Support\Facades\App;
+$currentLocale = app()->getLocale();
+$products = Product::take(3)->get();
+$categories = \App\Models\Category::all();
+$lang = App::getLocale();
+
+$keywords = StaticKeyword::all();
+
+$language = app()->getLocale();
+$translations = [];
+
+foreach ($keywords as $keyword) {
+    $translations[$keyword->key] = $keyword->{$language};
+}
+
+// Category
+use App\Models\Category;
+$categories = Category::all();
+$category1 = collect($categories)->firstWhere('id', 1);
+$category2 = collect($categories)->firstWhere('id', 2);
+$category3 = collect($categories)->firstWhere('id', 3);
+$category4 = collect($categories)->firstWhere('id', 4);
+$category5 = collect($categories)->firstWhere('id', 5);
+$category6 = collect($categories)->firstWhere('id', 6);
+$category7 = collect($categories)->firstWhere('id', 7);
+
 ?>
 
 <footer class="footer mb-md-0 my-5">
@@ -62,12 +90,15 @@ $links = Contact::first();
                 <div class="collapse d-sm-block" id="companyDropdown">
                     <ul class="list-unstyled">
                         <li><a href="{{ route('products') }}">@lang('footer.new_products')</a></li>
-                        <li><a href="javascript:void(0)">@lang('footer.smartphones')</a></li>
-                        <li><a href="javascript:void(0)">@lang('footer.for_home')</a></li>
-                        <li><a href="javascript:void(0)">@lang('footer.tv')</a></li>
-                        <li><a href="javascript:void(0)">@lang('footer.wearables')</a></li>
-                        <li><a href="javascript:void(0)">@lang('footer.smart_home')</a></li>
-                        <li><a href="javascript:void(0)">@lang('footer.tablets')</a></li>
+                        <li><a
+                                href="{{ route('category.sort', ['slug' => $category2->getSlugByLanguage($lang)]) }}">{{ $category2['name_' . $lang] }}</a>
+                        </li>
+                        <li><a href="{{ route('category.sort', ['slug' => $category4->getSlugByLanguage($lang)]) }}">{{ $category4['name_' . $lang] }}</a></li>
+                        <li><a href="{{ route('category.sort', ['slug' => $category1->getSlugByLanguage($lang)]) }}">{{ $category1['name_' . $lang] }}</a></li>
+                        <li><a href="{{ route('category.sort', ['slug' => $category3->getSlugByLanguage($lang)]) }}">{{ $category3['name_' . $lang] }}</a></li>
+                        <li><a href="{{ route('category.sort', ['slug' => $category5->getSlugByLanguage($lang)]) }}">{{ $category5['name_' . $lang] }}</a></li>
+                        <li><a href="{{ route('category.sort', ['slug' => $category6->getSlugByLanguage($lang)]) }}">{{ $category6['name_' . $lang] }}</a></li>
+                        <li><a href="{{ route('category.sort', ['slug' => $category7->getSlugByLanguage($lang)]) }}">{{ $category7['name_' . $lang] }}</a></li>
                     </ul>
                 </div>
             </div>
@@ -94,7 +125,7 @@ $links = Contact::first();
                 <h6 class="mb-4 fw-bold">@lang('footer.contact_us')</h6>
                 <a href="tel:{{ $links->phone }}" class=""><i class="fas fa-phone-alt"></i> {{ $links->phone }}
                 </a>
-                <p class="mt-2"><i class="fa-regular fa-clock"></i> @lang('footer.working_hours')</p>
+                <p class="mt-2"><i class="fa-regular fa-clock"></i> {{ $translations['work_time'] }}</p>
                 <form action="{{ route('orders.store.form') }}" method="POST">
                     @csrf
                     <div class="mb-2 mt-sm-0 mt-5">

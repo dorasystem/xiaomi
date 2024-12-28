@@ -90,6 +90,11 @@ return [
     "discount" => "Chegirma",
     "place_order" => "Buyurtma berish",
     "products" => "Mahsulotlar",
+    "message_title" => "Mahsulotni topmadingizmi? Biz sizga yordam bera olamiz!",
+    "message_desc" => "Bizga raqamingizni qoldiring!",
+    "message_input1" => "Qanday mahsulotni izlayapsiz?",
+    "message_input2" => "Ismingiz va familiyangizni kiriting",
+    "send" => "Yuborish",
 
 
 ];

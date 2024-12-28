@@ -1,10 +1,21 @@
 @php
     use App\Models\Product;
+    use App\Models\StaticKeyword;
     use Illuminate\Support\Facades\App;
     $currentLocale = app()->getLocale();
     $products = Product::take(3)->get();
     $categories = \App\Models\Category::all();
     $lang = App::getLocale();
+
+        $keywords = StaticKeyword::all();
+
+        $language = app()->getLocale();
+        $translations = [];
+
+        foreach ($keywords as $keyword) {
+            $translations[$keyword->key] = $keyword->{$language};
+        }
+
 
 @endphp
 <nav class="container p-0">
@@ -43,7 +54,7 @@
                     <div class="text-nowrap">
                         <div class="d-flex align-items-center gap-2">
                             <i class="fa-regular fa-clock phone_clock_color"></i>
-                            <small class="phone_clock_color">10:00 - 22:00</small>
+                            <small class="phone_clock_color">{{ $translations['work_time'] }}</small>
                         </div>
                     </div>
                     <div
