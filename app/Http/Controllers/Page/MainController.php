@@ -102,7 +102,7 @@ class MainController extends Controller
     public function products()
     {
         $categories = Category::all();
-        $products = Product::paginate(8);
+        $products = Product::paginate(9);
         $lang = app()->getLocale();
         return view('pages.page-products', compact('products', 'lang', 'categories'));
     }

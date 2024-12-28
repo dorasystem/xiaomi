@@ -323,9 +323,8 @@ $lang = app()->getLocale();
                                     </div>
                                 </div>
                             @endforeach
-
-
                         </div>
+                        {{ $products->links('pagination::bootstrap-4') }}
                     </div>
                 </div>
             </div>
@@ -356,6 +355,7 @@ $lang = app()->getLocale();
 
                 </div>
             </div>
+
         </div>
     </main>
 
