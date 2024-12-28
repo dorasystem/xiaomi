@@ -7,19 +7,17 @@ $categories = \App\Models\Category::all();
     <main>
         <div class="container mt-4">
             <div class="d-flex align-items-center gap-3">
-                <a href="/" class="text-grey fw-bold text-lowercase fs-14">Главная страница / <span
-                        class="text-dark">Результаты поиска</span></a>
+                <a href="/" class="text-grey fw-bold  fs-14">@lang('home.home') / <span
+                        class="text-dark">@lang('home.filter_res')</span></a>
             </div>
             <hr />
         </div>
         <div class="productHeader bg-grey">
             <div class="container py-5 d-flex align-items-center flex-lg-row flex-column justify-content-between">
                 <div class="">
-                    <p>Absolutely hot collections 🔥</p>
+                    <p>@lang('home.filter_title')</p>
                     <h2 class="fw-bold fs-1">
-                        The Best Place To <br />
-                        Find And Buy <br class="d-lg-block d-none" />
-                        Amazing <span class="text-orange">Product</span>
+                        @lang('home.filter_desc')
                     </h2>
                 </div>
                 <div class="productbanner align-items-start gap-4 mt-5">
@@ -49,7 +47,7 @@ $categories = \App\Models\Category::all();
                                         <button class="accordion-button" type="button" data-bs-toggle="collapse"
                                             data-bs-target="#panelsStayOpen-collapseTwo" aria-expanded="true"
                                             aria-controls="panelsStayOpen-collapseTwo">
-                                            Цена
+                                            @lang('home.price')
                                         </button>
                                     </h2>
                                     <div id="panelsStayOpen-collapseTwo" class="accordion-collapse collapse show pt-3"
@@ -78,13 +76,13 @@ $categories = \App\Models\Category::all();
                                 </div>
                                 <div class="accordion-item">
                                     <h2 class="accordion-header" id="panelsStayOpen-headingOne">
-                                        <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse"
-                                            data-bs-target="#panelsStayOpen-collapseOne" aria-expanded="false"
+                                        <button class="accordion-button " type="button" data-bs-toggle="collapse"
+                                            data-bs-target="#panelsStayOpen-collapseOne" aria-expanded="true"
                                             aria-controls="panelsStayOpen-collapseOne">
-                                            Категории
+                                            @lang('home.category')
                                         </button>
                                     </h2>
-                                    <div id="panelsStayOpen-collapseOne" class="accordion-collapse collapse"
+                                    <div id="panelsStayOpen-collapseOne" class="accordion-collapse collapse show"
                                         aria-labelledby="panelsStayOpen-headingOne">
                                         <div class="accordion-body">
                                             @foreach ($categories as $category)
@@ -101,11 +99,12 @@ $categories = \App\Models\Category::all();
                                     </div>
                                 </div>
                             </div>
-                            <button type="submit" class="w-100 btn-orange rounded text-center mb-3">Поиск</button>
+                            <button type="submit"
+                                class="w-100 btn-orange rounded text-center mb-3">@lang('home.search')</button>
                             <button class="w-100 text-orange bg-transparent rounded text-center border-orange rounded py-1">
                                 <a href="{{ route('products') }}"
                                     class="w-100 text-orange bg-transparent  text-center  py-1">
-                                    Сбросить
+                                    @lang('home.reset')
                                 </a>
                             </button>
                         </form>
@@ -115,7 +114,7 @@ $categories = \App\Models\Category::all();
                     <div class="container">
                         <div class="d-flex gap-2">
                             <div class="d-lg-none d-block">
-                                <button class="btn-orange rounded" type="button" data-bs-toggle="modal"
+                                <button class="btn-orange rounded mb-3" type="button" data-bs-toggle="modal"
                                     data-bs-target="#filtermodal">Filter
                                 </button>
                                 <div class="modal" id="filtermodal" tabindex="-1" aria-labelledby="filtermodalLabel"
@@ -125,7 +124,7 @@ $categories = \App\Models\Category::all();
                                             class="modal-content d-flex flex-column justify-content-between">
                                             <div class="">
                                                 <div class="modal-header position-sticky top-0 bg-white z-3">
-                                                    <h2 class="fw-normal">Все фильтры</h2>
+                                                    <h2 class="fw-normal">@lang('home.all_filters')</h2>
                                                     <button type="button" class="btn-close" data-bs-dismiss="modal"
                                                         aria-label="Close"></button>
                                                 </div>
@@ -137,7 +136,7 @@ $categories = \App\Models\Category::all();
                                                                 data-bs-target="#panelsStayOpen-collapseTwo"
                                                                 aria-expanded="true"
                                                                 aria-controls="panelsStayOpen-collapseTwo">
-                                                                Цена
+                                                                @lang('home.price')
                                                             </button>
                                                         </h2>
                                                         <div id="panelsStayOpen-collapseTwo"
@@ -149,7 +148,7 @@ $categories = \App\Models\Category::all();
                                                                         <input type="number" id="minValue2"
                                                                             value="20" min="0"
                                                                             max="600" />
-                                                                        <span>до</span>
+                                                                        <span>@lang('home.price')</span>
                                                                         <input type="number" id="maxValue2"
                                                                             value="600" min="0"
                                                                             max="600" />
@@ -167,18 +166,18 @@ $categories = \App\Models\Category::all();
                                                             </div>
                                                         </div>
                                                     </div>
-                                                    <div class="accordion-item">
+                                                    <div class="accordion-item mb-2">
                                                         <h2 class="accordion-header" id="panelsStayOpen-headingOne">
-                                                            <button class="accordion-button collapsed" type="button"
+                                                            <button class="accordion-button " type="button"
                                                                 data-bs-toggle="collapse"
                                                                 data-bs-target="#panelsStayOpen-collapseOne"
-                                                                aria-expanded="false"
+                                                                aria-expanded="fruw"
                                                                 aria-controls="panelsStayOpen-collapseOne">
-                                                                Категории
+                                                                @lang('home.category')
                                                             </button>
                                                         </h2>
                                                         <div id="panelsStayOpen-collapseOne"
-                                                            class="accordion-collapse collapse"
+                                                            class="accordion-collapse collapse show"
                                                             aria-labelledby="panelsStayOpen-headingOne">
                                                             <div class="accordion-body">
                                                                 <div class="form-check mb-3">
@@ -208,71 +207,34 @@ $categories = \App\Models\Category::all();
                                                             </div>
                                                         </div>
                                                     </div>
-                                                    <div class="accordion-item mb-2">
-                                                        <h2 class="accordion-header" id="panelsStayOpen-headingThree">
-                                                            <button class="accordion-button collapsed" type="button"
-                                                                data-bs-toggle="collapse"
-                                                                data-bs-target="#panelsStayOpen-collapseThree"
-                                                                aria-expanded="false"
-                                                                aria-controls="panelsStayOpen-collapseThree">
-                                                                Рейтинг
-                                                            </button>
-                                                        </h2>
-                                                        <div id="panelsStayOpen-collapseThree"
-                                                            class="accordion-collapse collapse"
-                                                            aria-labelledby="panelsStayOpen-headingThree">
-                                                            <div class="accordion-body">
-                                                                <div class="rating">
-                                                                    <input type="radio" name="rating" value="5"
-                                                                        id="5" /><label for="5">☆</label>
-                                                                    <input type="radio" name="rating" value="4"
-                                                                        id="4" /><label for="4">☆</label>
-                                                                    <input type="radio" name="rating" value="3"
-                                                                        id="3" /><label for="3">☆</label>
-                                                                    <input type="radio" name="rating" value="2"
-                                                                        id="2" /><label for="2">☆</label>
-                                                                    <input type="radio" name="rating" value="1"
-                                                                        id="1" /><label for="1">☆</label>
-                                                                </div>
-                                                            </div>
-                                                        </div>
-                                                    </div>
+
                                                 </div>
                                             </div>
                                             <div class="p-3 position-sticky bottom-0 z-3 bg-white">
-                                                <button class="w-100 btn-orange rounded text-center mb-3">Поиск</button>
+                                                <button class="w-100 btn-orange rounded text-center mb-3">@lang('home.search')</button>
                                                 <button
                                                     class="w-100 text-orange bg-transparent rounded text-center border-orange rounded py-1">
-                                                    Сбросить
+                                                    @lang('home.reset')
                                                 </button>
                                             </div>
                                         </div>
                                     </div>
                                 </div>
                             </div>
-                            <div
-                                class="position-relative w-max d-flex align-items-center justify-content-end justify-content-md-start text-nowrap align-items-center">
-                                <div class="">Сортировка:</div>
-                                <select class="form-select-sm border-0 bg-transparent pe-4 py-1">
-                                    <option class="option" value="populars">По популярности</option>
-                                    <option class="option" value="news">Новинки</option>
-                                    <option class="option" value="Хиты продаж">Хиты продаж</option>
-                                </select>
-                                <i id="select-icon"
-                                    class="fa-solid fa-angle-down position-absolute end-0 top-50 translate-middle-y pe-2 text-dark"></i>
-                            </div>
+
                         </div>
-                        <div class="row pt-3">
+                        <div class="row">
                             @foreach ($products as $product)
                                 @php
                                     $cheapestVariant = $product->variants->sortBy('price')->first();
                                 @endphp
                                 <div class="col-lg-4 col-md-6 mb-4">
                                     <div class="product border position-relative rounded">
-                                        <a href="{{ route('single.product', $product->slug) }}" class="">
+                                        <div class="">
                                             <div
                                                 class="position-absolute like d-flex flex-column gap-3 justify-content-end">
-                                                <i class="fa-regular fa-heart fs-4 hover-orange ps-1"></i>
+                                                <i
+                                                    class="fa-{{ in_array($product->id, session('favorites', [])) ? 'solid' : 'regular' }} fa-heart fs-4 hover-orange ps-1"></i>
                                                 <svg class="hover-svg" width="30" height="20"
                                                     viewBox="0 0 102 92" fill="none"
                                                     xmlns="http://www.w3.org/2000/svg">
@@ -288,8 +250,10 @@ $categories = \App\Models\Category::all();
                                                 </svg>
                                             </div>
                                             @if ($cheapestVariant)
-                                                <img class="w-100 pb-4 productImage p-4"
-                                                    src="{{ asset('storage/' . $product->image) }}" alt="" />
+                                                <a href="{{ route('single.product', ['slug' => $product->slug]) }}">
+                                                    <img class="w-100 pb-4 productImage p-4"
+                                                        src="{{ asset('storage/' . $product->image) }}" alt="" />
+                                                </a>
                                                 <div
                                                     class="d-flex flex-column justify-content-between product-text p-4 rounded-bottom">
                                                     <div class="d-flex align-items-end gap-3 pt-2">
@@ -310,20 +274,22 @@ $categories = \App\Models\Category::all();
                                                         @endif
                                                     </div>
 
-                                                    <div class="productName fw-bold">
-                                                        {{ \Str::words($product->name_uz, 3) }}
-                                                    </div>
-                                                    <p class="text-grey">
-                                                        {!! \Str::words($product->description_uz, 15) !!}
-                                                    </p>
+                                                    <a href="{{ route('single.product', $product->slug) }}">
+                                                        <div class="productName fw-bold">
+                                                            {{ \Str::words($product['name_' . $lang], 3) }}</div>
+                                                    </a>
+                                                    <a class="truncate-text"
+                                                        href="{{ route('single.product', $product->slug) }}">
+                                                        <p class="text-grey">{!! \Str::words($product['description_' . $lang], 10) !!}</p>
+                                                    </a>
 
                                                     <div class="d-flex align-items-center justify-content-between w-100">
                                                         <span
                                                             class="small bg-transparent px-0">{{ number_format($cheapestVariant->discount_price, 0, ',', ' ') }}
-                                                            UZS <span class="text-orange">за наличные</span></span>
-                                                        <span class="px-2 productmonth-border small text-grey">from
+                                                            UZS <span class="text-orange">@lang('home.incash')</span></span>
+                                                        <span class="px-2 productmonth-border small text-grey">
                                                             {{ number_format($cheapestVariant->price_12, 0, ',', ' ') }}
-                                                            UZS/month</span>
+                                                            UZS/@lang('home.month')</span>
                                                     </div>
                                                     <div class="d-flex gap-4 mt-3">
                                                         <button class="border-orange bg-transparent rounded p-1 px-3">
@@ -331,12 +297,12 @@ $categories = \App\Models\Category::all();
                                                         </button>
                                                         <button data-bs-toggle="modal" data-bs-target="#largeModal"
                                                             class="btn-orange rounded w-100 d-flex align-items-center gap-2 justify-content-center">
-                                                            <span>Купить сразу</span>
+                                                            <span>@lang('home.buy_now')</span>
                                                         </button>
                                                     </div>
                                                 </div>
                                             @endif
-                                        </a>
+                                        </div>
                                     </div>
                                 </div>
                             @endforeach
@@ -350,10 +316,12 @@ $categories = \App\Models\Category::all();
                 <div class="messageInputs p-4 rounded-4 container">
                     <form class="row align-items-center" action="">
                         <div class="col-lg-3 col-md-6 mb-lg-0 mb-3">
-                            <input class="form-control focus_none py-3" placeholder="@lang('home.message_input1')" type="text" />
+                            <input class="form-control focus_none py-3" placeholder="@lang('home.message_input1')"
+                                type="text" />
                         </div>
                         <div class="col-lg-3 col-md-6 mb-lg-0 mb-3">
-                            <input class="form-control focus_none py-3" placeholder="@lang('home.message_input2')" type="text" />
+                            <input class="form-control focus_none py-3" placeholder="@lang('home.message_input2')"
+                                type="text" />
                         </div>
                         <div class="col-lg-3 col-md-6 mb-lg-0 mb-3">
                             <input class="form-control focus_none py-3" placeholder="+998 __ ___ ___ ___" type="tel"
