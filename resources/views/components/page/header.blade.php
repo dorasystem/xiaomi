@@ -208,7 +208,7 @@
                                     <i class="fa-regular fa-heart"></i>
                                     <i class="fa-solid fa-heart"></i>
                                 </div>
-                                <span class="badge badge-pill badge-danger badge-position rounded-circle">
+                                <span class="badge badge-pill badge-danger badge-position rounded-circle" id="favorite-count">
                                     {{ session('favorites') ? count(session('favorites')) : 0 }}
                                 </span>
                             </a>
@@ -237,9 +237,10 @@
     0 -320 0 0 640 0 640 320 0 320 0 0 -640z" />
                                     </g>
                                 </svg>
-                                <span class="badge badge-pill badge-danger badge-position rounded-circle compare" id="compare">
-                                    {{ session('compares') ? count(session('compares')) : 0 }}
-                                </span>
+                                <span class="badge badge-pill badge-danger badge-position rounded-circle compare" id="compare-count">
+    {{ session('compares') ? count(session('compares')) : 0 }}
+</span>
+
                             </a>
                             <small class="">@lang('home.comparison')</small>
                         </li>
@@ -258,7 +259,7 @@
                                         fill="#fff" />
                                 </svg>
                                 <span
-                                    class="badge badge-pill badge-danger badge-position rounded-circle cart-label">{{ session('cart') ? count(session('cart')) : 0 }}</span>
+                                    class="badge badge-pill badge-danger badge-position rounded-circle cart-label" id="cart-count">{{ session('cart') ? count(session('cart')) : 0 }}</span>
                             </a>
                             <small class="">@lang('home.basket')</small>
                         </li>

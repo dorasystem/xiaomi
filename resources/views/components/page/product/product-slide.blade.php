@@ -150,7 +150,7 @@ $lang = app()->getLocale();
     }
 
     function updateCartCount(count) {
-        document.querySelector('.cart-label').innerText = count; // Updates the cart count badge
+        document.getElementById('cart-count').innerText = count; // Updates the cart count badge
     }
     function toggleFavourite(productId) {
         $.ajax({
@@ -172,7 +172,7 @@ $lang = app()->getLocale();
                     }).showToast();
 
                     // Sevimlilar sonini yangilash
-                    $('.badge-position').text(response.favorites_count);
+                    $('#favorite-count').text(response.favorites_count);
 
                     // Ico'ni yangilash
                     if (response.message.includes('qo\'shildi')) {
@@ -215,7 +215,7 @@ $lang = app()->getLocale();
                     }).showToast();
 
                     // Sevimlilar sonini yangilash
-                    $('.compare').text(response.compares_count);
+                    $('#compare-count').text(response.compares_count); // Id bo'yicha o'zgarish
 
                     // Ico'ni yangilash
                     if (response.message.includes('qo\'shildi')) {
