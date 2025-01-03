@@ -13,6 +13,10 @@
             <div class="col-lg-9 pe-lg-4">
                 <div class="d-flex align-items-center gap-1 justify-content-between pb-2 border-bottom-dashed">
                     <h1 class="fw-normal">@lang('home.basket')</h1>
+                    <button class="d-flex align-items-center gap-2 bg-transparent border-0">
+                        <img src="/assets/icons/delete_icon.svg" alt="" />
+                        <div>@lang('home.clear_cart')</div>
+                    </button>
                 </div>
                 <div class="orders container">
                     @foreach ($cartProducts as $cartItem)
@@ -58,13 +62,12 @@
                                 <div style="height: 50px" class="d-flex align-items-center gap-4">
                                     <a onclick="toggleFavourite({{ $cartItem['id'] }})" class="">
                                         <i id="favourite-icon-{{ $cartItem['id'] }}"
-                                            class="fa-regular fa-heart fs-4 hover-orange ps-1
+                                            class="fa-{{ in_array($cartItem['id'], session('favorites', [])) ? 'solid' : 'regular' }} fa-heart fs-4 hover-orange ps-1
                                  {{ in_array($cartItem['id'], session('favorites', [])) ? 'text-orange' : '' }}">
                                         </i>
                                     </a>
-                                    <button class="rounded" style="border:none"
-                                        onclick="removeFromCart({{ $cartItem['id'] }})"><img src="/assets/icons/x-mark.svg"
-                                            alt="Remove" /></button>
+                                    <button class="rounded border-0" onclick="removeFromCart({{ $cartItem['id'] }})"><img
+                                            src="/assets/icons/x-mark.svg" alt="Remove" /></button>
                                 </div>
                             </div>
                         </div>
@@ -130,12 +133,12 @@
 
                             // Mahsulotning umumiy narxini yangilash
                             $('#item-' + updatedItem.id + ' .price').text(
-                                new Intl.NumberFormat('ru-RU').format(updatedItem.total_price) + ' сум'
+                                new Intl.NumberFormat('ru-RU').format(updatedItem.total_price) + ' UZS'
                             );
 
                             // Umumiy summani yangilash
                             $('.orderSum h6:last').text(
-                                new Intl.NumberFormat('ru-RU').format(totalAmount) + ' сум'
+                                new Intl.NumberFormat('ru-RU').format(totalAmount) + ' UZS'
                             );
 
                             // Kamaytirish va oshirish tugmalarini boshqarish
@@ -168,7 +171,7 @@
 
                             // Umumiy summani yangilash
                             $('.orderSum h6:last').text(
-                                new Intl.NumberFormat('ru-RU').format(response.total_amount) + ' сум'
+                                new Intl.NumberFormat('ru-RU').format(response.total_amount) + ' UZS'
                             );
 
                             // Tovarlar sonini yangilash
@@ -189,7 +192,7 @@
                         _token: '{{ csrf_token() }}',
                         id: productId
                     },
-                    success: function (response) {
+                    success: function(response) {
                         if (response.success) {
                             Toastify({
                                 text: response.message,
@@ -206,20 +209,26 @@
                             // Ico'ni yangilash
                             if (response.message.includes('qo\'shildi')) {
                                 $('#favourite-icon-' + productId).addClass('text-orange');
-                                if (document.getElementById('favourite-icon-'  + productId).classList.contains("fa-regular")) {
-                                    document.getElementById('favourite-icon-'  + productId).classList.remove('fa-regular')
-                                    document.getElementById('favourite-icon-'  + productId).classList.add('fa-solid')
+                                if (document.getElementById('favourite-icon-' + productId).classList.contains(
+                                        "fa-regular")) {
+                                    document.getElementById('favourite-icon-' + productId).classList.remove(
+                                        'fa-regular')
+                                    document.getElementById('favourite-icon-' + productId).classList.add('fa-solid')
                                 }
                             } else {
-                                $('#favourite-icon-' + productId).removeClass('text-orange'); // O'chirilganini ko'rsatish
-                                if (document.getElementById('favourite-icon-'  + productId).classList.contains("fa-solid")) {
-                                    document.getElementById('favourite-icon-'  + productId).classList.remove('fa-solid')
-                                    document.getElementById('favourite-icon-'  + productId).classList.add('fa-regular')
+                                $('#favourite-icon-' + productId).removeClass(
+                                    'text-orange'); // O'chirilganini ko'rsatish
+                                if (document.getElementById('favourite-icon-' + productId).classList.contains(
+                                        "fa-solid")) {
+                                    document.getElementById('favourite-icon-' + productId).classList.remove(
+                                        'fa-solid')
+                                    document.getElementById('favourite-icon-' + productId).classList.add(
+                                        'fa-regular')
                                 }
                             }
                         }
                     },
-                    error: function (xhr) {
+                    error: function(xhr) {
                         alert('Xatolik yuz berdi: ' + xhr.responseText);
                     }
                 });
@@ -241,14 +250,16 @@
                         <div class="mb-3">
                             <label for="name" class="form-label">@lang('home.full_name') <span
                                     class="text-danger">*</span></label>
-                            <input type="text" class="form-control focus_none" id="name" name="first_name"
+                            <input required type="text" class="form-control focus_none" id="name" name="first_name"
                                 placeholder="Enter your name" />
                         </div>
                         <div class="mb-3">
-                            <label for="email" class="form-label">@lang('home.phone_number') <span
+                            <label for="phone" class="form-label">@lang('home.enter_number') <span
                                     class="text-danger">*</span></label>
-                            <input type="text" class="form-control focus_none" id="email" name="phone"
-                                placeholder="+998 (90) 123-45-67" />
+                            <input type="text" class="form-control focus_none" id="phone" name="phone"
+                                placeholder="+998 (90) 123-45-67" required />
+                            <small id="phone-error" class="form-text text-danger"
+                                style="display: none;">@lang('home.invalid_phone_format')</small>
                         </div>
 
                         <!-- Hidden fields for all product details -->
@@ -268,7 +279,31 @@
         </div>
     </div>
 
+    <script>
+        const phoneInput = document.getElementById('phone');
+        const errorText = document.getElementById('phone-error');
 
+        phoneInput.addEventListener('input', () => {
+            let value = phoneInput.value.replace(/\D/g, '');
+
+            if (!value.startsWith('998')) value = '998' + value;
+
+            value = value.slice(0, 12);
+
+            let formatted = '+998 ';
+            if (value.length > 3) formatted += `(${value.slice(3, 5)}`;
+            if (value.length > 5) formatted += `) ${value.slice(5, 8)}`;
+            if (value.length > 8) formatted += `-${value.slice(8, 10)}`;
+            if (value.length > 10) formatted += `-${value.slice(10, 12)}`;
+
+            phoneInput.value = formatted.trim();
+        });
+
+        phoneInput.addEventListener('blur', () => {
+            const phoneRegex = /^\+998 \([0-9]{2}\) [0-9]{3}-[0-9]{2}-[0-9]{2}$/;
+            errorText.style.display = phoneRegex.test(phoneInput.value) ? 'none' : 'block';
+        });
+    </script>
     <script>
         var cartItems = @json($cartProducts); // PHPdan JS ga cartItems yuborilgan
 
@@ -295,7 +330,7 @@
                         <span>${productNameShortened}</span>
                     </div>
                     <div class="mt-3">
-                        ${new Intl.NumberFormat('ru-RU').format(cartItem.discount_price)} сум
+                        ${new Intl.NumberFormat('ru-RU').format(cartItem.price || cartItem.discount_price)} UZS
                     </div>
                 `;
                     modalProductsList.appendChild(productDiv);

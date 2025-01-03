@@ -3,10 +3,7 @@
 use App\Models\Product;
 
 $lang = app()->getLocale();
-$products = Product::inRandomOrder()
-->skip(5)
-->take(10)
-->get();
+$products = Product::inRandomOrder()->skip(5)->take(10)->get();
 
 ?>
 
@@ -63,9 +60,12 @@ $products = Product::inRandomOrder()
                     <p class="text-grey"> {!! \Str::words($product['description_' . $lang], 10) !!}</p>
                 </a>
                 <div class="d-flex align-items-center justify-content-between w-100">
-                    <span
-                        class="small bg-transparent px-0">{{ number_format($cheapestVariant->discount_price, 0, ',', ' ') }}
-                        UZS <span class="text-orange">@lang('home.incash')</span></span>
+                    <span class="small bg-transparent px-0">
+                        {{ number_format($cheapestVariant->price ?? $cheapestVariant->discount_price, 0, ',', ' ') }}
+                        UZS
+                        <span class="text-orange">@lang('home.incash')</span>
+                    </span>
+
                     <span class="px-2 productmonth-border small text-grey">
                         {{ number_format($cheapestVariant->price_12, 0, ',', ' ') }} UZS/@lang('home.month')</span>
                 </div>

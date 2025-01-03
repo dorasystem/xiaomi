@@ -2,10 +2,12 @@
     use App\Models\Product;
     use App\Models\StaticKeyword;
     use Illuminate\Support\Facades\App;
+    use App\Models\Contact;
     $currentLocale = app()->getLocale();
     $products = Product::take(3)->get();
     $categories = \App\Models\Category::all();
     $lang = App::getLocale();
+    $links = Contact::first();
 
     $keywords = StaticKeyword::all();
 
@@ -31,23 +33,35 @@
                     <li class=""><a class="text-grey hover-orange"
                             href="{{ route('blog') }}">@lang('footer.blog')</a>
                     </li>
+                    <li class=""><a class="text-grey hover-orange"
+                            href="{{ route('blog') }}">@lang('footer.career')</a>
+                    </li>
                 </ul>
             </div>
             <div class="col-lg-5 mt-lg-0 mt-2 ps-0">
                 <div class="d-flex justify-content-between align-items-center">
                     <div class="d-md-block d-none">
                         <div class="social-icons d-flex align-items-center justify-content-between gap-2">
-                            <a target="_blank" href="https://www.youtube.com/@xiaomi"><img
-                                    src="/assets/icons/youtube.svg" alt="" /></a>
-                            <a target="_blank" href="https://www.instagram.com/xiaomi.uzbekistan/"><img
-                                    src="/assets/icons/insta.svg" alt="" /></a>
-                            <a href="#"><img src="/assets/icons/telegram.svg" alt="" /></a>
+                            @if (!empty($links->youtube))
+                                <a target="_blank" href="{{ $links->youtube }}">
+                                    <img src="/assets/icons/youtube.svg" alt="" />
+                                </a>
+                            @endif
+
+                            @if (!empty($links->instagram))
+                                <a target="_blank" href="{{ $links->instagram }}">
+                                    <img src="/assets/icons/insta.svg" alt="" />
+                                </a>
+                            @endif
+                            @if (!empty($links->telegram))
+                                <a target="_blank" href="{{ $links->telegram }}"><img src="/assets/icons/telegram.svg" alt="" /></a>
+                            @endif
                         </div>
                     </div>
                     <div class="text-nowrap">
                         <a href="tel:+998 77 282 00 80" class="d-flex align-items-center gap-1">
                             <img src="/assets/icons/phone" alt="" />
-                            <small class="phone_clock_color">+998 77 282 00 80 </small>
+                            <small class="phone_clock_color">{{ $links->phone }} </small>
                         </a>
                     </div>
                     <div class="text-nowrap">

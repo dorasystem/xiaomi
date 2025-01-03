@@ -108,4 +108,11 @@ return [
     "price" => "Narx",
     "reset" => "Bekor qilish",
     "all_filters" => "Barcha filterlar",
+    "invalid_phone_format" => "Telefon raqami noto‘g‘ri formatda!",
+    "clear_cart" => "Savatni tozalash",
+    "send_application" => "Arizani yuborish",
+    "submit_application" => "Ariza topshirish",
+    "reviews" => "Blog",
+    "read" => "O'qish",
+
 ];

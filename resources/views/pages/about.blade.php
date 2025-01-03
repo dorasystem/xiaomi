@@ -9,7 +9,7 @@
             <hr />
             <h1 class="my-3 mb-5">@lang('home.about_or_company')</h1>
             <div class="row">
-                <div class="col-md-8">
+                <div class="col-md-12">
                     <div class="d-flex">
                         <div style="width: 7px" class="bg-orange me-5"></div>
                         <div style="font-family: Courier New" class="fs-4">
@@ -60,7 +60,7 @@
             <div class="row">
                 <div class="row align-items-center justify-content-between">
                     <h1 class="col-md-8">@lang('home.command')</h1>
-                    
+
                 </div>
                 @if (!empty($careers) && $careers->count())
                     @foreach ($careers as $item)

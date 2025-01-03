@@ -112,6 +112,11 @@ return [
     "price" => "Price",
     "reset" => "Reset",
     "all_filters" => "All filters",
-
+    "invalid_phone_format" => "The phone number is in an invalid format!",
+    "clear_cart" => "Clear cart",
+    "send_application" => "Submit Application",
+    "submit_application" => "Submit an Application",
+    "reviews" => "Reviews",
+    "read" => "Read",
 
 ];

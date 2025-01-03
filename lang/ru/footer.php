@@ -8,7 +8,7 @@ return [
     'for_home' => 'Для дома',
     'tv' => 'ТВ и видеотехника',
     'wearables' => 'Носимые устройства',
-    'smart_home' => 'Умный дом',
+    'tv' => 'Телевизоры',
     'tablets' => 'Планшеты, ноутбуки',
     'xiaomi_store' => 'Xiaomi Store',
     'about_us' => 'О компании',
@@ -21,5 +21,6 @@ return [
     'message_placeholder' => 'Напишите текст',
     'send' => 'Отправить',
     'products' => 'Продукты',
+    'career' => 'Карьера',
 ];
 

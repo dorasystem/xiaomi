@@ -68,14 +68,16 @@ foreach ($keywords as $keyword) {
                             <div style="background-image: url({{ asset('storage/' . $banner->image1) }});"
                                 class="banner1 rounded p-lg-4 p-2 d-flex flex-column justify-content-between align-items-start">
                                 <div class="fw-bold">@lang('footer.smartphones')</div>
-                                <a href="{{ route('category.sort', ['slug' => $category2->getSlugByLanguage($lang)]) }}" class="btn-orange rounded px-4 py-1">@lang('home.smartphonesAll')</a>
+                                <a href="{{ route('category.sort', ['slug' => $category2->getSlugByLanguage($lang)]) }}"
+                                    class="btn-orange rounded px-4 py-1">@lang('home.smartphonesAll')</a>
                             </div>
                         </div>
                         <div class="col-sm-6 col-md-12 mt-4">
                             <div style="background-image: url({{ asset('storage/' . $banner->image2) }});"
                                 class="banner2 rounded p-lg-4 p-2 d-flex flex-column justify-content-between align-items-start">
-                                <div class="fw-bold">@lang('footer.smart_home')</div>
-                                <a href="{{ route('products') }}" class="btn-orange rounded px-4 py-1">@lang('home.smartphonesAll')</a>
+                                <div class="fw-bold">@lang('footer.tv')</div>
+                                <a href="{{ route('category.sort', ['slug' => $category1->getSlugByLanguage($lang)]) }}"
+                                    class="btn-orange rounded px-4 py-1">@lang('home.smartphonesAll')</a>
                             </div>
                         </div>
                     </div>
@@ -189,7 +191,7 @@ foreach ($keywords as $keyword) {
                                         </a>
                                         <div class="d-flex align-items-center justify-content-between w-100">
                                             <span
-                                                class="small bg-transparent px-0">{{ number_format($cheapestVariant->discount_price, 0, ',', ' ') }}
+                                                class="small bg-transparent px-0">{{ number_format($cheapestVariant->price ?? $cheapestVariant->discount_price, 0, ',', ' ') }}
                                                 UZS <span class="text-orange">@lang('home.incash')</span></span>
                                             <span class="px-2 productmonth-border small text-grey">
                                                 {{ number_format($cheapestVariant->price_12, 0, ',', ' ') }}
@@ -288,7 +290,7 @@ foreach ($keywords as $keyword) {
                                         </a>
                                         <div class="d-flex align-items-center justify-content-between w-100">
                                             <span
-                                                class="small bg-transparent px-0">{{ number_format($cheapestVariant->discount_price, 0, ',', ' ') }}
+                                                class="small bg-transparent px-0">{{ number_format($cheapestVariant->price ?? $cheapestVariant->discount_price, 0, ',', ' ') }}
                                                 UZS <span class="text-orange">@lang('home.incash')</span></span>
                                             <span class="px-2 productmonth-border small text-grey">
                                                 {{ number_format($cheapestVariant->price_12, 0, ',', ' ') }}
@@ -383,7 +385,7 @@ foreach ($keywords as $keyword) {
                             </a>
                             <div class="d-flex align-items-center justify-content-between w-100">
                                 <span
-                                    class="small bg-transparent px-0">{{ number_format($cheapestVariant->discount_price, 0, ',', ' ') }}
+                                    class="small bg-transparent px-0">{{ number_format($cheapestVariant->price ?? $cheapestVariant->discount_price, 0, ',', ' ') }}
                                     UZS <span class="text-orange">@lang('home.incash')</span></span>
                                 <span class="px-2 productmonth-border small text-grey">
                                     {{ number_format($cheapestVariant->price_12, 0, ',', ' ') }}
@@ -463,14 +465,15 @@ foreach ($keywords as $keyword) {
             <div class="fs-2 fw-bold">@lang('footer.news')</div>
             <div class="row mt-3">
                 <div class="col-lg-7 pe-lg-5 pe-2 mb-4">
-                    <div class="newbanner w-100 rounded text-white d-flex flex-column justify-content-between"
+                    <a href="{{ route('single.news', ['slug' => $new->getSlugByLanguage($lang)]) }}"
+                        class="newbanner w-100 rounded text-white d-flex flex-column justify-content-between"
                         style="background-image: url('/storage/{{ $new->image ?? '/assets/images/newbanner.png' }}');">
                         <div class="productName fs-5">
                             {!! $new['title_' . $lang] ?? 'Сравнение Xiaomi 14T и Xiaomi 14T Pro: Какой <br/> выбрать?' !!}
                         </div>
                         <small class="fw-bold border-top pt-3">
                             {{ \Carbon\Carbon::parse($new->date)->format('d.m.Y') }}</small>
-                    </div>
+                    </a>
                 </div>
 
                 <div class="col-lg-5 d-flex flex-column justify-content-between">
@@ -519,7 +522,7 @@ foreach ($keywords as $keyword) {
                                         <div class="">
                                             <div class="text-grey">
                                                 {{ \Carbon\Carbon::parse($item->date)->format('d.m.Y') }}</div>
-                                            <h5>{{ $item['title_' . $lang] ?? 'Сравнение Xiaomi 14T и Xiaomi 14T Pro' }}
+                                            <h5>{{ $item['title_' . $lang] ?? '' }}
                                             </h5>
                                         </div>
                                         <div class="">

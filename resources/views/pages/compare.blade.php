@@ -109,7 +109,11 @@
                                                     <img src="/assets/icons/shopping-cart.svg" alt="" />
                                                 </a>
                                                 <button data-bs-toggle="modal" data-bs-target="#largeModal"
-                                                    class="btn-orange rounded w-100 d-flex align-items-center gap-2 justify-content-center">
+                                                    class="btn-orange rounded w-100 d-flex align-items-center gap-2 justify-content-center"
+                                                    data-product-id="{{ $product->id }}"
+                                                    data-product-name="{{ $product['name_' . $lang] }}"
+                                                    data-product-price="{{ $cheapestVariant->discount_price ?: $cheapestVariant->price }}"
+                                                    data-product-image="{{ asset('storage/' . $product->image) }}">
                                                     <span>@lang('home.buy_now')</span>
                                                 </button>
                                             </div>

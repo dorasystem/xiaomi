@@ -90,9 +90,9 @@
                                     class="text-danger">*</span></label>
                             <input type="text" class="form-control focus_none" id="phone" name="phone"
                                 placeholder="+998 (90) 123-45-67" required />
-                            <small id="phone-error" class="form-text text-danger" style="display: none;">Telefon raqami
-                                noto‘g‘ri formatda!</small>
-                        </div> <input type="hidden" name="product_id" id="product_id">
+                            <small id="phone-error" class="form-text text-danger" style="display: none;">@lang('home.invalid_phone_format')</small>
+                        </div>
+                        <input type="hidden" name="product_id" id="product_id">
                         <input type="hidden" name="product_name" id="product_name">
 
                         <input type="hidden" name="product_price" id="product_price">
@@ -123,7 +123,7 @@
                             const phoneRegex = /^\+998 \([0-9]{2}\) [0-9]{3}-[0-9]{2}-[0-9]{2}$/;
                             errorText.style.display = phoneRegex.test(phoneInput.value) ? 'none' : 'block';
                         });
-                    </script> <!-- Product details for modal -->
+                    </script> 
                     <div class="col-lg-8 order-lg-2 order-1">
                         <div class="d-flex flex-column justify-content-between h-100">
                             <div class="d-flex justify-content-between gap-1">
