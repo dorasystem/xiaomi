@@ -1,3 +1,5 @@
+
+
 new Swiper(".productSale", {
     slidesPerView: 4,
     spaceBetween: 15,
@@ -244,68 +246,68 @@ hoverItems.forEach((item) => {
     });
 });
 
-// for map
-const mapConfigs = [
-    {
-        container: "map1",
-        coordinates: [55.751244, 37.618423], // Moskva
-        zoom: 10,
-        markerImage: "https://cdn-icons-png.flaticon.com/512/684/684908.png",
-    },
-    {
-        container: "map2",
-        coordinates: [41.2995, 69.2401], // Toshkent
-        zoom: 12,
-        markerImage: "https://cdn-icons-png.flaticon.com/512/684/684908.png",
-    },
-    {
-        container: "map3",
-        coordinates: [40.712776, -74.005974], // Nyu-York
-        zoom: 13,
-        markerImage: "https://cdn-icons-png.flaticon.com/512/684/684908.png",
-    },
-    {
-        container: "map4",
-        coordinates: [41.2995, 69.225], // Toshkent
-        zoom: 14,
-        markerImage: "https://cdn-icons-png.flaticon.com/512/684/684908.png",
-    },
-    {
-        container: "map5",
-        coordinates: [48.8566, 2.3522], // Paris
-        zoom: 11,
-        markerImage: "https://cdn-icons-png.flaticon.com/512/684/684908.png",
-    },
-    {
-        container: "map6",
-        coordinates: [34.0522, -118.2437], // Los Angeles
-        zoom: 12,
-        markerImage: "https://cdn-icons-png.flaticon.com/512/684/684908.png",
-    },
-];
+// // for map
+// const mapConfigs = [
+//     {
+//         container: "map1",
+//         coordinates: [55.751244, 37.618423], // Moskva
+//         zoom: 10,
+//         markerImage: "https://cdn-icons-png.flaticon.com/512/684/684908.png",
+//     },
+//     {
+//         container: "map2",
+//         coordinates: [41.2995, 69.2401], // Toshkent
+//         zoom: 12,
+//         markerImage: "https://cdn-icons-png.flaticon.com/512/684/684908.png",
+//     },
+//     {
+//         container: "map3",
+//         coordinates: [40.712776, -74.005974], // Nyu-York
+//         zoom: 13,
+//         markerImage: "https://cdn-icons-png.flaticon.com/512/684/684908.png",
+//     },
+//     {
+//         container: "map4",
+//         coordinates: [41.2995, 69.225], // Toshkent
+//         zoom: 14,
+//         markerImage: "https://cdn-icons-png.flaticon.com/512/684/684908.png",
+//     },
+//     {
+//         container: "map5",
+//         coordinates: [48.8566, 2.3522], // Paris
+//         zoom: 11,
+//         markerImage: "https://cdn-icons-png.flaticon.com/512/684/684908.png",
+//     },
+//     {
+//         container: "map6",
+//         coordinates: [34.0522, -118.2437], // Los Angeles
+//         zoom: 12,
+//         markerImage: "https://cdn-icons-png.flaticon.com/512/684/684908.png",
+//     },
+// ];
 
-// Har bir xaritani yaratish
-ymaps.ready(() => {
-    mapConfigs.forEach((config) => {
-        const map = new ymaps.Map(config.container, {
-            center: config.coordinates,
-            zoom: config.zoom,
-        });
+// // Har bir xaritani yaratish
+// ymaps.ready(() => {
+//     mapConfigs.forEach((config) => {
+//         const map = new ymaps.Map(config.container, {
+//             center: config.coordinates,
+//             zoom: config.zoom,
+//         });
 
-        const customPlacemark = new ymaps.Placemark(
-            config.coordinates,
-            {},
-            {
-                iconLayout: "default#image",
-                iconImageHref: config.markerImage,
-                iconImageSize: [40, 40],
-                iconImageOffset: [-20, -20],
-            }
-        );
+//         const customPlacemark = new ymaps.Placemark(
+//             config.coordinates,
+//             {},
+//             {
+//                 iconLayout: "default#image",
+//                 iconImageHref: config.markerImage,
+//                 iconImageSize: [40, 40],
+//                 iconImageOffset: [-20, -20],
+//             }
+//         );
 
-        map.geoObjects.add(customPlacemark);
-    });
-});
+//         map.geoObjects.add(customPlacemark);
+//     });
+// });
 
 // for video banner
 const videoBanner = document.querySelector(".videoBanner");
