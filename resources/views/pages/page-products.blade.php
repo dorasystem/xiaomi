@@ -32,7 +32,7 @@ $lang = app()->getLocale();
                             <img src="/assets/images/airpods.png" width="120px" alt="" />
                         </div>
                         <div class="position-relative">
-                            <img class="bottom_product border-orange" src="/assets/images/bottom_product.webp"
+                            <img class="bottom_product border-orange" src="/assets/images/bottom_product.png"
                                 width="120px" alt="" />
                         </div>
                     </div>

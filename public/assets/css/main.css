@@ -772,6 +772,7 @@ input:focus {
     width: 147px;
     height: 141px;
     border-radius: 20px;
+    object-fit: cover;
 }
 .accordion-button:focus {
     box-shadow: none;
