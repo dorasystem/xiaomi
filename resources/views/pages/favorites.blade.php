@@ -9,10 +9,10 @@
             <hr />
         </div>
         <!-- Products -->
-        <div class="container mt-5 p-0">
+        <div class="container p-0">
             <div class="m-0 fs-2 fw-bold container">@lang('home.featured')</div>
             <div class="d-lg-flex align-items-center justify-content-between d-block container">
-                <div class="col-lg-9 d-flex flex-column gap-4 my-3 align-items-start">
+                {{-- <div class="col-lg-9 d-flex flex-column gap-4 my-3 align-items-start"> --}}
                     {{--                    <ul class="nav nav-tabs mb-1 overflow-auto w-100" id="myTab" role="tablist" style="white-space: nowrap"> --}}
                     {{--                        <li class="me-3 mb-3" role="presentation"> --}}
                     {{--                            <a class="fs-5 p-2 active" id="home-tab" data-bs-toggle="tab" href="#home" role="tab" aria-controls="home" aria-selected="true">Телевизоры</a> --}}
@@ -21,7 +21,7 @@
                     {{--                            <a class="fs-5 pb-2" id="profile-tab" data-bs-toggle="tab" href="#profile" role="tab" aria-controls="profile" aria-selected="false">Телефоны</a> --}}
                     {{--                        </li> --}}
                     {{--                    </ul> --}}
-                </div>
+                {{-- </div> --}}
             </div>
 
             <div class="tab-content" id="myTabContent">
@@ -128,6 +128,9 @@
                                 </div>
                             @endforeach
                         @else
+                            <div class="text-center">
+                                <img width="350px" src="/assets/images/not-found.png" alt="">
+                            </div>
                             <x-page.not-found />
                             <p class="border-bottom-dashed py-1  mt-4  w-100"></p>
                         @endif

@@ -8,11 +8,11 @@
             </div>
             <hr />
         </div>
-        <div class="container mt-5 p-0">
-            <div class="m-0 fs-2 fw-normal container">@lang('home.compare')</div>
+        <div class="container  p-0">
+            <h1 class="m-0 fs-2 fw-normal container">@lang('home.compare')</h1>
             <div class="d-lg-flex align-items-center justify-content-between d-block container">
                 <div class="col-lg-9 d-flex flex-column gap-4 my-3 align-items-start">
-                    {{--                <ul class="nav nav-tabs mb-1 overflow-auto w-100" id="myTab" role="tablist" style="white-space: nowrap"> --}}
+                                   {{-- <ul class="nav nav-tabs mb-1 overflow-auto w-100" id="myTab" role="tablist" style="white-space: nowrap"> --}}
                     {{--                    <li class="me-3 mb-3" role="presentation"> --}}
                     {{--                        <a class="fs-5 p-2 active" id="home-tab" data-bs-toggle="tab" href="#home" role="tab" aria-controls="home" aria-selected="true">Телевизоры <span>(1)</span> </a> --}}
                     {{--                    </li> --}}
@@ -137,6 +137,10 @@
                                 </div>
                             @endforeach
                         @else
+                            <div class="text-center">
+                                <img class="fit-cover" width="350px" src="/assets/images/not-found.png" alt="">
+                            </div>
+
                             <x-page.not-found />
                         @endif
                     </div>
