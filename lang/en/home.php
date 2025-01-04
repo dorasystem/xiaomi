@@ -118,5 +118,6 @@ return [
     "submit_application" => "Submit an Application",
     "reviews" => "Reviews",
     "read" => "Read",
+    "tel" => "Call",
 
 ];

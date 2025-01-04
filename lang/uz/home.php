@@ -113,6 +113,7 @@ return [
     "send_application" => "Arizani yuborish",
     "submit_application" => "Ariza topshirish",
     "reviews" => "Blog",
+    "tel" => "Qo'ng'iroq",
     "read" => "O'qish",
 
 ];

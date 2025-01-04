@@ -29,14 +29,15 @@
     <nav class="navbar navbar-white bg-white text-grey fixed-bottom d-lg-none">
         <div class="container-fluid">
             <ul class="navbar-nav d-flex flex-row justify-content-around w-100 align-items-end">
-                <a href="tel:+998772820080" class="d-flex flex-column align-items-center nav-link text-center nav-item">
+
+                <a href="tel:+998772820080" class="d-flex flex-column align-items-center nav-link text-center nav-item text-dark">
                     <div class="icon position-relative p-0 mb-1">
                         <img src="/assets/icons/phone.svg" alt="Phone icon" />
                     </div>
-                    <small class="text-lowercase">позванить</small>
+                    <small class="">@lang('home.tel')</small>
                 </a>
 
-                <li class="d-flex flex-column align-items-center nav-link text-center nav-item">
+                <li class="d-flex flex-column align-items-center nav-link text-center nav-item text-dark">
                     <a href="{{ route('cart') }}" class="icon position-relative p-0">
                         <svg width="26" height="25" viewBox="0 0 30 29" fill="none"
                             xmlns="http://www.w3.org/2000/svg">
@@ -51,16 +52,18 @@
                                 fill="#000" />
                         </svg>
 
-                        <span class="badge badge-pill badge-danger badge-position rounded-circle">1</span>
+                        <span
+                            class="badge badge-pill badge-danger badge-position rounded-circle"id="cart-count">{{ session('cart') ? count(session('cart')) : 0 }}</span>
                     </a>
-                    <small class="text-lowercase">Корзина</small>
+                    <small class="">@lang('home.basket')</small>
                 </li>
-                <li class="d-flex flex-column align-items-center nav-link text-center nav-item">
+                <li class="d-flex flex-column align-items-center nav-link text-center nav-item text-dark">
                     <a href="/favorites" class="icon position-relative p-0">
                         <i class="fa-regular fa-heart text-black"></i>
-                        <span class="badge badge-pill badge-danger badge-position rounded-circle">2</span>
+                        <span class="badge badge-pill badge-danger badge-position rounded-circle"id="favorite-count">
+                            {{ session('favorites') ? count(session('favorites')) : 0 }}</span>
                     </a>
-                    <small class="text-lowercase">Избранное</small>
+                    <small class="">@lang('home.featured')</small>
                 </li>
             </ul>
         </div>
@@ -90,7 +93,8 @@
                                     class="text-danger">*</span></label>
                             <input type="text" class="form-control focus_none" id="phone" name="phone"
                                 placeholder="+998 (90) 123-45-67" required />
-                            <small id="phone-error" class="form-text text-danger" style="display: none;">@lang('home.invalid_phone_format')</small>
+                            <small id="phone-error" class="form-text text-danger"
+                                style="display: none;">@lang('home.invalid_phone_format')</small>
                         </div>
                         <input type="hidden" name="product_id" id="product_id">
                         <input type="hidden" name="product_name" id="product_name">
@@ -123,7 +127,7 @@
                             const phoneRegex = /^\+998 \([0-9]{2}\) [0-9]{3}-[0-9]{2}-[0-9]{2}$/;
                             errorText.style.display = phoneRegex.test(phoneInput.value) ? 'none' : 'block';
                         });
-                    </script> 
+                    </script>
                     <div class="col-lg-8 order-lg-2 order-1">
                         <div class="d-flex flex-column justify-content-between h-100">
                             <div class="d-flex justify-content-between gap-1">
@@ -175,7 +179,7 @@
                 const productPrice = button.getAttribute('data-product-price');
                 const productImage = button.getAttribute('data-product-image');
                 const productId = button.getAttribute(
-                'data-product-id'); // Assuming the product ID is passed
+                    'data-product-id'); // Assuming the product ID is passed
 
                 // Update the modal content dynamically
                 modal.querySelector('.modal-title').textContent = productName;

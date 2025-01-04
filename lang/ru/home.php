@@ -109,5 +109,6 @@ return [
     "submit_application" => "Подать  заявку",
     "reviews" => "Обзоры",
     "read" => "читать",
+    "tel" => "позванить",
 
 ];

@@ -9,7 +9,7 @@
             </div>
             <hr />
         </div>
-        @if (!empty($cartProducts) && $cartProducts->count())
+        @if (!empty($cartProducts) )
             <div class="row mb-5">
                 <div class="col-lg-9 pe-lg-4">
                     <div class="d-flex align-items-center gap-1 justify-content-between pb-2 border-bottom-dashed">
