@@ -172,7 +172,7 @@
                             );
 
                             // Tovarlar sonini yangilash
-                            $('#cart-count').text(response.cart.length);
+                            $('#cart-count').text(response.cart_count);
                         }
                     },
                     error: function(xhr) {

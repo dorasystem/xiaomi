@@ -87,6 +87,7 @@ class CartController extends Controller
             'success' => true,
             'total_amount' => $total_amount,
             'cart' => $cart,
+            'cart_count' => count($cart),
         ]);
     }
 
