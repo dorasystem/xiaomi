@@ -9,12 +9,12 @@
             </div>
             <hr />
         </div>
-        @if (!empty($cartProducts) )
+        @if (!empty($cartProducts))
             <div class="row mb-5">
                 <div class="col-lg-9 pe-lg-4">
                     <div class="d-flex align-items-center gap-1 justify-content-between pb-2 border-bottom-dashed">
                         <h1 class="fw-normal">@lang('home.basket')</h1>
-                        <button class="d-flex align-items-center gap-2 bg-transparent border-0">
+                        <button onclick="clearCart()" class="d-flex align-items-center gap-2 bg-transparent border-0">
                             <img src="/assets/icons/delete_icon.svg" alt="" />
                             <div>@lang('home.clear_cart')</div>
                         </button>
@@ -170,7 +170,6 @@
                     }
                 });
             }
-
             // Remove mahsulot funksiyasi
             function removeFromCart(productId) {
                 $.ajax({
@@ -249,6 +248,7 @@
                     }
                 });
             }
+
         </script>
     </main>
     <!-- Modal -->

@@ -92,6 +92,139 @@ $products = Product::inRandomOrder()->skip(5)->take(10)->get();
 
 <script src="https://cdn.jsdelivr.net/npm/toastify-js"></script>
 
+    <script>
+        function addToCart(productId, productName, productPrice, variantId) {
+            $.ajax({
+                url: `/add-to-cart`,
+                type: 'POST',
+                data: {
+                    _token: '{{ csrf_token() }}',
+                    product_id: productId,
+                    variant_id: variantId,
+                    price: productPrice,
+                    storage: 1,
+                },
+                success: function(response) {
+                    // alert('ok')
+                    if (response.success) {
+                        updateCartCount(response.cart_count); // Update the cart count in real-time
+                        Toastify({
+                            text: response.message,
+                            duration: 3000,
+                            close: true,
+                            gravity: "top",
+                            position: "right",
+                            backgroundColor: "#4CAF50",
+                            stopOnFocus: true,
+                            className: "toast-success",
+                            animation: "fade",
+                            offset: {
+                                x: 30,
+                                y: 50
+                            },
+                        }).showToast();
+                    } else {
+                        alert('Xatolik yuz berdi: ' + response.message);
+                    }
+                },
+                error: function(xhr) {
+                    alert('Xatolik yuz berdi: ' + xhr.responseText);
+                }
+            });
+        }
+
+        function updateCartCount(count) {
+            document.getElementById('cart-count').innerText = count; // Updates the cart count badge
+        }
+
+        function toggleFavourite(productId) {
+            $.ajax({
+                url: '/toggle-favorite',
+                type: 'POST',
+                data: {
+                    _token: '{{ csrf_token() }}',
+                    id: productId
+                },
+                success: function(response) {
+                    if (response.success) {
+                        Toastify({
+                            text: response.message,
+                            duration: 3000,
+                            close: true,
+                            gravity: "top",
+                            position: "right",
+                            backgroundColor: "#4CAF50",
+                        }).showToast();
+
+                        // Sevimlilar sonini yangilash
+                        $('#favorite-count').text(response.favorites_count);
+
+                        // Ico'ni yangilash
+                        if (response.message.includes('qo\'shildi')) {
+                            $('#favourite-icon-' + productId).addClass('text-orange');
+                            if (document.getElementById('favourite-icon-' + productId).classList.contains(
+                                    "fa-regular")) {
+                                document.getElementById('favourite-icon-' + productId).classList.remove(
+                                    'fa-regular')
+                                document.getElementById('favourite-icon-' + productId).classList.add('fa-solid')
+                            }
+                        } else {
+                            $('#favourite-icon-' + productId).removeClass(
+                                'text-orange'); // O'chirilganini ko'rsatish
+                            if (document.getElementById('favourite-icon-' + productId).classList.contains(
+                                    "fa-solid")) {
+                                document.getElementById('favourite-icon-' + productId).classList.remove(
+                                    'fa-solid')
+                                document.getElementById('favourite-icon-' + productId).classList.add(
+                                    'fa-regular')
+                            }
+                        }
+                    }
+                },
+                error: function(xhr) {
+                    alert('Xatolik yuz berdi: ' + xhr.responseText);
+                }
+            });
+        }
+
+        function toggleCompare(productId) {
+            $.ajax({
+                url: '/toggle-compare',
+                type: 'POST',
+                data: {
+                    _token: '{{ csrf_token() }}',
+                    id: productId
+                },
+                success: function(response) {
+                    if (response.success) {
+                        Toastify({
+                            text: response.message,
+                            duration: 3000,
+                            close: true,
+                            gravity: "top",
+                            position: "right",
+                            backgroundColor: "#4CAF50",
+                        }).showToast();
+
+                        // Sevimlilar sonini yangilash
+                        $('#compare-count').text(response.compares_count); // Id bo'yicha o'zgarish
+
+                        // Ico'ni yangilash
+                        if (response.message.includes('qo\'shildi')) {
+                            $('#compare-icon-' + productId).addClass(
+                                'active-svg'); // Qo'shilganini ko'rsatish
+                        } else {
+                            $('#compare-icon-' + productId).removeClass(
+                                'active-svg'); // O'chirilganini ko'rsatish
+                        }
+                    }
+                },
+                error: function(xhr) {
+                    alert('Xatolik yuz berdi: ' + xhr.responseText);
+                }
+            });
+        }
+    </script>
 @if (session('success'))
     <script>
         Toastify({

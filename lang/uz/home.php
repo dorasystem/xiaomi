@@ -113,7 +113,13 @@ return [
     "send_application" => "Arizani yuborish",
     "submit_application" => "Ariza topshirish",
     "reviews" => "Blog",
-    "tel" => "Qo'ng'iroq",
     "read" => "O'qish",
+    "tel" => "Qo'ng'iroq",
+    "cart_message" => "Mahsulot yoki Variant topilmadi",
+    "add_favorites" => "Mahsulot sevimlilarga qo\'shildi!",
+    "remove_favorites" => "Mahsulot sevimlilardan olib tashlandi!",
+    "add_to_cart" => "Mahsulot savatga qo\'shildi",
+    "add_compare" => "Mahsulot Taqqoslashdan olib tashlandi!",
+    "remove_compare" => "Mahsulot Taqqoslashdan olib tashlandi!",
 
 ];

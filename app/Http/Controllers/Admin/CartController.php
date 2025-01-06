@@ -18,7 +18,7 @@ class CartController extends Controller
         $variant = Variant::find($request->variant_id);
 
         if (!$product || !$variant) {
-            return response()->json(['success' => false, 'message' => 'Mahsulot yoki Variant topilmadi']);
+            return response()->json(['success' => false, 'message' => __('home.cart_message')]);
         }
 
         $cart = session()->get('cart', []);
@@ -46,7 +46,7 @@ class CartController extends Controller
 
         return response()->json([
             'success' => true,
-            'message' => 'Mahsulot savatga qo\'shildi',
+            'message' => __('home.add_to_cart'),
             'cart_count' => $cartCount
         ]);
     }
@@ -125,10 +125,10 @@ class CartController extends Controller
 
         if (in_array($productId, $favorites)) {
             $favorites = array_filter($favorites, fn($id) => $id != $productId);
-            $message = 'Mahsulot sevimlilardan olib tashlandi!';
+            $message = __('home.remove_favorites');
         } else {
             $favorites[] = $productId;
-            $message = 'Mahsulot sevimlilarga qo\'shildi!';
+            $message = __('home.add_favorites');
         }
 
         session()->put('favorites', $favorites);
@@ -155,10 +155,10 @@ class CartController extends Controller
 
         if (in_array($productId, $compares)) {
             $compares = array_filter($compares, fn($id) => $id != $productId);
-            $message = 'Mahsulot Taqqoslashdan olib tashlandi!';
+            $message = __('home.remove_compare');
         } else {
             $compares[] = $productId;
-            $message = 'Mahsulot Taqqoslash qo\'shildi!';
+            $message = __('home.add_compare');
         }
 
         session()->put('compares', $compares);
