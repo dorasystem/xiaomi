@@ -1,178 +1,207 @@
 @extends('layouts.page')
 @section('content')
     <main class="container">
-    <div class="my-4">
-        <div class="d-flex align-items-center gap-3">
-            <a href="/" class="text-grey fw-bold text-lowercase fs-14">@lang('home.home') / <span class="text-dark">@lang('home.compare')</span></a>
-        </div>
-        <hr />
-    </div>
-    <div class="container mt-5 p-0">
-        <div class="m-0 fs-2 fw-normal container">@lang('home.compare')</div>
-        <div class="d-lg-flex align-items-center justify-content-between d-block container">
-            <div class="col-lg-9 d-flex flex-column gap-4 my-3 align-items-start">
-{{--                <ul class="nav nav-tabs mb-1 overflow-auto w-100" id="myTab" role="tablist" style="white-space: nowrap">--}}
-{{--                    <li class="me-3 mb-3" role="presentation">--}}
-{{--                        <a class="fs-5 p-2 active" id="home-tab" data-bs-toggle="tab" href="#home" role="tab" aria-controls="home" aria-selected="true">Телевизоры <span>(1)</span> </a>--}}
-{{--                    </li>--}}
-{{--                    <li class="me-3 mb-3" role="presentation">--}}
-{{--                        <a class="fs-5 pb-2" id="profile-tab" data-bs-toggle="tab" href="#profile" role="tab" aria-controls="profile" aria-selected="false">Часы <span>(1)</span></a>--}}
-{{--                    </li>--}}
-{{--                    <li class="me-3 mb-3" role="presentation">--}}
-{{--                        <a class="fs-5 pb-2" id="phones-tab" data-bs-toggle="tab" href="#phones" role="tab" aria-controls="phones" aria-selected="false"> Смартфоны <span>(3)</span></a>--}}
-{{--                    </li>--}}
-{{--                </ul>--}}
+        <div class="my-4">
+            <div class="d-flex align-items-center gap-3">
+                <a href="/" class="text-grey fw-bold  fs-14">@lang('home.home') / <span
+                        class="text-dark">@lang('home.compare')</span></a>
             </div>
+            <hr />
         </div>
-        <div class="tab-content container" id="myTabContent">
-            <div class="tab-pane fade show active" id="home" role="tabpanel" aria-labelledby="home-tab">
-                <div class="row">
-                    @foreach($products as $product)
-                        <div class="col-lg-3 col-md-4 col-sm-6 mb-3">
-                            <div class="product shadow-sm position-relative rounded">
-                                <a href="{{ route('single.product', ['slug' => $product->slug]) }}" class="">
-                                    <div class="position-absolute like d-flex flex-column gap-3 justify-content-end">
-                                        <a href="javascript:void(0);" onclick="toggleFavourite({{ $product->id }})">
-                                            <i id="favourite-icon-{{ $product->id }}" class="fa-solid {{ in_array($product->id, session('favorites', [])) ? 'text-orange' : 'hover-orange' }} fa-heart fs-4 ps-1"></i>
-                                        </a>
-
-                                        <a onclick="toggleCompare({{ $product->id }})">
-                                            <svg id="compare-icon-{{ $product->id }}" class="hover-svg {{ in_array($product->id, session('compares', [])) ? 'active-svg' : '' }}" width="30" height="20" viewBox="0 0 102 92" fill="none"
-                                                 xmlns="http://www.w3.org/2000/svg">
-                                                <rect width="11" height="92" rx="2" fill="#000" />
-                                                <rect x="23" y="22" width="11" height="70" rx="2" fill="#000" />
-                                                <rect x="46" y="45" width="11" height="47" rx="2" fill="#000" />
-                                                <rect x="69" y="23" width="11" height="69" rx="2" fill="#000" />
-                                                <rect x="91" y="45" width="11" height="47" rx="2" fill="#000" />
-                                            </svg>
-                                        </a>
-                                    </div>
-                                    @php
-                                        $cheapestVariant = $product->variants->sortBy('price')->first();
-                                    @endphp
-                                    <img class="w-100 pb-4 productImage p-4" src="{{ asset('storage/' . $product->image) ?? '/assets/images/category_tv.webp'}}" alt="" />
-                                    <div class="d-flex flex-column justify-content-between product-text p-4 rounded-bottom">
-                                        <div class="d-flex align-items-end gap-3 pt-2">
-                                            @if ($cheapestVariant->discount_price)
-                                                <div class="fw-bold">
-                                                    {{ number_format($cheapestVariant->discount_price, 0, ',', ' ') }} UZS
-                                                </div>
-                                                <del class="text-grey">
-                                                    <small>{{ number_format($cheapestVariant->price, 0, ',', ' ') }} UZS</small>
-                                                </del>
-                                            @else
-                                                <del class="text-grey">
-                                                    <small>{{ number_format($cheapestVariant->price, 0, ',', ' ') }} UZS</small>
-                                                </del>
-                                            @endif
-                                        </div>
-                                        <div class="productName fw-bold">{!! $product['name_' . $lang] !!}</div>
-                                        <p class="text-grey">{!! \Str::words($product['description_' . $lang], 15) !!}</p>
-                                        <div class="d-flex align-items-center justify-content-between w-100">
-                                                    <span class="small bg-transparent px-0">
-                                                        @if ($cheapestVariant->discount_price)
-                                                            {{ number_format($cheapestVariant->discount_price, 0, ',', ' ') }} UZS
-                                                        @else
-                                                            <small>{{ number_format($cheapestVariant->price, 0, ',', ' ') }} UZS</small>
-                                                        @endif<span class="text-orange">за наличные</span></span>
-                                            <span class="px-2 productmonth-border small text-grey">from {{ number_format($cheapestVariant->price_12, 0, ',', ' ') }} UZS UZS/month</span>
-                                        </div>
-
-                                        <div class="d-flex gap-4 mt-3">
-                                            <a class="border-orange bg-transparent rounded p-1 px-3"
-                                               href="javascript: void(0);"
-                                               type="button"
-                                               onclick="addToCart({{ $product->id }}, '{{ $product['name_' . $lang] }}', {{ $cheapestVariant->price ? $cheapestVariant->discount_price : $cheapestVariant->price }}, {{ $cheapestVariant->id }})">
-                                                <img src="/assets/icons/shopping-cart.svg" alt=""/>
-                                            </a>
-                                            <button data-bs-toggle="modal" data-bs-target="#largeModal" class="btn-orange rounded w-100 d-flex align-items-center gap-2 justify-content-center">
-                                                <span>Купить сразу</span>
-                                            </button>
-                                        </div>
-                                    </div>
-                                </a>
-                            </div>
-                        </div>
-                    @endforeach
+        <div class="container mt-5 p-0">
+            <div class="m-0 fs-2 fw-normal container">@lang('home.compare')</div>
+            <div class="d-lg-flex align-items-center justify-content-between d-block container">
+                <div class="col-lg-9 d-flex flex-column gap-4 my-3 align-items-start">
+                    {{--                <ul class="nav nav-tabs mb-1 overflow-auto w-100" id="myTab" role="tablist" style="white-space: nowrap"> --}}
+                    {{--                    <li class="me-3 mb-3" role="presentation"> --}}
+                    {{--                        <a class="fs-5 p-2 active" id="home-tab" data-bs-toggle="tab" href="#home" role="tab" aria-controls="home" aria-selected="true">Телевизоры <span>(1)</span> </a> --}}
+                    {{--                    </li> --}}
+                    {{--                    <li class="me-3 mb-3" role="presentation"> --}}
+                    {{--                        <a class="fs-5 pb-2" id="profile-tab" data-bs-toggle="tab" href="#profile" role="tab" aria-controls="profile" aria-selected="false">Часы <span>(1)</span></a> --}}
+                    {{--                    </li> --}}
+                    {{--                    <li class="me-3 mb-3" role="presentation"> --}}
+                    {{--                        <a class="fs-5 pb-2" id="phones-tab" data-bs-toggle="tab" href="#phones" role="tab" aria-controls="phones" aria-selected="false"> Смартфоны <span>(3)</span></a> --}}
+                    {{--                    </li> --}}
+                    {{--                </ul> --}}
                 </div>
-                <div class="row">
-                    @if(!empty($products) && $products->count())
-                        @foreach($products as $product)
+            </div>
+            <div class="tab-content container" id="myTabContent">
+                <div class="tab-pane fade show active" id="home" role="tabpanel" aria-labelledby="home-tab">
+                    <div class="row">
+                        @foreach ($products as $product)
                             <div class="col-lg-3 col-md-4 col-sm-6 mb-3">
-                                <p>{!! $product['content_' . $lang] !!}</p>
+                                <div class="product shadow-sm position-relative rounded">
+                                    <a href="{{ route('single.product', ['slug' => $product->slug]) }}" class="">
+                                        <div class="position-absolute like d-flex flex-column gap-3 justify-content-end">
+                                            <a href="javascript:void(0);" onclick="toggleFavourite({{ $product->id }})">
+                                                <i id="favourite-icon-{{ $product->id }}"
+                                                    class="fa-{{ in_array($product->id, session('favorites', [])) ? 'solid' : 'regular' }} {{ in_array($product->id, session('favorites', [])) ? 'text-orange' : 'hover-orange' }} fa-heart fs-4 ps-1"></i>
+                                            </a>
+
+                                            <a onclick="toggleCompare({{ $product->id }})">
+                                                <svg id="compare-icon-{{ $product->id }}"
+                                                    class="hover-svg {{ in_array($product->id, session('compares', [])) ? 'active-svg' : '' }}"
+                                                    width="30" height="20" viewBox="0 0 102 92" fill="none"
+                                                    xmlns="http://www.w3.org/2000/svg">
+                                                    <rect width="11" height="92" rx="2" fill="#000" />
+                                                    <rect x="23" y="22" width="11" height="70" rx="2"
+                                                        fill="#000" />
+                                                    <rect x="46" y="45" width="11" height="47" rx="2"
+                                                        fill="#000" />
+                                                    <rect x="69" y="23" width="11" height="69" rx="2"
+                                                        fill="#000" />
+                                                    <rect x="91" y="45" width="11" height="47" rx="2"
+                                                        fill="#000" />
+                                                </svg>
+                                            </a>
+                                        </div>
+                                        @php
+                                            $cheapestVariant = $product->variants->sortBy('price')->first();
+                                        @endphp
+                                        <img class="w-100 pb-4 productImage p-4"
+                                            src="{{ asset('storage/' . $product->image) ?? '/assets/images/category_tv.webp' }}"
+                                            alt="" />
+                                        <div
+                                            class="d-flex flex-column justify-content-between product-text p-4 rounded-bottom">
+                                            <div class="d-flex align-items-end gap-3 pt-2">
+                                                @if ($cheapestVariant->discount_price)
+                                                    <div class="fw-bold">
+                                                        {{ number_format($cheapestVariant->discount_price, 0, ',', ' ') }}
+                                                        UZS
+                                                    </div>
+                                                    <del class="text-grey">
+                                                        <small>{{ number_format($cheapestVariant->price, 0, ',', ' ') }}
+                                                            UZS</small>
+                                                    </del>
+                                                @else
+                                                    <del class="text-grey">
+                                                        <small>{{ number_format($cheapestVariant->price, 0, ',', ' ') }}
+                                                            UZS</small>
+                                                    </del>
+                                                @endif
+                                            </div>
+                                            <a href="{{ route('single.product', $product->slug) }}">
+                                                <div class="productName fw-bold">
+                                                    {{ \Str::words($product['name_' . $lang], 3) }}</div>
+                                            </a>
+                                            <a class="truncate-text" href="{{ route('single.product', $product->slug) }}">
+                                                <p class="text-grey">{!! \Str::words($product['description_' . $lang], 15) !!}</p>
+                                            </a>
+                                            <div class="d-flex align-items-center justify-content-between w-100">
+                                                <span class="small bg-transparent px-0">
+                                                    @if ($cheapestVariant->discount_price)
+                                                        {{ number_format($cheapestVariant->discount_price, 0, ',', ' ') }}
+                                                        UZS
+                                                    @else
+                                                        <small>{{ number_format($cheapestVariant->price, 0, ',', ' ') }}
+                                                            UZS</small>
+                                                    @endif
+                                                    <span class="text-orange">@lang('home.incash')</span>
+                                                </span>
+                                                <span class="px-2 productmonth-border small text-grey">
+                                                    {{ number_format($cheapestVariant->price_12, 0, ',', ' ') }}UZS/@lang('home.month')</span>
+                                            </div>
+
+                                            <div class="d-flex gap-4 mt-3">
+                                                <a class="border-orange bg-transparent rounded p-1 px-3"
+                                                    href="javascript: void(0);" type="button"
+                                                    onclick="addToCart({{ $product->id }}, '{{ $product['name_' . $lang] }}', {{ $cheapestVariant->price ? $cheapestVariant->discount_price : $cheapestVariant->price }}, {{ $cheapestVariant->id }})">
+                                                    <img src="/assets/icons/shopping-cart.svg" alt="" />
+                                                </a>
+                                                <button data-bs-toggle="modal" data-bs-target="#largeModal"
+                                                    class="btn-orange rounded w-100 d-flex align-items-center gap-2 justify-content-center">
+                                                    <span>@lang('home.buy_now')</span>
+                                                </button>
+                                            </div>
+                                        </div>
+                                    </a>
+                                </div>
                             </div>
                         @endforeach
-                    @else
-                        <table class="table mb-0">
-                            <thead class="bg-white compareProdName position-sticky">
-                            <tr>
-                                <th class="px-4 py-3 fs-14" scope="col">Общая информация</th>
-                                <th class="px-4 py-3 fs-14" scope="col">Телевизоры</th>
-                            </tr>
-                            </thead>
-                            <thead class="bg-white border-top">
-                            <tr>
-                                <th class="px-4 py-3 fs-14" scope="col">Общая информация</th>
-                                <th class="px-4 py-3 fs-14" scope="col"></th>
-                            </tr>
-                            </thead>
-                            <tbody>
-                            <tr>
-                                <td class="px-4 py-3 text-grey fs-14">Дата выхода на рынок</td>
-                                <td class="px-4 py-3 fs-14">2024 г.</td>
-                            </tr>
-                            <tr>
-                                <td class="px-4 py-3 text-grey fs-14">Тип</td>
-                                <td class="px-4 py-3 fs-14">Смартфон</td>
-                            </tr>
-                            <tr>
-                                <td class="px-4 py-3 text-grey fs-14">Операционная система</td>
-                                <td class="px-4 py-3 fs-14">Android</td>
-                            </tr>
-                            <tr>
-                                <td class="px-4 py-3 text-grey fs-14">Тип</td>
-                                <td class="px-4 py-3 fs-14">Смартфон</td>
-                            </tr>
-                            <tr>
-                                <td class="px-4 py-3 border-0 text-grey fs-14">Операционная система</td>
-                                <td class="px-4 py-3 border-0 fs-14">Android</td>
-                            </tr>
-                            </tbody>
-                            <thead class="bg-white border-top">
-                            <tr>
-                                <th class="px-4 py-3 fs-14" scope="col">Общая информация</th>
-                                <th class="px-4 py-3 fs-14" scope="col"></th>
-                            </tr>
-                            </thead>
-                            <tbody>
-                            <tr>
-                                <td class="px-4 py-3 text-grey fs-14">Дата выхода на рынок</td>
-                                <td class="px-4 py-3 fs-14">2024 г.</td>
-                            </tr>
-                            <tr>
-                                <td class="px-4 py-3 text-grey fs-14">Тип</td>
-                                <td class="px-4 py-3 fs-14">Смартфон</td>
-                            </tr>
-                            <tr>
-                                <td class="px-4 py-3 text-grey fs-14">Операционная система</td>
-                                <td class="px-4 py-3 fs-14">Android</td>
-                            </tr>
-                            <tr>
-                                <td class="px-4 py-3 text-grey fs-14">Тип</td>
-                                <td class="px-4 py-3 fs-14">Смартфон</td>
-                            </tr>
-                            <tr>
-                                <td class="px-4 py-3 border-0 text-grey fs-14">Операционная система</td>
-                                <td class="px-4 py-3 border-0 fs-14">Android</td>
-                            </tr>
-                            </tbody>
-                        </table>
-                    @endif
+                    </div>
+                    <div class="row">
+                        @if (!empty($products) && $products->count())
+                            @foreach ($products as $product)
+                                <p class="border-bottom-dashed py-1   w-100"></p>
+                                <div class="d-flex align-items-center gap-2">
+                                    <img width="50" height="50" class="fit-cover rounded" src="{{ asset('storage/' . $product->image) }}" alt="" />
+                                    <h4 class="mt-3 fw-bold">{!! $product['name_' . $lang] !!}</h4>
+                                </div>
+                                <div class="">
+                                    <p>{!! $product['content_' . $lang] !!}</p>
+                                </div>
+                            @endforeach
+                        @else
+                            <table class="table mb-0">
+                                <thead class="bg-white compareProdName position-sticky">
+                                    <tr>
+                                        <th class="px-4 py-3 fs-14" scope="col">Общая информация</th>
+                                        <th class="px-4 py-3 fs-14" scope="col">Телевизоры</th>
+                                    </tr>
+                                </thead>
+                                <thead class="bg-white border-top">
+                                    <tr>
+                                        <th class="px-4 py-3 fs-14" scope="col">Общая информация</th>
+                                        <th class="px-4 py-3 fs-14" scope="col"></th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <tr>
+                                        <td class="px-4 py-3 text-grey fs-14">Дата выхода на рынок</td>
+                                        <td class="px-4 py-3 fs-14">2024 г.</td>
+                                    </tr>
+                                    <tr>
+                                        <td class="px-4 py-3 text-grey fs-14">Тип</td>
+                                        <td class="px-4 py-3 fs-14">Смартфон</td>
+                                    </tr>
+                                    <tr>
+                                        <td class="px-4 py-3 text-grey fs-14">Операционная система</td>
+                                        <td class="px-4 py-3 fs-14">Android</td>
+                                    </tr>
+                                    <tr>
+                                        <td class="px-4 py-3 text-grey fs-14">Тип</td>
+                                        <td class="px-4 py-3 fs-14">Смартфон</td>
+                                    </tr>
+                                    <tr>
+                                        <td class="px-4 py-3 border-0 text-grey fs-14">Операционная система</td>
+                                        <td class="px-4 py-3 border-0 fs-14">Android</td>
+                                    </tr>
+                                </tbody>
+                                <thead class="bg-white border-top">
+                                    <tr>
+                                        <th class="px-4 py-3 fs-14" scope="col">Общая информация</th>
+                                        <th class="px-4 py-3 fs-14" scope="col"></th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <tr>
+                                        <td class="px-4 py-3 text-grey fs-14">Дата выхода на рынок</td>
+                                        <td class="px-4 py-3 fs-14">2024 г.</td>
+                                    </tr>
+                                    <tr>
+                                        <td class="px-4 py-3 text-grey fs-14">Тип</td>
+                                        <td class="px-4 py-3 fs-14">Смартфон</td>
+                                    </tr>
+                                    <tr>
+                                        <td class="px-4 py-3 text-grey fs-14">Операционная система</td>
+                                        <td class="px-4 py-3 fs-14">Android</td>
+                                    </tr>
+                                    <tr>
+                                        <td class="px-4 py-3 text-grey fs-14">Тип</td>
+                                        <td class="px-4 py-3 fs-14">Смартфон</td>
+                                    </tr>
+                                    <tr>
+                                        <td class="px-4 py-3 border-0 text-grey fs-14">Операционная система</td>
+                                        <td class="px-4 py-3 border-0 fs-14">Android</td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                        @endif
+                    </div>
                 </div>
             </div>
         </div>
-    </div>
-</main>
+    </main>
     <script>
         function addToCart(productId, productName, productPrice, variantId) {
             $.ajax({
@@ -217,6 +246,7 @@
         function updateCartCount(count) {
             document.getElementById('cart-count').innerText = count; // Updates the cart count badge
         }
+
         function toggleFavourite(productId) {
             $.ajax({
                 url: '/toggle-favorite',
@@ -225,7 +255,7 @@
                     _token: '{{ csrf_token() }}',
                     id: productId
                 },
-                success: function (response) {
+                success: function(response) {
                     if (response.success) {
                         Toastify({
                             text: response.message,
@@ -242,24 +272,31 @@
                         // Ico'ni yangilash
                         if (response.message.includes('qo\'shildi')) {
                             $('#favourite-icon-' + productId).addClass('text-orange');
-                            if (document.getElementById('favourite-icon-'  + productId).classList.contains("fa-regular")) {
-                                document.getElementById('favourite-icon-'  + productId).classList.remove('fa-regular')
-                                document.getElementById('favourite-icon-'  + productId).classList.add('fa-solid')
+                            if (document.getElementById('favourite-icon-' + productId).classList.contains(
+                                    "fa-regular")) {
+                                document.getElementById('favourite-icon-' + productId).classList.remove(
+                                    'fa-regular')
+                                document.getElementById('favourite-icon-' + productId).classList.add('fa-solid')
                             }
                         } else {
-                            $('#favourite-icon-' + productId).removeClass('text-orange'); // O'chirilganini ko'rsatish
-                            if (document.getElementById('favourite-icon-'  + productId).classList.contains("fa-solid")) {
-                                document.getElementById('favourite-icon-'  + productId).classList.remove('fa-solid')
-                                document.getElementById('favourite-icon-'  + productId).classList.add('fa-regular')
+                            $('#favourite-icon-' + productId).removeClass(
+                                'text-orange'); // O'chirilganini ko'rsatish
+                            if (document.getElementById('favourite-icon-' + productId).classList.contains(
+                                    "fa-solid")) {
+                                document.getElementById('favourite-icon-' + productId).classList.remove(
+                                    'fa-solid')
+                                document.getElementById('favourite-icon-' + productId).classList.add(
+                                    'fa-regular')
                             }
                         }
                     }
                 },
-                error: function (xhr) {
+                error: function(xhr) {
                     alert('Xatolik yuz berdi: ' + xhr.responseText);
                 }
             });
         }
+
         function toggleCompare(productId) {
             $.ajax({
                 url: '/toggle-compare',

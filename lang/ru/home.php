@@ -90,6 +90,18 @@ return [
     "message_input1" => "Какой товар вы ищите?",
     "message_input2" => "Введите имя и фамилию",
     "send" => "Отправить",
+    "page_not_found" => "Страница не найдена",
+    "not_found" => "Не найдена",
+    "go_to_home" => "Перейти на главную",
+    "offers" => "Специальные предложения",
+    "incash" => "за наличные",
+    "filter_title" => "Абсолютно горячие коллекции",
+    "filter_desc" => 'Лучшее место, чтобы <br /> Найти и купить <br class="d-lg-block d-none" /> Удивительные <span class="text-orange">Товары</span>',
+    "filter_res" => "Результаты поиска",
+    "category" => "Категории",
+    "price" => "Цена",
+    "reset" => "Сбросить",
+    "all_filters" => "Все фильтры",
 
 
 

@@ -3,13 +3,13 @@
     <main class="container">
         <div class="my-4">
             <div class="d-flex align-items-center gap-3">
-                <a href="./index.html" class="text-grey fw-bold text-lowercase fs-14">Главная страница / <span class="text-dark">Сравнение</span></a>
+                <a href="./index.html" class="text-grey fw-bold  fs-14">@lang('home.home') / <span class="text-dark">@lang('home.comparison')</span></a>
             </div>
             <hr />
         </div>
         <!-- Products -->
         <div class="container mt-5 p-0">
-            <div class="m-0 fs-2 fw-bold container">Специальные предложения</div>
+            <div class="m-0 fs-2 fw-bold container">@lang('home.offers')</div>
             <div class="d-lg-flex align-items-center justify-content-between d-block container">
                 <div class="col-lg-9 d-flex flex-column gap-4 my-3 align-items-start">
 {{--                    <ul class="nav nav-tabs mb-1 overflow-auto w-100" id="myTab" role="tablist" style="white-space: nowrap">--}}
@@ -29,7 +29,7 @@
                         @foreach($products as $product)
                             <div class="col-lg-3 col-md-4 col-sm-6 mb-3">
                                 <div class="product shadow-sm position-relative rounded">
-                                        <a href="{{ route('single.product', ['slug' => $product->slug]) }}" class="">
+                                        <div class="">
                                             <div class="position-absolute like d-flex flex-column gap-3 justify-content-end">
                                                 <a href="javascript:void(0);" onclick="toggleFavourite({{ $product->id }})">
                                                     <i id="favourite-icon-{{ $product->id }}" class="fa-solid {{ in_array($product->id, session('favorites', [])) ? 'text-orange' : 'hover-orange' }} fa-heart fs-4 ps-1"></i>
@@ -49,7 +49,9 @@
                                             @php
                                                 $cheapestVariant = $product->variants->sortBy('price')->first();
                                             @endphp
-                                            <img class="w-100 pb-4 productImage p-4" src="{{ asset('storage/' . $product->image) ?? '/assets/images/category_tv.webp'}}" alt="" />
+                                            <a href="{{ route('single.product', $product->slug) }}">
+                                                <img class="w-100 pb-4 productImage p-4" src="{{ asset('storage/' . $product->image) ?? '/assets/images/category_tv.webp'}}" alt="" />
+                                            </a>
                                             <div class="d-flex flex-column justify-content-between product-text p-4 rounded-bottom">
                                                 <div class="d-flex align-items-end gap-3 pt-2">
                                                     @if ($cheapestVariant->discount_price)
@@ -60,36 +62,39 @@
                                                             <small>{{ number_format($cheapestVariant->price, 0, ',', ' ') }} UZS</small>
                                                         </del>
                                                     @else
-                                                        <del class="text-grey">
-                                                            <small>{{ number_format($cheapestVariant->price, 0, ',', ' ') }} UZS</small>
-                                                        </del>
+                                                            <div class="fw-bold">{{ number_format($cheapestVariant->price, 0, ',', ' ') }} UZS</div>
+
                                                     @endif
                                                 </div>
-                                                <div class="productName fw-bold">{!! $product['name_' . $lang] !!}</div>
-                                                <p class="text-grey">{!! \Str::words($product['description_' . $lang], 15) !!}</p>
+                                                <a href="{{ route('single.product', $product->slug) }}">
+                                                    <div class="productName fw-bold">{{ \Str::words($product['name_' . $lang], 3) }}</div>
+                                                </a>
+                                                <a class="truncate-text" href="{{ route('single.product', $product->slug) }}">
+                                                    <p class="text-grey">{!! \Str::words($product['description_' . $lang], 10) !!}</p>
+                                                </a>
                                                 <div class="d-flex align-items-center justify-content-between w-100">
                                                     <span class="small bg-transparent px-0">
                                                         @if ($cheapestVariant->discount_price)
                                                         {{ number_format($cheapestVariant->discount_price, 0, ',', ' ') }} UZS
                                                         @else
                                                             <small>{{ number_format($cheapestVariant->price, 0, ',', ' ') }} UZS</small>
-                                                        @endif<span class="text-orange">за наличные</span></span>
-                                                    <span class="px-2 productmonth-border small text-grey">from {{ number_format($cheapestVariant->price_12, 0, ',', ' ') }} UZS UZS/month</span>
+                                                        @endif<span class="text-orange">@lang('home.incash')</span></span>
+                                                    <span class="px-2 productmonth-border small text-grey">{{ number_format($cheapestVariant->price_12, 0, ',', ' ') }} UZS/@lang('home.month')</span>
                                                 </div>
 
                                                 <div class="d-flex gap-4 mt-3">
                                                     <a class="border-orange bg-transparent rounded p-1 px-3"
                                                        href="javascript: void(0);"
                                                        type="button"
-                                                       onclick="addToCart({{ $product->id }}, '{{ $product['name_' . $lang] }}', {{ $cheapestVariant->price ? $cheapestVariant->discount_price : $cheapestVariant->price }}, {{ $cheapestVariant->id }})">
+                                                       onclick="addToCart({{ $product->id }}, '{{ $product['name_' . $lang] }}', {{ $cheapestVariant->discount_price ?? $cheapestVariant->price }}, {{ $cheapestVariant->id }})">
                                                         <img src="/assets/icons/shopping-cart.svg" alt=""/>
                                                     </a>
                                                     <button data-bs-toggle="modal" data-bs-target="#largeModal" class="btn-orange rounded w-100 d-flex align-items-center gap-2 justify-content-center">
-                                                        <span>Купить сразу</span>
+                                                        <span>@lang('home.buy_now')</span>
                                                     </button>
                                                 </div>
                                             </div>
-                                        </a>
+                                        </div>
                                 </div>
                             </div>
                         @endforeach

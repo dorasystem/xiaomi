@@ -25,6 +25,23 @@ class MainController extends Controller
 {
     public function index()
     {
+
+        $newProducts = Product::orderBy('created_at', 'desc')->take(5)->get();
+
+        $products = Product::orderBy('created_at', 'desc')->limit(PHP_INT_MAX)->offset(5)->get();
+
+        $randomProducts = $products->random(5);
+
+
+        $productsWithoutRandom = $products->reject(function ($product) use ($randomProducts) {
+            return $randomProducts->contains('id', $product->id);
+        });
+
+
+
+
+
+
         // Bir nechta kalit so'zlarni olish
         $keywords = StaticKeyword::all(); // yoki filterlab olish
 
@@ -50,7 +67,7 @@ class MainController extends Controller
         $category5 = collect($categories)->firstWhere('id', 5);
         $category6 = collect($categories)->firstWhere('id', 6);
         $category7 = collect($categories)->firstWhere('id', 7);
-        return view('pages.home', compact('new', 'news1', 'news2', 'products', 'locations', 'banner', 'categories','category1', 'category2', 'category3', 'category4', 'category5', 'category6', 'category7','translations'));
+        return view('pages.home', compact('new', 'news1', 'news2', 'products', 'locations', 'banner', 'categories','category1', 'category2', 'category3', 'category4', 'category5', 'category6', 'category7','translations', 'newProducts','randomProducts','products','productsWithoutRandom'));
     }
     public function about()
     {
@@ -85,7 +102,7 @@ class MainController extends Controller
     public function products()
     {
         $categories = Category::all();
-        $products = Product::paginate(8);
+        $products = Product::paginate(9);
         $lang = app()->getLocale();
         return view('pages.page-products', compact('products', 'lang', 'categories'));
     }

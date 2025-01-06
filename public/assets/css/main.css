@@ -12,6 +12,9 @@
     /* transition: all 0.3s ease-in-out; */
     outline: none;
 }
+.swiper-wrapper{
+    height: auto !important;
+}
 .text-grey a {
     color: var(--grey);
 }
@@ -185,7 +188,7 @@ textarea {
 }
 .truncate-text {
     display: -webkit-box;
-    -webkit-line-clamp: 2; 
+    -webkit-line-clamp: 2;
     -webkit-box-orient: vertical;
     overflow: hidden;
     text-overflow: ellipsis;
@@ -1012,7 +1015,7 @@ input[type="range"]:nth-child(2) {
     min-height: 400px;
 }
 .carousel-inner img {
-    min-height: 400px;
+    height: 400px;
     object-fit: cover;
 }
 
