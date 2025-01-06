@@ -1,10 +1,7 @@
-<?php
-$lang = app()->getLocale();
-?>
-
 @extends('layouts.page')
 
 @section('content')
+
     <main>
 
 
@@ -325,12 +322,12 @@ $lang = app()->getLocale();
                                             </div>
                                         </div>
                                     </div>
-                                @endforeach
-                            @else
-                                <x-page.not-found />
-                            @endif
+                                </div>
+                            @endforeach
+
+
                         </div>
-                        {{ $products->links('pagination::bootstrap-4') }}
+                        {{ $products->links('vendor.pagination.custom') }}
                     </div>
                 </div>
             </div>
@@ -519,5 +516,6 @@ $lang = app()->getLocale();
                 }
             });
         }
+
     </script>
 @endsection

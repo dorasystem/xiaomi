@@ -284,8 +284,9 @@
                                         d="M14 3.28135H2.91L2.5 1.3126C2.47662 1.20512 2.41379 1.10874 2.32243 1.04022C2.23107 0.971698 2.11697 0.935384 2 0.937595H0V1.8751H1.59L3.5 10.8751C3.52338 10.9826 3.58621 11.079 3.67757 11.1475C3.76893 11.216 3.88303 11.2523 4 11.2501H13V10.3126H4.41L4 8.4376H13C13.1156 8.44024 13.2286 8.40526 13.3197 8.3386C13.4109 8.27193 13.4746 8.17771 13.5 8.07197L14.5 3.85322C14.5168 3.78367 14.5164 3.71145 14.4989 3.64206C14.4814 3.57268 14.4472 3.50795 14.399 3.4528C14.3508 3.39766 14.2898 3.35355 14.2206 3.32384C14.1515 3.29413 14.076 3.27959 14 3.28135ZM12.6 7.5001H3.81L3.11 4.21885H13.375L12.6 7.5001Z"
                                         fill="#fff" />
                                 </svg>
-                                <span class="badge badge-pill badge-danger badge-position rounded-circle cart-label"
-                                    id="cart-count">{{ session('cart') ? count(session('cart')) : 0 }}</span>
+                                <span class="badge badge-pill badge-danger badge-position rounded-circle cart-label" id="cart-count">
+    {{ session('cart') ? count(session('cart')) : 0 }}
+</span>
                             </a>
                             <small class="">@lang('home.basket')</small>
                         </li>

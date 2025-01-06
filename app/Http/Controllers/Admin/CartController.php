@@ -18,7 +18,11 @@ class CartController extends Controller
         $variant = Variant::find($request->variant_id);
 
         if (!$product || !$variant) {
+<<<<<<< HEAD
             return response()->json(['success' => false, 'message' => __('home.cart_message')]);
+=======
+            return response()->json(['success' => false, 'message' => 'Mahsulot yoki Variant topilmadi']);
+>>>>>>> 862c8ee03e9ddc4a381326fac679ec0dc6a985f9
         }
 
         $cart = session()->get('cart', []);
@@ -46,7 +50,11 @@ class CartController extends Controller
 
         return response()->json([
             'success' => true,
+<<<<<<< HEAD
             'message' => __('home.add_to_cart'),
+=======
+            'message' => 'Mahsulot savatga qo\'shildi',
+>>>>>>> 862c8ee03e9ddc4a381326fac679ec0dc6a985f9
             'cart_count' => $cartCount
         ]);
     }
@@ -90,6 +98,10 @@ class CartController extends Controller
             'success' => true,
             'total_amount' => $total_amount,
             'cart' => $cart,
+<<<<<<< HEAD
+=======
+            'cart_count' => count($cart),
+>>>>>>> 862c8ee03e9ddc4a381326fac679ec0dc6a985f9
         ]);
     }
 
