@@ -69,12 +69,12 @@ $isInCompare = in_array($product->id, session('compares', []));
 
                             <span class="fs-14">@lang('home.compare')</span>
                         </button>
-                        <a onclick="toggleFavourite({{ $product->id }})"
+                        <button onclick="toggleFavourite({{ $product->id }})"
                             class="w-100 my-md-0 my-2 bg-transparent fs-14 px-3 justify-content-center py-1 d-flex align-items-center gap-3 border rounded-2">
                             <i
                                 class="fa-{{ in_array($product->id, session('favorites', [])) ? 'solid' : 'regular' }} {{ in_array($product->id, session('favorites', [])) ? 'text-orange' : '' }} fa-heart"></i>
                             <span class="fs-14">@lang('home.save')</span>
-                        </a>
+                        </button>
                     </div>
                 </div>
                 <div class="container p-0">
