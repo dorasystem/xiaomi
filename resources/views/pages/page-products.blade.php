@@ -323,7 +323,7 @@
 
 
                         </div>
-                        {{ $products->links('pagination::bootstrap-4') }}
+                        {{ $products->links('vendor.pagination.custom') }}
                     </div>
                 </div>
             </div>
