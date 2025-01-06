@@ -14,9 +14,9 @@ $locations = Store::all();
                     <li class="nav-item" role="presentation">
                         <button
                             class="locationtab d-flex gap-4 align-items-center w-100 border-0 border-top py-4 bg-transparent {{ $key === 0 ? 'active' : '' }}"
-                            id="tab{{ $location['id'] }}-button" data-bs-toggle="tab"
-                            data-bs-target="#tab{{ $location['id'] }}-content" type="button" role="tab"
-                            aria-controls="tab{{ $location['id'] }}-content"
+                            id="tab{{ $location->id }}-button" data-bs-toggle="tab"
+                            data-bs-target="#tab{{ $location->id }}-content" type="button" role="tab"
+                            aria-controls="tab{{ $location->id }}-content"
                             aria-selected="{{ $key === 0 ? 'true' : 'false' }}">
                             <div class="shop-icon p-2 rounded"><i class="fa-solid fa-shop"></i></div>
                             <div class="d-flex flex-column align-items-start">
@@ -27,30 +27,51 @@ $locations = Store::all();
                     </li>
                 @endforeach
             </ul>
-
         </div>
         <div class="col-lg-6">
             <!-- Tabs Content -->
             <div class="tab-content" id="tabsContent">
-                <div class="tab-pane fade show active" id="tab1-content" role="tabpanel" aria-labelledby="tab1-button">
-                    <div id="map1" class="map-container"></div>
-                </div>
-                <div class="tab-pane fade pt-3" id="tab2-content" role="tabpanel" aria-labelledby="tab2-button">
-                    <div id="map2" class="map-container"></div>
-                </div>
-                <div class="tab-pane fade pt-3" id="tab3-content" role="tabpanel" aria-labelledby="tab3-button">
-                    <div id="map3" class="map-container"></div>
-                </div>
-                <div class="tab-pane fade pt-3" id="tab4-content" role="tabpanel" aria-labelledby="tab4-button">
-                    <div id="map4" class="map-container"></div>
-                </div>
-                <div class="tab-pane fade pt-3" id="tab5-content" role="tabpanel" aria-labelledby="tab5-button">
-                    <div id="map5" class="map-container"></div>
-                </div>
-                <div class="tab-pane fade pt-3" id="tab6-content" role="tabpanel" aria-labelledby="tab6-button">
-                    <div id="map6" class="map-container"></div>
-                </div>
+                @foreach ($locations as $key => $location)
+                    <div class="tab-pane fade {{ $key === 0 ? 'show active' : '' }}"
+                         id="tab{{ $location->id }}-content"
+                         role="tabpanel"
+                         aria-labelledby="tab{{ $location->id }}-button">
+                        <div id="map{{ $location->id }}" class="map-container"></div>
+                    </div>
+                @endforeach
             </div>
         </div>
     </div>
 </div>
+
+<script>
+    // for map
+    const locations = @json($locations);
+
+    const mapConfigs = locations.map(location => ({
+        container: `map${location.id}`,
+        coordinates: [parseFloat(location.latitude), parseFloat(location.longitude)],
+        zoom: 12,
+        markerImage: "https://cdn-icons-png.flaticon.com/512/684/684908.png"
+    }));
+
+    ymaps.ready(() => {
+        mapConfigs.forEach((config) => {
+            const map = new ymaps.Map(config.container, {
+                center: config.coordinates,
+                zoom: config.zoom,
+            });
+
+            const customPlacemark = new ymaps.Placemark(
+                config.coordinates, {}, {
+                    iconLayout: "default#image",
+                    iconImageHref: config.markerImage,
+                    iconImageSize: [40, 40],
+                    iconImageOffset: [-20, -20],
+                }
+            );
+
+            map.geoObjects.add(customPlacemark);
+        });
+    });
+</script>

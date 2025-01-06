@@ -22,7 +22,7 @@ return [
 
     'bestsellers' => 'Bestsellers',
     'buy_now' => 'Buy now',
-    'looked_product' => 'Have you looked at this product?',
+    'top_products' => 'Recommended',
 
     'our_advantages' => 'Our advantages',
 
@@ -96,6 +96,7 @@ return [
     "message_desc" => "Leave us your number!",
     "message_input1" => "What product are you looking for?",
     "message_input2" => "Enter your full name",
+    "enter_number" => "Enter your phone number",
     "send" => "Send",
     "page_not_found" => "Page not found",
     "not_found" => "Not found",
@@ -111,6 +112,12 @@ return [
     "price" => "Price",
     "reset" => "Reset",
     "all_filters" => "All filters",
-
+    "invalid_phone_format" => "The phone number is in an invalid format!",
+    "clear_cart" => "Clear cart",
+    "send_application" => "Submit Application",
+    "submit_application" => "Submit an Application",
+    "reviews" => "Reviews",
+    "read" => "Read",
+    "tel" => "Call",
 
 ];

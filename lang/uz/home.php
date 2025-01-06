@@ -21,7 +21,7 @@ return [
 
     'bestsellers' => 'Eng ko\'p sotilganlar',
     'buy_now' => 'Hoziroq sotib olish',
-    'looked_product' => 'Ko\'rilgan mahsulotlar',
+    'top_products' => 'Tavsiya etamiz',
 
     'our_advantages' => 'Bizning afzalliklarimiz',
 
@@ -94,6 +94,7 @@ return [
     "message_desc" => "Bizga raqamingizni qoldiring!",
     "message_input1" => "Qanday mahsulotni izlayapsiz?",
     "message_input2" => "Ismingiz va familiyangizni kiriting",
+    "enter_number" => "Telefon raqamingizni kiriting",
     "send" => "Yuborish",
     "page_not_found" => "Sahifa topilmadi",
     "not_found" => "Hech narsa topilmadi",
@@ -105,5 +106,14 @@ return [
     "filter_res" => "Qidiruv natijalari",
     "category" => "Kategoriya",
     "price" => "Narx",
+    "reset" => "Bekor qilish",
     "all_filters" => "Barcha filterlar",
+    "invalid_phone_format" => "Telefon raqami noto‘g‘ri formatda!",
+    "clear_cart" => "Savatni tozalash",
+    "send_application" => "Arizani yuborish",
+    "submit_application" => "Ariza topshirish",
+    "reviews" => "Blog",
+    "tel" => "Qo'ng'iroq",
+    "read" => "O'qish",
+
 ];

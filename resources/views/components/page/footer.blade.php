@@ -117,6 +117,7 @@ $category7 = collect($categories)->firstWhere('id', 7);
                         <li><a href="/contacts">@lang('footer.contacts')</a></li>
                         <li><a href="/blog">@lang('footer.blog')</a></li>
                         <li><a href="/news">@lang('footer.news')</a></li>
+                        <li><a href="/career">@lang('footer.career')</a></li>
                     </ul>
                 </div>
             </div>

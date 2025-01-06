@@ -8,7 +8,7 @@ return [
     'for_home' => 'Uy uchun',
     'tv' => 'TV va video texnika',
     'wearables' => 'Taqiladigan qurilmalar',
-    'smart_home' => 'Aqlli uy',
+    'tv' => 'Televizorlar',
     'tablets' => 'Planshetlar va noutbuklar',
     'xiaomi_store' => 'Xiaomi Do‘koni',
     'about_us' => 'Biz haqimizda',
@@ -21,5 +21,6 @@ return [
     'message_placeholder' => 'Xabar yozing',
     'send' => 'Jo‘natish',
     'products' => 'Mahsulotlar',
+    'career' => 'Karyera',
 ];
 

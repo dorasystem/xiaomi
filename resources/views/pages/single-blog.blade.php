@@ -6,11 +6,11 @@ $lang = \Illuminate\Support\Facades\App::getLocale()
 <main class="container">
     <div class="my-4">
         <div class="d-flex align-items-center gap-3">
-            <a href="/" class="text-grey fw-bold text-lowercase fs-14">@lang('home.home') / <span class="text-dark">@lang('footer.blog')</span></a>
+            <a href="/" class="text-grey fw-bold  fs-14">@lang('home.home') / <span class="text-dark">@lang('footer.blog')</span></a>
         </div>
         <hr />
     </div>
-    <div style="background-image: url('./assets/images/single-blogimage.jpg')" class="text-black rounded mb-3 singleblogbanner px-5 w-100 d-flex flex-column justify-content-center">
+    <div style="background-image: url('/assets/images/single-blogimage.jpg')" class="text-white rounded mb-3 singleblogbanner px-5 w-100 d-flex flex-column justify-content-center">
         <h1>{{ $blog['title_' . $lang] }}</h1>
         <h4 class="">самый демократичный смартфон с экраном 120 герц</h4>
     </div>

@@ -24,7 +24,7 @@ return [
 
     'bestsellers' => 'Хиты продаж',
     'buy_now' => 'Купить сразу',
-    'looked_product' => 'вы смотрели этот продукт?',
+    'top_products' => 'Рекомендуем',
 
     'our_advantages' => 'Наши преимущества',
 
@@ -89,6 +89,7 @@ return [
     "message_desc" => "Оставьте нам свой номер!",
     "message_input1" => "Какой товар вы ищите?",
     "message_input2" => "Введите имя и фамилию",
+    "enter_number" => "Введите номер телефона",
     "send" => "Отправить",
     "page_not_found" => "Страница не найдена",
     "not_found" => "Не найдена",
@@ -102,7 +103,12 @@ return [
     "price" => "Цена",
     "reset" => "Сбросить",
     "all_filters" => "Все фильтры",
-
-
+    "invalid_phone_format" => "Номер телефона имеет неверный формат!",
+    "clear_cart" => "Очистить корзину",
+    "send_application" => "Отправить заявку",
+    "submit_application" => "Подать  заявку",
+    "reviews" => "Обзоры",
+    "read" => "читать",
+    "tel" => "позванить",
 
 ];

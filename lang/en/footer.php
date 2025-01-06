@@ -8,7 +8,7 @@ return [
     'for_home' => 'For Home',
     'tv' => 'TV & Video',
     'wearables' => 'Wearables',
-    'smart_home' => 'Smart Home',
+    'tv' => 'Televisions',
     'tablets' => 'Tablets & Laptops',
     'xiaomi_store' => 'Xiaomi Store',
     'about_us' => 'About Us',
@@ -21,4 +21,5 @@ return [
     'message_placeholder' => 'Write your message',
     'send' => 'Send',
     'products' => 'Products',
+    'career' => 'Career',
 ];

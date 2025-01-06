@@ -2,19 +2,21 @@
     use App\Models\Product;
     use App\Models\StaticKeyword;
     use Illuminate\Support\Facades\App;
+    use App\Models\Contact;
     $currentLocale = app()->getLocale();
     $products = Product::take(3)->get();
     $categories = \App\Models\Category::all();
     $lang = App::getLocale();
+    $links = Contact::first();
 
-        $keywords = StaticKeyword::all();
+    $keywords = StaticKeyword::all();
 
-        $language = app()->getLocale();
-        $translations = [];
+    $language = app()->getLocale();
+    $translations = [];
 
-        foreach ($keywords as $keyword) {
-            $translations[$keyword->key] = $keyword->{$language};
-        }
+    foreach ($keywords as $keyword) {
+        $translations[$keyword->key] = $keyword->{$language};
+    }
 
 
 @endphp
@@ -26,11 +28,14 @@
                     <li class=""><a class="text-grey hover-orange" href="{{ route('news') }}">@lang('footer.news')</a>
                     </li>
                     <li class=""><a class="text-grey hover-orange"
-                                    href="{{ route('products') }}">@lang('footer.products')</a></li>
+                            href="{{ route('products') }}">@lang('footer.products')</a></li>
                     <li class=""><a class="text-grey hover-orange" href="/about">@lang('footer.about_us')</a></li>
                     <li class=""><a class="text-grey hover-orange" href="/contact">@lang('footer.contacts')</a></li>
                     <li class=""><a class="text-grey hover-orange"
-                                    href="{{ route('blog') }}">@lang('footer.blog')</a>
+                            href="{{ route('blog') }}">@lang('footer.blog')</a>
+                    </li>
+                    <li class=""><a class="text-grey hover-orange"
+                            href="{{ route('blog') }}">@lang('footer.career')</a>
                     </li>
                 </ul>
             </div>
@@ -38,17 +43,26 @@
                 <div class="d-flex justify-content-between align-items-center">
                     <div class="d-md-block d-none">
                         <div class="social-icons d-flex align-items-center justify-content-between gap-2">
-                            <a target="_blank" href="https://www.youtube.com/@xiaomi"><img
-                                    src="/assets/icons/youtube.svg" alt="" /></a>
-                            <a target="_blank" href="https://www.instagram.com/xiaomi.uzbekistan/"><img
-                                    src="/assets/icons/insta.svg" alt="" /></a>
-                            <a href="#"><img src="/assets/icons/telegram.svg" alt="" /></a>
+                            @if (!empty($links->youtube))
+                                <a target="_blank" href="{{ $links->youtube }}">
+                                    <img src="/assets/icons/youtube.svg" alt="" />
+                                </a>
+                            @endif
+
+                            @if (!empty($links->instagram))
+                                <a target="_blank" href="{{ $links->instagram }}">
+                                    <img src="/assets/icons/insta.svg" alt="" />
+                                </a>
+                            @endif
+                            @if (!empty($links->telegram))
+                                <a target="_blank" href="{{ $links->telegram }}"><img src="/assets/icons/telegram.svg" alt="" /></a>
+                            @endif
                         </div>
                     </div>
                     <div class="text-nowrap">
                         <a href="tel:+998 77 282 00 80" class="d-flex align-items-center gap-1">
                             <img src="/assets/icons/phone" alt="" />
-                            <small class="phone_clock_color">+998 77 282 00 80 </small>
+                            <small class="phone_clock_color">{{ $links->phone }} </small>
                         </a>
                     </div>
                     <div class="text-nowrap">
@@ -61,7 +75,7 @@
                         class="position-relative w-max d-flex align-items-center justify-content-end justify-content-md-start text-nowrap align-items-center">
                         <div class="dropdown">
                             <button class="border-0 bg-transparent pe-4 py-1 dropdown-toggle" type="button"
-                                    data-bs-toggle="dropdown" aria-expanded="false">
+                                data-bs-toggle="dropdown" aria-expanded="false">
                                 @if ($currentLocale === 'ru')
                                     Русский
                                 @elseif ($currentLocale === 'en')
@@ -79,7 +93,7 @@
                             </ul>
                         </div>
                         <i id="select-icon"
-                           class="fa-solid fa-angle-down position-absolute end-0 top-50 translate-middle-y pe-2 text-dark"></i>
+                            class="fa-solid fa-angle-down position-absolute end-0 top-50 translate-middle-y pe-2 text-dark"></i>
                     </div>
                 </div>
             </div>
@@ -90,15 +104,15 @@
             <div class="row align-items-center justify-content-between w-100">
                 <div class="col-4">
                     <a class="logo" href="/"><img class="w-100" src="/assets/images/xiaomiStoreBlack.webp"
-                                                  alt="Mi Logo" /> </a>
+                            alt="Mi Logo" /> </a>
                 </div>
                 <div class="col-8 d-flex align-items-center justify-content-end pe-0 gap-4">
                     <div class="">
                         <a href="/compare" class="icon position-relative">
                             <svg version="1.0" xmlns="http://www.w3.org/2000/svg" width="30" height="30"
-                                 viewBox="0 0 512.000000 512.000000" preserveAspectRatio="xMidYMid meet">
+                                viewBox="0 0 512.000000 512.000000" preserveAspectRatio="xMidYMid meet">
                                 <g transform="translate(0.000000,512.000000) scale(0.100000,-0.100000)" fill="#000"
-                                   stroke="none">
+                                    stroke="none">
                                     <path d="M2015 4786 c-41 -18 -83 -69 -90 -109 -3 -18 -4 -982 -3 -2144 l3
                                                     -2112 21 -27 c11 -15 33 -37 48 -48 27 -21 38 -21 566 -21 528 0 539 0 566 21
                                                     15 11 37 33 48 48 l21 27 0 2139 0 2139 -21 27 c-11 15 -33 37 -48 48 -27 21
@@ -134,7 +148,7 @@
                 <div class="row align-items-center w-100">
                     <div class="col-lg-2 col-4 mb-lg-0 mb-3 d-lg-block d-none">
                         <a class="logo" href="/"><img class="w-100" src="/assets/images/xiaomiStoreWhite.webp"
-                                                      alt="Mi Logo" /> </a>
+                                alt="Mi Logo" /> </a>
                     </div>
                     <div class="col-lg-7 px-sm-2 px-0">
                         <div class="d-flex align-items-center gap-4">
@@ -151,13 +165,13 @@
                                 <form method="GET" action="{{ route('products.search') }}">
                                     <div class="d-flex align-items-center w-100 nav_form">
                                         <button class="border-0 bg-transparent text-dark search-btn-dark ps-4"
-                                                type="submit">
+                                            type="submit">
                                             <i class="fas fa-search"></i>
                                         </button>
                                         <input id="searchInput" name="search"
-                                               class="form-control border-0 bg-transparent mr-sm-2 search-bar focus_none text-white"
-                                               type="search" aria-label="Search" placeholder="@lang('home.search')"
-                                               value="{{ request()->query('search') }}" />
+                                            class="form-control border-0 bg-transparent mr-sm-2 search-bar focus_none text-white"
+                                            type="search" aria-label="Search" placeholder="@lang('home.search')"
+                                            value="{{ request()->query('search') }}" />
                                         <button class="border-0 bg-transparent text-white search-btn" type="submit">
                                             <i class="fas fa-search"></i>
                                         </button>
@@ -219,7 +233,8 @@
                                     <i class="fa-regular fa-heart"></i>
                                     <i class="fa-solid fa-heart"></i>
                                 </div>
-                                <span class="badge badge-pill badge-danger badge-position rounded-circle" id="favorite-count">
+                                <span class="badge badge-pill badge-danger badge-position rounded-circle"
+                                    id="favorite-count">
                                     {{ session('favorites') ? count(session('favorites')) : 0 }}
                                 </span>
                             </a>
@@ -228,9 +243,9 @@
                         <li class="d-flex flex-column align-items-center">
                             <a href="/compare" class="icon position-relative">
                                 <svg version="1.0" xmlns="http://www.w3.org/2000/svg" width="30" height="30"
-                                     viewBox="0 0 512.000000 512.000000" preserveAspectRatio="xMidYMid meet">
+                                    viewBox="0 0 512.000000 512.000000" preserveAspectRatio="xMidYMid meet">
                                     <g transform="translate(0.000000,512.000000) scale(0.100000,-0.100000)"
-                                       fill="#fff" stroke="none">
+                                        fill="#fff" stroke="none">
                                         <path d="M2015 4786 c-41 -18 -83 -69 -90 -109 -3 -18 -4 -982 -3 -2144 l3
     -2112 21 -27 c11 -15 33 -37 48 -48 27 -21 38 -21 566 -21 528 0 539 0 566 21
     15 11 37 33 48 48 l21 27 0 2139 0 2139 -21 27 c-11 15 -33 37 -48 48 -27 21
@@ -248,9 +263,10 @@
     0 -320 0 0 640 0 640 320 0 320 0 0 -640z" />
                                     </g>
                                 </svg>
-                                <span class="badge badge-pill badge-danger badge-position rounded-circle compare" id="compare-count">
-    {{ session('compares') ? count(session('compares')) : 0 }}
-</span>
+                                <span class="badge badge-pill badge-danger badge-position rounded-circle compare"
+                                    id="compare-count">
+                                    {{ session('compares') ? count(session('compares')) : 0 }}
+                                </span>
 
                             </a>
                             <small class="">@lang('home.comparison')</small>
@@ -258,7 +274,7 @@
                         <li class="d-flex flex-column align-items-center">
                             <a href="{{ route('cart') }}" class="icon position-relative">
                                 <svg width="30" height="35" viewBox="0 0 16 15" fill="none"
-                                     xmlns="http://www.w3.org/2000/svg">
+                                    xmlns="http://www.w3.org/2000/svg">
                                     <path
                                         d="M5 14.0625C5.55228 14.0625 6 13.6428 6 13.125C6 12.6072 5.55228 12.1875 5 12.1875C4.44772 12.1875 4 12.6072 4 13.125C4 13.6428 4.44772 14.0625 5 14.0625Z"
                                         fill="#fff" />

@@ -23,9 +23,9 @@ class MainBannerController extends Controller
     public function store(Request $request)
     {
         $request->validate([
-            'images.*' => 'nullable|image|mimes:jpeg,png,jpg,gif|max:2048',
-            'image1' => 'nullable|image|mimes:jpeg,png,jpg,gif|max:2048',
-            'image2' => 'nullable|image|mimes:jpeg,png,jpg,gif|max:2048',
+            'images.*' => 'nullable|image|mimes:jpeg,png,jpg,gif,webp|max:2048',
+            'image1' => 'nullable|image|mimes:jpeg,png,jpg,gif,webp|max:2048',
+            'image2' => 'nullable|image|mimes:jpeg,png,jpg,gif,webp|max:2048',
         ]);
 
         $uploadedImages = [];
@@ -55,9 +55,9 @@ class MainBannerController extends Controller
     {
         // Validate incoming request
         $request->validate([
-            'images.*' => 'nullable|image|mimes:jpeg,png,jpg,gif|max:2048',
-            'image1' => 'nullable|image|mimes:jpeg,png,jpg,gif|max:2048',
-            'image2' => 'nullable|image|mimes:jpeg,png,jpg,gif|max:2048',
+            'images.*' => 'nullable|image|mimes:jpeg,png,jpg,gif,webp|max:2048',
+            'image1' => 'nullable|image|mimes:jpeg,png,jpg,gif,webp|max:2048',
+            'image2' => 'nullable|image|mimes:jpeg,png,jpg,gif,webp|max:2048',
         ]);
 
         // Initialize an array to hold the updated images

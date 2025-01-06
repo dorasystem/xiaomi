@@ -120,6 +120,7 @@ class CartController extends Controller
 
         $productId = $request->id;
 
+
         if (in_array($productId, $favorites)) {
             $favorites = array_filter($favorites, fn($id) => $id != $productId);
             $message = 'Mahsulot sevimlilardan olib tashlandi!';

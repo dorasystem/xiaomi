@@ -8,11 +8,11 @@
             </div>
             <hr />
         </div>
-        <div class="container mt-5 p-0">
-            <div class="m-0 fs-2 fw-normal container">@lang('home.compare')</div>
+        <div class="container  p-0">
+            <h1 class="m-0 fs-2 fw-normal container">@lang('home.compare')</h1>
             <div class="d-lg-flex align-items-center justify-content-between d-block container">
                 <div class="col-lg-9 d-flex flex-column gap-4 my-3 align-items-start">
-                    {{--                <ul class="nav nav-tabs mb-1 overflow-auto w-100" id="myTab" role="tablist" style="white-space: nowrap"> --}}
+                                   {{-- <ul class="nav nav-tabs mb-1 overflow-auto w-100" id="myTab" role="tablist" style="white-space: nowrap"> --}}
                     {{--                    <li class="me-3 mb-3" role="presentation"> --}}
                     {{--                        <a class="fs-5 p-2 active" id="home-tab" data-bs-toggle="tab" href="#home" role="tab" aria-controls="home" aria-selected="true">Телевизоры <span>(1)</span> </a> --}}
                     {{--                    </li> --}}
@@ -109,7 +109,11 @@
                                                     <img src="/assets/icons/shopping-cart.svg" alt="" />
                                                 </a>
                                                 <button data-bs-toggle="modal" data-bs-target="#largeModal"
-                                                    class="btn-orange rounded w-100 d-flex align-items-center gap-2 justify-content-center">
+                                                    class="btn-orange rounded w-100 d-flex align-items-center gap-2 justify-content-center"
+                                                    data-product-id="{{ $product->id }}"
+                                                    data-product-name="{{ $product['name_' . $lang] }}"
+                                                    data-product-price="{{ $cheapestVariant->discount_price ?: $cheapestVariant->price }}"
+                                                    data-product-image="{{ asset('storage/' . $product->image) }}">
                                                     <span>@lang('home.buy_now')</span>
                                                 </button>
                                             </div>
@@ -124,7 +128,8 @@
                             @foreach ($products as $product)
                                 <p class="border-bottom-dashed py-1   w-100"></p>
                                 <div class="d-flex align-items-center gap-2">
-                                    <img width="50" height="50" class="fit-cover rounded" src="{{ asset('storage/' . $product->image) }}" alt="" />
+                                    <img width="50" height="50" class="fit-cover rounded"
+                                        src="{{ asset('storage/' . $product->image) }}" alt="" />
                                     <h4 class="mt-3 fw-bold">{!! $product['name_' . $lang] !!}</h4>
                                 </div>
                                 <div class="">
@@ -132,71 +137,21 @@
                                 </div>
                             @endforeach
                         @else
-                            <table class="table mb-0">
-                                <thead class="bg-white compareProdName position-sticky">
-                                    <tr>
-                                        <th class="px-4 py-3 fs-14" scope="col">Общая информация</th>
-                                        <th class="px-4 py-3 fs-14" scope="col">Телевизоры</th>
-                                    </tr>
-                                </thead>
-                                <thead class="bg-white border-top">
-                                    <tr>
-                                        <th class="px-4 py-3 fs-14" scope="col">Общая информация</th>
-                                        <th class="px-4 py-3 fs-14" scope="col"></th>
-                                    </tr>
-                                </thead>
-                                <tbody>
-                                    <tr>
-                                        <td class="px-4 py-3 text-grey fs-14">Дата выхода на рынок</td>
-                                        <td class="px-4 py-3 fs-14">2024 г.</td>
-                                    </tr>
-                                    <tr>
-                                        <td class="px-4 py-3 text-grey fs-14">Тип</td>
-                                        <td class="px-4 py-3 fs-14">Смартфон</td>
-                                    </tr>
-                                    <tr>
-                                        <td class="px-4 py-3 text-grey fs-14">Операционная система</td>
-                                        <td class="px-4 py-3 fs-14">Android</td>
-                                    </tr>
-                                    <tr>
-                                        <td class="px-4 py-3 text-grey fs-14">Тип</td>
-                                        <td class="px-4 py-3 fs-14">Смартфон</td>
-                                    </tr>
-                                    <tr>
-                                        <td class="px-4 py-3 border-0 text-grey fs-14">Операционная система</td>
-                                        <td class="px-4 py-3 border-0 fs-14">Android</td>
-                                    </tr>
-                                </tbody>
-                                <thead class="bg-white border-top">
-                                    <tr>
-                                        <th class="px-4 py-3 fs-14" scope="col">Общая информация</th>
-                                        <th class="px-4 py-3 fs-14" scope="col"></th>
-                                    </tr>
-                                </thead>
-                                <tbody>
-                                    <tr>
-                                        <td class="px-4 py-3 text-grey fs-14">Дата выхода на рынок</td>
-                                        <td class="px-4 py-3 fs-14">2024 г.</td>
-                                    </tr>
-                                    <tr>
-                                        <td class="px-4 py-3 text-grey fs-14">Тип</td>
-                                        <td class="px-4 py-3 fs-14">Смартфон</td>
-                                    </tr>
-                                    <tr>
-                                        <td class="px-4 py-3 text-grey fs-14">Операционная система</td>
-                                        <td class="px-4 py-3 fs-14">Android</td>
-                                    </tr>
-                                    <tr>
-                                        <td class="px-4 py-3 text-grey fs-14">Тип</td>
-                                        <td class="px-4 py-3 fs-14">Смартфон</td>
-                                    </tr>
-                                    <tr>
-                                        <td class="px-4 py-3 border-0 text-grey fs-14">Операционная система</td>
-                                        <td class="px-4 py-3 border-0 fs-14">Android</td>
-                                    </tr>
-                                </tbody>
-                            </table>
+                            <div class="text-center">
+                                <img class="fit-cover" width="350px" src="/assets/images/not-found.png" alt="">
+                            </div>
+
+                            <x-page.not-found />
                         @endif
+                    </div>
+                    <div style="overflow: hidden" class="seenProducts container py-3 position-relative">
+                        <p class="border-bottom-dashed py-1 mt-4   w-100"></p>
+                        <div class="mb-4 fs-2 fw-bold">@lang('home.top_products')</div>
+
+                        <x-page.product.product-slide />
+
+                        <div id="product-next" class="swiper-button-next end-0"></div>
+                        <div id="product-prev" class="swiper-button-prev start-0"></div>
                     </div>
                 </div>
             </div>

@@ -39,7 +39,7 @@ class VacancyController extends Controller
             'content_uz' => 'nullable|string',
             'content_ru' => 'nullable|string',
             'content_en' => 'nullable|string',
-            'image' => 'nullable|image|mimes:jpg,jpeg,png,gif|max:2048',
+            'image' => 'nullable|image|mimes:jpg,jpeg,png,gif,webp|max:2048',
             'date' => 'nullable|date',
             'status' => 'nullable|string',
         ]);
@@ -87,7 +87,7 @@ class VacancyController extends Controller
             'content_uz' => 'nullable|string',
             'content_ru' => 'nullable|string',
             'content_en' => 'nullable|string',
-            'image' => 'nullable|image|mimes:jpg,jpeg,png,gif|max:2048',
+            'image' => 'nullable|image|mimes:jpg,jpeg,png,gif,webp|max:2048',
             'date' => 'nullable|date',
             'status' => 'nullable|string',
         ]);

@@ -3,10 +3,7 @@
 use App\Models\Product;
 
 $lang = app()->getLocale();
-$products = Product::inRandomOrder()
-->skip(5)
-->take(10)
-->get();
+$products = Product::inRandomOrder()->skip(5)->take(10)->get();
 
 ?>
 
@@ -19,27 +16,27 @@ $products = Product::inRandomOrder()
             <div class="position-absolute like d-flex flex-column gap-3 justify-content-end">
                 <a onclick="toggleFavourite({{ $product->id }})">
                     <i id="favourite-icon-{{ $product->id }}"
-                       class="fa-{{ in_array($product->id, session('favorites', [])) ? 'solid' : 'regular' }} fa-heart fs-4 hover-orange ps-1
+                        class="fa-{{ in_array($product->id, session('favorites', [])) ? 'solid' : 'regular' }} fa-heart fs-4 hover-orange ps-1
                                  {{ in_array($product->id, session('favorites', [])) ? 'text-orange' : '' }}">
                     </i>
                 </a>
                 <a onclick="toggleCompare({{ $product->id }})">
                     <svg id="compare-icon-{{ $product->id }}"
-                         class="hover-svg {{ in_array($product->id, session('compares', [])) ? 'active-svg' : '' }}"
-                         width="30" height="20" viewBox="0 0 102 92" fill="none"
-                         xmlns="http://www.w3.org/2000/svg">
-                        <rect width="11" height="92" rx="2" fill="#000"/>
-                        <rect x="23" y="22" width="11" height="70" rx="2" fill="#000"/>
-                        <rect x="46" y="45" width="11" height="47" rx="2" fill="#000"/>
-                        <rect x="69" y="23" width="11" height="69" rx="2" fill="#000"/>
-                        <rect x="91" y="45" width="11" height="47" rx="2" fill="#000"/>
+                        class="hover-svg {{ in_array($product->id, session('compares', [])) ? 'active-svg' : '' }}"
+                        width="30" height="20" viewBox="0 0 102 92" fill="none"
+                        xmlns="http://www.w3.org/2000/svg">
+                        <rect width="11" height="92" rx="2" fill="#000" />
+                        <rect x="23" y="22" width="11" height="70" rx="2" fill="#000" />
+                        <rect x="46" y="45" width="11" height="47" rx="2" fill="#000" />
+                        <rect x="69" y="23" width="11" height="69" rx="2" fill="#000" />
+                        <rect x="91" y="45" width="11" height="47" rx="2" fill="#000" />
                     </svg>
                 </a>
             </div>
             <a href="{{ route('single.product', $product->slug) }}" class="">
 
                 <img class="w-100 pb-4 productImage p-4" src="{{ asset('storage/' . $product->image) }}"
-                     alt=""/>
+                    alt="" />
             </a>
             <div class="d-flex flex-column justify-content-between product-text p-4 rounded-bottom">
                 <div class="d-flex align-items-end gap-3 pt-2">
@@ -63,28 +60,26 @@ $products = Product::inRandomOrder()
                     <p class="text-grey"> {!! \Str::words($product['description_' . $lang], 10) !!}</p>
                 </a>
                 <div class="d-flex align-items-center justify-content-between w-100">
-                        <span
-                            class="small bg-transparent px-0">{{ number_format($cheapestVariant->discount_price, 0, ',', ' ') }}
-                            UZS <span class="text-orange">за наличные</span></span>
-                    <span class="px-2 productmonth-border small text-grey">from
-                            {{ number_format($cheapestVariant->price_12, 0, ',', ' ') }} UZS/month</span>
+                    <span class="small bg-transparent px-0">
+                        {{ number_format($cheapestVariant->price ?? $cheapestVariant->discount_price, 0, ',', ' ') }}
+                        UZS
+                        <span class="text-orange">@lang('home.incash')</span>
+                    </span>
+
+                    <span class="px-2 productmonth-border small text-grey">
+                        {{ number_format($cheapestVariant->price_12, 0, ',', ' ') }} UZS/@lang('home.month')</span>
                 </div>
 
                 <div class="d-flex gap-4 mt-3">
-                    <a class="border-orange bg-transparent rounded p-1 px-3" href="javascript: void(0);"
-                       type="button"
-                       onclick="addToCart({{ $product->id }}, '{{ $product['name_' . $lang] }}', {{ $cheapestVariant->discount_price ?? $cheapestVariant->price }}, {{ $cheapestVariant->id }})">
-                        <img src="/assets/icons/shopping-cart.svg" alt=""/>
+                    <a class="border-orange bg-transparent rounded p-1 px-3" href="javascript: void(0);" type="button"
+                        onclick="addToCart({{ $product->id }}, '{{ $product['name_' . $lang] }}', {{ $cheapestVariant->discount_price ?? $cheapestVariant->price }}, {{ $cheapestVariant->id }})">
+                        <img src="/assets/icons/shopping-cart.svg" alt="" />
                     </a>
-                    <button
-                        data-bs-toggle="modal"
-                        data-bs-target="#largeModal"
+                    <button data-bs-toggle="modal" data-bs-target="#largeModal"
                         class="btn-orange rounded w-100 d-flex align-items-center gap-2 justify-content-center"
-                        data-product-id="{{ $product->id }}"
-                        data-product-name="{{ $product['name_'.$lang] }}"
+                        data-product-id="{{ $product->id }}" data-product-name="{{ $product['name_' . $lang] }}"
                         data-product-price="{{ $cheapestVariant->discount_price ?: $cheapestVariant->price }}"
-                        data-product-image="{{ asset('storage/' . $product->image) }}"
-                    >
+                        data-product-image="{{ asset('storage/' . $product->image) }}">
                         <span>@lang('home.buy_now')</span>
                     </button>
                 </div>
@@ -97,7 +92,7 @@ $products = Product::inRandomOrder()
 
 <script src="https://cdn.jsdelivr.net/npm/toastify-js"></script>
 
-@if(session('success'))
+@if (session('success'))
     <script>
         Toastify({
             text: "{{ session('success') }}",
