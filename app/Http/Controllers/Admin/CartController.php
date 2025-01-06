@@ -10,33 +10,42 @@ class CartController extends Controller
 {
     public function addToCart(Request $request)
     {
-        $request->validate([
-            'product_id' => 'required|exists:products,id',
-            'variant_id' => 'required|exists:variants,id',
-            'storage' => 'required|integer',
-            'price' => 'required|numeric',
-        ]);
+        $lang = app()->getLocale();
         $product = Product::find($request->product_id);
         $variant = Variant::find($request->variant_id);
+
         if (!$product || !$variant) {
-            return response()->json(['success' => false, 'message' => 'Product or Variant not found']);
+            return response()->json(['success' => false, 'message' => 'Mahsulot yoki Variant topilmadi']);
         }
+
         $cart = session()->get('cart', []);
+
         if (isset($cart[$request->product_id])) {
             $cart[$request->product_id]['quantity']++;
         } else {
+            $nameField = "name_{$lang}";
+            $discountedPrice = $variant->discount_price ?? $variant->price;
+
             $cart[$request->product_id] = [
                 'id' => $product->id,
-                'name' => $product->name,
+                'name' => $product->$nameField,
                 'variant_id' => $variant->id,
                 'storage' => $request->storage,
-                'price' => $variant->discount_price ?? $variant->price,
+                'price' => $discountedPrice,
+                'image' => $product->image,
                 'quantity' => 1,
             ];
         }
+
         session()->put('cart', $cart);
-        $cartCount = array_sum(array_column($cart, 'quantity'));
-        return response()->json(['success' => true, 'message' => 'Product added to cart', 'cart_count' => $cartCount]);
+
+        $cartCount = count($cart);
+
+        return response()->json([
+            'success' => true,
+            'message' => 'Mahsulot savatga qo\'shildi',
+            'cart_count' => $cartCount
+        ]);
     }
     public function cart()
     {
@@ -45,21 +54,42 @@ class CartController extends Controller
         $variants = Variant::all();
         $cartProducts = [];
         $totalPrice = 0;
+
         foreach ($cart as $cartItem) {
             $product = $products->where('id', $cartItem['id'])->first();
             $variant = $variants->where('id', $cartItem['variant_id'])->first();
+
             if ($product && $variant) {
                 $cartItem['name'] = $product->{'name_' . app()->getLocale()};
                 $cartItem['price'] = $variant->price; // Add price
-                $cartItem['discount_price'] = $variant->discount_price;
+                $cartItem['discount_price'] = $variant->discount_price ?: null; // If discount_price is 0, set it to null
                 $cartItem['image'] = $product->image;
-                $itemPrice = $cartItem['discount_price'] ?? $cartItem['price'];
+                $itemPrice = $cartItem['discount_price'] ?? $cartItem['price']; // If discount_price is null, use price
                 $totalPrice += $itemPrice * $cartItem['quantity'];
                 $cartProducts[] = $cartItem;
             }
         }
+
         return view('pages.cart', compact('cartProducts', 'totalPrice'));
     }
+
+    public function removeFromCart(Request $request)
+    {
+        $cart = session()->get('cart', []);
+        if (isset($cart[$request->id])) {
+            unset($cart[$request->id]);
+            session()->put('cart', $cart);
+        }
+
+        $total_amount = array_sum(array_map(fn($item) => $item['price'] * $item['quantity'], $cart));
+
+        return response()->json([
+            'success' => true,
+            'total_amount' => $total_amount,
+            'cart' => $cart,
+        ]);
+    }
+
     public function updateCart(Request $request)
     {
         $cart = session()->get('cart', []);
@@ -81,22 +111,6 @@ class CartController extends Controller
             'success' => true,
             'updated_item' => $cart[$request->id] ?? null,
             'total_amount' => $total_amount,
-        ]);
-    }
-
-
-    public function removeFromCart(Request $request)
-    {
-        $cart = session()->get('cart', []);
-        if (isset($cart[$request->id])) {
-            unset($cart[$request->id]);
-            session()->put('cart', $cart);
-        }
-        $total_amount = array_sum(array_map(fn($item) => $item['price'] * $item['quantity'], $cart));
-        return response()->json([
-            'success' => true,
-            'total_amount' => $total_amount,
-            'cart' => $cart,
         ]);
     }
     public function toggleFavorite(Request $request)
