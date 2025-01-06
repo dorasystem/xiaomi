@@ -204,8 +204,9 @@ foreach ($keywords as $keyword) {
                                                 onclick="addToCart({{ $product->id }}, '{{ $product['name_' . $lang] }}', {{ $cheapestVariant->discount_price ?? $cheapestVariant->price }}, {{ $cheapestVariant->id }})">
                                                 <img src="/assets/icons/shopping-cart.svg" alt="" />
                                             </a>
-                                            <button data-bs-toggle="modal" data-bs-target="#largeModal"
+                                            <button
                                                 class="btn-orange rounded w-100 d-flex align-items-center gap-2 justify-content-center"
+                                                data-bs-toggle="modal" data-bs-target="#largeModal"
                                                 data-product-id="{{ $product->id }}"
                                                 data-product-name="{{ $product['name_' . $lang] }}"
                                                 data-product-price="{{ $cheapestVariant->discount_price ?: $cheapestVariant->price }}"

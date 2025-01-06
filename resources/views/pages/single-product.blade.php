@@ -1,6 +1,8 @@
 @extends('layouts.page')
 <?php
 $lang = \Illuminate\Support\Facades\App::getLocale();
+$isInCompare = in_array($product->id, session('compares', []));
+
 ?>
 
 @section('content')
@@ -30,39 +32,49 @@ $lang = \Illuminate\Support\Facades\App::getLocale();
                         </div>
                     </div>
                     <div class="col-md-3 d-flex align-items-center justify-content-md-end gap-3">
-                        <button
+                        <button onclick="toggleCompare({{ $product->id }})"
                             class="w-100 my-md-0 my-2 bg-transparent px-3 justify-content-center py-1 d-flex align-items-center gap-3 border rounded-2">
-                            <svg version="1.0" xmlns="http://www.w3.org/2000/svg" width="13" height="13"
-                                viewBox="0 0 512.000000 512.000000" preserveAspectRatio="xMidYMid meet">
-                                <g transform="translate(0.000000,512.000000) scale(0.100000,-0.100000)" fill="#000"
-                                    stroke="none">
-                                    <path
-                                        d="M2015 4786 c-41 -18 -83 -69 -90 -109 -3 -18 -4 -982 -3 -2144 l3
-                                                                                                                            -2112 21 -27 c11 -15 33 -37 48 -48 27 -21 38 -21 566 -21 528 0 539 0 566 21
-                                                                                                                            15 11 37 33 48 48 l21 27 0 2139 0 2139 -21 27 c-11 15 -33 37 -48 48 -27 21
-                                                                                                                            -40 21 -554 23 -423 2 -533 0 -557 -11z m865 -2226 l0 -1920 -320 0 -320 0 0
-                                                                                                                            1920 0 1920 320 0 320 0 0 -1920z" />
-                                    <path
-                                        d="M3615 3506 c-41 -18 -83 -69 -90 -109 -3 -18 -4 -694 -3 -1504 3
-                                                                                                                            -1468 3 -1472 24 -1499 11 -15 33 -37 48 -48 27 -21 38 -21 566 -21 528 0 539
-                                                                                                                            0 566 21 15 11 37 33 48 48 21 27 21 28 21 1526 0 1498 0 1499 -21 1526 -11
-                                                                                                                            15 -33 37 -48 48 -27 21 -40 21 -554 23 -423 2 -533 0 -557 -11z m865 -1586
-                                                                                                                            l0 -1280 -320 0 -320 0 0 1280 0 1280 320 0 320 0 0 -1280z" />
-                                    <path
-                                        d="M415 2226 c-41 -18 -83 -69 -90 -109 -3 -18 -5 -406 -3 -864 3 -822
-                                                                                                                            3 -832 24 -859 11 -15 33 -37 48 -48 27 -21 38 -21 566 -21 528 0 539 0 566
-                                                                                                                            21 15 11 37 33 48 48 21 27 21 34 21 886 0 852 0 859 -21 886 -11 15 -33 37
-                                                                                                                            -48 48 -27 21 -40 21 -554 23 -423 2 -533 0 -557 -11z m865 -946 l0 -640 -320
-                                                                                                                            0 -320 0 0 640 0 640 320 0 320 0 0 -640z" />
-                                </g>
-                            </svg>
+                            {!! $isInCompare
+                                ? '
+                                    <svg width="13" height="13" viewBox="0 0 13 13" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                        <rect x="1" y="8" width="3" height="4" fill="#ff6700"/>
+                                        <rect x="5" y="1" width="3" height="11" fill="#ff6700"/>
+                                        <path d="M9 4.5H12V11.5H9V4.5Z" fill="#ff6700"/>
+                                        <path d="M5.1162 0.848046C5.0121 0.893749 4.90546 1.02324 4.88769 1.1248C4.88007 1.17051 4.87753 3.61816 4.88007 6.56855L4.88769 11.9311L4.94101 11.9996C4.96894 12.0377 5.0248 12.0936 5.06288 12.1215C5.13144 12.1748 5.15937 12.1748 6.49999 12.1748C7.84062 12.1748 7.86855 12.1748 7.9371 12.1215C7.97519 12.0936 8.03105 12.0377 8.05898 11.9996L8.1123 11.9311V6.5V1.06894L8.05898 1.00039C8.03105 0.962304 7.97519 0.906445 7.9371 0.878515C7.86855 0.825195 7.83554 0.825195 6.53046 0.820117C5.45644 0.815038 5.17714 0.820117 5.1162 0.848046ZM7.31249 6.5V11.375H6.49999H5.68749V6.5V1.625H6.49999H7.31249V6.5Z" fill="#ff6700"/>
+                                        <path d="M9.1787 4.09805C9.0746 4.14375 8.96796 4.27324 8.95019 4.3748C8.94257 4.42051 8.94003 6.13691 8.94257 8.19355C8.95019 11.9209 8.95019 11.9311 9.00351 11.9996C9.03144 12.0377 9.0873 12.0936 9.12538 12.1215C9.19394 12.1748 9.22187 12.1748 10.5625 12.1748C11.9031 12.1748 11.931 12.1748 11.9996 12.1215C12.0377 12.0936 12.0935 12.0377 12.1215 11.9996C12.1748 11.9311 12.1748 11.9285 12.1748 8.125C12.1748 4.32148 12.1748 4.31894 12.1215 4.25039C12.0935 4.2123 12.0377 4.15644 11.9996 4.12852C11.931 4.07519 11.898 4.07519 10.593 4.07012C9.51894 4.06504 9.23964 4.07012 9.1787 4.09805ZM11.375 8.125V11.375H10.5625H9.74999V8.125V4.875H10.5625H11.375V8.125Z" fill="#ff6700"/>
+                                        <path d="M1.0537 7.34805C0.949597 7.39375 0.842956 7.52324 0.825183 7.6248C0.817565 7.67051 0.812487 8.65566 0.817565 9.81855C0.825183 11.9057 0.825183 11.9311 0.878503 11.9996C0.906433 12.0377 0.962292 12.0936 1.00038 12.1215C1.06893 12.1748 1.09686 12.1748 2.43749 12.1748C3.77811 12.1748 3.80604 12.1748 3.8746 12.1215C3.91268 12.0936 3.96854 12.0377 3.99647 11.9996C4.04979 11.9311 4.04979 11.9133 4.04979 9.75C4.04979 7.58672 4.04979 7.56895 3.99647 7.50039C3.96854 7.4623 3.91268 7.40645 3.8746 7.37852C3.80604 7.3252 3.77303 7.3252 2.46796 7.32012C1.39393 7.31504 1.11464 7.32012 1.0537 7.34805ZM3.24999 9.75V11.375H2.43749H1.62499V9.75V8.125H2.43749H3.24999V9.75Z" fill="#ff6700"/>
+                                    </svg>'
+                                : '
+                                    <svg version="1.0" xmlns="http://www.w3.org/2000/svg" width="13" height="13"
+                                        viewBox="0 0 512.000000 512.000000" preserveAspectRatio="xMidYMid meet">
+                                        <g transform="translate(0.000000,512.000000) scale(0.100000,-0.100000)" fill="#000" stroke="none">
+                                            <path d="M2015 4786 c-41 -18 -83 -69 -90 -109 -3 -18 -4 -982 -3 -2144 l3
+                                                -2112 21 -27 c11 -15 33 -37 48 -48 27 -21 38 -21 566 -21 528 0 539 0 566 21
+                                                15 11 37 33 48 48 l21 27 0 2139 0 2139 -21 27 c-11 15 -33 37 -48 48 -27 21
+                                                -40 21 -554 23 -423 2 -533 0 -557 -11z m865 -2226 l0 -1920 -320 0 -320 0 0
+                                                1920 0 1920 320 0 320 0 0 -1920z"/>
+                                            <path d="M3615 3506 c-41 -18 -83 -69 -90 -109 -3 -18 -4 -694 -3 -1504 3
+                                                -1468 3 -1472 24 -1499 11 -15 33 -37 48 -48 27 -21 38 -21 566 -21 528 0 539
+                                                0 566 21 15 11 37 33 48 48 21 27 21 28 21 1526 0 1498 0 1499 -21 1526 -11
+                                                15 -33 37 -48 48 -27 21 -40 21 -554 23 -423 2 -533 0 -557 -11z m865 -1586
+                                                l0 -1280 -320 0 -320 0 0 1280 0 1280 320 0 320 0 0 -1280z"/>
+                                            <path d="M415 2226 c-41 -18 -83 -69 -90 -109 -3 -18 -5 -406 -3 -864 3 -822
+                                                3 -832 24 -859 11 -15 33 -37 48 -48 27 -21 38 -21 566 -21 528 0 539 0 566
+                                                21 15 11 37 33 48 48 21 27 21 34 21 886 0 852 0 859 -21 886 -11 15 -33 37
+                                                -48 48 -27 21 -40 21 -554 23 -423 2 -533 0 -557 -11z m865 -946 l0 -640 -320
+                                                0 -320 0 0 640 0 640 320 0 320 0 0 -640z"/>
+                                        </g>
+                                    </svg>' !!}
+
+
                             <span class="fs-14">@lang('home.compare')</span>
                         </button>
-                        <button
+                        <a onclick="toggleFavourite({{ $product->id }})"
                             class="w-100 my-md-0 my-2 bg-transparent fs-14 px-3 justify-content-center py-1 d-flex align-items-center gap-3 border rounded-2">
-                            <i class="fa-regular fa-heart"></i>
+                            <i
+                                class="fa-{{ in_array($product->id, session('favorites', [])) ? 'solid' : 'regular' }} {{ in_array($product->id, session('favorites', [])) ? 'text-orange' : '' }} fa-heart"></i>
                             <span class="fs-14">@lang('home.save')</span>
-                        </button>
+                        </a>
                     </div>
                 </div>
                 <div class="container p-0">
@@ -193,11 +205,20 @@ $lang = \Illuminate\Support\Facades\App::getLocale();
                             <hr />
 
                             <!-- Other UI elements... -->
+                            @php
+                                $cheapestVariant = $product->variants->sortBy('price')->first();
+                            @endphp
 
                             <div class="d-flex flex-lg-row flex-column d-block align-items-center gap-3">
-                                <button class="btn-orange rounded w-100"> @lang('home.basket')</button>
-                                <button data-bs-toggle="modal" data-bs-target="#largeModal"
-                                    class="border-0 w-100 bg-darkgrey rounded py-2 px-3"> @lang('home.buy_now')</button>
+                                <button
+                                    onclick="addToCart({{ $product->id }}, '{{ $product['name_' . $lang] }}', {{ $cheapestVariant->discount_price ?? $cheapestVariant->price }}, {{ $cheapestVariant->id }})"
+                                    class="btn-orange rounded w-100"> @lang('home.basket')</button>
+                                <button class="border-0 w-100 bg-darkgrey rounded py-2 px-3" data-bs-toggle="modal"
+                                    data-bs-target="#largeModal" data-product-id="{{ $product->id }}"
+                                    data-product-name="{{ $product['name_' . $lang] }}"
+                                    data-product-price="{{ $cheapestVariant->discount_price ?: $cheapestVariant->price }}"
+                                    data-product-image="{{ asset('storage/' . $product->image) }}">
+                                    <span>@lang('home.buy_now')</span></button>
                             </div>
                         </div>
                     </div>
@@ -499,60 +520,7 @@ $lang = \Illuminate\Support\Facades\App::getLocale();
         <!-- contact -->
         <x-page.contact />
     </main>
-    <div class="modal fade" id="largeModal" tabindex="-1" aria-labelledby="largeModalLabel" aria-hidden="true">
-        <div class="modal-dialog modal-lg modal-dialog-centered">
-            <!-- Added modal-dialog-centered -->
-            <div class="modal-content px-4">
-                <div class="modal-header border-0">
-                    <h5 class="modal-title" id="largeModalLabel">Instant Purchase</h5>
-                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-                </div>
-                <div class="modal-body application_modal row">
-                    <form class="col-lg-4 order-lg-1 order-2">
-                        <div class="mb-3">
-                            <label for="name" class="form-label">Full name*</label>
-                            <input type="text" class="form-control focus_none" id="name"
-                                placeholder="Enter your name" />
-                        </div>
-                        <div class="mb-3">
-                            <label for="email" class="form-label">Phone number*</label>
-                            <input type="email" class="form-control focus_none" id="email"
-                                placeholder="+998 (90) 123-45-67" />
-                        </div>
-                        <button type="submit" class="btn-orange rounded w-100 mb-3">Send</button>
-                    </form>
-                    <div class="col-lg-8 order-lg-2 order-1">
-                        <div class="d-flex flex-column justify-content-between h-100">
-                            <div class="d-flex align-items-start gap-3">
-                                <img class="rounded fit-cover" src="/assets/images/category_phone.webp" alt="" />
-                                <div class="d-flex flex-column">
-                                    <h6>Телевизор Xiaomi Mi TV A Pro 55" 2025 L55MA-SRU</h6>
-                                    <div class="">150 000</div>
-                                </div>
-                                <div class="d-sm-block d-none">1X</div>
-                            </div>
-                            <div class="row align-items-start mt-2">
-                                <div class="col-sm-6 mb-2">
-                                    <div class="phone text-nowrap border-orange rounded text-center px-2 py-1 w-100 mb-1">
-                                        <a href="tel: +998772828080 " class="text-orange"> <i
-                                                class="fa-solid fa-phone-volume text-orange me-2"></i> +998 77 282 80 80
-                                        </a>
-                                    </div>
-                                </div>
-                                <div class="col-sm-6 mb-2">
-                                    <div class="phone text-nowrap border-orange rounded text-center px-2 py-1 w-100 mb-1">
-                                        <a href="tel: +998772828080 " class="text-orange"> <i
-                                                class="fa-solid fa-phone-volume text-orange me-2"></i> +998 77 282 80 80
-                                        </a>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </div>
+
     <div id="overlay"></div>
     <script>
         document.addEventListener('DOMContentLoaded', function() {
@@ -587,6 +555,94 @@ $lang = \Illuminate\Support\Facades\App::getLocale();
                 });
             });
         });
+
+        function toggleFavourite(productId) {
+            $.ajax({
+                url: '/toggle-favorite',
+                type: 'POST',
+                data: {
+                    _token: '{{ csrf_token() }}',
+                    id: productId
+                },
+                success: function(response) {
+                    if (response.success) {
+                        Toastify({
+                            text: response.message,
+                            duration: 3000,
+                            close: true,
+                            gravity: "top",
+                            position: "right",
+                            backgroundColor: "#4CAF50",
+                        }).showToast();
+
+                        // Sevimlilar sonini yangilash
+                        $('#favorite-count').text(response.favorites_count);
+
+                        // Ico'ni yangilash
+                        if (response.message.includes('qo\'shildi')) {
+                            $('#favourite-icon-' + productId).addClass('text-orange');
+                            if (document.getElementById('favourite-icon-' + productId).classList.contains(
+                                    "fa-regular")) {
+                                document.getElementById('favourite-icon-' + productId).classList.remove(
+                                    'fa-regular')
+                                document.getElementById('favourite-icon-' + productId).classList.add('fa-solid')
+                            }
+                        } else {
+                            $('#favourite-icon-' + productId).removeClass(
+                                'text-orange'); // O'chirilganini ko'rsatish
+                            if (document.getElementById('favourite-icon-' + productId).classList.contains(
+                                    "fa-solid")) {
+                                document.getElementById('favourite-icon-' + productId).classList.remove(
+                                    'fa-solid')
+                                document.getElementById('favourite-icon-' + productId).classList.add(
+                                    'fa-regular')
+                            }
+                        }
+                    }
+                },
+                error: function(xhr) {
+                    alert('Xatolik yuz berdi: ' + xhr.responseText);
+                }
+            });
+        }
+
+        function toggleCompare(productId) {
+            $.ajax({
+                url: '/toggle-compare',
+                type: 'POST',
+                data: {
+                    _token: '{{ csrf_token() }}',
+                    id: productId
+                },
+                success: function(response) {
+                    if (response.success) {
+                        Toastify({
+                            text: response.message,
+                            duration: 3000,
+                            close: true,
+                            gravity: "top",
+                            position: "right",
+                            backgroundColor: "#4CAF50",
+                        }).showToast();
+
+                        // Sevimlilar sonini yangilash
+                        $('#compare-count').text(response.compares_count); // Id bo'yicha o'zgarish
+
+                        // Ico'ni yangilash
+                        if (response.message.includes('qo\'shildi')) {
+                            $('#compare-icon-' + productId).addClass(
+                                'active-svg'); // Qo'shilganini ko'rsatish
+                        } else {
+                            $('#compare-icon-' + productId).removeClass(
+                                'active-svg'); // O'chirilganini ko'rsatish
+                        }
+                    }
+                },
+                error: function(xhr) {
+                    alert('Xatolik yuz berdi: ' + xhr.responseText);
+                }
+            });
+        }
     </script>
 
     <script>

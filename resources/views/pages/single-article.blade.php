@@ -1,5 +1,7 @@
 @extends('layouts.page')
-
+<?php
+$lang = \Illuminate\Support\Facades\App::getLocale();
+?>
 @section('content')
     <main class="container">
         <div class="my-4">
@@ -9,18 +11,62 @@
             </div>
             <hr />
         </div>
-        <div class="row align-items-center justify-content-between mb-lg-0 mb-2">
-            <h2 class="order-lg-1 order-2 col-lg-10 fw-normal hover-orange mb-3">{{ $articles['title_' . $locale] ?? ' ' }}
-            </h2>
+        <div class="row d-sm-none d-flex align-items-center justify-content-between mb-lg-0 mb-2">
+
+            <h2 class="order-lg-1 order-2 col-lg-10 fw-normal hover-orange mb-3">
+                {{ $articles['title_' . $locale] ?? ' ' }}</h2>
             <div class="order-lg-2 order-1 col-lg-2 d-flex align-items-center gap-2">
                 <img src="/assets/icons/calendar-icon.svg" alt="" />
-                <div class="text-grey">{{ $articles->date }}</div>
+                <div class="text-grey">{{ \Carbon\Carbon::parse($articles['date'])->format('d.m.Y') }}</div>
+            </div>
+        </div>
+        <div class="col-12 pe-lg-5 pe-2 mb-4 d-sm-block d-none">
+            <div class="newbanner w-100 rounded text-white d-flex flex-column justify-content-end"
+                style="background-image: url('{{ asset('storage/' . $articles->image) }}'); height:500px;">
+                <h1 class="mb-4">
+                    {{ $articles['title_' . $locale] ?? ' ' }}
+                </h1>
+                <small class="fw-bold border-top pt-3">
+                    {{ \Carbon\Carbon::parse($articles['date'])->format('d.m.Y') }}</small>
             </div>
         </div>
         <div class="mb-5">
             {!! $articles['description_' . $locale] !!}
             <br /><br />
-            {!! $articles['content_' . $locale] ?? '' !!}
+            {!! $articles['content_' . $locale] ?? ' ' !!}
         </div>
+
+        @if (!empty($otherNews) && $otherNews->count())
+            <h1 class="fw-normal hover-orange mb-4 mt-5 text-history">@lang('home.other_news')</h1>
+            <div style="overflow: hidden" class="news container py-3 position-relative">
+                <div class="swiper-wrapper">
+                    @foreach ($otherNews as $item)
+                        <div class="swiper-slide product shadow-sm position-relative rounded">
+                            <a href="{{ route('single.news', ['slug' => $item->getSlugByLanguage($lang)]) }}"
+                                class="mb-3">
+                                <img height="250px" class="w-100 fit-cover"
+                                    src="{{ asset('storage/' . $item->image) ?? '/assets/images/news1.jpg' }}"
+                                    alt="" />
+                                <div class="p-4 bg-darkgrey">
+                                    <div class="d-flex align-items-center gap-2">
+                                        <img src="/assets/icons/calendar-icon.svg" alt="" />
+                                        <div class="text-grey">
+                                            {{ \Carbon\Carbon::parse($item->date)->format('d.m.Y') }}</div>
+                                    </div>
+                                    <h4 class="fw-normal text-history">{{ $item['title_' . $locale] }}</h4>
+
+                                </div>
+                            </a>
+                        </div>
+                    @endforeach
+                </div>
+                <!-- Navigation buttons (optional) -->
+                <div id="products-next" class="swiper-button-next end-0"></div>
+                <div id="products-prev" class="swiper-button-prev start-0"></div>
+            </div>
+        @else
+            <x-page.not-found />
+        @endif
+
     </main>
 @endsection

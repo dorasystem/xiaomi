@@ -152,7 +152,9 @@ class MainController extends Controller
         $articles = Blog::all()->filter(function ($articles) use ($locale, $slug) {
             return $articles->getSlugByLanguage($locale) === $slug;
         })->first();
-        return view('pages.single-article', compact('articles', 'locale'));
+        $otherNews = News::latest()->skip(1)->take(4)->get();
+
+        return view('pages.single-article', compact('articles', 'locale', 'otherNews'));
     }
 
     public function  productSearch(Request $request)
