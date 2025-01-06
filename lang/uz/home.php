@@ -121,5 +121,11 @@ return [
     "add_to_cart" => "Mahsulot savatga qo'shildi",
     "add_compare" => "Mahsulot Taqqoslashlarga qo'shildi!",
     "remove_compare" => "Mahsulot Taqqoslashdan olib tashlandi!",
+    "testimonials" => "Mahsulot bo'yicha bahoingiz",
+    "rating" => "Baholash",
+    "name" => "Ism",
+    "lastname" => "Familiya",
+    "comment" => "Izoh",
+
 
 ];

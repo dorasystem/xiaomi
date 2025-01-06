@@ -125,5 +125,11 @@ return [
     "add_to_cart" => "Product added to cart!",
     "add_compare" => "Product added to comparison!",
     "remove_compare" => "Product removed from comparison!",
+    "testimonials" => "Your product evaluation",
+    "rating" => "Rating",
+    "name" => "Name",
+    "lastname" => "Last name",
+    "comment" => "Comment",
+
 
 ];
