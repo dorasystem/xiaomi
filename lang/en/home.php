@@ -119,5 +119,17 @@ return [
     "reviews" => "Reviews",
     "read" => "Read",
     "tel" => "Call",
+    "cart_message" => "Product or Variant not found",
+    "add_favorites" => "Product added to favorites!",
+    "remove_favorites" => "Product removed from favorites!",
+    "add_to_cart" => "Product added to cart!",
+    "add_compare" => "Product added to comparison!",
+    "remove_compare" => "Product removed from comparison!",
+    "testimonials" => "Your product evaluation",
+    "rating" => "Rating",
+    "name" => "Name",
+    "lastname" => "Last name",
+    "comment" => "Comment",
+
 
 ];

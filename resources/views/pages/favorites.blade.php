@@ -2,9 +2,9 @@
 @section('content')
     <main class="container">
         <div class="my-4">
-            <div class="d-flex align-items-center gap-3">
-                <a href="./index.html" class="text-grey fw-bold  fs-14">@lang('home.home') / <span
-                        class="text-dark">@lang('home.comparison')</span></a>
+            <div class="d-flex align-items-center">
+                <a href="/" class="text-grey fw-bold  fs-14">@lang('home.home') / </a>
+                <span class="text-dark">@lang('home.comparison')</span>
             </div>
             <hr />
         </div>
@@ -13,14 +13,14 @@
             <div class="m-0 fs-2 fw-bold container">@lang('home.featured')</div>
             <div class="d-lg-flex align-items-center justify-content-between d-block container">
                 {{-- <div class="col-lg-9 d-flex flex-column gap-4 my-3 align-items-start"> --}}
-                    {{--                    <ul class="nav nav-tabs mb-1 overflow-auto w-100" id="myTab" role="tablist" style="white-space: nowrap"> --}}
-                    {{--                        <li class="me-3 mb-3" role="presentation"> --}}
-                    {{--                            <a class="fs-5 p-2 active" id="home-tab" data-bs-toggle="tab" href="#home" role="tab" aria-controls="home" aria-selected="true">Телевизоры</a> --}}
-                    {{--                        </li> --}}
-                    {{--                        <li class="me-3 mb-3" role="presentation"> --}}
-                    {{--                            <a class="fs-5 pb-2" id="profile-tab" data-bs-toggle="tab" href="#profile" role="tab" aria-controls="profile" aria-selected="false">Телефоны</a> --}}
-                    {{--                        </li> --}}
-                    {{--                    </ul> --}}
+                {{--                    <ul class="nav nav-tabs mb-1 overflow-auto w-100" id="myTab" role="tablist" style="white-space: nowrap"> --}}
+                {{--                        <li class="me-3 mb-3" role="presentation"> --}}
+                {{--                            <a class="fs-5 p-2 active" id="home-tab" data-bs-toggle="tab" href="#home" role="tab" aria-controls="home" aria-selected="true">Телевизоры</a> --}}
+                {{--                        </li> --}}
+                {{--                        <li class="me-3 mb-3" role="presentation"> --}}
+                {{--                            <a class="fs-5 pb-2" id="profile-tab" data-bs-toggle="tab" href="#profile" role="tab" aria-controls="profile" aria-selected="false">Телефоны</a> --}}
+                {{--                        </li> --}}
+                {{--                    </ul> --}}
                 {{-- </div> --}}
             </div>
 
@@ -37,7 +37,7 @@
                                                 <a href="javascript:void(0);"
                                                     onclick="toggleFavourite({{ $product->id }})">
                                                     <i id="favourite-icon-{{ $product->id }}"
-                                                        class="fa-solid {{ in_array($product->id, session('favorites', [])) ? 'text-orange' : 'hover-orange' }} fa-heart fs-4 ps-1"></i>
+                                                        class="fa-{{ in_array($product['id'], session('favorites', [])) ? 'solid' : 'regular' }} {{ in_array($product->id, session('favorites', [])) ? 'text-orange' : 'hover-orange' }} fa-heart fs-4 ps-1"></i>
                                                 </a>
 
                                                 <a onclick="toggleCompare({{ $product->id }})">

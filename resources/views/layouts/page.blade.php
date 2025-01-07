@@ -68,8 +68,6 @@
             </ul>
         </div>
     </nav>
-    {{--    modal product --}}
-    <!-- Modal -->
     <!-- Modal -->
     <div class="modal fade" id="largeModal" tabindex="-1" aria-labelledby="largeModalLabel" aria-hidden="true">
         <div class="modal-dialog modal-lg modal-dialog-centered">
@@ -86,7 +84,7 @@
                             <label for="name" class="form-label">@lang('home.full_name') <span
                                     class="text-danger">*</span></label>
                             <input type="text" class="form-control focus_none" id="name" name="first_name"
-                                placeholder="Enter your name" />
+                                placeholder="Enter your name" required />
                         </div>
                         <div class="mb-3">
                             <label for="phone" class="form-label">@lang('home.enter_number') <span

@@ -29,8 +29,8 @@
                             <img src="/assets/images/airpods.png" width="120px" alt="" />
                         </div>
                         <div class="position-relative">
-                            <img class="bottom_product border-orange" src="/assets/images/bottom_product.png"
-                                width="120px" alt="" />
+                            <img class="bottom_product border-orange" src="/assets/images/bottom_product.png" width="120px"
+                                alt="" />
                         </div>
                     </div>
                 </div>
@@ -327,7 +327,7 @@
                                 <x-page.not-found />
                             @endif
                         </div>
-                        {{ $products->links('vendor.pagination.custom') }}
+                        {{ $products->links('pagination::bootstrap-4') }}
                     </div>
                 </div>
             </div>
@@ -516,6 +516,5 @@
                 }
             });
         }
-
     </script>
 @endsection
