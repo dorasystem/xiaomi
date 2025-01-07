@@ -98,18 +98,16 @@
                         @endforeach
 
                         <div class="mb-3 d-flex align-items-center justify-content-between">
-                            <div class="text-dark">@lang('home.total_amount')</div>
-                            <h6 class="m-0 fw-bold price"><small
-                                    class="text-grey">{{ number_format($totalPrice, 0, '.', ' ') }} UZS</small></h6>
+                            <div class="text-dark">chegirmasiz narxda</div>
+                            <h6 class="m-0 fw-bold price"><small class="text-grey">{{ number_format($totalPrice, 0, '.', ' ') }} UZS</small></h6>
                         </div>
                         <div class="mb-3 d-flex align-items-center justify-content-between">
-                            <div class="text-dark">@lang('home.discount') Chegirma summasi</div>
-                            <h6 class="m-0 fw-bold price text-yellow">
-                                {{ number_format($totalPrice - $totalDiscount, 0, '.', ' ') }} UZS</h6>
+                            <div class="text-dark">@lang('home.discount') summasi</div>
+                            <h6 class="m-0 fw-bold price text-yellow">{{ number_format($totalDiscount, 0, '.', ' ') }} UZS</h6>
                         </div>
                         <div class="mb-3 d-flex align-items-center justify-content-between">
                             <div class="text-dark">@lang('home.total_amount')</div>
-                            <h6 class="m-0 fw-bold price">{{ number_format($totalDiscount, 0, '.', ' ') }} UZS</h6>
+                            <h6 class="m-0 fw-bold price">{{ number_format($discountedTotal, 0, '.', ' ') }} UZS</h6>
                         </div>
                         <hr class="my-4 text-history" />
 

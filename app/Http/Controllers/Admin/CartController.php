@@ -20,18 +20,22 @@ class CartController extends Controller
 
         $cart = session()->get('cart', []);
 
+        // Chegirma yoki asosiy narxni belgilash
+        $discountedPrice = $variant->discount_price !== null && $variant->discount_price > 0
+            ? $variant->discount_price
+            : $variant->price;
+
         if (isset($cart[$request->product_id])) {
             $cart[$request->product_id]['quantity']++;
         } else {
             $nameField = "name_{$lang}";
-            $discountedPrice = $variant->discount_price ?? $variant->price;
 
             $cart[$request->product_id] = [
                 'id' => $product->id,
                 'name' => $product->$nameField,
                 'variant_id' => $variant->id,
                 'storage' => $request->storage,
-                'price' => $discountedPrice,
+                'price' => $discountedPrice, // Asosiy narx yoki chegirma narxi
                 'image' => $product->image,
                 'quantity' => 1,
             ];
@@ -53,8 +57,9 @@ class CartController extends Controller
         $products = Product::all();
         $variants = Variant::all();
         $cartProducts = [];
-        $totalPrice = 0;
-        $totalDiscount = 0;
+        $totalPrice = 0; // Chegirmasiz narxda umumiy qiymat
+        $totalDiscount = 0; // Chegirma summasi
+        $discountedTotal = 0; // Chegirmadan keyingi umumiy narx
 
         foreach ($cart as $cartItem) {
             $product = $products->where('id', $cartItem['id'])->first();
@@ -62,24 +67,29 @@ class CartController extends Controller
 
             if ($product && $variant) {
                 $cartItem['name'] = $product->{'name_' . app()->getLocale()};
-                $cartItem['price'] = $variant->price; // Add price
-                $cartItem['discount_price'] = $variant->discount_price ?: null; // If discount_price is 0, set it to null
+                $cartItem['price'] = $variant->price;
+                $cartItem['discount_price'] = $variant->discount_price !== null && $variant->discount_price > 0
+                    ? $variant->discount_price
+                    : null;
                 $cartItem['image'] = $product->image;
 
-                // Hisoblash: Chegirma yoki Asosiy narx
-                $itemPrice = $cartItem['discount_price'] ?? $cartItem['price']; // If discount_price is null, use price
-                $totalPrice += $itemPrice * $cartItem['quantity'];
+                // Chegirmasiz narxni hisoblash
+                $totalPrice += $cartItem['price'] * $cartItem['quantity'];
 
-                // Chegirmani hisoblash
+                // Chegirma summasini hisoblash
                 if ($cartItem['discount_price']) {
                     $totalDiscount += ($cartItem['price'] - $cartItem['discount_price']) * $cartItem['quantity'];
                 }
+
+                // Chegirmali umumiy narxni hisoblash
+                $itemPrice = $cartItem['discount_price'] ?? $cartItem['price'];
+                $discountedTotal += $itemPrice * $cartItem['quantity'];
 
                 $cartProducts[] = $cartItem;
             }
         }
 
-        return view('pages.cart', compact('cartProducts', 'totalPrice', 'totalDiscount'));
+        return view('pages.cart', compact('cartProducts', 'totalPrice', 'totalDiscount', 'discountedTotal'));
     }
 
 
