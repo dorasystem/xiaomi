@@ -197,11 +197,6 @@ class MainController extends Controller
                 abort(404, __('Article not found'));
             }
         }
-
-        return view('pages.single-article', compact('articles', 'locale'));
-        $articles = Blog::all()->filter(function ($articles) use ($locale, $slug) {
-            return $articles->getSlugByLanguage($locale) === $slug;
-        })->first();
         $otherNews = News::latest()->skip(1)->take(4)->get();
 
         return view('pages.single-article', compact('articles', 'locale', 'otherNews'));
