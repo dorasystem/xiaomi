@@ -81,7 +81,8 @@
                     <div class="orderSum bg-darkgrey rounded p-3 position-sticky">
                         <div class="d-flex align-items-center justify-content-between">
                             <h4 class="text-orange">@lang('home.your_order')</h4>
-                            <small id="cart-count">@lang('home.products'): {{ session('cart') ? count(session('cart')) : 0 }}</small>
+                            <small id="cart-count">@lang('home.products'):
+                                {{ session('cart') ? count(session('cart')) : 0 }}</small>
                         </div>
                         <hr class="my-4 text-history" />
                         @foreach ($cartProducts as $cartItem)
@@ -98,11 +99,13 @@
 
                         <div class="mb-3 d-flex align-items-center justify-content-between">
                             <div class="text-dark">@lang('home.total_amount')</div>
-                            <h6 class="m-0 fw-bold price"><small class="text-grey">{{ number_format($totalPrice, 0, '.', ' ') }} UZS</small></h6>
+                            <h6 class="m-0 fw-bold price"><small
+                                    class="text-grey">{{ number_format($totalPrice, 0, '.', ' ') }} UZS</small></h6>
                         </div>
                         <div class="mb-3 d-flex align-items-center justify-content-between">
                             <div class="text-dark">@lang('home.discount') Chegirma summasi</div>
-                            <h6 class="m-0 fw-bold price text-yellow">{{ number_format($totalPrice - $totalDiscount, 0, '.', ' ') }} UZS</h6>
+                            <h6 class="m-0 fw-bold price text-yellow">
+                                {{ number_format($totalPrice - $totalDiscount, 0, '.', ' ') }} UZS</h6>
                         </div>
                         <div class="mb-3 d-flex align-items-center justify-content-between">
                             <div class="text-dark">@lang('home.total_amount')</div>
@@ -251,10 +254,51 @@
                     }
                 });
             }
-
         </script>
-    </main>    
+    </main>
+    {{-- modal --}}
+    <div class="modal fade" id="largeModal" tabindex="-1" aria-labelledby="largeModalLabel" aria-hidden="true">
+        <div class="modal-dialog modal-lg modal-dialog-centered">
+            <div class="modal-content px-4">
+                <div class="modal-header border-0">
+                    {{-- <h5 class="modal-title" id="largeModalLabel">Instant Purchase</h5> --}}
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body application_modal row">
+                    <form id="formProduct" method="POST" action="{{ route('orders.products.store') }}"
+                        class="col-lg-4 order-lg-1 order-2">
+                        @csrf
+                        <div class="mb-3">
+                            <label for="name" class="form-label">@lang('home.full_name') <span
+                                    class="text-danger">*</span></label>
+                            <input required type="text" class="form-control focus_none" id="name"
+                                name="first_name" placeholder="Enter your name" />
+                        </div>
+                        <div class="mb-3">
+                            <label for="phone" class="form-label">@lang('home.enter_number') <span
+                                    class="text-danger">*</span></label>
+                            <input type="text" class="form-control focus_none" id="phone" name="phone"
+                                placeholder="+998 (90) 123-45-67" required />
+                            <small id="phone-error" class="form-text text-danger"
+                                style="display: none;">@lang('home.invalid_phone_format')</small>
+                        </div>
 
+                        <!-- Hidden fields for all product details -->
+                        <input type="hidden" name="cart_items" id="cart_items">
+                        <button type="submit" class="btn-orange rounded w-100 mb-3">Send</button>
+                    </form>
+
+
+                    <!-- Product details for modal -->
+                    <div class="col-lg-8 order-lg-2 order-1">
+                        <div class="d-flex flex-column  h-100" id="modal-products-list">
+                            <!-- Dynamic list of products will be inserted here -->
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
     <script>
         const phoneInput = document.getElementById('phone');
         const errorText = document.getElementById('phone-error');
