@@ -96,11 +96,6 @@
                             </div>
                             <p class="border-bottom-dashed py-1   w-100"></p>
                         @endforeach
-
-                        <div class="mb-3 d-flex align-items-center justify-content-between">
-                            <div class="text-dark">chegirmasiz narxda</div>
-                            <h6 class="m-0 fw-bold price"><small class="text-grey">{{ number_format($totalPrice, 0, '.', ' ') }} UZS</small></h6>
-                        </div>
                         <div class="mb-3 d-flex align-items-center justify-content-between">
                             <div class="text-dark">@lang('home.discount') summasi</div>
                             <h6 class="m-0 fw-bold price text-yellow">{{ number_format($totalDiscount, 0, '.', ' ') }} UZS</h6>
