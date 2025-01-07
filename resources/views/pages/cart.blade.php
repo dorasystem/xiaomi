@@ -81,13 +81,9 @@
                     <div class="orderSum bg-darkgrey rounded p-3 position-sticky">
                         <div class="d-flex align-items-center justify-content-between">
                             <h4 class="text-orange">@lang('home.your_order')</h4>
-                            <small>@lang('home.products'): {{ count($cartProducts) }}</small>
+                            <small id="cart-count">@lang('home.products'): {{ session('cart') ? count(session('cart')) : 0 }}</small>
                         </div>
                         <hr class="my-4 text-history" />
-                        <div class="mb-3 d-flex align-items-center justify-content-between">
-                            <div class="text-dark">@lang('home.discount')</div>
-                            <h6 class="m-0 fw-bold">0 UZS</h6>
-                        </div>
                         @foreach ($cartProducts as $cartItem)
                             <div id="item-{{ $cartItem['id'] }}" class="d-flex align-items-start justify-content-between">
                                 <div class="small">{{ $cartItem['name'] }}</div>
@@ -102,7 +98,15 @@
 
                         <div class="mb-3 d-flex align-items-center justify-content-between">
                             <div class="text-dark">@lang('home.total_amount')</div>
-                            <h6 class="m-0 fw-bold price">{{ number_format($totalPrice, 0, '.', ' ') }} UZS</h6>
+                            <h6 class="m-0 fw-bold price"><small class="text-grey">{{ number_format($totalPrice, 0, '.', ' ') }} UZS</small></h6>
+                        </div>
+                        <div class="mb-3 d-flex align-items-center justify-content-between">
+                            <div class="text-dark">@lang('home.discount') Chegirma summasi</div>
+                            <h6 class="m-0 fw-bold price text-yellow">{{ number_format($totalPrice - $totalDiscount, 0, '.', ' ') }} UZS</h6>
+                        </div>
+                        <div class="mb-3 d-flex align-items-center justify-content-between">
+                            <div class="text-dark">@lang('home.total_amount')</div>
+                            <h6 class="m-0 fw-bold price">{{ number_format($totalDiscount, 0, '.', ' ') }} UZS</h6>
                         </div>
                         <hr class="my-4 text-history" />
 

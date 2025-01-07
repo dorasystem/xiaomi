@@ -89,17 +89,30 @@ class MainController extends Controller
         $blogs = Blog::all();
         $blog = Blog::orderBy('created_at', 'desc')->first();
 
-        return view('pages.page-blog', compact('blogs', 'blog'));
+        $lang = app()->getLocale();
+        return view('pages.page-blog', compact('blogs', 'blog', 'lang'));
     }
-    public function singleBlog($slug)
+    public function singleBlog($slug = null)
     {
-        $locale = app()->getLocale();
-        $blog = Blog::all()->filter(function ($blog) use ($locale, $slug) {
-            return $blog->getSlugByLanguage($locale) === $slug;
-        })->first();
-        return view('pages.single-blog', compact('blog'));
+        $lang = app()->getLocale();
+        if (session()->has('current_blog')) {
+            $blog = session('current_blog');
+        } else {
+            if ($slug) {
+                $blog = Blog::all()->first(function ($blog) use ($slug, $lang) {
+                    $slugs = json_decode($blog->slug, true);
+                    return isset($slugs[$lang]) && $slugs[$lang] === $slug;
+                });
+                if (!$blog) {
+                    abort(404, __('Blog not found'));
+                }
+                session(['current_blog' => $blog]);
+            } else {
+                abort(404, __('Blog not found'));
+            }
+        }
+        return view('pages.single-blog', compact('blog', 'lang'));
     }
-
     public function products()
     {
         $categories = Category::all();
@@ -122,7 +135,6 @@ class MainController extends Controller
         return view('pages.single-product', compact('product', 'images', 'lang', 'variants', 'comments', 'products', 'descImages'));
     }
 
-
     public function news()
     {
         $news = News::all();
@@ -136,22 +148,56 @@ class MainController extends Controller
         return view('pages.career', compact('careers', 'lang'));
     }
 
-    public function singleNews($slug)
+    public function singleNews($slug = null)
     {
-        $products = Product::latest()->take(6)->get();
         $locale = app()->getLocale();
-        $news = News::all()->filter(function ($news) use ($locale, $slug) {
-            return $news->getSlugByLanguage($locale) === $slug;
-        })->first();
+        $products = Product::latest()->take(6)->get();
+
+        if (session()->has('current_news')) {
+            $news = session('current_news');
+        } else {
+            if ($slug) {
+                $news = News::all()->first(function ($news) use ($locale, $slug) {
+                    return $news->getSlugByLanguage($locale) === $slug;
+                });
+
+                if (!$news) {
+                    abort(404, __('News not found'));
+                }
+
+                session(['current_news' => $news]);
+            } else {
+                abort(404, __('News not found'));
+            }
+        }
+
         $otherNews = News::latest()->skip(1)->take(4)->get();
+
         return view('pages.single-news', compact('news', 'otherNews', 'locale', 'products'));
     }
-    public function singleArticle($slug)
+
+    public function singleArticle($slug = null)
     {
         $locale = app()->getLocale();
-        $articles = Blog::all()->filter(function ($articles) use ($locale, $slug) {
-            return $articles->getSlugByLanguage($locale) === $slug;
-        })->first();
+
+        if (session()->has('current_article')) {
+            $articles = session('current_article');
+        } else {
+            if ($slug) {
+                $articles = Blog::all()->first(function ($article) use ($locale, $slug) {
+                    return $article->getSlugByLanguage($locale) === $slug;
+                });
+
+                if (!$articles) {
+                    abort(404, __('Article not found'));
+                }
+
+                session(['current_article' => $articles]);
+            } else {
+                abort(404, __('Article not found'));
+            }
+        }
+
         return view('pages.single-article', compact('articles', 'locale'));
     }
 

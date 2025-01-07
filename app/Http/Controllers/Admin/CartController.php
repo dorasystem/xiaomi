@@ -54,6 +54,7 @@ class CartController extends Controller
         $variants = Variant::all();
         $cartProducts = [];
         $totalPrice = 0;
+        $totalDiscount = 0;
 
         foreach ($cart as $cartItem) {
             $product = $products->where('id', $cartItem['id'])->first();
@@ -64,14 +65,23 @@ class CartController extends Controller
                 $cartItem['price'] = $variant->price; // Add price
                 $cartItem['discount_price'] = $variant->discount_price ?: null; // If discount_price is 0, set it to null
                 $cartItem['image'] = $product->image;
+
+                // Hisoblash: Chegirma yoki Asosiy narx
                 $itemPrice = $cartItem['discount_price'] ?? $cartItem['price']; // If discount_price is null, use price
                 $totalPrice += $itemPrice * $cartItem['quantity'];
+
+                // Chegirmani hisoblash
+                if ($cartItem['discount_price']) {
+                    $totalDiscount += ($cartItem['price'] - $cartItem['discount_price']) * $cartItem['quantity'];
+                }
+
                 $cartProducts[] = $cartItem;
             }
         }
 
-        return view('pages.cart', compact('cartProducts', 'totalPrice'));
+        return view('pages.cart', compact('cartProducts', 'totalPrice', 'totalDiscount'));
     }
+
 
     public function removeFromCart(Request $request)
     {

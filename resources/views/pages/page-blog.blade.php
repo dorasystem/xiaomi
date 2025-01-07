@@ -1,7 +1,5 @@
 @extends('layouts.page')
-<?php
-$lang = \Illuminate\Support\Facades\App::getLocale();
-?>
+
 @section('content')
     <main class="container">
         <div class="my-4">

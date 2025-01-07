@@ -7,6 +7,7 @@ use App\Models\Article;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Storage;
+use Psy\Util\Str;
 
 class ArticleController extends Controller
 {
@@ -29,6 +30,7 @@ class ArticleController extends Controller
 
     public function store(Request $request)
     {
+        // Ma'lumotlarni validatsiya qilish
         $data = $request->validate([
             'title_uz' => 'nullable|string',
             'title_ru' => 'nullable|string',
@@ -39,8 +41,8 @@ class ArticleController extends Controller
             'content_uz' => 'nullable|string',
             'content_ru' => 'nullable|string',
             'content_en' => 'nullable|string',
-            'date' => 'nullable|string',
-            'status' => 'nullable|string' ?? 'active',
+            'date' => 'nullable|date',
+            'status' => 'nullable|string|in:active,inactive',
             'image' => 'nullable|image|mimes:jpeg,png,jpg,gif,webp|max:2048',
         ]);
 
@@ -51,10 +53,14 @@ class ArticleController extends Controller
             $data['image'] = $path;
         }
 
-        Article::create($data);
+        $article = Article::create($data);
 
-        return redirect()->route('articles.index')->with('success', 'Articles created successfully.');
+        $article->slug = Str::slug($request->title_en) . '-' . $article->id;
+        $article->save();
+
+        return redirect()->route('articles.index')->with('success', 'Article created successfully.');
     }
+
 
     public function edit(Article $article)
     {

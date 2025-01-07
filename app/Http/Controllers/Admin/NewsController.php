@@ -7,6 +7,7 @@ use App\Models\News;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Storage;
+use Illuminate\Support\Str;
 
 class NewsController extends Controller
 {
@@ -51,7 +52,10 @@ class NewsController extends Controller
             $data['image'] = $path;
         }
 
-        News::create($data);
+        $news = News::create($data);
+        // Generate and set the slug
+        $news->slug = Str::slug($request->title_en) . '-' . $news->id;
+        $news->save();
 
         return redirect()->route('news.index')->with('success', 'News created successfully.');
     }
