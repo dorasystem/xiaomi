@@ -32,15 +32,9 @@ class MainController extends Controller
 
         $randomProducts = $products->random(5);
 
-
         $productsWithoutRandom = $products->reject(function ($product) use ($randomProducts) {
             return $randomProducts->contains('id', $product->id);
         });
-
-
-
-
-
 
         // Bir nechta kalit so'zlarni olish
         $keywords = StaticKeyword::all(); // yoki filterlab olish
@@ -57,8 +51,8 @@ class MainController extends Controller
         $banner = MainBanner::first();
         $products = Product::latest()->take(6)->get();
         $new = News::latest()->first();
-        $news1 = News::latest()->skip(1)->take(4)->get();
-        $news2 = News::latest()->skip(4)->take(4)->get();
+        $news1 = News::orderBy('date', 'desc')->skip(1)->take(4)->get();
+        $news2 = News::orderBy('date', 'desc')->skip(4)->take(4)->get();
         $categories = Category::all();
         $category1 = collect($categories)->firstWhere('id', 1);
         $category2 = collect($categories)->firstWhere('id', 2);
@@ -210,7 +204,7 @@ class MainController extends Controller
             ->orWhere('description_' . $lang, 'like', '%' . $search . '%')
             ->get();
 
-        return view('pages.search-products', compact('products', 'lang'));
+        return view('pages.search-products', compact('products', 'lang', 'search'));
     }
     public function filterProducts(Request $request)
     {
@@ -238,8 +232,9 @@ class MainController extends Controller
         }
 
         $categories = Category::all();
+        $search = $request->input('search');
 
-        return view('pages.search-products', compact('products', 'categories'));
+        return view('pages.search-products', compact('products', 'categories', 'search'));
     }
 
 
@@ -260,7 +255,8 @@ class MainController extends Controller
 
         // Get the products associated with this category
         $products = $category->products()->get();
+        $search = $request->input('search');
 
-        return view('pages.search-products', compact('products', 'category'));
+        return view('pages.search-products', compact('products', 'category', 'search'));
     }
 }

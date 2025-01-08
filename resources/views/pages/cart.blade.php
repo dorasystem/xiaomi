@@ -9,15 +9,19 @@
             </div>
             <hr />
         </div>
-        @if (!empty($cartProducts))
+        @if (session('cart') && count(session('cart')) !== 0)
             <div class="row mb-5">
-                <div class="col-lg-9 pe-lg-4">
+                <div class="col-lg-8 pe-lg-4">
                     <div class="d-flex align-items-center gap-1 justify-content-between pb-2 border-bottom-dashed">
                         <h1 class="fw-normal">@lang('home.basket')</h1>
-                        <button onclick="clearCart()" class="d-flex align-items-center gap-2 bg-transparent border-0">
-                            <img src="/assets/icons/delete_icon.svg" alt="" />
-                            <div>@lang('home.clear_cart')</div>
-                        </button>
+                        <form action="{{ route('removeAllCart') }}" method="POST">
+                            @csrf
+                            @method("DELETE")
+                            <button type="submit" class="d-flex align-items-center gap-2 bg-transparent border-0">
+                                <img src="/assets/icons/delete_icon.svg" alt="" />
+                                <div>@lang('home.clear_cart')</div>
+                            </button>
+                        </form>
                     </div>
                     <div class="orders container">
                         @foreach ($cartProducts as $cartItem)
@@ -51,14 +55,28 @@
                                             </button>
 
                                         </div>
-                                        <h5 class="fw-bold text-nowrap price">
+                                        <div class="fw-bold text-nowrap">
                                             @if ($cartItem['discount_price'])
-                                                {{ number_format($cartItem['discount_price'] * $cartItem['quantity'], 0, '.', ' ') }}
+                                                <h5 class="price"
+                                                    data-price="{{ $cartItem['price'] }}"
+                                                    data-discount-price="{{ $cartItem['discount_price'] }}"
+                                                    data-total="{{ $cartItem['discount_price'] * $cartItem['quantity'] }}">
+                                                    {{ number_format($cartItem['discount_price'] * $cartItem['quantity'], 0, '.', ' ') }} UZS
+                                                </h5>
+                                                <del class="text-danger">
+                                                    <small data-total-original="{{ $cartItem['price'] * $cartItem['quantity'] }}">
+                                                        {{ number_format($cartItem['price'] * $cartItem['quantity'], 0, '.', ' ') }}
+                                                    </small> UZS
+                                                </del>
                                             @else
-                                                {{ number_format($cartItem['price'] * $cartItem['quantity'], 0, '.', ' ') }}
+                                                <h5 class="price"
+                                                    data-price="{{ $cartItem['price'] }}"
+                                                    data-total="{{ $cartItem['price'] * $cartItem['quantity'] }}">
+                                                    {{ number_format($cartItem['price'] * $cartItem['quantity'], 0, '.', ' ') }} UZS
+                                                </h5>
                                             @endif
-                                            UZS
-                                        </h5>
+
+                                        </div>
                                     </div>
                                     <div style="height: 50px" class="d-flex align-items-center gap-4">
                                         <a onclick="toggleFavourite({{ $cartItem['id'] }})" class="">
@@ -77,7 +95,7 @@
                     </div>
                 </div>
 
-                <div class="col-lg-3">
+                <div class="col-lg-4">
                     <div class="orderSum bg-darkgrey rounded p-3 position-sticky">
                         <div class="d-flex align-items-center justify-content-between">
                             <h4 class="text-orange">@lang('home.your_order')</h4>
@@ -96,17 +114,16 @@
                             </div>
                             <p class="border-bottom-dashed py-1   w-100"></p>
                         @endforeach
+{{--                        <div class="mb-3 d-flex align-items-center justify-content-between">--}}
+{{--                            <div class="text-dark">@lang('home.total_amount')</div>--}}
+{{--                            <h6 class="m-0 fw-bold">{{ number_format($totalDiscount, 0, '.', ' ') }} UZS</h6><br>--}}
+{{--                        </div>--}}
                         <div class="mb-3 d-flex align-items-center justify-content-between">
-                            <div class="text-dark">@lang('home.discount') summasi</div>
-                            <h6 class="m-0 fw-bold price text-yellow">{{ number_format($totalDiscount, 0, '.', ' ') }} UZS</h6>
-                        </div>
-                        <div class="mb-3 d-flex align-items-center justify-content-between">
-                            <div class="text-dark">@lang('home.total_amount')</div>
+                            <div class="text-dark">@lang('home.total_discount_amount')</div>
                             <h6 class="m-0 fw-bold price">{{ number_format($discountedTotal, 0, '.', ' ') }} UZS</h6>
                         </div>
                         <hr class="my-4 text-history" />
 
-                        <!-- Single button for all products -->
                         <button type="button" class="btn-orange rounded w-100" data-bs-toggle="modal"
                             data-bs-target="#largeModal" @if (empty($cartProducts)) disabled @endif>
                             @lang('home.place_order')
@@ -115,15 +132,12 @@
                 </div>
             </div>
         @else
-            <div class="text-center">
+            <div class="text-center" id="empty-cart">
                 <img width="350px" src="/assets/images/not-found.png" alt="">
             </div>
-
             <div style="overflow: hidden" class="seenProducts container py-3 position-relative">
                 <div class="mb-4 fs-2 fw-bold">@lang('home.top_products')</div>
-
                 <x-page.product.product-slide />
-
                 <div id="product-next" class="swiper-button-next end-0"></div>
                 <div id="product-prev" class="swiper-button-prev start-0"></div>
             </div>
@@ -138,25 +152,59 @@
                         id: productId,
                         change: change
                     },
-                    success: function(response) {
+                    success: function (response) {
                         if (response.success) {
                             const updatedItem = response.updated_item;
-                            const totalAmount = response.total_amount; // To'liq umumiy narxni hisoblash
 
-                            // Mahsulot miqdorini yangilash
-                            $('#item-' + updatedItem.id + ' .count').text(updatedItem.quantity);
+                            const countElement = $('#item-' + updatedItem.id + ' .count');
+                            countElement.text(updatedItem.quantity);
+                            const priceContainer = $('#item-' + updatedItem.id + ' .price');
+                            const delContainer = $('#item-' + updatedItem.id + ' del');
 
-                            // Mahsulotning umumiy narxini yangilash
-                            $('#item-' + updatedItem.id + ' .price').text(
-                                new Intl.NumberFormat('ru-RU').format(updatedItem.total_price) + ' UZS'
-                            );
+                            const basePrice = parseFloat(priceContainer.data('price')); // Asosiy narx
+                            const discountPrice = parseFloat(priceContainer.data('discount-price')) || null; // Chegirma narxi
 
-                            // Umumiy summani yangilash
+                            let priceHtml = '';
+                            if (discountPrice) {
+                                priceHtml = `
+                        ${new Intl.NumberFormat('ru-RU').format(discountPrice * updatedItem.quantity)} UZS
+                    `;
+
+                                priceContainer.attr('data-total', discountPrice * updatedItem.quantity);
+
+                                if (delContainer.length) {
+                                    delContainer.html(`
+                            <small data-total-original="${basePrice * updatedItem.quantity}">
+                                ${new Intl.NumberFormat('ru-RU').format(basePrice * updatedItem.quantity)}
+                            </small> UZS
+                        `);
+                                } else {
+                                    priceContainer.after(`
+                            <del class="text-danger">
+                                <small data-total-original="${basePrice * updatedItem.quantity}">
+                                    ${new Intl.NumberFormat('ru-RU').format(basePrice * updatedItem.quantity)}
+                                </small> UZS
+                            </del>
+                        `);
+                                }
+                            } else {
+                                priceHtml = `
+                        ${new Intl.NumberFormat('ru-RU').format(basePrice * updatedItem.quantity)} UZS
+                    `;
+
+                                priceContainer.attr('data-total', basePrice * updatedItem.quantity);
+
+                                if (delContainer.length) {
+                                    delContainer.remove();
+                                }
+                            }
+
+                            priceContainer.html(priceHtml);
+
                             $('.orderSum h6:last').text(
-                                new Intl.NumberFormat('ru-RU').format(totalAmount) + ' UZS'
+                                new Intl.NumberFormat('ru-RU').format(response.total_amount) + ' UZS'
                             );
 
-                            // Kamaytirish va oshirish tugmalarini boshqarish
                             const decrementButton = $('#decrement-' + updatedItem.id);
                             const incrementButton = $('#increment-' + updatedItem.id);
 
@@ -164,12 +212,13 @@
                             incrementButton.prop('disabled', updatedItem.quantity >= updatedItem.max_quantity);
                         }
                     },
-                    error: function(xhr) {
+                    error: function (xhr) {
                         alert('Xatolik yuz berdi: ' + xhr.responseText);
                     }
                 });
             }
-            // Remove mahsulot funksiyasi
+
+
             function removeFromCart(productId) {
                 $.ajax({
                     url: '/remove-from-cart',
@@ -180,20 +229,24 @@
                     },
                     success: function(response) {
                         if (response.success) {
-                            // Mahsulotni ro'yxatdan olib tashlash
                             $('#item-' + productId).remove();
 
-                            // Umumiy summani yangilash
                             $('.orderSum h6:last').text(
                                 new Intl.NumberFormat('ru-RU').format(response.total_amount) + ' UZS'
                             );
 
-                            // Tovarlar sonini yangilash
                             $('#cart-count').text(response.cart_count);
+
+                            if (response.cart_count === 0) {
+                                $('#cart-container').html(response.empty_cart_html);
+                            }
+                        } else {
+                            alert('Xatolik yuz berdi: ' + response.message);
                         }
                     },
                     error: function(xhr) {
-                        alert('Xatolik yuz berdi: ' + xhr.responseText);
+                        console.error(xhr.responseText);
+                        location.reload()
                     }
                 });
             }
@@ -217,23 +270,21 @@
                                 backgroundColor: "#4CAF50",
                             }).showToast();
 
-                            // Sevimlilar sonini yangilash
                             $('#favorite-count').text(response.favorites_count);
 
-                            // Ico'ni yangilash
                             if (response.message.includes('qo\'shildi')) {
                                 $('#favourite-icon-' + productId).addClass('text-orange');
                                 if (document.getElementById('favourite-icon-' + productId).classList.contains(
-                                        "fa-regular")) {
+                                    "fa-regular")) {
                                     document.getElementById('favourite-icon-' + productId).classList.remove(
                                         'fa-regular')
                                     document.getElementById('favourite-icon-' + productId).classList.add('fa-solid')
                                 }
                             } else {
                                 $('#favourite-icon-' + productId).removeClass(
-                                    'text-orange'); // O'chirilganini ko'rsatish
+                                    'text-orange');
                                 if (document.getElementById('favourite-icon-' + productId).classList.contains(
-                                        "fa-solid")) {
+                                    "fa-solid")) {
                                     document.getElementById('favourite-icon-' + productId).classList.remove(
                                         'fa-solid')
                                     document.getElementById('favourite-icon-' + productId).classList.add(
@@ -362,23 +413,4 @@
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/toastify-js/src/toastify.min.css">
 
     <script src="https://cdn.jsdelivr.net/npm/toastify-js"></script>
-    @if (session('success'))
-        <script>
-            Toastify({
-                text: "{{ session('success') }}",
-                duration: 3000,
-                close: true,
-                gravity: "top",
-                position: "right",
-                backgroundColor: "#4CAF50",
-                stopOnFocus: true,
-                className: "toast-success",
-                animation: "fade",
-                offset: {
-                    x: 30,
-                    y: 50
-                }
-            }).showToast();
-        </script>
-    @endif
 @endsection

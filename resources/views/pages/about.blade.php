@@ -3,7 +3,7 @@
     <main class="">
         <div class="container my-4 mb-5">
             <div class="d-flex align-items-center gap-3">
-                <a href="/" class="text-grey fw-bold text-lowercase fs-14">@lang('home.home') / <span
+                <a href="/" class="text-grey fw-bold fs-14">@lang('home.home') / <span
                         class="text-dark">@lang('footer.about_us')</span></a>
             </div>
             <hr />

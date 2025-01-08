@@ -16,7 +16,7 @@ return [
     'about_or_company' => 'Kompaniyamiz haqida',
     'command' => 'Bizning jamoamizga qo\'shilishni xohlaysizmi?',
     'all_vacancy' => 'Barcha vakansiyalar',
-    'vacancy' => 'vakansiyalar',
+    'vacancy' => 'Vakansiyalar',
     'compare' => 'Taqqoslash',
 
     'bestsellers' => 'Eng ko\'p sotilganlar',
@@ -47,7 +47,6 @@ return [
 
     'home' => 'Bosh sahifa',
     'back' => 'Ortga',
-    'compare' => 'Taqqoslash',
     'save' => 'Saqlash',
     'memory' => 'Xotira hajmi',
     'installments' => "Bo'lib to'lash",
@@ -87,6 +86,7 @@ return [
     "phone_number" => "Telefon raqami",
     "your_order" => "Buyurtmangiz",
     "total_amount" => "Jami summa",
+    "total_discount_amount" => "Umumiy narxi (chegirmada)",
     "discount" => "Chegirma",
     "place_order" => "Buyurtma berish",
     "products" => "Mahsulotlar",
@@ -127,5 +127,5 @@ return [
     "lastname" => "Familiya",
     "comment" => "Izoh",
 
-
+    'all_categories' => 'Barcha Kategoriyalar',
 ];

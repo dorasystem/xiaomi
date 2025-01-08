@@ -105,24 +105,16 @@ $products = Product::inRandomOrder()->skip(5)->take(10)->get();
                     storage: 1,
                 },
                 success: function(response) {
-                    // alert('ok')
                     if (response.success) {
-                        updateCartCount(response.cart_count); // Update the cart count in real-time
-                        Toastify({
-                            text: response.message,
-                            duration: 3000,
-                            close: true,
-                            gravity: "top",
-                            position: "right",
-                            backgroundColor: "#4CAF50",
-                            stopOnFocus: true,
-                            className: "toast-success",
-                            animation: "fade",
-                            offset: {
-                                x: 30,
-                                y: 50
-                            },
-                        }).showToast();
+                        updateCartCount(response.cart_count);
+
+                        // Bootstrap toast xabarni ko'rsatish
+                        const toastBody = document.querySelector('#liveToast .toast-body');
+                        toastBody.textContent = response.message;
+
+                        const toastElement = document.getElementById('liveToast');
+                        const toast = new bootstrap.Toast(toastElement);
+                        toast.show();
                     } else {
                         alert('Xatolik yuz berdi: ' + response.message);
                     }
@@ -225,22 +217,3 @@ $products = Product::inRandomOrder()->skip(5)->take(10)->get();
             });
         }
     </script>
-@if (session('success'))
-    <script>
-        Toastify({
-            text: "{{ session('success') }}",
-            duration: 3000,
-            close: true,
-            gravity: "top",
-            position: "right",
-            backgroundColor: "#4CAF50",
-            stopOnFocus: true,
-            className: "toast-success",
-            animation: "fade",
-            offset: {
-                x: 30,
-                y: 50
-            }
-        }).showToast();
-    </script>
-@endif

@@ -25,18 +25,12 @@
         <div class="row align-items-center nav1">
             <div class="col-lg-7 text-grey d-lg-block d-none">
                 <ul class="nav gap-3 justify-content-between justify-content-lg-start">
-                    <li class=""><a class="text-grey hover-orange" href="{{ route('news') }}">@lang('footer.news')</a>
-                    </li>
-                    <li class=""><a class="text-grey hover-orange"
-                            href="{{ route('products') }}">@lang('footer.products')</a></li>
                     <li class=""><a class="text-grey hover-orange" href="/about">@lang('footer.about_us')</a></li>
+                    <li class=""><a class="text-grey hover-orange" href="{{ route('products') }}">@lang('footer.products')</a></li>
+                    <li class=""><a class="text-grey hover-orange" href="{{ route('career') }}">@lang('footer.career')</a></li>
+                    <li class=""><a class="text-grey hover-orange" href="{{ route('news') }}">@lang('footer.news')</a></li>
+                    <li class=""><a class="text-grey hover-orange" href="{{ route('blog') }}">@lang('footer.blog')</a></li>
                     <li class=""><a class="text-grey hover-orange" href="/contact">@lang('footer.contacts')</a></li>
-                    <li class=""><a class="text-grey hover-orange"
-                            href="{{ route('blog') }}">@lang('footer.blog')</a>
-                    </li>
-                    <li class=""><a class="text-grey hover-orange"
-                            href="{{ route('blog') }}">@lang('footer.career')</a>
-                    </li>
                 </ul>
             </div>
             <div class="col-lg-5 mt-lg-0 mt-2 ps-0">
@@ -165,18 +159,39 @@
                                 <form method="GET" action="{{ route('products.search') }}">
                                     <div class="d-flex align-items-center w-100 nav_form">
                                         <button class="border-0 bg-transparent text-dark search-btn-dark ps-4"
-                                            type="submit">
+                                                type="submit" disabled>
                                             <i class="fas fa-search"></i>
                                         </button>
                                         <input id="searchInput" name="search"
-                                            class="form-control border-0 bg-transparent mr-sm-2 search-bar focus_none text-white"
-                                            type="search" aria-label="Search" placeholder="@lang('home.search')"
-                                            value="{{ request()->query('search') }}" />
-                                        <button class="border-0 bg-transparent text-white search-btn" type="submit">
+                                               class="form-control border-0 bg-transparent mr-sm-2 search-bar focus_none text-white"
+                                               type="search" aria-label="Search" placeholder="@lang('home.search')"
+                                               value="{{ request()->query('search') }}" />
+                                        <button class="border-0 px-4 bg-transparent text-white search-btn" type="submit" disabled>
                                             <i class="fas fa-search"></i>
                                         </button>
                                     </div>
                                 </form>
+                                <script>
+                                    document.addEventListener('DOMContentLoaded', function () {
+                                        const searchInput = document.getElementById('searchInput');
+                                        const searchButtons = document.querySelectorAll('.search-btn, .search-btn-dark');
+
+                                        // Tugmachalarni dastlab o‘chirish (agar input bo‘sh bo‘lsa)
+                                        toggleSearchButtons();
+
+                                        // Input qiymati o'zgarganda tugmachalarni faollashtirish yoki o'chirish
+                                        searchInput.addEventListener('input', toggleSearchButtons);
+
+                                        function toggleSearchButtons() {
+                                            const isInputEmpty = searchInput.value.trim() === '';
+                                            searchButtons.forEach(button => {
+                                                button.disabled = isInputEmpty; // Tugmachani faollashtirish yoki o'chirish
+                                                button.style.opacity = isInputEmpty ? '0.5' : '1'; // Tugmachaning ko'rinishini boshqarish
+                                                button.style.cursor = isInputEmpty ? 'not-allowed' : 'pointer'; // Tugmachaning ko'rinishini boshqarish
+                                            });
+                                        }
+                                    });
+                                </script>
 
                                 {{--                                    <div style="display: none" --}}
                                 {{--                                         class="position-absolute border-top bg-white start-0 text-dark w-100" --}}
@@ -233,19 +248,22 @@
                                     <i class="fa-regular fa-heart"></i>
                                     <i class="fa-solid fa-heart"></i>
                                 </div>
-                                <span class="badge badge-pill badge-danger badge-position rounded-circle"
-                                    id="favorite-count">
-                                    {{ session('favorites') ? count(session('favorites')) : 0 }}
-                                </span>
+                                @if(session('favorites') && count(session('favorites')) > 0)
+                                    <span class="badge badge-pill badge-danger badge-position rounded-circle" id="favorite-count">
+                                        {{ count(session('favorites')) }}
+                                    </span>
+                                @else
+                                    <span class="badge badge-pill badge-danger badge-position rounded-circle" id="favorite-count"></span>
+                                @endif
                             </a>
                             <small class="">@lang('home.featured')</small>
                         </li>
                         <li class="d-flex flex-column align-items-center">
                             <a href="/compare" class="icon position-relative">
                                 <svg version="1.0" xmlns="http://www.w3.org/2000/svg" width="30" height="30"
-                                    viewBox="0 0 512.000000 512.000000" preserveAspectRatio="xMidYMid meet">
+                                     viewBox="0 0 512.000000 512.000000" preserveAspectRatio="xMidYMid meet">
                                     <g transform="translate(0.000000,512.000000) scale(0.100000,-0.100000)"
-                                        fill="#fff" stroke="none">
+                                       fill="#fff" stroke="none">
                                         <path d="M2015 4786 c-41 -18 -83 -69 -90 -109 -3 -18 -4 -982 -3 -2144 l3
     -2112 21 -27 c11 -15 33 -37 48 -48 27 -21 38 -21 566 -21 528 0 539 0 566 21
     15 11 37 33 48 48 l21 27 0 2139 0 2139 -21 27 c-11 15 -33 37 -48 48 -27 21
@@ -264,10 +282,11 @@
                                     </g>
                                 </svg>
                                 @if(session('compares') && count(session('compares')) > 0)
-                                    <span class="badge badge-pill badge-danger badge-position rounded-circle compare"
-                                        id="compare-count">
+                                    <span class="badge badge-pill badge-danger badge-position rounded-circle compare" id="compare-count">
                                         {{ count(session('compares')) }}
                                     </span>
+                                @else
+                                    <span class="badge badge-pill badge-danger badge-position rounded-circle compare" id="compare-count"></span>
                                 @endif
                             </a>
                             <small class="">@lang('home.comparison')</small>
@@ -275,7 +294,7 @@
                         <li class="d-flex flex-column align-items-center">
                             <a href="{{ route('cart') }}" class="icon position-relative">
                                 <svg width="30" height="35" viewBox="0 0 16 15" fill="none"
-                                    xmlns="http://www.w3.org/2000/svg">
+                                     xmlns="http://www.w3.org/2000/svg">
                                     <path
                                         d="M5 14.0625C5.55228 14.0625 6 13.6428 6 13.125C6 12.6072 5.55228 12.1875 5 12.1875C4.44772 12.1875 4 12.6072 4 13.125C4 13.6428 4.44772 14.0625 5 14.0625Z"
                                         fill="#fff" />
@@ -287,12 +306,12 @@
                                         fill="#fff" />
                                 </svg>
                                 @if(session('cart') && count(session('cart')) > 0)
-                                    <span class="badge badge-pill badge-danger badge-position rounded-circle cart-label"
-                                          id="cart-count">
+                                    <span class="badge badge-pill badge-danger badge-position rounded-circle cart-label" id="cart-count">
                                         {{ count(session('cart')) }}
                                     </span>
+                                @else
+                                    <span class="badge badge-pill badge-danger badge-position cart-label" id="cart-count"></span>
                                 @endif
-
                             </a>
                             <small class="">@lang('home.basket')</small>
                         </li>
@@ -636,11 +655,11 @@
         <div class="py-2 pt-4">
 
             <ul class="gap-3 d-sm-none d-block">
-                <li class="mb-3"><a class="hover-orange" href="{{ route('news') }}">Новости</a></li>
-                <li class="mb-3"><a class="hover-orange" href="{{ route('products') }}">Обзоры</a></li>
-                <li class="mb-3"><a class="hover-orange" href="{{ route('about') }}">О нас</a></li>
-                <li class="mb-3"><a class="hover-orange" href="{{ route('contact') }}">Контакты</a></li>
-                <li class="mb-3"><a class="hover-orange" href="{{ route('blog') }}">Блог</a></li>
+                <li class="mb-3"><a class="hover-orange" href="{{ route('about') }}">@lang('footer.about_us')</a></li>
+                <li class="mb-3"><a class="hover-orange" href="{{ route('products') }}">@lang('footer.products')</a></li>
+                <li class="mb-3"><a class="hover-orange" href="{{ route('news') }}">@lang('footer.news')</a></li>
+                <li class="mb-3"><a class="hover-orange" href="{{ route('blog') }}">@lang('footer.blog')</a></li>
+                <li class="mb-3"><a class="hover-orange" href="{{ route('contact') }}">@lang('footer.contacts')</a></li>
             </ul>
         </div>
     </div>

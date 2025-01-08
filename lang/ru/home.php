@@ -18,8 +18,8 @@ return [
     'other_news' => 'Другие новости',
     'about_or_company' => 'О нашей компании',
     'command' => 'Хочешь в нашу команду?',
-    'all_vacancy' => 'Все вакансии',
-    'vacancy' => 'вакансии',
+    'all_vacancy' => 'Все Вакансии',
+    'vacancy' => 'Вакансии',
     'compare' => 'Сравнение',
 
     'bestsellers' => 'Хиты продаж',
@@ -49,13 +49,11 @@ return [
     'our_shops' => 'Наши магазины',
     'home' => 'Главная страница',
     'back' => 'Назад',
-    'compare' => 'Сравнить',
     'save' => 'Сохранить',
     'memory' => 'Объем памяти',
     'installments' => 'В рассрочку',
     'full_payment' => 'Полная оплата',
     'month' => 'месяц',
-    'basket' => 'В корзину',
     'katalog' => 'Каталог',
     'similar_product' => 'Похожие товары',
     'no_other_news' => 'Других новостей пока нет',
@@ -82,6 +80,7 @@ return [
     "phone_number" => "Номер телефона",
     "your_order" => "Ваш заказ",
     "total_amount" => "Итоговая сумма",
+    "total_discount_amount" => "Общая цена (со скидкой)",
     "discount" => "Скидка",
     "place_order" => "Оформить заказ",
     "products" => "Товаров",
@@ -122,5 +121,5 @@ return [
     "lastname" => "Фамилия",
     "comment" => "Комментарий",
 
-
+    'all_categories' => 'Все категории',
 ];

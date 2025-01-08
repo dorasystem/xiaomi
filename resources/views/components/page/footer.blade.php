@@ -39,7 +39,6 @@ $category7 = collect($categories)->firstWhere('id', 7);
             <div class="col-lg-3 col-sm-6 mb-5 h-100">
                 <img class="w-sm-75 w-50 h-50 mb-2 rounded" src="/assets/images/xiaomiStoreWhite.webp" alt="" />
                 <div class="mt-3">@lang('footer.join_us')</div>
-                <div class="">{{ $links->address }}</div>
                 <div class="social-icons d-flex align-items-center mt-3">
                     @if (!empty($links->youtube))
                         <a target="_blank" href="{{ $links->youtube }}">
@@ -126,14 +125,10 @@ $category7 = collect($categories)->firstWhere('id', 7);
                 <h6 class="mb-4 fw-bold">@lang('footer.contact_us')</h6>
                 <a href="tel:{{ $links->phone }}" class=""><i class="fas fa-phone-alt"></i> {{ $links->phone }}
                 </a>
-                <p class="mt-2"><i class="fa-regular fa-clock"></i> {{ $translations['work_time'] }}</p>
-                <form action="{{ route('orders.store.form') }}" method="POST">
-                    @csrf
-                    <div class="mb-2 mt-sm-0 mt-5">
-                        <textarea class="form-control focus_none" id="message" name="message" rows="3" placeholder="@lang('footer.message_placeholder')"></textarea>
-                    </div>
-                    <button type="submit" class="btn btn-orange rounded w-100">@lang('footer.send')</button>
-                </form>
+                <p class="mt-3"><i class="fa-regular fa-clock"></i> {{ $translations['work_time'] }}</p>
+                <div class="">
+                    <i class="fa-solid fa-location-dot"></i> {{ $links->address }}
+                </div>
 
             </div>
         </div>

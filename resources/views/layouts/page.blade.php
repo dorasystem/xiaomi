@@ -15,6 +15,7 @@
     <!-- Favicon  -->
     <link rel="shortcut icon" href="https://xiaomistore.md/media/site_settings/logo/Logo.png" />
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/toastify-js/src/toastify.min.css">
+    <meta name="csrf-token" content="{{ csrf_token() }}">
 
     <!-- for map -->
     <script src="https://api-maps.yandex.ru/2.1/?lang=ru_RU" type="text/javascript"></script>
@@ -163,8 +164,31 @@
             </div>
         </div>
     </div>
+    <div class="toast-container position-fixed top-0 end-0 p-3" style="z-index: 1055;">
+        <div id="liveToast" class="toast" role="alert" aria-live="assertive" aria-atomic="true">
+            <div class="toast-header">
+                <strong class="me-auto text-success">Muvaffaqiyat</strong>
+                <button type="button" class="btn-close" data-bs-dismiss="toast" aria-label="Close"></button>
+            </div>
+            <div class="toast-body">
+                <!-- Xabar matni dinamik ravishda qo'shiladi -->
+            </div>
+        </div>
+    </div>
+    @if (session('success'))
+        <script>
+            document.addEventListener('DOMContentLoaded', function () {
+                // Toast xabarini matnini dinamik qo'shish
+                const toastBody = document.querySelector('#liveToast .toast-body');
+                toastBody.textContent = "{{ session('success') }}";
 
-
+                // Bootstrap toastni ko'rsatish
+                const toastElement = document.getElementById('liveToast');
+                const toast = new bootstrap.Toast(toastElement);
+                toast.show();
+            });
+        </script>
+    @endif
 
 
     <script>

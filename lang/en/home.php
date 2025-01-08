@@ -6,7 +6,7 @@ return [
     'search' => 'Search for products',
     'comparison' => 'Comparison',
     'featured' => 'Featured',
-    'basket' => 'Basket',
+    'basket' => 'Cart',
     'special_offers' => 'Special offers',
     'product_on_sale' => 'Product on sale',
     'new_items' => 'New items',
@@ -17,7 +17,7 @@ return [
     'about_or_company' => 'About or Company',
     'command' => 'Do you want to join our team?',
     'all_vacancy' => 'All vacancies',
-    'vacancy' => 'vacancies',
+    'vacancy' => 'Vacancies',
     'compare' => 'Comparison',
 
     'bestsellers' => 'Bestsellers',
@@ -48,13 +48,11 @@ return [
 
     'home' => 'Home',
     'back' => 'Back',
-    'compare' => 'Compare',
     'save' => 'Save',
     'memory' => 'Memory capacity',
     'installments' => 'In installments',
     'full_payment' => 'Full payment',
     'month' => 'month',
-    'basket' => 'To cart',
     'katalog' => 'Katalog',
     'similar_product' => 'Similar products',
     'no_other_news' => 'No other news for now',
@@ -89,6 +87,7 @@ return [
     "phone_number" => "Phone number",
     "your_order" => "Your order",
     "total_amount" => "Total amount",
+    "total_discount_amount" => "Total price (discounted)",
     "discount" => "Discount",
     "place_order" => "Place order",
     "products" => "Products",
@@ -131,5 +130,5 @@ return [
     "lastname" => "Last name",
     "comment" => "Comment",
 
-
+    'all_categories' => 'All Categories',
 ];

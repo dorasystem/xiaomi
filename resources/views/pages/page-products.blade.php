@@ -8,7 +8,7 @@
         <div class="container mt-4">
             <div class="d-flex align-items-center gap-3">
                 <a href="/" class="text-grey fw-bold  fs-14">@lang('home.home') / <span
-                        class="text-dark">@lang('home.filter_res')</span></a>
+                        class="text-dark">@lang('home.products')</span></a>
             </div>
             <hr />
         </div>
@@ -364,26 +364,6 @@
 
     <script src="https://cdn.jsdelivr.net/npm/toastify-js"></script>
 
-    @if (session('success'))
-        <script>
-            Toastify({
-                text: "{{ session('success') }}",
-                duration: 3000,
-                close: true,
-                gravity: "top",
-                position: "right",
-                backgroundColor: "#4CAF50",
-                stopOnFocus: true,
-                className: "toast-success",
-                animation: "fade",
-                offset: {
-                    x: 30,
-                    y: 50
-                }
-            }).showToast();
-        </script>
-    @endif
-
     <script>
         function addToCart(productId, productName, productPrice, variantId) {
             $.ajax({
@@ -397,24 +377,16 @@
                     storage: 1,
                 },
                 success: function(response) {
-                    // alert('ok')
                     if (response.success) {
-                        updateCartCount(response.cart_count); // Update the cart count in real-time
-                        Toastify({
-                            text: response.message,
-                            duration: 3000,
-                            close: true,
-                            gravity: "top",
-                            position: "right",
-                            backgroundColor: "#4CAF50",
-                            stopOnFocus: true,
-                            className: "toast-success",
-                            animation: "fade",
-                            offset: {
-                                x: 30,
-                                y: 50
-                            },
-                        }).showToast();
+                        updateCartCount(response.cart_count);
+
+                        // Bootstrap toast xabarni ko'rsatish
+                        const toastBody = document.querySelector('#liveToast .toast-body');
+                        toastBody.textContent = response.message;
+
+                        const toastElement = document.getElementById('liveToast');
+                        const toast = new bootstrap.Toast(toastElement);
+                        toast.show();
                     } else {
                         alert('Xatolik yuz berdi: ' + response.message);
                     }

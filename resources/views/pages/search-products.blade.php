@@ -55,16 +55,25 @@ $categories = \App\Models\Category::all();
                                     <div id="panelsStayOpen-collapseOne" class="accordion-collapse collapse show"
                                         aria-labelledby="panelsStayOpen-headingOne">
                                         <div class="accordion-body">
+                                            <div class="form-check mb-3">
+                                                <input class="form-check-input" type="checkbox" id="all-categories"
+                                                    {{ count(request('categories', [])) === $categories->count() ? 'checked' : '' }} />
+                                                <label class="form-check-label" for="all-categories">
+                                                    <small>@lang('home.all_categories')</small>
+                                                </label>
+                                            </div>
+
                                             @foreach ($categories as $category)
                                                 <div class="form-check mb-3">
-                                                    <input class="form-check-input" type="checkbox" name="categories[]"
-                                                        value="{{ $category->id }}" id="category-{{ $category->id }}"
+                                                    <input class="form-check-input category-checkbox" type="checkbox" name="categories[]"
+                                                           value="{{ $category->id }}" id="category-{{ $category->id }}"
                                                         {{ in_array($category->id, request('categories', [])) ? 'checked' : '' }} />
                                                     <label class="form-check-label" for="category-{{ $category->id }}">
                                                         <small>{{ $category['name_' . $lang] }}</small>
                                                     </label>
                                                 </div>
                                             @endforeach
+
                                         </div>
                                     </div>
                                 </div>
@@ -148,15 +157,20 @@ $categories = \App\Models\Category::all();
                                                                 class="accordion-collapse collapse show"
                                                                 aria-labelledby="panelsStayOpen-headingOne">
                                                                 <div class="accordion-body">
-                                                                    @foreach ($categories as $category)
+                                                                    <div class="form-check mb-3">
+                                                                        <input class="form-check-input" type="checkbox" id="all-categories"
+                                                                            {{ count(request('categories', [])) === $categories->count() ? 'checked' : '' }} />
+                                                                        <label class="form-check-label" for="all-categories">
+                                                                            <small>@lang('home.all_categories')</small>
+                                                                        </label>
+                                                                    </div>
+
+                                                                @foreach ($categories as $category)
                                                                         <div class="form-check mb-3">
-                                                                            <input class="form-check-input"
-                                                                                type="checkbox" name="categories[]"
-                                                                                value="{{ $category->id }}"
-                                                                                id="category-{{ $category->id }}"
+                                                                            <input class="form-check-input category-checkbox" type="checkbox" name="categories[]"
+                                                                                   value="{{ $category->id }}" id="category-{{ $category->id }}"
                                                                                 {{ in_array($category->id, request('categories', [])) ? 'checked' : '' }} />
-                                                                            <label class="form-check-label"
-                                                                                for="category-{{ $category->id }}">
+                                                                            <label class="form-check-label" for="category-{{ $category->id }}">
                                                                                 <small>{{ $category['name_' . $lang] }}</small>
                                                                             </label>
                                                                         </div>
@@ -326,7 +340,23 @@ $categories = \App\Models\Category::all();
                                     </div>
                                 @endforeach
                             @else
-                                <x-page.not-found />
+                                <?php
+                                $lang = app()->getLocale();
+                                ?>
+                                <main class="text-light-black fs-14 fs-12-responsive mt-responsive dr-text">
+                                    <div class="container ">
+                                        <div class="d-flex align-items-center  flex-wrap mt-4 w-100">
+                                            <div class=" col-md-6 d-flex flex-column align-items center justify-content-center gap-3 w-100 text-center">
+                                                <h3 class="">@lang('home.not_found') "{{ $search }}"</h3>
+                                                <a class="" href="/">
+                                                    <button type="button" class="btn-orange text-white border-0 rounded p-15-28 ">
+                                                        @lang('home.go_to_home')
+                                                    </button>
+                                                </a>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </main>
                             @endif
 
                         </div>
@@ -386,6 +416,24 @@ $categories = \App\Models\Category::all();
     @endif
 
     <script>
+        document.addEventListener('DOMContentLoaded', function () {
+            const allCategoriesCheckbox = document.getElementById('all-categories');
+            const categoryCheckboxes = document.querySelectorAll('.category-checkbox');
+
+            // "All" checkbox tanlanganda barcha checkboxlarni boshqaradi
+            allCategoriesCheckbox.addEventListener('change', function () {
+                categoryCheckboxes.forEach(checkbox => {
+                    checkbox.checked = allCategoriesCheckbox.checked;
+                });
+            });
+
+            // Boshqa checkboxlar o'zgarganda "All" checkboxni yangilaydi
+            categoryCheckboxes.forEach(checkbox => {
+                checkbox.addEventListener('change', function () {
+                    allCategoriesCheckbox.checked = Array.from(categoryCheckboxes).every(checkbox => checkbox.checked);
+                });
+            });
+        });
         function addToCart(productId, productName, productPrice, variantId) {
             $.ajax({
                 url: `/add-to-cart`,
@@ -398,24 +446,16 @@ $categories = \App\Models\Category::all();
                     storage: 1,
                 },
                 success: function(response) {
-                    // alert('ok')
                     if (response.success) {
-                        updateCartCount(response.cart_count); // Update the cart count in real-time
-                        Toastify({
-                            text: response.message,
-                            duration: 3000,
-                            close: true,
-                            gravity: "top",
-                            position: "right",
-                            backgroundColor: "#4CAF50",
-                            stopOnFocus: true,
-                            className: "toast-success",
-                            animation: "fade",
-                            offset: {
-                                x: 30,
-                                y: 50
-                            },
-                        }).showToast();
+                        updateCartCount(response.cart_count);
+
+                        // Bootstrap toast xabarni ko'rsatish
+                        const toastBody = document.querySelector('#liveToast .toast-body');
+                        toastBody.textContent = response.message;
+
+                        const toastElement = document.getElementById('liveToast');
+                        const toast = new bootstrap.Toast(toastElement);
+                        toast.show();
                     } else {
                         alert('Xatolik yuz berdi: ' + response.message);
                     }

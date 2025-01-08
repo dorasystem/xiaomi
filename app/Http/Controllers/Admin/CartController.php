@@ -20,7 +20,6 @@ class CartController extends Controller
 
         $cart = session()->get('cart', []);
 
-        // Chegirma yoki asosiy narxni belgilash
         $discountedPrice = $variant->discount_price !== null && $variant->discount_price > 0
             ? $variant->discount_price
             : $variant->price;
@@ -35,7 +34,7 @@ class CartController extends Controller
                 'name' => $product->$nameField,
                 'variant_id' => $variant->id,
                 'storage' => $request->storage,
-                'price' => $discountedPrice, // Asosiy narx yoki chegirma narxi
+                'price' => $discountedPrice,
                 'image' => $product->image,
                 'quantity' => 1,
             ];
@@ -57,9 +56,9 @@ class CartController extends Controller
         $products = Product::all();
         $variants = Variant::all();
         $cartProducts = [];
-        $totalPrice = 0; // Chegirmasiz narxda umumiy qiymat
-        $totalDiscount = 0; // Chegirma summasi
-        $discountedTotal = 0; // Chegirmadan keyingi umumiy narx
+        $totalPrice = 0;
+        $totalDiscount = 0;
+        $discountedTotal = 0;
 
         foreach ($cart as $cartItem) {
             $product = $products->where('id', $cartItem['id'])->first();
@@ -73,15 +72,12 @@ class CartController extends Controller
                     : null;
                 $cartItem['image'] = $product->image;
 
-                // Chegirmasiz narxni hisoblash
                 $totalPrice += $cartItem['price'] * $cartItem['quantity'];
 
-                // Chegirma summasini hisoblash
                 if ($cartItem['discount_price']) {
                     $totalDiscount += ($cartItem['price'] - $cartItem['discount_price']) * $cartItem['quantity'];
                 }
 
-                // Chegirmali umumiy narxni hisoblash
                 $itemPrice = $cartItem['discount_price'] ?? $cartItem['price'];
                 $discountedTotal += $itemPrice * $cartItem['quantity'];
 
@@ -96,24 +92,38 @@ class CartController extends Controller
     public function removeFromCart(Request $request)
     {
         $cart = session()->get('cart', []);
+
         if (isset($cart[$request->id])) {
             unset($cart[$request->id]);
             session()->put('cart', $cart);
         }
 
-        $total_amount = array_sum(array_map(fn($item) => $item['price'] * $item['quantity'], $cart));
+        $totalAmount = array_sum(array_map(function ($item) {
+            return $item['price'] * $item['quantity'];
+        }, $cart));
+
+        $emptyCartHtml = view('partials.empty-cart')->render();
 
         return response()->json([
             'success' => true,
-            'total_amount' => $total_amount,
-            'cart' => $cart,
+            'total_amount' => $totalAmount,
             'cart_count' => count($cart),
+            'empty_cart_html' => $emptyCartHtml,
         ]);
+    }
+    public function removeAllCart()
+    {
+        session()->forget('cart');
+
+        return redirect()->route('cart')->with('success', __('Cart has been cleared.'));
     }
 
     public function updateCart(Request $request)
     {
         $cart = session()->get('cart', []);
+        $totalDiscount = 0;
+        $discountedTotal = 0;
+
         if (isset($cart[$request->id])) {
             $cart[$request->id]['quantity'] += $request->change;
 
@@ -126,13 +136,24 @@ class CartController extends Controller
             session()->put('cart', $cart);
         }
 
-        $total_amount = array_sum(array_map(fn($item) => $item['price'] * $item['quantity'], $cart));
+        foreach ($cart as $item) {
+            $totalDiscount += ($item['price'] - ($item['discount_price'] ?? $item['price'])) * $item['quantity'];
+            $discountedTotal += ($item['discount_price'] ?? $item['price']) * $item['quantity'];
+        }
 
         return response()->json([
             'success' => true,
-            'updated_item' => $cart[$request->id] ?? null,
-            'total_amount' => $total_amount,
+            'updated_item' => [
+                'id' => $cart[$request->id]['id'],
+                'quantity' => $cart[$request->id]['quantity'],
+                'price' => $cart[$request->id]['price'],
+                'discount_price' => $cart[$request->id]['discount_price'] ?? null,
+                'total_price' => $cart[$request->id]['total_price'],
+            ],
+            'total_amount' => $discountedTotal,
+            'total_discount' => $totalDiscount,
         ]);
+
     }
     public function toggleFavorite(Request $request)
     {
@@ -154,7 +175,7 @@ class CartController extends Controller
         return response()->json([
             'success' => true,
             'message' => $message,
-            'favorites_count' => count($favorites), // Yangilangan favoritlar soni
+            'favorites_count' => count($favorites),
         ]);
     }
 
@@ -162,7 +183,7 @@ class CartController extends Controller
     {
         $lang = app()->getLocale();
         $favorites = session()->get('favorites', []);
-        $products = Product::whereIn('id', $favorites)->get(); // Faqat sevimli mahsulotlar
+        $products = Product::whereIn('id', $favorites)->get();
         return view('pages.favorites', compact('products', 'lang'));
     }
     public function toggleCompare(Request $request)
@@ -184,7 +205,7 @@ class CartController extends Controller
         return response()->json([
             'success' => true,
             'message' => $message,
-            'compares_count' => count($compares), // Yangilangan Taqqoslash soni
+            'compares_count' => count($compares),
         ]);
     }
 

@@ -587,7 +587,7 @@ foreach ($keywords as $keyword) {
                             <div class="col-lg-6">
                                 <a href="{{ route('category.sort', ['slug' => $category5->getSlugByLanguage($lang)]) }}">
                                     <div style="background-image: url('{{ asset('storage/' . $category5->image) }}')"
-                                        class="p-3 category3 rounded h-100 text-white text-shadow">
+                                        class="fs-5 p-3 category3 rounded h-100 text-white text-shadow">
                                         {{ $category5['name_' . $lang] }}
                                     </div>
                                 </a>
@@ -595,7 +595,7 @@ foreach ($keywords as $keyword) {
                             <div class="col-lg-6 ps-0">
                                 <a href="{{ route('category.sort', ['slug' => $category1->getSlugByLanguage($lang)]) }}">
                                     <div style="background-image: url('{{ asset('storage/' . $category1->image) }}')"
-                                        class="p-3 category4 rounded h-100 text-white text-shadow">
+                                        class="fs-5 p-3 category4 rounded h-100 text-white text-shadow">
                                         {{ $category1['name_' . $lang] }}
                                     </div>
                                 </a>
@@ -607,7 +607,7 @@ foreach ($keywords as $keyword) {
                             <div class="col-lg-6">
                                 <a href="{{ route('category.sort', ['slug' => $category6->getSlugByLanguage($lang)]) }}">
                                     <div style="background-image: url('{{ asset('storage/' . $category6->image) }}')"
-                                        class="p-3 category5 rounded h-100 text-white text-shadow">
+                                        class="fs-5 p-3 category5 rounded h-100 text-white text-shadow">
                                         {{ $category6['name_' . $lang] }}
                                     </div>
                                 </a>
@@ -615,7 +615,7 @@ foreach ($keywords as $keyword) {
                             <div class="col-lg-6 ps-0">
                                 <a href="{{ route('category.sort', ['slug' => $category7->getSlugByLanguage($lang)]) }}">
                                     <div style="background-image: url('{{ asset('storage/' . $category7->image) }}')"
-                                        class="p-3 category6 rounded h-100 text-white text-shadow">
+                                        class="fs-5 p-3 category6 rounded h-100 text-white text-shadow">
                                         {{ $category7['name_' . $lang] }}
                                     </div>
                                 </a>
@@ -689,7 +689,7 @@ foreach ($keywords as $keyword) {
                         <div class="product w-100 rounded bannerProduct p-3">
                             <div class="d-flex align-items-start gap-3">
                                 <img width="120px" height="100px" class="fit-cover rounded"
-                                    src="./assets/images/videoProductImage.jpg" alt="" />
+                                    src="/assets/images/videoProductImage.jpg" alt="" />
                                 <div class="d-flex flex-column">
                                     <h6 class="text-grey fw-bold">Следующий видео-обзор</h6>
                                     <div class="fw-semibold">Xiaomi Fan Unboxing | Titan Gray</div>
@@ -716,24 +716,16 @@ foreach ($keywords as $keyword) {
                     storage: 1,
                 },
                 success: function(response) {
-                    // alert('ok')
                     if (response.success) {
-                        updateCartCount(response.cart_count); // Update the cart count in real-time
-                        Toastify({
-                            text: response.message,
-                            duration: 3000,
-                            close: true,
-                            gravity: "top",
-                            position: "right",
-                            backgroundColor: "#4CAF50",
-                            stopOnFocus: true,
-                            className: "toast-success",
-                            animation: "fade",
-                            offset: {
-                                x: 30,
-                                y: 50
-                            },
-                        }).showToast();
+                        updateCartCount(response.cart_count);
+
+                        // Bootstrap toast xabarni ko'rsatish
+                        const toastBody = document.querySelector('#liveToast .toast-body');
+                        toastBody.textContent = response.message;
+
+                        const toastElement = document.getElementById('liveToast');
+                        const toast = new bootstrap.Toast(toastElement);
+                        toast.show();
                     } else {
                         alert('Xatolik yuz berdi: ' + response.message);
                     }

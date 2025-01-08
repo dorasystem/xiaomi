@@ -98,6 +98,7 @@ Route::get('cart', [CartController::class, 'cart'])->name('cart');
 Route::post('/add-to-cart', [CartController::class, 'addToCart'])->name('cart.add');
 Route::post('add-to-cart/{id}', [CartController::class, 'addToCart'])->name('addToCart');
 Route::delete('/remove-from-cart', [CartController::class, 'removeFromCart'])->name('removeFromCart');
+Route::delete('/remove-all-cart', [CartController::class, 'removeAllCart'])->name('removeAllCart');
 Route::post('/update-cart', [CartController::class, 'updateCart'])->name('cart.update');
 
 Route::delete('/variants/{id}', [ProductController::class, 'deleteVariant']);

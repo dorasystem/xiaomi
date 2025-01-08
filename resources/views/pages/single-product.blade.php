@@ -538,6 +538,37 @@ $isInCompare = in_array($product->id, session('compares', []));
 
     <div id="overlay"></div>
     <script>
+        function addToCart(productId, productName, productPrice, variantId) {
+            $.ajax({
+                url: `/add-to-cart`,
+                type: 'POST',
+                data: {
+                    _token: '{{ csrf_token() }}',
+                    product_id: productId,
+                    variant_id: variantId,
+                    price: productPrice,
+                    storage: 1,
+                },
+                success: function(response) {
+                    if (response.success) {
+                        updateCartCount(response.cart_count);
+
+                        // Bootstrap toast xabarni ko'rsatish
+                        const toastBody = document.querySelector('#liveToast .toast-body');
+                        toastBody.textContent = response.message;
+
+                        const toastElement = document.getElementById('liveToast');
+                        const toast = new bootstrap.Toast(toastElement);
+                        toast.show();
+                    } else {
+                        alert('Xatolik yuz berdi: ' + response.message);
+                    }
+                },
+                error: function(xhr) {
+                    alert('Xatolik yuz berdi: ' + xhr.responseText);
+                }
+            });
+        }
         document.addEventListener('DOMContentLoaded', function() {
             const storageOptions = document.querySelectorAll('.storage-option');
             const priceDisplay = document.getElementById('price-display');
