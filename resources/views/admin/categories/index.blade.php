@@ -44,7 +44,7 @@
                                     <td class="text-end">
                                         <div class="btn-group" role="group">
                                             <a href="{{ route('categories.show', $category->id) }}"
-                                               class="avatar-text avatar-md">
+                                               class="avatar-text avatar-md me-2">
                                                 <i class="feather feather-eye"></i>
                                             </a>
                                             <a href="{{ route('categories.edit', $category->id) }}"

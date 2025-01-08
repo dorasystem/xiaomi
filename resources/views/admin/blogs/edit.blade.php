@@ -1,7 +1,7 @@
 @extends('layouts.admin')
 
 @section('content')
-    <form action="{{ route('blogs.update', $blogs->id) }}" method="POST" enctype="multipart/form-data" novalidate class="needs-validation" onsubmit="updateEditorContent()">
+    <form action="{{ route('blogs.update', $blog->id) }}" method="POST" enctype="multipart/form-data" novalidate class="needs-validation" onsubmit="updateEditorContent()">
         @csrf
         @method('PUT')
 
@@ -57,16 +57,16 @@
                                             <div class="tab-pane fade show {{ $lang == 'uz' ? 'active' : '' }}" id="{{ $lang }}Content">
                                                 <div class="form-group pb-3">
                                                     <label for="title_{{ $lang }}">Заголовок ({{ strtoupper($lang) }}):</label>
-                                                    <input type="text" class="form-control" id="title_{{ $lang }}" name="title_{{ $lang }}" value="{{ old('title_' . $lang, $blogs->{'title_' . $lang}) }}" required>
+                                                    <input type="text" class="form-control" id="title_{{ $lang }}" name="title_{{ $lang }}" value="{{ old('title_' . $lang, $blog->{'title_' . $lang}) }}" required>
                                                 </div>
                                                 <div class="form-group pb-3">
                                                     <label for="description_{{ $lang }}">Oписание ({{ strtoupper($lang) }}):</label>
-                                                    <div id="descriptionEditor_{{ $lang }}" style="height:200px;">{!! old('description_' . $lang, $blogs->{'description_' . $lang}) !!}</div>
+                                                    <div id="descriptionEditor_{{ $lang }}" style="height:200px;">{!! old('description_' . $lang, $blog->{'description_' . $lang}) !!}</div>
                                                     <input type="hidden" id="description_{{ $lang }}" name="description_{{ $lang }}">
                                                 </div>
                                                 <div class="form-group pb-3">
                                                     <label for="content_{{ $lang }}">Контент ({{ strtoupper($lang) }}):</label>
-                                                    <div id="editor_{{ $lang }}" style="height:200px;">{!! old('content_' . $lang, $blogs->{'content_' . $lang}) !!}</div>
+                                                    <div id="editor_{{ $lang }}" style="height:200px;">{!! old('content_' . $lang, $blog->{'content_' . $lang}) !!}</div>
                                                     <input type="hidden" id="text_{{ $lang }}" name="content_{{ $lang }}">
                                                 </div>
                                             </div>
@@ -84,13 +84,13 @@
                                     <div class="form-group pb-3">
                                         <label for="image">Изображение:</label>
                                         <input type="file" class="form-control" id="image" name="image">
-                                        @if ($blogs->image)
-                                            <img src="{{ asset('storage/' . $blogs->image) }}" alt="Current Image" class="img-thumbnail mt-2" width="200">
+                                        @if ($blog->image)
+                                            <img src="{{ asset('storage/' . $blog->image) }}" alt="Current Image" class="img-thumbnail mt-2" width="200">
                                         @endif
                                     </div>
                                     <div class="form-group pb-3">
                                         <label for="date">Дата:</label>
-                                        <input type="date" class="form-control" id="date" name="date" value="{{ old('date', $blogs->date ? \Carbon\Carbon::parse($blogs->date)->format('Y-m-d') : '') }}">
+                                        <input type="date" class="form-control" id="date" name="date" value="{{ old('date', $blog->date ? \Carbon\Carbon::parse($blog->date)->format('Y-m-d') : '') }}">
                                     </div>
                                 </div>
                             </div>
@@ -108,8 +108,8 @@
         @foreach (['uz', 'en', 'ru'] as $lang)
         var editor{{ ucfirst($lang) }} = new Quill('#editor_{{ $lang }}', { theme: 'snow' });
         var descriptionEditor{{ ucfirst($lang) }} = new Quill('#descriptionEditor_{{ $lang }}', { theme: 'snow' });
-        editor{{ ucfirst($lang) }}.root.innerHTML = `{!! old('content_' . $lang, $blogs->{'content_' . $lang}) !!}`;
-        descriptionEditor{{ ucfirst($lang) }}.root.innerHTML = `{!! old('description_' . $lang, $blogs->{'description_' . $lang}) !!}`;
+        editor{{ ucfirst($lang) }}.root.innerHTML = `{!! old('content_' . $lang, $blog->{'content_' . $lang}) !!}`;
+        descriptionEditor{{ ucfirst($lang) }}.root.innerHTML = `{!! old('description_' . $lang, $blog->{'description_' . $lang}) !!}`;
         @endforeach
 
         function updateEditorContent() {

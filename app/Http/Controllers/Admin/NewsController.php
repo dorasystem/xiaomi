@@ -60,6 +60,10 @@ class NewsController extends Controller
         return redirect()->route('news.index')->with('success', 'News created successfully.');
     }
 
+    public function show(News $news)
+    {
+        return view('admin.news.show', compact('news'));
+    }
     public function edit(News $news)
     {
         return view('admin.news.edit', compact('news'));

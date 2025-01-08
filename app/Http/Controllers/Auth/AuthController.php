@@ -26,9 +26,9 @@ class AuthController extends Controller{
                 case '0':
                     return redirect()->route('user.profile');
                 case '1':
-                    return redirect()->route('admins.dashboard');
+                    return redirect()->route('products.index');
                 case '2':
-                    return redirect()->route('superAdmin.dashboard');
+                    return redirect()->route('products.index');
                 default:
                     Auth::logout();
 

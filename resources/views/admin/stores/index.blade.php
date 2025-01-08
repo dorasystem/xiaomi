@@ -47,10 +47,6 @@
                                     <td>{{ $store->email }}</td>
                                     <td class="text-end">
                                         <div class="btn-group" role="group">
-                                            <a href="{{ route('stores.show', $store->id) }}"
-                                               class="avatar-text avatar-md">
-                                                <i class="feather feather-eye"></i>
-                                            </a>
                                             <a href="{{ route('stores.edit', $store->id) }}"
                                                class="avatar-text avatar-md">
                                                 <i class="feather feather-edit"></i>

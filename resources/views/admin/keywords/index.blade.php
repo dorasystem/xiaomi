@@ -47,9 +47,6 @@
                                     <td>{{ $item->en }}</td>
                                     <td class="text-end">
                                         <div class="btn-group" role="group">
-                                            <a href="{{ route('keywords.show', $item->id) }}" class="avatar-text avatar-md">
-                                                <i class="feather feather-eye"></i>
-                                            </a>
                                             <a href="{{ route('keywords.edit', $item->id) }}" class="avatar-text avatar-md">
                                                 <i class="feather feather-edit"></i>
                                             </a>

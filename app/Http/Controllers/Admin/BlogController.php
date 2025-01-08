@@ -56,12 +56,16 @@ class BlogController extends Controller
         return redirect()->route('blogs.index')->with('success', 'Blogs created successfully.');
     }
 
-    public function edit(Blog $blogs)
+    public function show(Blog $blog)
     {
-        return view('admin.blogs.edit', compact('blogs'));
+        return view('admin.blogs.show', compact('blog'));
+    }
+    public function edit(Blog $blog)
+    {
+        return view('admin.blogs.edit', compact('blog'));
     }
 
-    public function update(Request $request, Blog $blogs)
+    public function update(Request $request, Blog $blog)
     {
         $data = $request->validate([
             'title_uz' => 'nullable|string',
@@ -79,8 +83,8 @@ class BlogController extends Controller
         ]);
 
         if ($request->hasFile('image')) {
-            if ($blogs->image) {
-                Storage::disk('public')->delete($blogs->image);
+            if ($blog->image) {
+                Storage::disk('public')->delete($blog->image);
             }
 
             $file = $request->file('image');
@@ -89,7 +93,7 @@ class BlogController extends Controller
             $data['image'] = $path;
         }
 
-        $blogs->update($data);
+        $blog->update($data);
 
         return redirect()->route('blogs.index')->with('success', 'Blogs updated successfully.');
     }

@@ -47,37 +47,45 @@
                         <i class="feather-sun"></i>
                     </a>
                 </div>
-                <div class="dropdown nxl-h-item">
-                    <a class="nxl-head-link me-3" href="{{ route('cart') }}" role="button" data-bs-auto-close="outside">
-                        <i class="feather-bell"></i>
-                        <span id="cart-count" class="badge bg-danger nxl-h-badge">{{ session('cart') ? count(session('cart')) : 0 }}</span>
-                    </a>
-                </div>
-                <div class="dropdown nxl-h-item">
-                    <a href="javascript:void(0);" data-bs-toggle="dropdown" role="button" data-bs-auto-close="outside">
-                        <img src="https://crm.softbooking.uz/resource/img/user.avif" alt="user-image" class="img-fluid user-avtar me-0">
-                    </a>
-                    <div class="dropdown-menu dropdown-menu-end nxl-h-dropdown nxl-user-dropdown">
-                        <div class="dropdown-header">
-                            <div class="d-flex align-items-center">
-                                <img src="https://crm.softbooking.uz/resource/img/user.avif" alt="user-image" class="img-fluid user-avtar">
-                                <div>
-                                    <h6 class="m-0 fs-14">{{ auth()->user()->full_name }}</h6>
-                                    <span class="fs-12">{{ auth()->user()->email }}</span>
-                                </div>
-                            </div>
-                        </div>
-                        @auth
-                            <form class="d-block" action="{{ route('logout') }}" method="post">
-                                @csrf
-                                <button type="submit" class="dropdown-item"><i class="feather-log-out"></i>
-                                    Выйти
-                                </button>
-                            </form>
-                        @endauth
+{{--                <div class="dropdown nxl-h-item">--}}
+{{--                    <a class="nxl-head-link me-3" href="{{ route('cart') }}" role="button" data-bs-auto-close="outside">--}}
+{{--                        <i class="feather-bell"></i>--}}
+{{--                        <span id="cart-count" class="badge bg-danger nxl-h-badge">{{ session('cart') ? count(session('cart')) : 0 }}</span>--}}
+{{--                    </a>--}}
+{{--                </div>--}}
+                <div class="nxl-h-item mt-1 mx-2">
+{{--                    <a href="javascript:void(0);" data-bs-toggle="dropdown" role="button" data-bs-auto-close="outside">--}}
+{{--                        <img src="https://crm.softbooking.uz/resource/img/user.avif" alt="user-image" class="img-fluid user-avtar me-0">--}}
+{{--                    </a>--}}
+                    @auth
+                        <form class="d-block text-dark" action="{{ route('logout') }}" method="post">
+                            @csrf
+                            <button type="submit" class="dropdown-item"><i class="feather-log-out"></i>
+                                Выйти
+                            </button>
+                        </form>
+                    @endauth
+{{--                    <div class="dropdown-menu dropdown-menu-end nxl-h-dropdown nxl-user-dropdown">--}}
+{{--                        <div class="dropdown-header">--}}
+{{--                            <div class="d-flex align-items-center">--}}
+{{--                                <img src="https://crm.softbooking.uz/resource/img/user.avif" alt="user-image" class="img-fluid user-avtar">--}}
+{{--                                <div>--}}
+{{--                                    <h6 class="m-0 fs-14">{{ auth()->user()->full_name }}</h6>--}}
+{{--                                    <span class="fs-12">{{ auth()->user()->email }}</span>--}}
+{{--                                </div>--}}
+{{--                            </div>--}}
+{{--                        </div>--}}
+{{--                        @auth--}}
+{{--                            <form class="d-block" action="{{ route('logout') }}" method="post">--}}
+{{--                                @csrf--}}
+{{--                                <button type="submit" class="dropdown-item"><i class="feather-log-out"></i>--}}
+{{--                                    Выйти--}}
+{{--                                </button>--}}
+{{--                            </form>--}}
+{{--                        @endauth--}}
 
-                        <div class="dropdown-divider"></div>
-                    </div>
+{{--                        <div class="dropdown-divider"></div>--}}
+{{--                    </div>--}}
                 </div>
             </div>
         </div>

@@ -42,7 +42,7 @@
                                     <td>{{ \Str::words($product->name_uz, 3) }}</td>
                                     <td class="text-end">
                                         <div class="btn-group" role="group">
-                                            <a href="{{ route('products.show', $product->id) }}" class="avatar-text avatar-md">
+                                            <a href="{{ route('products.show', $product->id) }}" class="avatar-text avatar-md me-2">
                                                 <i class="feather feather-eye"></i>
                                             </a>
                                             <a href="{{ route('products.edit', $product->id) }}" class="avatar-text avatar-md">
