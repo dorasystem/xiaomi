@@ -160,8 +160,8 @@
                     <div class="row g-4">
                         @foreach($categories as $item)
                             <div class="col-md-6 col-12 col-lg-4">
-                                <a href="{{ route('category.sort', ['slug' => $item->getSlugByLanguage($lang)]) }}" class="d-flex align-items-center p-3 border rounded">
-                                    <img src="{{ asset('storage/' . $item->image) }}" alt="{{ $item['name_' . $lang] }}" class="img-fluid me-3" style="width: 80px; height: 80px; object-fit: cover;">
+                                <a href="{{ route('category.sort', ['slug' => $item->getSlugByLanguage($lang)]) }}" class="d-flex align-items-center p-2 border rounded">
+                                    <img src="{{ asset('storage/' . $item->image) }}" alt="{{ $item['name_' . $lang] }}" class="img-fluid me-3 rounded" style="width: 80px; height: 80px; object-fit: cover;">
                                     <div>
                                         <p class="mb-0 fw-bold">{{ $item['name_' . $lang] }}</p>
                                     </div>

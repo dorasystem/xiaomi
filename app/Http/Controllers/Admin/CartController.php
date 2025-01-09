@@ -1,5 +1,7 @@
 <?php
+
 namespace App\Http\Controllers\Admin;
+
 use App\Http\Controllers\Controller;
 use App\Models\Category;
 use App\Models\Order;
@@ -7,6 +9,7 @@ use App\Models\Vacancy;
 use App\Models\Variant;
 use Illuminate\Http\Request;
 use App\Models\Product;
+
 class CartController extends Controller
 {
     public function addToCart(Request $request)
@@ -156,7 +159,6 @@ class CartController extends Controller
             'total_amount' => $discountedTotal,
             'total_discount' => $totalDiscount,
         ]);
-
     }
     public function toggleFavorite(Request $request)
     {
@@ -187,7 +189,9 @@ class CartController extends Controller
         $lang = app()->getLocale();
         $favorites = session()->get('favorites', []);
         $products = Product::whereIn('id', $favorites)->get();
-        return view('pages.favorites', compact('products', 'lang'));
+        $categories = Category::paginate(10);
+
+        return view('pages.favorites', compact('products', 'lang', 'categories'));
     }
     public function toggleCompare(Request $request)
     {
@@ -217,7 +221,8 @@ class CartController extends Controller
         $lang = app()->getLocale();
         $compares = session()->get('compares', []);
         $products = Product::whereIn('id', $compares)->get();
-        return view('pages.compare', compact('products', 'lang'));
-    }
+        $categories = Category::paginate(10);
 
+        return view('pages.compare', compact('products', 'lang', 'categories'));
+    }
 }

@@ -27,6 +27,10 @@
                     </div>
                 @endforeach
             @else
+                <div class="text-center">
+                    <img class="fit-cover" width="350px" src="/assets/images/not-found.png" alt="">
+                </div>
+
                 <x-page.not-found />
             @endif
 
@@ -47,7 +51,8 @@
                             <label for="name" class="form-label">
                                 @lang('home.full_name') <span class="text-danger">*</span>
                             </label>
-                            <input type="text" class="form-control focus_none p-3 rounded-3" id="name"
+                            <input required type="text" min="3" class="form-control focus_none p-3 rounded-3"
+                                id="name"
                                 placeholder="@if ($lang === 'uz') Ismingizni kiriting @elseif ($lang === 'ru') Введите ваше имя @else Enter your name @endif" />
                         </div>
                         <div class="mb-3">
