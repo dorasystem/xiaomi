@@ -132,14 +132,45 @@
                 </div>
             </div>
         @else
+            <style>
+                .card {
+                    text-align: center;
+                    border: none;
+                    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+                    transition: transform 0.2s;
+                }
+
+                .card:hover {
+                    transform: scale(1.05);
+                }
+
+                .card img {
+                    width: 50px;
+                    height: auto;
+                    margin: auto;
+                    padding: 10px;
+                }
+            </style>
             <div class="text-center" id="empty-cart">
                 <img width="350px" src="/assets/images/not-found.png" alt="">
             </div>
             <div style="overflow: hidden" class="seenProducts container py-3 position-relative">
                 <div class="mb-4 fs-2 fw-bold">@lang('home.top_products')</div>
-                <x-page.product.product-slide />
-                <div id="product-next" class="swiper-button-next end-0"></div>
-                <div id="product-prev" class="swiper-button-prev start-0"></div>
+                <div class="container py-5">
+                    <div class="row g-4">
+                        @foreach($categories as $item)
+                            <div class="col-md-6 col-12 col-lg-4">
+                                <a href="{{ route('category.sort', ['slug' => $item->getSlugByLanguage($lang)]) }}" class="d-flex align-items-center p-3 border rounded">
+                                    <img src="{{ asset('storage/' . $item->image) }}" alt="{{ $item['name_' . $lang] }}" class="img-fluid me-3" style="width: 80px; height: 80px; object-fit: cover;">
+                                    <div>
+                                        <p class="mb-0 fw-bold">{{ $item['name_' . $lang] }}</p>
+                                    </div>
+                                </a>
+                            </div>
+                        @endforeach
+                    </div>
+                </div>
+
             </div>
         @endif
         <script>

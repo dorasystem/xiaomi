@@ -1,6 +1,7 @@
 <?php
 namespace App\Http\Controllers\Admin;
 use App\Http\Controllers\Controller;
+use App\Models\Category;
 use App\Models\Order;
 use App\Models\Vacancy;
 use App\Models\Variant;
@@ -52,6 +53,8 @@ class CartController extends Controller
     }
     public function cart()
     {
+        $lang = app()->getLocale();
+        $categories = Category::paginate(10);
         $cart = session()->get('cart', []);
         $products = Product::all();
         $variants = Variant::all();
@@ -85,7 +88,7 @@ class CartController extends Controller
             }
         }
 
-        return view('pages.cart', compact('cartProducts', 'totalPrice', 'totalDiscount', 'discountedTotal'));
+        return view('pages.cart', compact('cartProducts', 'totalPrice', 'totalDiscount', 'discountedTotal', 'categories', 'lang'));
     }
 
 

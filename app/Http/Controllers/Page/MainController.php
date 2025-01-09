@@ -243,7 +243,7 @@ class MainController extends Controller
         return view('pages.checkout');
     }
 
-    public function categorySort($slug)
+    public function categorySort($slug, Request $request)
     {
         // Get the locale (e.g., from the request or session)
         $locale = app()->getLocale(); // Or $request->get('locale') if you're passing it in the URL
