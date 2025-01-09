@@ -2,9 +2,9 @@
 @section('content')
     <main class="container">
         <div class="my-4">
-            <div class="d-flex align-items-center">
+            <div class="d-flex align-items-center gap-1">
                 <a href="/" class="text-grey fw-bold  fs-14">@lang('home.home') / </a>
-                <span class="text-dark">@lang('home.comparison')</span>
+                <span class="text-dark fw-bold">@lang('home.featured')</span>
             </div>
             <hr />
         </div>
@@ -140,7 +140,7 @@
             </div>
         </div>
         <!-- products you have seen -->
-        <div style="overflow: hidden" class="seenProducts container py-3 position-relative">
+        <div style="overflow: hidden" class="seenProducts container py-3 px-0 position-relative">
             <div class="mb-4 fs-2 fw-bold">@lang('home.top_products')</div>
 
             <div class="container py-5">

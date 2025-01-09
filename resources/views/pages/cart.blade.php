@@ -3,9 +3,9 @@
     <main class="container">
 
         <div class="my-4">
-            <div class="d-flex align-items-center gap-3">
-                <a href="/" class="text-grey fw-bold  fs-14">@lang('home.home') / <span
-                        class="text-dark">@lang('home.basket')</span></a>
+            <div class="d-flex align-items-center gap-1">
+                <a href="/" class="text-grey fw-bold  fs-14">@lang('home.home') / </a> <span
+                    class="text-dark fw-bold">@lang('home.basket')</span>
             </div>
             <hr />
         </div>
@@ -16,7 +16,7 @@
                         <h1 class="fw-normal">@lang('home.basket')</h1>
                         <form action="{{ route('removeAllCart') }}" method="POST">
                             @csrf
-                            @method("DELETE")
+                            @method('DELETE')
                             <button type="submit" class="d-flex align-items-center gap-2 bg-transparent border-0">
                                 <img src="/assets/icons/delete_icon.svg" alt="" />
                                 <div>@lang('home.clear_cart')</div>
@@ -57,22 +57,23 @@
                                         </div>
                                         <div class="fw-bold text-nowrap">
                                             @if ($cartItem['discount_price'])
-                                                <h5 class="price"
-                                                    data-price="{{ $cartItem['price'] }}"
+                                                <h5 class="price" data-price="{{ $cartItem['price'] }}"
                                                     data-discount-price="{{ $cartItem['discount_price'] }}"
                                                     data-total="{{ $cartItem['discount_price'] * $cartItem['quantity'] }}">
-                                                    {{ number_format($cartItem['discount_price'] * $cartItem['quantity'], 0, '.', ' ') }} UZS
+                                                    {{ number_format($cartItem['discount_price'] * $cartItem['quantity'], 0, '.', ' ') }}
+                                                    UZS
                                                 </h5>
                                                 <del class="text-danger">
-                                                    <small data-total-original="{{ $cartItem['price'] * $cartItem['quantity'] }}">
+                                                    <small
+                                                        data-total-original="{{ $cartItem['price'] * $cartItem['quantity'] }}">
                                                         {{ number_format($cartItem['price'] * $cartItem['quantity'], 0, '.', ' ') }}
                                                     </small> UZS
                                                 </del>
                                             @else
-                                                <h5 class="price"
-                                                    data-price="{{ $cartItem['price'] }}"
+                                                <h5 class="price" data-price="{{ $cartItem['price'] }}"
                                                     data-total="{{ $cartItem['price'] * $cartItem['quantity'] }}">
-                                                    {{ number_format($cartItem['price'] * $cartItem['quantity'], 0, '.', ' ') }} UZS
+                                                    {{ number_format($cartItem['price'] * $cartItem['quantity'], 0, '.', ' ') }}
+                                                    UZS
                                                 </h5>
                                             @endif
 
@@ -114,10 +115,10 @@
                             </div>
                             <p class="border-bottom-dashed py-1   w-100"></p>
                         @endforeach
-{{--                        <div class="mb-3 d-flex align-items-center justify-content-between">--}}
-{{--                            <div class="text-dark">@lang('home.total_amount')</div>--}}
-{{--                            <h6 class="m-0 fw-bold">{{ number_format($totalDiscount, 0, '.', ' ') }} UZS</h6><br>--}}
-{{--                        </div>--}}
+                        {{--                        <div class="mb-3 d-flex align-items-center justify-content-between"> --}}
+                        {{--                            <div class="text-dark">@lang('home.total_amount')</div> --}}
+                        {{--                            <h6 class="m-0 fw-bold">{{ number_format($totalDiscount, 0, '.', ' ') }} UZS</h6><br> --}}
+                        {{--                        </div> --}}
                         <div class="mb-3 d-flex align-items-center justify-content-between">
                             <div class="text-dark">@lang('home.total_discount_amount')</div>
                             <h6 class="m-0 fw-bold price">{{ number_format($discountedTotal, 0, '.', ' ') }} UZS</h6>
@@ -154,14 +155,17 @@
             <div class="text-center" id="empty-cart">
                 <img width="350px" src="/assets/images/not-found.png" alt="">
             </div>
-            <div style="overflow: hidden" class="seenProducts container py-3 position-relative">
+            <div style="overflow: hidden" class="seenProducts container py-3 px-0 position-relative">
                 <div class="mb-4 fs-2 fw-bold">@lang('home.top_products')</div>
                 <div class="container py-5">
                     <div class="row g-4">
-                        @foreach($categories as $item)
+                        @foreach ($categories as $item)
                             <div class="col-md-6 col-12 col-lg-4">
-                                <a href="{{ route('category.sort', ['slug' => $item->getSlugByLanguage($lang)]) }}" class="d-flex align-items-center p-2 border rounded">
-                                    <img src="{{ asset('storage/' . $item->image) }}" alt="{{ $item['name_' . $lang] }}" class="img-fluid me-3 rounded" style="width: 80px; height: 80px; object-fit: cover;">
+                                <a href="{{ route('category.sort', ['slug' => $item->getSlugByLanguage($lang)]) }}"
+                                    class="d-flex align-items-center p-2 border rounded">
+                                    <img src="{{ asset('storage/' . $item->image) }}" alt="{{ $item['name_' . $lang] }}"
+                                        class="img-fluid me-3 rounded"
+                                        style="width: 80px; height: 80px; object-fit: cover;">
                                     <div>
                                         <p class="mb-0 fw-bold">{{ $item['name_' . $lang] }}</p>
                                     </div>
@@ -183,7 +187,7 @@
                         id: productId,
                         change: change
                     },
-                    success: function (response) {
+                    success: function(response) {
                         if (response.success) {
                             const updatedItem = response.updated_item;
 
@@ -193,7 +197,8 @@
                             const delContainer = $('#item-' + updatedItem.id + ' del');
 
                             const basePrice = parseFloat(priceContainer.data('price')); // Asosiy narx
-                            const discountPrice = parseFloat(priceContainer.data('discount-price')) || null; // Chegirma narxi
+                            const discountPrice = parseFloat(priceContainer.data('discount-price')) ||
+                            null; // Chegirma narxi
 
                             let priceHtml = '';
                             if (discountPrice) {
@@ -243,7 +248,7 @@
                             incrementButton.prop('disabled', updatedItem.quantity >= updatedItem.max_quantity);
                         }
                     },
-                    error: function (xhr) {
+                    error: function(xhr) {
                         alert('Xatolik yuz berdi: ' + xhr.responseText);
                     }
                 });
@@ -306,7 +311,7 @@
                             if (response.message.includes('qo\'shildi')) {
                                 $('#favourite-icon-' + productId).addClass('text-orange');
                                 if (document.getElementById('favourite-icon-' + productId).classList.contains(
-                                    "fa-regular")) {
+                                        "fa-regular")) {
                                     document.getElementById('favourite-icon-' + productId).classList.remove(
                                         'fa-regular')
                                     document.getElementById('favourite-icon-' + productId).classList.add('fa-solid')
@@ -315,7 +320,7 @@
                                 $('#favourite-icon-' + productId).removeClass(
                                     'text-orange');
                                 if (document.getElementById('favourite-icon-' + productId).classList.contains(
-                                    "fa-solid")) {
+                                        "fa-solid")) {
                                     document.getElementById('favourite-icon-' + productId).classList.remove(
                                         'fa-solid')
                                     document.getElementById('favourite-icon-' + productId).classList.add(
