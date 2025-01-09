@@ -80,26 +80,18 @@ class OrderController extends Controller
     }
     public function productsStore(Request $request)
     {
-
-        // Validate the request data
         $validated = $request->validate([
             'first_name' => 'required|string|max:255',
             'phone' => 'required|string|max:255',
             'cart_items' => 'required|json',  // Ensure cart_items is a valid JSON
         ]);
 
-
-        // Decode cart_items from JSON
         $cartItems = json_decode($validated['cart_items'], true);
 
-
-        // Create the order
         $order = Order::create([
             'first_name' => $validated['first_name'],
             'phone' => $validated['phone'],
         ]);
-
-        // Loop through the cart items and create order items
         foreach ($cartItems as $cartItem) {
             OrderItem::create([
                 'order_id' => $order->id,
@@ -109,31 +101,13 @@ class OrderController extends Controller
                 'total' => $cartItem['total_price'] ?? $cartItem['quantity'] * $cartItem['price'] ?? $cartItem['quantity'] * $cartItem['discount_price'],
             ]);
         }
-
-        // Redirect or return success message
         return redirect()->back()->with('success', 'Операция выполнена успешно!');
     }
-
-
-    /**
-     * Display the specified resource.
-     */
-    public function show(Order $order)
-    {
-        //
-    }
-
-    /**
-     * Show the form for editing the specified resource.
-     */
     public function edit(Order $order)
     {
-        //
+        return view('admin.orders.edit',compact('order'));
     }
 
-    /**
-     * Update the specified resource in storage.
-     */
     public function update(Request $request, Order $order)
     {
         $validated = $request->validate([
@@ -145,10 +119,6 @@ class OrderController extends Controller
 
         return redirect()->route('orders.index')->with('success', 'Статус заказа успешно обновлён.');
     }
-
-    /**
-     * Remove the specified resource from storage.
-     */
     public function destroy(Order $order)
     {
         $order->delete();

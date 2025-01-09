@@ -26,6 +26,7 @@ return new class extends Migration
             $table->string('date')->nullable();
             $table->string('status')->nullable();
             $table->string('image')->nullable();
+            $table->text('images')->nullable();
             $table->timestamps();
         });
     }

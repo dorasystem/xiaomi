@@ -24,6 +24,11 @@ class Blog extends Model
         'date',
         'status',
         'image',
+        'images',
+    ];
+
+    protected $casts = [
+        'images' => 'array',
     ];
 
     protected static function boot()

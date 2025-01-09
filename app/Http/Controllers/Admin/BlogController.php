@@ -42,18 +42,31 @@ class BlogController extends Controller
             'date' => 'nullable|string',
             'status' => 'nullable|string',
             'image' => 'nullable|image|mimes:jpeg,png,jpg,gif,webp|max:2048',
+            'images.*' => 'nullable|image|mimes:jpeg,png,jpg,gif,webp|max:8192',
         ]);
 
-        if ($request->hasFile('image')) {
-            $file = $request->file('image');
-            $filename = time() . '_' . $file->getClientOriginalName();
-            $path = $file->storeAs('glogs_photo', $filename, 'public');
-            $data['image'] = $path;
+        try {
+
+            if ($request->hasFile('image')) {
+                $data['image'] = $request->file('image')->store('blogs_photo', 'public');
+            }
+
+            $uploadedImages = [];
+            if ($request->hasFile('images')) {
+                foreach ($request->file('images') as $image) {
+                    $uploadedImages[] = $image->store('blogs_images', 'public');
+                }
+            }
+
+
+            $data['images'] = $uploadedImages;
+
+            Blog::create($data);
+
+            return redirect()->route('blogs.index')->with('success', 'Blog created successfully.');
+        } catch (\Exception $e) {
+            return redirect()->back()->with('error', 'Something went wrong: ' . $e->getMessage());
         }
-
-        Blog::create($data);
-
-        return redirect()->route('blogs.index')->with('success', 'Blogs created successfully.');
     }
 
     public function show(Blog $blog)
@@ -79,24 +92,43 @@ class BlogController extends Controller
             'content_en' => 'nullable|string',
             'date' => 'nullable|string',
             'status' => 'nullable|string',
-            'image' => 'nullable|image|mimes:jpeg,png,jpg,gif,webp|max:2048',
+            'images.*' => 'nullable|image|mimes:jpeg,png,jpg,gif,webp|max:8192',
+            'delete_images' => 'nullable|array',
         ]);
 
-        if ($request->hasFile('image')) {
-            if ($blog->image) {
-                Storage::disk('public')->delete($blog->image);
+        try {
+            // Eski rasmlarni o'chirish
+            $updatedImages = $blog->images ?? [];
+            if ($request->filled('delete_images')) {
+                foreach ($request->delete_images as $deleteImage) {
+                    if (($key = array_search($deleteImage, $updatedImages)) !== false) {
+                        unset($updatedImages[$key]);
+                        Storage::disk('public')->delete($deleteImage);
+                    }
+                }
+                $updatedImages = array_values($updatedImages); // Qayta indekslash
             }
 
-            $file = $request->file('image');
-            $filename = time() . '_' . $file->getClientOriginalName();
-            $path = $file->storeAs('blogs_photo', $filename, 'public');
-            $data['image'] = $path;
+            // Yangi rasmlarni qo'shish
+            if ($request->hasFile('images')) {
+                foreach ($request->file('images') as $image) {
+                    $updatedImages[] = $image->store('blogs_images', 'public');
+                }
+            }
+
+            // Yangilangan rasmlarni saqlash
+            $data['images'] = $updatedImages;
+
+            // Blogni yangilash
+            $blog->update($data);
+
+            return redirect()->route('blogs.index')->with('success', 'Blog updated successfully.');
+        } catch (\Exception $e) {
+            return redirect()->back()->with('error', 'Something went wrong: ' . $e->getMessage());
         }
-
-        $blog->update($data);
-
-        return redirect()->route('blogs.index')->with('success', 'Blogs updated successfully.');
     }
+
+
 
     public function destroy(Blog $blogs)
     {

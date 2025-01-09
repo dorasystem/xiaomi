@@ -82,12 +82,17 @@
                                 </div>
                                 <div class="card-body p-4">
                                     <div class="form-group pb-3">
+                                        <label for="date">Дата:</label>
+                                        <input type="date" class="form-control" id="date" name="date">
+                                    </div>
+                                    <div class="form-group pb-3">
                                         <label for="image">Изображение:</label>
                                         <input type="file" class="form-control" id="image" name="image">
                                     </div>
+                                    <hr>
                                     <div class="form-group pb-3">
-                                        <label for="date">Дата:</label>
-                                        <input type="date" class="form-control" id="date" name="date">
+                                        <label for="image">Текущие изображения:</label>
+                                        <input type="file" name="images[]" id="images" class="form-control" multiple>
                                     </div>
                                 </div>
                             </div>
