@@ -113,3 +113,8 @@ Route::post('/save-order', [OrderController::class, 'store'])->name('orders.stor
 Route::post('/form-order', [OrderController::class, 'storeForm'])->name('orders.store.form');
 Route::post('/product-order', [OrderController::class, 'productsStore'])->name('orders.products.store');
 Route::get('locale/{lang}',[LanguageController::class, 'setLocale']);
+Route::get('/404',[MainController::class, 'error'])->name('404');
+
+Route::fallback(function () {
+    return redirect()->route('404');
+});

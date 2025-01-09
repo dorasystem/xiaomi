@@ -23,6 +23,10 @@ use Illuminate\Support\Facades\DB;
 
 class MainController extends Controller
 {
+    public function error()
+    {
+        return view('pages.errors-404');
+    }
     public function index()
     {
 
