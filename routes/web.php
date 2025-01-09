@@ -59,10 +59,9 @@ Route::middleware(['auth'])->prefix('dashboard')->group(function () {
     Route::resource('candidants', CandidantController::class);
     Route::resource('desc-images', DescImageController::class);
     Route::resource('main_banners', MainBannerController::class);
-    Route::get('orders', [OrderController::class, 'index'])->name('orders.index');
-    Route::put('/orders/{order}', [OrderController::class, 'update'])->name('orders.update');
-    Route::delete('/orders/{order}', [OrderController::class, 'destroy'])->name('orders.destroy');
+    Route::resource('orders', OrderController::class);
     Route::resource('keywords', StaticKeywordController::class);
+    Route::post('/blogs/delete-image', [BlogController::class, 'deleteImage'])->name('blogs.deleteImage');
 });
 
 Route::middleware(['auth'])->group(function () {

@@ -1,6 +1,7 @@
 <?php
 $contact = \App\Models\Contact::first();
 $about = \App\Models\About::first();
+$mainBanner = \App\Models\MainBanner::first();
 ?>
 
 <nav class="nxl-navigation">
@@ -149,7 +150,7 @@ $about = \App\Models\About::first();
 
                 <!-- Main Banners -->
                 <li class="nxl-item">
-                    <a href="{{ route('main_banners.index') }}" class="nxl-link">
+                    <a href="{{ route('main_banners.edit', $mainBanner->id) }}" class="nxl-link">
                         <span class="nxl-micon"><i class="feather-image"></i></span>
                         <span class="nxl-mtext">Главные баннеры</span>
                     </a>

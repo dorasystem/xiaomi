@@ -9,43 +9,6 @@ use Illuminate\Support\Facades\Storage;
 
 class MainBannerController extends Controller
 {
-    public function index()
-    {
-        $mainBanners = MainBanner::all();
-        return view('admin.main_banners.index', compact('mainBanners'));
-    }
-
-    public function create()
-    {
-        return view('admin.main_banners.create');
-    }
-
-    public function store(Request $request)
-    {
-        $request->validate([
-            'images.*' => 'nullable|image|mimes:jpeg,png,jpg,gif,webp|max:2048',
-            'image1' => 'nullable|image|mimes:jpeg,png,jpg,gif,webp|max:2048',
-            'image2' => 'nullable|image|mimes:jpeg,png,jpg,gif,webp|max:2048',
-        ]);
-
-        $uploadedImages = [];
-        if ($request->has('images')) {
-            foreach ($request->file('images') as $image) {
-                $uploadedImages[] = $image->store('main_banners', 'public');
-            }
-        }
-
-        $image1Path = $request->file('image1') ? $request->file('image1')->store('main_banners', 'public') : null;
-        $image2Path = $request->file('image2') ? $request->file('image2')->store('main_banners', 'public') : null;
-
-        MainBanner::create([
-            'images' => $uploadedImages,
-            'image1' => $image1Path,
-            'image2' => $image2Path,
-        ]);
-
-        return redirect()->route('main_banners.index')->with('success', 'Banner muvaffaqiyatli qo‘shildi!');
-    }
     public function edit(MainBanner $mainBanner)
     {
         return view('admin.main_banners.edit', compact('mainBanner'));
@@ -106,27 +69,7 @@ class MainBannerController extends Controller
         ]);
 
         // Redirect with success message
-        return redirect()->route('main_banners.index')->with('success', 'Banner muvaffaqiyatli yangilandi!');
-    }
-
-
-
-    public function destroy(MainBanner $mainBanner)
-    {
-        if ($mainBanner->images) {
-            foreach ($mainBanner->images as $image) {
-                Storage::disk('public')->delete($image);
-            }
-        }
-        if ($mainBanner->image1) {
-            Storage::disk('public')->delete($mainBanner->image1);
-        }
-        if ($mainBanner->image2) {
-            Storage::disk('public')->delete($mainBanner->image2);
-        }
-
-        $mainBanner->delete();
-        return redirect()->route('main_banners.index')->with('success', 'Banner o‘chirildi!');
+        return redirect()->back()->with('success', 'Banner muvaffaqiyatli yangilandi!');
     }
 }
 

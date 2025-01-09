@@ -82,15 +82,36 @@
                                 </div>
                                 <div class="card-body p-4">
                                     <div class="form-group pb-3">
+                                        <label for="date">Дата:</label>
+                                        <input type="date" class="form-control" id="date" name="date" value="{{ old('date', $blog->date ? \Carbon\Carbon::parse($blog->date)->format('Y-m-d') : '') }}">
+                                    </div>
+                                    <div class="form-group pb-3">
                                         <label for="image">Изображение:</label>
                                         <input type="file" class="form-control" id="image" name="image">
                                         @if ($blog->image)
                                             <img src="{{ asset('storage/' . $blog->image) }}" alt="Current Image" class="img-thumbnail mt-2" width="200">
                                         @endif
                                     </div>
-                                    <div class="form-group pb-3">
-                                        <label for="date">Дата:</label>
-                                        <input type="date" class="form-control" id="date" name="date" value="{{ old('date', $blog->date ? \Carbon\Carbon::parse($blog->date)->format('Y-m-d') : '') }}">
+                                    <hr>
+                                    <div class="col-md-4">
+                                        <div class="form-group pb-3">
+                                            <input type="file" name="images[]" id="images" class="form-control" multiple>
+                                        </div>
+                                        <div class="form-group pb-3">
+                                            <label class="mb-3">Текущие изображения:</label>
+                                            <div class="d-flex flex-wrap gap-2">
+                                                @if ($blog->images)
+                                                    @foreach ($blog->images as $key => $image)
+                                                        <div class="image-preview position-relative" style="width: 100px; height: 100px; overflow: hidden; border: 1px solid #ccc; margin-right: 10px;">
+                                                            <img src="{{ asset('storage/' . $image) }}" alt="image" style="width: 100%; height: 100%; object-fit: cover;">
+                                                            <button type="button" class="btn btn-danger btn-sm position-absolute top-0 end-0"
+                                                                    onclick="deleteImage('{{ $image }}', this)">X</button>
+                                                            <input type="hidden" name="existing_images[]" value="{{ $image }}">
+                                                        </div>
+                                                    @endforeach
+                                                @endif
+                                            </div>
+                                        </div>
                                     </div>
                                 </div>
                             </div>
@@ -105,6 +126,18 @@
     <link href="https://cdn.quilljs.com/1.3.6/quill.snow.css" rel="stylesheet">
 
     <script>
+        function deleteImage(imagePath, button) {
+            const parentDiv = button.closest('.image-preview');
+            parentDiv.remove();
+
+            // Yashirin input orqali o'chirilayotgan rasmni backendga yuborish
+            const deleteInput = document.createElement('input');
+            deleteInput.type = 'hidden';
+            deleteInput.name = 'delete_images[]';
+            deleteInput.value = imagePath;
+            document.querySelector('form').appendChild(deleteInput);
+        }
+
         @foreach (['uz', 'en', 'ru'] as $lang)
         var editor{{ ucfirst($lang) }} = new Quill('#editor_{{ $lang }}', { theme: 'snow' });
         var descriptionEditor{{ ucfirst($lang) }} = new Quill('#descriptionEditor_{{ $lang }}', { theme: 'snow' });

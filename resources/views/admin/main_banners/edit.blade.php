@@ -41,53 +41,58 @@
                                     <h5 class="card-title">Детали баннера</h5>
                                 </div>
                                 <div class="card-body p-4">
-                                    <div class="form-group pb-3">
-                                        <label>Текущие изображения:</label>
-                                        <div class="d-flex flex-wrap">
-                                            @if ($mainBanner->images)
-                                                @foreach ($mainBanner->images as $key => $image)
-                                                    <div class="image-preview m-2 position-relative">
-                                                        <img src="{{ asset('storage/' . $image) }}" alt="image"
+                                    <div class="row">
+                                        <div class="col-md-4">
+                                            <div class="form-group pb-3">
+                                                <input type="file" name="images[]" id="images" class="form-control" multiple>
+                                            </div>
+                                            <div class="form-group pb-3">
+                                                <label class="mb-3">Текущие изображения:</label>
+                                                <div class="d-flex flex-wrap">
+                                                    @if ($mainBanner->images)
+                                                        @foreach ($mainBanner->images as $key => $image)
+                                                            <div class="image-preview m-2 position-relative">
+                                                                <img src="{{ asset('storage/' . $image) }}" alt="image"
+                                                                     style="width: 100px; height: 100px; object-fit: cover;">
+                                                            </div>
+                                                        @endforeach
+                                                    @else
+                                                        <p>Нет изображений.</p>
+                                                    @endif
+                                                </div>
+                                            </div>
+                                        </div>
+
+                                        <div class="col-md-4">
+                                            <div class="form-group pb-3">
+                                                <input type="file" name="image1" id="image1" class="form-control">
+                                            </div>
+                                            <div class="form-group pb-3">
+                                                <label class="mb-3" for="image1">Текущее изображение 1:</label>
+                                                @if ($mainBanner->image1)
+                                                    <div class="mb-3 position-relative">
+                                                        <img src="{{ asset('storage/' . $mainBanner->image1) }}" alt="image1"
                                                              style="width: 100px; height: 100px; object-fit: cover;">
-
                                                     </div>
-
-
-                                                @endforeach
-                                            @else
-                                                <p>Нет изображений.</p>
-                                            @endif
+                                                @endif
+                                            </div>
+                                        </div>
+                                        <div class="col-md-4">
+                                            <div class="form-group pb-3">
+                                                <input type="file" name="image2" id="image2" class="form-control">
+                                            </div>
+                                             <div class="form-group pb-3">
+                                                <label class="mb-3" for="image2">Текущее изображение 2:</label>
+                                                @if ($mainBanner->image2)
+                                                    <div class="mb-3 position-relative">
+                                                        <img src="{{ asset('storage/' . $mainBanner->image2) }}" alt="image2"
+                                                             style="width: 100px; height: 100px; object-fit: cover;">
+                                                    </div>
+                                                @endif
+                                            </div>
                                         </div>
                                     </div>
 
-                                    <div class="form-group pb-3">
-                                        <label for="images">Добавить новые изображения:</label>
-                                        <input type="file" name="images[]" id="images" class="form-control" multiple>
-                                    </div>
-
-                                    <div class="form-group pb-3">
-                                        <label for="image1">Текущее изображение 1:</label>
-                                        @if ($mainBanner->image1)
-                                            <div class="mb-3 position-relative">
-                                                <img src="{{ asset('storage/' . $mainBanner->image1) }}" alt="image1"
-                                                     style="width: 100px; height: 100px; object-fit: cover;">
-
-                                            </div>
-                                        @endif
-                                        <input type="file" name="image1" id="image1" class="form-control">
-                                    </div>
-
-                                    <div class="form-group pb-3">
-                                        <label for="image2">Текущее изображение 2:</label>
-                                        @if ($mainBanner->image2)
-                                            <div class="mb-3 position-relative">
-                                                <img src="{{ asset('storage/' . $mainBanner->image2) }}" alt="image2"
-                                                     style="width: 100px; height: 100px; object-fit: cover;">
-
-                                            </div>
-                                        @endif
-                                        <input type="file" name="image2" id="image2" class="form-control">
-                                    </div>
                                 </div>
                             </div>
                         </div>
