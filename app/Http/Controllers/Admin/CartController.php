@@ -19,7 +19,7 @@ class CartController extends Controller
         $variant = Variant::find($request->variant_id);
 
         if (!$product || !$variant) {
-            return response()->json(['success' => false, 'message' => 'Mahsulot yoki Variant topilmadi']);
+            return response()->json(['success' => false, 'message' => __('home.cart_message')]);
         }
 
         $cart = session()->get('cart', []);
@@ -50,7 +50,7 @@ class CartController extends Controller
 
         return response()->json([
             'success' => true,
-            'message' => 'Mahsulot savatga qo\'shildi',
+            'message' => __('home.add_to_cart'),
             'cart_count' => $cartCount
         ]);
     }

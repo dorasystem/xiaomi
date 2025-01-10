@@ -411,14 +411,12 @@
                 },
                 success: function(response) {
                     if (response.success) {
-                        Toastify({
-                            text: response.message,
-                            duration: 3000,
-                            close: true,
-                            gravity: "top",
-                            position: "right",
-                            backgroundColor: "#4CAF50",
-                        }).showToast();
+                        const toastBody = document.querySelector('#liveToast .toast-body');
+                        toastBody.textContent = response.message;
+
+                        const toastElement = document.getElementById('liveToast');
+                        const toast = new bootstrap.Toast(toastElement);
+                        toast.show();
 
                         // Sevimlilar sonini yangilash
                         $('#favorite-count').text(response.favorites_count);
@@ -461,14 +459,12 @@
                 },
                 success: function(response) {
                     if (response.success) {
-                        Toastify({
-                            text: response.message,
-                            duration: 3000,
-                            close: true,
-                            gravity: "top",
-                            position: "right",
-                            backgroundColor: "#4CAF50",
-                        }).showToast();
+                        const toastBody = document.querySelector('#liveToast .toast-body');
+                        toastBody.textContent = response.message;
+
+                        const toastElement = document.getElementById('liveToast');
+                        const toast = new bootstrap.Toast(toastElement);
+                        toast.show();
 
                         // Sevimlilar sonini yangilash
                         $('#compare-count').text(response.compares_count); // Id bo'yicha o'zgarish

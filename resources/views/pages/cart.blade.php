@@ -198,13 +198,13 @@
 
                             const basePrice = parseFloat(priceContainer.data('price')); // Asosiy narx
                             const discountPrice = parseFloat(priceContainer.data('discount-price')) ||
-                            null; // Chegirma narxi
+                                null; // Chegirma narxi
 
                             let priceHtml = '';
                             if (discountPrice) {
                                 priceHtml = `
-                        ${new Intl.NumberFormat('ru-RU').format(discountPrice * updatedItem.quantity)} UZS
-                    `;
+                            ${new Intl.NumberFormat('ru-RU').format(discountPrice * updatedItem.quantity)} UZS
+                                `;
 
                                 priceContainer.attr('data-total', discountPrice * updatedItem.quantity);
 
@@ -213,7 +213,7 @@
                             <small data-total-original="${basePrice * updatedItem.quantity}">
                                 ${new Intl.NumberFormat('ru-RU').format(basePrice * updatedItem.quantity)}
                             </small> UZS
-                        `);
+                            `);
                                 } else {
                                     priceContainer.after(`
                             <del class="text-danger">
@@ -221,12 +221,12 @@
                                     ${new Intl.NumberFormat('ru-RU').format(basePrice * updatedItem.quantity)}
                                 </small> UZS
                             </del>
-                        `);
+                            `);
                                 }
                             } else {
                                 priceHtml = `
-                        ${new Intl.NumberFormat('ru-RU').format(basePrice * updatedItem.quantity)} UZS
-                    `;
+                             ${new Intl.NumberFormat('ru-RU').format(basePrice * updatedItem.quantity)} UZS
+                            `;
 
                                 priceContainer.attr('data-total', basePrice * updatedItem.quantity);
 
@@ -297,14 +297,12 @@
                     },
                     success: function(response) {
                         if (response.success) {
-                            Toastify({
-                                text: response.message,
-                                duration: 3000,
-                                close: true,
-                                gravity: "top",
-                                position: "right",
-                                backgroundColor: "#4CAF50",
-                            }).showToast();
+                        const toastBody = document.querySelector('#liveToast .toast-body');
+                        toastBody.textContent = response.message;
+
+                        const toastElement = document.getElementById('liveToast');
+                        const toast = new bootstrap.Toast(toastElement);
+                        toast.show();
 
                             $('#favorite-count').text(response.favorites_count);
 

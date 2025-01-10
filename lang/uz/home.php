@@ -126,6 +126,7 @@ return [
     "name" => "Ism",
     "lastname" => "Familiya",
     "comment" => "Izoh",
+    "success" => "Muvaffaqiyatli",
 
     'all_categories' => 'Barcha Kategoriyalar',
 ];

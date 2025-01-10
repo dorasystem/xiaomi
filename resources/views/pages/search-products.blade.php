@@ -397,21 +397,12 @@ $categories = \App\Models\Category::all();
 
     @if (session('success'))
         <script>
-            Toastify({
-                text: "{{ session('success') }}",
-                duration: 3000,
-                close: true,
-                gravity: "top",
-                position: "right",
-                backgroundColor: "#4CAF50",
-                stopOnFocus: true,
-                className: "toast-success",
-                animation: "fade",
-                offset: {
-                    x: 30,
-                    y: 50
-                }
-            }).showToast();
+                        const toastBody = document.querySelector('#liveToast .toast-body');
+                        toastBody.textContent = response.message;
+
+                        const toastElement = document.getElementById('liveToast');
+                        const toast = new bootstrap.Toast(toastElement);
+                        toast.show();
         </script>
     @endif
 
@@ -480,14 +471,12 @@ $categories = \App\Models\Category::all();
                 },
                 success: function(response) {
                     if (response.success) {
-                        Toastify({
-                            text: response.message,
-                            duration: 3000,
-                            close: true,
-                            gravity: "top",
-                            position: "right",
-                            backgroundColor: "#4CAF50",
-                        }).showToast();
+                        const toastBody = document.querySelector('#liveToast .toast-body');
+                        toastBody.textContent = response.message;
+
+                        const toastElement = document.getElementById('liveToast');
+                        const toast = new bootstrap.Toast(toastElement);
+                        toast.show();
 
                         // Sevimlilar sonini yangilash
                         $('#favorite-count').text(response.favorites_count);
@@ -530,14 +519,12 @@ $categories = \App\Models\Category::all();
                 },
                 success: function(response) {
                     if (response.success) {
-                        Toastify({
-                            text: response.message,
-                            duration: 3000,
-                            close: true,
-                            gravity: "top",
-                            position: "right",
-                            backgroundColor: "#4CAF50",
-                        }).showToast();
+                        const toastBody = document.querySelector('#liveToast .toast-body');
+                        toastBody.textContent = response.message;
+
+                        const toastElement = document.getElementById('liveToast');
+                        const toast = new bootstrap.Toast(toastElement);
+                        toast.show();
 
                         // Sevimlilar sonini yangilash
                         $('#compare-count').text(response.compares_count); // Id bo'yicha o'zgarish

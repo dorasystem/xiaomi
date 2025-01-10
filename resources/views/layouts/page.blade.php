@@ -31,7 +31,8 @@
         <div class="container-fluid">
             <ul class="navbar-nav d-flex flex-row justify-content-around w-100 align-items-end">
 
-                <a href="tel:+998772820080" class="d-flex flex-column align-items-center nav-link text-center nav-item text-dark">
+                <a href="tel:+998772820080"
+                    class="d-flex flex-column align-items-center nav-link text-center nav-item text-dark">
                     <div class="icon position-relative p-0 mb-1">
                         <img src="/assets/icons/phone.svg" alt="Phone icon" />
                     </div>
@@ -167,7 +168,17 @@
     <div class="toast-container position-fixed top-0 end-0 p-3" style="z-index: 1055;">
         <div id="liveToast" class="toast" role="alert" aria-live="assertive" aria-atomic="true">
             <div class="toast-header">
-                <strong class="me-auto text-success">Muvaffaqiyat</strong>
+                <strong class="me-auto text-success">
+                    @if (app()->getLocale() === 'uz')
+                        Muvaffaqiyat
+                    @elseif (app()->getLocale() === 'en')
+                        Success
+                    @elseif (app()->getLocale() === 'ru')
+                        Успех
+                    @else
+                        Muvaffaqiyat
+                    @endif
+                </strong>
                 <button type="button" class="btn-close" data-bs-dismiss="toast" aria-label="Close"></button>
             </div>
             <div class="toast-body">
@@ -177,7 +188,7 @@
     </div>
     @if (session('success'))
         <script>
-            document.addEventListener('DOMContentLoaded', function () {
+            document.addEventListener('DOMContentLoaded', function() {
                 // Toast xabarini matnini dinamik qo'shish
                 const toastBody = document.querySelector('#liveToast .toast-body');
                 toastBody.textContent = "{{ session('success') }}";
@@ -230,21 +241,12 @@
     <script src="/assets/range.js"></script>
     @if (session('success'))
         <script>
-            Toastify({
-                text: "{{ session('success') }}",
-                duration: 3000,
-                close: true,
-                gravity: "top",
-                position: "right",
-                backgroundColor: "#4CAF50",
-                stopOnFocus: true,
-                className: "toast-success",
-                animation: "fade",
-                offset: {
-                    x: 30,
-                    y: 50
-                }
-            }).showToast();
+            const toastBody = document.querySelector('#liveToast .toast-body');
+            toastBody.textContent = response.message;
+
+            const toastElement = document.getElementById('liveToast');
+            const toast = new bootstrap.Toast(toastElement);
+            toast.show();
         </script>
     @endif
 
