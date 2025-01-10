@@ -111,12 +111,12 @@ $category7 = collect($categories)->firstWhere('id', 7);
                 </h6>
                 <div class="collapse d-sm-block" id="customersDropdown">
                     <ul class="list-unstyled">
-                        <li><a href="/about">@lang('footer.about_us')</a></li>
-                        <li><a href="/contacts">@lang('footer.our_stores')</a></li>
-                        <li><a href="/contacts">@lang('footer.contacts')</a></li>
-                        <li><a href="/blog">@lang('footer.blog')</a></li>
-                        <li><a href="/news">@lang('footer.news')</a></li>
-                        <li><a href="/career">@lang('footer.career')</a></li>
+                        <li><a href="{{ route('about') }}">@lang('footer.about_us')</a></li>
+                        <li><a href="{{ route('contact') }}">@lang('footer.our_stores')</a></li>
+                        <li><a href="{{ route('contact') }}">@lang('footer.contacts')</a></li>
+                        <li><a href="{{ route('blog') }}">@lang('footer.blog')</a></li>
+                        <li><a href="{{ route('news') }}">@lang('footer.news')</a></li>
+                        <li><a href="{{ route('career') }}">@lang('footer.career')</a></li>
                     </ul>
                 </div>
             </div>
