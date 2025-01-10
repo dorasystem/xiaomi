@@ -106,7 +106,7 @@ class ProductController extends Controller
         ]);
 
         // Generate and set the slug
-        $slug = Str::slug($request->name_uz) . '-' . $product->id; // Combine name and id to create slug
+        $slug = Str::slug($request->name_en) . '-' . $product->id; // Combine name and id to create slug
         $product->slug = $slug;
         $product->save(); // Save the product again to store the slug
 
@@ -250,6 +250,8 @@ class ProductController extends Controller
             'gift_name' => $validatedData['gift_name'],
         ]);
 
+        $slug = Str::slug($request->name_en) . '-' . $product->id; // Combine name and id to create slug
+        $product->slug = $slug;
         // Handle deleted variants
         if ($request->has('deleted_variants')) {
             Variant::whereIn('id', $validatedData['deleted_variants'])->delete();

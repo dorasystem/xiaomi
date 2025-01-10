@@ -7,6 +7,7 @@ use App\Models\Blog;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Storage;
+use Illuminate\Support\Str;
 
 class BlogController extends Controller
 {
@@ -39,29 +40,23 @@ class BlogController extends Controller
             'content_uz' => 'nullable|string',
             'content_ru' => 'nullable|string',
             'content_en' => 'nullable|string',
+            'general_uz' => 'nullable|string',
+            'general_ru' => 'nullable|string',
+            'general_en' => 'nullable|string',
             'date' => 'nullable|string',
             'status' => 'nullable|string',
             'image' => 'nullable|image|mimes:jpeg,png,jpg,gif,webp|max:2048',
-            'images.*' => 'nullable|image|mimes:jpeg,png,jpg,gif,webp|max:8192',
         ]);
 
         try {
-
             if ($request->hasFile('image')) {
                 $data['image'] = $request->file('image')->store('blogs_photo', 'public');
             }
 
-            $uploadedImages = [];
-            if ($request->hasFile('images')) {
-                foreach ($request->file('images') as $image) {
-                    $uploadedImages[] = $image->store('blogs_images', 'public');
-                }
-            }
+            $blog = Blog::create($data);
 
-
-            $data['images'] = $uploadedImages;
-
-            Blog::create($data);
+            $slug = Str::slug($request->title_en) . '-' . $blog->id;
+            $blog->update(['slug' => $slug]);
 
             return redirect()->route('blogs.index')->with('success', 'Blog created successfully.');
         } catch (\Exception $e) {
@@ -90,37 +85,27 @@ class BlogController extends Controller
             'content_uz' => 'nullable|string',
             'content_ru' => 'nullable|string',
             'content_en' => 'nullable|string',
+            'general_uz' => 'nullable|string',
+            'general_ru' => 'nullable|string',
+            'general_en' => 'nullable|string',
             'date' => 'nullable|string',
             'status' => 'nullable|string',
-            'images.*' => 'nullable|image|mimes:jpeg,png,jpg,gif,webp|max:8192',
-            'delete_images' => 'nullable|array',
+            'image' => 'nullable|image|mimes:jpeg,png,jpg,gif,webp|max:2048',
         ]);
 
         try {
-            // Eski rasmlarni o'chirish
-            $updatedImages = $blog->images ?? [];
-            if ($request->filled('delete_images')) {
-                foreach ($request->delete_images as $deleteImage) {
-                    if (($key = array_search($deleteImage, $updatedImages)) !== false) {
-                        unset($updatedImages[$key]);
-                        Storage::disk('public')->delete($deleteImage);
-                    }
+            if ($request->hasFile('image')) {
+                if ($blog->image) {
+                    Storage::disk('public')->delete($blog->image);
                 }
-                $updatedImages = array_values($updatedImages); // Qayta indekslash
+                $data['image'] = $request->file('image')->store('blogs_photo', 'public');
             }
 
-            // Yangi rasmlarni qo'shish
-            if ($request->hasFile('images')) {
-                foreach ($request->file('images') as $image) {
-                    $updatedImages[] = $image->store('blogs_images', 'public');
-                }
-            }
-
-            // Yangilangan rasmlarni saqlash
-            $data['images'] = $updatedImages;
-
-            // Blogni yangilash
             $blog->update($data);
+            $blog = Blog::create($data);
+
+            $slug = Str::slug($request->title_en) . '-' . $blog->id;
+            $blog->update(['slug' => $slug]);
 
             return redirect()->route('blogs.index')->with('success', 'Blog updated successfully.');
         } catch (\Exception $e) {
@@ -128,15 +113,13 @@ class BlogController extends Controller
         }
     }
 
-
-
-    public function destroy(Blog $blogs)
+    public function destroy(Blog $blog)
     {
-        if ($blogs->image) {
-            Storage::disk('public')->delete($blogs->image);
+        if ($blog->image) {
+            Storage::disk('public')->delete($blog->image);
         }
 
-        $blogs->delete();
+        $blog->delete();
 
         return redirect()->back()->with('success', 'Blogs deleted successfully.');
     }

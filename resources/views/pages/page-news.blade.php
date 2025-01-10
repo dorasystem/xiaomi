@@ -15,7 +15,7 @@ $lang = \Illuminate\Support\Facades\App::getLocale();
         <div class="row">
             @if (!empty($news) && $news->count(0))
                 @foreach ($news as $new)
-                    <a href="{{ route('single.news', ['slug' => $new->getSlugByLanguage($lang)]) }}"
+                    <a href="{{ route('single.news', $new->slug) }}"
                         class="col-md-4 col-sm-6 mb-3">
                         <img height="250px" class="w-100 fit-cover rounded-top"
                             src="{{ asset('storage/' . $new->image) ?? '/assets/images/news1.jpg' }}" alt="" />
@@ -38,7 +38,7 @@ $lang = \Illuminate\Support\Facades\App::getLocale();
         <div class="row">
             @if (!empty($articles) && $articles->count(0))
                 @foreach ($articles as $item)
-                    <a href="{{ route('single.article', ['slug' => $item->getSlugByLanguage($lang)]) }}"
+                    <a href="{{ route('single.article', $item->slug) }}"
                         class="col-md-4 col-sm-6 mb-3">
                         <img height="250px" class="w-100 fit-cover rounded-top"
                             src="{{ asset('storage/' . $item->image) ?? '/assets/images/category_pilesos.webp' }}"

@@ -90,25 +90,12 @@ class MainController extends Controller
         $lang = app()->getLocale();
         return view('pages.page-blog', compact('blogs', 'blog', 'lang'));
     }
-    public function singleBlog($slug = null)
+    public function singleBlog($slug)
     {
         $lang = app()->getLocale();
-        if (session()->has('current_blog')) {
-            $blog = session('current_blog');
-        } else {
-            if ($slug) {
-                $blog = Blog::all()->first(function ($blog) use ($slug, $lang) {
-                    $slugs = json_decode($blog->slug, true);
-                    return isset($slugs[$lang]) && $slugs[$lang] === $slug;
-                });
-                if (!$blog) {
-                    abort(404, __('Blog not found'));
-                }
-                session(['current_blog' => $blog]);
-            } else {
-                abort(404, __('Blog not found'));
-            }
-        }
+
+        // Blogni topish
+        $blog = Blog::where('slug', $slug)->firstOrFail();
         return view('pages.single-blog', compact('blog', 'lang'));
     }
     public function products()
@@ -146,55 +133,21 @@ class MainController extends Controller
         return view('pages.career', compact('careers', 'lang'));
     }
 
-    public function singleNews($slug = null)
+    public function singleNews($slug)
     {
         $locale = app()->getLocale();
         $products = Product::latest()->take(6)->get();
-
-        if (session()->has('current_news')) {
-            $news = session('current_news');
-        } else {
-            if ($slug) {
-                $news = News::all()->first(function ($news) use ($locale, $slug) {
-                    return $news->getSlugByLanguage($locale) === $slug;
-                });
-
-                if (!$news) {
-                    abort(404, __('News not found'));
-                }
-
-                session(['current_news' => $news]);
-            } else {
-                abort(404, __('News not found'));
-            }
-        }
+        $news = News::where('slug', $slug)->firstOrFail();
 
         $otherNews = News::latest()->skip(1)->take(4)->get();
 
         return view('pages.single-news', compact('news', 'otherNews', 'locale', 'products'));
     }
 
-    public function singleArticle($slug = null)
+    public function singleArticle($slug)
     {
         $locale = app()->getLocale();
-
-        if (session()->has('current_article')) {
-            $articles = session('current_article');
-        } else {
-            if ($slug) {
-                $articles = Blog::all()->first(function ($article) use ($locale, $slug) {
-                    return $article->getSlugByLanguage($locale) === $slug;
-                });
-
-                if (!$articles) {
-                    abort(404, __('Article not found'));
-                }
-
-                session(['current_article' => $articles]);
-            } else {
-                abort(404, __('Article not found'));
-            }
-        }
+        $articles = Article::where('slug', $slug)->firstOrFail();
         $otherNews = News::latest()->skip(1)->take(4)->get();
 
         return view('pages.single-article', compact('articles', 'locale', 'otherNews'));
@@ -249,6 +202,7 @@ class MainController extends Controller
 
     public function categorySort($slug, Request $request)
     {
+        dd($slug);
         // Get the locale (e.g., from the request or session)
         $locale = app()->getLocale(); // Or $request->get('locale') if you're passing it in the URL
 

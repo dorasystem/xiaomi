@@ -23,10 +23,12 @@ return new class extends Migration
             $table->text('content_uz')->nullable();
             $table->text('content_ru')->nullable();
             $table->text('content_en')->nullable();
+            $table->text('general_uz')->nullable();
+            $table->text('general_ru')->nullable();
+            $table->text('general_en')->nullable();
             $table->string('date')->nullable();
             $table->string('status')->nullable();
             $table->string('image')->nullable();
-            $table->text('images')->nullable();
             $table->timestamps();
         });
     }

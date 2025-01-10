@@ -466,7 +466,7 @@ foreach ($keywords as $keyword) {
             <div class="fs-2 fw-bold">@lang('footer.news')</div>
             <div class="row mt-3">
                 <div class="col-lg-7 pe-lg-5 pe-2 mb-4">
-                    <a href="{{ route('single.news', ['slug' => $new->getSlugByLanguage($lang)]) }}"
+                    <a href="{{ route('single.news', $new->slug) }}"
                         class="newbanner w-100 rounded text-white d-flex flex-column justify-content-between"
                         style="background-image: url('/storage/{{ $new->image ?? '/assets/images/newbanner.png' }}');">
                         <div class="productName fs-5">
@@ -518,7 +518,7 @@ foreach ($keywords as $keyword) {
                         <div class="tab-pane fade show active" id="new" role="tabpanel" aria-labelledby="new-tab">
                             @if (!empty($news1 && $news1->count(4)))
                                 @foreach ($news1 as $item)
-                                    <a href="{{ route('single.news', ['slug' => $item->getSlugByLanguage($lang)]) }}"
+                                    <a href="{{ route('single.news', $item->slug) }}"
                                         class="d-flex align-items-start gap-3 justify-content-between">
                                         <div class="">
                                             <div class="text-grey">

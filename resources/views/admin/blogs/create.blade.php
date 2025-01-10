@@ -67,7 +67,12 @@
                                                 <div class="form-group pb-3">
                                                     <label for="content_{{ $lang }}">Контент ({{ strtoupper($lang) }}):</label>
                                                     <div id="editor_{{ $lang }}" style="height:200px;">{!! old('content_' . $lang, $blogs->{'content_' . $lang} ?? '') !!}</div>
-                                                    <input type="hidden" id="text_{{ $lang }}" name="content_{{ $lang }}" value="{{ old('content_' . $lang, $blogs->{'content_' . $lang} ?? '') }}">
+                                                    <input type="hidden" id="content_{{ $lang }}" name="content_{{ $lang }}" value="{{ old('content_' . $lang, $blogs->{'content_' . $lang} ?? '') }}">
+                                                </div>
+                                                <div class="form-group pb-3">
+                                                    <label for="general_{{ $lang }}">Итого ({{ strtoupper($lang) }}):</label>
+                                                    <div id="editorGeneral_{{ $lang }}" style="height:200px;">{!! old('general_' . $lang, $blogs->{'general_' . $lang} ?? '') !!}</div>
+                                                    <input type="hidden" id="general_{{ $lang }}" name="general_{{ $lang }}" value="{{ old('general_' . $lang, $blogs->{'general_' . $lang} ?? '') }}">
                                                 </div>
                                             </div>
                                         @endforeach
@@ -89,11 +94,6 @@
                                         <label for="image">Изображение:</label>
                                         <input type="file" class="form-control" id="image" name="image">
                                     </div>
-                                    <hr>
-                                    <div class="form-group pb-3">
-                                        <label for="image">Текущие изображения:</label>
-                                        <input type="file" name="images[]" id="images" class="form-control" multiple>
-                                    </div>
                                 </div>
                             </div>
                         </div>
@@ -110,12 +110,14 @@
         @foreach (['uz', 'en', 'ru'] as $lang)
         var editor{{ ucfirst($lang) }} = new Quill('#editor_{{ $lang }}', { theme: 'snow' });
         var descriptionEditor{{ ucfirst($lang) }} = new Quill('#descriptionEditor_{{ $lang }}', { theme: 'snow' });
+        var editorGeneral{{ ucfirst($lang) }} = new Quill('#editorGeneral_{{ $lang }}', { theme: 'snow' });
         @endforeach
 
         function updateEditorContent() {
             @foreach (['uz', 'en', 'ru'] as $lang)
-            document.getElementById('text_{{ $lang }}').value = editor{{ ucfirst($lang) }}.root.innerHTML;
-            document.getElementById('description_{{ $lang }}').value = editor{{ ucfirst($lang) }}.root.innerHTML;
+            document.getElementById('content_{{ $lang }}').value = editor{{ ucfirst($lang) }}.root.innerHTML;
+            document.getElementById('description_{{ $lang }}').value = descriptionEditor{{ ucfirst($lang) }}.root.innerHTML;
+            document.getElementById('general_{{ $lang }}').value = editorGeneral{{ ucfirst($lang) }}.root.innerHTML;
             @endforeach
         }
     </script>

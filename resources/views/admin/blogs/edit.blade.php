@@ -77,12 +77,23 @@
                                                         name="description_{{ $lang }}">
                                                 </div>
                                                 <div class="form-group pb-3">
+<<<<<<< HEAD
                                                     <label for="content_{{ $lang }}">Контент
                                                         ({{ strtoupper($lang) }}):</label>
                                                     <div id="editor_{{ $lang }}" style="height:200px;">
                                                         {!! old('content_' . $lang, $blog->{'content_' . $lang}) !!}</div>
                                                     <input type="hidden" id="text_{{ $lang }}"
                                                         name="content_{{ $lang }}">
+=======
+                                                    <label for="content_{{ $lang }}">Контент ({{ strtoupper($lang) }}):</label>
+                                                    <div id="editor_{{ $lang }}" style="height:200px;">{!! old('content_' . $lang, $blog->{'content_' . $lang}) !!}</div>
+                                                    <input type="hidden" id="content_{{ $lang }}" name="content_{{ $lang }}">
+                                                </div>
+                                                <div class="form-group pb-3">
+                                                    <label for="general_{{ $lang }}">Итого ({{ strtoupper($lang) }}):</label>
+                                                    <div id="editorGeneral_{{ $lang }}" style="height:200px;">{!! old('general_' . $lang, $blog->{'general_' . $lang}) !!}</div>
+                                                    <input type="hidden" id="general_{{ $lang }}" name="general_{{ $lang }}">
+>>>>>>> a75835d82d61fb74d131a5e355c092b7c0b0a26b
                                                 </div>
                                             </div>
                                         @endforeach
@@ -109,6 +120,7 @@
                                                 class="img-thumbnail mt-2" width="200">
                                         @endif
                                     </div>
+<<<<<<< HEAD
                                     <hr>
                                     <div class="">
                                         <div class="form-group pb-3">
@@ -135,6 +147,8 @@
                                             </div>
                                         </div>
                                     </div>
+=======
+>>>>>>> a75835d82d61fb74d131a5e355c092b7c0b0a26b
                                 </div>
                             </div>
                         </div>
@@ -148,19 +162,9 @@
     <link href="https://cdn.quilljs.com/1.3.6/quill.snow.css" rel="stylesheet">
 
     <script>
-        function deleteImage(imagePath, button) {
-            const parentDiv = button.closest('.image-preview');
-            parentDiv.remove();
-
-            // Yashirin input orqali o'chirilayotgan rasmni backendga yuborish
-            const deleteInput = document.createElement('input');
-            deleteInput.type = 'hidden';
-            deleteInput.name = 'delete_images[]';
-            deleteInput.value = imagePath;
-            document.querySelector('form').appendChild(deleteInput);
-        }
 
         @foreach (['uz', 'en', 'ru'] as $lang)
+<<<<<<< HEAD
             var editor{{ ucfirst($lang) }} = new Quill('#editor_{{ $lang }}', {
                 theme: 'snow'
             });
@@ -169,13 +173,27 @@
             });
             editor{{ ucfirst($lang) }}.root.innerHTML = `{!! old('content_' . $lang, $blog->{'content_' . $lang}) !!}`;
             descriptionEditor{{ ucfirst($lang) }}.root.innerHTML = `{!! old('description_' . $lang, $blog->{'description_' . $lang}) !!}`;
+=======
+        var editor{{ ucfirst($lang) }} = new Quill('#editor_{{ $lang }}', { theme: 'snow' });
+        var descriptionEditor{{ ucfirst($lang) }} = new Quill('#descriptionEditor_{{ $lang }}', { theme: 'snow' });
+        var editorGeneral{{ ucfirst($lang) }} = new Quill('#editorGeneral_{{ $lang }}', { theme: 'snow' });
+        editor{{ ucfirst($lang) }}.root.innerHTML = `{!! old('content_' . $lang, $blog->{'content_' . $lang}) !!}`;
+        descriptionEditor{{ ucfirst($lang) }}.root.innerHTML = `{!! old('description_' . $lang, $blog->{'description_' . $lang}) !!}`;
+        editorGeneral{{ ucfirst($lang) }}.root.innerHTML = `{!! old('general_' . $lang, $blog->{'general_' . $lang}) !!}`;
+>>>>>>> a75835d82d61fb74d131a5e355c092b7c0b0a26b
         @endforeach
 
         function updateEditorContent() {
             @foreach (['uz', 'en', 'ru'] as $lang)
+<<<<<<< HEAD
                 document.getElementById('text_{{ $lang }}').value = editor{{ ucfirst($lang) }}.root.innerHTML;
                 document.getElementById('description_{{ $lang }}').value = editor{{ ucfirst($lang) }}.root
                     .innerHTML;
+=======
+            document.getElementById('content_{{ $lang }}').value = editor{{ ucfirst($lang) }}.root.innerHTML;
+            document.getElementById('description_{{ $lang }}').value = descriptionEditor{{ ucfirst($lang) }}.root.innerHTML;
+            document.getElementById('general_{{ $lang }}').value = editorGeneral{{ ucfirst($lang) }}.root.innerHTML;
+>>>>>>> a75835d82d61fb74d131a5e355c092b7c0b0a26b
             @endforeach
         }
     </script>
