@@ -132,31 +132,30 @@
                                 <img width="350px" src="/assets/images/not-found.png" alt="">
                             </div>
                             <x-page.not-found />
-                            <p class="border-bottom-dashed py-1  mt-4  w-100"></p>
+
+                            <div style="overflow: hidden" class="seenProducts container py-3 px-0 position-relative">
+                                <div class="mb-4 fs-2 fw-bold">@lang('home.top_products')</div>
+
+                                <div class="container py-5">
+                                    <div class="row g-4">
+                                        @foreach ($categories as $item)
+                                            <div class="col-md-6 col-12 col-lg-4">
+                                                <a href="{{ route('category.sort', ['slug' => $item->getSlugByLanguage($lang)]) }}"
+                                                    class="d-flex align-items-center p-2 border rounded">
+                                                    <img src="{{ asset('storage/' . $item->image) }}" alt="{{ $item['name_' . $lang] }}"
+                                                        class="img-fluid me-3 rounded" style="width: 80px; height: 80px; object-fit: cover;">
+                                                    <div>
+                                                        <p class="mb-0 fw-bold">{{ $item['name_' . $lang] }}</p>
+                                                    </div>
+                                                </a>
+                                            </div>
+                                        @endforeach
+                                    </div>
+                                </div>
+                            </div>
                         @endif
 
                     </div>
-                </div>
-            </div>
-        </div>
-        <!-- products you have seen -->
-        <div style="overflow: hidden" class="seenProducts container py-3 px-0 position-relative">
-            <div class="mb-4 fs-2 fw-bold">@lang('home.top_products')</div>
-
-            <div class="container py-5">
-                <div class="row g-4">
-                    @foreach ($categories as $item)
-                        <div class="col-md-6 col-12 col-lg-4">
-                            <a href="{{ route('category.sort', ['slug' => $item->getSlugByLanguage($lang)]) }}"
-                                class="d-flex align-items-center p-2 border rounded">
-                                <img src="{{ asset('storage/' . $item->image) }}" alt="{{ $item['name_' . $lang] }}"
-                                    class="img-fluid me-3 rounded" style="width: 80px; height: 80px; object-fit: cover;">
-                                <div>
-                                    <p class="mb-0 fw-bold">{{ $item['name_' . $lang] }}</p>
-                                </div>
-                            </a>
-                        </div>
-                    @endforeach
                 </div>
             </div>
         </div>

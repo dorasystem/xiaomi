@@ -216,13 +216,39 @@ class CartController extends Controller
         ]);
     }
 
+    // public function compare()
+    // {
+    //     $lang = app()->getLocale();
+    //     $compares = session()->get('compares', []);
+    //     $products = Product::whereIn('id', $compares)->get();
+    //     $categories = Category::paginate(10);
+    //     $groupedProducts = $products->groupBy('category_id');
+    //     $groupedProducts = $products->groupBy('category_id');
+    //     $categoriesWithProducts = $categories->map(function ($category) use ($groupedProducts) {
+    //         return [
+    //             'category' => $category,
+    //             'products' => $groupedProducts->get($category->id, collect()),
+    //         ];
+    //     });
+    //     return view('pages.compare', compact('products', 'lang', 'categories', 'categoriesWithProducts'));
+    // }
     public function compare()
     {
         $lang = app()->getLocale();
         $compares = session()->get('compares', []);
         $products = Product::whereIn('id', $compares)->get();
-        $categories = Category::paginate(10);
+        $groupedProducts = $products->groupBy('category_id');
 
-        return view('pages.compare', compact('products', 'lang', 'categories'));
+        $categories = Category::whereIn('id', $groupedProducts->keys())->get();
+        $allPategories = Category::paginate(10);
+        // Kategoriyalarni mahsulotlar bilan birlashtirish
+        $categoriesWithProducts = $categories->map(function ($category) use ($groupedProducts) {
+            return [
+                'category' => $category,
+                'products' => $groupedProducts->get($category->id, collect()), // Mahsulotlarni olib kelish yoki bo'sh kolleksiya
+            ];
+        });
+
+        return view('pages.compare', compact('categoriesWithProducts', 'lang', 'products', 'allPategories'));
     }
 }

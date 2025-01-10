@@ -491,7 +491,7 @@ a.active {
     z-index: 1;
 }
 .small {
-    font-size: 9px;
+    font-size: 11px;
 }
 .hover-orange:hover {
     color: var(--orange);
