@@ -17,14 +17,14 @@
                     <div class="text-grey">{{ \Carbon\Carbon::parse($blog->date)->format('d.m.Y') }}</div>
                     {{-- <pre>{{ $blog }}</pre> --}}
                 </div>
-                <a href="{{ route('single.blog', ['slug' => $blog->getSlugByLanguage($lang)]) }}">
+                <a href="{{ route('single.blog', $blog->slug) }}">
                     <button class="border-1 rouned rounded text-uppercase py-1 px-4 bg-transparent">@lang('home.read')</button>
                 </a>
             </div>
         </div>
         <div class="row mt-5">
             @foreach ($blogs as $blog)
-                <a href="{{ route('single.blog', ['slug' => $blog->getSlugByLanguage($lang)]) }}"
+                <a href="{{ route('single.blog', $blog->slug) }}"
                     class="col-lg-3 col-md-4 col-sm-6 mb-4">
                     <img height="220px" class="mb-2 w-100 rounded-top fit-cover"
                         src="{{ asset('storage/' . $blog->image) }}" alt="{{ $blog['title_' . $lang] }}" />

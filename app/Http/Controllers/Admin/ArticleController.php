@@ -1,13 +1,13 @@
 <?php
 
-namespace App\Http\Controllers\admin;
+namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
 use App\Models\Article;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Storage;
-use Psy\Util\Str;
+use Illuminate\Support\Str;
 
 class ArticleController extends Controller
 {
@@ -55,8 +55,8 @@ class ArticleController extends Controller
 
         $article = Article::create($data);
 
-        $article->slug = Str::slug($request->title_en) . '-' . $article->id;
-        $article->save();
+        $slug = Str::slug($request->title_en) . '-' . $article->id;
+        $article->update(['slug' => $slug]);
 
         return redirect()->route('articles.index')->with('success', 'Article created successfully.');
     }
@@ -73,7 +73,7 @@ class ArticleController extends Controller
 
     public function update(Request $request, $id)
     {
-        $articles = Article::find($id);
+        $article = Article::find($id);
         $data = $request->validate([
             'title_uz' => 'nullable|string',
             'title_ru' => 'nullable|string',
@@ -90,8 +90,8 @@ class ArticleController extends Controller
         ]);
 
         if ($request->hasFile('image')) {
-            if ($articles->image) {
-                Storage::disk('public')->delete($articles->image);
+            if ($article->image) {
+                Storage::disk('public')->delete($article->image);
             }
 
             $file = $request->file('image');
@@ -100,7 +100,9 @@ class ArticleController extends Controller
             $data['image'] = $path;
         }
 
-        $articles->update($data);
+        $article->update($data);
+        $slug = Str::slug($request->title_en) . '-' . $article->id;
+        $article->update(['slug' => $slug]);
 
         return redirect()->route('articles.index')->with('success', 'Articles updated successfully.');
     }

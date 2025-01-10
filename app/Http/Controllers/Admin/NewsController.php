@@ -98,6 +98,8 @@ class NewsController extends Controller
         }
 
         $news->update($data);
+        $slug = Str::slug($request->title_en) . '-' . $news->id;
+        $news->update(['slug' => $slug]);
 
         return redirect()->route('news.index')->with('success', 'News updated successfully.');
     }

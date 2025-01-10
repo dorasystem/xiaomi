@@ -64,13 +64,6 @@ Route::middleware(['auth'])->prefix('dashboard')->group(function () {
     Route::post('/blogs/delete-image', [BlogController::class, 'deleteImage'])->name('blogs.deleteImage');
 });
 
-Route::middleware(['auth'])->group(function () {
-    Route::get('/profile',[UserController::class, 'profile'])->name('user.profile');
-    Route::get('cart', [UserController::class, 'cart'])->name('cart');
-
-
-});
-
 Route::get('/', [MainController::class, 'index'])->name('home');
 Route::get('/about', [MainController::class, 'about'])->name('about');
 Route::get('/contact', [MainController::class, 'contact'])->name('contact');
