@@ -41,7 +41,7 @@
                                 <tr>
                                     <td>{{ $loop->iteration }}</td>
                                     <td>{{ $item->title_ru }}</td>
-                                    <td>{{ $item->date }}</td>
+                                    <td>{{ \Carbon\Carbon::parse($item->date)->format('d.m.Y') }}</td>
                                     <td>
                                         @if ($item->image)
                                             <img src="{{ asset('storage/' . $item->image) }}" alt="{{ $item->title_en }}" width="50" class="img-thumbnail">

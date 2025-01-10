@@ -14,7 +14,8 @@
                         </div>
                         <ul class="breadcrumb">
                             <li class="breadcrumb-item"><a href="{{ route('admins.dashboard') }}">Главная</a></li>
-                            <li class="breadcrumb-item"><a href="{{ route('desc-images.index') }}">Изображения описания</a></li>
+                            <li class="breadcrumb-item"><a href="{{ route('desc-images.index') }}">Изображения описания</a>
+                            </li>
                             <li class="breadcrumb-item active">Редактировать</li>
                         </ul>
                     </div>
@@ -45,9 +46,11 @@
                                     <!-- Image Input Section -->
                                     <div class="form-group pb-3">
                                         <label for="image">Изображение:</label>
-                                        <input type="file" class="form-control" name="image" value="{{ $descImage->image }}">
+                                        <input type="file" class="form-control" name="image"
+                                            value="{{ $descImage->image }}">
                                         @if ($descImage->image)
-                                            <img src="{{ asset('storage/' . $descImage->image) }}" alt="Image" style="width: 100px; height: 100px; object-fit: cover; margin-top: 10px;">
+                                            <img src="{{ asset('storage/' . $descImage->image) }}" alt="Image"
+                                                style="width: 100px; height: 100px; object-fit: cover; margin-top: 10px;">
                                         @endif
                                     </div>
 
@@ -67,10 +70,11 @@
                                         <textarea class="form-control" name="description_en" rows="3">{{ $descImage->description_en }}</textarea>
                                     </div>
 
+                                    <button type="button" id="add-more"
+                                        class="btn btn-secondary mt-3 w-100">Добавить</button>
                                 </div>
                                 <div id=""></div>
 
-                                <button type="button" id="add-more" class="btn btn-secondary mt-3">Добавить</button>
 
                             </div>
                         </div>
@@ -80,12 +84,14 @@
                                 <div class="card-header">
                                     <h5 class="card-title">Продукт:</h5>
                                 </div>
-                                <div class="card-body p-4">
+                                <div class="card-body p-4 pb-0">
                                     <div class="form-group pb-3">
                                         <label for="product_id">Продукт:</label>
                                         <select id="product_id" name="product_id" class="form-control" required>
                                             @foreach ($products as $product)
-                                                <option value="{{ $product->id }}" {{ $descImage->product_id == $product->id ? 'selected' : '' }}>{{ $product->name_ru }}</option>
+                                                <option value="{{ $product->id }}"
+                                                    {{ $descImage->product_id == $product->id ? 'selected' : '' }}>
+                                                    {{ $product->name_ru }}</option>
                                             @endforeach
                                         </select>
                                     </div>

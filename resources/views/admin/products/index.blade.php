@@ -28,39 +28,50 @@
                     <div class="table-responsive">
                         <table class="table mb-0">
                             <thead>
-                            <tr>
-                                <th scope="col">№</th>
-                                <th scope="col">Название</th>
+                                <tr>
+                                    <th scope="col">№</th>
+                                    <th scope="col">Изображение</th>
+                                    <th scope="col">Название</th>
 
-                                <th scope="col" class="text-end">Действия</th>
-                            </tr>
+                                    <th scope="col" class="text-end">Действия</th>
+                                </tr>
                             </thead>
                             <tbody>
-                            @foreach ($products as $product)
-                                <tr>
-                                    <td>{{ $loop->iteration }}</td>
-                                    <td>{{ \Str::words($product->name_uz, 3) }}</td>
-                                    <td class="text-end">
-                                        <div class="btn-group" role="group">
-                                            <a href="{{ route('products.show', $product->id) }}" class="avatar-text avatar-md me-2">
-                                                <i class="feather feather-eye"></i>
-                                            </a>
-                                            <a href="{{ route('products.edit', $product->id) }}" class="avatar-text avatar-md">
-                                                <i class="feather feather-edit"></i>
-                                            </a>
-                                            <form action="{{ route('products.destroy', $product->id) }}" method="POST" style="display: inline;">
-                                                @csrf
-                                                @method('DELETE')
-                                                <button class="border-0 bg-transparent js-delete-btn" type="submit" onclick="return confirm('Вы действительно хотите удалить этот продукт?')">
-                                                    <a href="javascript:void(0)" class="avatar-text avatar-md" data-bs-toggle="tooltip" data-bs-trigger="hover" title="Удалить">
-                                                        <i class="feather-trash-2"></i>
-                                                    </a>
-                                                </button>
-                                            </form>
-                                        </div>
-                                    </td>
-                                </tr>
-                            @endforeach
+                                @foreach ($products as $product)
+                                    <tr>
+                                        <td>{{ $loop->iteration }}</td>
+                                        <td>
+                                            <img src="{{ asset('storage/' . $product->image) }}" alt="Image"
+                                                style="width: 50px; height: 50px; object-fit: cover;">
+                                        </td>
+                                        <td>{{ \Str::words($product->name_uz, 3) }}</td>
+                                        <td class="text-end">
+                                            <div class="btn-group" role="group">
+                                                <a href="{{ route('products.show', $product->id) }}"
+                                                    class="avatar-text avatar-md me-2">
+                                                    <i class="feather feather-eye"></i>
+                                                </a>
+                                                <a href="{{ route('products.edit', $product->id) }}"
+                                                    class="avatar-text avatar-md">
+                                                    <i class="feather feather-edit"></i>
+                                                </a>
+                                                <form action="{{ route('products.destroy', $product->id) }}" method="POST"
+                                                    style="display: inline;">
+                                                    @csrf
+                                                    @method('DELETE')
+                                                    <button class="border-0 bg-transparent js-delete-btn" type="submit"
+                                                        onclick="return confirm('Вы действительно хотите удалить этот продукт?')">
+                                                        <a href="javascript:void(0)" class="avatar-text avatar-md"
+                                                            data-bs-toggle="tooltip" data-bs-trigger="hover"
+                                                            title="Удалить">
+                                                            <i class="feather-trash-2"></i>
+                                                        </a>
+                                                    </button>
+                                                </form>
+                                            </div>
+                                        </td>
+                                    </tr>
+                                @endforeach
                             </tbody>
                         </table>
                     </div>
@@ -93,6 +104,5 @@
         function updateCartCount(count) {
             document.getElementById('cart-count').innerText = count;
         }
-
     </script>
 @endsection

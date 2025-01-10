@@ -16,101 +16,74 @@
                 </div>
             </div>
 
-            <div class="card mt-4">
+            <div class="card m-4">
                 <div class="card-header">
                     <h6>Информация о статье</h6>
                 </div>
                 <div class="container">
                     <div class="card-body">
                         <div class="row">
-                            <div class="col-md-4">
-                                <div class="mb-3">
-                                    <strong>Сарлавҳа (UZ):</strong>
-                                    <p>{{ $article->title_uz }}</p>
-                                </div>
+                            <div class="row mb-3">
+                                <strong class="col-sm-3">Сарлавҳа (UZ):</strong>
+                                <div class="col-sm-9">{{ $article->title_uz }}</div>
                             </div>
-                            <div class="col-md-4">
-                                <div class="mb-3">
-                                    <strong>Заголовок (RU):</strong>
-                                    <p>{{ $article->title_ru }}</p>
-                                </div>
+                            <div class="row mb-3">
+                                <strong class="col-sm-3">Заголовок (RU):</strong>
+                                <div class="col-sm-9">{{ $article->title_ru }}</div>
                             </div>
-                            <div class="col-md-4">
-                                <div class="mb-3">
-                                    <strong>Title (EN):</strong>
-                                    <p>{{ $article->title_en }}</p>
-                                </div>
+                            <div class="row mb-3">
+                                <strong class="col-sm-3">Title (EN):</strong>
+                                <div class="col-sm-9">{{ $article->title_en }}</div>
                             </div>
-                            <div class="col-md-4">
-                                <div class="mb-3">
-                                    <strong>Slug (UZ):</strong>
-                                    <p>{{ $article->getSlugByLanguage('uz') }}</p>
-                                </div>
+                            <div class="row mb-3">
+                                <strong class="col-sm-3">Slug (UZ):</strong>
+                                <div class="col-sm-9">{{ $article->getSlugByLanguage('uz') }}</div>
                             </div>
-                            <div class="col-md-4">
-                                <div class="mb-3">
-                                    <strong>Slug (RU):</strong>
-                                    <p>{{ $article->getSlugByLanguage('ru') }}</p>
-                                </div>
+                            <div class="row mb-3">
+                                <strong class="col-sm-3">Slug (RU):</strong>
+                                <div class="col-sm-9">{{ $article->getSlugByLanguage('ru') }}</div>
                             </div>
-                            <div class="col-md-4">
-                                <div class="mb-3">
-                                    <strong>Slug (EN):</strong>
-                                    <p>{{ $article->getSlugByLanguage('en') }}</p>
-                                </div>
+                            <div class="row mb-3">
+                                <strong class="col-sm-3">Slug (EN):</strong>
+                                <div class="col-sm-9">{{ $article->getSlugByLanguage('en') }}</div>
                             </div>
-                            <div class="col-md-4">
-                                <div class="mb-3">
-                                    <strong>Тавсиф (UZ):</strong>
-                                    <p>{{ $article->description_uz }}</p>
-                                </div>
+                            <div class="row mb-3">
+                                <strong class="col-sm-3">Тавсиф (UZ):</strong>
+                                <div class="col-sm-9">{!! $article->description_uz !!}</div>
                             </div>
-                            <div class="col-md-4">
-                                <div class="mb-3">
-                                    <strong>Описание (RU):</strong>
-                                    <p>{{ $article->description_ru }}</p>
-                                </div>
+                            <div class="row mb-3">
+                                <strong class="col-sm-3">Описание (RU):</strong>
+                                <div class="col-sm-9">{!! $article->description_ru !!}</div>
                             </div>
-                            <div class="col-md-4">
-                                <div class="mb-3">
-                                    <strong>Description (EN):</strong>
-                                    <p>{{ $article->description_en }}</p>
-                                </div>
+                            <div class="row mb-3">
+                                <strong class="col-sm-3">Description (EN):</strong>
+                                <div class="col-sm-9">{!! $article->description_en !!}</div>
                             </div>
-                            <div class="col-md-4">
-                                <div class="mb-3">
-                                    <strong>Content (UZ):</strong>
-                                    <p>{{ $article->content_uz }}</p>
-                                </div>
+                            <div class="row mb-3">
+                                <strong class="col-sm-3">Content (UZ):</strong>
+                                <div class="col-sm-9">{!! $article->content_uz !!}</div>
                             </div>
-                            <div class="col-md-4">
-                                <div class="mb-3">
-                                    <strong>Контент (RU):</strong>
-                                    <p>{{ $article->content_ru }}</p>
-                                </div>
+                            <div class="row mb-3">
+                                <strong class="col-sm-3">Контент (RU):</strong>
+                                <div class="col-sm-9">{!! $article->content_ru !!}</div>
                             </div>
-                            <div class="col-md-4">
-                                <div class="mb-3">
-                                    <strong>Content (EN):</strong>
-                                    <p>{{ $article->content_en }}</p>
-                                </div>
+                            <div class="row mb-3">
+                                <strong class="col-sm-3">Content (EN):</strong>
+                                <div class="col-sm-9">{!! $article->content_en !!}</div>
                             </div>
-                            <div class="col-md-4">
-                                <div class="mb-3">
-                                    <strong>Сана:</strong>
-                                    <p>{{ $article->date }}</p>
-                                </div>
+                            <div class="row mb-3">
+                                <strong class="col-sm-3">Сана:</strong>
+                                <div class="col-sm-9">{!! \Carbon\Carbon::parse($article->date)->format('d.m.Y') !!}</div>
                             </div>
-                            <div class="col-md-4">
-                                <div class="mb-3">
-                                    <strong>Статус:</strong>
-                                    <p>{{ $article->status ? 'Активный' : 'Неактивный' }}</p>
-                                </div>
+                            <div class="row mb-3">
+                                <strong class="col-sm-3">Статус:</strong>
+                                <div class="col-sm-9">{!! $article->status ? 'Активный' : 'Неактивный' !!}</div>
                             </div>
-                            <div class="col-md-4">
-                                <div class="mb-3">
-                                    <strong>Изображение:</strong>
-                                    <img src="{{ asset('storage/' . $article->image) }}" alt="Article Image" class="img-fluid">
+                            <div class="row mb-3">
+                                <strong class="col-sm-3">Изображение:</strong>
+                                <div class="col-sm-9">
+                                    <img class="img-fluid rounded-3" width="250px"
+                                        src="{{ asset('storage/' . $article->image) }}" alt="Article Image">
                                 </div>
                             </div>
                         </div>

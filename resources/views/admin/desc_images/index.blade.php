@@ -29,44 +29,48 @@
                     <div class="table-responsive">
                         <table class="table mb-0">
                             <thead>
-                            <tr>
-                                <th scope="col">№</th>
-                                <th scope="col">Изображение</th>
-                                <th scope="col">Описание</th>
-                                <th scope="col" class="">Действия</th>
-                            </tr>
+                                <tr>
+                                    <th scope="col">№</th>
+                                    <th scope="col">Изображение</th>
+                                    <th scope="col">Описание</th>
+                                    <th scope="col" class="">Действия</th>
+                                </tr>
                             </thead>
                             <tbody>
-                            @foreach ($descImages as $descImage)
-                                <tr>
-                                    <td>{{ $loop->iteration }}</td>
-                                    <td>
-                                        <img src="{{ asset('storage/' . $descImage->image) }}" alt="Image" style="width: 50px; height: 50px; object-fit: cover;">
-                                    </td>
-                                    <td>
+                                @foreach ($descImages as $descImage)
+                                    <tr>
+                                        <td>{{ $loop->iteration }}</td>
+                                        <td>
+                                            <img src="{{ asset('storage/' . $descImage->image) }}" alt="Image"
+                                                style="width: 50px; height: 50px; object-fit: cover;">
+                                        </td>
+                                        <td>
+                                            <p>{{ \Illuminate\Support\Str::words($descImage->description_ru ?? '', 8, '...') }}
+                                            </p>
+                                        </td>
 
-                                        <p>{{ $descImage->description_ru[0] ?? '' }}</p>
+                                        <td class="">
+                                            <div class="btn-group" role="group">
+                                                <a href="{{ route('desc-images.edit', $descImage->id) }}"
+                                                    class="avatar-text avatar-md">
+                                                    <i class="feather feather-edit"></i>
+                                                </a>
+                                                <form action="{{ route('desc-images.destroy', $descImage->id) }}"
+                                                    method="POST" style="display:inline;">
+                                                    @csrf
+                                                    @method('DELETE')
+                                                    <div class="avatar-text avatar-md">
+                                                        <button class="border-0 bg-transparent js-delete-btn" type="submit"
+                                                            onclick="return confirm('Вы действительно хотите удалить это изображение?')">
+                                                            <i class="  feather-trash-2"></i>
+                                                        </button>
+                                                    </div>
 
-                                    </td>
-                                    <td class="">
-                                        <div class="btn-group" role="group">
-                                            <a href="{{ route('desc-images.edit', $descImage->id) }}" class="avatar-text avatar-md">
-                                                <i class="feather feather-edit"></i>
-                                            </a>
-                                            <form action="{{ route('desc-images.destroy', $descImage->id) }}" method="POST" style="display:inline;" >
-                                                @csrf
-                                                @method('DELETE')
-                                                <div class="avatar-text avatar-md">
-                                                    <button class="border-0 bg-transparent js-delete-btn" type="submit" onclick="return confirm('Вы действительно хотите удалить это изображение?')">
-                                                        <i class="  feather-trash-2"></i>
-                                                    </button>
-                                                </div>
-
-                                            </form>
-                                        </div>
-                                    </td>
-                                </tr>
-                            @endforeach
+                                                </form>
+                                            </div>
+                                        </td>
+                                    </tr>
+                                @endforeach
                             </tbody>
                         </table>
                     </div>

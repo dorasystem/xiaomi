@@ -27,13 +27,7 @@
                     <div class="card-body">
                         <div class="row">
                             <!-- Image -->
-                            <div class="col-md-4 text-center">
-                                @if ($product->gift_image)
-                                    <img src="{{ asset('storage/' . $product->gift_image) }}" alt="{{ $product->gift_name }}" class="img-thumbnail" style="max-width: 100%;">
-                                @else
-                                    <p class="text-muted">Изображение отсутствует</p>
-                                @endif
-                            </div>
+
                             <!-- Details -->
                             <div class="col-md-8">
                                 <table class="table table-borderless">
@@ -43,43 +37,49 @@
                                     </tr>
                                     <tr>
                                         <th>Описание:</th>
-                                        <td>{!! nl2br(e($product->description_uz)) !!}</td>
-                                    </tr>
-                                    <tr>
-                                        <th>Цена:</th>
-                                        <td>{{ number_format($product->price, 0, '.', ' ') }} UZS</td>
-                                    </tr>
-                                    <tr>
-                                        <th>Категория:</th>
-                                        <td>{{ $product->category->name ?? 'Без категории' }}</td>
-                                    </tr>
+                                        <td>{!! (($product->description_uz)) !!}</td>
                                     <tr>
                                         <th>Подарок:</th>
                                         <td>{{ $product->gift_name ?? 'Не указан' }}</td>
                                     </tr>
                                     <tr>
                                         <th>Дата создания:</th>
-                                        <td>{{ $product->created_at->format('d-m-Y H:i') }}</td>
+                                        <td>{{ $product->created_at->format('d.m.Y H:i') }}</td>
                                     </tr>
                                     <tr>
                                         <th>Последнее обновление:</th>
-                                        <td>{{ $product->updated_at->format('d-m-Y H:i') }}</td>
+                                        <td>{{ $product->updated_at->format('d.m.Y H:i') }}</td>
                                     </tr>
                                     <tr>
-                                        <th>Просмотры:</th>
-                                        <td>{{ $product->views }}</td>
+                                        <th>Изображение:</th>
+                                        <td>
+                                            <div class="col-md-4 text-center">
+                                                @if ($product->gift_image)
+                                                    <img src="{{ asset('storage/' . $product->gift_image) }}"
+                                                        alt="{{ $product->gift_name }}" class="img-thumbnail"
+                                                        style="max-width: 100%;">
+                                                @else
+                                                    <p class="text-muted">Изображение отсутствует</p>
+                                                @endif
+                                            </div>
+                                        </td>
                                     </tr>
                                 </table>
                             </div>
                         </div>
                     </div>
-                    <div class="card-footer text-end">
-                        <form action="{{ route('products.destroy', $product->id) }}" method="POST" class="d-inline">
-                            @csrf
-                            @method('DELETE')
-                            <button class="btn btn-danger" onclick="return confirm('Вы действительно хотите удалить этот продукт?')">Удалить</button>
-                        </form>
-                        <a href="{{ route('products.index') }}" class="btn btn-secondary">Назад</a>
+                    <div class="card-footer row">
+                        <div class="col-sm-6">
+                            <form action="{{ route('products.destroy', $product->id) }}" method="POST" class="d-inline">
+                                @csrf
+                                @method('DELETE')
+                                <button class="btn btn-danger w-100"
+                                    onclick="return confirm('Вы действительно хотите удалить этот продукт?')">Удалить</button>
+                            </form>
+                        </div>
+                        <div class="col-sm-6">
+                            <a href="{{ route('products.index') }}" class="btn btn-secondary">Назад</a>
+                        </div>
                     </div>
                 </div>
             </div>
