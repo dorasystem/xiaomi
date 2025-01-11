@@ -28,7 +28,6 @@
             {!! $blog['content_' . $lang] !!}
         </div>
         <div class="blogall blogdes my-5">
-            <h1 class="mb-3">Итоги</h1>
             <div class="d-flex gap-4">
                 <div class="orange-column"></div>
                 <div class="">

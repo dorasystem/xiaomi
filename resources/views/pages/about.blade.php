@@ -17,22 +17,10 @@
                         </div>
                     </div>
                 </div>
-                {{--                <div class="col-md-1"></div> --}}
-                {{--                <div class="col-md-3 text-center"> --}}
-                {{--                    <h1 class="fw-bold fs-85">100+</h1> --}}
-                {{--                    <div class="text-grey"> --}}
-                {{--                        стран и регионов в которых <br /> --}}
-                {{--                        доступна продукция Xiaomi --}}
-                {{--                    </div> --}}
-                {{--                </div> --}}
 
             </div>
         </div>
 
-        {{--        <div class="aboutImages d-flex gap-3"> --}}
-        {{--            <img class="h-100 fit-cover" src="/assets/images/aboutbanner1.webp" alt="" /> --}}
-        {{--            <img class="w-100 h-100 fit-cover" src="/assets/images/aboutbanner2.webp" alt="" /> --}}
-        {{--        </div> --}}
         <div class="container my-5">
             <div class="row">
                 @foreach ($histories as $history)
@@ -46,12 +34,12 @@
             <div class="row my-5">
                 <div class="col-md-6"><img style="object-position: right" class="w-100 rounded h-100 fit-cover"
                         src="{{ asset('storage/' . $about->image) }}" alt="" /></div>
-                <div class="col-md-6 d-flex flex-column justify-content-center align-items-start gap-4">
+                <div class="col-md-6 d-flex flex-column justify-content-start align-items-start gap-4">
                     {!! $about['description_' . $lang] !!}
                 </div>
             </div>
             <div class="row my-5">
-                <div class="order-md-1 order-2 col-md-6 d-flex flex-column justify-content-center align-items-start gap-4">
+                <div class="order-md-1 order-2 col-md-6 d-flex flex-column justify-content-start align-items-start gap-4">
                     {!! $about['content_' . $lang] !!}
                 </div>
                 <div class="order-md-2 order-1 col-md-6"><img class="w-100 rounded h-100 fit-cover"

@@ -9,7 +9,7 @@
             </div>
             <hr />
         </div>
-        <div class="blogbanner rounded w-100 my-3 py-5 d-flex align-items-center">
+        <div style="background-image: url('{{ asset('storage/' . $blog->image) }}')" class="blogbanner rounded w-100 my-3 py-5 d-flex align-items-center">
             <div class="col-sm-4 col-8">
                 <div class="text-grey">@lang('home.reviews')</div>
                 <h2 class="fw-bold">{{ $blog['title_' . $lang] }}</h2>

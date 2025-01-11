@@ -310,7 +310,7 @@
                                         {{ count(session('cart')) }}
                                     </span>
                                 @else
-                                    <span class="badge badge-pill badge-danger badge-position cart-label" id="cart-count"></span>
+                                    <span class="badge badge-pill badge-danger badge-position cart-label rounded-pill" id="cart-count"></span>
                                 @endif
                             </a>
                             <small class="">@lang('home.basket')</small>

@@ -202,7 +202,7 @@ class MainController extends Controller
 
     public function categorySort($slug, Request $request)
     {
-        dd($slug);
+        // dd($slug);
         // Get the locale (e.g., from the request or session)
         $locale = app()->getLocale(); // Or $request->get('locale') if you're passing it in the URL
 

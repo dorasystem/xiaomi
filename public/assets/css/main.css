@@ -62,7 +62,7 @@
     color: var(--historycolor);
 }
 .h-95 {
-    height: 93%;
+    height: 92%;
 }
 .hover-svg:hover rect {
     fill: var(--orange);
@@ -1066,7 +1066,7 @@ input[type="range"]:nth-child(2) {
 }
 /* blog */
 .blogbanner {
-    background-image: url("/assets/images/blogbanner.webp");
+    /* background-image: url("/assets/images/blogbanner.webp"); */
     height: 430px;
     padding-left: 130px;
     background-size: cover;
@@ -1107,7 +1107,7 @@ input[type="range"]:nth-child(2) {
     font-weight: 600;
 }
 .orange-column {
-    width: 150px;
+    width: 100px;
     background-color: var(--orange);
 }
 /* compare */
