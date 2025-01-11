@@ -110,6 +110,7 @@ return [
     "all_filters" => "Barcha filterlar",
     "invalid_phone_format" => "Telefon raqami noto‘g‘ri formatda!",
     "clear_cart" => "Savatni tozalash",
+    "cartclear" => "Savatcha tozalandi",
     "send_application" => "Arizani yuborish",
     "submit_application" => "Ariza topshirish",
     "reviews" => "Blog",

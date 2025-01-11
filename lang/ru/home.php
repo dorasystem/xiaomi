@@ -104,6 +104,7 @@ return [
     "all_filters" => "Все фильтры",
     "invalid_phone_format" => "Номер телефона имеет неверный формат!",
     "clear_cart" => "Очистить корзину",
+    "cartclear" => "Корзина была очищена",
     "send_application" => "Отправить заявку",
     "submit_application" => "Подать  заявку",
     "reviews" => "Обзоры",

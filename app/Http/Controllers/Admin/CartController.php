@@ -121,7 +121,7 @@ class CartController extends Controller
     {
         session()->forget('cart');
 
-        return redirect()->route('cart')->with('success', __('Cart has been cleared.'));
+        return redirect()->route('cart')->with('success', __('home.cartclear'));
     }
 
     public function updateCart(Request $request)

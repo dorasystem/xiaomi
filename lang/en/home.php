@@ -113,6 +113,7 @@ return [
     "all_filters" => "All filters",
     "invalid_phone_format" => "The phone number is in an invalid format!",
     "clear_cart" => "Clear cart",
+    "cartclear" => "Cart has been cleared",
     "send_application" => "Submit Application",
     "submit_application" => "Submit an Application",
     "reviews" => "Reviews",
