@@ -67,7 +67,7 @@
                                                 <div class="form-group pb-3">
                                                     <label for="content_{{ $lang }}">Контент ({{ strtoupper($lang) }}):</label>
                                                     <div id="editor_{{ $lang }}" style="height:200px;">{!! old('content_' . $lang, $article->{'content_' . $lang}) !!}</div>
-                                                    <input type="hidden" id="text_{{ $lang }}" name="content_{{ $lang }}">
+                                                    <input type="hidden" id="content_{{ $lang }}" name="content_{{ $lang }}">
                                                 </div>
                                             </div>
                                         @endforeach
@@ -114,8 +114,8 @@
 
         function updateEditorContent() {
             @foreach (['uz', 'en', 'ru'] as $lang)
-            document.getElementById('text_{{ $lang }}').value = editor{{ ucfirst($lang) }}.root.innerHTML;
-            document.getElementById('description_{{ $lang }}').value = editor{{ ucfirst($lang) }}.root.innerHTML;
+            document.getElementById('content_{{ $lang }}').value = editor{{ ucfirst($lang) }}.root.innerHTML;
+            document.getElementById('description_{{ $lang }}').value = descriptionEditor{{ ucfirst($lang) }}.root.innerHTML;
             @endforeach
         }
     </script>
