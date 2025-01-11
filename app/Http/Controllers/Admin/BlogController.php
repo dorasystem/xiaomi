@@ -102,7 +102,6 @@ class BlogController extends Controller
             }
 
             $blog->update($data);
-            $blog = Blog::create($data);
 
             $slug = Str::slug($request->title_en) . '-' . $blog->id;
             $blog->update(['slug' => $slug]);

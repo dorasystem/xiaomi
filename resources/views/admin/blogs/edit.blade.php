@@ -1,8 +1,7 @@
 @extends('layouts.admin')
 
 @section('content')
-    <form action="{{ route('blogs.update', $blog->id) }}" method="POST" enctype="multipart/form-data" novalidate
-        class="needs-validation" onsubmit="updateEditorContent()">
+    <form action="{{ route('blogs.update', $blog->id) }}" method="POST" enctype="multipart/form-data" novalidate class="needs-validation" onsubmit="updateEditorContent()">
         @csrf
         @method('PUT')
 
@@ -43,48 +42,29 @@
                                 <div class="card-body p-4">
                                     <ul class="nav-tab-items-wrapper nav nav-justified invoice-overview-tab-item">
                                         <li class="nav-item">
-                                            <a href="#uzContent" class="nav-link active" data-bs-toggle="tab"
-                                                data-bs-target="#uzContent">O'zbekcha</a>
+                                            <a href="#uzContent" class="nav-link active" data-bs-toggle="tab" data-bs-target="#uzContent">O'zbekcha</a>
                                         </li>
                                         <li class="nav-item">
-                                            <a href="#enContent" class="nav-link" data-bs-toggle="tab"
-                                                data-bs-target="#enContent">English</a>
+                                            <a href="#enContent" class="nav-link" data-bs-toggle="tab" data-bs-target="#enContent">English</a>
                                         </li>
                                         <li class="nav-item">
-                                            <a href="#ruContent" class="nav-link" data-bs-toggle="tab"
-                                                data-bs-target="#ruContent">Русский</a>
+                                            <a href="#ruContent" class="nav-link" data-bs-toggle="tab" data-bs-target="#ruContent">Русский</a>
                                         </li>
                                     </ul>
 
                                     <div class="tab-content pt-3">
                                         @foreach (['uz', 'en', 'ru'] as $lang)
-                                            <div class="tab-pane fade show {{ $lang == 'uz' ? 'active' : '' }}"
-                                                id="{{ $lang }}Content">
+                                            <div class="tab-pane fade show {{ $lang == 'uz' ? 'active' : '' }}" id="{{ $lang }}Content">
                                                 <div class="form-group pb-3">
-                                                    <label for="title_{{ $lang }}">Заголовок
-                                                        ({{ strtoupper($lang) }}):</label>
-                                                    <input type="text" class="form-control"
-                                                        id="title_{{ $lang }}" name="title_{{ $lang }}"
-                                                        value="{{ old('title_' . $lang, $blog->{'title_' . $lang}) }}"
-                                                        required>
+                                                    <label for="title_{{ $lang }}">Заголовок ({{ strtoupper($lang) }}):</label>
+                                                    <input type="text" class="form-control" id="title_{{ $lang }}" name="title_{{ $lang }}" value="{{ old('title_' . $lang, $blog->{'title_' . $lang}) }}" required>
                                                 </div>
                                                 <div class="form-group pb-3">
-                                                    <label for="description_{{ $lang }}">Oписание
-                                                        ({{ strtoupper($lang) }}):</label>
-                                                    <div id="descriptionEditor_{{ $lang }}" style="height:200px;">
-                                                        {!! old('description_' . $lang, $blog->{'description_' . $lang}) !!}</div>
-                                                    <input type="hidden" id="description_{{ $lang }}"
-                                                        name="description_{{ $lang }}">
+                                                    <label for="description_{{ $lang }}">Oписание ({{ strtoupper($lang) }}):</label>
+                                                    <div id="descriptionEditor_{{ $lang }}" style="height:200px;">{!! old('description_' . $lang, $blog->{'description_' . $lang}) !!}</div>
+                                                    <input type="hidden" id="description_{{ $lang }}" name="description_{{ $lang }}">
                                                 </div>
                                                 <div class="form-group pb-3">
-<<<<<<< HEAD
-                                                    <label for="content_{{ $lang }}">Контент
-                                                        ({{ strtoupper($lang) }}):</label>
-                                                    <div id="editor_{{ $lang }}" style="height:200px;">
-                                                        {!! old('content_' . $lang, $blog->{'content_' . $lang}) !!}</div>
-                                                    <input type="hidden" id="text_{{ $lang }}"
-                                                        name="content_{{ $lang }}">
-=======
                                                     <label for="content_{{ $lang }}">Контент ({{ strtoupper($lang) }}):</label>
                                                     <div id="editor_{{ $lang }}" style="height:200px;">{!! old('content_' . $lang, $blog->{'content_' . $lang}) !!}</div>
                                                     <input type="hidden" id="content_{{ $lang }}" name="content_{{ $lang }}">
@@ -93,7 +73,6 @@
                                                     <label for="general_{{ $lang }}">Итого ({{ strtoupper($lang) }}):</label>
                                                     <div id="editorGeneral_{{ $lang }}" style="height:200px;">{!! old('general_' . $lang, $blog->{'general_' . $lang}) !!}</div>
                                                     <input type="hidden" id="general_{{ $lang }}" name="general_{{ $lang }}">
->>>>>>> a75835d82d61fb74d131a5e355c092b7c0b0a26b
                                                 </div>
                                             </div>
                                         @endforeach
@@ -109,46 +88,15 @@
                                 <div class="card-body p-4">
                                     <div class="form-group pb-3">
                                         <label for="date">Дата:</label>
-                                        <input type="date" class="form-control" id="date" name="date"
-                                            value="{{ old('date', $blog->date ? \Carbon\Carbon::parse($blog->date)->format('Y-m-d') : '') }}">
+                                        <input type="date" class="form-control" id="date" name="date" value="{{ old('date', $blog->date ? \Carbon\Carbon::parse($blog->date)->format('Y-m-d') : '') }}">
                                     </div>
                                     <div class="form-group pb-3">
                                         <label for="image">Изображение:</label>
                                         <input type="file" class="form-control" id="image" name="image">
                                         @if ($blog->image)
-                                            <img src="{{ asset('storage/' . $blog->image) }}" alt="Current Image"
-                                                class="img-thumbnail mt-2" width="200">
+                                            <img src="{{ asset('storage/' . $blog->image) }}" alt="Current Image" class="img-thumbnail mt-2" width="200">
                                         @endif
                                     </div>
-<<<<<<< HEAD
-                                    <hr>
-                                    <div class="">
-                                        <div class="form-group pb-3">
-                                            <input type="file" name="images[]" id="images" class="form-control"
-                                                multiple>
-                                        </div>
-                                        <div class="form-group pb-3">
-                                            <label class="mb-3">Текущие изображения:</label>
-                                            <div class="d-flex flex-wrap gap-2">
-                                                @if ($blog->images)
-                                                    @foreach ($blog->images as $key => $image)
-                                                        <div class="image-preview position-relative"
-                                                            style="width: 100px; height: 100px; overflow: hidden; border: 1px solid #ccc; margin-right: 10px;">
-                                                            <img src="{{ asset('storage/' . $image) }}" alt="image"
-                                                                style="width: 100%; height: 100%; object-fit: cover;">
-                                                            <button type="button"
-                                                                class="btn btn-danger btn-sm position-absolute top-0 end-0"
-                                                                onclick="deleteImage('{{ $image }}', this)">X</button>
-                                                            <input type="hidden" name="existing_images[]"
-                                                                value="{{ $image }}">
-                                                        </div>
-                                                    @endforeach
-                                                @endif
-                                            </div>
-                                        </div>
-                                    </div>
-=======
->>>>>>> a75835d82d61fb74d131a5e355c092b7c0b0a26b
                                 </div>
                             </div>
                         </div>
@@ -164,36 +112,19 @@
     <script>
 
         @foreach (['uz', 'en', 'ru'] as $lang)
-<<<<<<< HEAD
-            var editor{{ ucfirst($lang) }} = new Quill('#editor_{{ $lang }}', {
-                theme: 'snow'
-            });
-            var descriptionEditor{{ ucfirst($lang) }} = new Quill('#descriptionEditor_{{ $lang }}', {
-                theme: 'snow'
-            });
-            editor{{ ucfirst($lang) }}.root.innerHTML = `{!! old('content_' . $lang, $blog->{'content_' . $lang}) !!}`;
-            descriptionEditor{{ ucfirst($lang) }}.root.innerHTML = `{!! old('description_' . $lang, $blog->{'description_' . $lang}) !!}`;
-=======
         var editor{{ ucfirst($lang) }} = new Quill('#editor_{{ $lang }}', { theme: 'snow' });
         var descriptionEditor{{ ucfirst($lang) }} = new Quill('#descriptionEditor_{{ $lang }}', { theme: 'snow' });
         var editorGeneral{{ ucfirst($lang) }} = new Quill('#editorGeneral_{{ $lang }}', { theme: 'snow' });
         editor{{ ucfirst($lang) }}.root.innerHTML = `{!! old('content_' . $lang, $blog->{'content_' . $lang}) !!}`;
         descriptionEditor{{ ucfirst($lang) }}.root.innerHTML = `{!! old('description_' . $lang, $blog->{'description_' . $lang}) !!}`;
         editorGeneral{{ ucfirst($lang) }}.root.innerHTML = `{!! old('general_' . $lang, $blog->{'general_' . $lang}) !!}`;
->>>>>>> a75835d82d61fb74d131a5e355c092b7c0b0a26b
         @endforeach
 
         function updateEditorContent() {
             @foreach (['uz', 'en', 'ru'] as $lang)
-<<<<<<< HEAD
-                document.getElementById('text_{{ $lang }}').value = editor{{ ucfirst($lang) }}.root.innerHTML;
-                document.getElementById('description_{{ $lang }}').value = editor{{ ucfirst($lang) }}.root
-                    .innerHTML;
-=======
             document.getElementById('content_{{ $lang }}').value = editor{{ ucfirst($lang) }}.root.innerHTML;
             document.getElementById('description_{{ $lang }}').value = descriptionEditor{{ ucfirst($lang) }}.root.innerHTML;
             document.getElementById('general_{{ $lang }}').value = editorGeneral{{ ucfirst($lang) }}.root.innerHTML;
->>>>>>> a75835d82d61fb74d131a5e355c092b7c0b0a26b
             @endforeach
         }
     </script>
