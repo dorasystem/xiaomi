@@ -157,7 +157,7 @@
             </div>
             <div style="overflow: hidden" class="seenProducts container py-3 px-0 position-relative">
                 <div class="mb-4 fs-2 fw-bold">@lang('home.top_products')</div>
-                <div class="container py-5">
+                <div class="container pb-5">
                     <div class="row g-4">
                         @foreach ($categories as $item)
                             <div class="col-md-6 col-12 col-lg-4">

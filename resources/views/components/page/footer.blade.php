@@ -37,7 +37,7 @@ $category7 = collect($categories)->firstWhere('id', 7);
     <div class="container">
         <div class="row">
             <div class="col-lg-3 col-sm-6 mb-5 h-100">
-                <img class="w-sm-75 w-50 h-50 mb-2 rounded" src="/assets/images/xiaomiStoreWhite.webp" alt="" />
+                <img class="w-sm-75 w-50 h-50 mb-2 rounded" src="/assets/images/miLogo.svg" alt="" />
                 <div class="mt-3">@lang('footer.join_us')</div>
                 <div class="social-icons d-flex align-items-center mt-3">
                     @if (!empty($links->youtube))

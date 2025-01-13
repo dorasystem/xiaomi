@@ -16,7 +16,7 @@
                 @foreach ($careers as $item)
                     <div data-bs-toggle="modal" data-bs-target="#exampleModal" class="col-md-4 col-sm-6 rounded my-3 career">
                         <div class="bg-white rounded pb-1 h-100">
-                            <img height="300" class="w-100 fit-cover"
+                            <img height="300" class="w-100 fit-cover rounded-top"
                                 src="{{ asset('storage/' . $item->image) ?? '/assets/images/vacancy1.webp' }}"
                                 alt="" />
                             <div style="font-size: 11px" class="px-3 small fw-bold text-grey">

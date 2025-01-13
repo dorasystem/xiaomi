@@ -141,7 +141,7 @@
             <div class="container pe-0">
                 <div class="row align-items-center w-100">
                     <div class="col-lg-2 col-4 mb-lg-0 mb-3 d-lg-block d-none">
-                        <a class="logo" href="/"><img class="w-100" src="/assets/images/xiaomiStoreWhite.webp"
+                        <a class="logo" href="/"><img class="w-100" src="/assets/images/miLogo.svg"
                                 alt="Mi Logo" /> </a>
                     </div>
                     <div class="col-lg-7 px-sm-2 px-0">
