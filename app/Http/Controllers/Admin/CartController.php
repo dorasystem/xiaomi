@@ -66,7 +66,7 @@ class CartController extends Controller
         $totalDiscount = 0;
         $discountedTotal = 0;
 
-        foreach ($cart as $cartItem) {
+        foreach ($cart as $key => $cartItem) {
             $product = $products->where('id', $cartItem['id'])->first();
             $variant = $variants->where('id', $cartItem['variant_id'])->first();
 
@@ -88,8 +88,12 @@ class CartController extends Controller
                 $discountedTotal += $itemPrice * $cartItem['quantity'];
 
                 $cartProducts[] = $cartItem;
+            } else {
+                unset($cart[$key]);
             }
         }
+
+        session()->put('cart', $cart);
 
         return view('pages.cart', compact('cartProducts', 'totalPrice', 'totalDiscount', 'discountedTotal', 'categories', 'lang'));
     }
