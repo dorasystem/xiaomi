@@ -45,19 +45,27 @@
                                 <div class="accordion-item">
                                     <h2 class="accordion-header" id="panelsStayOpen-headingOne">
                                         <button class="accordion-button " type="button" data-bs-toggle="collapse"
-                                            data-bs-target="#panelsStayOpen-collapseOne" aria-expanded="true"
-                                            aria-controls="panelsStayOpen-collapseOne">
+                                                data-bs-target="#panelsStayOpen-collapseOne" aria-expanded="true"
+                                                aria-controls="panelsStayOpen-collapseOne">
                                             @lang('home.category')
                                         </button>
                                     </h2>
                                     <div id="panelsStayOpen-collapseOne" class="accordion-collapse collapse show"
-                                        aria-labelledby="panelsStayOpen-headingOne">
+                                         aria-labelledby="panelsStayOpen-headingOne">
                                         <div class="accordion-body">
+                                            <!-- 'All' checkbox -->
+                                            <div class="form-check mb-3">
+                                                <input class="form-check-input" type="checkbox" id="select-all" />
+                                                <label class="form-check-label" for="select-all">
+                                                    <small>@lang('home.all_categories')</small>
+                                                </label>
+                                            </div>
+                                            <!-- Individual checkboxes -->
                                             @foreach ($categories as $category)
                                                 <div class="form-check mb-3">
-                                                    <input class="form-check-input" type="checkbox" name="categories[]"
-                                                        value="{{ $category->id }}" id="category-{{ $category->id }}"
-                                                        {{ in_array($category->id, request('categories', [])) ? 'checked' : '' }} />
+                                                    <input class="form-check-input category-checkbox" type="checkbox" name="categories[]"
+                                                           value="{{ $category->id }}" id="category-{{ $category->id }}"
+                                                           checked />
                                                     <label class="form-check-label" for="category-{{ $category->id }}">
                                                         <small>{{ $category['name_' . $lang] }}</small>
                                                     </label>
@@ -69,42 +77,41 @@
                                 <div class="accordion-item">
                                     <h2 class="accordion-header" id="panelsStayOpen-headingTwo">
                                         <button class="accordion-button" type="button" data-bs-toggle="collapse"
-                                            data-bs-target="#panelsStayOpen-collapseTwo" aria-expanded="true"
-                                            aria-controls="panelsStayOpen-collapseTwo">
+                                                data-bs-target="#panelsStayOpen-collapseTwo" aria-expanded="true"
+                                                aria-controls="panelsStayOpen-collapseTwo">
                                             @lang('home.price')
                                         </button>
                                     </h2>
                                     <div id="panelsStayOpen-collapseTwo" class="accordion-collapse collapse show pt-3"
-                                        aria-labelledby="panelsStayOpen-headingTwo">
+                                         aria-labelledby="panelsStayOpen-headingTwo">
                                         <div class="accordion-body">
                                             <div class="range-slider">
                                                 <div class="inputs">
                                                     <input type="number" id="minValue" name="min_price"
-                                                        value="{{ request('min_price', 20) }}" min="0"
-                                                        max="600" />
+                                                           value="{{ request('min_price', 20) }}" min="0"
+                                                           max="600" />
                                                     <span>до</span>
                                                     <input type="number" id="maxValue" name="max_price"
-                                                        value="{{ request('max_price', 600) }}" min="0"
-                                                        max="600" />
+                                                           value="{{ request('max_price', 600) }}" min="0"
+                                                           max="600" />
                                                 </div>
                                                 <div class="slider-container">
                                                     <div class="slider-track"></div>
                                                     <input type="range" id="rangeMin" min="0" max="600"
-                                                        value="20" />
+                                                           value="20" />
                                                     <input type="range" id="rangeMax" min="0" max="600"
-                                                        value="600" />
+                                                           value="600" />
                                                 </div>
                                             </div>
                                         </div>
                                     </div>
                                 </div>
-
                             </div>
                             <button type="submit"
-                                class="w-100 btn-orange rounded text-center mb-3">@lang('home.search')</button>
+                                    class="w-100 btn-orange rounded text-center mb-3">@lang('home.search')</button>
                             <button class="w-100 text-orange bg-transparent rounded text-center border-orange rounded py-1">
                                 <a href="{{ route('products') }}"
-                                    class="w-100 text-orange bg-transparent  text-center  py-1">
+                                   class="w-100 text-orange bg-transparent  text-center  py-1">
                                     @lang('home.reset')
                                 </a>
                             </button>
@@ -484,5 +491,36 @@
                 }
             });
         }
+        document.addEventListener("DOMContentLoaded", function () {
+            const selectAllCheckbox = document.getElementById("select-all");
+            const categoryCheckboxes = document.querySelectorAll(".category-checkbox");
+
+            // Select all checkboxes when "All" is checked
+            selectAllCheckbox.addEventListener("change", function () {
+                categoryCheckboxes.forEach((checkbox) => {
+                    checkbox.checked = selectAllCheckbox.checked;
+                });
+            });
+
+            // If any individual checkbox is unchecked, uncheck "All"
+            categoryCheckboxes.forEach((checkbox) => {
+                checkbox.addEventListener("change", function () {
+                    if (!checkbox.checked) {
+                        selectAllCheckbox.checked = false;
+                    } else if (
+                        Array.from(categoryCheckboxes).every((cb) => cb.checked)
+                    ) {
+                        selectAllCheckbox.checked = true;
+                    }
+                });
+            });
+
+            // Check all checkboxes on page load
+            selectAllCheckbox.checked = true;
+            categoryCheckboxes.forEach((checkbox) => {
+                checkbox.checked = true;
+            });
+        });
+
     </script>
 @endsection
