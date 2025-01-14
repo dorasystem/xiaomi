@@ -101,6 +101,7 @@ class OrderController extends Controller
                 'total' => $cartItem['total_price'] ?? $cartItem['quantity'] * $cartItem['price'] ?? $cartItem['quantity'] * $cartItem['discount_price'],
             ]);
         }
+        session()->forget('cart');
         return redirect()->back()->with('success', 'Операция выполнена успешно!');
     }
     public function edit(Order $order)
