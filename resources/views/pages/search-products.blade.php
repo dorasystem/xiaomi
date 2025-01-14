@@ -370,7 +370,7 @@ $categories = \App\Models\Category::all();
                     <form class="row align-items-center" action="{{ route('orders.store.form') }}" method="POST">
                         @csrf
                         <div class="col-lg-3 col-md-6 mb-lg-0 mb-3">
-                            <input class="form-control focus_none py-3" placeholder="@lang('home.message_input1')?" type="text"
+                            <input class="form-control focus_none py-3" placeholder="@lang('home.message_input1')" type="text"
                                 name="message" />
                         </div>
                         <div class="col-lg-3 col-md-6 mb-lg-0 mb-3">

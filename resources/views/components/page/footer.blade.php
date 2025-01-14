@@ -87,7 +87,7 @@ $category7 = collect($categories)->firstWhere('id', 7);
                     <i class="fa-solid fa-chevron-down toggle-icon text-grey"></i>
                 </h6>
                 <div class="collapse d-sm-block" id="companyDropdown">
-                    <ul class="list-unstyled">
+                    <ul class="list-unstyled text-capitalize">
                         <li><a href="{{ route('products') }}">@lang('footer.new_products')</a></li>
                         <li><a
                                 href="{{ route('category.sort', ['slug' => $category2->getSlugByLanguage($lang)]) }}">{{ $category2['name_' . $lang] }}</a>

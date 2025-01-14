@@ -52,7 +52,7 @@
                                     </h2>
                                     <div id="panelsStayOpen-collapseOne" class="accordion-collapse collapse show"
                                         aria-labelledby="panelsStayOpen-headingOne">
-                                        <div class="accordion-body">
+                                        <div class="accordion-body text-capitalize">
                                             @foreach ($categories as $category)
                                                 <div class="form-check mb-3">
                                                     <input class="form-check-input" type="checkbox" name="categories[]"
@@ -146,7 +146,7 @@
                                                             <div id="panelsStayOpen-collapseOne"
                                                                 class="accordion-collapse collapse show"
                                                                 aria-labelledby="panelsStayOpen-headingOne">
-                                                                <div class="accordion-body">
+                                                                <div class="accordion-body text-capitalize">
                                                                     @foreach ($categories as $category)
                                                                         <div class="form-check mb-3">
                                                                             <input class="form-check-input"
@@ -338,7 +338,7 @@
                     <form class="row align-items-center" action="{{ route('orders.store.form') }}" method="POST">
                         @csrf
                         <div class="col-lg-3 col-md-6 mb-lg-0 mb-3">
-                            <input class="form-control focus_none py-3" placeholder="@lang('home.message_input1')?" type="text"
+                            <input class="form-control focus_none py-3" placeholder="@lang('home.message_input1')" type="text"
                                 name="message" />
                         </div>
                         <div class="col-lg-3 col-md-6 mb-lg-0 mb-3">
