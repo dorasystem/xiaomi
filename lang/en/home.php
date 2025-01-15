@@ -130,6 +130,9 @@ return [
     "name" => "Name",
     "lastname" => "Last name",
     "comment" => "Comment",
-
     'all_categories' => 'All Categories',
+    "footer_title" => "Website creator",
+    "footer_desc" => "© All rights reserved 2024 - DORA ®"
+
+
 ];

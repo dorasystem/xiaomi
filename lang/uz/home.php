@@ -128,6 +128,9 @@ return [
     "lastname" => "Familiya",
     "comment" => "Izoh",
     "success" => "Muvaffaqiyatli",
-
     'all_categories' => 'Barcha Kategoriyalar',
+    "footer_title" => "Sayt yaratuvchisi",
+    "footer_desc" => "© Barcha huquqlar himoyalangan 2024 - DORA ®"
+
+
 ];

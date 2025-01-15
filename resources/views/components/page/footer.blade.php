@@ -92,12 +92,24 @@ $category7 = collect($categories)->firstWhere('id', 7);
                         <li><a
                                 href="{{ route('category.sort', ['slug' => $category2->getSlugByLanguage($lang)]) }}">{{ $category2['name_' . $lang] }}</a>
                         </li>
-                        <li><a href="{{ route('category.sort', ['slug' => $category4->getSlugByLanguage($lang)]) }}">{{ $category4['name_' . $lang] }}</a></li>
-                        <li><a href="{{ route('category.sort', ['slug' => $category1->getSlugByLanguage($lang)]) }}">{{ $category1['name_' . $lang] }}</a></li>
-                        <li><a href="{{ route('category.sort', ['slug' => $category3->getSlugByLanguage($lang)]) }}">{{ $category3['name_' . $lang] }}</a></li>
-                        <li><a href="{{ route('category.sort', ['slug' => $category5->getSlugByLanguage($lang)]) }}">{{ $category5['name_' . $lang] }}</a></li>
-                        <li><a href="{{ route('category.sort', ['slug' => $category6->getSlugByLanguage($lang)]) }}">{{ $category6['name_' . $lang] }}</a></li>
-                        <li><a href="{{ route('category.sort', ['slug' => $category7->getSlugByLanguage($lang)]) }}">{{ $category7['name_' . $lang] }}</a></li>
+                        <li><a
+                                href="{{ route('category.sort', ['slug' => $category4->getSlugByLanguage($lang)]) }}">{{ $category4['name_' . $lang] }}</a>
+                        </li>
+                        <li><a
+                                href="{{ route('category.sort', ['slug' => $category1->getSlugByLanguage($lang)]) }}">{{ $category1['name_' . $lang] }}</a>
+                        </li>
+                        <li><a
+                                href="{{ route('category.sort', ['slug' => $category3->getSlugByLanguage($lang)]) }}">{{ $category3['name_' . $lang] }}</a>
+                        </li>
+                        <li><a
+                                href="{{ route('category.sort', ['slug' => $category5->getSlugByLanguage($lang)]) }}">{{ $category5['name_' . $lang] }}</a>
+                        </li>
+                        <li><a
+                                href="{{ route('category.sort', ['slug' => $category6->getSlugByLanguage($lang)]) }}">{{ $category6['name_' . $lang] }}</a>
+                        </li>
+                        <li><a
+                                href="{{ route('category.sort', ['slug' => $category7->getSlugByLanguage($lang)]) }}">{{ $category7['name_' . $lang] }}</a>
+                        </li>
                     </ul>
                 </div>
             </div>
@@ -120,7 +132,34 @@ $category7 = collect($categories)->firstWhere('id', 7);
                     </ul>
                 </div>
             </div>
+            <style>
+                .comp-logo-wrap {
+                    cursor: pointer;
+                    transition-duration: 500ms;
+                }
 
+                .comp-logo {
+                    width: 0;
+                    transition-property: all;
+                    transition-timing-function: cubic-bezier(0.4, 0, 0.2, 1);
+                    transition-duration: 500ms;
+                }
+
+                .comp-logo-wrap:hover .comp-logo {
+                    width: 100px !important;
+                }
+
+
+                input[type=number]::-webkit-outer-spin-button,
+                input[type=number]::-webkit-inner-spin-button {
+                    -webkit-appearance: none;
+                    margin: 0;
+                }
+
+                input[type=number] {
+                    -moz-appearance: textfield;
+                }
+            </style>
             <div class="col-lg-3 col-sm-6 mb-3">
                 <h6 class="mb-4 fw-bold">@lang('footer.contact_us')</h6>
                 <a href="tel:{{ $links->phone }}" class=""><i class="fa-solid fa-phone"></i> {{ $links->phone }}
@@ -129,18 +168,29 @@ $category7 = collect($categories)->firstWhere('id', 7);
                 <div class="">
                     <i class="fa-solid fa-location-dot"></i> {{ $links->address }}
                 </div>
+
             </div>
+
         </div>
     </div>
-    <div class="footer2 d-none">
+    <div class="footer2 ">
         <div class="container">
             <div class="row">
-                <div class="col-md-9 mt-4">
+                <div class="col-md-8 mt-4">
                     <small>
-                        © 2017–2024 Общество с ограниченной ответственностью "МИ БАЙ" 220007 г. Минск, ул. Аэродромная,
-                        д.125, пом.21 Свидетельство о регистрации №291478180, выдано
-                        26.06.2017г. Администрацией Ленинского р-на г. Бреста. УНП №392751 от 19.09.2017г.
+                       @lang('home.footer_desc')
                     </small>
+                </div>
+                <div class="col-md-4">
+                    <div class="mt-3 d-flex justify-content-end align-items-center comp-logo-wrap">
+                        <div class="footer__bottom__title__h5 mb-0">@lang('home.footer_title')</div>
+                        <div class="comp-logo-wrap">
+                            <img src="/assets/images/dora_small.svg" alt="DORA®" class="smaill-logo ms-3"
+                                width="25px" />
+                            <img src="/assets/images/dora-logo.svg" alt="DORA®" class="comp-logo ms-3" />
+                        </div>
+                    </div>
+
                 </div>
             </div>
         </div>
