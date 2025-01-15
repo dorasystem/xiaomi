@@ -71,7 +71,7 @@ $isInCompare = in_array($product->id, session('compares', []));
                         </button>
                         <button onclick="toggleFavourite({{ $product->id }})"
                             class="w-100 my-md-0 my-2 bg-transparent fs-14 px-3 justify-content-center py-1 d-flex align-items-center gap-3 border rounded-2">
-                            <i
+                            <i id="favourite-icon-{{ $product->id }}"
                                 class="fa-{{ in_array($product->id, session('favorites', [])) ? 'solid' : 'regular' }} {{ in_array($product->id, session('favorites', [])) ? 'text-orange' : '' }} fa-heart"></i>
                             <span class="fs-14">@lang('home.save')</span>
                         </button>
@@ -538,37 +538,6 @@ $isInCompare = in_array($product->id, session('compares', []));
 
     <div id="overlay"></div>
     <script>
-        function addToCart(productId, productName, productPrice, variantId) {
-            $.ajax({
-                url: `/add-to-cart`,
-                type: 'POST',
-                data: {
-                    _token: '{{ csrf_token() }}',
-                    product_id: productId,
-                    variant_id: variantId,
-                    price: productPrice,
-                    storage: 1,
-                },
-                success: function(response) {
-                    if (response.success) {
-                        updateCartCount(response.cart_count);
-
-                        // Bootstrap toast xabarni ko'rsatish
-                        const toastBody = document.querySelector('#liveToast .toast-body');
-                        toastBody.textContent = response.message;
-
-                        const toastElement = document.getElementById('liveToast');
-                        const toast = new bootstrap.Toast(toastElement);
-                        toast.show();
-                    } else {
-                        alert('Xatolik yuz berdi: ' + response.message);
-                    }
-                },
-                error: function(xhr) {
-                    alert('Xatolik yuz berdi: ' + xhr.responseText);
-                }
-            });
-        }
         document.addEventListener('DOMContentLoaded', function() {
             const storageOptions = document.querySelectorAll('.storage-option');
             const priceDisplay = document.getElementById('price-display');
@@ -602,6 +571,42 @@ $isInCompare = in_array($product->id, session('compares', []));
             });
         });
 
+        function addToCart(productId, productName, productPrice, variantId) {
+            $.ajax({
+                url: `/add-to-cart`,
+                type: 'POST',
+                data: {
+                    _token: '{{ csrf_token() }}',
+                    product_id: productId,
+                    variant_id: variantId,
+                    price: productPrice,
+                    storage: 1,
+                },
+                success: function(response) {
+                    if (response.success) {
+                        updateCartCount(response.cart_count);
+
+                        // Bootstrap toast xabarni ko'rsatish
+                        const toastBody = document.querySelector('#liveToast .toast-body');
+                        toastBody.textContent = response.message;
+
+                        const toastElement = document.getElementById('liveToast');
+                        const toast = new bootstrap.Toast(toastElement);
+                        toast.show();
+                    } else {
+                        alert('Xatolik yuz berdi: ' + response.message);
+                    }
+                },
+                error: function(xhr) {
+                    alert('Xatolik yuz berdi: ' + xhr.responseText);
+                }
+            });
+        }
+
+        function updateCartCount(count) {
+            document.getElementById('cart-count').innerText = count; // Updates the cart count badge
+        }
+
         function toggleFavourite(productId) {
             $.ajax({
                 url: '/toggle-favorite',
@@ -626,7 +631,7 @@ $isInCompare = in_array($product->id, session('compares', []));
                         if (response.message.includes('qo\'shildi')) {
                             $('#favourite-icon-' + productId).addClass('text-orange');
                             if (document.getElementById('favourite-icon-' + productId).classList.contains(
-                                    "fa-regular")) {
+                                "fa-regular")) {
                                 document.getElementById('favourite-icon-' + productId).classList.remove(
                                     'fa-regular')
                                 document.getElementById('favourite-icon-' + productId).classList.add('fa-solid')
@@ -635,7 +640,7 @@ $isInCompare = in_array($product->id, session('compares', []));
                             $('#favourite-icon-' + productId).removeClass(
                                 'text-orange'); // O'chirilganini ko'rsatish
                             if (document.getElementById('favourite-icon-' + productId).classList.contains(
-                                    "fa-solid")) {
+                                "fa-solid")) {
                                 document.getElementById('favourite-icon-' + productId).classList.remove(
                                     'fa-solid')
                                 document.getElementById('favourite-icon-' + productId).classList.add(
@@ -685,43 +690,6 @@ $isInCompare = in_array($product->id, session('compares', []));
                 }
             });
         }
-    </script>
-
-    <script>
-        document.addEventListener('DOMContentLoaded', function() {
-            const storageOptions = document.querySelectorAll('.storage-option');
-            const priceDisplay = document.getElementById('price-display');
-            const installmentOptions = {
-                3: document.querySelector('.price-3'),
-                6: document.querySelector('.price-6'),
-                12: document.querySelector('.price-12'),
-                24: document.querySelector('.price-24')
-            };
-
-            storageOptions.forEach(option => {
-                option.addEventListener('click', function() {
-                    // Tanlangan `storage-option` elementining qiymatlarini o'qing
-                    const selectedPrice = this.getAttribute('data-price');
-                    const selectedStorage = this.getAttribute('data-storage');
-
-                    // Tanlangan elementni faol qilish
-                    storageOptions.forEach(opt => opt.classList.remove('active'));
-                    this.classList.add('active');
-
-                    // Narxni yangilang
-                    priceDisplay.innerHTML = `${selectedPrice} <span>сум</span>`;
-
-                    // Bo'lib to'lash qiymatlarini yangilang
-                    Object.keys(installmentOptions).forEach(period => {
-                        const element = installmentOptions[period];
-                        const monthlyPrice = (selectedPrice / period).toFixed(
-                            2); // Har oy uchun hisob
-                        element.innerHTML =
-                            `<span class="text-orange">${period}</span> месяцев от <span class="text-orange">${monthlyPrice} р./мес</span>`;
-                    });
-                });
-            });
-        });
     </script>
     <style>
         .str_replace ul li {
