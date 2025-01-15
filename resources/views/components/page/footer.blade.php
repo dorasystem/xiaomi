@@ -123,13 +123,12 @@ $category7 = collect($categories)->firstWhere('id', 7);
 
             <div class="col-lg-3 col-sm-6 mb-3">
                 <h6 class="mb-4 fw-bold">@lang('footer.contact_us')</h6>
-                <a href="tel:{{ $links->phone }}" class=""><i class="fas fa-phone-alt"></i> {{ $links->phone }}
+                <a href="tel:{{ $links->phone }}" class=""><i class="fa-solid fa-phone"></i> {{ $links->phone }}
                 </a>
                 <p class="mt-3"><i class="fa-regular fa-clock"></i> {{ $translations['work_time'] }}</p>
                 <div class="">
                     <i class="fa-solid fa-location-dot"></i> {{ $links->address }}
                 </div>
-
             </div>
         </div>
     </div>
