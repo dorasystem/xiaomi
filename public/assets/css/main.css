@@ -67,6 +67,7 @@
 .hover-svg:hover rect {
     fill: var(--orange);
 }
+.active-svg path,
 .active-svg rect {
     fill: var(--orange);
 }

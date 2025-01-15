@@ -36,7 +36,7 @@
                                 </div>
 
                                 <div class="col-lg-4 d-flex flex-column align-items-end gap-4">
-                                    <div class="d-flex align-items-center gap-3">
+                                    <div class="d-flex align-items-center gap-3 w-100 justify-content-between">
                                         <div class="d-flex align-items-center gap-3">
                                             <button onclick="updateQuantity({{ $cartItem['id'] }}, -1)"
                                                 id="decrement-{{ $cartItem['id'] }}"
@@ -297,12 +297,12 @@
                     },
                     success: function(response) {
                         if (response.success) {
-                        const toastBody = document.querySelector('#liveToast .toast-body');
-                        toastBody.textContent = response.message;
+                            const toastBody = document.querySelector('#liveToast .toast-body');
+                            toastBody.textContent = response.message;
 
-                        const toastElement = document.getElementById('liveToast');
-                        const toast = new bootstrap.Toast(toastElement);
-                        toast.show();
+                            const toastElement = document.getElementById('liveToast');
+                            const toast = new bootstrap.Toast(toastElement);
+                            toast.show();
 
                             $('#favorite-count').text(response.favorites_count);
 
@@ -338,11 +338,11 @@
     <div class="modal fade" id="largeModal" tabindex="-1" aria-labelledby="largeModalLabel" aria-hidden="true">
         <div class="modal-dialog modal-lg modal-dialog-centered">
             <div class="modal-content px-4">
-                <div class="modal-header border-0">
-                    {{-- <h5 class="modal-title" id="largeModalLabel">Instant Purchase</h5> --}}
+                <div class="modal-header border-0 ">
+                    {{-- <h6 class="" >@lang('home.total_discount_amount'): <span class=""> {{ number_format($discountedTotal, 0, '.', ' ') }} UZS </span></h6> --}}
                     <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                 </div>
-                <div class="modal-body application_modal row">
+                <div class="modal-body application_modal row align-items-end">
                     <form id="formProduct" method="POST" action="{{ route('orders.products.store') }}"
                         class="col-lg-4 order-lg-1 order-2">
                         @csrf
@@ -363,14 +363,36 @@
 
                         <!-- Hidden fields for all product details -->
                         <input type="hidden" name="cart_items" id="cart_items">
-                        <button type="submit" class="btn-orange rounded w-100 mb-3">Send</button>
+                        <button type="submit" class="btn-orange rounded w-100 mb-2">@lang('home.send')</button>
                     </form>
 
 
                     <!-- Product details for modal -->
                     <div class="col-lg-8 order-lg-2 order-1">
-                        <div class="d-flex flex-column  h-100" id="modal-products-list">
-                            <!-- Dynamic list of products will be inserted here -->
+                        <div class="d-flex flex-column justify-content-between h-100">
+                            <div class="d-flex flex-column" id="modal-products-list">
+                                <!-- Dynamic list of products will be inserted here -->
+
+                            </div>
+                            <div class="row align-items-start">
+                                <div class="col-sm-6 mb-2">
+                                    <div class="phone text-nowrap border-orange rounded text-center px-2 py-1 w-100">
+                                        <a href="tel: +998772828080 " class="text-orange"> <i
+                                                class="fa-solid fa-phone-volume text-orange me-2"></i> +998 77 282 80
+                                            80
+                                        </a>
+                                    </div>
+                                </div>
+                                <div class="col-sm-6 mb-2">
+                                    <div class="phone text-nowrap border-orange rounded text-center px-2 py-1 w-100">
+                                        <a href="tel: +998772828080 " class="text-orange"> <i
+                                                class="fa-solid fa-phone-volume text-orange me-2"></i> +998 77 282 80
+                                            80
+                                        </a>
+                                    </div>
+                                </div>
+                            </div>
+
                         </div>
                     </div>
                 </div>
