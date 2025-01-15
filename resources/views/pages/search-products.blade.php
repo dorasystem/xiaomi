@@ -347,7 +347,7 @@ $categories = \App\Models\Category::all();
                                     <div class="container ">
                                         <div class="d-flex align-items-center  flex-wrap mt-4 w-100">
                                             <div class=" col-md-6 d-flex flex-column align-items center justify-content-center gap-3 w-100 text-center">
-                                                <h3 class="">@lang('home.not_found') "{{ $search }}"</h3>
+                                                <h3 class="">@lang('home.not_found') {{ $search }}</h3>
                                                 <a class="" href="/">
                                                     <button type="button" class="btn-orange text-white border-0 rounded p-15-28 ">
                                                         @lang('home.go_to_home')
