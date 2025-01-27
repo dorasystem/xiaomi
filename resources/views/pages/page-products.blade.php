@@ -1,3 +1,4 @@
+@php use Illuminate\Support\Str; @endphp
 @extends('layouts.page')
 
 @section('content')
@@ -293,7 +294,16 @@
                                                         </a>
                                                         <a class="truncate-text"
                                                             href="{{ route('single.product', $product->slug) }}">
-                                                            <p class="text-grey">{{ \Str::words(strip_tags($product['description_' . $lang]), 3) }}</p>
+                                                            @php
+                                                                // Matndan faqat birinchi <p> tegi ichidagi matnni olish
+                                                                preg_match('/<p[^>]*>(.*?)<\/p>/is', $product['description_' . $lang], $matches);
+
+                                                                // Matnni HTML teglaridan tozalash va 4 ta so'zni olish
+                                                                $description = isset($matches[1]) ? Str::words(strip_tags($matches[1]), 4) : '';
+                                                            @endphp
+
+                                                            <p class="text-grey">{{ $description }}</p>
+
                                                         </a>
 
                                                         <div
