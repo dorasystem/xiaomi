@@ -26,9 +26,9 @@ $categories = Category::all();
 $category1 = collect($categories)->firstWhere('id', 1);
 $category2 = collect($categories)->firstWhere('id', 2);
 $category3 = collect($categories)->firstWhere('id', 3);
-$category4 = collect($categories)->firstWhere('id', 4);
+$category4 = collect($categories)->firstWhere('id', 8);
 $category5 = collect($categories)->firstWhere('id', 5);
-$category6 = collect($categories)->firstWhere('id', 6);
+$category6 = collect($categories)->firstWhere('id', 9);
 $category7 = collect($categories)->firstWhere('id', 7);
 
 ?>
