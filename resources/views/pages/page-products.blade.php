@@ -293,7 +293,7 @@
                                                         </a>
                                                         <a class="truncate-text"
                                                             href="{{ route('single.product', $product->slug) }}">
-                                                            <p class="text-grey">{{ \Str::words(strip_tags($product['description_' . $lang]), 4) }}</p>
+                                                            <p class="text-grey">{{ \Str::words(strip_tags($product['description_' . $lang]), 3) }}</p>
                                                         </a>
 
                                                         <div
