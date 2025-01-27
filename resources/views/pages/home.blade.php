@@ -1,6 +1,7 @@
 @extends('layouts.page')
 <?php
 $lang = \Illuminate\Support\Facades\App::getLocale();
+use Illuminate\Support\Str;
 
 use App\Models\Product;
 use App\Models\StaticKeyword;
@@ -187,7 +188,15 @@ foreach ($keywords as $keyword) {
                                                 {{ \Str::words($product['name_' . $lang], 3) }}</div>
                                         </a>
                                         <a class="truncate-text" href="{{ route('single.product', $product->slug) }}">
-                                            <p class="text-grey"> {!! \Str::words($product['description_' . $lang], 10) !!}</p>
+                                            @php
+                                                // Matndan faqat birinchi <p> tegi ichidagi matnni olish
+                                                preg_match('/<p[^>]*>(.*?)<\/p>/is', $product['description_' . $lang], $matches);
+
+                                                // Matnni HTML teglaridan tozalash va 4 ta so'zni olish
+                                                $description = isset($matches[1]) ? Str::words(strip_tags($matches[1]), 4, '...') : '...';
+                                            @endphp
+
+                                            <p class="text-grey">{{ $description }}</p>
                                         </a>
                                         <div class="d-flex align-items-center justify-content-between w-100">
                                             <span
@@ -287,7 +296,15 @@ foreach ($keywords as $keyword) {
                                                 {{ \Str::words($product['name_' . $lang], 3) }}</div>
                                         </a>
                                         <a class="truncate-text" href="{{ route('single.product', $product->slug) }}">
-                                            <p class="text-grey"> {!! \Str::words($product['description_' . $lang], 10) !!}</p>
+                                            @php
+                                                // Matndan faqat birinchi <p> tegi ichidagi matnni olish
+                                                preg_match('/<p[^>]*>(.*?)<\/p>/is', $product['description_' . $lang], $matches);
+
+                                                // Matnni HTML teglaridan tozalash va 4 ta so'zni olish
+                                                $description = isset($matches[1]) ? Str::words(strip_tags($matches[1]), 4, '...') : '...';
+                                            @endphp
+
+                                            <p class="text-grey">{{ $description }}</p>
                                         </a>
                                         <div class="d-flex align-items-center justify-content-between w-100">
                                             <span
@@ -382,7 +399,15 @@ foreach ($keywords as $keyword) {
                                 <div class="productName fw-bold"> {{ \Str::words($product['name_' . $lang], 3) }}</div>
                             </a>
                             <a class="truncate-text" href="{{ route('single.product', $product->slug) }}">
-                                <p class="text-grey"> {!! \Str::words($product['description_' . $lang], 10) !!}</p>
+                                @php
+                                    // Matndan faqat birinchi <p> tegi ichidagi matnni olish
+                                    preg_match('/<p[^>]*>(.*?)<\/p>/is', $product['description_' . $lang], $matches);
+
+                                    // Matnni HTML teglaridan tozalash va 4 ta so'zni olish
+                                    $description = isset($matches[1]) ? Str::words(strip_tags($matches[1]), 4, '...') : '...';
+                                @endphp
+
+                                <p class="text-grey">{{ $description }}</p>
                             </a>
                             <div class="d-flex align-items-center justify-content-between w-100">
                                 <span
