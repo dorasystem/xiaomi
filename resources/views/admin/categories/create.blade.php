@@ -81,10 +81,10 @@
                                         <input type="file" class="form-control" id="image" name="image">
                                     </div>
 
-                                    <div class="form-group pb-3">
-                                        <label for="slug">Slug:</label>
-                                        <input type="text" class="form-control" id="slug" name="slug" value="{{ old('slug') }}" required>
-                                    </div>
+{{--                                    <div class="form-group pb-3">--}}
+{{--                                        <label for="slug">Slug:</label>--}}
+{{--                                        <input type="text" class="form-control" id="slug" name="slug" value="{{ old('slug') }}" required>--}}
+{{--                                    </div>--}}
                                 </div>
                             </div>
                         </div>

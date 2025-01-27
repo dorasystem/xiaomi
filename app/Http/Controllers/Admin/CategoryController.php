@@ -32,7 +32,6 @@ class CategoryController extends Controller
             'name_uz' => 'required|string|max:255',
             'name_ru' => 'required|string|max:255',
             'name_en' => 'required|string|max:255',
-            'slug' => 'required|unique:categories',
             'image' => 'nullable|image|mimes:jpeg,png,jpg,gif,svg,webp|max:2048',
         ]);
 
@@ -45,7 +44,6 @@ class CategoryController extends Controller
             'name_uz' => $request->name_uz,
             'name_ru' => $request->name_ru,
             'name_en' => $request->name_en,
-            'slug' => $request->slug,
             'description_uz' => $request->description_uz,
             'description_ru' => $request->description_ru,
             'description_en' => $request->description_en,
@@ -69,7 +67,6 @@ class CategoryController extends Controller
             'name_uz' => 'nullable|string|max:255',
             'name_ru' => 'nullable|string|max:255',
             'name_en' => 'nullable|string|max:255',
-            'slug' => 'nullable|unique:categories,slug,' . $category->id,
             'image' => 'nullable|image|mimes:jpeg,png,jpg,gif,svg,webp|max:2048',
         ]);
 
@@ -80,7 +77,14 @@ class CategoryController extends Controller
             $category->image = $request->file('image')->store('images/categories', 'public');
         }
 
-        $category->update($request->only(['name_uz', 'name_ru', 'name_en', 'slug', 'description_uz', 'description_ru', 'description_en']));
+        $category->update($request->only([
+            'name_uz',
+            'name_ru',
+            'name_en',
+            'description_uz',
+            'description_ru',
+            'description_en'
+        ]));
 
         return redirect()->route('categories.index')->with('success', 'Kategoriya muvaffaqiyatli yangilandi.');
     }

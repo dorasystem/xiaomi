@@ -85,10 +85,10 @@
                                             <img src="{{ asset('storage/' . $category->image) }}" alt="{{ $category->name }}" class="img-thumbnail mt-2" style="max-width: 100%;">
                                         @endif
                                     </div>
-                                    <div class="form-group pb-3">
-                                        <label for="slug">Slug:</label>
-                                        <input type="text" class="form-control" id="slug" name="slug" value="{{ old('slug', $category->slug) }}" required>
-                                    </div>
+{{--                                    <div class="form-group pb-3">--}}
+{{--                                        <label for="slug">Slug:</label>--}}
+{{--                                        <input type="text" class="form-control" id="slug" name="slug" value="{{ old('slug', $category->slug) }}" required>--}}
+{{--                                    </div>--}}
                                 </div>
                             </div>
                         </div>
