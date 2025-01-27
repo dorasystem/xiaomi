@@ -453,7 +453,7 @@ foreach ($keywords as $keyword) {
                             <br />@lang('home.authorized_store')
                         </div>
                     </div>
-                    <div class="d-flex flex-column align-items-center">
+                    <div class="d-flex flex-column gap-2 align-items-center">
                         <img src="/assets/icons/truck-icon.svg" alt="" />
                         <div class="text-center text-nowrap">
                             <span class="fw-bold">@lang('home.delivery')</span> <br />
