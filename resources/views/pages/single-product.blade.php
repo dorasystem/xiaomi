@@ -170,7 +170,7 @@ $isInCompare = in_array($product->id, session('compares', []));
                                         <div style="cursor: pointer"
                                             class="fs-12 px-3 py-1 rounded storage-option bg-darkgrey"
                                             data-storage="{{ $variant->storage }}" data-price="{{ $variant->price }}"
-                                            data-price-3="{{ $variant->price_3 }}" data-price-6="{{ $variant->price_6 }}"
+                                            data-price-6="{{ $variant->price_6 }}"
                                             data-price-12="{{ $variant->price_12 }}"
                                             data-price-24="{{ $variant->price_24 }}">
                                             {{ $variant->storage }}
@@ -190,11 +190,6 @@ $isInCompare = in_array($product->id, session('compares', []));
                                     @lang('home.full_payment')
                                 </div>
                                 <div class="">
-                                    <div class="d-flex gap-2 justify-content-center mb-3 fs-14 p-1 rounded bg-darkgrey price-3 installment-option"
-                                        onclick="selectInstallmentOption(this)">
-                                        <span class="text-orange">3</span> @lang('home.month') <span
-                                            class="text-orange">{{ $variants->first()->price_3 ?? '0' }} UZS</span>
-                                    </div>
                                     <div class="d-flex gap-2 justify-content-center mb-3 fs-14 p-1 rounded bg-darkgrey price-6 installment-option"
                                         onclick="selectInstallmentOption(this)">
                                         <span class="text-orange">6</span> @lang('home.month') <span

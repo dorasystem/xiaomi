@@ -86,6 +86,7 @@
                                                     <option value="4/64GB" {{ $price->storage == '4/64GB' ? 'selected' : '' }}>4/64 GB</option>
                                                     <option value="6/128GB" {{ $price->storage == '6/128GB' ? 'selected' : '' }}>6/128 GB</option>
                                                     <option value="8/256GB" {{ $price->storage == '8/256GB' ? 'selected' : '' }}>8/256 GB</option>
+                                                    <option value="8/256GB" {{ $price->storage == '12/256GB' ? 'selected' : '' }}>12/256 GB</option>
                                                     <option value="12/512GB" {{ $price->storage == '12/512GB' ? 'selected' : '' }}>12/512 GB</option>
                                                 </select>
                                             </div>
@@ -103,13 +104,7 @@
                                                     <span class="input-group-text">UZS</span>
                                                 </div>
                                             </div>
-                                            <div class="form-group pb-3 col-md-3">
-                                                <label for="price_3">Цена за 3 месяца:</label>
-                                                <div class="input-group">
-                                                    <input type="text" class="form-control" name="price_3[]" value="{{ $price->price_3 }}">
-                                                    <span class="input-group-text">UZS</span>
-                                                </div>
-                                            </div>
+
                                             <div class="form-group pb-3 col-md-3">
                                                 <label for="price_6">Цена за 6 месяцев:</label>
                                                 <div class="input-group">
