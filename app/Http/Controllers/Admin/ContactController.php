@@ -28,7 +28,7 @@ class ContactController extends Controller
     {
         $validatedData = $request->validate([
             'email' => 'required|email|unique:contacts,email,' . $contact->id,
-            'phone' => 'nullable|string|max:15',
+            'phone' => 'nullable|string|max:25',
             'address' => 'nullable|string|max:255',
             'facebook' => 'nullable|url|max:255',
             'instagram' => 'nullable|url|max:255',
