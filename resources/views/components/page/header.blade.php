@@ -124,7 +124,13 @@
                                                     0 -320 0 0 640 0 640 320 0 320 0 0 -640z" />
                                 </g>
                             </svg>
-                            <span class="badge badge-pill badge-danger badge-position rounded-circle">1</span>
+                            @if(session('compares') && count(session('compares')) > 0)
+                                <span class="badge badge-pill badge-danger badge-position rounded-circle compare" id="compare-count">
+                                        {{ count(session('compares')) }}
+                                    </span>
+                            @else
+                                <span class="badge badge-pill badge-danger badge-position rounded-circle compare" id="compare-count"></span>
+                            @endif
                         </a>
                     </div>
                     <button class="toggleButton border-0 px-2 bg-transparent">

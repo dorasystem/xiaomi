@@ -54,16 +54,26 @@
                                 fill="#000" />
                         </svg>
 
-                        <span
-                            class="badge badge-pill badge-danger badge-position rounded-circle"id="cart-count">{{ session('cart') ? count(session('cart')) : 0 }}</span>
+                        @if(session('cart') && count(session('cart')) > 0)
+                            <span class="badge badge-pill badge-danger badge-position rounded-circle cart-label" id="cart-count">
+                                        {{ count(session('cart')) }}
+                                    </span>
+                        @else
+                            <span class="badge badge-pill badge-danger badge-position cart-label rounded-pill" id="cart-count"></span>
+                        @endif
                     </a>
                     <small class="">@lang('home.basket')</small>
                 </li>
                 <li class="d-flex flex-column align-items-center nav-link text-center nav-item text-dark">
                     <a href="/favorites" class="icon position-relative p-0">
                         <i class="fa-regular fa-heart text-black"></i>
-                        <span class="badge badge-pill badge-danger badge-position rounded-circle"id="favorite-count">
-                            {{ session('favorites') ? count(session('favorites')) : 0 }}</span>
+                        @if(session('favorites') && count(session('favorites')) > 0)
+                            <span class="badge badge-pill badge-danger badge-position rounded-circle" id="favorite-count">
+                                        {{ count(session('favorites')) }}
+                                    </span>
+                        @else
+                            <span class="badge badge-pill badge-danger badge-position rounded-circle" id="favorite-count"></span>
+                        @endif
                     </a>
                     <small class="">@lang('home.featured')</small>
                 </li>
