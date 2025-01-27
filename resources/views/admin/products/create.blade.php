@@ -160,6 +160,14 @@
                                                 value="white" {{ old('color_ru') == 'white' ? 'selected' : '' }}>
                                                 Белый
                                             </option> <!-- Russian for Green -->
+                                            <option
+                                                value="green" {{ old('color_ru') == 'green' ? 'selected' : '' }}>
+                                                Зелёный
+                                            </option> <!-- Russian for Green -->
+                                            <option
+                                                value="grey" {{ old('color_ru') == 'grey' ? 'selected' : '' }}>
+                                                Серый
+                                            </option> <!-- Russian for Green -->
                                             <option value="blue" {{ old('color_ru') == 'blue' ? 'selected' : '' }}>
                                                 Синий
                                             </option> <!-- Russian for Blue -->

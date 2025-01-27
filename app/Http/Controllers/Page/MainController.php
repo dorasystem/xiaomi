@@ -57,14 +57,14 @@ class MainController extends Controller
         $new = News::latest()->first();
         $news1 = News::orderBy('date', 'desc')->skip(1)->take(4)->get();
         $news2 = News::orderBy('date', 'desc')->skip(4)->take(4)->get();
-        $categories = Category::all();
-        $category1 = collect($categories)->firstWhere('id', 1);
-        $category2 = collect($categories)->firstWhere('id', 2);
-        $category3 = collect($categories)->firstWhere('id', 3);
-        $category4 = collect($categories)->firstWhere('id', 8);
-        $category5 = collect($categories)->firstWhere('id', 5);
-        $category6 = collect($categories)->firstWhere('id', 9);
-        $category7 = collect($categories)->firstWhere('id', 7);
+        $categories = Category::latest()->get();
+        $category1 = $categories->first();
+        $category2 = $categories->skip(1)->first();
+        $category3 = $categories->skip(2)->first();
+        $category4 = $categories->skip(3)->first();
+        $category5 = $categories->skip(4)->first();
+        $category6 = $categories->skip(5)->first();
+        $category7 = $categories->skip(6)->first();
         return view('pages.home', compact('new', 'news1', 'news2', 'products', 'locations', 'banner', 'categories', 'category1', 'category2', 'category3', 'category4', 'category5', 'category6', 'category7', 'translations', 'newProducts', 'randomProducts', 'products', 'productsWithoutRandom'));
     }
     public function about()

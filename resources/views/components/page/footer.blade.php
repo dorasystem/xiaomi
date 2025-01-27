@@ -22,15 +22,14 @@ foreach ($keywords as $keyword) {
 
 // Category
 use App\Models\Category;
-$categories = Category::all();
-$category1 = collect($categories)->firstWhere('id', 1);
-$category2 = collect($categories)->firstWhere('id', 2);
-$category3 = collect($categories)->firstWhere('id', 3);
-$category4 = collect($categories)->firstWhere('id', 8);
-$category5 = collect($categories)->firstWhere('id', 5);
-$category6 = collect($categories)->firstWhere('id', 9);
-$category7 = collect($categories)->firstWhere('id', 7);
-
+$categories = Category::latest()->get();
+$category1 = $categories->first();
+$category2 = $categories->skip(1)->first();
+$category3 = $categories->skip(2)->first();
+$category4 = $categories->skip(3)->first();
+$category5 = $categories->skip(4)->first();
+$category6 = $categories->skip(5)->first();
+$category7 = $categories->skip(6)->first();
 ?>
 
 <footer class="footer mb-md-0 my-5">
