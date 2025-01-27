@@ -163,7 +163,7 @@
                                         <select class="form-control" id="color_ru" name="color_ru">
                                             <option value="null" {{ old('color_ru', $product->color_ru) == 'null' ? 'selected' : '' }}>Null</option>
                                             <option value="red" {{ old('color_ru', $product->color_ru) == 'red' ? 'selected' : '' }}>Красный</option>
-                                            <option value="green" {{ old('color_ru', $product->color_ru) == 'green' ? 'selected' : '' }}>Зеленый</option>
+                                            <option value="white" {{ old('color_ru', $product->color_ru) == 'white' ? 'selected' : '' }}>Белый</option>
                                             <option value="blue" {{ old('color_ru', $product->color_ru) == 'blue' ? 'selected' : '' }}>Синий</option>
                                             <option value="black" {{ old('color_ru', $product->color_ru) == 'black' ? 'selected' : '' }}>Черный</option>
                                             <option value="brown" {{ old('color_ru', $product->color_ru) == 'brown' ? 'selected' : '' }}>Коричневый</option>

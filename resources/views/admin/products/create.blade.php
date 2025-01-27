@@ -155,11 +155,10 @@
                                             </option>
                                             <option value="red" {{ old('color_ru') == 'red' ? 'selected' : '' }}>
                                                 Красный
-                                            </option> <!-- Russian for Red -￼
-->
+                                            </option> <!-- Russian for Red -->
                                             <option
-                                                value="green" {{ old('color_ru') == 'green' ? 'selected' : '' }}>
-                                                Зеленый
+                                                value="white" {{ old('color_ru') == 'white' ? 'selected' : '' }}>
+                                                Белый
                                             </option> <!-- Russian for Green -->
                                             <option value="blue" {{ old('color_ru') == 'blue' ? 'selected' : '' }}>
                                                 Синий
