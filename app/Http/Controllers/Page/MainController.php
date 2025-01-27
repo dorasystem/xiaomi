@@ -61,9 +61,9 @@ class MainController extends Controller
         $category1 = collect($categories)->firstWhere('id', 1);
         $category2 = collect($categories)->firstWhere('id', 2);
         $category3 = collect($categories)->firstWhere('id', 3);
-        $category4 = collect($categories)->firstWhere('id', 4);
+        $category4 = collect($categories)->firstWhere('id', 8);
         $category5 = collect($categories)->firstWhere('id', 5);
-        $category6 = collect($categories)->firstWhere('id', 6);
+        $category6 = collect($categories)->firstWhere('id', 9);
         $category7 = collect($categories)->firstWhere('id', 7);
         return view('pages.home', compact('new', 'news1', 'news2', 'products', 'locations', 'banner', 'categories', 'category1', 'category2', 'category3', 'category4', 'category5', 'category6', 'category7', 'translations', 'newProducts', 'randomProducts', 'products', 'productsWithoutRandom'));
     }
