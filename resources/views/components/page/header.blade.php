@@ -3,12 +3,12 @@
     use App\Models\StaticKeyword;
     use Illuminate\Support\Facades\App;
     use App\Models\Contact;
+    use App\Models\Category;
+
     $currentLocale = app()->getLocale();
-    $products = Product::take(3)->get();
-    $categories = \App\Models\Category::all();
+    $categories = Category::with('products')->get(); // Kategoriyalar va mahsulotlarni birga olish
     $lang = App::getLocale();
     $links = Contact::first();
-
     $keywords = StaticKeyword::all();
 
     $language = app()->getLocale();
@@ -17,8 +17,6 @@
     foreach ($keywords as $keyword) {
         $translations[$keyword->key] = $keyword->{$language};
     }
-
-
 @endphp
 <nav class="container p-0">
     <div class="container navbar-1 py-2 d-sm-block d-none">
@@ -102,36 +100,109 @@
                 </div>
                 <div class="col-8 d-flex align-items-center justify-content-end pe-0 gap-4">
                     <div class="">
-                        <a href="/compare" class="icon position-relative">
-                            <svg version="1.0" xmlns="http://www.w3.org/2000/svg" width="30" height="30"
-                                viewBox="0 0 512.000000 512.000000" preserveAspectRatio="xMidYMid meet">
-                                <g transform="translate(0.000000,512.000000) scale(0.100000,-0.100000)" fill="#000"
-                                    stroke="none">
-                                    <path d="M2015 4786 c-41 -18 -83 -69 -90 -109 -3 -18 -4 -982 -3 -2144 l3
-                                                    -2112 21 -27 c11 -15 33 -37 48 -48 27 -21 38 -21 566 -21 528 0 539 0 566 21
-                                                    15 11 37 33 48 48 l21 27 0 2139 0 2139 -21 27 c-11 15 -33 37 -48 48 -27 21
-                                                    -40 21 -554 23 -423 2 -533 0 -557 -11z m865 -2226 l0 -1920 -320 0 -320 0 0
-                                                    1920 0 1920 320 0 320 0 0 -1920z" />
-                                    <path d="M3615 3506 c-41 -18 -83 -69 -90 -109 -3 -18 -4 -694 -3 -1504 3
-                                                    -1468 3 -1472 24 -1499 11 -15 33 -37 48 -48 27 -21 38 -21 566 -21 528 0 539
-                                                    0 566 21 15 11 37 33 48 48 21 27 21 28 21 1526 0 1498 0 1499 -21 1526 -11
-                                                    15 -33 37 -48 48 -27 21 -40 21 -554 23 -423 2 -533 0 -557 -11z m865 -1586
-                                                    l0 -1280 -320 0 -320 0 0 1280 0 1280 320 0 320 0 0 -1280z" />
-                                    <path d="M415 2226 c-41 -18 -83 -69 -90 -109 -3 -18 -5 -406 -3 -864 3 -822
-                                                    3 -832 24 -859 11 -15 33 -37 48 -48 27 -21 38 -21 566 -21 528 0 539 0 566
-                                                    21 15 11 37 33 48 48 21 27 21 34 21 886 0 852 0 859 -21 886 -11 15 -33 37
-                                                    -48 48 -27 21 -40 21 -554 23 -423 2 -533 0 -557 -11z m865 -946 l0 -640 -320
-                                                    0 -320 0 0 640 0 640 320 0 320 0 0 -640z" />
-                                </g>
-                            </svg>
-                            @if(session('compares') && count(session('compares')) > 0)
-                                <span class="badge badge-pill badge-danger badge-position rounded-circle compare" id="compare-count">
-                                        {{ count(session('compares')) }}
-                                    </span>
-                            @else
-                                <span class="badge badge-pill badge-danger badge-position rounded-circle compare" id="compare-count"></span>
-                            @endif
-                        </a>
+{{--                        <a href="/compare" class="icon position-relative">--}}
+{{--                            <svg version="1.0" xmlns="http://www.w3.org/2000/svg" width="30" height="30"--}}
+{{--                                viewBox="0 0 512.000000 512.000000" preserveAspectRatio="xMidYMid meet">--}}
+{{--                                <g transform="translate(0.000000,512.000000) scale(0.100000,-0.100000)" fill="#000"--}}
+{{--                                    stroke="none">--}}
+{{--                                    <path d="M2015 4786 c-41 -18 -83 -69 -90 -109 -3 -18 -4 -982 -3 -2144 l3--}}
+{{--                                                    -2112 21 -27 c11 -15 33 -37 48 -48 27 -21 38 -21 566 -21 528 0 539 0 566 21--}}
+{{--                                                    15 11 37 33 48 48 l21 27 0 2139 0 2139 -21 27 c-11 15 -33 37 -48 48 -27 21--}}
+{{--                                                    -40 21 -554 23 -423 2 -533 0 -557 -11z m865 -2226 l0 -1920 -320 0 -320 0 0--}}
+{{--                                                    1920 0 1920 320 0 320 0 0 -1920z" />--}}
+{{--                                    <path d="M3615 3506 c-41 -18 -83 -69 -90 -109 -3 -18 -4 -694 -3 -1504 3--}}
+{{--                                                    -1468 3 -1472 24 -1499 11 -15 33 -37 48 -48 27 -21 38 -21 566 -21 528 0 539--}}
+{{--                                                    0 566 21 15 11 37 33 48 48 21 27 21 28 21 1526 0 1498 0 1499 -21 1526 -11--}}
+{{--                                                    15 -33 37 -48 48 -27 21 -40 21 -554 23 -423 2 -533 0 -557 -11z m865 -1586--}}
+{{--                                                    l0 -1280 -320 0 -320 0 0 1280 0 1280 320 0 320 0 0 -1280z" />--}}
+{{--                                    <path d="M415 2226 c-41 -18 -83 -69 -90 -109 -3 -18 -5 -406 -3 -864 3 -822--}}
+{{--                                                    3 -832 24 -859 11 -15 33 -37 48 -48 27 -21 38 -21 566 -21 528 0 539 0 566--}}
+{{--                                                    21 15 11 37 33 48 48 21 27 21 34 21 886 0 852 0 859 -21 886 -11 15 -33 37--}}
+{{--                                                    -48 48 -27 21 -40 21 -554 23 -423 2 -533 0 -557 -11z m865 -946 l0 -640 -320--}}
+{{--                                                    0 -320 0 0 640 0 640 320 0 320 0 0 -640z" />--}}
+{{--                                </g>--}}
+{{--                            </svg>--}}
+{{--                            @if(session('compares') && count(session('compares')) > 0)--}}
+{{--                                <span class="badge badge-pill badge-danger badge-position rounded-circle compare" id="compare-count">--}}
+{{--                                        {{ count(session('compares')) }}--}}
+{{--                                    </span>--}}
+{{--                            @else--}}
+{{--                                <span class="badge badge-pill badge-danger badge-position rounded-circle compare" id="compare-count"></span>--}}
+{{--                            @endif--}}
+{{--                        </a>--}}
+                        <div class="dropdown">
+                            <a href="javascript:void(0);" class="dropdown-toggle" data-bs-toggle="dropdown">
+                                <img src="{{ asset('admins/assets/vendors/img/flags/4x3/' . $currentLocale . '.svg') }}" alt="" class="img-fluid wd-20" />
+                            </a>
+                            <ul class="dropdown-menu dropdown-menu-end">
+                                <li class="">
+                                    <a href="{{ url('locale/uz') }}" class="dropdown-item d-flex align-items-center gap-2 {{ $currentLocale === 'uz' ? 'active' : '' }}">
+                                        <img src="{{ asset('/admins/assets/vendors/img/flags/1x1/uz.svg') }}" alt="Uzbek" class="img-fluid wd-20" style="width: 30px;height: 30px;border-radius: 50%" />
+                                        <span class="text-black">O'zbek</span>
+                                    </a>
+                                </li>
+                                <li class="">
+                                    <a href="{{ url('locale/ru') }}" class="dropdown-item d-flex align-items-center gap-2 {{ $currentLocale === 'ru' ? 'active' : '' }}">
+                                        <img src="{{ asset('/admins/assets/vendors/img/flags/1x1/ru.svg') }}" alt="Русский" class="img-fluid wd-20" style="width: 30px;height: 30px;border-radius: 50%" />
+                                        <span class="text-black">Русский</span>
+                                    </a>
+                                </li>
+                                <li class="">
+                                    <a href="{{ url('locale/en') }}" class="dropdown-item d-flex align-items-center gap-2 {{ $currentLocale === 'en' ? 'active' : '' }}">
+                                        <img src="{{ asset('/admins/assets/vendors/img/flags/1x1/en.svg') }}" alt="English" class="img-fluid wd-20" style="width: 30px;height: 30px;border-radius: 50%" />
+                                        <span class="text-black">English</span>
+                                    </a>
+                                </li>
+                            </ul>
+                        </div>
+                        <style>
+                            /* Til tanlash dropdown asosiy tugma */
+                            .dropdown-toggle {
+                                border: none;
+                                background: transparent;
+                                padding: 0;
+                                display: flex;
+                                align-items: center;
+                            }
+
+                            /* Dropdown tugmachasi (faqat flag chiqadi) */
+                            .dropdown-toggle img {
+                                width: 30px;  /* Flagning to‘g‘ri ko‘rinishi uchun */
+                                height: 20px;
+                                border-radius: 3px;
+                                object-fit: cover;
+                            }
+
+                            /* Dropdown menyusi */
+                            .dropdown-menu {
+                                min-width: 160px;
+                                border-radius: 8px;
+                                padding: 5px 0;
+                            }
+
+                            /* Har bir til opsiyasi */
+                            .dropdown-item {
+                                display: flex;
+                                align-items: center;
+                                gap: 10px;
+                                padding: 10px 15px;
+                            }
+
+                            /* Flaglar (bayroqlar) dizaynini yaxshilash */
+                            .flag-icon {
+                                width: 25px;  /* Bir xil o‘lcham */
+                                height: 18px;
+                                border-radius: 3px;
+                                object-fit: cover;
+                                box-shadow: 0px 0px 3px rgba(0, 0, 0, 0.2); /* Engil soyali effekt */
+                            }
+
+                            /* Tanlangan tilni ajratish */
+                            .dropdown-item.active {
+                                font-weight: bold;
+                                background-color: #f8f9fa;
+                            }
+                        </style>
                     </div>
                     <button class="toggleButton border-0 px-2 bg-transparent">
                         <div class="d-flex flex-column katalogicon">
@@ -152,14 +223,13 @@
                     </div>
                     <div class="col-lg-7 px-sm-2 px-0">
                         <div class="d-flex align-items-center gap-4">
-                            <button
-                                class="toggleButton btn-white rounded align-items-center border-0 ">
+                            <button class="toggleButton btn-white d-none rounded d-sm-flex gap-3 align-items-center border-0 px-4">
                                 <div class="d-flex flex-column katalogicon">
                                     <div class="line line1"></div>
                                     <div class="line line2"></div>
                                     <div class="line line3"></div>
                                 </div>
-                                <span class="d-lg-block text-nowrap"> @lang('footer.catalog')</span>
+                                <span class="d-lg-block d-none text-nowrap"> @lang('footer.catalog')</span>
                             </button>
                             <div class="w-100">
                                 <form method="GET" action="{{ route('products.search') }}">
@@ -198,52 +268,6 @@
                                         }
                                     });
                                 </script>
-
-{{--                                Katalog start--}}
-                                <div class="position-absolute border-top bg-white start-0 text-dark w-100" id="searchProduct">
-                                    <div class="container">
-                                        <div class="row">
-                                            <div class="col-md-8 p-0 pt-3 border-end">
-                                                <div class="resultProducts">
-                                                    @foreach ($products as $product)
-                                                        @php
-                                                            $cheapestVariant = $product->variants->sortBy('price')->first();
-                                                        @endphp
-                                                        <div class="d-flex gap-2 align-items-center px-3">
-                                                            <img src="{{ asset('storage/' . $product->image) }}"
-                                                                 width="60px"
-                                                                 alt="{{ $product['name_'. $lang] }}"/>
-                                                            <div class="d-flex flex-column">
-                                                                <div> {{ \Str::words($product['name_' . $lang], 6) }}</div>
-                                                                <div
-                                                                    class="fw-bold fs-14">{{ number_format($cheapestVariant->discount_price, 0, '', ' ') }}
-                                                                    сум
-                                                                </div>
-                                                            </div>
-                                                        </div>
-                                                    @endforeach
-                                                </div>
-
-                                                <a href="{{route('products')}}" class=" ">
-                                                    <div
-                                                        class="text-orange w-100 py-3 px-4 allproductresult text-center">
-                                                        Все Продукты  [100 товаров]
-                                                    </div>
-                                                </a>
-                                            </div>
-                                            <div class="col-md-4 d-md-flex flex-column gap-2 d-none p-3">
-                                                <div class="text-grey">Все в категориях</div>
-                                                @foreach ($categories as $category)
-                                                <div class="fw-bold d-flex justify-content-between">
-                                                    <div class="fs-14">{{$category['name_'.$lang]}}</div>
-                                                    <div class="fs-14">{{$category->count()}}</div>
-                                                </div>
-                                                @endforeach
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-{{--                                Katalog end--}}
                             </div>
                         </div>
                     </div>
@@ -327,326 +351,88 @@
         </div>
     </div>
 
-    {{-- <div style="display: none" class="rounded-bottom container px-0 katalog" id="Katalog">
+{{--    Katalog modal start--}}
+    <div style="display: none" class="rounded-bottom container px-0 katalog" id="Katalog">
         <div class="py-2 pt-4">
             <div class="d-flex">
                 <div class="left">
-                    <p class="hover-content hover-catalog d-flex align-items-center gap-2" data-target="content1">
-                        <img src="/assets/icons/phone_icon.svg" width="30px" alt="Смартфоны" /> Смартфоны
-                    </p>
-                    <p class="hover-content d-flex align-items-center gap-2" data-target="content2">
-                        <img src="/assets/icons/accessories_icon.png" width="30px" alt="Аксессуары" /> Аксессуары
-                        для
-                        смартфонов
-                    </p>
-                    <p class="hover-content d-flex align-items-center gap-2" data-target="content3"><img
-                            src="/assets/icons/tv_icon.png" width="30px" alt="" />Телевизоры</p>
-                    <p class="hover-content d-flex align-items-center gap-2" data-target="content4"><img
-                            src="/assets/icons/sumka.svg" width="30px" alt="" />Рюкзаки и чемоданы</p>
-                    <p class="hover-content d-flex align-items-center gap-2" data-target="content5"><img
-                            src="/assets/icons/fitnes_icon.png" width="30px" alt="" /> Фитнес и здоровоье
-                    </p>
-                    <p class="hover-content d-flex align-items-center gap-2" data-target="content6"><img
-                            src="/assets/icons/scooter_icon.png" width="30px" alt="" /> Электротранспорт
-                    </p>
-                    <p class="hover-content d-flex align-items-center gap-2" data-target="content7"><img
-                            src="/assets/icons/pilesos_icon.png" width="30px" alt="" /> Пылесосы</p>
-                    <p class="hover-content d-flex align-items-center gap-2" data-target="content8"><img
-                            src="/assets/icons/headphone.svg" width="30px" alt="" /> Наушники и колонки</p>
-                    <p class="hover-content d-flex align-items-center gap-2" data-target="content9"><img
-                            src="/assets/icons/radio.svg" width="30px" alt="" /> Сетевое оборудование</p>
-                    <p class="hover-content d-flex align-items-center gap-2" data-target="content10"><img
-                            src="/assets/icons/home.png" width="30px" alt="" />Умный дом</p>
-                    <p class="hover-content d-flex align-items-center gap-2" data-target="content11"><img
-                            src="/assets/icons/print.svg" width="30px" alt="" />Фото и видео</p>
-                    <p class="hover-content d-flex align-items-center gap-2" data-target="content12"><img
-                            src="/assets/icons/weather.png" width="30px" alt="" />Климатическая техника</p>
-                    <p class="hover-content d-flex align-items-center gap-2" data-target="content13"><img
-                            src="/assets/icons/planshet.svg" width="30px" alt="" />Планшеты</p>
-                    <p class="hover-content d-flex align-items-center gap-2" data-target="content14"><img
-                            src="/assets/icons/periphery.png" width="30px" alt="" />Периферия</p>
-                    <p class="hover-content d-flex align-items-center gap-2" data-target="content15"><img
-                            src="/assets/icons/gift.png" width="30px" alt="" />Подарочные сертификаты</p>
-                    <p class="hover-content d-flex align-items-center gap-2" data-target="content16"><img
-                            src="/assets/icons/car.png" width="30px" alt="" />Все для авто</p>
+                    @foreach($categories as $index => $category)
+                        <p class="hover-content d-flex align-items-center gap-2 {{ $index === 0 ? 'hover-catalog' : '' }}"
+                           data-target="content0{{ $category->id }}">
+                            <img src="{{ asset('storage/' . $category->image) }}" width="30px" alt="{{ $category['name_' . $lang] }}" />
+                            {{ $category['name_' . $lang] }}
+                        </p>
+                    @endforeach
                 </div>
+
                 <div class="right d-sm-block d-none w-75">
-                    <div class="content-change default container h-100 p-0" id="content1">
-                        <div class="d-flex flex-column justify-content-between h-100">
-                            <div class="row p-4 py-1">
-                                <a href="javascript:void(0)" class="col-md-4 col-sm-6 col-12 mb-2">
-                                    <div class="cart fw-bold">POCO</div>
-                                </a>
-                                <a href="javascript:void(0)" class="col-md-4 col-sm-6 col-12 mb-2">
-                                    <div class="cart fw-bold">Redmi</div>
-                                </a>
-                                <a href="javascript:void(0)" class="col-md-4 col-sm-6 col-12 mb-2">
-                                    <div class="cart fw-bold">Xiaomi</div>
-                                </a>
-                            </div>
-                            <div class="border-top p-4 py-2">
-                                <button class="d-flex align-items-center gap-2 border bg-transparent p-3 py-1 rounded">
-                                    Все Смартфоны <img src="/assets/icons/arrow.svg" alt="" /></button>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="content-change hide container h-100 p-0" id="content2">
-                        <div class="d-flex flex-column justify-content-between h-100">
-                            <div class="row p-4 py-1">
-                                <a href="javascript:void(0)" class="col-md-4 col-sm-6 col-12 mb-2">
-                                    <div class="cart fw-bold d-flex align-items-center">Кабели и переходники</div>
-                                </a>
-                                <a href="javascript:void(0)" class="col-md-4 col-sm-6 col-12 mb-2">
-                                    <div class="cart fw-bold d-flex align-items-center">Зарядные устройства</div>
-                                </a>
-                            </div>
-                            <div class="border-top p-4 py-2">
-                                <button class="d-flex align-items-center gap-2 border bg-transparent p-3 py-1 rounded">
-                                    Все Смартфоны <img src="/assets/icons/arrow.svg" alt="" /></button>
+                    @foreach($categories as $index => $category)
+                        <div class="content-change container h-100 p-0 {{ $index === 0 ? 'default' : 'hide' }}"
+                             id="content0{{ $category->id }}">
+                            <div class="d-flex flex-column justify-content-between h-100">
+                                <div class="row p-4 py-1">
+                                    @forelse($category->products as $product)
+                                        <a href="{{ route('single.product', $product->slug) }}" class="col-md-4 col-sm-6 col-12 mb-2">
+                                            <div class="d-flex align-items-center">
+                                                <img src="{{ asset('storage/' . $product->image) }}" class="me-2"
+                                                     alt="{{ \Str::words($product['name_' . $lang], 3) }}"
+                                                     style="width: 50px; height: 50px;" />
+                                                <div class="cart fw-bold">{{ \Str::words($product['name_' . $lang], 3) }}</div>
+                                            </div>
+                                        </a>
+                                    @empty
+                                        <a href="javascript:void(0)" class="col-md-4 col-sm-6 col-12 mb-2">
+                                            <div class="cart fw-bold">Bu kategoriyada mahsulotlar mavjud emas</div>
+                                        </a>
+                                    @endforelse
+                                </div>
+                                <div class="border-top p-4 py-2">
+                                    <button class="d-flex align-items-center gap-2 border bg-transparent p-3 py-1 rounded">
+                                        Все {{ \Str::words($category['name_' . $lang], 3) }}
+                                    </button>
+                                </div>
                             </div>
                         </div>
-                    </div>
-                    <div class="content-change hide container h-100 p-0" id="content3">
-                        <div class="d-flex flex-column justify-content-between h-100">
-                            <div class="row p-4 py-2">
-                                <a href="javascript:void(0)" class="col-md-4 col-sm-6 col-12 mb-2">
-                                    <div class="cart fw-bold">Графические планшеты</div>
-                                </a>
-                            </div>
-                            <div class="border-top p-4 py-2">
-                                <button class="d-flex align-items-center gap-2 border bg-transparent p-3 py-1 rounded">
-                                    Все Смартфоны <img src="/assets/icons/arrow.svg" alt="" /></button>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="content-change hide container h-100 p-0" id="content4">
-                        <div class="d-flex flex-column justify-content-between h-100">
-                            <div class="row p-4 py-1">
-                                <a href="javascript:void(0)" class="col-md-4 col-sm-6 col-12 mb-2">
-                                    <div class="cart fw-bold">Мониторы</div>
-                                </a>
-                                <a href="javascript:void(0)" class="col-md-4 col-sm-6 col-12 mb-2">
-                                    <div class="cart fw-bold">Телевизоры</div>
-                                </a>
-                                <a href="javascript:void(0)" class="col-md-4 col-sm-6 col-12 mb-2">
-                                    <div class="cart fw-bold">Телевизионные приставки и пульты</div>
-                                </a>
-                            </div>
-                            <div class="border-top p-4 py-2">
-                                <button class="d-flex align-items-center gap-2 border bg-transparent p-3 py-1 rounded">
-                                    Все TV <img src="/assets/icons/arrow.svg" alt="" /></button>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="content-change hide container h-100 p-0" id="content5">
-                        <div class="d-flex flex-column justify-content-between h-100">
-                            <div class="row p-4 py-1">
-                                <a href="javascript:void(0)" class="col-md-4 col-sm-6 col-12 mb-2">
-                                    <div class="cart fw-bold">Для города</div>
-                                </a>
-                                <a href="javascript:void(0)" class="col-md-4 col-sm-6 col-12 mb-2">
-                                    <div class="cart fw-bold">Для школьников и студенто</div>
-                                </a>
-                                <a href="javascript:void(0)" class="col-md-4 col-sm-6 col-12 mb-2">
-                                    <div class="cart fw-bold">Спортивные</div>
-                                </a>
-                                <a href="javascript:void(0)" class="col-md-4 col-sm-6 col-12 mb-2">
-                                    <div class="cart fw-bold">o Чемоданы</div>
-                                </a>
-                            </div>
-                            <div class="border-top p-4 py-2">
-                                <button class="d-flex align-items-center gap-2 border bg-transparent p-3 py-1 rounded">
-                                    Все Смартфоны <img src="/assets/icons/arrow.svg" alt="" /></button>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="content-change hide container h-100 p-0" id="content6">
-                        <div class="d-flex flex-column justify-content-between h-100">
-                            <div class="row p-4 py-1">
-                                <a href="javascript:void(0)" class="col-md-4 col-sm-6 col-12 mb-2">
-                                    <div class="cart fw-bold">Для школьников</div>
-                                </a>
-                                <a href="javascript:void(0)" class="col-md-4 col-sm-6 col-12 mb-2">
-                                    <div class="cart fw-bold">Спортивные</div>
-                                </a>
-                                <a href="javascript:void(0)" class="col-md-4 col-sm-6 col-12 mb-2">
-                                    <div class="cart fw-bold">o Чемоданы</div>
-                                </a>
-                            </div>
-                            <div class="border-top p-4 py-2">
-                                <button class="d-flex align-items-center gap-2 border bg-transparent p-3 py-1 rounded">
-                                    Все Смартфоны <img src="/assets/icons/arrow.svg" alt="" /></button>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="content-change hide container h-100 p-0" id="content7">
-                        <div class="d-flex flex-column justify-content-between h-100">
-                            <div class="row p-4 py-1">
-                                <a href="javascript:void(0)" class="col-md-4 col-sm-6 col-12 mb-2">
-                                    <div class="cart fw-bold">Для школьников</div>
-                                </a>
-                            </div>
-                            <div class="border-top p-4 py-2">
-                                <button class="d-flex align-items-center gap-2 border bg-transparent p-3 py-1 rounded">
-                                    Все Смартфоны <img src="/assets/icons/arrow.svg" alt="" /></button>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="content-change hide container h-100 p-0" id="content8">
-                        <div class="d-flex flex-column justify-content-between h-100">
-                            <div class="row p-4 py-1">
-                                <a href="javascript:void(0)" class="col-md-4 col-sm-6 col-12 mb-2">
-                                    <div class="cart fw-bold">o Чемоданы</div>
-                                </a>
-                            </div>
-                            <div class="border-top p-4 py-2">
-                                <button class="d-flex align-items-center gap-2 border bg-transparent p-3 py-1 rounded">
-                                    Все Смартфоны <img src="/assets/icons/arrow.svg" alt="" /></button>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="content-change hide container h-100 p-0" id="content9">
-                        <div class="d-flex flex-column justify-content-between h-100">
-                            <div class="row p-4 py-1">
-                                <a href="javascript:void(0)" class="col-md-4 col-sm-6 col-12 mb-2">
-                                    <div class="cart fw-bold">Спортивные</div>
-                                </a>
-                            </div>
-                            <div class="border-top p-4 py-2">
-                                <button class="d-flex align-items-center gap-2 border bg-transparent p-3 py-1 rounded">
-                                    Все Смартфоны <img src="/assets/icons/arrow.svg" alt="" /></button>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="content-change hide container h-100 p-0" id="content10">
-                        <div class="d-flex flex-column justify-content-between h-100">
-                            <div class="row p-4 py-1">
-                                <a href="javascript:void(0)" class="col-md-4 col-sm-6 col-12 mb-2">
-                                    <div class="cart fw-bold">Для школьников</div>
-                                </a>
-                                <a href="javascript:void(0)" class="col-md-4 col-sm-6 col-12 mb-2">
-                                    <div class="cart fw-bold">Спортивные</div>
-                                </a>
-                                <a href="javascript:void(0)" class="col-md-4 col-sm-6 col-12 mb-2">
-                                    <div class="cart fw-bold">o Чемоданы</div>
-                                </a>
-                            </div>
-                            <div class="border-top p-4 py-2">
-                                <button class="d-flex align-items-center gap-2 border bg-transparent p-3 py-1 rounded">
-                                    Все Смартфоны <img src="/assets/icons/arrow.svg" alt="" /></button>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="content-change hide container h-100 p-0" id="content11">
-                        <div class="d-flex flex-column justify-content-between h-100">
-                            <div class="row p-4 py-1">
-                                <a href="javascript:void(0)" class="col-md-4 col-sm-6 col-12 mb-2">
-                                    <div class="cart fw-bold">Для авто</div>
-                                </a>
-                                <a href="javascript:void(0)" class="col-md-4 col-sm-6 col-12 mb-2">
-                                    <div class="cart fw-bold">Спортивные</div>
-                                </a>
-                                <a href="javascript:void(0)" class="col-md-4 col-sm-6 col-12 mb-2">
-                                    <div class="cart fw-bold">o Чемоданы</div>
-                                </a>
-                            </div>
-                            <div class="border-top p-4 py-2">
-                                <button class="d-flex align-items-center gap-2 border bg-transparent p-3 py-1 rounded">
-                                    Все Смартфоны <img src="/assets/icons/arrow.svg" alt="" /></button>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="content-change hide container h-100 p-0" id="content12">
-                        <div class="d-flex flex-column justify-content-between h-100">
-                            <div class="row p-4 py-1">
-                                <a href="javascript:void(0)" class="col-md-4 col-sm-6 col-12 mb-2">
-                                    <div class="cart fw-bold">o Чемоданы</div>
-                                </a>
-                            </div>
-                            <div class="border-top p-4 py-2">
-                                <button class="d-flex align-items-center gap-2 border bg-transparent p-3 py-1 rounded">
-                                    Все Смартфоны <img src="/assets/icons/arrow.svg" alt="" /></button>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="content-change hide container h-100 p-0" id="content13">
-                        <div class="d-flex flex-column justify-content-between h-100">
-                            <div class="row p-4 py-1">
-                                <a href="javascript:void(0)" class="col-md-4 col-sm-6 col-12 mb-2">
-                                    <div class="cart fw-bold">Для школьников</div>
-                                </a>
-                                <a href="javascript:void(0)" class="col-md-4 col-sm-6 col-12 mb-2">
-                                    <div class="cart fw-bold">Спортивные</div>
-                                </a>
-                                <a href="javascript:void(0)" class="col-md-4 col-sm-6 col-12 mb-2">
-                                    <div class="cart fw-bold">o Чемоданы</div>
-                                </a>
-                            </div>
-                            <div class="border-top p-4 py-2">
-                                <button class="d-flex align-items-center gap-2 border bg-transparent p-3 py-1 rounded">
-                                    Все Смартфоны <img src="/assets/icons/arrow.svg" alt="" /></button>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="content-change hide container h-100 p-0" id="content14">
-                        <div class="d-flex flex-column justify-content-between h-100">
-                            <div class="row p-4 py-1">
-                                <a href="javascript:void(0)" class="col-md-4 col-sm-6 col-12 mb-2">
-                                    <div class="cart fw-bold">Для школьников</div>
-                                </a>
-                                <a href="javascript:void(0)" class="col-md-4 col-sm-6 col-12 mb-2">
-                                    <div class="cart fw-bold">Спортивные</div>
-                                </a>
-                                <a href="javascript:void(0)" class="col-md-4 col-sm-6 col-12 mb-2">
-                                    <div class="cart fw-bold">o Чемоданы</div>
-                                </a>
-                            </div>
-                            <div class="border-top p-4 py-2">
-                                <button class="d-flex align-items-center gap-2 border bg-transparent p-3 py-1 rounded">
-                                    Все Смартфоны <img src="/assets/icons/arrow.svg" alt="" /></button>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="content-change hide container h-100 p-0" id="content15">
-                        <div class="d-flex flex-column justify-content-between h-100">
-                            <div class="row p-4 py-1">
-                                <a href="javascript:void(0)" class="col-md-4 col-sm-6 col-12 mb-2">
-                                    <div class="cart fw-bold">Для школьников</div>
-                                </a>
-                                <a href="javascript:void(0)" class="col-md-4 col-sm-6 col-12 mb-2">
-                                    <div class="cart fw-bold">Спортивные</div>
-                                </a>
-                                <a href="javascript:void(0)" class="col-md-4 col-sm-6 col-12 mb-2">
-                                    <div class="cart fw-bold">o Чемоданы</div>
-                                </a>
-                            </div>
-                            <div class="border-top p-4 py-2">
-                                <button class="d-flex align-items-center gap-2 border bg-transparent p-3 py-1 rounded">
-                                    Все Смартфоны <img src="/assets/icons/arrow.svg" alt="" /></button>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="content-change hide container h-100 p-0" id="content16">
-                        <div class="d-flex flex-column justify-content-between h-100">
-                            <div class="row p-4 py-1">
-                                <a href="javascript:void(0)" class="col-md-4 col-sm-6 col-12 mb-2">
-                                    <div class="cart fw-bold">Для школьников</div>
-                                </a>
-                                <a href="javascript:void(0)" class="col-md-4 col-sm-6 col-12 mb-2">
-                                    <div class="cart fw-bold">Спортивные</div>
-                                </a>
-                                <a href="javascript:void(0)" class="col-md-4 col-sm-6 col-12 mb-2">
-                                    <div class="cart fw-bold">o Чемоданы</div>
-                                </a>
-                            </div>
-                            <div class="border-top p-4 py-2">
-                                <button class="d-flex align-items-center gap-2 border bg-transparent p-3 py-1 rounded">
-                                    Все Смартфоны <img src="/assets/icons/arrow.svg" alt="" /></button>
-                            </div>
-                        </div>
-                    </div>
+                    @endforeach
                 </div>
             </div>
+            <script>
+                document.addEventListener("DOMContentLoaded", function () {
+                    const hoverItems = document.querySelectorAll(".hover-content");
+                    const contentChange = document.querySelectorAll(".content-change");
+
+                    hoverItems.forEach((item) => {
+                        item.addEventListener("mouseover", function () {
+                            const targetId = item.getAttribute("data-target");
+
+                            hoverItems.forEach((hoverItem) => hoverItem.classList.remove("hover-catalog"));
+                            item.classList.add("hover-catalog");
+
+                            contentChange.forEach((content) => {
+                                if (content.id === targetId) {
+                                    content.classList.remove("hide");
+                                    content.classList.add("default");
+                                } else {
+                                    content.classList.remove("default");
+                                    content.classList.add("hide");
+                                }
+                            });
+                        });
+                    });
+
+                    // Birinchi kategoriya va unga tegishli mahsulotlarni aktiv qilish
+                    if (hoverItems.length > 0) {
+                        hoverItems[0].classList.add("hover-catalog");
+                    }
+
+                    if (contentChange.length > 0) {
+                        contentChange[0].classList.remove("hide");
+                        contentChange[0].classList.add("default");
+                    }
+                });
+
+            </script>
+
             <hr class="d-sm-none d-block" />
             <ul class="gap-3 d-sm-none d-block">
                 <li class="mb-3"><a class="hover-orange" href="{{ route('news') }}">Новости</a></li>
@@ -656,7 +442,8 @@
                 <li class="mb-3"><a class="hover-orange" href="{{ route('blog') }}">Блог</a></li>
             </ul>
         </div>
-    </div> --}}
+    </div>
+{{--    Katalog modal end--}}
     <div style="display: none" class="rounded-bottom container px-0 katalog" id="Katalog">
         <div class="py-2 pt-4">
 

@@ -139,42 +139,30 @@ const overlay = document.getElementById("overlay");
 const nav = document.querySelector(".navbar-custom");
 const navform = document.querySelector(".nav_form");
 const lines = document.querySelectorAll(".line");
-
 const searchInput = document.getElementById("searchInput");
 const searchProduct = document.getElementById("searchProduct");
 
 const windowWidth = window.innerWidth;
-toggleButtons.forEach((toggleButton) => {
-    if (windowWidth <= 576) {
-        toggleButton.addEventListener("click", function (event) {
-            if (katalog.style.display === "block") {
-                katalog.style.display = "none";
-                nav.style.borderRadius = "10px";
-                overlay.style.display = "none";
-                document.body.style.overflow = "auto";
-            } else {
-                navform.classList.remove("active");
-                katalog.style.display = "block";
-                nav.style.borderRadius = "10px 10px 0 0";
-                overlay.style.display = "block";
-                document.body.style.overflow = "hidden";
-                // searchProduct.style.display = "none";
-                searchInput.value = "";
-            }
 
-            lines.forEach((line) => line.classList.toggle("open"));
-            event.stopPropagation();
-        });
-    }
+toggleButtons.forEach((toggleButton) => {
+    toggleButton.addEventListener("click", function (event) {
+        if (katalog.style.display === "block") {
+            closeKatalog();
+        } else {
+            openKatalog();
+        }
+
+        lines.forEach((line) => line.classList.toggle("open"));
+        event.stopPropagation();
+    });
 });
 
 katalog.addEventListener("click", (event) => {
     event.stopPropagation();
 });
 
-searchInput.addEventListener("click", () => {
-    katalog.style.display = "none";
-    lines.forEach((line) => line.classList.remove("open"));
+searchInput?.addEventListener("click", () => {
+    closeKatalog();
     searchProduct.style.display = "block";
     navform.classList.add("active");
     overlay.style.display = "block";
@@ -183,45 +171,45 @@ searchInput.addEventListener("click", () => {
 });
 
 document.addEventListener("click", function (event) {
-    if (searchProduct) {
-        if (
-            !searchProduct.contains(event.target) &&
-            !searchInput.contains(event.target)
-        ) {
-            searchProduct.style.display = "none";
-            searchInput.value = "";
-            navform.classList.remove("active");
-            overlay.style.display = "none";
-            document.body.style.overflow = "auto";
-        }
-    }
-});
-
-// Tashqi joyga bosilganda Katalogni yopish
-document.addEventListener("click", function (event) {
     if (
-        katalog.style.display === "block" &&
-        !katalog.contains(event.target) &&
-        !overlay.contains(event.target)
+        searchProduct &&
+        !searchProduct.contains(event.target) &&
+        !searchInput.contains(event.target)
     ) {
-        katalog.style.display = "none";
+        searchProduct.style.display = "none";
+        searchInput.value = "";
+        navform.classList.remove("active");
         overlay.style.display = "none";
         document.body.style.overflow = "auto";
-        const lines = document.querySelectorAll(".line");
-        lines.forEach((line) => line.classList.remove("open"));
     }
 });
 
-// Overlay bosilganda Katalogni yopish
+// Overlay bosilganda katalogni yopish
 overlay.addEventListener("click", function () {
+    closeKatalog();
+});
+
+// Katalogni ochish
+function openKatalog() {
+    katalog.style.display = "block";
+    overlay.style.display = "block";
+    document.body.style.overflow = "hidden";
+
+    // Tugma ikonkasini o‘zgartirish
+    toggleButtons.classList.add("active");
+}
+
+// Katalogni yopish
+function closeKatalog() {
     katalog.style.display = "none";
     overlay.style.display = "none";
     document.body.style.overflow = "auto";
-    const lines = document.querySelectorAll(".line");
-    lines.forEach((line) => line.classList.remove("open"));
-});
 
-// Hover effectini qo'llash (Katalog)
+    // Tugma ikonkasini asl holatga qaytarish
+    toggleButtons.classList.remove("active");
+}
+
+// Hover holatini boshqarish
 const hoverItems = document.querySelectorAll(".hover-content");
 const contentChange = document.querySelectorAll(".content-change");
 
@@ -245,6 +233,7 @@ hoverItems.forEach((item) => {
         });
     });
 });
+
 
 // // for map
 // const mapConfigs = [
