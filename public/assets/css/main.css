@@ -253,7 +253,7 @@ li {
     padding: 12px 20px;
 }
 .search-bar::placeholder {
-    color: white;
+    color: rgba(255, 255, 255, 0.62);
 }
 .btn-orange {
     background-color: var(--orange);
