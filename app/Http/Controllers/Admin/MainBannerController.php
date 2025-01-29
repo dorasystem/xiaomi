@@ -93,12 +93,15 @@ class MainBannerController extends Controller
             Storage::disk('public')->delete($imagePath);
 
             // `images` ni modelda saqlash
-            $mainBanner->save();
+            $mainBanner->update([
+                'images' => $mainBanner->images, // Update the images field
+            ]);
         }
 
         // Redirect with success message
         return redirect()->back()->with('success', 'Rasm muvaffaqiyatli o‘chirildi!');
     }
+
 
 
 
