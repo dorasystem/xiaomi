@@ -89,6 +89,7 @@
                                                     <option value="8/256GB" {{ $price->storage == '12/256GB' ? 'selected' : '' }}>12/256 GB</option>
                                                     <option value="12/512GB" {{ $price->storage == '12/512GB' ? 'selected' : '' }}>12/512 GB</option>
                                                 </select>
+
                                             </div>
                                             <div class="form-group pb-3 col-md-4">
                                                 <label for="price">Цена:</label>

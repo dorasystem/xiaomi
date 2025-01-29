@@ -254,6 +254,7 @@ class ProductController extends Controller
             Variant::whereIn('id', $validatedData['deleted_variants'])->delete();
         }
 
+
         // Save new or updated variants
         if ($request->has('storage')) {
             foreach ($request->storage as $index => $storage) {

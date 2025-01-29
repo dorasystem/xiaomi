@@ -101,6 +101,7 @@
                                                 </div>
                                             </div>
 
+
                                             <div class="form-group pb-3 col-md-3">
                                                 <label for="price_6">Цена за 6 месяцев:</label>
                                                 <div class="input-group">
