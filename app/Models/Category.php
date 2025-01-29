@@ -11,6 +11,7 @@ class Category extends Model
     use HasFactory;
 
     protected $fillable = [
+        'parent_id',
         'name_uz',
         'name_ru',
         'name_en',
@@ -21,6 +22,10 @@ class Category extends Model
         'image'
     ];
 
+    public function parent()
+    {
+        return $this->belongsTo(Category::class, 'parent_id');
+    }
 
     public function products()
     {
