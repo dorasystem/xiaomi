@@ -180,33 +180,40 @@ $isInCompare = in_array($product->id, session('compares', []));
 
                             </div>
 
+                            @php
+                                function formatPrice($price) {
+                                    return number_format($price, 0, '.', ' '); // Narxni "1 000 000" formatida chiqarish
+                                }
+                            @endphp
+
                             <div class="fs-24 fw-bold mb-2" id="price-display">
-                                {{ $variants->first()->price ?? '0' }} <span>UZS</span>
+                                {{ formatPrice($variants->first()->price ?? 0) }} <span>UZS</span>
                             </div>
                             <div class="">
                                 <div class="text-grey mb-2 fs-14">@lang('home.installments')</div>
                                 <div class="text-center justify-content-center mb-3 fs-14 p-1 rounded bg-darkgrey border-orange installment-option"
-                                    onclick="selectInstallmentOption(this)">
+                                     onclick="selectInstallmentOption(this)">
                                     @lang('home.full_payment')
                                 </div>
                                 <div class="">
                                     <div class="d-flex gap-2 justify-content-center mb-3 fs-14 p-1 rounded bg-darkgrey price-6 installment-option"
-                                        onclick="selectInstallmentOption(this)">
+                                         onclick="selectInstallmentOption(this)">
                                         <span class="text-orange">6</span> @lang('home.month') <span
-                                            class="text-orange">{{ $variants->first()->price_6 ?? '0' }} UZS</span>
+                                            class="text-orange">{{ formatPrice($variants->first()->price_6 ?? 0) }} UZS</span>
                                     </div>
                                     <div class="d-flex gap-2 justify-content-center mb-3 fs-14 p-1 rounded bg-darkgrey price-12 installment-option"
-                                        onclick="selectInstallmentOption(this)">
+                                         onclick="selectInstallmentOption(this)">
                                         <span class="text-orange">12</span> @lang('home.month') <span
-                                            class="text-orange">{{ $variants->first()->price_12 ?? '0' }} UZS</span>
+                                            class="text-orange">{{ formatPrice($variants->first()->price_12 ?? 0) }} UZS</span>
                                     </div>
                                     <div class="d-flex gap-2 justify-content-center mb-3 fs-14 p-1 rounded bg-darkgrey price-24 installment-option"
-                                        onclick="selectInstallmentOption(this)">
+                                         onclick="selectInstallmentOption(this)">
                                         <span class="text-orange">24</span> @lang('home.month') <span
-                                            class="text-orange">{{ $variants->first()->price_24 ?? '0' }} UZS</span>
+                                            class="text-orange">{{ formatPrice($variants->first()->price_24 ?? 0) }} UZS</span>
                                     </div>
                                 </div>
                             </div>
+
 
                             <script>
                                 function selectInstallmentOption(element) {

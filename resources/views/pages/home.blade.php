@@ -25,6 +25,7 @@ foreach ($keywords as $keyword) {
 ?>
 @section('content')
 
+
     <main class="">
         <div class="my-4 text-grey container">@lang('home.official')</div>
         <!-- Slider banner -->
@@ -209,9 +210,9 @@ foreach ($keywords as $keyword) {
                                         </div>
 
                                         <div class="d-flex gap-4 mt-3">
-                                            <a class="border-orange bg-transparent rounded p-1 px-3"
+                                            <a class="border-orange bg-transparent rounded p-1 px-3 add-to-cart-btn"
                                                href="javascript: void(0);" type="button"
-                                               onclick="addToCart({{ $product->id }}, '{{ $product['name_' . $lang] }}', {{ $cheapestVariant->discount_price ?? $cheapestVariant->price }}, {{ $cheapestVariant->id }})">
+                                               onclick="addToCart(this,{{ $product->id }}, '{{ $product['name_' . $lang] }}', {{ $cheapestVariant->discount_price ?? $cheapestVariant->price }}, {{ $cheapestVariant->id }})">
                                                 <img src="/assets/icons/shopping-cart.svg" alt=""/>
                                             </a>
                                             <button
@@ -317,9 +318,9 @@ foreach ($keywords as $keyword) {
                                         </div>
 
                                         <div class="d-flex gap-4 mt-3">
-                                            <a class="border-orange bg-transparent rounded p-1 px-3"
+                                            <a class="border-orange bg-transparent rounded p-1 px-3 add-to-cart-btn"
                                                href="javascript: void(0);" type="button"
-                                               onclick="addToCart({{ $product->id }}, '{{ $product['name_' . $lang] }}', {{ $cheapestVariant->discount_price ?? $cheapestVariant->price }}, {{ $cheapestVariant->id }})">
+                                               onclick="addToCart(this,{{ $product->id }}, '{{ $product['name_' . $lang] }}', {{ $cheapestVariant->discount_price ?? $cheapestVariant->price }}, {{ $cheapestVariant->id }})">
                                                 <img src="/assets/icons/shopping-cart.svg" alt=""/>
                                             </a>
                                             <button data-bs-toggle="modal" data-bs-target="#largeModal"
@@ -420,9 +421,9 @@ foreach ($keywords as $keyword) {
                             </div>
 
                             <div class="d-flex gap-4 mt-3">
-                                <a class="border-orange bg-transparent rounded p-1 px-3" href="javascript: void(0);"
+                                <a class="border-orange bg-transparent rounded p-1 px-3 add-to-cart-btn" href="javascript: void(0);"
                                    type="button"
-                                   onclick="addToCart({{ $product->id }}, '{{ $product['name_' . $lang] }}', {{ $cheapestVariant->discount_price ?? $cheapestVariant->price }}, {{ $cheapestVariant->id }})">
+                                   onclick="addToCart(this,{{ $product->id }}, '{{ $product['name_' . $lang] }}', {{ $cheapestVariant->discount_price ?? $cheapestVariant->price }}, {{ $cheapestVariant->id }})">
                                     <img src="/assets/icons/shopping-cart.svg" alt=""/>
                                 </a>
                                 <button data-bs-toggle="modal" data-bs-target="#largeModal"
@@ -732,7 +733,8 @@ foreach ($keywords as $keyword) {
         <x-page.contact/>
     </main>
     <script>
-        function addToCart(productId, productName, productPrice, variantId) {
+        function addToCart(button ,productId, productName, productPrice, variantId) {
+            button.classList.add("loading");
             $.ajax({
                 url: `/add-to-cart`,
                 type: 'POST',
@@ -760,6 +762,12 @@ foreach ($keywords as $keyword) {
                 },
                 error: function (xhr) {
                     alert('Xatolik yuz berdi: ' + xhr.responseText);
+                },
+                complete: function() {
+                    // 1 soniyadan keyin loading klassini olib tashlash
+                    setTimeout(() => {
+                        button.classList.remove("loading");
+                    }, 1000); // 1000ms = 1 sekund
                 }
             });
         }

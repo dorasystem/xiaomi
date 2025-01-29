@@ -20,7 +20,39 @@
     <!-- for map -->
     <script src="https://api-maps.yandex.ru/2.1/?lang=ru_RU" type="text/javascript"></script>
 </head>
+{{--loading style start--}}
+<style>
+    .add-to-cart-btn.loading {
+        pointer-events: none; /* Tugmani bosib bo‘lmaydigan qilish */
+        opacity: 0.7; /* Tugmani biroz xiralashtirish */
+        position: relative;
+    }
 
+    .add-to-cart-btn.loading img {
+        visibility: hidden; /* Asosiy ikonka yashirish */
+    }
+
+    .add-to-cart-btn.loading::after {
+        content: "";
+        width: 18px;
+        height: 18px;
+        border: 2px solid #f3f3f3;
+        border-top: 2px solid #ff7300;
+        border-radius: 50%;
+        position: absolute;
+        top: 50%;
+        left: 50%;
+        transform: translate(-50%, -50%);
+        animation: spin 0.6s linear infinite;
+    }
+
+    @keyframes spin {
+        from { transform: translate(-50%, -50%) rotate(0deg); }
+        to { transform: translate(-50%, -50%) rotate(360deg); }
+    }
+
+</style>
+{{--loading style end--}}
 <body>
     <x-page.header></x-page.header>
 

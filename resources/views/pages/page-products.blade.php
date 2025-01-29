@@ -62,6 +62,7 @@
         }
 
     </style>
+
     <main>
         <div class="container mt-4">
             <div class="d-flex align-items-center gap-3">
@@ -403,12 +404,12 @@
                                                                 UZS/@lang('home.month')</span>
                                                         </div>
                                                         <div class="d-flex gap-4 mt-3">
-                                                            <a class="border-orange bg-transparent rounded p-1 px-3"
-                                                                href="javascript: void(0);" type="button"
-                                                                onclick="addToCart({{ $product->id }}, '{{ $product['name_' . $lang] }}', {{ $cheapestVariant->discount_price ?? $cheapestVariant->price }}, {{ $cheapestVariant->id }})">
-                                                                <img src="/assets/icons/shopping-cart.svg"
-                                                                    alt="" />
+                                                            <a class="border-orange bg-transparent rounded p-1 px-3 add-to-cart-btn"
+                                                               href="javascript:void(0);" type="button"
+                                                               onclick="addToCart(this, {{ $product->id }}, '{{ $product['name_' . $lang] }}', {{ $cheapestVariant->discount_price ?? $cheapestVariant->price }}, {{ $cheapestVariant->id }})">
+                                                                <img src="/assets/icons/shopping-cart.svg" alt="Add to cart" />
                                                             </a>
+
                                                             <button data-bs-toggle="modal" data-bs-target="#largeModal"
                                                                 class="btn-orange rounded w-100 d-flex align-items-center gap-2 justify-content-center"
                                                                 data-product-id="{{ $product->id }}"
@@ -467,7 +468,10 @@
     <script src="https://cdn.jsdelivr.net/npm/toastify-js"></script>
 
     <script>
-        function addToCart(productId, productName, productPrice, variantId) {
+        function addToCart(button, productId, productName, productPrice, variantId) {
+            // Tugmaga loading klassini qo‘shish
+            button.classList.add("loading");
+
             $.ajax({
                 url: `/add-to-cart`,
                 type: 'POST',
@@ -495,9 +499,17 @@
                 },
                 error: function(xhr) {
                     alert('Xatolik yuz berdi: ' + xhr.responseText);
+                },
+                complete: function() {
+                    // 1 soniyadan keyin loading klassini olib tashlash
+                    setTimeout(() => {
+                        button.classList.remove("loading");
+                    }, 1000); // 1000ms = 1 sekund
                 }
             });
         }
+
+
 
         function updateCartCount(count) {
             document.getElementById('cart-count').innerText = count; // Updates the cart count badge

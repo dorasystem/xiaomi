@@ -86,7 +86,7 @@ $category7 = $categories->skip(6)->first();
                     <i class="fa-solid fa-chevron-down toggle-icon text-grey"></i>
                 </h6>
                 <div class="collapse d-sm-block" id="companyDropdown">
-                    <ul class="list-unstyled text-capitalize">
+                    <ul class="list-unstyled text-capitalize aaa">
                         <li><a href="{{ route('products') }}">@lang('footer.new_products')</a></li>
                         <li><a
                                 href="{{ route('category.sort', ['slug' => $category2->getSlugByLanguage($lang)]) }}">{{ $category2['name_' . $lang] }}</a>
@@ -121,10 +121,21 @@ $category7 = $categories->skip(6)->first();
                     <i class="fa-solid fa-chevron-down toggle-icon text-grey"></i>
                 </h6>
                 <div class="collapse d-sm-block" id="customersDropdown">
-                    <ul class="list-unstyled">
+                    <ul class="list-unstyled aaa">
                         <li><a href="{{ route('about') }}">@lang('footer.about_us')</a></li>
                         <li><a href="{{ route('contact') }}">@lang('footer.our_stores')</a></li>
                         <li><a href="{{ route('contact') }}">@lang('footer.contacts')</a></li>
+                    </ul>
+                </div>
+                <h6 class="mb-2 mt-1 d-sm-block d-none fw-bold">@lang('footer.xiaomi_store')</h6>
+                <h6 class="d-sm-none toggle-heading mb-3" type="button" data-bs-toggle="collapse"
+                    data-bs-target="#customersDropdown" aria-expanded="false" aria-controls="customersDropdown">
+                    @lang('footer.xiaomi_store')
+                    <i class="fa-solid fa-chevron-down toggle-icon text-grey"></i>
+                </h6>
+                <div class="collapse d-sm-block" id="customersDropdown">
+                    <ul class="list-unstyled aaa">
+
                         <li><a href="{{ route('blog') }}">@lang('footer.blog')</a></li>
                         <li><a href="{{ route('news') }}">@lang('footer.news')</a></li>
                         <li><a href="{{ route('career') }}">@lang('footer.career')</a></li>
@@ -132,6 +143,9 @@ $category7 = $categories->skip(6)->first();
                 </div>
             </div>
             <style>
+                .aaa li {
+                    margin-top: 1.2px;
+                }
                 .comp-logo-wrap {
                     cursor: pointer;
                     transition-duration: 500ms;

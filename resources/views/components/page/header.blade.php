@@ -23,13 +23,14 @@
         <div class="row align-items-center nav1">
             <div class="col-lg-7 text-grey d-lg-block d-none">
                 <ul class="nav gap-3 justify-content-between justify-content-lg-start">
-                    <li class=""><a class="text-grey hover-orange" href="/about">@lang('footer.about_us')</a></li>
-                    <li class=""><a class="text-grey hover-orange" href="{{ route('products') }}">@lang('footer.products')</a></li>
-                    <li class=""><a class="text-grey hover-orange" href="{{ route('career') }}">@lang('footer.career')</a></li>
-                    <li class=""><a class="text-grey hover-orange" href="{{ route('news') }}">@lang('footer.news')</a></li>
-                    <li class=""><a class="text-grey hover-orange" href="{{ route('blog') }}">@lang('footer.blog')</a></li>
-                    <li class=""><a class="text-grey hover-orange" href="/contact">@lang('footer.contacts')</a></li>
+                    <li><a class="text-grey hover-orange {{ request()->is('about') ? 'active' : '' }}" href="/about">@lang('footer.about_us')</a></li>
+                    <li><a class="text-grey hover-orange {{ request()->routeIs('products') ? 'active' : '' }}" href="{{ route('products') }}">@lang('footer.products')</a></li>
+                    <li><a class="text-grey hover-orange {{ request()->routeIs('career') ? 'active' : '' }}" href="{{ route('career') }}">@lang('footer.career')</a></li>
+                    <li><a class="text-grey hover-orange {{ request()->routeIs('news') ? 'active' : '' }}" href="{{ route('news') }}">@lang('footer.news')</a></li>
+                    <li><a class="text-grey hover-orange {{ request()->routeIs('blog') ? 'active' : '' }}" href="{{ route('blog') }}">@lang('footer.blog')</a></li>
+                    <li><a class="text-grey hover-orange {{ request()->is('contact') ? 'active' : '' }}" href="/contact">@lang('footer.contacts')</a></li>
                 </ul>
+
             </div>
             <div class="col-lg-5 mt-lg-0 mt-2 ps-0">
                 <div class="d-flex justify-content-between align-items-center">
@@ -155,54 +156,7 @@
                                 </li>
                             </ul>
                         </div>
-                        <style>
-                            /* Til tanlash dropdown asosiy tugma */
-                            .dropdown-toggle {
-                                border: none;
-                                background: transparent;
-                                padding: 0;
-                                display: flex;
-                                align-items: center;
-                            }
 
-                            /* Dropdown tugmachasi (faqat flag chiqadi) */
-                            .dropdown-toggle img {
-                                width: 30px;  /* Flagning to‘g‘ri ko‘rinishi uchun */
-                                height: 20px;
-                                border-radius: 3px;
-                                object-fit: cover;
-                            }
-
-                            /* Dropdown menyusi */
-                            .dropdown-menu {
-                                min-width: 160px;
-                                border-radius: 8px;
-                                padding: 5px 0;
-                            }
-
-                            /* Har bir til opsiyasi */
-                            .dropdown-item {
-                                display: flex;
-                                align-items: center;
-                                gap: 10px;
-                                padding: 10px 15px;
-                            }
-
-                            /* Flaglar (bayroqlar) dizaynini yaxshilash */
-                            .flag-icon {
-                                width: 25px;  /* Bir xil o‘lcham */
-                                height: 18px;
-                                border-radius: 3px;
-                                object-fit: cover;
-                                box-shadow: 0px 0px 3px rgba(0, 0, 0, 0.2); /* Engil soyali effekt */
-                            }
-
-                            /* Tanlangan tilni ajratish */
-                            .dropdown-item.active {
-                                font-weight: bold;
-                                background-color: #f8f9fa;
-                            }
-                        </style>
                     </div>
                     <button class="toggleButton border-0 px-2 bg-transparent">
                         <div class="d-flex flex-column katalogicon">
@@ -458,3 +412,59 @@
     </div>
 
 </nav>
+<style>
+    /* Til tanlash dropdown asosiy tugma */
+    .dropdown-toggle {
+        border: none;
+        background: transparent;
+        padding: 0;
+        display: flex;
+        align-items: center;
+    }
+
+    /* Dropdown tugmachasi (faqat flag chiqadi) */
+    .dropdown-toggle img {
+        width: 30px;  /* Flagning to‘g‘ri ko‘rinishi uchun */
+        height: 20px;
+        border-radius: 3px;
+        object-fit: cover;
+    }
+
+    /* Dropdown menyusi */
+    .dropdown-menu {
+        min-width: 160px;
+        border-radius: 8px;
+        padding: 5px 0;
+    }
+
+    /* Har bir til opsiyasi */
+    .dropdown-item {
+        display: flex;
+        align-items: center;
+        gap: 10px;
+        padding: 10px 15px;
+    }
+
+    /* Flaglar (bayroqlar) dizaynini yaxshilash */
+    .flag-icon {
+        width: 25px;  /* Bir xil o‘lcham */
+        height: 18px;
+        border-radius: 3px;
+        object-fit: cover;
+        box-shadow: 0px 0px 3px rgba(0, 0, 0, 0.2); /* Engil soyali effekt */
+    }
+
+    /* Tanlangan tilni ajratish */
+    .dropdown-item.active {
+        font-weight: bold;
+        background-color: #f8f9fa;
+    }
+    .nav a.active {
+        color: #ff6700 !important;
+        text-decoration: none;
+    }
+    .nav a:hover {
+        color: #ff6700 !important;
+    }
+
+</style>

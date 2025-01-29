@@ -402,7 +402,7 @@ li {
 a.active {
     color: var(--orange);
     border: none;
-    border-bottom: 3px solid var(--orange);
+    /*border-bottom: 3px solid var(--orange);*/
 }
 .newtab.active {
     color: #171a1fff;
