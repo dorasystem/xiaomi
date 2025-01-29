@@ -6,7 +6,8 @@
     use App\Models\Category;
 
     $currentLocale = app()->getLocale();
-    $categories = Category::with('products')->get(); // Kategoriyalar va mahsulotlarni birga olish
+    $categories = Category::orderBy('id', 'asc')->take(8)->get();
+    $childCategories = Category::with('children')->get();
     $lang = App::getLocale();
     $links = Contact::first();
     $keywords = StaticKeyword::all();
@@ -68,7 +69,7 @@
                         class="position-relative w-max d-flex align-items-center justify-content-end justify-content-md-start text-nowrap align-items-center">
                         <div class="dropdown">
                             <button class="border-0 bg-transparent pe-4 py-1 dropdown-toggle" type="button"
-                                data-bs-toggle="dropdown" aria-expanded="false">
+                                    data-bs-toggle="dropdown" aria-expanded="false">
                                 @if ($currentLocale === 'ru')
                                     Русский
                                 @elseif ($currentLocale === 'en')
@@ -86,7 +87,7 @@
                             </ul>
                         </div>
                         <i id="select-icon"
-                            class="fa-solid fa-angle-down position-absolute end-0 top-50 translate-middle-y pe-2 text-dark"></i>
+                           class="fa-solid fa-angle-down position-absolute end-0 top-50 translate-middle-y pe-2 text-dark"></i>
                     </div>
                 </div>
             </div>
@@ -97,40 +98,40 @@
             <div class="row align-items-center justify-content-between w-100">
                 <div class="col-4">
                     <a class="logo" href="/"><img class="w-100" src="/assets/images/xiaomiStoreBlack.webp"
-                            alt="Mi Logo" /> </a>
+                                                  alt="Mi Logo" /> </a>
                 </div>
                 <div class="col-8 d-flex align-items-center justify-content-end pe-0 gap-4">
                     <div class="">
-{{--                        <a href="/compare" class="icon position-relative">--}}
-{{--                            <svg version="1.0" xmlns="http://www.w3.org/2000/svg" width="30" height="30"--}}
-{{--                                viewBox="0 0 512.000000 512.000000" preserveAspectRatio="xMidYMid meet">--}}
-{{--                                <g transform="translate(0.000000,512.000000) scale(0.100000,-0.100000)" fill="#000"--}}
-{{--                                    stroke="none">--}}
-{{--                                    <path d="M2015 4786 c-41 -18 -83 -69 -90 -109 -3 -18 -4 -982 -3 -2144 l3--}}
-{{--                                                    -2112 21 -27 c11 -15 33 -37 48 -48 27 -21 38 -21 566 -21 528 0 539 0 566 21--}}
-{{--                                                    15 11 37 33 48 48 l21 27 0 2139 0 2139 -21 27 c-11 15 -33 37 -48 48 -27 21--}}
-{{--                                                    -40 21 -554 23 -423 2 -533 0 -557 -11z m865 -2226 l0 -1920 -320 0 -320 0 0--}}
-{{--                                                    1920 0 1920 320 0 320 0 0 -1920z" />--}}
-{{--                                    <path d="M3615 3506 c-41 -18 -83 -69 -90 -109 -3 -18 -4 -694 -3 -1504 3--}}
-{{--                                                    -1468 3 -1472 24 -1499 11 -15 33 -37 48 -48 27 -21 38 -21 566 -21 528 0 539--}}
-{{--                                                    0 566 21 15 11 37 33 48 48 21 27 21 28 21 1526 0 1498 0 1499 -21 1526 -11--}}
-{{--                                                    15 -33 37 -48 48 -27 21 -40 21 -554 23 -423 2 -533 0 -557 -11z m865 -1586--}}
-{{--                                                    l0 -1280 -320 0 -320 0 0 1280 0 1280 320 0 320 0 0 -1280z" />--}}
-{{--                                    <path d="M415 2226 c-41 -18 -83 -69 -90 -109 -3 -18 -5 -406 -3 -864 3 -822--}}
-{{--                                                    3 -832 24 -859 11 -15 33 -37 48 -48 27 -21 38 -21 566 -21 528 0 539 0 566--}}
-{{--                                                    21 15 11 37 33 48 48 21 27 21 34 21 886 0 852 0 859 -21 886 -11 15 -33 37--}}
-{{--                                                    -48 48 -27 21 -40 21 -554 23 -423 2 -533 0 -557 -11z m865 -946 l0 -640 -320--}}
-{{--                                                    0 -320 0 0 640 0 640 320 0 320 0 0 -640z" />--}}
-{{--                                </g>--}}
-{{--                            </svg>--}}
-{{--                            @if(session('compares') && count(session('compares')) > 0)--}}
-{{--                                <span class="badge badge-pill badge-danger badge-position rounded-circle compare" id="compare-count">--}}
-{{--                                        {{ count(session('compares')) }}--}}
-{{--                                    </span>--}}
-{{--                            @else--}}
-{{--                                <span class="badge badge-pill badge-danger badge-position rounded-circle compare" id="compare-count"></span>--}}
-{{--                            @endif--}}
-{{--                        </a>--}}
+                        {{--                        <a href="/compare" class="icon position-relative">--}}
+                        {{--                            <svg version="1.0" xmlns="http://www.w3.org/2000/svg" width="30" height="30"--}}
+                        {{--                                viewBox="0 0 512.000000 512.000000" preserveAspectRatio="xMidYMid meet">--}}
+                        {{--                                <g transform="translate(0.000000,512.000000) scale(0.100000,-0.100000)" fill="#000"--}}
+                        {{--                                    stroke="none">--}}
+                        {{--                                    <path d="M2015 4786 c-41 -18 -83 -69 -90 -109 -3 -18 -4 -982 -3 -2144 l3--}}
+                        {{--                                                    -2112 21 -27 c11 -15 33 -37 48 -48 27 -21 38 -21 566 -21 528 0 539 0 566 21--}}
+                        {{--                                                    15 11 37 33 48 48 l21 27 0 2139 0 2139 -21 27 c-11 15 -33 37 -48 48 -27 21--}}
+                        {{--                                                    -40 21 -554 23 -423 2 -533 0 -557 -11z m865 -2226 l0 -1920 -320 0 -320 0 0--}}
+                        {{--                                                    1920 0 1920 320 0 320 0 0 -1920z" />--}}
+                        {{--                                    <path d="M3615 3506 c-41 -18 -83 -69 -90 -109 -3 -18 -4 -694 -3 -1504 3--}}
+                        {{--                                                    -1468 3 -1472 24 -1499 11 -15 33 -37 48 -48 27 -21 38 -21 566 -21 528 0 539--}}
+                        {{--                                                    0 566 21 15 11 37 33 48 48 21 27 21 28 21 1526 0 1498 0 1499 -21 1526 -11--}}
+                        {{--                                                    15 -33 37 -48 48 -27 21 -40 21 -554 23 -423 2 -533 0 -557 -11z m865 -1586--}}
+                        {{--                                                    l0 -1280 -320 0 -320 0 0 1280 0 1280 320 0 320 0 0 -1280z" />--}}
+                        {{--                                    <path d="M415 2226 c-41 -18 -83 -69 -90 -109 -3 -18 -5 -406 -3 -864 3 -822--}}
+                        {{--                                                    3 -832 24 -859 11 -15 33 -37 48 -48 27 -21 38 -21 566 -21 528 0 539 0 566--}}
+                        {{--                                                    21 15 11 37 33 48 48 21 27 21 34 21 886 0 852 0 859 -21 886 -11 15 -33 37--}}
+                        {{--                                                    -48 48 -27 21 -40 21 -554 23 -423 2 -533 0 -557 -11z m865 -946 l0 -640 -320--}}
+                        {{--                                                    0 -320 0 0 640 0 640 320 0 320 0 0 -640z" />--}}
+                        {{--                                </g>--}}
+                        {{--                            </svg>--}}
+                        {{--                            @if(session('compares') && count(session('compares')) > 0)--}}
+                        {{--                                <span class="badge badge-pill badge-danger badge-position rounded-circle compare" id="compare-count">--}}
+                        {{--                                        {{ count(session('compares')) }}--}}
+                        {{--                                    </span>--}}
+                        {{--                            @else--}}
+                        {{--                                <span class="badge badge-pill badge-danger badge-position rounded-circle compare" id="compare-count"></span>--}}
+                        {{--                            @endif--}}
+                        {{--                        </a>--}}
                         <div class="dropdown">
                             <a href="javascript:void(0);" class="dropdown-toggle" data-bs-toggle="dropdown">
                                 <img src="{{ asset('admins/assets/vendors/img/flags/4x3/' . $currentLocale . '.svg') }}" alt="" class="img-fluid wd-20" />
@@ -173,7 +174,7 @@
                 <div class="row align-items-center w-100">
                     <div class="col-lg-2 col-4 mb-lg-0 mb-3 d-lg-block d-none">
                         <a class="logo" href="/"><img style="width: 87%" src="/assets/images/miLogo.svg"
-                                alt="Mi Logo" /> </a>
+                                                      alt="Mi Logo" /> </a>
                     </div>
                     <div class="col-lg-7 px-sm-2 px-0">
                         <div class="d-flex align-items-center gap-4">
@@ -305,7 +306,7 @@
         </div>
     </div>
 
-{{--    Katalog modal start--}}
+    {{--    Katalog modal start--}}
     <div style="display: none" class="rounded-bottom container px-0 katalog" id="Katalog">
         <div class="py-2 pt-4">
             <div class="d-flex">
@@ -320,30 +321,30 @@
                 </div>
 
                 <div class="right d-sm-block d-none w-75">
-                    @foreach($categories as $index => $category)
+                    @foreach($childCategories as $index => $category)
                         <div class="content-change container h-100 p-0 {{ $index === 0 ? 'default' : 'hide' }}"
                              id="content0{{ $category->id }}">
                             <div class="d-flex flex-column justify-content-between h-100">
                                 <div class="row p-4 py-1">
-                                    @forelse($category->products as $product)
-                                        <a href="{{ route('single.product', $product->slug) }}" class="col-md-4 col-sm-6 col-12 mb-2">
+                                    @forelse($category->children as $childCategory)
+                                        <a href="{{ route('category.sort', ['slug' => $childCategory->getSlugByLanguage($lang)]) }}" class="col-md-4 col-sm-6 col-12 mb-2">
                                             <div class="d-flex align-items-center">
-                                                <img src="{{ asset('storage/' . $product->image) }}" class="me-2"
-                                                     alt="{{ \Str::words($product['name_' . $lang], 3) }}"
+                                                <img src="{{ asset('storage/' . $childCategory->image) }}" class="me-2"
+                                                     alt="{{ \Str::words($childCategory['name_' . $lang], 3) }}"
                                                      style="width: 50px; height: 50px;" />
-                                                <div class="cart fw-bold">{{ \Str::words($product['name_' . $lang], 3) }}</div>
+                                                <div class="cart fw-bold">{{ \Str::words($childCategory['name_' . $lang], 3) }}</div>
                                             </div>
                                         </a>
                                     @empty
                                         <a href="javascript:void(0)" class="col-md-4 col-sm-6 col-12 mb-2">
-                                            <div class="cart fw-bold">Bu kategoriyada mahsulotlar mavjud emas</div>
+                                            <div class="cart fw-bold">Bu kategoriyada ichki kategoriyalar mavjud emas</div>
                                         </a>
                                     @endforelse
                                 </div>
                                 <div class="border-top p-4 py-2">
-                                    <button class="d-flex align-items-center gap-2 border bg-transparent p-3 py-1 rounded">
+                                    <a href="{{ route('products') }}" class="d-flex align-items-center gap-2 border bg-transparent p-3 py-1 rounded">
                                         Все {{ \Str::words($category['name_' . $lang], 3) }}
-                                    </button>
+                                    </a>
                                 </div>
                             </div>
                         </div>
@@ -397,7 +398,7 @@
             </ul>
         </div>
     </div>
-{{--    Katalog modal end--}}
+    {{--    Katalog modal end--}}
     <div style="display: none" class="rounded-bottom container px-0 katalog" id="Katalog">
         <div class="py-2 pt-4">
 
