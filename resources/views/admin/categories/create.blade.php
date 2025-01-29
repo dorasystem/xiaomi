@@ -80,11 +80,18 @@
                                         <label for="image">Изображение категории:</label>
                                         <input type="file" class="form-control" id="image" name="image">
                                     </div>
-
-{{--                                    <div class="form-group pb-3">--}}
-{{--                                        <label for="slug">Slug:</label>--}}
-{{--                                        <input type="text" class="form-control" id="slug" name="slug" value="{{ old('slug') }}" required>--}}
-{{--                                    </div>--}}
+                                    <div class="form-group pb-3">
+                                        <label for="parent_id">Категория:</label>
+                                        <select id="parent_id" name="parent_id" class="form-control">
+                                            <option value="">-- Без родителя --</option> <!-- Ota kategoriya bo‘lmagan holat uchun -->
+                                            @foreach ($categories as $category)
+                                                <option value="{{ $category->id }}"
+                                                    {{ old('parent_id') == $category->id ? 'selected' : '' }}>
+                                                    {{ $category->name_ru }}
+                                                </option>
+                                            @endforeach
+                                        </select>
+                                    </div>
                                 </div>
                             </div>
                         </div>
