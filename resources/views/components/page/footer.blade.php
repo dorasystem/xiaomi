@@ -162,12 +162,15 @@ $category7 = $categories->skip(6)->first();
             <div class="col-lg-3 col-sm-6 mb-3">
                 <h6 class="mb-4 fw-bold">@lang('footer.contact_us')</h6>
                 <a href="tel:{{ str_replace(' ', '', $links->phone) }}" class="">
-                    <i class="fa-solid fa-phone"></i> {{ $links->phone }}
+                    <i class="fa-solid fa-phone"></i>
+                    <span class="mx-2">{{ $links->phone }} </span>
                 </a>
                 </a>
-                <p class="mt-3"><i class="fa-regular fa-clock"></i> {{ $translations['work_time'] }}</p>
+                <p class="mt-3"><i class="fa-regular fa-clock"></i>
+                    <span class="mx-2">{{ $translations['work_time'] }} </span></p>
                 <div class="">
-                    <i class="fa-solid fa-location-dot"></i> {{ $links->address }}
+                    <i class="fa-solid fa-location-dot" ></i>
+               <span class="mx-2">      {{ $links->address }}</span>
                 </div>
 
             </div>

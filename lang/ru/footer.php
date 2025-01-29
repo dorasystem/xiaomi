@@ -13,7 +13,7 @@ return [
     'xiaomi_store' => 'Xiaomi Store',
     'about_us' => 'О компании',
     'our_stores' => 'Наши магазины',
-    'contacts' => 'Контакт',
+    'contacts' => 'Контакты',
     'blog' => 'Блог',
     'news' => 'Новости',
     'contact_us' => 'Связаться с нами',

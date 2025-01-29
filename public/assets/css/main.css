@@ -298,7 +298,7 @@ li {
 }
 .line {
     width: 17px;
-    height: 1.5px;
+    height: 2px;
     background-color: #000;
     transition: transform 0.3s ease, opacity 0.3s ease;
 }

@@ -60,9 +60,10 @@ Route::middleware(['auth'])->prefix('dashboard')->group(function () {
     Route::resource('desc-images', DescImageController::class);
     Route::resource('main_banners', MainBannerController::class);
     Route::get('/orders',[OrderController::class, 'index'])->name('orders.index');
-    Route::delete('/main-banner/{mainBanner}/delete-image', [MainBannerController::class, 'deleteImage'])->name('mainBanner.deleteImage');
+    Route::delete('/dashboard/main-banner/{mainBanner}/delete-image/{image}', [MainBannerController::class, 'deleteImage'])->name('mainBanner.deleteImage');
     Route::resource('keywords', StaticKeywordController::class);
     Route::post('/blogs/delete-image', [BlogController::class, 'deleteImage'])->name('blogs.deleteImage');
+//    Route::delete('/main-banner/{blog}/delete-image', [MainBannerController::class, 'destroy']);
 });
 
 Route::get('/', [MainController::class, 'index'])->name('home');

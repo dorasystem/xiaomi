@@ -53,10 +53,9 @@
                                                         @foreach ($mainBanner->images as $key => $image)
                                                             <div class="image-preview m-2 position-relative">
                                                                 <img src="{{ asset('storage/' . $image) }}" alt="image" style="width: 100px; height: 100px; object-fit: cover;">
-                                                                <form action="{{ route('mainBanner.deleteImage', $mainBanner->id) }}" method="POST" style="position: absolute; top: 0; right: 0;">
+                                                                <form action="{{ route('mainBanner.deleteImage', ['mainBanner' => $mainBanner->id, 'image' => $image]) }}" method="POST" style="position: absolute; top: 0; right: 0;">
                                                                     @csrf
                                                                     @method('DELETE')
-                                                                    <input type="hidden" name="image" value="{{ $image }}">
                                                                     <button type="submit" class="btn btn-danger btn-sm">X</button>
                                                                 </form>
                                                             </div>
@@ -65,7 +64,6 @@
                                                         <p>Нет изображений.</p>
                                                     @endif
                                                 </div>
-
                                             </div>
                                         </div>
 

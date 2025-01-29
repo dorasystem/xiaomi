@@ -83,7 +83,7 @@ return [
     "total_discount_amount" => "Общая цена (со скидкой)",
     "discount" => "Скидка",
     "place_order" => "Оформить заказ",
-    "products" => "Товаров",
+    "products" => "Товары",
     "message_title" => "Не нашли товар? Мы можем вам помочь!",
     "message_desc" => "Оставьте нам свой номер!",
     "message_input1" => "Какой товар вы ищите?",

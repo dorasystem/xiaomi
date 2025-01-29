@@ -206,9 +206,9 @@
                     </div>
                     <button class="toggleButton border-0 px-2 bg-transparent">
                         <div class="d-flex flex-column katalogicon">
-                            <div class="line line1"></div>
                             <div class="line line2"></div>
-                            <div class="line line3"></div>
+                            <div class="line line2"></div>
+                            <div class="line line2"></div>
                         </div>
                     </button>
                 </div>
@@ -225,9 +225,9 @@
                         <div class="d-flex align-items-center gap-4">
                             <button class="toggleButton btn-white d-none rounded d-sm-flex gap-3 align-items-center border-0 px-4">
                                 <div class="d-flex flex-column katalogicon">
-                                    <div class="line line1"></div>
                                     <div class="line line2"></div>
-                                    <div class="line line3"></div>
+                                    <div class="line line2"></div>
+                                    <div class="line line2"></div>
                                 </div>
                                 <span class="d-lg-block d-none text-nowrap"> @lang('footer.catalog')</span>
                             </button>

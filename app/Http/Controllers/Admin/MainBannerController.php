@@ -72,39 +72,40 @@ class MainBannerController extends Controller
         return redirect()->back()->with('success', 'Banner muvaffaqiyatli yangilandi!');
     }
 
-    public function deleteImage(Request $request, MainBanner $mainBanner)
+    public function deleteImage(Request $request, MainBanner $mainBanner, $image)
     {
-        // Validate the input
+        // Validate the input to make sure it's a valid string (image path)
         $request->validate([
             'image' => 'required|string'
         ]);
 
-        $imagePath = $request->input('image');
-
-        // Agar rasm mavjud bo'lsa, o'chirish
-        if (($key = array_search($imagePath, $mainBanner->images)) !== false) {
-            // Massivdan rasmni o'chirish
+        // Check if the image exists in the 'images' array
+        if (($key = array_search($image, $mainBanner->images)) !== false) {
+            // Remove the image from the array
             unset($mainBanner->images[$key]);
 
-            // `images` massivini qayta indekslash
+            // Re-index the array to reset the keys
             $mainBanner->images = array_values($mainBanner->images);
 
-            // Serverdan rasmni o'chirish
-            Storage::disk('public')->delete($imagePath);
+            // Delete the image from the storage
+            Storage::disk('public')->delete($image);
 
-            // `images` ni modelda saqlash
-            $mainBanner->update([
-                'images' => $mainBanner->images, // Update the images field
-            ]);
+            // Save the updated model
+            $mainBanner->save();  // Save the changes to the database
         }
 
-        // Redirect with success message
-        return redirect()->back()->with('success', 'Rasm muvaffaqiyatli o‘chirildi!');
+        // Redirect back with a success message
+        return redirect()->back()->with('success', 'Image deleted successfully!');
     }
 
 
 
 
+//public function destroy(MainBanner $mainBanner)
+//{
+//    $mainBanner->delete();
+//    return redirect()->back();
+//}
 
 }
 

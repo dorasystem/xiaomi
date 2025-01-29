@@ -58,8 +58,8 @@ class MainController extends Controller
         $news1 = News::orderBy('date', 'desc')->skip(1)->take(4)->get();
         $news2 = News::orderBy('date', 'desc')->skip(4)->take(4)->get();
         $categories = Category::latest()->get();
-        $category1 = $categories->first();
-        $category2 = $categories->skip(1)->first();
+        $category1 = $categories->firstWhere('id', 1);
+        $category2 = $categories->firstWhere('id', 2);
         $category3 = $categories->skip(2)->first();
         $category4 = $categories->skip(3)->first();
         $category5 = $categories->skip(4)->first();
