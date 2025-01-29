@@ -38,7 +38,7 @@ $category7 = $categories->skip(6)->first();
             <div class="col-lg-3 col-sm-6 mb-5 h-100">
                 <img class="w-sm-75 w-50 h-50 mb-2 rounded" src="/assets/images/miLogo.svg" alt="" />
                 <div class="mt-3">@lang('footer.join_us')</div>
-                <div class="social-icons d-flex align-items-center mt-3">
+                <div class="social-icons d-flex align-items-center mt-4">
                     @if (!empty($links->youtube))
                         <a target="_blank" href="{{ $links->youtube }}">
                             <div class="social">
@@ -61,55 +61,30 @@ $category7 = $categories->skip(6)->first();
                             </div>
                         </a>
                     @endif
-                    @if (!empty($links->facebook))
-                        <a target="_blank" href="{{ $links->facebook }}">
-                            <div class="social">
-                                <i class="fa-brands fa-facebook-f"></i>
-                            </div>
-                        </a>
-                    @endif
-                    @if (!empty($links->linkedin))
-                        <a target="_blank" href="{{ $links->linkedin }}">
-                            <div class="social">
-                                <i class="fa-brands fa-linkedin"></i>
-                            </div>
-                        </a>
-                    @endif
+
+
                 </div>
             </div>
 
             <div class="col-lg-3 col-sm-6 mb-3">
-                <h6 class="mb-3 d-sm-block d-none fw-bold">@lang('footer.catalog')</h6>
+                <h6 class="mb-3 d-sm-block d-none fw-bold">Покупателям</h6>
                 <h6 class="d-sm-none toggle-heading" type="button" data-bs-toggle="collapse"
                     data-bs-target="#companyDropdown" aria-expanded="false" aria-controls="companyDropdown">
-                    @lang('footer.catalog')
+                    Покупателям
                     <i class="fa-solid fa-chevron-down toggle-icon text-grey"></i>
                 </h6>
                 <div class="collapse d-sm-block" id="companyDropdown">
                     <ul class="list-unstyled text-capitalize aaa">
-                        <li><a href="{{ route('products') }}">@lang('footer.new_products')</a></li>
-                        <li><a
-                                href="{{ route('category.sort', ['slug' => $category2->getSlugByLanguage($lang)]) }}">{{ $category2['name_' . $lang] }}</a>
-                        </li>
-                        <li><a
-                                href="{{ route('category.sort', ['slug' => $category4->getSlugByLanguage($lang)]) }}">{{ $category4['name_' . $lang] }}</a>
-                        </li>
-                        <li><a
-                                href="{{ route('category.sort', ['slug' => $category1->getSlugByLanguage($lang)]) }}">{{ $category1['name_' . $lang] }}</a>
-                        </li>
-                        <li><a
-                                href="{{ route('category.sort', ['slug' => $category3->getSlugByLanguage($lang)]) }}">{{ $category3['name_' . $lang] }}</a>
-                        </li>
-                        <li><a
-                                href="{{ route('category.sort', ['slug' => $category5->getSlugByLanguage($lang)]) }}">{{ $category5['name_' . $lang] }}</a>
-                        </li>
-                        <li><a
-                                href="{{ route('category.sort', ['slug' => $category6->getSlugByLanguage($lang)]) }}">{{ $category6['name_' . $lang] }}</a>
-                        </li>
-                        <li><a
-                                href="{{ route('category.sort', ['slug' => $category7->getSlugByLanguage($lang)]) }}">{{ $category7['name_' . $lang] }}</a>
-                        </li>
+                        <li><a href="#"><?= __('messages.delivery') ?></a></li>
+                        <li><a href="#"><?= __('messages.payment') ?></a></li>
+                        <li><a href="#"><?= __('messages.authenticity_check') ?></a></li>
+                        <li><a href="#"><?= __('messages.warranty') ?></a></li>
+                        <li><a href="#"><?= __('messages.return') ?></a></li>
+                        <li><a href="#"><?= __('messages.service_centers') ?></a></li>
+                        <li><a href="#"><?= __('messages.instructions') ?></a></li>
+                        <li><a href="#"><?= __('messages.faq') ?></a></li>
                     </ul>
+
                 </div>
             </div>
 
@@ -127,12 +102,13 @@ $category7 = $categories->skip(6)->first();
                         <li><a href="{{ route('contact') }}">@lang('footer.contacts')</a></li>
                     </ul>
                 </div>
-                <h6 class="mb-2 mt-1 d-sm-block d-none fw-bold">@lang('footer.xiaomi_store')</h6>
+                <h6 class="mb-2 mt-1 d-sm-block d-none fw-bold"><?= __('messages.information') ?></h6>
                 <h6 class="d-sm-none toggle-heading mb-3" type="button" data-bs-toggle="collapse"
                     data-bs-target="#customersDropdown" aria-expanded="false" aria-controls="customersDropdown">
-                    @lang('footer.xiaomi_store')
+                    <?= __('messages.information') ?>
                     <i class="fa-solid fa-chevron-down toggle-icon text-grey"></i>
                 </h6>
+
                 <div class="collapse d-sm-block" id="customersDropdown">
                     <ul class="list-unstyled aaa">
 
@@ -179,13 +155,14 @@ $category7 = $categories->skip(6)->first();
                     <i class="fa-solid fa-phone"></i>
                     <span class="mx-2">{{ $links->phone }} </span>
                 </a>
-                </a>
+
                 <p class="mt-3"><i class="fa-regular fa-clock"></i>
                     <span class="mx-2">{{ $translations['work_time'] }} </span></p>
-                <div class="">
-                    <i class="fa-solid fa-location-dot" ></i>
-               <span class="mx-2">      {{ $links->address }}</span>
+                <div class="mb-2 mt-sm-0 mt-5">
+                    <textarea class="form-control focus_none" id="message" rows="3" placeholder="<?= __('messages.write_text') ?>"></textarea>
                 </div>
+                <button type="submit" class="btn btn-orange rounded w-100"><?= __('messages.send') ?></button>
+
 
             </div>
 
@@ -214,3 +191,4 @@ $category7 = $categories->skip(6)->first();
         </div>
     </div>
 </footer>
+
