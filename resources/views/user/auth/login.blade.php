@@ -20,7 +20,6 @@
                             <div class="mt-4 mb-3">
                                 <button type="submit" class="btn btn-lg btn-primary w-100" onclick="checkEmail()">Login </button>
                             </div>
-                            <a href="{{ route('register') }}" class="link-primary">Register</a>
                         </form>
                     </div>
                 </div>
