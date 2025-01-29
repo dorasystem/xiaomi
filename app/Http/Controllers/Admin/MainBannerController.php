@@ -86,14 +86,16 @@ class MainBannerController extends Controller
             Storage::disk('public')->delete($imagePath); // Serverdan rasmni o'chirish
         }
 
+        // `images` arrayini yangilash
+        $mainBanner->images = array_values($mainBanner->images); // Arrayni yangilash
+
         // Ma'lumotlar bazasini yangilash
-        $mainBanner->update([
-            'images' => array_values($mainBanner->images), // Yangi rasmlar arrayini saqlash
-        ]);
+        $mainBanner->save();
 
         // Foydalanuvchiga muvaffaqiyatli xabarni qaytarish
         return redirect()->back()->with('success', 'Rasm muvaffaqiyatli o‘chirildi!');
     }
+
 
 }
 
