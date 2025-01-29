@@ -74,6 +74,7 @@ class MainBannerController extends Controller
 
     public function deleteImage(Request $request, MainBanner $mainBanner)
     {
+        // Validate the input
         $request->validate([
             'image' => 'required|string'
         ]);
@@ -82,20 +83,23 @@ class MainBannerController extends Controller
 
         // Agar rasm mavjud bo'lsa, o'chirish
         if (($key = array_search($imagePath, $mainBanner->images)) !== false) {
-            // O'chirishdan oldin rasmni o'zgartirib, saqlang
-            unset($mainBanner->images[$key]); // Arraydan rasmni o'chirish
-            Storage::disk('public')->delete($imagePath); // Serverdan rasmni o'chirish
+            // Massivdan rasmni o'chirish
+            unset($mainBanner->images[$key]);
+
+            // `images` massivini qayta indekslash
+            $mainBanner->images = array_values($mainBanner->images);
+
+            // Serverdan rasmni o'chirish
+            Storage::disk('public')->delete($imagePath);
+
+            // `images` ni modelda saqlash
+            $mainBanner->save();
         }
 
-        // `images` arrayini yangilash
-        $mainBanner->images = array_values($mainBanner->images); // Arrayni qayta indekslash
-
-        // `MainBanner` modelini saqlash
-        $mainBanner->save(); // `images`ni yangilab saqlash
-
-        // Foydalanuvchiga muvaffaqiyatli xabarni qaytarish
+        // Redirect with success message
         return redirect()->back()->with('success', 'Rasm muvaffaqiyatli o‘chirildi!');
     }
+
 
 
 
