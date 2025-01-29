@@ -71,5 +71,29 @@ class MainBannerController extends Controller
         // Redirect with success message
         return redirect()->back()->with('success', 'Banner muvaffaqiyatli yangilandi!');
     }
+
+    public function deleteImage(Request $request, MainBanner $mainBanner)
+    {
+        $request->validate([
+            'image' => 'required|string'
+        ]);
+
+        $imagePath = $request->input('image');
+
+        // Agar rasm mavjud bo'lsa, o'chirish
+        if (($key = array_search($imagePath, $mainBanner->images)) !== false) {
+            unset($mainBanner->images[$key]); // Arraydan rasmni o'chirish
+            Storage::disk('public')->delete($imagePath); // Serverdan rasmni o'chirish
+        }
+
+        // Ma'lumotlar bazasini yangilash
+        $mainBanner->update([
+            'images' => array_values($mainBanner->images), // Yangi rasmlar arrayini saqlash
+        ]);
+
+        // Foydalanuvchiga muvaffaqiyatli xabarni qaytarish
+        return redirect()->back()->with('success', 'Rasm muvaffaqiyatli o‘chirildi!');
+    }
+
 }
 

@@ -60,7 +60,7 @@ Route::middleware(['auth'])->prefix('dashboard')->group(function () {
     Route::resource('desc-images', DescImageController::class);
     Route::resource('main_banners', MainBannerController::class);
     Route::get('/orders',[OrderController::class, 'index'])->name('orders.index');
-
+    Route::delete('/main-banner/{mainBanner}/delete-image', [MainBannerController::class, 'deleteImage'])->name('mainBanner.deleteImage');
     Route::resource('keywords', StaticKeywordController::class);
     Route::post('/blogs/delete-image', [BlogController::class, 'deleteImage'])->name('blogs.deleteImage');
 });
