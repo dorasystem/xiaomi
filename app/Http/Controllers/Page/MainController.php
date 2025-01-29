@@ -178,7 +178,7 @@ class MainController extends Controller
 
         // Narxga mos keladigan mahsulotlarni tekshirish
         $filteredProducts = $products->whereHas('variants', function ($query) use ($minPrice, $maxPrice) {
-            $query->whereBetween('price', [$minPrice, $maxPrice]);
+            $query->whereNotNull('price');
         })->get();
 
         // Agar narxga mos keladigan mahsulotlar bo‘lmasa, faqat kategoriyaga tegishli mahsulotlarni qaytaramiz

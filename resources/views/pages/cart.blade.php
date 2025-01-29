@@ -101,7 +101,7 @@
                         <div class="d-flex align-items-center justify-content-between">
                             <h4 class="text-orange">@lang('home.your_order')</h4>
                             <small id="cart-count">@lang('home.products'):
-                                {{ session('cart') ? count(session('cart')) : 0 }}</small>
+                                {{ session('cart') ? collect(session('cart'))->sum('quantity') : 0 }}</small>
                         </div>
                         <hr class="my-4 text-history" />
                         @foreach ($cartProducts as $cartItem)
