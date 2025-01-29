@@ -37,17 +37,17 @@
                         <div class="social-icons d-flex align-items-center justify-content-between gap-2">
                             @if (!empty($links->youtube))
                                 <a target="_blank" href="{{ $links->youtube }}">
-                                    <img src="/assets/icons/youtube.svg" alt="" />
+                                    <i class="fa-brands fa-youtube"  style="color: #9095a0"></i>
                                 </a>
                             @endif
 
                             @if (!empty($links->instagram))
                                 <a target="_blank" href="{{ $links->instagram }}">
-                                    <img src="/assets/icons/insta.svg" alt="" />
+                                    <i class="fa-brands fa-instagram"  style="color: #9095a0"></i>
                                 </a>
                             @endif
                             @if (!empty($links->telegram))
-                                <a target="_blank" href="{{ $links->telegram }}"><img src="/assets/icons/telegram.svg" alt="" /></a>
+                                <a target="_blank" href="{{ $links->telegram }}"><i class="fa-brands fa-telegram"  style="color: #9095a0"></i></a>
                             @endif
                         </div>
                     </div>
@@ -274,9 +274,9 @@
                     <div class="col-3 d-lg-flex d-none justify-content-around align-items-end">
                         <li class="d-flex flex-column align-items-center">
                             <a href="{{ route('favorites') }}" class="icon position-relative">
-                                <div class="icon-wrapper">
-                                    <i class="fa-regular fa-heart"></i>
-                                    <i class="fa-solid fa-heart"></i>
+                                <div class="icon-wrapper"  >
+                                    <i class="fa-sharp fa-regular fa-heart" style="font-size: 24px"></i>
+                                    <i class="fa-sharp fa-solid fa-heart" style="font-size: 24px"></i>
                                 </div>
                                 @if(session('favorites') && count(session('favorites')) > 0)
                                     <span class="badge badge-pill badge-danger badge-position rounded-circle" id="favorite-count">
@@ -290,7 +290,7 @@
                         </li>
                         <li class="d-flex flex-column align-items-center">
                             <a href="/compare" class="icon position-relative">
-                                <svg version="1.0" xmlns="http://www.w3.org/2000/svg" width="30" height="30"
+                                <svg version="1.0" xmlns="http://www.w3.org/2000/svg" width="30" height="35" style="font-size: 24px"
                                      viewBox="0 0 512.000000 512.000000" preserveAspectRatio="xMidYMid meet">
                                     <g transform="translate(0.000000,512.000000) scale(0.100000,-0.100000)"
                                        fill="#fff" stroke="none">
@@ -323,7 +323,7 @@
                         </li>
                         <li class="d-flex flex-column align-items-center">
                             <a href="{{ route('cart') }}" class="icon position-relative">
-                                <svg width="30" height="35" viewBox="0 0 16 15" fill="none"
+                                <svg width="30" height="35" viewBox="0 0 16 15" fill="none" style="font-size: 24px"
                                      xmlns="http://www.w3.org/2000/svg">
                                     <path
                                         d="M5 14.0625C5.55228 14.0625 6 13.6428 6 13.125C6 12.6072 5.55228 12.1875 5 12.1875C4.44772 12.1875 4 12.6072 4 13.125C4 13.6428 4.44772 14.0625 5 14.0625Z"

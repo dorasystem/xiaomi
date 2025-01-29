@@ -546,7 +546,8 @@ $isInCompare = in_array($product->id, session('compares', []));
                 </div>
             </div>
             {{--   Product slide start --}}
-            <x-page.product.product-slide />
+            <x-page.product.product-slide :productId="$product->id" />
+
             {{--   Product slide end --}}
             <!-- Navigation buttons (optional) -->
             <div id="product-next" class="swiper-button-next end-0"></div>

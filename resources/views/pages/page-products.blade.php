@@ -2,10 +2,67 @@
 @extends('layouts.page')
 
 @section('content')
+    <style>
+        .slider-container {
+            position: relative;
+            width: 100%;
+            height: 40px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
 
+        .slider-container input[type="range"] {
+            -webkit-appearance: none;
+            width: 100%;
+            height: 5px;
+            background: #ff6600;
+            border-radius: 5px;
+            outline: none;
+            position: absolute;
+            top: 50%;
+            transform: translateY(-50%);
+            pointer-events: none;
+        }
+
+        .slider-container input[type="range"]::-webkit-slider-thumb {
+            -webkit-appearance: none;
+            width: 16px;
+            height: 16px;
+            background: #ff6600;
+            border-radius: 50%;
+            cursor: pointer;
+            pointer-events: auto;
+            position: relative;
+        }
+
+        .slider-container input[type="range"]::-moz-range-thumb {
+            width: 16px;
+            height: 16px;
+            background: #ff6600;
+            border-radius: 50%;
+            cursor: pointer;
+            pointer-events: auto;
+        }
+
+        .slider-container input[type="range"]::-webkit-slider-thumb:hover {
+            background: #ff4500;
+        }
+
+        .slider-container input[type="range"]::-moz-range-thumb:hover {
+            background: #ff4500;
+        }
+
+        .slider-track {
+            position: absolute;
+            height: 5px;
+            background: #ff6600;
+            /*z-index: -1;*/
+            width: 100%;
+        }
+
+    </style>
     <main>
-
-
         <div class="container mt-4">
             <div class="d-flex align-items-center gap-3">
                 <a href="/" class="text-grey fw-bold  fs-14">@lang('home.home') / <span
@@ -87,22 +144,51 @@
                                          aria-labelledby="panelsStayOpen-headingTwo">
                                         <div class="accordion-body">
                                             <div class="range-slider">
-                                                <div class="inputs">
-                                                    <input type="number" id="minValue" name="min_price"
-                                                           value="{{ request('min_price', 20) }}" min="0"
-                                                           max="600" />
-                                                    <span>до</span>
-                                                    <input type="number" id="maxValue" name="max_price"
-                                                           value="{{ request('max_price', 600) }}" min="0"
-                                                           max="600" />
-                                                </div>
+{{--                                                <div class="inputs">--}}
+{{--                                                    <input type="number" id="minValue" name="min_price"--}}
+{{--                                                           value="{{ request('min_price', 20) }}" min="0"--}}
+{{--                                                           max="600" />--}}
+{{--                                                    <span>до</span>--}}
+{{--                                                    <input type="number" id="maxValue" name="max_price"--}}
+{{--                                                           value="{{ request('max_price', 600) }}" min="0"--}}
+{{--                                                           max="600" />--}}
+{{--                                                </div>--}}
                                                 <div class="slider-container">
                                                     <div class="slider-track"></div>
-                                                    <input type="range" id="rangeMin" min="0" max="600"
-                                                           value="20" />
-                                                    <input type="range" id="rangeMax" min="0" max="600"
-                                                           value="600" />
+                                                    <input type="range" id="rangeMin" min="0" max="40000000" value="{{ request('min_price', 1) }}" />
+                                                    <input type="range" id="rangeMax" min="0" max="40000000" value="{{ request('max_price', 40000000) }}" />
                                                 </div>
+                                                <span id="minValue1" style="font-size: 14px">
+                                                    {{ number_format(request('min_price', 1), 0, ',', ' ') }} so'm
+                                                </span> -
+                                                                                                <span id="maxValue1" style="font-size: 14px">
+                                                    {{ number_format(request('max_price', 40000000), 0, ',', ' ') }} so'm
+                                                </span>
+
+                                                <script>
+                                                    document.addEventListener("DOMContentLoaded", function () {
+                                                        let rangeMin = document.getElementById("rangeMin");
+                                                        let rangeMax = document.getElementById("rangeMax");
+                                                        let minValue = document.getElementById("minValue1");
+                                                        let maxValue = document.getElementById("maxValue1");
+
+                                                        function formatPrice(value) {
+                                                            return new Intl.NumberFormat('uz-UZ').format(Number(value)) + " so'm";
+                                                        }
+
+                                                        function updateValues() {
+                                                            minValue.textContent = formatPrice(rangeMin.value);
+                                                            maxValue.textContent = formatPrice(rangeMax.value);
+                                                        }
+
+                                                        rangeMin.addEventListener("input", updateValues);
+                                                        rangeMax.addEventListener("input", updateValues);
+                                                    });
+                                                </script>
+
+
+
+
                                             </div>
                                         </div>
                                     </div>

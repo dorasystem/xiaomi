@@ -1,11 +1,14 @@
-<?php
+@props(['productId'])
 
-use App\Models\Product;
-
-$lang = app()->getLocale();
-$products = Product::inRandomOrder()->skip(5)->take(10)->get();
-
-?>
+@php
+$lang =  app()->getLocale();
+    $currentProduct = \App\Models\Product::find($productId);
+    $products = \App\Models\Product::where('category_id', $currentProduct->category_id)
+        ->where('id', '!=', $currentProduct->id)
+        ->inRandomOrder()
+        ->take(10)
+        ->get();
+@endphp
 
 <div class="swiper-wrapper">
     @foreach ($products as $product)

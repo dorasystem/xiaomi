@@ -350,7 +350,7 @@
                             <label for="name" class="form-label">@lang('home.full_name') <span
                                     class="text-danger">*</span></label>
                             <input required type="text" class="form-control focus_none" id="name"
-                                name="first_name" placeholder="Enter your name" />
+                                name="first_name" placeholder="@lang('home.message_input2')" />
                         </div>
                         <div class="mb-3">
                             <label for="phone" class="form-label">@lang('home.enter_number') <span

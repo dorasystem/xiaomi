@@ -165,23 +165,22 @@ class MainController extends Controller
     }
     public function filterProducts(Request $request)
     {
-        $minPrice = $request->input('min_price', 0);
-        $maxPrice = $request->input('max_price', 1000);
+        $minPrice = $request->input('min_price', 1);
+        $maxPrice = $request->input('max_price', 40000000);
         $categories = $request->input('categories', []);
 
-        // Kategoriyalar bo‘yicha mahsulotlarni olish
         $products = Product::query();
 
         if (!empty($categories)) {
             $products->whereIn('category_id', $categories);
         }
 
-        // Narxga mos keladigan mahsulotlarni tekshirish
         $filteredProducts = $products->whereHas('variants', function ($query) use ($minPrice, $maxPrice) {
-            $query->whereNotNull('price');
+            $query->whereNotNull('price')
+                ->where('price', '>=', $minPrice)
+                ->where('price', '<=', $maxPrice);
         })->get();
 
-        // Agar narxga mos keladigan mahsulotlar bo‘lmasa, faqat kategoriyaga tegishli mahsulotlarni qaytaramiz
         if ($filteredProducts->isEmpty() && !empty($categories)) {
             $products = $products->get();
         } else {
@@ -193,6 +192,7 @@ class MainController extends Controller
 
         return view('pages.search-products', compact('products', 'categories', 'search'));
     }
+
 
 
     public function checkout()

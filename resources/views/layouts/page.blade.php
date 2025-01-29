@@ -39,6 +39,7 @@
                     <small class="">@lang('home.tel')</small>
                 </a>
 
+
                 <li class="d-flex flex-column align-items-center nav-link text-center nav-item text-dark">
                     <a href="{{ route('cart') }}" class="icon position-relative p-0">
                         <svg width="26" height="25" viewBox="0 0 30 29" fill="none"
@@ -63,6 +64,39 @@
                         @endif
                     </a>
                     <small class="">@lang('home.basket')</small>
+                </li>
+                <li class="d-flex flex-column align-items-center nav-link text-center nav-item text-dark">
+                    <a href="/compare" class="icon position-relative p-0">
+                        <svg version="1.0" xmlns="http://www.w3.org/2000/svg" width="26" height="25"
+                             viewBox="0 0 512.000000 512.000000" preserveAspectRatio="xMidYMid meet">
+                            <g transform="translate(0.000000,512.000000) scale(0.100000,-0.100000)"
+                               fill="#000" stroke="none">
+                                <path d="M2015 4786 c-41 -18 -83 -69 -90 -109 -3 -18 -4 -982 -3 -2144 l3
+    -2112 21 -27 c11 -15 33 -37 48 -48 27 -21 38 -21 566 -21 528 0 539 0 566 21
+    15 11 37 33 48 48 l21 27 0 2139 0 2139 -21 27 c-11 15 -33 37 -48 48 -27 21
+    -40 21 -554 23 -423 2 -533 0 -557 -11z m865 -2226 l0 -1920 -320 0 -320 0 0
+    1920 0 1920 320 0 320 0 0 -1920z" />
+                                <path d="M3615 3506 c-41 -18 -83 -69 -90 -109 -3 -18 -4 -694 -3 -1504 3
+    -1468 3 -1472 24 -1499 11 -15 33 -37 48 -48 27 -21 38 -21 566 -21 528 0 539
+    0 566 21 15 11 37 33 48 48 21 27 21 28 21 1526 0 1498 0 1499 -21 1526 -11
+    15 -33 37 -48 48 -27 21 -40 21 -554 23 -423 2 -533 0 -557 -11z m865 -1586
+    l0 -1280 -320 0 -320 0 0 1280 0 1280 320 0 320 0 0 -1280z" />
+                                <path d="M415 2226 c-41 -18 -83 -69 -90 -109 -3 -18 -5 -406 -3 -864 3 -822
+    3 -832 24 -859 11 -15 33 -37 48 -48 27 -21 38 -21 566 -21 528 0 539 0 566
+    21 15 11 37 33 48 48 21 27 21 34 21 886 0 852 0 859 -21 886 -11 15 -33 37
+    -48 48 -27 21 -40 21 -554 23 -423 2 -533 0 -557 -11z m865 -946 l0 -640 -320
+    0 -320 0 0 640 0 640 320 0 320 0 0 -640z" />
+                            </g>
+                        </svg>
+                        @if(session('compares') && count(session('compares')) > 0)
+                            <span class="badge badge-pill badge-danger badge-position rounded-circle compare" id="compare-count">
+                                        {{ count(session('compares')) }}
+                                    </span>
+                        @else
+                            <span class="badge badge-pill badge-danger badge-position rounded-circle compare text-black" id="compare-count"></span>
+                        @endif
+                    </a>
+                    <small class="">@lang('home.comparison')</small>
                 </li>
                 <li class="d-flex flex-column align-items-center nav-link text-center nav-item text-dark">
                     <a href="/favorites" class="icon position-relative p-0">
@@ -96,7 +130,7 @@
                             <label for="name" class="form-label">@lang('home.full_name') <span
                                     class="text-danger">*</span></label>
                             <input type="text" class="form-control focus_none" id="name" name="first_name"
-                                placeholder="Enter your name" required />
+                                placeholder="@lang('home.message_input2')" required />
                         </div>
                         <div class="mb-3">
                             <label for="phone" class="form-label">@lang('home.enter_number') <span
