@@ -82,19 +82,21 @@ class MainBannerController extends Controller
 
         // Agar rasm mavjud bo'lsa, o'chirish
         if (($key = array_search($imagePath, $mainBanner->images)) !== false) {
+            // O'chirishdan oldin rasmni o'zgartirib, saqlang
             unset($mainBanner->images[$key]); // Arraydan rasmni o'chirish
             Storage::disk('public')->delete($imagePath); // Serverdan rasmni o'chirish
         }
 
         // `images` arrayini yangilash
-        $mainBanner->images = array_values($mainBanner->images); // Arrayni yangilash
+        $mainBanner->images = array_values($mainBanner->images); // Arrayni qayta indekslash
 
-        // Ma'lumotlar bazasini yangilash
-        $mainBanner->save();
+        // `MainBanner` modelini saqlash
+        $mainBanner->save(); // `images`ni yangilab saqlash
 
         // Foydalanuvchiga muvaffaqiyatli xabarni qaytarish
         return redirect()->back()->with('success', 'Rasm muvaffaqiyatli o‘chirildi!');
     }
+
 
 
 }
