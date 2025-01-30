@@ -159,7 +159,7 @@ class MainController extends Controller
         $search = $request->input('search');
         $products = Product::where('name_' . $lang, 'like', '%' . $search . '%')
             ->orWhere('description_' . $lang, 'like', '%' . $search . '%')
-            ->paginate(10);
+            ->paginate(9);
 
         return view('pages.search-products', compact('products', 'lang', 'search'));
     }
@@ -179,7 +179,7 @@ class MainController extends Controller
             $query->whereNotNull('price')
                 ->where('price', '>=', $minPrice)
                 ->where('price', '<=', $maxPrice);
-        })->paginate(10);
+        })->paginate(9);
 
         if ($filteredProducts->isEmpty() && !empty($categories)) {
             $products = $products->get();
@@ -212,7 +212,7 @@ class MainController extends Controller
         })->firstOrFail();
 
         // Get the products associated with this category
-        $products = $category->products()->paginate(10);
+        $products = $category->products()->paginate(9);
         $search = $request->input('search');
 
         return view('pages.search-products', compact('products', 'category', 'search'));
