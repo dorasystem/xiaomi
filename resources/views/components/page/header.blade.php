@@ -382,7 +382,7 @@ $categories = Category::whereNull('parent_id')->orderBy('id', 'desc')->get();
                 <div class="d-sm-none d-block w-100">
                     <div class="accordion" id="mobileCategoryAccordion">
                         @foreach($categories as $index => $category)
-                            <div class="accordion-item">
+                            <div class="accordion-item px-2">
                                 <h2 class="accordion-header" id="heading{{ $category->id }}">
                                     <button class="accordion-button {{ $index !== 0 ? 'collapsed' : '' }}" type="button"
                                             data-bs-toggle="collapse" data-bs-target="#collapse{{ $category->id }}"
