@@ -104,6 +104,61 @@
                                 {{ session('cart') ? collect(session('cart'))->sum('quantity') : 0 }}</small>
                         </div>
                         <hr class="my-4 text-history" />
+
+
+                        @php
+                            function formatPrice($price) {
+                                return number_format($price, 0, '.', ' '); // Narxni "1 000 000" formatida chiqarish
+                            }
+                        @endphp
+                        <ul class="nav nav-pills nav-justified mb-3 border rounded" id="payment-tabs" role="tablist">
+                            <li class="nav-item w-50" role="presentation">
+                                <button class="nav-link active" id="pay-now-tab" data-bs-toggle="pill" data-bs-target="#pay-now"
+                                        type="button" role="tab" aria-controls="pay-now" aria-selected="true">
+                                    Оплатить сразу
+                                </button>
+                            </li>
+                            <li class="nav-item w-50" role="presentation">
+                                <button class="nav-link" id="installment-tab" data-bs-toggle="pill" data-bs-target="#installment"
+                                        type="button" role="tab" aria-controls="installment" aria-selected="false">
+                                    Рассрочка
+                                </button>
+                            </li>
+                        </ul>
+
+                        <!-- Tab content -->
+                        <div class="tab-content">
+                            <!-- Оплатить сразу bosilganda hech nima chiqmasligi uchun bo‘sh tab -->
+                            <div class="tab-pane fade show active" id="pay-now" role="tabpanel" aria-labelledby="pay-now-tab">
+                                <!-- Bo‘sh qoldirilgan -->
+                            </div>
+
+                            <div class="tab-pane fade" id="installment" role="tabpanel" aria-labelledby="installment-tab">
+                                <div>
+                                    <div>
+                                        <div class="d-flex gap-2 justify-content-center mb-3 fs-14 p-1 rounded bg-white price-6 installment-option"
+                                             onclick="selectInstallmentOption(this)">
+                                            <span class="text-orange">6</span> @lang('home.month')
+                                            <span class="text-orange" id="totalPrice6">{{ number_format($totalPrice6, 0, '.', ' ') }} UZS</span>
+                                        </div>
+                                        <div class="d-flex gap-2 justify-content-center mb-3 fs-14 p-1 rounded bg-white price-12 installment-option"
+                                             onclick="selectInstallmentOption(this)">
+                                            <span class="text-orange">12</span> @lang('home.month')
+                                            <span class="text-orange" id="totalPrice12">{{ number_format($totalPrice12, 0, '.', ' ') }} UZS</span>
+                                        </div>
+                                        <div class="d-flex gap-2 justify-content-center mb-3 fs-14 p-1 rounded bg-white price-24 installment-option"
+                                             onclick="selectInstallmentOption(this)">
+                                            <span class="text-orange">24</span> @lang('home.month')
+                                            <span class="text-orange" id="totalPrice24">{{ number_format($totalPrice24, 0, '.', ' ') }} UZS</span>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+
+ 
+
+                        </div>
+                        <p class="border-bottom-dashed py-1   w-100"></p>
                         @foreach ($cartProducts as $cartItem)
                             <div id="item-{{ $cartItem['id'] }}" class="d-flex align-items-start justify-content-between">
                                 <div class="small">{{ $cartItem['name'] }}</div>
@@ -133,25 +188,7 @@
                 </div>
             </div>
         @else
-            <style>
-                .card {
-                    text-align: center;
-                    border: none;
-                    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
-                    transition: transform 0.2s;
-                }
 
-                .card:hover {
-                    transform: scale(1.05);
-                }
-
-                .card img {
-                    width: 50px;
-                    height: auto;
-                    margin: auto;
-                    padding: 10px;
-                }
-            </style>
             <div class="text-center" id="empty-cart">
                 <img width="350px" src="/assets/images/not-found.png" alt="">
             </div>
@@ -188,45 +225,47 @@
                         change: change
                     },
                     success: function(response) {
+                        console.log(response)
                         if (response.success) {
                             const updatedItem = response.updated_item;
 
                             const countElement = $('#item-' + updatedItem.id + ' .count');
                             countElement.text(updatedItem.quantity);
+
                             const priceContainer = $('#item-' + updatedItem.id + ' .price');
                             const delContainer = $('#item-' + updatedItem.id + ' del');
 
-                            const basePrice = parseFloat(priceContainer.data('price')); // Asosiy narx
-                            const discountPrice = parseFloat(priceContainer.data('discount-price')) ||
-                                null; // Chegirma narxi
+                            // Narxlarni olish va NaN muammosini oldini olish
+                            const basePrice = parseFloat(priceContainer.data('price')) || 0;
+                            const discountPrice = parseFloat(priceContainer.data('discount-price')) || 0;
 
                             let priceHtml = '';
-                            if (discountPrice) {
+                            if (discountPrice > 0) {
                                 priceHtml = `
-                            ${new Intl.NumberFormat('ru-RU').format(discountPrice * updatedItem.quantity)} UZS
-                                `;
+                    ${new Intl.NumberFormat('ru-RU').format(discountPrice * updatedItem.quantity)} UZS
+                    `;
 
                                 priceContainer.attr('data-total', discountPrice * updatedItem.quantity);
 
                                 if (delContainer.length) {
                                     delContainer.html(`
+                        <small data-total-original="${basePrice * updatedItem.quantity}">
+                            ${new Intl.NumberFormat('ru-RU').format(basePrice * updatedItem.quantity)}
+                        </small> UZS
+                        `);
+                                } else {
+                                    priceContainer.after(`
+                        <del class="text-danger">
                             <small data-total-original="${basePrice * updatedItem.quantity}">
                                 ${new Intl.NumberFormat('ru-RU').format(basePrice * updatedItem.quantity)}
                             </small> UZS
-                            `);
-                                } else {
-                                    priceContainer.after(`
-                            <del class="text-danger">
-                                <small data-total-original="${basePrice * updatedItem.quantity}">
-                                    ${new Intl.NumberFormat('ru-RU').format(basePrice * updatedItem.quantity)}
-                                </small> UZS
-                            </del>
-                            `);
+                        </del>
+                        `);
                                 }
                             } else {
                                 priceHtml = `
-                             ${new Intl.NumberFormat('ru-RU').format(basePrice * updatedItem.quantity)} UZS
-                            `;
+                    ${new Intl.NumberFormat('ru-RU').format(basePrice * updatedItem.quantity)} UZS
+                    `;
 
                                 priceContainer.attr('data-total', basePrice * updatedItem.quantity);
 
@@ -246,6 +285,9 @@
 
                             decrementButton.prop('disabled', updatedItem.quantity <= 1);
                             incrementButton.prop('disabled', updatedItem.quantity >= updatedItem.max_quantity);
+
+                            // ✅ 6, 12, 24 oylik summalarni yangilash
+                            updateInstallmentPrices(response.totalPrice6, response.totalPrice12, response.totalPrice24);
                         }
                     },
                     error: function(xhr) {
@@ -253,6 +295,16 @@
                     }
                 });
             }
+
+            // ✅ 6, 12, 24 oylik summalarni yangilash
+            function updateInstallmentPrices(price6, price12, price24) {
+                $('#totalPrice6').text(new Intl.NumberFormat('ru-RU').format(price6) + ' UZS');
+                $('#totalPrice12').text(new Intl.NumberFormat('ru-RU').format(price12) + ' UZS');
+                $('#totalPrice24').text(new Intl.NumberFormat('ru-RU').format(price24) + ' UZS');
+            }
+
+
+
 
 
             function removeFromCart(productId) {
@@ -332,6 +384,8 @@
                     }
                 });
             }
+
+
         </script>
     </main>
     {{-- modal --}}
@@ -469,4 +523,57 @@
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/toastify-js/src/toastify.min.css">
 
     <script src="https://cdn.jsdelivr.net/npm/toastify-js"></script>
+    <style>
+        .card {
+            text-align: center;
+            border: none;
+            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+            transition: transform 0.2s;
+        }
+
+        .card:hover {
+            transform: scale(1.05);
+        }
+
+        .card img {
+            width: 50px;
+            height: auto;
+            margin: auto;
+            padding: 10px;
+        }
+
+        #payment-tabs .nav-link {
+
+            color: #333 !important; /* Matn rangi */
+            border-radius: 5px !important; /* Yumaloq burchaklar */
+            padding: 2px 20px !important;
+            font-size: 14px !important;
+            transition: background 0.3s, color 0.3s !important;
+            width: 100% !important;
+            border: none !important;
+        }
+
+        #payment-tabs .nav-link.active {
+            background-color: #ff6700 !important; /* Xiaomi brendi rangi */
+            color: white !important;
+            box-shadow: 0px 4px 6px rgba(255, 103, 0, 0.3) !important;
+        }
+        .installment-option{
+            cursor: pointer;
+        }
+
+
+    </style>
+    <script>
+        function selectInstallmentOption(element) {
+            // Barcha tanlangan variantlarga "bg-lightorange" va "border-orange" classlarini olib tashlash
+            var allOptions = document.querySelectorAll('.installment-option');
+            allOptions.forEach(function(option) {
+                option.classList.remove('bg-lightorange', 'border-orange');
+            });
+
+            // Tanlangan variantga kerakli classlarni qo'shish
+            element.classList.add('bg-lightorange', 'border-orange');
+        }
+    </script>
 @endsection
