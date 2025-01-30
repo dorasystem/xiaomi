@@ -186,7 +186,7 @@ $isInCompare = in_array($product->id, session('compares', []));
                                 }
                             @endphp
 
-                            <div class="fs-24 fw-bold mb-2" id="price-display">
+                            <div class="fs-24 fw-bold mb-2" >
                                 {{ number_format($variants->first()->price, 0, ',', ' ') }}  <span>UZS</span>
                             </div>
                             <div class="">
