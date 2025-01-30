@@ -74,6 +74,7 @@ class CategoryController extends Controller
 
     public function update(Request $request, $id)
     {
+
         $category = Category::findOrFail($id);
 
         $request->validate([
@@ -83,6 +84,7 @@ class CategoryController extends Controller
             'name_en' => 'nullable|string|max:255',
             'image' => 'nullable|image|mimes:jpeg,png,jpg,gif,svg,webp|max:2048',
         ]);
+
 
         if ($request->hasFile('image')) {
             // Eski rasmni o‘chirish
@@ -102,6 +104,7 @@ class CategoryController extends Controller
             'description_ru' => $request->description_ru,
             'description_en' => $request->description_en,
         ]);
+
 
         // Slug'ni yangilash
         $category->slug = json_encode([

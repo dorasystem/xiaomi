@@ -90,12 +90,13 @@
                                         <select id="parent_id" name="parent_id" class="form-control">
                                             <option value="">-- Без родителя --</option> <!-- Ota kategoriyasiz variant -->
                                             @foreach ($categories as $item)
-                                                <option value="{{ $category->id }}"
-                                                    {{ $category->parent_id == $item->id ? 'selected' : '' }}>
+                                                <option value="{{ $item->id }}"
+                                                    {{ isset($category) && $category->parent_id == $item->id ? 'selected' : '' }}>
                                                     {{ $item->name_ru }}
                                                 </option>
                                             @endforeach
                                         </select>
+
                                     </div>
                                 </div>
                             </div>
