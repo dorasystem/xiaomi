@@ -14,7 +14,7 @@ class VacancyController extends Controller
 
     public function index()
     {
-        $vacancies = Vacancy::all();
+        $vacancies = Vacancy::orderBy('id','desc')->get();
         return view('admin.vacancies.index', compact('vacancies'));
     }
 

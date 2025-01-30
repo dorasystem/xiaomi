@@ -12,7 +12,7 @@ class CandidantController extends Controller
     public function index()
     {
 
-        $candidants = Candidant::with('vacancy')->get();
+        $candidants = Candidant::with('vacancy')->orderBy('created_at', 'desc')->get();
         return view('admin.candidants.index', compact('candidants'));
     }
 

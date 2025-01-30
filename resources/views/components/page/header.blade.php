@@ -6,7 +6,7 @@
     use App\Models\Category;
 
     $currentLocale = app()->getLocale();
-    $categories = Category::orderBy('id', 'asc')->take(8)->get();
+    $categories = Category::orderBy('id', 'asc')->get();
     $childCategories = Category::with('children')->get();
     $lang = App::getLocale();
     $links = Contact::first();

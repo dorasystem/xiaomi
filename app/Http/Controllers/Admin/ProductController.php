@@ -29,7 +29,7 @@ class ProductController extends Controller
     // Display list of products
     public function index()
     {
-        $products = Product::all(); // You can paginate or filter this based on requirements
+        $products = Product::orderBy('id','desc')->get(); // You can paginate or filter this based on requirements
         return view('admin.products.index', compact('products'));
     }
 
