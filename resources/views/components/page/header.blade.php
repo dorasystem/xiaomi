@@ -333,7 +333,7 @@ $categories = Category::whereNull('parent_id')->orderBy('id', 'desc')->get();
     </div>
 
     {{--    Katalog modal start--}}
-    <div style="display: none; top: 85px" class="rounded-bottom container px-0 katalog" id="Katalog">
+    <div style="display: none; top: 130px" class="rounded-bottom container px-0 katalog" id="Katalog">
         <div class="py-2 pt-4">
             <div class="d-flex">
                 <div class="left  d-sm-block d-none">
