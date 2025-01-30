@@ -1,3 +1,4 @@
+@php use Illuminate\Support\Facades\Route; @endphp
 @extends('layouts.page')
 <?php
 $lang = app()->getLocale();
@@ -115,7 +116,7 @@ $categories = \App\Models\Category::all();
                                         <div class="accordion-body">
                                             <div class="form-check mb-3">
                                                 <input class="form-check-input" type="checkbox" id="all-categories"
-                                                    {{ count(request('categories', [])) === $categories->count() ? 'checked' : '' }} />
+                                                    {{ request()->has('categories') && count(request('categories', [])) === $categories->count() ? 'checked' : '' }} />
                                                 <label class="form-check-label" for="all-categories">
                                                     <small>@lang('home.all_categories')</small>
                                                 </label>
@@ -124,9 +125,21 @@ $categories = \App\Models\Category::all();
                                             <!-- Individual checkboxes -->
                                             <div id="category-container">
                                                 @foreach ($categories as $index => $category)
+                                                    @php
+
+
+                                                        // ✅ 1. Query string orqali kelgan kategoriyalarni olish
+                                                        $selectedCategories = request()->has('categories') ? request('categories') : [];
+
+                                                        // ✅ 2. Agar kategoriya {slug} orqali kelgan bo‘lsa, slug bo‘yicha tekshirish
+                                                        $currentCategorySlug = Route::current()->parameter('category');
+                                                        $isChecked = in_array($category->id, $selectedCategories) || ($currentCategorySlug && $category->slug == $currentCategorySlug);
+                                                    @endphp
+
                                                     <div class="form-check mb-3 category-item" style="display: {{ $index < 10 ? 'block' : 'none' }}">
                                                         <input class="form-check-input category-checkbox" type="checkbox" name="categories[]"
-                                                               value="{{ $category->id }}" id="category-{{ $category->id }}" checked />
+                                                               value="{{ $category->id }}" id="category-{{ $category->id }}"
+                                                            {{ $isChecked ? 'checked' : '' }} />
                                                         <label class="form-check-label" for="category-{{ $category->id }}">
                                                             <small>{{ $category['name_' . $lang] }}</small>
                                                         </label>
