@@ -121,16 +121,21 @@ $categories = \App\Models\Category::all();
                                                 </label>
                                             </div>
 
-                                            @foreach ($categories as $category)
-                                                <div class="form-check mb-3">
-                                                    <input class="form-check-input category-checkbox" type="checkbox" name="categories[]"
-                                                           value="{{ $category->id }}" id="category-{{ $category->id }}"
-                                                        {{ in_array($category->id, request('categories', [])) ? 'checked' : '' }} />
-                                                    <label class="form-check-label" for="category-{{ $category->id }}">
-                                                        <small>{{ $category['name_' . $lang] }}</small>
-                                                    </label>
-                                                </div>
-                                            @endforeach
+                                            <!-- Individual checkboxes -->
+                                            <div id="category-container">
+                                                @foreach ($categories as $index => $category)
+                                                    <div class="form-check mb-3 category-item" style="display: {{ $index < 10 ? 'block' : 'none' }}">
+                                                        <input class="form-check-input category-checkbox" type="checkbox" name="categories[]"
+                                                               value="{{ $category->id }}" id="category-{{ $category->id }}" checked />
+                                                        <label class="form-check-label" for="category-{{ $category->id }}">
+                                                            <small>{{ $category['name_' . $lang] }}</small>
+                                                        </label>
+                                                    </div>
+                                                @endforeach
+                                            </div>
+
+                                            <!-- Ko'proq ko'rsatish tugmasi -->
+                                            <a id="showMoreBtn" class="w-100 btn-orange2 rounded text-center mb-3 btn">Ko'proq ko'rsatish</a>
 
                                         </div>
                                     </div>
@@ -626,5 +631,46 @@ $categories = \App\Models\Category::all();
                 }
             });
         }
+    </script>
+    {{--ko'proq ko'rsatish scripti va css--}}
+    <style>
+        .btn-orange2 {
+            background-color: #ff6600;
+            color: white;
+            font-size: 12px;
+            padding: 5px 10px;
+            border-radius: 5px;
+            border: none;
+            transition: 0.3s;
+        }
+
+        .btn-orange2:hover {
+            background-color: #e65c00;
+        }
+
+    </style>
+    <script>
+        document.addEventListener("DOMContentLoaded", function () {
+            let hiddenCategories = document.querySelectorAll(".category-item");
+            let showMoreBtn = document.getElementById("showMoreBtn");
+            let visibleCount = 10; // Boshlang'ich ko'rsatilgan kategoriya soni
+
+            showMoreBtn.addEventListener("click", function () {
+                let nextVisibleCount = visibleCount + 10;
+                let foundHidden = false;
+
+                hiddenCategories.forEach((item, index) => {
+                    if (index >= visibleCount && index < nextVisibleCount) {
+                        item.style.display = "block";
+                        foundHidden = true;
+                    }
+                });
+
+                visibleCount = nextVisibleCount;
+                if (!foundHidden) {
+                    showMoreBtn.style.display = "none";
+                }
+            });
+        });
     </script>
 @endsection
