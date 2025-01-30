@@ -337,7 +337,6 @@ $categories = Category::whereNull('parent_id')->orderBy('id', 'desc')->get();
         <div class="py-2 pt-4">
             <div class="d-flex">
                 <div class="left">
-                    @if()
                         @foreach($categories as $index => $category)
                             <p class="hover-content d-flex align-items-center gap-2 {{ $index === 0 ? 'hover-catalog' : '' }}"
                                data-target="content0{{ $category->id }}">
