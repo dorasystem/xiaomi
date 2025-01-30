@@ -333,10 +333,10 @@ $categories = Category::whereNull('parent_id')->orderBy('id', 'desc')->get();
     </div>
 
     {{--    Katalog modal start--}}
-    <div style="display: none" class="rounded-bottom container px-0 katalog" id="Katalog">
+    <div style="display: none; top: 85px" class="rounded-bottom container px-0 katalog" id="Katalog">
         <div class="py-2 pt-4">
             <div class="d-flex">
-                <div class="left">
+                <div class="left  d-sm-block d-none">
                         @foreach($categories as $index => $category)
                             <p class="hover-content d-flex align-items-center gap-2 {{ $index === 0 ? 'hover-catalog' : '' }}"
                                data-target="content0{{ $category->id }}">
@@ -379,6 +379,42 @@ $categories = Category::whereNull('parent_id')->orderBy('id', 'desc')->get();
                         </div>
                     @endforeach
                 </div>
+                <div class="d-sm-none d-block w-100">
+                    <div class="accordion" id="mobileCategoryAccordion">
+                        @foreach($categories as $index => $category)
+                            <div class="accordion-item">
+                                <h2 class="accordion-header" id="heading{{ $category->id }}">
+                                    <button class="accordion-button {{ $index !== 0 ? 'collapsed' : '' }}" type="button"
+                                            data-bs-toggle="collapse" data-bs-target="#collapse{{ $category->id }}"
+                                            aria-expanded="{{ $index === 0 ? 'true' : 'false' }}"
+                                            aria-controls="collapse{{ $category->id }}">
+                                        <img src="{{ asset('storage/' . $category->icon) }}" width="30px" class="me-2"
+                                             alt="{{ $category['name_' . $lang] }}" />
+                                        {{ $category['name_' . $lang] }}
+                                    </button>
+                                </h2>
+                                <div id="collapse{{ $category->id }}" class="accordion-collapse collapse {{ $index === 0 ? 'show' : '' }}"
+                                     aria-labelledby="heading{{ $category->id }}" data-bs-parent="#mobileCategoryAccordion">
+                                    <div class="accordion-body">
+                                        @forelse($category->children as $childCategory)
+                                            <a href="{{ route('category.sort', ['slug' => $childCategory->getSlugByLanguage($lang)]) }}"
+                                               class="d-flex align-items-center gap-2 mb-2">
+                                                <img src="{{ asset('storage/' . $childCategory->icon) }}" width="30px" class="me-2"
+                                                     alt="{{ \Str::words($childCategory['name_' . $lang], 3) }}" />
+                                                <div class="cart fw-bold">{{ \Str::words($childCategory['name_' . $lang], 3) }}</div>
+                                            </a>
+                                        @empty
+                                            <a href="javascript:void(0)" class="col-md-4 col-sm-6 col-12 mb-2">
+                                                <div class="cart fw-bold">{{ __('messages.not_available') }}</div>
+                                            </a>
+                                        @endforelse
+                                    </div>
+                                </div>
+                            </div>
+                        @endforeach
+                    </div>
+                </div>
+
             </div>
             <script>
                 document.addEventListener("DOMContentLoaded", function () {
