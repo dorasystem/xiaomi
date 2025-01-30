@@ -59,13 +59,14 @@ class MainController extends Controller
         $news2 = News::orderBy('date', 'desc')->skip(4)->take(4)->get();
         $categories = Category::latest()->get();
         $category1 = $categories->firstWhere('id', 1);
+        $category37 = $categories->firstWhere('id', 37);
         $category2 = $categories->firstWhere('id', 2);
         $category3 = $categories->skip(2)->first();
         $category4 = $categories->skip(3)->first();
         $category5 = $categories->skip(4)->first();
         $category6 = $categories->skip(5)->first();
         $category7 = $categories->skip(6)->first();
-        return view('pages.home', compact('new', 'news1', 'news2', 'products', 'locations', 'banner', 'categories', 'category1', 'category2', 'category3', 'category4', 'category5', 'category6', 'category7', 'translations', 'newProducts', 'randomProducts', 'products', 'productsWithoutRandom'));
+        return view('pages.home', compact('new', 'news1', 'news2', 'products', 'locations', 'banner', 'categories', 'category1', 'category2', 'category3', 'category4', 'category5', 'category6', 'category7', 'translations', 'newProducts', 'randomProducts', 'products', 'productsWithoutRandom','category37'));
     }
     public function about()
     {

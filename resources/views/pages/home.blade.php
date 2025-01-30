@@ -79,13 +79,8 @@ foreach ($keywords as $keyword) {
                             <div style="background-image: url({{ asset('storage/' . $banner->image2) }});"
                                  class="banner2 rounded p-lg-4 p-2 d-flex flex-column justify-content-between align-items-start">
                                 <div class="fw-bold">{{ __('messages.smart_home') }}</div>
-                                @php
 
-                                    $categoryIds = [1, 2, 3, 4, 5, 6, 7];
-                                    $queryString = http_build_query(['categories' => $categoryIds]);
-                                @endphp
-
-                                <a href="{{ route('products.filter') . '?' . $queryString }}"
+                                <a href="{{ route('category.sort', ['slug' => $category37->getSlugByLanguage($lang)]) }}"
                                    class="btn-orange rounded px-4 py-1">@lang('home.smartphonesAll')</a>
                             </div>
                         </div>
