@@ -101,7 +101,9 @@
                         <div class="d-flex align-items-center justify-content-between">
                             <h4 class="text-orange">@lang('home.your_order')</h4>
                             <small id="cart-count">@lang('home.products'):
-                                {{ session('cart') ? collect(session('cart'))->sum('quantity') : 0 }}</small>
+                                <span id="totalQuantity">{{ session('cart') ? collect(session('cart'))->sum('quantity') : 0 }}</span>
+                            </small>
+
                         </div>
                         <hr class="my-4 text-history" />
 
@@ -155,7 +157,7 @@
                                 </div>
                             </div>
 
- 
+
 
                         </div>
                         <p class="border-bottom-dashed py-1   w-100"></p>
@@ -235,37 +237,41 @@
                             const priceContainer = $('#item-' + updatedItem.id + ' .price');
                             const delContainer = $('#item-' + updatedItem.id + ' del');
 
+                            // 🔹 Savatdagi umumiy mahsulotlar sonini yangilash
+                            $('#totalQuantity').text(response.total_quantity);
+
                             // Narxlarni olish va NaN muammosini oldini olish
                             const basePrice = parseFloat(priceContainer.data('price')) || 0;
                             const discountPrice = parseFloat(priceContainer.data('discount-price')) || 0;
 
+
                             let priceHtml = '';
                             if (discountPrice > 0) {
                                 priceHtml = `
-                    ${new Intl.NumberFormat('ru-RU').format(discountPrice * updatedItem.quantity)} UZS
-                    `;
+                                    ${new Intl.NumberFormat('ru-RU').format(discountPrice * updatedItem.quantity)} UZS
+                                    `;
 
                                 priceContainer.attr('data-total', discountPrice * updatedItem.quantity);
 
                                 if (delContainer.length) {
                                     delContainer.html(`
-                        <small data-total-original="${basePrice * updatedItem.quantity}">
-                            ${new Intl.NumberFormat('ru-RU').format(basePrice * updatedItem.quantity)}
-                        </small> UZS
-                        `);
+                                                       <small data-total-original="${basePrice * updatedItem.quantity}">
+                                                            ${new Intl.NumberFormat('ru-RU').format(basePrice * updatedItem.quantity)}
+                                                        </small> UZS
+                                                        `);
                                 } else {
                                     priceContainer.after(`
-                        <del class="text-danger">
-                            <small data-total-original="${basePrice * updatedItem.quantity}">
-                                ${new Intl.NumberFormat('ru-RU').format(basePrice * updatedItem.quantity)}
-                            </small> UZS
-                        </del>
-                        `);
+                                        <del class="text-danger">
+                                            <small data-total-original="${basePrice * updatedItem.quantity}">
+                                                ${new Intl.NumberFormat('ru-RU').format(basePrice * updatedItem.quantity)}
+                                            </small> UZS
+                                        </del>
+                                        `);
                                 }
                             } else {
                                 priceHtml = `
-                    ${new Intl.NumberFormat('ru-RU').format(basePrice * updatedItem.quantity)} UZS
-                    `;
+                                    ${new Intl.NumberFormat('ru-RU').format(basePrice * updatedItem.quantity)} UZS
+                                    `;
 
                                 priceContainer.attr('data-total', basePrice * updatedItem.quantity);
 

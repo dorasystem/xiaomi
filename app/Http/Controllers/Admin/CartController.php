@@ -159,40 +159,33 @@ class CartController extends Controller
         $totalDiscount = 0;
         $discountedTotal = 0;
 
-        // Mahsulot ID bo‘yicha savatcha tekshirish
         if (isset($cart[$request->id])) {
             $cart[$request->id]['quantity'] += $request->change;
 
-            // Agar miqdor 0 yoki manfiy bo‘lsa, savatdan o‘chirib tashlash
             if ($cart[$request->id]['quantity'] <= 0) {
                 unset($cart[$request->id]);
             } else {
-                // Umumiy narxni hisoblash
                 $cart[$request->id]['total_price'] = $cart[$request->id]['quantity'] * ($cart[$request->id]['discount_price'] ?? $cart[$request->id]['price']);
             }
 
-            // Savatchani yangilash
             session()->put('cart', $cart);
         }
 
-        // 6, 12, 24 oylik narxlar uchun umumiy yig‘indilar
+        $totalQuantity = collect($cart)->sum('quantity');
+
         $totalPrice6 = 0;
         $totalPrice12 = 0;
         $totalPrice24 = 0;
 
-        // Variant ID larni olish
         $variantIds = collect($cart)->pluck('variant_id')->toArray();
         $variants = Variant::whereIn('id', $variantIds)->get();
 
         foreach ($cart as $item) {
             $variant = $variants->where('id', $item['variant_id'])->first();
-
-            // Chegirmalar va umumiy narxlarni hisoblash
             $itemPrice = $item['discount_price'] ?? $item['price'];
             $totalDiscount += ($item['price'] - $itemPrice) * $item['quantity'];
             $discountedTotal += $itemPrice * $item['quantity'];
 
-            // Agar variant mavjud bo‘lsa, 6-12-24 oylik narxlarni ham hisoblash
             if ($variant) {
                 $totalPrice6 += ($variant->price_6 ?? 0) * $item['quantity'];
                 $totalPrice12 += ($variant->price_12 ?? 0) * $item['quantity'];
@@ -208,7 +201,8 @@ class CartController extends Controller
                 'price' => $cart[$request->id]['price'],
                 'discount_price' => $cart[$request->id]['discount_price'] ?? null,
                 'total_price' => $cart[$request->id]['total_price'],
-            ] : null, // Agar mahsulot o‘chirilgan bo‘lsa, null qaytarish
+            ] : null,
+            'total_quantity' => $totalQuantity, // ✅ Umumiy mahsulotlar soni
             'total_amount' => $discountedTotal,
             'total_discount' => $totalDiscount,
             'totalPrice6' => $totalPrice6,
@@ -216,6 +210,7 @@ class CartController extends Controller
             'totalPrice24' => $totalPrice24
         ]);
     }
+
 
     public function toggleFavorite(Request $request)
     {
