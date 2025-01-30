@@ -453,7 +453,7 @@ foreach ($keywords as $keyword) {
             <div id="product-prev" class="swiper-button-prev start-0"></div>
 
         </div>
-        <div class="my-lg-3 my-0 col-lg-3  text-end mx-2">
+        <div class="my-lg-3 my-0 col-lg-3  text-end mx-2 d-md-none d-block">
             <a href="{{ route('products') }}"
                class="pb-2 view_all_btn text-orange border-0 bg-transparent mb-4 text-end">@lang('home.smartphonesAll')
                 <svg width="16" height="16" viewBox="0 0 23 23" fill="none"
@@ -478,44 +478,38 @@ foreach ($keywords as $keyword) {
         <div class="banner py-5 my-5">
             <div class="container">
                 <h2>@lang('home.our_advantages')</h2>
-                <div class="d-flex justify-content-between advantages py-4 gap-5">
-                    <div class="d-flex flex-column gap-3 align-items-center">
-                        <img src="/assets/icons/check-icon.svg" alt=""/>
-                        <div class="text-center text-nowrap"><span class="fw-bold">Xiaomi</span>
-                            <br/>@lang('home.authorized_store')
+                <div class="p-4">
+                    <div class="row gy-4 justify-content-center text-white">
+                        <div class="col-md-3 col-6 d-flex flex-column align-items-center text-center gap-2">
+                            <img src="/assets/icons/check-icon.svg" alt="" width="65" height="65"/>
+                            <div><span class="fw-bold">Xiaomi</span><br/>@lang('home.authorized_store')</div>
                         </div>
-                    </div>
-                    <div class="d-flex flex-column gap-2 align-items-center">
-                        <img src="/assets/icons/truck-icon.svg" alt=""/>
-                        <div class="text-center text-nowrap">
-                            <span class="fw-bold">@lang('home.delivery')</span> <br/>
-                            @lang('home.all_over_uzbekistan')
+                        <div class="col-md-3 col-6 d-flex flex-column align-items-center text-center gap-2">
+                            <img src="/assets/icons/settings.svg" alt="" width="65" height="65"/>
+                            <div class="text-center text-nowrap">
+                                <span class="fw-bold">@lang('home.free')</span> <br/>
+                                @lang('home.device_setup')
+                            </div>
                         </div>
-                    </div>
-                    <div class="d-flex flex-column gap-3 align-items-center">
-                        <img src="/assets/icons/shop-icon.svg" alt=""/>
-                        <div class="text-center text-nowrap">
-                            <span class="fw-bold">@lang('home.pickup')</span> <br/>
-                            @lang('home.from_the_nearest_store')
+                        <div class="col-md-3 col-6 d-flex flex-column align-items-center text-center gap-2">
+                            <img src="/assets/icons/shop-icon.svg" alt="" width="65" height="65"/>
+                            <div><span class="fw-bold">@lang('home.pickup')</span><br/>@lang('home.from_the_nearest_store')</div>
                         </div>
-                    </div>
-                    <div class="d-flex flex-column gap-3 align-items-center">
-                        <img src="/assets/icons/calendar.svg" alt=""/>
-
-                        <div class="text-center text-nowrap">
-                            <span class="fw-bold">@lang('home.favorable_installment_plan')</span> <br/>
-                            @lang('home.without_prepayment')
-                        </div>
-                    </div>
-                    <div class="d-flex flex-column gap-3 align-items-center">
-                        <!-- <img src="./assets/icons/tools.svg" alt="" /> -->
-                        <img src="/assets/icons/settings.svg" alt=""/>
-                        <div class="text-center text-nowrap">
-                            <span class="fw-bold">@lang('home.free')</span> <br/>
-                            @lang('home.device_setup')
+                        <div class="col-md-3 col-6 d-flex flex-column align-items-center text-center gap-2">
+                            <img src="/assets/icons/calendar.svg" alt="" width="65" height="65"/>
+                            <div><span class="fw-bold">@lang('home.favorable_installment_plan')</span><br/>@lang('home.without_prepayment')</div>
                         </div>
                     </div>
                 </div>
+
+{{--                <div class="d-flex flex-column gap-3 align-items-center">--}}
+{{--                    <!-- <img src="./assets/icons/tools.svg" alt="" /> -->--}}
+{{--                    <img src="/assets/icons/truck-icon.svg" alt="" width="65" height="65"/>--}}
+{{--                    <div><span class="fw-bold">@lang('home.delivery')</span><br/>@lang('home.all_over_uzbekistan')</div>--}}
+{{--                </div>--}}
+
+
+
             </div>
         </div>
         <!-- News -->
