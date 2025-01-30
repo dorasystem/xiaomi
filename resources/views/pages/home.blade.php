@@ -80,16 +80,13 @@ foreach ($keywords as $keyword) {
                                  class="banner2 rounded p-lg-4 p-2 d-flex flex-column justify-content-between align-items-start">
                                 <div class="fw-bold">{{ __('messages.smart_home') }}</div>
                                 @php
-                                    // Kategoriyalarni array shaklida hosil qilish
-                                    $categoryIds = [1, 2, 3, 4, 5, 6, 7]; // Buni dinamik qilish uchun kategoriyalardan ID'larni olish mumkin
+
+                                    $categoryIds = [1, 2, 3, 4, 5, 6, 7];
                                     $queryString = http_build_query(['categories' => $categoryIds]);
                                 @endphp
 
                                 <a href="{{ route('products.filter') . '?' . $queryString }}"
                                    class="btn-orange rounded px-4 py-1">@lang('home.smartphonesAll')</a>
-
-
-
                             </div>
                         </div>
                     </div>
@@ -352,8 +349,10 @@ foreach ($keywords as $keyword) {
                     </div>
                 </div>
 
+
             </div>
         </div>
+
         <!-- products you have seen -->
         <div style="overflow: hidden" class="seenProducts container py-3 position-relative">
             <div class="mb-4 fs-2 fw-bold">@lang('home.top_products')</div>
@@ -452,8 +451,30 @@ foreach ($keywords as $keyword) {
             <!-- Navigation buttons (optional) -->
             <div id="product-next" class="swiper-button-next end-0"></div>
             <div id="product-prev" class="swiper-button-prev start-0"></div>
+
         </div>
+        <div class="my-lg-3 my-0 col-lg-3  text-end mx-2">
+            <a href="{{ route('products') }}"
+               class="pb-2 view_all_btn text-orange border-0 bg-transparent mb-4 text-end">@lang('home.smartphonesAll')
+                <svg width="16" height="16" viewBox="0 0 23 23" fill="none"
+                     xmlns="http://www.w3.org/2000/svg">
+                    <g clip-path="url(#clip0_43_12)">
+                        <path
+                            d="M18.176 5.27026L17.4665 5.2797L8.88696 5.59498L8.83354 7.04846L15.6796 6.79436L5.18161 17.2924L6.15388 18.2647L16.6514 7.76716L16.3989 14.6117L17.8523 14.5583L18.1676 5.97869L18.176 5.27026Z"
+                            fill="#ff6700"/>
+                    </g>
+                    <defs>
+                        <clipPath id="clip0_43_12">
+                            <rect width="13" height="18.1071" fill="white"
+                                  transform="translate(13.752 0.501953) rotate(45)"/>
+                        </clipPath>
+                    </defs>
+                </svg>
+            </a>
+        </div>
+
         <!-- Our advantages -->
+
         <div class="banner py-5 my-5">
             <div class="container">
                 <h2>@lang('home.our_advantages')</h2>
