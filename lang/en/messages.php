@@ -13,4 +13,6 @@ return [
     'send' => 'Send',
     'information' => 'Information',
     'smart_home' => 'Smart Home',
+    'not_available' => 'Not available',
+    'all' => 'All',
 ];

@@ -365,15 +365,14 @@ $categories = Category::whereNull('parent_id')->orderBy('id', 'desc')->get();
                                         </a>
                                     @empty
                                         <a href="javascript:void(0)" class="col-md-4 col-sm-6 col-12 mb-2">
-                                            <div class="cart fw-bold">Bu kategoriyada ichki kategoriyalar mavjud emas
-                                            </div>
+                                            <div class="cart fw-bold">{{ __('messages.not_available') }}</div>
                                         </a>
                                     @endforelse
                                 </div>
                                 <div class="border-top p-4 py-2">
-                                    <a href="{{ route('products') }}"
+                                    <a href="{{ route('category.sort', ['slug' => $category->getSlugByLanguage($lang)]) }}"
                                        class="d-flex align-items-center gap-2 border bg-transparent p-3 py-1 rounded">
-                                        Все {{ \Str::words($category['name_' . $lang], 3) }}
+                                        {{ __('messages.all') }} {{ \Str::words($category['name_' . $lang], 3) }}
                                     </a>
                                 </div>
                             </div>

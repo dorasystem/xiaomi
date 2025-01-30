@@ -13,4 +13,6 @@ return [
     'send' => 'Отправить',
     'information' => 'Информация',
     'smart_home' => 'Умный дом',
+    'not_available' => 'Недоступно',
+    'all' => 'Все',
 ];

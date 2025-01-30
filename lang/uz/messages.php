@@ -13,4 +13,6 @@ return [
     'send' => 'Yuborish',
     'information' => 'Ma\'lumot',
     'smart_home' => 'Aqlli uy',
+    'not_available' => 'Mavjud emas',
+    'all' => 'Barcha',
 ];
