@@ -36,10 +36,14 @@ class CategoryController extends Controller
             'name_ru' => 'required|string|max:255',
             'name_en' => 'required|string|max:255',
             'image' => 'nullable|image|mimes:jpeg,png,jpg,gif,svg,webp|max:2048',
+            'icon' => 'nullable|image|mimes:jpeg,png,jpg,gif,svg,webp|max:2048',
         ]);
 
         $imagePath = $request->hasFile('image')
             ? $request->file('image')->store('images/categories', 'public')
+            : null;
+        $iconPath = $request->hasFile('icon')
+            ? $request->file('icon')->store('images/categories', 'public')
             : null;
 
         $category = new Category([
@@ -51,6 +55,7 @@ class CategoryController extends Controller
             'description_ru' => $request->description_ru,
             'description_en' => $request->description_en,
             'image' => $imagePath,
+            'icon' => $iconPath,
         ]);
 
         // Slug avtomatik yaratish
@@ -83,6 +88,7 @@ class CategoryController extends Controller
             'name_ru' => 'nullable|string|max:255',
             'name_en' => 'nullable|string|max:255',
             'image' => 'nullable|image|mimes:jpeg,png,jpg,gif,svg,webp|max:2048',
+            'icon' => 'nullable|image|mimes:jpeg,png,jpg,gif,svg,webp|max:2048',
         ]);
 
 
@@ -92,6 +98,13 @@ class CategoryController extends Controller
                 Storage::disk('public')->delete($category->image);
             }
             $category->image = $request->file('image')->store('images/categories', 'public');
+        }
+        if ($request->hasFile('icon')) {
+
+            if ($category->icon && Storage::disk('public')->exists($category->icon)) {
+                Storage::disk('public')->delete($category->icon);
+            }
+            $category->icon = $request->file('icon')->store('images/categories', 'public');
         }
 
         // Kategoriya ma'lumotlarini yangilash

@@ -81,6 +81,10 @@
                                         <input type="file" class="form-control" id="image" name="image">
                                     </div>
                                     <div class="form-group pb-3">
+                                        <label for="icon">Изображение icon:</label>
+                                        <input type="file" class="form-control" id="icon" name="icon">
+                                    </div>
+                                    <div class="form-group pb-3">
                                         <label for="parent_id">Категория:</label>
                                         <select id="parent_id" name="parent_id" class="form-control">
                                             <option value="">-- Без родителя --</option> <!-- Ota kategoriya bo‘lmagan holat uchun -->

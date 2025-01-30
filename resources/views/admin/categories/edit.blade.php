@@ -86,6 +86,13 @@
                                         @endif
                                     </div>
                                     <div class="form-group pb-3">
+                                        <label for="icon">Изображение icon:</label>
+                                        <input type="file" class="form-control" id="icon" name="icon">
+                                        @if ($category->icon)
+                                            <img src="{{ asset('storage/' . $category->icon) }}" alt="{{ $category->icon }}" class="img-thumbnail mt-2" style="max-width: 100%;">
+                                        @endif
+                                    </div>
+                                    <div class="form-group pb-3">
                                         <label for="parent_id">Категория:</label>
                                         <select id="parent_id" name="parent_id" class="form-control">
                                             <option value="">-- Без родителя --</option> <!-- Ota kategoriyasiz variant -->

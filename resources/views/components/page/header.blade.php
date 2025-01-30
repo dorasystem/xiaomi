@@ -340,7 +340,7 @@ $categories = Category::whereNull('parent_id')->orderBy('id', 'desc')->get();
                         @foreach($categories as $index => $category)
                             <p class="hover-content d-flex align-items-center gap-2 {{ $index === 0 ? 'hover-catalog' : '' }}"
                                data-target="content0{{ $category->id }}">
-                                <img src="{{ asset('storage/' . $category->image) }}" width="30px"
+                                <img src="{{ asset('storage/' . $category->icon) }}" width="30px"
                                      alt="{{ $category['name_' . $lang] }}"/>
                                 {{ $category['name_' . $lang] }}
                             </p>
@@ -357,7 +357,7 @@ $categories = Category::whereNull('parent_id')->orderBy('id', 'desc')->get();
                                         <a href="{{ route('category.sort', ['slug' => $childCategory->getSlugByLanguage($lang)]) }}"
                                            class="col-md-4 col-sm-6 col-12 mb-2">
                                             <div class="d-flex align-items-center">
-                                                <img src="{{ asset('storage/' . $childCategory->image) }}" class="me-2"
+                                                <img src="{{ asset('storage/' . $childCategory->icon) }}" class="me-2"
                                                      alt="{{ \Str::words($childCategory['name_' . $lang], 3) }}"
                                                      style="width: 50px; height: 50px;"/>
                                                 <div class="cart fw-bold">{{ \Str::words($childCategory['name_' . $lang], 3) }}</div>

@@ -19,7 +19,8 @@ class Category extends Model
         'description_uz',
         'description_ru',
         'description_en',
-        'image'
+        'image',
+        'icon'
     ];
 
     public function products()
