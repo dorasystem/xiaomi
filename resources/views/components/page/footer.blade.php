@@ -67,12 +67,13 @@ $category7 = $categories->skip(6)->first();
             </div>
 
             <div class="col-lg-3 col-sm-6 mb-3">
-                <h6 class="mb-3 d-sm-block d-none fw-bold">Покупателям</h6>
+                <h6 class="mb-3 d-sm-block d-none fw-bold">@lang('home.for_customers')</h6>
                 <h6 class="d-sm-none toggle-heading" type="button" data-bs-toggle="collapse"
                     data-bs-target="#companyDropdown" aria-expanded="false" aria-controls="companyDropdown">
-                    Покупателям
+                    @lang('home.for_customers')
                     <i class="fa-solid fa-chevron-down toggle-icon text-grey"></i>
                 </h6>
+
                 <div class="collapse d-sm-block" id="companyDropdown">
                     <ul class="list-unstyled text-capitalize aaa">
                         <li><a href="#"><?= __('messages.delivery') ?></a></li>

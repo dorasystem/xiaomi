@@ -124,6 +124,8 @@ return [
 
     'all_categories' => 'Все категории',
     "footer_title" => "Создатель сайта",
-    "footer_desc" => "© Все права защищены 2024 - DORA ®"
+    "footer_desc" => "© Все права защищены 2024 - DORA ®",
+    'for_customers' => 'Покупателям',
+
 
 ];
