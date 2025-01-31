@@ -75,6 +75,21 @@ class OrderController extends Controller
             'message' => $validated['message']  ?? null,
             'product' => $validated['product'] ?? null,
         ]);
+        // ✅ 3. Telegramga xabar jo‘natish
+        $apiKey = "7538620633:AAH1UhziRkCXnTDXRKB9kgPh-IPDm_z5tY8"; // API Key
+        $chatId = "7422505676"; // Telegram Chat ID
+
+        $message = "<b>📩 Yangi Xabar</b>\n\n";
+        $message .= "👤 <b>Foydalanuvchi:</b> " . $validated['first_name'] . "\n";
+        $message .= "📞 <b>Telefon:</b> " . $validated['phone'] . "\n";
+        $message .= "📝 <b>Xabar:</b> \n" . nl2br(e($validated['message'])) . "\n";
+        $message .= "<b>📅 Sana:</b> " . now()->format('Y-m-d H:i') . "\n";
+
+        Http::post("https://api.telegram.org/bot{$apiKey}/sendMessage", [
+            'chat_id' => $chatId,
+            'text' => $message,
+            'parse_mode' => 'HTML',
+        ]);
 
 
         return redirect()->back()->with('success', 'Операция выполнена успешно!');
