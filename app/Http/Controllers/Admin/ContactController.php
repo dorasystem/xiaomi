@@ -35,7 +35,7 @@ class ContactController extends Controller
             'instagram' => 'nullable|url|max:255',
             'telegram' => 'nullable|url|max:255',
             'youtube' => 'nullable|url|max:255',
-            'linkedin' => 'nullable|url|max:255',
+            'tik_tok' => 'nullable|url|max:255',
         ]);
 
         $contact->update($validatedData);
