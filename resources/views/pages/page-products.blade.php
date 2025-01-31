@@ -455,14 +455,20 @@
                                 name="first_name" />
                         </div>
                         <div class="col-lg-3 col-md-6 mb-lg-0 mb-3">
-                            <input class="form-control focus_none py-3" placeholder="+998 __ ___ ___ ___" type="tel" required
-                                name="phone" min="5" />
+                            <input class="form-control focus_none py-3"
+                                   placeholder="+998 __ ___ ___ ___"
+                                   type="tel"
+                                   name="phone"
+                                   required
+                                   pattern="^\+\d{7,}$"
+                                   title="Номер телефона должен содержать не менее 7 цифр"
+                            />
                         </div>
+
                         <div class="col-lg-3 col-md-6">
                             <button class="btn-orange rounded px-5 py-3 w-100" type="submit">@lang('home.send')</button>
                         </div>
                     </form>
-
                 </div>
             </div>
 

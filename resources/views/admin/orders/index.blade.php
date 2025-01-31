@@ -76,10 +76,6 @@
                                     </td>
                                     <td class="text-end">
                                         <div class="btn-group" role="group">
-                                            <a href="{{ route('orders.edit', $order->id) }}"
-                                               class="avatar-text avatar-md">
-                                                <i class="feather feather-edit"></i>
-                                            </a>
                                             <form action="{{ route('orders.destroy', $order->id) }}" method="POST" style="display: inline;">
                                                 @csrf
                                                 @method('DELETE')
