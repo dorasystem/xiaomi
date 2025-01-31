@@ -132,5 +132,5 @@ return [
     "footer_title" => "Sayt yaratuvchisi",
     "footer_desc" => "© Barcha huquqlar himoyalangan 2024 - DORA ®",
    'for_customers' => 'Xaridorlar uchun',
-
+    'order_received' => 'Buyurtmangiz qabul qilindi va Telegramga yuborildi!'
 ];

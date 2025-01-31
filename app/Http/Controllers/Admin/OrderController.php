@@ -143,7 +143,7 @@ class OrderController extends Controller
         ]);
 
         // ✅ 7. Muvaffaqiyatli xabar bilan qaytish
-        return redirect()->back()->with('success', 'Buyurtmangiz qabul qilindi va Telegramga yuborildi!');
+        return redirect()->back()->with('success', __('home.order_received'));
     }
 
     public function edit(Order $order)

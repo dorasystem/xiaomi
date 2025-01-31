@@ -126,6 +126,6 @@ return [
     "footer_title" => "Создатель сайта",
     "footer_desc" => "© Все права защищены 2024 - DORA ®",
     'for_customers' => 'Покупателям',
-
+    'order_received' => 'Ваш заказ принят и отправлен в Telegram!',
 
 ];
