@@ -203,19 +203,21 @@ class MainController extends Controller
 
     public function categorySort($slug, Request $request)
     {
-        // dd($slug);
-        // Get the locale (e.g., from the request or session)
-        $locale = app()->getLocale(); // Or $request->get('locale') if you're passing it in the URL
+        $locale = app()->getLocale();
 
-        // Find the category by its language-specific slug
-        $category = Category::all()->filter(function ($category) use ($locale, $slug) {
-            return $category->getSlugByLanguage($locale) === $slug;
-        })->firstOrFail();
+        // 1️⃣ Kategoriyani slug orqali topish
+        $category = Category::whereRaw("JSON_UNQUOTE(JSON_EXTRACT(slug, '$.\"$locale\"')) = ?", [$slug])->firstOrFail();
 
-        // Get the products associated with this category
-        $products = $category->products()->paginate(9);
+        // 2️⃣ Ota kategoriyaning bolalarini olish
+        $childCategoryIds = Category::where('parent_id', $category->id)->pluck('id')->toArray();
+
+        // 3️⃣ Ota va bolalar kategoriyalariga tegishli mahsulotlarni olish
+        $products = Product::whereIn('category_id', array_merge([$category->id], $childCategoryIds))->paginate(9);
+
+        // 4️⃣ Qidiruv so‘zini olish (Agar qidiruv bo‘lsa)
         $search = $request->input('search');
 
         return view('pages.search-products', compact('products', 'category', 'search'));
     }
+
 }
