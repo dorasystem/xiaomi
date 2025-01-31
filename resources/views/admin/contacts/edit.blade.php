@@ -51,6 +51,11 @@
                                                value="{{ old('phone', $contact->phone) }}" required>
                                     </div>
                                     <div class="col-lg-4 col-md-4 form-group pb-3">
+                                        <label for="phone2">Телефон 2:</label>
+                                        <input type="text" class="form-control" id="phone2" name="phone2"
+                                               value="{{ old('phone', $contact->phone2) }}" required>
+                                    </div>
+                                    <div class="col-lg-4 col-md-4 form-group pb-3">
                                         <label for="address">Адрес:</label>
                                         <input type="text" class="form-control" id="address" name="address"
                                                value="{{ old('address', $contact->address) }}" required>
