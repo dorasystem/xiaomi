@@ -61,6 +61,7 @@ Route::middleware(['auth'])->prefix('dashboard')->group(function () {
     Route::resource('main_banners', MainBannerController::class);
     Route::get('/orders',[OrderController::class, 'index'])->name('orders.index');
     Route::patch('/orders/{order}', [OrderController::class, 'update'])->name('orders.update');
+    Route::get('/orders/{order}/edit', [OrderController::class, 'edit'])->name('orders.edit');
     Route::delete('/dashboard/main-banner/{mainBanner}/delete-image/{image}', [MainBannerController::class, 'deleteImage'])->name('mainBanner.deleteImage');
     Route::resource('keywords', StaticKeywordController::class);
     Route::post('/blogs/delete-image', [BlogController::class, 'deleteImage'])->name('blogs.deleteImage');
