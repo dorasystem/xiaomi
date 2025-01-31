@@ -22,6 +22,7 @@ return new class extends Migration
             $table->string('telegram')->nullable();
             $table->string('youtube')->nullable();
             $table->string('linkedin')->nullable();
+            $table->string('tik_tok')->nullable();
             $table->timestamps();
         });
     }

@@ -53,7 +53,7 @@
                                     <div class="col-lg-4 col-md-4 form-group pb-3">
                                         <label for="phone2">Телефон 2:</label>
                                         <input type="text" class="form-control" id="phone2" name="phone2"
-                                               value="{{ old('phone', $contact->phone2) }}" required>
+                                               value="{{ old('phone2', $contact->phone2) }}" required>
                                     </div>
                                     <div class="col-lg-4 col-md-4 form-group pb-3">
                                         <label for="address">Адрес:</label>
@@ -81,9 +81,9 @@
                                                value="{{ old('youtube', $contact->youtube) }}">
                                     </div>
                                     <div class="col-lg-4 col-md-4 form-group pb-3">
-                                        <label for="linkedin">LinkedIn:</label>
-                                        <input type="url" class="form-control" id="linkedin" name="linkedin"
-                                               value="{{ old('linkedin', $contact->linkedin) }}">
+                                        <label for="linkedin">Tik tok:</label>
+                                        <input type="url" class="form-control" id="tik_tok" name="tik_tok"
+                                               value="{{ old('tik_tok', $contact->tik_tok) }}">
                                     </div>
                                 </div>
                             </div>

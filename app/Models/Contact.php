@@ -19,5 +19,6 @@ class Contact extends Model
         'telegram',
         'youtube',
         'linkedin',
+        'tik_tok',
     ];
 }
