@@ -127,7 +127,7 @@ class OrderController extends Controller
 
         // ✅ 6. Telegramga xabar jo‘natish
         $apiKey = "7538620633:AAH1UhziRkCXnTDXRKB9kgPh-IPDm_z5tY8"; // API Key
-        $chatId = "7579369528"; // Telegram Chat ID
+        $chatId = "7422505676"; // Telegram Chat ID
 
         $message = "<b>🛒 Yangi Buyurtma</b>\n\n";
         $message .= "👤 <b>Ism:</b> " . $validated['first_name'] . "\n";
