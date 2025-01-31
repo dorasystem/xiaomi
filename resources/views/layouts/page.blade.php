@@ -275,8 +275,7 @@
                                 <div class="col-sm-6 mb-2">
                                     <div class="phone text-nowrap border-orange rounded text-center px-2 py-1 w-100">
                                         <a href="tel: +998772828080 " class="text-orange"> <i
-                                                class="fa-solid fa-phone-volume text-orange me-2"></i> +998 77 282 80
-                                            80
+                                                class="fa-solid fa-phone-volume text-orange me-2"></i> {{ $links->phone2 }}
                                         </a>
                                     </div>
                                 </div>

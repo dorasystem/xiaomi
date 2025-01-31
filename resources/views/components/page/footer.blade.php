@@ -61,6 +61,13 @@ $category7 = $categories->skip(6)->first();
                             </div>
                         </a>
                     @endif
+                    @if (!empty($links->tik_tok))
+                        <a href="{{ $links->tik_tok }}">
+                            <div class="social">
+                                <i class="fa-brands fa-tiktok"></i>
+                            </div>
+                        </a>
+                    @endif
 
 
                 </div>
