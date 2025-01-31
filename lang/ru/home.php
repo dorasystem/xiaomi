@@ -21,29 +21,20 @@ return [
     'all_vacancy' => 'Все Вакансии',
     'vacancy' => 'Вакансии',
     'compare' => 'Сравнение',
-
     'bestsellers' => 'Хиты продаж',
     'buy_now' => 'Купить сразу',
     'top_products' => 'Рекомендуем',
-
     'our_advantages' => 'Наши преимущества',
-
     'authorized_store' => 'Авторизованный магазин',
-
     'delivery' => 'Доставка',
     'all_over_uzbekistan' => 'По всему Узбекистану',
-
     'pickup' => 'Самовывоз',
-    'from_the_nearest_store' => 'из ближайшего магазина',
-
+    'from_the_nearest_store' => 'Из ближайшего магазина',
     'favorable_installment_plan' => 'Выгодная рассрочка',
-    'without_prepayment' => 'без предоплаты',
-
+    'without_prepayment' => 'Без предоплаты',
     'free' => 'Бесплатная',
-    'device_setup' => 'настройка устройства',
-
+    'device_setup' => 'Настройка устройства',
     'popular' => 'Популярные',
-
     'video_reviews' => 'Видеообзоры',
     'all_video_reviews' => 'Все видео-обзоры',
     'our_shops' => 'Наши магазины',

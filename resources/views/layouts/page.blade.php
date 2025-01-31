@@ -8,20 +8,29 @@
 
     <!-- Meta Pixel Code -->
     <script>
-        !function(f,b,e,v,n,t,s)
-        {if(f.fbq)return;n=f.fbq=function(){n.callMethod?
-            n.callMethod.apply(n,arguments):n.queue.push(arguments)};
-            if(!f._fbq)f._fbq=n;n.push=n;n.loaded=!0;n.version='2.0';
-            n.queue=[];t=b.createElement(e);t.async=!0;
-            t.src=v;s=b.getElementsByTagName(e)[0];
-            s.parentNode.insertBefore(t,s)}(window, document,'script',
+        ! function(f, b, e, v, n, t, s) {
+            if (f.fbq) return;
+            n = f.fbq = function() {
+                n.callMethod ?
+                    n.callMethod.apply(n, arguments) : n.queue.push(arguments)
+            };
+            if (!f._fbq) f._fbq = n;
+            n.push = n;
+            n.loaded = !0;
+            n.version = '2.0';
+            n.queue = [];
+            t = b.createElement(e);
+            t.async = !0;
+            t.src = v;
+            s = b.getElementsByTagName(e)[0];
+            s.parentNode.insertBefore(t, s)
+        }(window, document, 'script',
             'https://connect.facebook.net/en_US/fbevents.js');
         fbq('init', '1056501186100448');
         fbq('track', 'PageView');
     </script>
     <noscript><img height="1" width="1" style="display:none"
-                   src="https://www.facebook.com/tr?id=1056501186100448&ev=PageView&noscript=1"
-        /></noscript>
+            src="https://www.facebook.com/tr?id=1056501186100448&ev=PageView&noscript=1" /></noscript>
     <!-- End Meta Pixel Code -->
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css"
         integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous" />
@@ -38,16 +47,19 @@
     <!-- for map -->
     <script src="https://api-maps.yandex.ru/2.1/?lang=ru_RU" type="text/javascript"></script>
 </head>
-{{--loading style start--}}
+{{-- loading style start --}}
 <style>
     .add-to-cart-btn.loading {
-        pointer-events: none; /* Tugmani bosib bo‘lmaydigan qilish */
-        opacity: 0.7; /* Tugmani biroz xiralashtirish */
+        pointer-events: none;
+        /* Tugmani bosib bo‘lmaydigan qilish */
+        opacity: 0.7;
+        /* Tugmani biroz xiralashtirish */
         position: relative;
     }
 
     .add-to-cart-btn.loading img {
-        visibility: hidden; /* Asosiy ikonka yashirish */
+        visibility: hidden;
+        /* Asosiy ikonka yashirish */
     }
 
     .add-to-cart-btn.loading::after {
@@ -65,12 +77,17 @@
     }
 
     @keyframes spin {
-        from { transform: translate(-50%, -50%) rotate(0deg); }
-        to { transform: translate(-50%, -50%) rotate(360deg); }
-    }
+        from {
+            transform: translate(-50%, -50%) rotate(0deg);
+        }
 
+        to {
+            transform: translate(-50%, -50%) rotate(360deg);
+        }
+    }
 </style>
-{{--loading style end--}}
+{{-- loading style end --}}
+
 <body>
     <x-page.header></x-page.header>
 
@@ -105,12 +122,14 @@
                                 fill="#000" />
                         </svg>
 
-                        @if(session('cart') && count(session('cart')) > 0)
-                            <span class="badge badge-pill badge-danger badge-position rounded-circle cart-label" id="cart-count">
-                                        {{ count(session('cart')) }}
-                                    </span>
+                        @if (session('cart') && count(session('cart')) > 0)
+                            <span class="badge badge-pill badge-danger badge-position rounded-circle cart-label"
+                                id="cart-count">
+                                {{ count(session('cart')) }}
+                            </span>
                         @else
-                            <span class="badge badge-pill badge-danger badge-position cart-label rounded-pill" id="cart-count"></span>
+                            <span class="badge badge-pill badge-danger badge-position cart-label rounded-pill"
+                                id="cart-count"></span>
                         @endif
                     </a>
                     <small class="">@lang('home.basket')</small>
@@ -118,9 +137,9 @@
                 <li class="d-flex flex-column align-items-center nav-link text-center nav-item text-dark">
                     <a href="/compare" class="icon position-relative p-0">
                         <svg version="1.0" xmlns="http://www.w3.org/2000/svg" width="26" height="25"
-                             viewBox="0 0 512.000000 512.000000" preserveAspectRatio="xMidYMid meet">
-                            <g transform="translate(0.000000,512.000000) scale(0.100000,-0.100000)"
-                               fill="#000" stroke="none">
+                            viewBox="0 0 512.000000 512.000000" preserveAspectRatio="xMidYMid meet">
+                            <g transform="translate(0.000000,512.000000) scale(0.100000,-0.100000)" fill="#000"
+                                stroke="none">
                                 <path d="M2015 4786 c-41 -18 -83 -69 -90 -109 -3 -18 -4 -982 -3 -2144 l3
     -2112 21 -27 c11 -15 33 -37 48 -48 27 -21 38 -21 566 -21 528 0 539 0 566 21
     15 11 37 33 48 48 l21 27 0 2139 0 2139 -21 27 c-11 15 -33 37 -48 48 -27 21
@@ -138,12 +157,14 @@
     0 -320 0 0 640 0 640 320 0 320 0 0 -640z" />
                             </g>
                         </svg>
-                        @if(session('compares') && count(session('compares')) > 0)
-                            <span class="badge badge-pill badge-danger badge-position rounded-circle compare" id="compare-count">
-                                        {{ count(session('compares')) }}
-                                    </span>
+                        @if (session('compares') && count(session('compares')) > 0)
+                            <span class="badge badge-pill badge-danger badge-position rounded-circle compare"
+                                id="compare-count">
+                                {{ count(session('compares')) }}
+                            </span>
                         @else
-                            <span class="badge badge-pill badge-danger badge-position rounded-circle compare text-black" id="compare-count"></span>
+                            <span class="badge badge-pill badge-danger badge-position rounded-circle compare text-black"
+                                id="compare-count"></span>
                         @endif
                     </a>
                     <small class="">@lang('home.comparison')</small>
@@ -151,12 +172,14 @@
                 <li class="d-flex flex-column align-items-center nav-link text-center nav-item text-dark">
                     <a href="/favorites" class="icon position-relative p-0">
                         <i class="fa-regular fa-heart text-black"></i>
-                        @if(session('favorites') && count(session('favorites')) > 0)
-                            <span class="badge badge-pill badge-danger badge-position rounded-circle" id="favorite-count">
-                                        {{ count(session('favorites')) }}
-                                    </span>
+                        @if (session('favorites') && count(session('favorites')) > 0)
+                            <span class="badge badge-pill badge-danger badge-position rounded-circle"
+                                id="favorite-count">
+                                {{ count(session('favorites')) }}
+                            </span>
                         @else
-                            <span class="badge badge-pill badge-danger badge-position rounded-circle" id="favorite-count"></span>
+                            <span class="badge badge-pill badge-danger badge-position rounded-circle"
+                                id="favorite-count"></span>
                         @endif
                     </a>
                     <small class="">@lang('home.featured')</small>
@@ -235,12 +258,17 @@
                                 </div>
                                 <div class="d-sm-block d-none">1X</div>
                             </div>
+                            @php
+                                use App\Models\Contact;
+                                $links = Contact::first();
+
+                            @endphp
                             <div class="row align-items-start">
                                 <div class="col-sm-6 mb-2">
                                     <div class="phone text-nowrap border-orange rounded text-center px-2 py-1 w-100">
                                         <a href="tel: +998772828080 " class="text-orange"> <i
-                                                class="fa-solid fa-phone-volume text-orange me-2"></i> +998 77 282 80
-                                            80
+                                                class="fa-solid fa-phone-volume text-orange me-2"></i>
+                                            {{ $links->phone }}
                                         </a>
                                     </div>
                                 </div>

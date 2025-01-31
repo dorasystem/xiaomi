@@ -178,7 +178,7 @@ $category7 = $categories->skip(6)->first();
                     </small>
                 </div>
                 <div class="col-md-4">
-                    <div class="mt-3 d-flex justify-content-end align-items-center comp-logo-wrap">
+                    <div class="mt-3 d-flex justify-content-start justify-content-lg-end align-items-center comp-logo-wrap">
                         <div class="footer__bottom__title__h5 mb-0">@lang('home.footer_title')</div>
                         <div class="comp-logo-wrap">
                             <img src="/assets/images/dora_small.svg" alt="DORA®" class="smaill-logo ms-3"

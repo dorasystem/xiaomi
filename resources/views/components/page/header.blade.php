@@ -141,7 +141,7 @@ $categories = Category::whereNull('parent_id')->orderBy('id', 'desc')->get();
                         {{--                            @endif--}}
                         {{--                        </a>--}}
                         <div class="dropdown">
-                            <a href="javascript:void(0);" class="dropdown-toggle" data-bs-toggle="dropdown">
+                            <a href="javascript:void(0);" class="dropdown-toggle border rounded-1" data-bs-toggle="dropdown">
                                 <img src="{{ asset('admins/assets/vendors/img/flags/4x3/' . $currentLocale . '.svg') }}"
                                      alt="" class="img-fluid wd-20"/>
                             </a>
