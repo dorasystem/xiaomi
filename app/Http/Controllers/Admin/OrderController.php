@@ -6,6 +6,7 @@ use App\Http\Controllers\Controller;
 use App\Models\Order;
 use App\Models\OrderItem;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Http;
 
 class OrderController extends Controller
 {
@@ -78,32 +79,73 @@ class OrderController extends Controller
 
         return redirect()->back()->with('success', 'Операция выполнена успешно!');
     }
+
+
     public function productsStore(Request $request)
     {
+        // ✅ 1. So‘rovni tekshirish (Validatsiya)
         $validated = $request->validate([
             'first_name' => 'required|string|max:255',
             'phone' => 'required|string|max:255',
-            'cart_items' => 'required|json',  // Ensure cart_items is a valid JSON
+            'cart_items' => 'required|json', // JSON formatdagi savat ma’lumotlari
         ]);
 
+        // ✅ 2. JSON dan massivga o‘girish
         $cartItems = json_decode($validated['cart_items'], true);
 
+        // ✅ 3. Buyurtmani bazaga saqlash
         $order = Order::create([
             'first_name' => $validated['first_name'],
             'phone' => $validated['phone'],
         ]);
+
+        // ✅ 4. Mahsulotlar ro‘yxatini yaratish va hisoblash
+        $orderItemsText = ""; // Telegramga yuboriladigan mahsulotlar matni
+        $totalAmount = 0; // Umumiy summa hisoblash
+
         foreach ($cartItems as $cartItem) {
+            $price = $cartItem['discount_price'] ?? $cartItem['price']; // Chegirma bo‘lsa, uni ishlatish
+            $total = $cartItem['quantity'] * $price;
+            $totalAmount += $total; // Umumiy narxni yig‘ish
+
             OrderItem::create([
                 'order_id' => $order->id,
                 'product_id' => $cartItem['id'] ?? null,
-                'quantity' => $cartItem['quantity'], // Default to 1
-                'price' => $cartItem['price'] ?? $cartItem['discount_price'],
-                'total' => $cartItem['total_price'] ?? $cartItem['quantity'] * $cartItem['price'] ?? $cartItem['quantity'] * $cartItem['discount_price'],
+                'quantity' => $cartItem['quantity'],
+                'price' => $price,
+                'total' => $total,
             ]);
+
+            // 📝 Telegram xabari uchun mahsulot tafsilotlari
+            $orderItemsText .= "📌 <b>" . ($cartItem['name'] ?? 'Noma’lum Mahsulot') . "</b>\n";
+            $orderItemsText .= "💰 Narx: " . number_format($price, 0, '.', ' ') . " UZS\n";
+            $orderItemsText .= "📦 Miqdor: " . $cartItem['quantity'] . " ta\n\n";
         }
+
+        // ✅ 5. Savatchani tozalash (Barcha ma’lumotlar bazaga yozilgandan keyin)
         session()->forget('cart');
-        return redirect()->back()->with('success', 'Операция выполнена успешно!');
+
+        // ✅ 6. Telegramga xabar jo‘natish
+        $apiKey = "7538620633:AAH1UhziRkCXnTDXRKB9kgPh-IPDm_z5tY8"; // API Key
+        $chatId = "7579369528"; // Telegram Chat ID
+
+        $message = "<b>🛒 Yangi Buyurtma</b>\n\n";
+        $message .= "👤 <b>Ism:</b> " . $validated['first_name'] . "\n";
+        $message .= "📞 <b>Telefon:</b> " . $validated['phone'] . "\n\n";
+        $message .= "🛍 <b>Buyurtma Tafsilotlari:</b>\n" . $orderItemsText;
+        $message .= "💳 <b>Umumiy summa:</b> " . number_format($totalAmount, 0, '.', ' ') . " UZS\n";
+        $message .= "<b>📅 Sana:</b> " . now()->format('Y-m-d H:i') . "\n";
+
+        Http::post("https://api.telegram.org/bot{$apiKey}/sendMessage", [
+            'chat_id' => $chatId,
+            'text' => $message,
+            'parse_mode' => 'HTML',
+        ]);
+
+        // ✅ 7. Muvaffaqiyatli xabar bilan qaytish
+        return redirect()->back()->with('success', 'Buyurtmangiz qabul qilindi va Telegramga yuborildi!');
     }
+
     public function edit(Order $order)
     {
         return view('admin.orders.edit',compact('order'));
