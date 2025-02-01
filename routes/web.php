@@ -28,6 +28,7 @@ use App\Http\Controllers\Auth\UserController;
 use App\Http\Controllers\CompareController;
 use App\Http\Controllers\LanguageController;
 use App\Http\Controllers\Page\MainController;
+use App\Http\Controllers\Page\SiteController;
 use Illuminate\Support\Facades\Route;
 
 
@@ -111,6 +112,10 @@ Route::post('/form-order', [OrderController::class, 'storeForm'])->name('orders.
 Route::post('/product-order', [OrderController::class, 'productsStore'])->name('orders.products.store');
 Route::get('locale/{lang}',[LanguageController::class, 'setLocale']);
 Route::get('/404',[MainController::class, 'error'])->name('404');
+
+
+//  sites blade
+Route::get('/purchase-online',[SiteController::class, 'purchaseOnline'])->name('purchase.online');
 
 Route::fallback(function () {
     return redirect()->route('404');
