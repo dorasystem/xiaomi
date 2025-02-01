@@ -613,7 +613,7 @@ $description = isset($matches[1])
                                 'active-svg'); // Qo'shilganini ko'rsatish
                         } else {
                             $('#compare-icon-' + productId).removeClass(
-                                'active-svg'); // O'chirilganini ko'rsatish
+                                'hover-svg'); // O'chirilganini ko'rsatish
                         }
                     }
                 },
