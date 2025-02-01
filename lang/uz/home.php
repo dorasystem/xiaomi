@@ -9,7 +9,7 @@ return [
     'special_offers' => 'Maxsus takliflar',
     'product_on_sale' => 'Sotuvdagi mahsulotlar',
     'new_items' => 'Yangi elementlar',
-
+    'payment_text' => "To'lov",
     'useful_articles' => 'Foydali maqolalar',
     'show_more' => 'Ko\'proq ko\'rish',
     'other_news' => 'Boshqa yangiliklar',
@@ -18,35 +18,24 @@ return [
     'all_vacancy' => 'Barcha vakansiyalar',
     'vacancy' => 'Vakansiyalar',
     'compare' => 'Taqqoslash',
-
     'bestsellers' => 'Eng ko\'p sotilganlar',
     'buy_now' => 'Hoziroq sotib olish',
     'top_products' => 'Tavsiya etamiz',
-
     'our_advantages' => 'Bizning afzalliklarimiz',
-
     'authorized_store' => 'Avtorizatsiyalangan doʻkon',
-
     'delivery' => 'Yetkazib berish',
     'all_over_uzbekistan' => 'Butun Oʻzbekiston boʻylab',
-
     'pickup' => 'Oʻzingiz olib ketish',
     'and' => ' va ',
-
     'from_the_nearest_store' => 'Eng yaqin doʻkondan',
-
     'favorable_installment_plan' => 'Qulay bo‘lib to‘lash',
     'without_prepayment' => 'Oldindan to‘lovsiz',
-
     'free' => 'Bepul',
     'device_setup' => 'Qurilmani sozlash',
-
     'popular' => 'Ommabop',
-
     'video_reviews' => 'Video sharh',
     'all_video_reviews' => 'Barcha video sharhlar',
     'our_shops' => 'Bizning doʻkonlarimiz',
-
     'home' => 'Bosh sahifa',
     'back' => 'Ortga',
     'save' => 'Saqlash',

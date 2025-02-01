@@ -24,6 +24,10 @@
     display: flex;
     justify-content: space-between;
 }
+.disc li {
+    list-style-type: disc;
+    white-space: wrap;
+}
 .fs-14 {
     font-size: 14px !important;
 }
@@ -533,6 +537,16 @@ a.active {
 }
 .product-text p {
     font-size: 12px;
+}
+.active-link {
+    color: #000 !important;
+    padding-bottom: 3px;
+    border-bottom: 3px solid var(--orange);
+}
+.hover_text_org:hover {
+    padding-bottom: 3px;
+    border-bottom: 3px solid var(--orange);
+    transition: all 0.09s ease-in-out;
 }
 .swiper-button-next,
 .swiper-button-prev {

@@ -4,6 +4,7 @@ return [
     'official' => 'Официальный магазин Xiaomi в Узбекистане',
     // takrorlangan
     'smartphonesAll' => 'Смотреть все',
+    'payment_text' => 'Оплата',
 
     'search' => 'Поиск товаров',
     'comparison' => 'Сравнение',
