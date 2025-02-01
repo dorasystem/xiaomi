@@ -1,14 +1,14 @@
 @extends('layouts.page')
 
 @section('content')
-    <div class="container py-5">
-        <nav aria-label="breadcrumb">
-            <ol class="breadcrumb">
-                <li class="breadcrumb-item"><a href="{{ route('home') }}">@lang('home.home')</a></li>
-                <li class="breadcrumb-item active" aria-current="page">@lang('home.faq')</li>
-            </ol>
-        </nav>
-
+    <div class="container ">
+        <div class="my-4">
+            <div class="d-flex align-items-center gap-1">
+                <a href="/" class="text-grey fw-bold  fs-14">@lang('home.home') / </a>
+                <span class="text-dark fw-bold">@lang('home.faq')</span>
+            </div>
+            <hr />
+        </div>
         <h2 class="fw-bold">@lang('home.faq')</h2>
 
         <div class="accordion mt-4 p-4 rounded bg-white" id="faqAccordion">
