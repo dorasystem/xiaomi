@@ -2,13 +2,7 @@
 @section('content')
     <div class="container py-5">
         <div class=" text-dark p-4 rounded d-flex flex-column align-items-center" style="background-color:#ff6700 ">
-            <div class="d-flex gap-3 mb-3">
-                <img src="/assets/icons/payme.svg" alt="Payme" width="60">
-                <img src="/assets/icons/click.svg" alt="Click" width="60">
-                <img src="/assets/icons/uzcard.svg" alt="UzCard" width="60">
-                <img src="/assets/icons/humo.svg" alt="Humo" width="60">
-            </div>
-            <h3 class="fw-bold">Qulay to'lov</h3>
+
         </div>
 
         <div class="mt-4">

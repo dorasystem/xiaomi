@@ -9,6 +9,7 @@ use App\Models\Blog;
 use App\Models\Category;
 use App\Models\Comment;
 use App\Models\DescImage;
+use App\Models\Faq;
 use App\Models\History;
 use App\Models\MainBanner;
 use App\Models\News;
@@ -27,6 +28,21 @@ class SiteController extends Controller
     public function purchaseOnline()
     {
         return view('pages.site.purchase-online');
+    }
+
+    public function faq()
+    {
+        $lang = app()->getLocale(); // Joriy tilni olish
+
+        // Har bir savolga hozirgi til bo‘yicha ma’lumot chiqarish
+        $faqs = Faq::all()->map(function ($faq) use ($lang) {
+            return [
+                'question' => $faq["question_$lang"],
+                'answer' => $faq["answer_$lang"],
+            ];
+        });
+
+        return view('pages.site.faq', compact('faqs'));
     }
 
 }
