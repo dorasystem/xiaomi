@@ -137,4 +137,6 @@ return [
     "footer_desc" => "© All rights reserved 2024 - DORA ®",
     'for_customers' => 'For Customers',
     'order_received' => 'Your order has been received and sent to Telegram!',
+
+    'faq' => ' Home - Frequently Asked Questions',
 ];
