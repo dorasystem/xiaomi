@@ -1224,9 +1224,12 @@ input[type="range"]:nth-child(2) {
     }
 }
 @media (max-width: 768px) {
+    .fs-13{
+        font-size:13px;
+    }
     .wh-65 {
-        width: 50px;
-        height: 50px;
+        width: 40px;
+        height: 40px;
     }
 
     .orderImage {

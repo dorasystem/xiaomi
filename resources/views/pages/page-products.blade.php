@@ -402,7 +402,6 @@
                                                             class="d-flex align-items-center justify-content-between w-100">
                                                             <span class="small bg-transparent px-0">
                                                                 {{ number_format($cheapestVariant->price ?? $cheapestVariant->discount_price, 0, ',', ' ') }}
-
                                                                 UZS <span
                                                                     class="text-orange">@lang('home.incash')</span></span>
                                                             <span class="px-2 productmonth-border small text-grey">

@@ -112,12 +112,12 @@ $category7 = $categories->skip(6)->first();
                 </div>
                 <h6 class="mb-2 mt-1 d-sm-block d-none fw-bold"><?= __('messages.information') ?></h6>
                 <h6 class="d-sm-none toggle-heading mb-3" type="button" data-bs-toggle="collapse"
-                    data-bs-target="#customersDropdown" aria-expanded="false" aria-controls="customersDropdown">
+                    data-bs-target="#customersDropdown2" aria-expanded="false" aria-controls="customersDropdown2">
                     <?= __('messages.information') ?>
                     <i class="fa-solid fa-chevron-down toggle-icon text-grey"></i>
                 </h6>
 
-                <div class="collapse d-sm-block" id="customersDropdown">
+                <div class="collapse d-sm-block" id="customersDropdown2">
                     <ul class="list-unstyled aaa">
 
                         <li><a href="{{ route('blog') }}">@lang('footer.blog')</a></li>

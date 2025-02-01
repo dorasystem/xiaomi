@@ -338,7 +338,8 @@
                 // Update the modal content dynamically
                 modal.querySelector('.modal-title').textContent = productName;
                 modal.querySelector('.modal-body .product-name').textContent = productName;
-                modal.querySelector('.modal-body .product-price').textContent = productPrice + ' UZS';
+                let priceuzs = Number(productPrice).toLocaleString('ru-RU'); // 'ru-RU' dan foydalaning
+                modal.querySelector('.modal-body .product-price').textContent = priceuzs + ' UZS';
                 modal.querySelector('.modal-body .product-image').setAttribute('src', productImage);
 
                 // Set hidden form fields with product data

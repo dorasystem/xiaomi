@@ -362,7 +362,29 @@ $description = isset($matches[1])
 
         <!-- products you have seen -->
         <div style="overflow: hidden" class="seenProducts container py-3 position-relative">
-            <div class="mb-4 fs-2 fw-bold">@lang('home.top_products')</div>
+            <div class="d-flex align-items-center justify-content-between mb-3">
+                <div class=" fs-2 fw-bold">@lang('home.top_products')</div>
+                <div class="my-lg-3 my-0 col-lg-3  text-end mx-2 d-md-none d-block">
+                    <a href="{{ route('products') }}"
+                       class="pb-2 view_all_btn text-orange border-0 bg-transparent mb-4 text-end">@lang('home.smartphonesAll')
+                        <svg width="16" height="16" viewBox="0 0 23 23" fill="none"
+                             xmlns="http://www.w3.org/2000/svg">
+                            <g clip-path="url(#clip0_43_12)">
+                                <path
+                                    d="M18.176 5.27026L17.4665 5.2797L8.88696 5.59498L8.83354 7.04846L15.6796 6.79436L5.18161 17.2924L6.15388 18.2647L16.6514 7.76716L16.3989 14.6117L17.8523 14.5583L18.1676 5.97869L18.176 5.27026Z"
+                                    fill="#ff6700" />
+                            </g>
+                            <defs>
+                                <clipPath id="clip0_43_12">
+                                    <rect width="13" height="18.1071" fill="white"
+                                          transform="translate(13.752 0.501953) rotate(45)" />
+                                </clipPath>
+                            </defs>
+                        </svg>
+                    </a>
+                </div>
+            </div>
+
             {{--   Product slide start --}}
             <div class="swiper-wrapper">
                 @foreach ($randomProducts as $product)
@@ -462,63 +484,41 @@ $description = isset($matches[1])
             <div id="product-prev" class="swiper-button-prev start-0"></div>
 
         </div>
-        <div class="my-lg-3 my-0 col-lg-3  text-end mx-2 d-md-none d-block">
-            <a href="{{ route('products') }}"
-                class="pb-2 view_all_btn text-orange border-0 bg-transparent mb-4 text-end">@lang('home.smartphonesAll')
-                <svg width="16" height="16" viewBox="0 0 23 23" fill="none"
-                    xmlns="http://www.w3.org/2000/svg">
-                    <g clip-path="url(#clip0_43_12)">
-                        <path
-                            d="M18.176 5.27026L17.4665 5.2797L8.88696 5.59498L8.83354 7.04846L15.6796 6.79436L5.18161 17.2924L6.15388 18.2647L16.6514 7.76716L16.3989 14.6117L17.8523 14.5583L18.1676 5.97869L18.176 5.27026Z"
-                            fill="#ff6700" />
-                    </g>
-                    <defs>
-                        <clipPath id="clip0_43_12">
-                            <rect width="13" height="18.1071" fill="white"
-                                transform="translate(13.752 0.501953) rotate(45)" />
-                        </clipPath>
-                    </defs>
-                </svg>
-            </a>
-        </div>
+
 
         <!-- Our advantages -->
 
         <div class="banner py-5 my-5">
             <div class="container">
                 <h2>@lang('home.our_advantages')</h2>
-                <div class="p-4 px-lg-4 px-1">
-                    <div class="row gy-5 justify-content-center text-white">
+                <div class="p-4 px-lg-4 px-2">
+                    <div class="row gy-5 justify-content-evenly text-white">
                         <div
-                            class="col-lg-2 col-md-4 col-6 d-flex flex-md-column flex-row align-items-center text-md-center text-start gap-md-2 gap-4">
+                            class="fs-13 col-lg-2  col-6 d-flex flex-md-column flex-row align-items-center text-md-center text-start gap-md-2 gap-3">
                             <img src="/assets/icons/check-icon.svg" alt="" class="wh-65" />
-                            <div class="lh-1"><span class="fw-bold d-md-block d-none">Xiaomi</span><br
-                                    class=" d-md-block d-none" />@lang('home.authorized_store')</div>
+                            <div class=""><span class="fw-bold d-md-block d-none">Xiaomi</span></div>
+                            <div>@lang('home.authorized_store')</div>
                         </div>
                         <div
-                            class="col-lg-2 col-md-4 col-6 d-flex flex-md-column flex-row align-items-center text-md-center text-start gap-md-2 gap-4">
+                            class="fs-13 col-lg-2  col-6 d-flex flex-md-column flex-row align-items-center text-md-center text-start gap-md-2 gap-3">
                             <img src="/assets/icons/settings.svg" alt="" class="wh-65" />
-                            <div class=" lh-1">
-                                <span class="fw-bold d-md-block d-none">@lang('home.free')</span> <br
-                                    class=" d-md-block d-none" />
-                                @lang('home.device_setup')
+                            <div class="">
+                                <span class="fw-bold d-md-block d-none">@lang('home.free')</span>
                             </div>
+                            <div>@lang('home.device_setup')</div>
                         </div>
                         <div
-                            class="col-lg-2 col-md-4 col-6 d-flex flex-md-column flex-row align-items-center text-md-center text-start gap-md-2 gap-4">
+                            class="fs-13 col-lg-2  col-6 d-flex flex-md-column flex-row align-items-center text-md-center text-start gap-md-2 gap-3">
                             <img src="/assets/icons/shop-icon.svg" alt="" class="wh-65" />
-                            <div class=""><span class="fw-md-bold fw-normal">@lang('home.pickup') <br> @lang('home.and') @lang('home.delivery')</span><br />
-                            </div>
+                            <div class=""><span class="fw-bold d-md-block d-none">@lang('home.pickup') </span></div>
+                            <div>@lang('home.pickup') @lang('home.and') @lang('home.delivery')</div>
                         </div>
                         <div
-                            class="col-lg-2 col-md-4 col-6 d-flex flex-md-column flex-row align-items-center text-md-center text-start gap-md-2 gap-4">
+                            class="fs-13 col-lg-2 col-6 d-flex flex-md-column flex-row align-items-center text-md-center text-start gap-md-2 gap-3">
                             <img src="/assets/icons/calendar.svg" alt="" class="wh-65" />
-                            <div class="lh-1"><span class="fw-bold d-md-block d-none">@lang('home.favorable_installment_plan')</span><br
-                                    class=" d-md-block d-none" />@lang('home.without_prepayment')
-                            </div>
+                            <div class=""><span class="fw-bold d-md-block d-none">@lang('home.favorable_installment_plan')</span></div>
+                            <div>@lang('home.without_prepayment')</div>
                         </div>
-
-
                     </div>
                 </div>
 

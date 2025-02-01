@@ -490,40 +490,33 @@ $isInCompare = in_array($product->id, session('compares', []));
         <!-- black banner -->
         <div class="banner py-5 mb-3 mt-5">
             <div class="container">
-                <div class="d-flex justify-content-between advantages py-4 gap-5">
-                    <div class="d-flex flex-column gap-3 align-items-center">
-                        <img src="/assets/icons/check-icon.svg" alt="" />
-                        <div class="text-center text-nowrap"><span class="fw-bold">Xiaomi</span>
-                            <br />@lang('home.authorized_store')
+                <div class="p-4 px-lg-4 px-2">
+                    <div class="row gy-5 justify-content-center text-white">
+                        <div
+                            class="fs-13 col-lg-2 col-md-4 col-6 d-flex flex-md-column flex-row align-items-center text-md-center text-start gap-md-2 gap-3">
+                            <img src="/assets/icons/check-icon.svg" alt="" class="wh-65" />
+                            <div class=""><span class="fw-bold d-md-block d-none">Xiaomi</span></div>
+                            <div>@lang('home.authorized_store')</div>
                         </div>
-                    </div>
-                    <div class="d-flex flex-column align-items-center">
-                        <img src="/assets/icons/truck-icon.svg" alt="" />
-                        <div class="text-center text-nowrap">
-                            <span class="fw-bold">@lang('home.delivery')</span> <br />
-                            @lang('home.all_over_uzbekistan')
+                        <div
+                            class="fs-13 col-lg-2  col-6 d-flex flex-md-column flex-row align-items-center text-md-center text-start gap-md-2 gap-3">
+                            <img src="/assets/icons/settings.svg" alt="" class="wh-65" />
+                            <div class="">
+                                <span class="fw-bold d-md-block d-none">@lang('home.free')</span>
+                            </div>
+                            <div>@lang('home.device_setup')</div>
                         </div>
-                    </div>
-                    <div class="d-flex flex-column gap-3 align-items-center">
-                        <img src="/assets/icons/shop-icon.svg" alt="" />
-                        <div class="text-center text-nowrap">
-                            <span class="fw-bold">@lang('home.pickup')</span> <br />
-                            @lang('home.from_the_nearest_store')
+                        <div
+                            class="fs-13 col-lg-2 col-6 d-flex flex-md-column flex-row align-items-center text-md-center text-start gap-md-2 gap-3">
+                            <img src="/assets/icons/shop-icon.svg" alt="" class="wh-65" />
+                            <div class=""><span class="fw-bold d-md-block d-none">@lang('home.pickup') </span></div>
+                            <div>@lang('home.pickup') @lang('home.and') @lang('home.delivery')</div>
                         </div>
-                    </div>
-                    <div class="d-flex flex-column gap-3 align-items-center">
-                        <img src="/assets/icons/calendar.svg" alt="" />
-                        <div class="text-center text-nowrap">
-                            <span class="fw-bold">@lang('home.favorable_installment_plan')</span> <br />
-                            @lang('home.without_prepayment')
-                        </div>
-                    </div>
-                    <div class="d-flex flex-column gap-3 align-items-center">
-                        <!-- <img src="./assets/icons/tools.svg" alt="" /> -->
-                        <img src="/assets/icons/settings.svg" alt="" />
-                        <div class="text-center text-nowrap">
-                            <span class="fw-bold">@lang('home.free')</span> <br />
-                            @lang('home.device_setup')
+                        <div
+                            class="fs-13 col-lg-2  col-6 d-flex flex-md-column flex-row align-items-center text-md-center text-start gap-md-2 gap-3">
+                            <img src="/assets/icons/calendar.svg" alt="" class="wh-65" />
+                            <div class=""><span class="fw-bold d-md-block d-none">@lang('home.favorable_installment_plan')</span></div>
+                            <div>@lang('home.without_prepayment')</div>
                         </div>
                     </div>
                 </div>
