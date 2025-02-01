@@ -610,10 +610,10 @@ $description = isset($matches[1])
                         // Ico'ni yangilash
                         if (response.message.includes('qo\'shildi')) {
                             $('#compare-icon-' + productId).addClass(
-                                'active-svg'); // Qo'shilganini ko'rsatish
+                                'hover-svg'); // Qo'shilganini ko'rsatish
                         } else {
                             $('#compare-icon-' + productId).removeClass(
-                                'hover-svg'); // O'chirilganini ko'rsatish
+                                'active-svg'); // O'chirilganini ko'rsatish
                         }
                     }
                 },
