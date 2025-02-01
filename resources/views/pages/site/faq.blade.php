@@ -1,14 +1,14 @@
 @extends('layouts.page')
 
 @section('content')
-    <div class="container ">
-        <div class="my-4">
+    <div class="container my-4 mb-5">
+
             <div class="d-flex align-items-center gap-1">
                 <a href="/" class="text-grey fw-bold  fs-14">@lang('home.home') / </a>
                 <span class="text-dark fw-bold">@lang('home.faq')</span>
             </div>
             <hr />
-        </div>
+
         <h2 class="fw-bold">@lang('home.faq')</h2>
 
         <div class="accordion mt-4 p-4 rounded bg-white" id="faqAccordion">
