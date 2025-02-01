@@ -169,9 +169,9 @@ foreach ($keywords as $keyword) {
                                     </a>
                                     <div
                                         class="d-flex flex-column justify-content-between product-text p-4 rounded-bottom">
-                                        <div class="d-flex align-items-end gap-3 pt-2">
+                                        <div class="d-flex align-items-end justify-content-between gap-3 pt-2">
                                             @if ($cheapestVariant->discount_price)
-                                                <div class="fw-bold ">
+                                                <div class="fw-bold text-orange">
                                                     {{ number_format($cheapestVariant->discount_price, 0, ',', ' ') }}
                                                     UZS
                                                 </div>
@@ -180,7 +180,7 @@ foreach ($keywords as $keyword) {
                                                         UZS</small>
                                                 </del>
                                             @else
-                                                <div class="fw-bold">
+                                                <div class="fw-bold text-orange">
                                                     {{ number_format($cheapestVariant->price, 0, ',', ' ') }}
                                                     UZS
                                                 </div>
@@ -208,15 +208,15 @@ $description = isset($matches[1])
                                             <p class="text-grey">{{ $description }}</p>
                                         </a>
                                         <div class="d-flex align-items-center justify-content-between w-100">
-                                            <span
-                                                class="small bg-transparent px-0">{{ number_format($cheapestVariant->price ?? $cheapestVariant->discount_price, 0, ',', ' ') }}
-                                                UZS <span class="text-orange">@lang('home.incash')</span></span>
-                                            <span class="px-2 productmonth-border small text-grey">
-                                                {{ number_format($cheapestVariant->price_12, 0, ',', ' ') }}
-                                                UZS/@lang('home.month')</span>
+                                            @if ($cheapestVariant->price_12 > 0)
+                                                <span class="px-2 productmonth-border small text-orange rounded-1">
+                                                    {{ number_format($cheapestVariant->price_12, 0, ',', ' ') }}
+                                                    UZS/@lang('home.month')
+                                                </span>
+                                            @endif
                                         </div>
 
-                                        <div class="d-flex gap-4 mt-3">
+                                        <div class="d-flex gap-4 mt-1">
                                             <a class="border-orange bg-transparent rounded p-1 px-3 add-to-cart-btn"
                                                 href="javascript: void(0);" type="button"
                                                 onclick="addToCart(this,{{ $product->id }}, '{{ $product['name_' . $lang] }}', {{ $cheapestVariant->discount_price ?? $cheapestVariant->price }}, {{ $cheapestVariant->id }})">
@@ -283,9 +283,9 @@ $description = isset($matches[1])
                                     </a>
                                     <div
                                         class="d-flex flex-column justify-content-between product-text p-4 rounded-bottom">
-                                        <div class="d-flex align-items-end gap-3 pt-2">
+                                        <div class="d-flex align-items-end justify-content-between gap-3 pt-2">
                                             @if ($cheapestVariant->discount_price)
-                                                <div class="fw-bold ">
+                                                <div class="fw-bold  text-orange">
                                                     {{ number_format($cheapestVariant->discount_price, 0, ',', ' ') }}
                                                     UZS
                                                 </div>
@@ -294,7 +294,7 @@ $description = isset($matches[1])
                                                         UZS</small>
                                                 </del>
                                             @else
-                                                <div class="fw-bold">
+                                                <div class="fw-bold text-orange">
                                                     {{ number_format($cheapestVariant->price, 0, ',', ' ') }}
                                                     UZS
                                                 </div>
@@ -322,15 +322,15 @@ $description = isset($matches[1])
                                             <p class="text-grey">{{ $description }}</p>
                                         </a>
                                         <div class="d-flex align-items-center justify-content-between w-100">
-                                            <span
-                                                class="small bg-transparent px-0">{{ number_format($cheapestVariant->price ?? $cheapestVariant->discount_price, 0, ',', ' ') }}
-                                                UZS <span class="text-orange">@lang('home.incash')</span></span>
-                                            <span class="px-2 productmonth-border small text-grey">
-                                                {{ number_format($cheapestVariant->price_12, 0, ',', ' ') }}
-                                                UZS/@lang('home.month')</span>
+                                            @if ($cheapestVariant->price_12 > 0)
+                                                <span class="px-2 productmonth-border small text-orange rounded-1">
+                                                    {{ number_format($cheapestVariant->price_12, 0, ',', ' ') }}
+                                                    UZS/@lang('home.month')
+                                                </span>
+                                            @endif
                                         </div>
 
-                                        <div class="d-flex gap-4 mt-3">
+                                        <div class="d-flex gap-4 mt-1">
                                             <a class="border-orange bg-transparent rounded p-1 px-3 add-to-cart-btn"
                                                 href="javascript: void(0);" type="button"
                                                 onclick="addToCart(this,{{ $product->id }}, '{{ $product['name_' . $lang] }}', {{ $cheapestVariant->discount_price ?? $cheapestVariant->price }}, {{ $cheapestVariant->id }})">
@@ -366,9 +366,9 @@ $description = isset($matches[1])
                 <div class=" fs-2 fw-bold">@lang('home.top_products')</div>
                 <div class="my-lg-3 my-0 col-lg-3  text-end mx-2 d-md-none d-block">
                     <a href="{{ route('products') }}"
-                       class="pb-2 view_all_btn text-orange border-0 bg-transparent mb-4 text-end">@lang('home.smartphonesAll')
+                        class="pb-2 view_all_btn text-orange border-0 bg-transparent mb-4 text-end">@lang('home.smartphonesAll')
                         <svg width="16" height="16" viewBox="0 0 23 23" fill="none"
-                             xmlns="http://www.w3.org/2000/svg">
+                            xmlns="http://www.w3.org/2000/svg">
                             <g clip-path="url(#clip0_43_12)">
                                 <path
                                     d="M18.176 5.27026L17.4665 5.2797L8.88696 5.59498L8.83354 7.04846L15.6796 6.79436L5.18161 17.2924L6.15388 18.2647L16.6514 7.76716L16.3989 14.6117L17.8523 14.5583L18.1676 5.97869L18.176 5.27026Z"
@@ -377,7 +377,7 @@ $description = isset($matches[1])
                             <defs>
                                 <clipPath id="clip0_43_12">
                                     <rect width="13" height="18.1071" fill="white"
-                                          transform="translate(13.752 0.501953) rotate(45)" />
+                                        transform="translate(13.752 0.501953) rotate(45)" />
                                 </clipPath>
                             </defs>
                         </svg>
@@ -418,9 +418,9 @@ $description = isset($matches[1])
                                 alt="" />
                         </a>
                         <div class="d-flex flex-column justify-content-between product-text p-4 rounded-bottom">
-                            <div class="d-flex align-items-end gap-3 pt-2">
+                            <div class="d-flex align-items-end justify-content-between gap-3 pt-2">
                                 @if ($cheapestVariant->discount_price)
-                                    <div class="fw-bold ">
+                                    <div class="fw-bold text-orange ">
                                         {{ number_format($cheapestVariant->discount_price, 0, ',', ' ') }}
                                         UZS
                                     </div>
@@ -429,7 +429,8 @@ $description = isset($matches[1])
                                             UZS</small>
                                     </del>
                                 @else
-                                    <div class="fw-bold">{{ number_format($cheapestVariant->price, 0, ',', ' ') }}
+                                    <div class="fw-bold text-orange">
+                                        {{ number_format($cheapestVariant->price, 0, ',', ' ') }}
                                         UZS
                                     </div>
                                 @endif
@@ -451,15 +452,15 @@ $description = isset($matches[1])
                                 <p class="text-grey">{{ $description }}</p>
                             </a>
                             <div class="d-flex align-items-center justify-content-between w-100">
-                                <span
-                                    class="small bg-transparent px-0">{{ number_format($cheapestVariant->price ?? $cheapestVariant->discount_price, 0, ',', ' ') }}
-                                    UZS <span class="text-orange">@lang('home.incash')</span></span>
-                                <span class="px-2 productmonth-border small text-grey">
-                                    {{ number_format($cheapestVariant->price_12, 0, ',', ' ') }}
-                                    UZS/@lang('home.month')</span>
+                                @if ($cheapestVariant->price_12 > 0)
+                                    <span class="px-2 productmonth-border small text-orange rounded-1">
+                                        {{ number_format($cheapestVariant->price_12, 0, ',', ' ') }}
+                                        UZS/@lang('home.month')
+                                    </span>
+                                @endif
                             </div>
 
-                            <div class="d-flex gap-4 mt-3">
+                            <div class="d-flex gap-4 mt-1">
                                 <a class="border-orange bg-transparent rounded p-1 px-3 add-to-cart-btn"
                                     href="javascript: void(0);" type="button"
                                     onclick="addToCart(this,{{ $product->id }}, '{{ $product['name_' . $lang] }}', {{ $cheapestVariant->discount_price ?? $cheapestVariant->price }}, {{ $cheapestVariant->id }})">

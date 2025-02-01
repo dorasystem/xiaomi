@@ -22,7 +22,7 @@ return [
     'vacancy' => 'Вакансии',
     'compare' => 'Сравнение',
     'bestsellers' => 'Хиты продаж',
-    'buy_now' => 'Купить сразу',
+    'buy_now' => 'Купить сейчас',
     'top_products' => 'Рекомендуем',
     'our_advantages' => 'Наши преимущества',
     'authorized_store' => 'Авторизованный магазин',

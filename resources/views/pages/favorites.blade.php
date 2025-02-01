@@ -67,9 +67,9 @@
                                             </a>
                                             <div
                                                 class="d-flex flex-column justify-content-between product-text p-4 rounded-bottom">
-                                                <div class="d-flex align-items-end gap-3 pt-2">
+                                                <div class="d-flex align-items-end justify-content-between gap-3 pt-2">
                                                     @if ($cheapestVariant->discount_price)
-                                                        <div class="fw-bold">
+                                                        <div class="fw-bold text-orange">
                                                             {{ number_format($cheapestVariant->discount_price, 0, ',', ' ') }}
                                                             UZS
                                                         </div>
@@ -78,7 +78,7 @@
                                                                 UZS</small>
                                                         </del>
                                                     @else
-                                                        <div class="fw-bold">
+                                                        <div class="fw-bold text-orange">
                                                             {{ number_format($cheapestVariant->price, 0, ',', ' ') }} UZS
                                                         </div>
                                                     @endif
@@ -92,22 +92,16 @@
                                                     <p class="text-grey">{!! \Str::words($product['description_' . $lang], 10) !!}</p>
                                                 </a>
                                                 <div class="d-flex align-items-center justify-content-between w-100">
-                                                    <span class="small bg-transparent px-0">
-                                                        @if ($cheapestVariant->discount_price)
-                                                            {{ number_format($cheapestVariant->discount_price, 0, ',', ' ') }}
-                                                            UZS
-                                                        @else
-                                                            <small>{{ number_format($cheapestVariant->price, 0, ',', ' ') }}
-                                                                UZS</small>
-                                                        @endif
-                                                        <span class="text-orange">@lang('home.incash')</span>
-                                                    </span>
-                                                    <span
-                                                        class="px-2 productmonth-border small text-grey">{{ number_format($cheapestVariant->price_12, 0, ',', ' ') }}
-                                                        UZS/@lang('home.month')</span>
+
+                                                    @if ($cheapestVariant->price_12 > 0)
+                                                        <span class="px-2 productmonth-border small text-orange rounded-1">
+                                                            {{ number_format($cheapestVariant->price_12, 0, ',', ' ') }}
+                                                            UZS/@lang('home.month')
+                                                        </span>
+                                                    @endif
                                                 </div>
 
-                                                <div class="d-flex gap-4 mt-3">
+                                                <div class="d-flex gap-4 mt-1">
                                                     <a class="border-orange bg-transparent rounded p-1 px-3"
                                                         href="javascript: void(0);" type="button"
                                                         onclick="addToCart({{ $product->id }}, '{{ $product['name_' . $lang] }}', {{ $cheapestVariant->discount_price ?? $cheapestVariant->price }}, {{ $cheapestVariant->id }})">
@@ -142,8 +136,9 @@
                                             <div class="col-md-6 col-12 col-lg-4">
                                                 <a href="{{ route('category.sort', ['slug' => $item->getSlugByLanguage($lang)]) }}"
                                                     class="d-flex align-items-center p-2 border rounded">
-                                                    <img src="{{ asset('storage/' . $item->image) }}" alt="{{ $item['name_' . $lang] }}"
-                                                        class="img-fluid me-3 rounded" style="width: 80px; height: 80px; object-fit: cover;">
+                                                    <img src="{{ asset('storage/' . $item->image) }}"
+                                                        alt="{{ $item['name_' . $lang] }}" class="img-fluid me-3 rounded"
+                                                        style="width: 80px; height: 80px; object-fit: cover;">
                                                     <div>
                                                         <p class="mb-0 fw-bold">{{ $item['name_' . $lang] }}</p>
                                                     </div>

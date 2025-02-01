@@ -63,7 +63,6 @@ $categories = \App\Models\Category::all();
             /*z-index: -1;*/
             width: 100%;
         }
-
     </style>
     <main>
         <div class="container mt-4">
@@ -90,8 +89,8 @@ $categories = \App\Models\Category::all();
                             <img src="/assets/images/airpods.png" width="120px" alt="" />
                         </div>
                         <div class="position-relative">
-                            <img class="bottom_product border-orange" src="/assets/images/bottom_product.png"
-                                width="120px" alt="" />
+                            <img class="bottom_product border-orange" src="/assets/images/bottom_product.png" width="120px"
+                                alt="" />
                         </div>
                     </div>
                 </div>
@@ -127,18 +126,24 @@ $categories = \App\Models\Category::all();
                                                 @foreach ($categories as $index => $category)
                                                     @php
 
-
                                                         // ✅ 1. Query string orqali kelgan kategoriyalarni olish
-                                                        $selectedCategories = request()->has('categories') ? request('categories') : [];
+                                                        $selectedCategories = request()->has('categories')
+                                                            ? request('categories')
+                                                            : [];
 
                                                         // ✅ 2. Agar kategoriya {slug} orqali kelgan bo‘lsa, slug bo‘yicha tekshirish
                                                         $currentCategorySlug = Route::current()->parameter('category');
-                                                        $isChecked = in_array($category->id, $selectedCategories) || ($currentCategorySlug && $category->slug == $currentCategorySlug);
+                                                        $isChecked =
+                                                            in_array($category->id, $selectedCategories) ||
+                                                            ($currentCategorySlug &&
+                                                                $category->slug == $currentCategorySlug);
                                                     @endphp
 
-                                                    <div class="form-check mb-3 category-item" style="display: {{ $index < 10 ? 'block' : 'none' }}">
-                                                        <input class="form-check-input category-checkbox" type="checkbox" name="categories[]"
-                                                               value="{{ $category->id }}" id="category-{{ $category->id }}"
+                                                    <div class="form-check mb-3 category-item"
+                                                        style="display: {{ $index < 10 ? 'block' : 'none' }}">
+                                                        <input class="form-check-input category-checkbox" type="checkbox"
+                                                            name="categories[]" value="{{ $category->id }}"
+                                                            id="category-{{ $category->id }}"
                                                             {{ $isChecked ? 'checked' : '' }} />
                                                         <label class="form-check-label" for="category-{{ $category->id }}">
                                                             <small>{{ $category['name_' . $lang] }}</small>
@@ -148,7 +153,9 @@ $categories = \App\Models\Category::all();
                                             </div>
 
                                             <!-- Ko'proq ko'rsatish tugmasi -->
-                                            <a id="showMoreBtn" class="w-100 btn-orange2 rounded text-center mb-3 btn">Ko'proq ko'rsatish</a>
+                                            <a id="showMoreBtn"
+                                                class="w-100 btn-orange2 rounded text-center mb-3 btn">Ko'proq
+                                                ko'rsatish</a>
 
                                         </div>
                                     </div>
@@ -167,18 +174,20 @@ $categories = \App\Models\Category::all();
                                             <div class="range-slider">
                                                 <div class="slider-container">
                                                     <div class="slider-track"></div>
-                                                    <input type="range" id="rangeMin" min="0" max="40000000" value="{{ request('min_price', 1) }}" />
-                                                    <input type="range" id="rangeMax" min="0" max="40000000" value="{{ request('max_price', 40000000) }}" />
+                                                    <input type="range" id="rangeMin" min="0" max="40000000"
+                                                        value="{{ request('min_price', 1) }}" />
+                                                    <input type="range" id="rangeMax" min="0" max="40000000"
+                                                        value="{{ request('max_price', 40000000) }}" />
                                                 </div>
                                                 <span id="minValue1" style="font-size: 14px">
-                                                            {{ number_format(request('min_price', 1), 0, ',', ' ') }} so'm
-                                                        </span> -
-                                                                                                        <span id="maxValue1" style="font-size: 14px">
-                                                            {{ number_format(request('max_price', 40000000), 0, ',', ' ') }} so'm
-                                                        </span>
+                                                    {{ number_format(request('min_price', 1), 0, ',', ' ') }} so'm
+                                                </span> -
+                                                <span id="maxValue1" style="font-size: 14px">
+                                                    {{ number_format(request('max_price', 40000000), 0, ',', ' ') }} so'm
+                                                </span>
 
                                                 <script>
-                                                    document.addEventListener("DOMContentLoaded", function () {
+                                                    document.addEventListener("DOMContentLoaded", function() {
                                                         let rangeMin = document.getElementById("rangeMin");
                                                         let rangeMax = document.getElementById("rangeMax");
                                                         let minValue = document.getElementById("minValue1");
@@ -206,7 +215,8 @@ $categories = \App\Models\Category::all();
                             </div>
                             <button type="submit"
                                 class="w-100 btn-orange rounded text-center mb-3">@lang('home.search')</button>
-                            <button class="w-100 text-orange bg-transparent rounded text-center border-orange rounded py-1">
+                            <button
+                                class="w-100 text-orange bg-transparent rounded text-center border-orange rounded py-1">
                                 <a href="{{ route('products') }}"
                                     class="w-100 text-orange bg-transparent  text-center  py-1">
                                     @lang('home.reset')
@@ -251,19 +261,25 @@ $categories = \App\Models\Category::all();
                                                                 aria-labelledby="panelsStayOpen-headingOne">
                                                                 <div class="accordion-body">
                                                                     <div class="form-check mb-3">
-                                                                        <input class="form-check-input" type="checkbox" id="all-categories"
+                                                                        <input class="form-check-input" type="checkbox"
+                                                                            id="all-categories"
                                                                             {{ count(request('categories', [])) === $categories->count() ? 'checked' : '' }} />
-                                                                        <label class="form-check-label" for="all-categories">
+                                                                        <label class="form-check-label"
+                                                                            for="all-categories">
                                                                             <small>@lang('home.all_categories')</small>
                                                                         </label>
                                                                     </div>
 
-                                                                @foreach ($categories as $category)
+                                                                    @foreach ($categories as $category)
                                                                         <div class="form-check mb-3">
-                                                                            <input class="form-check-input category-checkbox" type="checkbox" name="categories[]"
-                                                                                   value="{{ $category->id }}" id="category-{{ $category->id }}"
+                                                                            <input
+                                                                                class="form-check-input category-checkbox"
+                                                                                type="checkbox" name="categories[]"
+                                                                                value="{{ $category->id }}"
+                                                                                id="category-{{ $category->id }}"
                                                                                 {{ in_array($category->id, request('categories', [])) ? 'checked' : '' }} />
-                                                                            <label class="form-check-label" for="category-{{ $category->id }}">
+                                                                            <label class="form-check-label"
+                                                                                for="category-{{ $category->id }}">
                                                                                 <small>{{ $category['name_' . $lang] }}</small>
                                                                             </label>
                                                                         </div>
@@ -371,9 +387,10 @@ $categories = \App\Models\Category::all();
                                                         src="{{ asset('storage/' . $product->image) }}" alt="" />
                                                     <div
                                                         class="d-flex flex-column justify-content-between product-text p-4 rounded-bottom">
-                                                        <div class="d-flex align-items-end gap-3 pt-2">
+                                                        <div
+                                                            class="d-flex align-items-end justify-content-between gap-3 pt-2">
                                                             @if ($cheapestVariant->discount_price)
-                                                                <div class="fw-bold ">
+                                                                <div class="fw-bold text-orange ">
                                                                     {{ number_format($cheapestVariant->discount_price, 0, ',', ' ') }}
                                                                     UZS
                                                                 </div>
@@ -382,7 +399,7 @@ $categories = \App\Models\Category::all();
                                                                         UZS</small>
                                                                 </del>
                                                             @else
-                                                                <div class="fw-bold">
+                                                                <div class="fw-bold text-orange">
                                                                     {{ number_format($cheapestVariant->price, 0, ',', ' ') }}
                                                                     UZS
                                                                 </div>
@@ -400,16 +417,15 @@ $categories = \App\Models\Category::all();
 
                                                         <div
                                                             class="d-flex align-items-center justify-content-between w-100">
-                                                            <span class="small bg-transparent px-0">
-                                                                {{ number_format($cheapestVariant->price ?? $cheapestVariant->discount_price, 0, ',', ' ') }}
-
-                                                                UZS <span
-                                                                    class="text-orange">@lang('home.incash')</span></span>
-                                                            <span class="px-2 productmonth-border small text-grey">
-                                                                {{ number_format($cheapestVariant->price_12, 0, ',', ' ') }}
-                                                                UZS/@lang('home.month')</span>
+                                                            @if ($cheapestVariant->price_12 > 0)
+                                                                <span
+                                                                    class="px-2 productmonth-border small text-orange rounded-1">
+                                                                    {{ number_format($cheapestVariant->price_12, 0, ',', ' ') }}
+                                                                    UZS/@lang('home.month')
+                                                                </span>
+                                                            @endif
                                                         </div>
-                                                        <div class="d-flex gap-4 mt-3">
+                                                        <div class="d-flex gap-4 mt-1">
                                                             <a class="border-orange bg-transparent rounded p-1 px-3 add-to-cart-btn"
                                                                 href="javascript: void(0);" type="button"
                                                                 onclick="addToCart(this,{{ $product->id }}, '{{ $product['name_' . $lang] }}', {{ $cheapestVariant->discount_price ?? $cheapestVariant->price }}, {{ $cheapestVariant->id }})">
@@ -439,10 +455,12 @@ $categories = \App\Models\Category::all();
                                 <main class="text-light-black fs-14 fs-12-responsive mt-responsive dr-text">
                                     <div class="container ">
                                         <div class="d-flex align-items-center  flex-wrap mt-4 w-100">
-                                            <div class=" col-md-6 d-flex flex-column align-items center justify-content-center gap-3 w-100 text-center">
+                                            <div
+                                                class=" col-md-6 d-flex flex-column align-items center justify-content-center gap-3 w-100 text-center">
                                                 <h3 class="">@lang('home.not_found') {{ $search }}</h3>
                                                 <a class="" href="/">
-                                                    <button type="button" class="btn-orange text-white border-0 rounded p-15-28 ">
+                                                    <button type="button"
+                                                        class="btn-orange text-white border-0 rounded p-15-28 ">
                                                         @lang('home.go_to_home')
                                                     </button>
                                                 </a>
@@ -464,22 +482,17 @@ $categories = \App\Models\Category::all();
                     <form class="row align-items-center" action="{{ route('orders.store.form') }}" method="POST">
                         @csrf
                         <div class="col-lg-3 col-md-6 mb-lg-0 mb-3">
-                            <input class="form-control focus_none py-3" placeholder="@lang('home.message_input1')" type="text" required
-                                   name="message" />
+                            <input class="form-control focus_none py-3" placeholder="@lang('home.message_input1')" type="text"
+                                required name="message" />
                         </div>
                         <div class="col-lg-3 col-md-6 mb-lg-0 mb-3">
-                            <input class="form-control focus_none py-3" placeholder="@lang('home.message_input2')" type="text" required
-                                   name="first_name" />
+                            <input class="form-control focus_none py-3" placeholder="@lang('home.message_input2')" type="text"
+                                required name="first_name" />
                         </div>
                         <div class="col-lg-3 col-md-6 mb-lg-0 mb-3">
-                            <input class="form-control focus_none py-3"
-                                   placeholder="+998 __ ___ ___ ___"
-                                   type="tel"
-                                   name="phone"
-                                   required
-                                   pattern="^\+\d{7,}$"
-                                   title="Номер телефона должен содержать не менее 7 цифр"
-                            />
+                            <input class="form-control focus_none py-3" placeholder="+998 __ ___ ___ ___" type="tel"
+                                name="phone" required pattern="^\+\d{7,}$"
+                                title="Номер телефона должен содержать не менее 7 цифр" />
                         </div>
 
                         <div class="col-lg-3 col-md-6">
@@ -498,22 +511,22 @@ $categories = \App\Models\Category::all();
 
     @if (session('success'))
         <script>
-                        const toastBody = document.querySelector('#liveToast .toast-body');
-                        toastBody.textContent = response.message;
+            const toastBody = document.querySelector('#liveToast .toast-body');
+            toastBody.textContent = response.message;
 
-                        const toastElement = document.getElementById('liveToast');
-                        const toast = new bootstrap.Toast(toastElement);
-                        toast.show();
+            const toastElement = document.getElementById('liveToast');
+            const toast = new bootstrap.Toast(toastElement);
+            toast.show();
         </script>
     @endif
 
     <script>
-        document.addEventListener('DOMContentLoaded', function () {
+        document.addEventListener('DOMContentLoaded', function() {
             const allCategoriesCheckbox = document.getElementById('all-categories');
             const categoryCheckboxes = document.querySelectorAll('.category-checkbox');
 
             // "All" checkbox tanlanganda barcha checkboxlarni boshqaradi
-            allCategoriesCheckbox.addEventListener('change', function () {
+            allCategoriesCheckbox.addEventListener('change', function() {
                 categoryCheckboxes.forEach(checkbox => {
                     checkbox.checked = allCategoriesCheckbox.checked;
                 });
@@ -521,12 +534,14 @@ $categories = \App\Models\Category::all();
 
             // Boshqa checkboxlar o'zgarganda "All" checkboxni yangilaydi
             categoryCheckboxes.forEach(checkbox => {
-                checkbox.addEventListener('change', function () {
-                    allCategoriesCheckbox.checked = Array.from(categoryCheckboxes).every(checkbox => checkbox.checked);
+                checkbox.addEventListener('change', function() {
+                    allCategoriesCheckbox.checked = Array.from(categoryCheckboxes).every(checkbox =>
+                        checkbox.checked);
                 });
             });
         });
-        function addToCart(button,productId, productName, productPrice, variantId) {
+
+        function addToCart(button, productId, productName, productPrice, variantId) {
             button.classList.add("loading");
             $.ajax({
                 url: `/add-to-cart`,
@@ -653,7 +668,7 @@ $categories = \App\Models\Category::all();
             });
         }
     </script>
-    {{--ko'proq ko'rsatish scripti va css--}}
+    {{-- ko'proq ko'rsatish scripti va css --}}
     <style>
         .btn-orange2 {
             background-color: #ff6600;
@@ -668,15 +683,14 @@ $categories = \App\Models\Category::all();
         .btn-orange2:hover {
             background-color: #e65c00;
         }
-
     </style>
     <script>
-        document.addEventListener("DOMContentLoaded", function () {
+        document.addEventListener("DOMContentLoaded", function() {
             let hiddenCategories = document.querySelectorAll(".category-item");
             let showMoreBtn = document.getElementById("showMoreBtn");
             let visibleCount = 10; // Boshlang'ich ko'rsatilgan kategoriya soni
 
-            showMoreBtn.addEventListener("click", function () {
+            showMoreBtn.addEventListener("click", function() {
                 let nextVisibleCount = visibleCount + 10;
                 let foundHidden = false;
 

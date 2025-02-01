@@ -74,11 +74,11 @@
                                                         src="{{ asset('storage/' . $product->image) ?? '/assets/images/category_tv.webp' }}"
                                                         alt="" />
                                                 </a>
-                                                <div style="height: 200px"
+                                                <div style="height: 240px"
                                                     class="d-flex flex-column justify-content-between bg-white p-4 rounded-bottom">
-                                                    <div class="d-flex align-items-end gap-3 pt-2">
+                                                    <div class="d-flex align-items-end justify-content-between gap-3 pt-2">
                                                         @if ($cheapestVariant->discount_price)
-                                                            <div class="fw-bold ">
+                                                            <div class="fw-bold  text-orange">
                                                                 {{ number_format($cheapestVariant->discount_price, 0, ',', ' ') }}
                                                                 UZS
                                                             </div>
@@ -87,7 +87,7 @@
                                                                     UZS</small>
                                                             </del>
                                                         @else
-                                                            <div class="fw-bold">
+                                                            <div class="fw-bold text-orange">
                                                                 {{ number_format($cheapestVariant->price, 0, ',', ' ') }}
                                                                 UZS
                                                             </div>
@@ -97,23 +97,36 @@
                                                         <div class="productName fw-bold">
                                                             {{ \Str::words($product['name_' . $lang], 3) }}</div>
                                                     </a>
+                                                    <a class="truncate-text mb-2"
+                                                        href="{{ route('single.product', $product->slug) }}">
+                                                        @php
+                                                            // Matndan faqat birinchi <p> tegi ichidagi matnni olish
+                                                            preg_match(
+                                                                '/<p[^>]*>(.*?)<\/p>/is',
+                                                                $product['description_' . $lang],
+                                                                $matches,
+                                                            );
+
+                                                            // Matnni HTML teglaridan tozalash va 4 ta so'zni olish
+$description = isset($matches[1])
+    ? Str::words(strip_tags($matches[1]), 4, '...')
+    : '...';
+                                                        @endphp
+
+                                                        <p class="text-grey">{{ $description }}</p>
+                                                    </a>
                                                     <div class="d-flex align-items-center justify-content-between w-100">
-                                                        <span class="small bg-transparent px-0">
-                                                            @if ($cheapestVariant->discount_price)
-                                                                {{ number_format($cheapestVariant->discount_price, 0, ',', ' ') }}
-                                                                UZS
-                                                            @else
-                                                                <small>{{ number_format($cheapestVariant->price, 0, ',', ' ') }}
-                                                                    UZS</small>
-                                                            @endif
-                                                            <span class="text-orange">@lang('home.incash')</span>
-                                                        </span>
-                                                        <span
-                                                            class="px-2 productmonth-border small text-grey">{{ number_format($cheapestVariant->price_12, 0, ',', ' ') }}
-                                                            UZS/@lang('home.month')</span>
+
+                                                        @if ($cheapestVariant->price_12 > 0)
+                                                            <span
+                                                                class="px-2 productmonth-border small text-orange rounded-1">
+                                                                {{ number_format($cheapestVariant->price_12, 0, ',', ' ') }}
+                                                                UZS/@lang('home.month')
+                                                            </span>
+                                                        @endif
                                                     </div>
 
-                                                    <div class="d-flex gap-4 mt-3">
+                                                    <div class="d-flex gap-4 mt-1">
                                                         <a class="border-orange bg-transparent rounded p-1 px-3"
                                                             href="javascript: void(0);" type="button"
                                                             onclick="addToCart({{ $product->id }}, '{{ $product['name_' . $lang] }}', {{ $cheapestVariant->discount_price ?? $cheapestVariant->price }}, {{ $cheapestVariant->id }})">

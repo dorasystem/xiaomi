@@ -60,7 +60,6 @@
             /*z-index: -1;*/
             width: 100%;
         }
-
     </style>
 
     <main>
@@ -104,13 +103,13 @@
                                 <div class="accordion-item">
                                     <h2 class="accordion-header" id="panelsStayOpen-headingOne">
                                         <button class="accordion-button " type="button" data-bs-toggle="collapse"
-                                                data-bs-target="#panelsStayOpen-collapseOne" aria-expanded="true"
-                                                aria-controls="panelsStayOpen-collapseOne">
+                                            data-bs-target="#panelsStayOpen-collapseOne" aria-expanded="true"
+                                            aria-controls="panelsStayOpen-collapseOne">
                                             @lang('home.category')
                                         </button>
                                     </h2>
                                     <div id="panelsStayOpen-collapseOne" class="accordion-collapse collapse show"
-                                         aria-labelledby="panelsStayOpen-headingOne">
+                                        aria-labelledby="panelsStayOpen-headingOne">
                                         <div class="accordion-body">
                                             <!-- 'All' checkbox -->
                                             <div class="form-check mb-3">
@@ -122,9 +121,11 @@
                                             <!-- Individual checkboxes -->
                                             <div id="category-container">
                                                 @foreach ($categories as $index => $category)
-                                                    <div class="form-check mb-3 category-item" style="display: {{ $index < 10 ? 'block' : 'none' }}">
-                                                        <input class="form-check-input category-checkbox" type="checkbox" name="categories[]"
-                                                               value="{{ $category->id }}" id="category-{{ $category->id }}" checked />
+                                                    <div class="form-check mb-3 category-item"
+                                                        style="display: {{ $index < 10 ? 'block' : 'none' }}">
+                                                        <input class="form-check-input category-checkbox" type="checkbox"
+                                                            name="categories[]" value="{{ $category->id }}"
+                                                            id="category-{{ $category->id }}" checked />
                                                         <label class="form-check-label" for="category-{{ $category->id }}">
                                                             <small>{{ $category['name_' . $lang] }}</small>
                                                         </label>
@@ -133,7 +134,9 @@
                                             </div>
 
                                             <!-- Ko'proq ko'rsatish tugmasi -->
-                                            <a id="showMoreBtn" class="w-100 btn-orange2 rounded text-center mb-3 btn">Ko'proq ko'rsatish</a>
+                                            <a id="showMoreBtn"
+                                                class="w-100 btn-orange2 rounded text-center mb-3 btn">Ko'proq
+                                                ko'rsatish</a>
 
 
                                         </div>
@@ -142,38 +145,40 @@
                                 <div class="accordion-item">
                                     <h2 class="accordion-header" id="panelsStayOpen-headingTwo">
                                         <button class="accordion-button" type="button" data-bs-toggle="collapse"
-                                                data-bs-target="#panelsStayOpen-collapseTwo" aria-expanded="true"
-                                                aria-controls="panelsStayOpen-collapseTwo">
+                                            data-bs-target="#panelsStayOpen-collapseTwo" aria-expanded="true"
+                                            aria-controls="panelsStayOpen-collapseTwo">
                                             @lang('home.price')
                                         </button>
                                     </h2>
                                     <div id="panelsStayOpen-collapseTwo" class="accordion-collapse collapse show pt-3"
-                                         aria-labelledby="panelsStayOpen-headingTwo">
+                                        aria-labelledby="panelsStayOpen-headingTwo">
                                         <div class="accordion-body">
                                             <div class="range-slider">
-{{--                                                <div class="inputs">--}}
-{{--                                                    <input type="number" id="minValue" name="min_price"--}}
-{{--                                                           value="{{ request('min_price', 20) }}" min="0"--}}
-{{--                                                           max="600" />--}}
-{{--                                                    <span>до</span>--}}
-{{--                                                    <input type="number" id="maxValue" name="max_price"--}}
-{{--                                                           value="{{ request('max_price', 600) }}" min="0"--}}
-{{--                                                           max="600" />--}}
-{{--                                                </div>--}}
+                                                {{--                                                <div class="inputs"> --}}
+                                                {{--                                                    <input type="number" id="minValue" name="min_price" --}}
+                                                {{--                                                           value="{{ request('min_price', 20) }}" min="0" --}}
+                                                {{--                                                           max="600" /> --}}
+                                                {{--                                                    <span>до</span> --}}
+                                                {{--                                                    <input type="number" id="maxValue" name="max_price" --}}
+                                                {{--                                                           value="{{ request('max_price', 600) }}" min="0" --}}
+                                                {{--                                                           max="600" /> --}}
+                                                {{--                                                </div> --}}
                                                 <div class="slider-container">
                                                     <div class="slider-track"></div>
-                                                    <input type="range" id="rangeMin" min="0" max="40000000" value="{{ request('min_price', 1) }}" />
-                                                    <input type="range" id="rangeMax" min="0" max="40000000" value="{{ request('max_price', 40000000) }}" />
+                                                    <input type="range" id="rangeMin" min="0" max="40000000"
+                                                        value="{{ request('min_price', 1) }}" />
+                                                    <input type="range" id="rangeMax" min="0" max="40000000"
+                                                        value="{{ request('max_price', 40000000) }}" />
                                                 </div>
                                                 <span id="minValue1" style="font-size: 14px">
                                                     {{ number_format(request('min_price', 1), 0, ',', ' ') }} so'm
                                                 </span> -
-                                                                                                <span id="maxValue1" style="font-size: 14px">
+                                                <span id="maxValue1" style="font-size: 14px">
                                                     {{ number_format(request('max_price', 40000000), 0, ',', ' ') }} so'm
                                                 </span>
 
                                                 <script>
-                                                    document.addEventListener("DOMContentLoaded", function () {
+                                                    document.addEventListener("DOMContentLoaded", function() {
                                                         let rangeMin = document.getElementById("rangeMin");
                                                         let rangeMax = document.getElementById("rangeMax");
                                                         let minValue = document.getElementById("minValue1");
@@ -202,10 +207,11 @@
                                 </div>
                             </div>
                             <button type="submit"
-                                    class="w-100 btn-orange rounded text-center mb-3">@lang('home.search')</button>
-                            <button class="w-100 text-orange bg-transparent rounded text-center border-orange rounded py-1">
+                                class="w-100 btn-orange rounded text-center mb-3">@lang('home.search')</button>
+                            <button
+                                class="w-100 text-orange bg-transparent rounded text-center border-orange rounded py-1">
                                 <a href="{{ route('products') }}"
-                                   class="w-100 text-orange bg-transparent  text-center  py-1">
+                                    class="w-100 text-orange bg-transparent  text-center  py-1">
                                     @lang('home.reset')
                                 </a>
                             </button>
@@ -363,9 +369,10 @@
                                                         src="{{ asset('storage/' . $product->image) }}" alt="" />
                                                     <div
                                                         class="d-flex flex-column justify-content-between product-text p-4 rounded-bottom">
-                                                        <div class="d-flex align-items-end gap-3 pt-2">
+                                                        <div
+                                                            class="d-flex align-items-end justify-content-between gap-3 pt-2">
                                                             @if ($cheapestVariant->discount_price)
-                                                                <div class="fw-bold ">
+                                                                <div class="fw-bold text-orange ">
                                                                     {{ number_format($cheapestVariant->discount_price, 0, ',', ' ') }}
                                                                     UZS
                                                                 </div>
@@ -374,7 +381,7 @@
                                                                         UZS</small>
                                                                 </del>
                                                             @else
-                                                                <div class="fw-bold">
+                                                                <div class="fw-bold text-orange">
                                                                     {{ number_format($cheapestVariant->price, 0, ',', ' ') }}
                                                                     UZS
                                                                 </div>
@@ -385,13 +392,20 @@
                                                             <div class="productName fw-bold">
                                                                 {{ \Str::words($product['name_' . $lang], 3) }}</div>
                                                         </a>
-                                                        <a class="truncate-text" href="{{ route('single.product', $product->slug) }}">
+                                                        <a class="truncate-text"
+                                                            href="{{ route('single.product', $product->slug) }}">
                                                             @php
                                                                 // Matndan faqat birinchi <p> tegi ichidagi matnni olish
-                                                                preg_match('/<p[^>]*>(.*?)<\/p>/is', $product['description_' . $lang], $matches);
+                                                                preg_match(
+                                                                    '/<p[^>]*>(.*?)<\/p>/is',
+                                                                    $product['description_' . $lang],
+                                                                    $matches,
+                                                                );
 
                                                                 // Matnni HTML teglaridan tozalash va 4 ta so'zni olish
-                                                                $description = isset($matches[1]) ? Str::words(strip_tags($matches[1]), 4, '...') : '...';
+$description = isset($matches[1])
+    ? Str::words(strip_tags($matches[1]), 4, '...')
+    : '...';
                                                             @endphp
 
                                                             <p class="text-grey">{{ $description }}</p>
@@ -400,19 +414,20 @@
 
                                                         <div
                                                             class="d-flex align-items-center justify-content-between w-100">
-                                                            <span class="small bg-transparent px-0">
-                                                                {{ number_format($cheapestVariant->price ?? $cheapestVariant->discount_price, 0, ',', ' ') }}
-                                                                UZS <span
-                                                                    class="text-orange">@lang('home.incash')</span></span>
-                                                            <span class="px-2 productmonth-border small text-grey">
-                                                                {{ number_format($cheapestVariant->price_12, 0, ',', ' ') }}
-                                                                UZS/@lang('home.month')</span>
+                                                            @if ($cheapestVariant->price_12 > 0)
+                                                                <span
+                                                                    class="px-2 productmonth-border small text-orange rounded-1">
+                                                                    {{ number_format($cheapestVariant->price_12, 0, ',', ' ') }}
+                                                                    UZS/@lang('home.month')
+                                                                </span>
+                                                            @endif
                                                         </div>
-                                                        <div class="d-flex gap-4 mt-3">
+                                                        <div class="d-flex gap-4 mt-1">
                                                             <a class="border-orange bg-transparent rounded p-1 px-3 add-to-cart-btn"
-                                                               href="javascript:void(0);" type="button"
-                                                               onclick="addToCart(this, {{ $product->id }}, '{{ $product['name_' . $lang] }}', {{ $cheapestVariant->discount_price ?? $cheapestVariant->price }}, {{ $cheapestVariant->id }})">
-                                                                <img src="/assets/icons/shopping-cart.svg" alt="Add to cart" />
+                                                                href="javascript:void(0);" type="button"
+                                                                onclick="addToCart(this, {{ $product->id }}, '{{ $product['name_' . $lang] }}', {{ $cheapestVariant->discount_price ?? $cheapestVariant->price }}, {{ $cheapestVariant->id }})">
+                                                                <img src="/assets/icons/shopping-cart.svg"
+                                                                    alt="Add to cart" />
                                                             </a>
 
                                                             <button data-bs-toggle="modal" data-bs-target="#largeModal"
@@ -446,22 +461,17 @@
                     <form class="row align-items-center" action="{{ route('orders.store.form') }}" method="POST">
                         @csrf
                         <div class="col-lg-3 col-md-6 mb-lg-0 mb-3">
-                            <input class="form-control focus_none py-3" placeholder="@lang('home.message_input1')" type="text" required
-                                name="message" />
+                            <input class="form-control focus_none py-3" placeholder="@lang('home.message_input1')" type="text"
+                                required name="message" />
                         </div>
                         <div class="col-lg-3 col-md-6 mb-lg-0 mb-3">
-                            <input class="form-control focus_none py-3" placeholder="@lang('home.message_input2')" type="text" required
-                                name="first_name" />
+                            <input class="form-control focus_none py-3" placeholder="@lang('home.message_input2')" type="text"
+                                required name="first_name" />
                         </div>
                         <div class="col-lg-3 col-md-6 mb-lg-0 mb-3">
-                            <input class="form-control focus_none py-3"
-                                   placeholder="+998 __ ___ ___ ___"
-                                   type="tel"
-                                   name="phone"
-                                   required
-                                   pattern="^\+\d{7,}$"
-                                   title="Номер телефона должен содержать не менее 7 цифр"
-                            />
+                            <input class="form-control focus_none py-3" placeholder="+998 __ ___ ___ ___" type="tel"
+                                name="phone" required pattern="^\+\d{7,}$"
+                                title="Номер телефона должен содержать не менее 7 цифр" />
                         </div>
 
                         <div class="col-lg-3 col-md-6">
@@ -609,12 +619,12 @@
                 }
             });
         }
-        document.addEventListener("DOMContentLoaded", function () {
+        document.addEventListener("DOMContentLoaded", function() {
             const selectAllCheckbox = document.getElementById("select-all");
             const categoryCheckboxes = document.querySelectorAll(".category-checkbox");
 
             // Select all checkboxes when "All" is checked
-            selectAllCheckbox.addEventListener("change", function () {
+            selectAllCheckbox.addEventListener("change", function() {
                 categoryCheckboxes.forEach((checkbox) => {
                     checkbox.checked = selectAllCheckbox.checked;
                 });
@@ -622,7 +632,7 @@
 
             // If any individual checkbox is unchecked, uncheck "All"
             categoryCheckboxes.forEach((checkbox) => {
-                checkbox.addEventListener("change", function () {
+                checkbox.addEventListener("change", function() {
                     if (!checkbox.checked) {
                         selectAllCheckbox.checked = false;
                     } else if (
@@ -639,9 +649,8 @@
                 checkbox.checked = true;
             });
         });
-
     </script>
-{{--ko'proq ko'rsatish scripti va css--}}
+    {{-- ko'proq ko'rsatish scripti va css --}}
     <style>
         .btn-orange2 {
             background-color: #ff6600;
@@ -656,15 +665,14 @@
         .btn-orange2:hover {
             background-color: #e65c00;
         }
-
     </style>
     <script>
-        document.addEventListener("DOMContentLoaded", function () {
+        document.addEventListener("DOMContentLoaded", function() {
             let hiddenCategories = document.querySelectorAll(".category-item");
             let showMoreBtn = document.getElementById("showMoreBtn");
             let visibleCount = 10; // Boshlang'ich ko'rsatilgan kategoriya soni
 
-            showMoreBtn.addEventListener("click", function () {
+            showMoreBtn.addEventListener("click", function() {
                 let nextVisibleCount = visibleCount + 10;
                 let foundHidden = false;
 
