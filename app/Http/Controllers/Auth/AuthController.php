@@ -21,7 +21,7 @@ class AuthController extends Controller{
 
         if (Auth::attempt($credentials)) {
             $user = Auth::user();
-
+            session()->flash('admin_login', true);
             switch ($user->role) {
                 case '0':
                     return redirect()->route('user.profile');

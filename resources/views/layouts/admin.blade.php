@@ -73,6 +73,28 @@
 </head>
 
 <body>
+@if(session('admin_login'))
+    <div class="modal fade d-none d-md-block" id="adminModal" tabindex="-1" aria-labelledby="adminModalLabel" aria-hidden="true">
+        <div class="modal-dialog modal-dialog-centered">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title fw-bold text-orange" id="adminModalLabel">Внимание!</h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body">
+                    <p>
+                        Это уведомление предназначено только для <b>десктопной версии</b>.
+                        Дизайн был адаптирован для удобства работы на больших экранах.
+                    </p>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-orange" data-bs-dismiss="modal">Понял</button>
+                </div>
+            </div>
+        </div>
+    </div>
+@endif
+
     <!--! ================================================================ !-->
     <!--! [Start] Navigation Manu !-->
     <!--! ================================================================ !-->
@@ -355,6 +377,25 @@
     <script src="https://cdn.jsdelivr.net/npm/select2@4.1.0-beta.1/dist/js/select2.min.js"></script>
 
     <!--! END: Theme Customizer !-->
+
+<script>
+    document.addEventListener("DOMContentLoaded", function () {
+        var adminModalElement = document.getElementById('adminModal');
+        var adminModal = new bootstrap.Modal(adminModalElement);
+
+        // ✅ Faqat desktob versiyada modalni ochish
+        if (window.innerWidth >= 768) {
+            adminModal.show();
+        }
+
+        // ✅ "Понял" tugmasi bosilganda modalni yopish
+        document.querySelector("#adminModal .btn-orange").addEventListener("click", function () {
+            adminModal.hide(); // Modalni yopish
+        });
+    });
+
+
+</script>
 
 </body>
 
