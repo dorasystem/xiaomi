@@ -114,7 +114,7 @@ class MainController extends Controller
         $comments = Comment::where('product_id', $product->id)->latest()->get();
         $images = is_string($product->images) ? json_decode($product->images, true) : $product->images;
 
-        $descImages = DescImage::all();
+        $descImages = DescImage::where('product_id', $product->id)->get();
         $lang = App::getLocale();
         $variants = $product->variants;
 

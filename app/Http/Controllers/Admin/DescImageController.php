@@ -102,7 +102,7 @@ class DescImageController extends Controller
 
         $image->delete();
 
-        return response()->json(['success' => true]);
+        return redirect()->route('desc-images.index')->with('success', 'Изображения успешно обновлены.');
     }
 
 }
