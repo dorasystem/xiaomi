@@ -31,6 +31,8 @@ return [
     'all_over_uzbekistan' => 'Butun Oʻzbekiston boʻylab',
 
     'pickup' => 'Oʻzingiz olib ketish',
+    'and' => ' va ',
+
     'from_the_nearest_store' => 'Eng yaqin doʻkondan',
 
     'favorable_installment_plan' => 'Qulay bo‘lib to‘lash',

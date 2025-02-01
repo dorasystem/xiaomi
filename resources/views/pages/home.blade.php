@@ -487,7 +487,7 @@ $description = isset($matches[1])
         <div class="banner py-5 my-5">
             <div class="container">
                 <h2>@lang('home.our_advantages')</h2>
-                <div class="p-4 px-lg-4 px-0">
+                <div class="p-4 px-lg-4 px-1">
                     <div class="row gy-5 justify-content-center text-white">
                         <div
                             class="col-lg-2 col-md-4 col-6 d-flex flex-md-column flex-row align-items-center text-md-center text-start gap-md-2 gap-4">
@@ -507,40 +507,18 @@ $description = isset($matches[1])
                         <div
                             class="col-lg-2 col-md-4 col-6 d-flex flex-md-column flex-row align-items-center text-md-center text-start gap-md-2 gap-4">
                             <img src="/assets/icons/shop-icon.svg" alt="" class="wh-65" />
-                            <div class="lh-1"><span class="fw-bold d-md-block d-none">@lang('home.pickup')</span><br
-                                    class=" d-md-block d-none" />@lang('home.from_the_nearest_store')</div>
+                            <div class=""><span class="fw-md-bold fw-normal">@lang('home.pickup') <br> @lang('home.and') @lang('home.delivery')</span><br />
+                            </div>
                         </div>
                         <div
                             class="col-lg-2 col-md-4 col-6 d-flex flex-md-column flex-row align-items-center text-md-center text-start gap-md-2 gap-4">
                             <img src="/assets/icons/calendar.svg" alt="" class="wh-65" />
                             <div class="lh-1"><span class="fw-bold d-md-block d-none">@lang('home.favorable_installment_plan')</span><br
-                                    class=" d-md-block d-none" />@lang('home.without_prepayment')</div>
-                        </div>
-                        <div
-                            class="col-lg-2 col-md-4 col-6 d-flex flex-md-column flex-row align-items-center text-md-center text-start gap-md-2 gap-4">
-                            <img src="/assets/icons/location.svg" alt="" class="wh-65" />
-                            <div class="text-center text-nowrap lh-1">
-                                <span class="fw-bold d-md-block d-none">@lang('home.pickup')</span> <br
-                                    class=" d-md-block d-none" />
-                                <span class="d-md-none d-block">
-                                    @lang('home.pickup')
-                                </span>
+                                    class=" d-md-block d-none" />@lang('home.without_prepayment')
                             </div>
                         </div>
-                        <div
-                            class="col-lg-2 col-md-4 col-6 d-flex flex-md-column flex-row align-items-center text-md-center text-start gap-md-2 gap-4">
-                            <img src="/assets/icons/truck-icon.svg" alt="" class="wh-65">
-                            <div class="text-center text-nowrap lh-1">
-                                <span class="fw-bold d-md-block d-none">@lang('home.delivery')</span> <br
-                                    class=" d-md-block d-none" />
-                                <span class="d-md-block d-none">
-                                    @lang('home.all_over_uzbekistan')
-                                </span>
-                                <span class="d-md-none d-block">
-                                    @lang('home.delivery')
-                                </span>
-                            </div>
-                        </div>
+
+
                     </div>
                 </div>
 

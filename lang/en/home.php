@@ -32,6 +32,7 @@ return [
     'all_over_uzbekistan' => 'All over Uzbekistan',
 
     'pickup' => 'Pickup',
+    'and' => ' and ',
     'from_the_nearest_store' => 'From the nearest store',
 
     'favorable_installment_plan' => 'Favorable installment plan',

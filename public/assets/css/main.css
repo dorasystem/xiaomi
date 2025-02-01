@@ -491,7 +491,7 @@ a.active {
     z-index: 1;
 }
 .small {
-    font-size: 11px;
+    font-size: 10px;
 }
 .hover-orange:hover {
     color: var(--orange);
@@ -1179,6 +1179,7 @@ input[type="range"]:nth-child(2) {
     width: 65px;
     height: 65px;
 }
+
 
 @media (min-width: 991px) {
     .position-lg-relative {

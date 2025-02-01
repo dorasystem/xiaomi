@@ -432,22 +432,25 @@
                         <div class="d-flex flex-column justify-content-between h-100">
                             <div class="d-flex flex-column" id="modal-products-list">
                                 <!-- Dynamic list of products will be inserted here -->
+                            @php
+                                use App\Models\Contact;
+                                $links = Contact::first();
+
+                            @endphp
 
                             </div>
                             <div class="row align-items-start">
                                 <div class="col-sm-6 mb-2">
                                     <div class="phone text-nowrap border-orange rounded text-center px-2 py-1 w-100">
                                         <a href="tel: +998772828080 " class="text-orange"> <i
-                                                class="fa-solid fa-phone-volume text-orange me-2"></i> +998 77 282 80
-                                            80
+                                                class="fa-solid fa-phone-volume text-orange me-2"></i> {{ $links->phone }}
                                         </a>
                                     </div>
                                 </div>
                                 <div class="col-sm-6 mb-2">
                                     <div class="phone text-nowrap border-orange rounded text-center px-2 py-1 w-100">
                                         <a href="tel: +998772828080 " class="text-orange"> <i
-                                                class="fa-solid fa-phone-volume text-orange me-2"></i> +998 77 282 80
-                                            80
+                                                class="fa-solid fa-phone-volume text-orange me-2"></i> {{ $links->phone2 }}
                                         </a>
                                     </div>
                                 </div>

@@ -29,6 +29,7 @@ return [
     'delivery' => 'Доставка',
     'all_over_uzbekistan' => 'По всему Узбекистану',
     'pickup' => 'Самовывоз',
+    'and' => ' и ',
     'from_the_nearest_store' => 'Из ближайшего магазина',
     'favorable_installment_plan' => 'Выгодная рассрочка',
     'without_prepayment' => 'Без предоплаты',
