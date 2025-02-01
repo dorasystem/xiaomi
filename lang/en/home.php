@@ -10,6 +10,7 @@ return [
     'special_offers' => 'Special offers',
     'product_on_sale' => 'Product on sale',
     'new_items' => 'New items',
+    'payment_text' => 'Payment',
 
     'useful_articles' => 'Полезные статьи',
     'show_more' => 'Show more',

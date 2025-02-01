@@ -42,8 +42,8 @@ Route::post('logout', [AuthController::class, 'logout'])->name('logout');
 
 
 Route::middleware(['auth'])->prefix('dashboard')->group(function () {
-    Route::get('/',[SuperAdminController::class, 'superAdmin'])->name('superAdmin.dashboard');
-    Route::get('/admin',[AdminController::class, 'admin'])->name('admins.dashboard');
+    Route::get('/', [SuperAdminController::class, 'superAdmin'])->name('superAdmin.dashboard');
+    Route::get('/admin', [AdminController::class, 'admin'])->name('admins.dashboard');
     Route::resource('abouts', AboutController::class);
     Route::resource('news', NewsController::class);
     Route::resource('articles', ArticleController::class);
@@ -60,14 +60,14 @@ Route::middleware(['auth'])->prefix('dashboard')->group(function () {
     Route::resource('candidants', CandidantController::class);
     Route::resource('desc-images', DescImageController::class);
     Route::resource('main_banners', MainBannerController::class);
-    Route::get('/orders',[OrderController::class, 'index'])->name('orders.index');
+    Route::get('/orders', [OrderController::class, 'index'])->name('orders.index');
     Route::put('/orders/{order}', [OrderController::class, 'update'])->name('orders.update');
     Route::get('/orders/{order}/edit', [OrderController::class, 'edit'])->name('orders.edit');
     Route::delete('/orders/{order}', [OrderController::class, 'destroy'])->name('orders.destroy');
     Route::delete('/dashboard/main-banner/{mainBanner}/delete-image/{image}', [MainBannerController::class, 'deleteImage'])->name('mainBanner.deleteImage');
     Route::resource('keywords', StaticKeywordController::class);
     Route::post('/blogs/delete-image', [BlogController::class, 'deleteImage'])->name('blogs.deleteImage');
-//    Route::delete('/main-banner/{blog}/delete-image', [MainBannerController::class, 'destroy']);
+    //    Route::delete('/main-banner/{blog}/delete-image', [MainBannerController::class, 'destroy']);
 });
 
 Route::get('/', [MainController::class, 'index'])->name('home');
@@ -110,13 +110,14 @@ Route::get('checkout', [MainController::class, 'checkout'])->name('checkout');
 Route::post('/save-order', [OrderController::class, 'store'])->name('orders.store');
 Route::post('/form-order', [OrderController::class, 'storeForm'])->name('orders.store.form');
 Route::post('/product-order', [OrderController::class, 'productsStore'])->name('orders.products.store');
-Route::get('locale/{lang}',[LanguageController::class, 'setLocale']);
-Route::get('/404',[MainController::class, 'error'])->name('404');
+Route::get('locale/{lang}', [LanguageController::class, 'setLocale']);
+Route::get('/404', [MainController::class, 'error'])->name('404');
 
 
 //  sites blade
-Route::get('/purchase-online',[SiteController::class, 'purchaseOnline'])->name('purchase.online');
-Route::get('/faq',[SiteController::class, 'faq'])->name('faq');
+Route::get('/purchase-online', [SiteController::class, 'purchaseOnline'])->name('purchase.online');
+Route::get('/faq', [SiteController::class, 'faq'])->name('faq');
+Route::get('/payment', [MainController::class, 'payment'])->name('payment');
 
 Route::fallback(function () {
     return redirect()->route('404');

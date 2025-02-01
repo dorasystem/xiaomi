@@ -410,8 +410,6 @@ $description = isset($matches[1])
 
                                                             <p class="text-grey">{{ $description }}</p>
                                                         </a>
-
-
                                                         <div
                                                             class="d-flex align-items-center justify-content-between w-100">
                                                             @if ($cheapestVariant->price_12 > 0)
