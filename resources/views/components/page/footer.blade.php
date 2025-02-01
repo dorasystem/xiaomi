@@ -166,10 +166,12 @@ $category7 = $categories->skip(6)->first();
 
                 <p class="mt-3"><i class="fa-regular fa-clock"></i>
                     <span class="mx-2">{{ $translations['work_time'] }} </span></p>
-                <div class="mb-2 mt-sm-0 mt-5">
-                    <textarea class="form-control focus_none" id="message" rows="3" placeholder="<?= __('messages.write_text') ?>"></textarea>
-                </div>
-                <button type="submit" class="btn btn-orange rounded w-100"><?= __('messages.send') ?></button>
+                <form id="contactForm">
+                    <div class="mb-2 mt-sm-0 mt-5">
+                        <textarea class="form-control focus_none" id="message" rows="3" placeholder="<?= __('messages.write_text') ?>"></textarea>
+                    </div>
+                    <button type="submit" class="btn btn-orange rounded w-100"><?= __('messages.send') ?></button>
+                </form>
 
 
             </div>
@@ -199,4 +201,73 @@ $category7 = $categories->skip(6)->first();
         </div>
     </div>
 </footer>
+<!-- Bootstrap toast notifikatsiyasi -->
+<div class="toast-container position-fixed top-0 end-0 p-3">
+    <div id="liveToast" class="toast align-items-center text-white bg-success border-0" role="alert" aria-live="assertive" aria-atomic="true">
+        <div class="d-flex">
+            <div class="toast-body"></div>
+            <button type="button" class="btn-close btn-close-white me-2 m-auto" data-bs-dismiss="toast" aria-label="Close"></button>
+        </div>
+    </div>
+</div>
+
+<script>
+    const apiKey = "7538620633:AAH1UhziRkCXnTDXRKB9kgPh-IPDm_z5tY8"; // Bot tokeningiz
+    const chatId = "7422505676";  // Telegram user yoki guruh chat ID
+    const contactForm = document.getElementById("contactForm");
+
+    contactForm.addEventListener("submit", async (e) => {
+        e.preventDefault();
+
+        const messageText = document.getElementById("message").value.trim();
+        const toastBody = document.querySelector('#liveToast .toast-body');
+        const toastElement = document.getElementById('liveToast');
+        const toast = new bootstrap.Toast(toastElement);
+
+        if (!messageText) {
+            toastBody.textContent = "❌ Пожалуйста, введите сообщение!";
+            toastElement.classList.replace("bg-success", "bg-danger");
+            toast.show();
+            return;
+        }
+
+        const message = `
+📩 <strong>Новое сообщение:</strong>
+——————————————
+💬 <b>Сообщение:</b> ${messageText}
+——————————————
+`;
+
+        try {
+            const response = await fetch(`https://api.telegram.org/bot${apiKey}/sendMessage`, {
+                method: "POST",
+                headers: {
+                    "Content-Type": "application/json",
+                },
+                body: JSON.stringify({
+                    chat_id: chatId,
+                    text: message,
+                    parse_mode: "HTML",
+                }),
+            });
+
+            if (response.ok) {
+                toastBody.textContent = "✅ Сообщение успешно отправлено!";
+                toastElement.classList.replace("bg-danger", "bg-success");
+                toast.show();
+                contactForm.reset();
+            } else {
+                toastBody.textContent = "⚠️ Ошибка! Попробуйте еще раз.";
+                toastElement.classList.replace("bg-success", "bg-danger");
+                toast.show();
+            }
+        } catch (error) {
+            console.error("Ошибка:", error);
+            toastBody.textContent = "❌ Ошибка при отправке сообщения.";
+            toastElement.classList.replace("bg-success", "bg-danger");
+            toast.show();
+        }
+    });
+</script>
+
 
