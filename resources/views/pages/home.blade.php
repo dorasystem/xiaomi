@@ -844,7 +844,7 @@ $description = isset($matches[1])
                         $('#favorite-count2').text(response.favorites_count);
 
                         // Ico'ni yangilash
-                        if (response.message.includes('qo\'shildi')) {
+                        if (response.action === "added") {
                             $('#favourite-icon-' + productId).addClass('text-orange');
                             if (document.getElementById('favourite-icon-' + productId).classList.contains(
                                     "fa-regular")) {
@@ -880,6 +880,7 @@ $description = isset($matches[1])
                     id: productId
                 },
                 success: function(response) {
+                    console.log(response)
                     if (response.success) {
                         const toastBody = document.querySelector('#liveToast .toast-body');
                         toastBody.textContent = response.message;
@@ -893,12 +894,13 @@ $description = isset($matches[1])
                         $('#compare-count2').text(response.compares_count); // Id bo'yicha o'zgarish
 
                         // Ico'ni yangilash
-                        if (response.message.includes('qo\'shildi')) {
+                        if (response.action === "added") {
+                            console.log(1);
                             $('#compare-icon-' + productId).addClass(
-                                'active-svg'); // Qo'shilganini ko'rsatish
+                                'hover-svg'); // Qo'shilganini ko'rsatish
                         } else {
-                            $('#compare-icon-' + productId).removeClass(
-                                'active-svg'); // O'chirilganini ko'rsatish
+                            console.log(2);
+                            $('#compare-icon-' + productId).removeClass('hover-svg active-svg');// O'chirilganini ko'rsatish
                         }
                     }
                 },

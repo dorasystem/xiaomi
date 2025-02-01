@@ -153,15 +153,6 @@
                                         aria-labelledby="panelsStayOpen-headingTwo">
                                         <div class="accordion-body">
                                             <div class="range-slider">
-                                                {{--                                                <div class="inputs"> --}}
-                                                {{--                                                    <input type="number" id="minValue" name="min_price" --}}
-                                                {{--                                                           value="{{ request('min_price', 20) }}" min="0" --}}
-                                                {{--                                                           max="600" /> --}}
-                                                {{--                                                    <span>до</span> --}}
-                                                {{--                                                    <input type="number" id="maxValue" name="max_price" --}}
-                                                {{--                                                           value="{{ request('max_price', 600) }}" min="0" --}}
-                                                {{--                                                           max="600" /> --}}
-                                                {{--                                                </div> --}}
                                                 <div class="slider-container">
                                                     <div class="slider-track"></div>
                                                     <input type="range" id="rangeMin" min="0" max="40000000"
@@ -284,26 +275,44 @@
                                                                 aria-labelledby="panelsStayOpen-headingTwo">
                                                                 <div class="accordion-body">
                                                                     <div class="range-slider">
-                                                                        <div class="inputs">
-                                                                            <input type="number" id="minValue2"
-                                                                                name="min_price"
-                                                                                value="{{ request('min_price', 20) }}"
-                                                                                min="0" max="600" />
-                                                                            <span>до</span>
-                                                                            <input type="number" id="maxValue2"
-                                                                                name="max_price"
-                                                                                value="{{ request('max_price', 600) }}"
-                                                                                min="0" max="600" />
-                                                                        </div>
                                                                         <div class="slider-container">
-                                                                            <div class="slider-track2"></div>
-                                                                            <input type="range" id="rangeMin2"
-                                                                                min="0" max="600"
-                                                                                value="20" />
-                                                                            <input type="range" id="rangeMax2"
-                                                                                min="0" max="600"
-                                                                                value="600" />
+                                                                            <div class="slider-track"></div>
+                                                                            <input type="range" id="rangeMin" min="0" max="40000000"
+                                                                                   value="{{ request('min_price', 1) }}" />
+                                                                            <input type="range" id="rangeMax" min="0" max="40000000"
+                                                                                   value="{{ request('max_price', 40000000) }}" />
                                                                         </div>
+                                                                        <span id="minValue1" style="font-size: 14px">
+                                                    {{ number_format(request('min_price', 1), 0, ',', ' ') }} so'm
+                                                </span> -
+                                                                        <span id="maxValue1" style="font-size: 14px">
+                                                    {{ number_format(request('max_price', 40000000), 0, ',', ' ') }} so'm
+                                                </span>
+
+                                                                        <script>
+                                                                            document.addEventListener("DOMContentLoaded", function() {
+                                                                                let rangeMin = document.getElementById("rangeMin");
+                                                                                let rangeMax = document.getElementById("rangeMax");
+                                                                                let minValue = document.getElementById("minValue1");
+                                                                                let maxValue = document.getElementById("maxValue1");
+
+                                                                                function formatPrice(value) {
+                                                                                    return new Intl.NumberFormat('uz-UZ').format(Number(value)) + " so'm";
+                                                                                }
+
+                                                                                function updateValues() {
+                                                                                    minValue.textContent = formatPrice(rangeMin.value);
+                                                                                    maxValue.textContent = formatPrice(rangeMax.value);
+                                                                                }
+
+                                                                                rangeMin.addEventListener("input", updateValues);
+                                                                                rangeMax.addEventListener("input", updateValues);
+                                                                            });
+                                                                        </script>
+
+
+
+
                                                                     </div>
                                                                 </div>
                                                             </div>
@@ -342,7 +351,7 @@
                                                     <a onclick="toggleFavourite({{ $product->id }})">
                                                         <i id="favourite-icon-{{ $product->id }}"
                                                             class="fa-{{ in_array($product->id, session('favorites', [])) ? 'solid' : 'regular' }} fa-heart fs-4 hover-orange ps-1
-                                              {{ in_array($product->id, session('favorites', [])) ? 'text-orange' : '' }}">
+                                                            {{ in_array($product->id, session('favorites', [])) ? 'text-orange' : '' }}">
                                                         </i>
                                                     </a>
                                                     <a onclick="toggleCompare({{ $product->id }})">
@@ -556,7 +565,7 @@ $description = isset($matches[1])
                         $('#favorite-count2').text(response.favorites_count);
 
                         // Ico'ni yangilash
-                        if (response.message.includes('qo\'shildi')) {
+                        if (response.action === "added") {
                             $('#favourite-icon-' + productId).addClass('text-orange');
                             if (document.getElementById('favourite-icon-' + productId).classList.contains(
                                     "fa-regular")) {
@@ -592,6 +601,7 @@ $description = isset($matches[1])
                     id: productId
                 },
                 success: function(response) {
+
                     if (response.success) {
                         const toastBody = document.querySelector('#liveToast .toast-body');
                         toastBody.textContent = response.message;
@@ -605,12 +615,14 @@ $description = isset($matches[1])
                         $('#compare-count2').text(response.compares_count); // Id bo'yicha o'zgarish
 
                         // Ico'ni yangilash
-                        if (response.message.includes('qo\'shildi')) {
+                        if (response.action === "added") {
+                            console.log('1');
                             $('#compare-icon-' + productId).addClass(
                                 'hover-svg'); // Qo'shilganini ko'rsatish
                         } else {
+                            console.log('2');
                             $('#compare-icon-' + productId).removeClass(
-                                'active-svg'); // O'chirilganini ko'rsatish
+                                'hover-svg'); // O'chirilganini ko'rsatish
                         }
                     }
                 },

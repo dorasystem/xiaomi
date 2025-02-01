@@ -215,15 +215,15 @@ class CartController extends Controller
     public function toggleFavorite(Request $request)
     {
         $favorites = session()->get('favorites', []);
-
         $productId = $request->id;
-
 
         if (in_array($productId, $favorites)) {
             $favorites = array_filter($favorites, fn($id) => $id != $productId);
+            $action = 'removed'; // ❌ O‘chirildi
             $message = __('home.remove_favorites');
         } else {
             $favorites[] = $productId;
+            $action = 'added'; // ✅ Qo‘shildi
             $message = __('home.add_favorites');
         }
 
@@ -231,10 +231,13 @@ class CartController extends Controller
 
         return response()->json([
             'success' => true,
+            'code' => 'favorite_status', // Umumiy status kodi
+            'action' => $action, // Yangi action
             'message' => $message,
             'favorites_count' => count($favorites),
         ]);
     }
+
 
     public function favorites()
     {
@@ -248,14 +251,15 @@ class CartController extends Controller
     public function toggleCompare(Request $request)
     {
         $compares = session()->get('compares', []);
-
         $productId = $request->id;
 
         if (in_array($productId, $compares)) {
             $compares = array_filter($compares, fn($id) => $id != $productId);
+            $action = 'removed'; // ❌ O‘chirildi
             $message = __('home.remove_compare');
         } else {
             $compares[] = $productId;
+            $action = 'added'; // ✅ Qo‘shildi
             $message = __('home.add_compare');
         }
 
@@ -263,10 +267,13 @@ class CartController extends Controller
 
         return response()->json([
             'success' => true,
+            'code' => 'compare_status', // Umumiy status kodi
+            'action' => $action, // Yangi action
             'message' => $message,
             'compares_count' => count($compares),
         ]);
     }
+
 
     // public function compare()
     // {

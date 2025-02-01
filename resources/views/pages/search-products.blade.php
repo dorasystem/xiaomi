@@ -262,10 +262,10 @@ $categories = \App\Models\Category::all();
                                                                 <div class="accordion-body">
                                                                     <div class="form-check mb-3">
                                                                         <input class="form-check-input" type="checkbox"
-                                                                            id="all-categories"
+                                                                            id="all-categories2"
                                                                             {{ count(request('categories', [])) === $categories->count() ? 'checked' : '' }} />
                                                                         <label class="form-check-label"
-                                                                            for="all-categories">
+                                                                            for="all-categories2">
                                                                             <small>@lang('home.all_categories')</small>
                                                                         </label>
                                                                     </div>
@@ -302,26 +302,44 @@ $categories = \App\Models\Category::all();
                                                                 aria-labelledby="panelsStayOpen-headingTwo">
                                                                 <div class="accordion-body">
                                                                     <div class="range-slider">
-                                                                        <div class="inputs">
-                                                                            <input type="number" id="minValue2"
-                                                                                name="min_price"
-                                                                                value="{{ request('min_price', 20) }}"
-                                                                                min="0" max="600" />
-                                                                            <span>до</span>
-                                                                            <input type="number" id="maxValue2"
-                                                                                name="max_price"
-                                                                                value="{{ request('max_price', 600) }}"
-                                                                                min="0" max="600" />
-                                                                        </div>
                                                                         <div class="slider-container">
-                                                                            <div class="slider-track2"></div>
-                                                                            <input type="range" id="rangeMin2"
-                                                                                min="0" max="600"
-                                                                                value="20" />
-                                                                            <input type="range" id="rangeMax2"
-                                                                                min="0" max="600"
-                                                                                value="600" />
+                                                                            <div class="slider-track"></div>
+                                                                            <input type="range" id="rangeMin" min="0" max="40000000"
+                                                                                   value="{{ request('min_price', 1) }}" />
+                                                                            <input type="range" id="rangeMax" min="0" max="40000000"
+                                                                                   value="{{ request('max_price', 40000000) }}" />
                                                                         </div>
+                                                                        <span id="minValue1" style="font-size: 14px">
+                                                    {{ number_format(request('min_price', 1), 0, ',', ' ') }} so'm
+                                                </span> -
+                                                                        <span id="maxValue1" style="font-size: 14px">
+                                                    {{ number_format(request('max_price', 40000000), 0, ',', ' ') }} so'm
+                                                </span>
+
+                                                                        <script>
+                                                                            document.addEventListener("DOMContentLoaded", function() {
+                                                                                let rangeMin = document.getElementById("rangeMin");
+                                                                                let rangeMax = document.getElementById("rangeMax");
+                                                                                let minValue = document.getElementById("minValue1");
+                                                                                let maxValue = document.getElementById("maxValue1");
+
+                                                                                function formatPrice(value) {
+                                                                                    return new Intl.NumberFormat('uz-UZ').format(Number(value)) + " so'm";
+                                                                                }
+
+                                                                                function updateValues() {
+                                                                                    minValue.textContent = formatPrice(rangeMin.value);
+                                                                                    maxValue.textContent = formatPrice(rangeMax.value);
+                                                                                }
+
+                                                                                rangeMin.addEventListener("input", updateValues);
+                                                                                rangeMax.addEventListener("input", updateValues);
+                                                                            });
+                                                                        </script>
+
+
+
+
                                                                     </div>
                                                                 </div>
                                                             </div>
@@ -523,12 +541,18 @@ $categories = \App\Models\Category::all();
     <script>
         document.addEventListener('DOMContentLoaded', function() {
             const allCategoriesCheckbox = document.getElementById('all-categories');
+            const allCategoriesCheckbox2 = document.getElementById('all-categories2');
             const categoryCheckboxes = document.querySelectorAll('.category-checkbox');
 
             // "All" checkbox tanlanganda barcha checkboxlarni boshqaradi
             allCategoriesCheckbox.addEventListener('change', function() {
                 categoryCheckboxes.forEach(checkbox => {
                     checkbox.checked = allCategoriesCheckbox.checked;
+                });
+            });
+            allCategoriesCheckbox2.addEventListener('change', function() {
+                categoryCheckboxes.forEach(checkbox => {
+                    checkbox.checked = allCategoriesCheckbox2.checked;
                 });
             });
 
@@ -595,6 +619,7 @@ $categories = \App\Models\Category::all();
                 },
                 success: function(response) {
                     if (response.success) {
+                        console.log(response);
                         const toastBody = document.querySelector('#liveToast .toast-body');
                         toastBody.textContent = response.message;
 
@@ -602,24 +627,26 @@ $categories = \App\Models\Category::all();
                         const toast = new bootstrap.Toast(toastElement);
                         toast.show();
 
-                        // Sevimlilar sonini yangilash
+                        // Sevimlilar sonini yangi  console.log(response);lash
                         $('#favorite-count').text(response.favorites_count);
                         $('#favorite-count2').text(response.favorites_count);
 
                         // Ico'ni yangilash
-                        if (response.message.includes('qo\'shildi')) {
+                        if (response.action === "added") {
+                            console.log(1)
                             $('#favourite-icon-' + productId).addClass('text-orange');
                             if (document.getElementById('favourite-icon-' + productId).classList.contains(
-                                    "fa-regular")) {
+                                "fa-regular")) {
                                 document.getElementById('favourite-icon-' + productId).classList.remove(
                                     'fa-regular')
                                 document.getElementById('favourite-icon-' + productId).classList.add('fa-solid')
                             }
                         } else {
+                            console.log(2)
                             $('#favourite-icon-' + productId).removeClass(
                                 'text-orange'); // O'chirilganini ko'rsatish
                             if (document.getElementById('favourite-icon-' + productId).classList.contains(
-                                    "fa-solid")) {
+                                "fa-solid")) {
                                 document.getElementById('favourite-icon-' + productId).classList.remove(
                                     'fa-solid')
                                 document.getElementById('favourite-icon-' + productId).classList.add(
@@ -643,6 +670,7 @@ $categories = \App\Models\Category::all();
                     id: productId
                 },
                 success: function(response) {
+                    console.log(response);
                     if (response.success) {
                         const toastBody = document.querySelector('#liveToast .toast-body');
                         toastBody.textContent = response.message;
@@ -656,12 +684,12 @@ $categories = \App\Models\Category::all();
                         $('#compare-count2').text(response.compares_count); // Id bo'yicha o'zgarish
 
                         // Ico'ni yangilash
-                        if (response.message.includes('qo\'shildi')) {
+                        if (response.action === "added") {
                             $('#compare-icon-' + productId).addClass(
-                                'active-svg'); // Qo'shilganini ko'rsatish
+                                'hover-svg'); // Qo'shilganini ko'rsatish
                         } else {
                             $('#compare-icon-' + productId).removeClass(
-                                'active-svg'); // O'chirilganini ko'rsatish
+                                'hover-svg'); // O'chirilganini ko'rsatish
                         }
                     }
                 },

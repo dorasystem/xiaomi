@@ -651,7 +651,7 @@ $isInCompare = in_array($product->id, session('compares', []));
                         $('#favorite-count2').text(response.favorites_count);
 
                         // Ico'ni yangilash
-                        if (response.message.includes('qo\'shildi')) {
+                        if (response.action === "added") {
                             $('#favourite-icon-' + productId).addClass('text-orange');
                             if (document.getElementById('favourite-icon-' + productId).classList.contains(
                                     "fa-regular")) {
@@ -700,7 +700,7 @@ $isInCompare = in_array($product->id, session('compares', []));
                         $('#compare-count2').text(response.compares_count); // Id bo'yicha o'zgarish
 
                         // Ico'ni yangilash
-                        if (response.message.includes('qo\'shildi')) {
+                        if (response.action === "added") {
                             $('#compare-icon-' + productId).addClass(
                                 'active-svg'); // Qo'shilganini ko'rsatish
                         } else {

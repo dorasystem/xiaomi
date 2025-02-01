@@ -183,7 +183,7 @@ class MainController extends Controller
         })->paginate(9);
 
         if ($filteredProducts->isEmpty() && !empty($categories)) {
-            $products = $products->get();
+            $products = $products->paginate(9);
         } else {
             $products = $filteredProducts;
         }
