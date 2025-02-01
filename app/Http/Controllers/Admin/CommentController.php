@@ -23,7 +23,7 @@ class CommentController extends Controller
         Comment::create($validated);
 
 
-        return redirect()->back()->with('success', 'Sharh muvaffaqiyatli qo‘shildi!');
+        return redirect()->back()->with('success', 'Комментарий успешно добавлен!');
     }
 
     public function getByProduct($productId)

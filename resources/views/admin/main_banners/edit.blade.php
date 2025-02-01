@@ -53,11 +53,9 @@
                                                         @foreach ($mainBanner->images as $key => $image)
                                                             <div class="image-preview m-2 position-relative">
                                                                 <img src="{{ asset('storage/' . $image) }}" alt="image" style="width: 100px; height: 100px; object-fit: cover;">
-                                                                <form action="{{ route('mainBanner.deleteImage', ['mainBanner' => $mainBanner->id, 'image' => $image]) }}" method="POST" style="position: absolute; top: 0; right: 0;">
-                                                                    @csrf
-                                                                    @method('DELETE')
-                                                                    <button type="submit" class="btn btn-danger btn-sm">X</button>
-                                                                </form>
+                                                                <button type="button" class="btn btn-danger btn-sm delete-image-btn" data-image="{{ $image }}" style="position: absolute; top: 0; right: 0;">
+                                                                    X
+                                                                </button>
                                                             </div>
                                                         @endforeach
                                                     @else
@@ -66,6 +64,10 @@
                                                 </div>
                                             </div>
                                         </div>
+
+                                        <!-- Yashirin input, o'chiriladigan rasm nomlarini saqlaydi -->
+                                        <input type="hidden" name="delete_images" id="delete_images" value="">
+
 
                                         <div class="col-md-4">
                                             <div class="form-group pb-3">
@@ -112,19 +114,26 @@
     </form>
 
     <script>
-        function deleteImage(key) {
-            if (confirm('Вы уверены, что хотите удалить это изображение?')) {
-                const form = document.getElementById('deleteImageForm');
-                form.action = `{{ url('admin/main_banners/' . $mainBanner->id . '/images') }}/${key}`;
-                form.submit();
-            }
-        }
+        document.addEventListener("DOMContentLoaded", function () {
+            const deleteButtons = document.querySelectorAll(".delete-image-btn");
+            const deleteImagesInput = document.getElementById("delete_images");
 
-        function editImage(key) {
-            const editImageSection = document.getElementById('edit-image-' + key);
-            if (editImageSection) {
-                editImageSection.style.display = editImageSection.style.display === 'none' ? 'block' : 'none';
-            }
-        }
+            deleteButtons.forEach(button => {
+                button.addEventListener("click", function () {
+                    const imageToDelete = this.getAttribute("data-image");
+
+                    // O'chirilayotgan rasmlarni JSON shaklda saqlash
+                    let deleteImages = deleteImagesInput.value ? JSON.parse(deleteImagesInput.value) : [];
+                    if (!deleteImages.includes(imageToDelete)) {
+                        deleteImages.push(imageToDelete);
+                    }
+                    deleteImagesInput.value = JSON.stringify(deleteImages);
+
+                    // UI dan rasmni olib tashlash
+                    this.parentElement.remove();
+                });
+            });
+        });
+
     </script>
 @endsection

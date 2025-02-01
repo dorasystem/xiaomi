@@ -31,7 +31,7 @@
                             <tr>
                                 <th scope="col">№</th>
                                 <th scope="col">Вопрос (RU)</th>
-                                <th scope="col">Действия</th>
+                                <th scope="col"  class="text-end" >Действия</th>
                             </tr>
                             </thead>
                             <tbody>

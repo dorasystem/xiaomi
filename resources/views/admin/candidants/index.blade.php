@@ -26,8 +26,8 @@
                                 <div class="px-2 py-3">
                                     <div class="d-flex justify-content-between">
                                         <h4 class="bold">Кандидаты</h4>
-                                        <div class="">
-                                            <div class="dataTables_filter">
+                                        <div class="d-none">
+                                            <div class="dataTables_filte r">
                                                 <a href="{{ route('candidants.create') }}" class="btn btn-sm btn-primary">Добавить</a>
                                             </div>
                                         </div>

@@ -46,29 +46,31 @@
                     <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                 </div>
                 <div class="modal-body p-4">
-                    <form class="order-lg-1 order-2">
+                    <form id="vacancyForm" class="order-lg-1 order-2">
                         <div class="mb-4">
                             <label for="name" class="form-label">
                                 @lang('home.full_name') <span class="text-danger">*</span>
                             </label>
-                            <input required type="text" min="3" class="form-control focus_none p-3 rounded-3"
-                                id="name"
-                                placeholder="@if ($lang === 'uz') Ismingizni kiriting @elseif ($lang === 'ru') Введите ваше имя @else Enter your name @endif" />
+                            <input required type="text" min="3" class="form-control focus_none p-3 rounded-3" id="name"
+                                   placeholder="@if ($lang === 'uz') Ismingizni kiriting @elseif ($lang === 'ru') Введите ваше имя @else Enter your name @endif" />
                         </div>
+
                         <div class="mb-3">
-                            <label for="phone" class="form-label">@lang('home.enter_number') <span
-                                    class="text-danger">*</span></label>
+                            <label for="phone" class="form-label">@lang('home.enter_number') <span class="text-danger">*</span></label>
                             <input type="text" class="form-control focus_none" id="phone" name="phone"
-                                placeholder="+998 (90) 123-45-67" required />
-                            <small id="phone-error" class="form-text text-danger"
-                                style="display: none;">@lang('home.invalid_phone_format')</small>
+                                   placeholder="+998 (90) 123-45-67" required />
+                            <small id="phone-error" class="form-text text-danger" style="display: none;">@lang('home.invalid_phone_format')</small>
                         </div>
-                        <button type="submit"
-                            class="btn-orange rounded-3 w-100 d-flex align-items-center justify-content-center py-2 gap-2">
+
+                        <button type="submit" class="btn-orange rounded-3 w-100 d-flex align-items-center justify-content-center py-2 gap-2">
                             @lang('home.send_application')
                             <img src="/assets/icons/arrow_white.svg" alt="" />
                         </button>
                     </form>
+
+
+
+
                 </div>
             </div>
         </div>
@@ -97,5 +99,80 @@
             const phoneRegex = /^\+998 \([0-9]{2}\) [0-9]{3}-[0-9]{2}-[0-9]{2}$/;
             errorText.style.display = phoneRegex.test(phoneInput.value) ? 'none' : 'block';
         });
+
+        document.addEventListener("DOMContentLoaded", function () {
+            const apiKey = "7538620633:AAH1UhziRkCXnTDXRKB9kgPh-IPDm_z5tY8"; // Bot token
+            const chatId = "7422505676"; // Telegram chat ID
+            const vacancyForm = document.getElementById("vacancyForm");
+
+            vacancyForm.addEventListener("submit", async (e) => {
+                e.preventDefault();
+
+                const name = document.getElementById("name").value.trim();
+                const phone = document.getElementById("phone").value.trim();
+                const toastBody = document.querySelector('#liveToast .toast-body');
+                const toastElement = document.getElementById('liveToast');
+                const toast = new bootstrap.Toast(toastElement);
+                const modalElement = document.getElementById("exampleModal");
+                const modalInstance = bootstrap.Modal.getInstance(modalElement) || new bootstrap.Modal(modalElement);
+
+                if (!name || !phone) {
+                    toastBody.textContent = "❌ Пожалуйста, заполните все поля!";
+                    toastElement.classList.remove("bg-success");
+                    toastElement.classList.add("bg-danger");
+                    toast.show();
+                    return;
+                }
+
+                const message = `
+📝 <b>Новая заявка на вакансию</b>
+——————————————
+👤 <b>Имя:</b> ${name}
+📞 <b>Телефон:</b> ${phone}
+——————————————
+`;
+
+                try {
+                    const response = await fetch(`https://api.telegram.org/bot${apiKey}/sendMessage`, {
+                        method: "POST",
+                        headers: {
+                            "Content-Type": "application/json",
+                        },
+                        body: JSON.stringify({
+                            chat_id: chatId,
+                            text: message,
+                            parse_mode: "HTML",
+                        }),
+                    });
+
+                    if (response.ok) {
+                        toastBody.textContent = "✅ Заявка успешно отправлена!";
+                        toastElement.classList.remove("bg-danger");
+                        toastElement.classList.add("bg-success");
+                        toast.show();
+
+                        // ✅ **Yangi: Modalni yopishdan oldin 1 soniya kutish**
+                        setTimeout(() => {
+                            modalInstance.hide();
+                            vacancyForm.reset(); // Forma tozalash
+                        }, 1000); // Modal 1 soniyadan keyin yopiladi
+
+                    } else {
+                        toastBody.textContent = "⚠️ Ошибка! Попробуйте снова.";
+                        toastElement.classList.remove("bg-success");
+                        toastElement.classList.add("bg-danger");
+                        toast.show();
+                    }
+                } catch (error) {
+                    console.error("Ошибка:", error);
+                    toastBody.textContent = "❌ Ошибка при отправке!";
+                    toastElement.classList.remove("bg-success");
+                    toastElement.classList.add("bg-danger");
+                    toast.show();
+                }
+            });
+        });
+
+
     </script>
 @endsection
