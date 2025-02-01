@@ -200,10 +200,7 @@ class MainController extends Controller
     {
         return view('pages.checkout');
     }
-    public function payment()
-    {
-        return view('pages.payment');
-    }
+
 
     public function categorySort($slug, Request $request)
     {

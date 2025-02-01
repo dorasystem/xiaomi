@@ -29,6 +29,10 @@ class SiteController extends Controller
     {
         return view('pages.site.purchase-online');
     }
+    public function payment()
+    {
+        return view('pages.site.payment');
+    }
 
     public function faq()
     {
