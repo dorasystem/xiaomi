@@ -124,12 +124,12 @@
 
                         @if (session('cart') && count(session('cart')) > 0)
                             <span class="badge badge-pill badge-danger badge-position rounded-circle cart-label"
-                                id="cart-count">
+                                id="cart-count2">
                                 {{ count(session('cart')) }}
                             </span>
                         @else
                             <span class="badge badge-pill badge-danger badge-position cart-label rounded-pill"
-                                id="cart-count"></span>
+                                id="cart-count2"></span>
                         @endif
                     </a>
                     <small class="">@lang('home.basket')</small>
@@ -159,12 +159,12 @@
                         </svg>
                         @if (session('compares') && count(session('compares')) > 0)
                             <span class="badge badge-pill badge-danger badge-position rounded-circle compare"
-                                id="compare-count">
+                                id="compare-count2">
                                 {{ count(session('compares')) }}
                             </span>
                         @else
                             <span class="badge badge-pill badge-danger badge-position rounded-circle compare text-black"
-                                id="compare-count"></span>
+                                id="compare-count2"></span>
                         @endif
                     </a>
                     <small class="">@lang('home.comparison')</small>
@@ -174,12 +174,12 @@
                         <i class="fa-regular fa-heart text-black"></i>
                         @if (session('favorites') && count(session('favorites')) > 0)
                             <span class="badge badge-pill badge-danger badge-position rounded-circle"
-                                id="favorite-count">
+                                id="favorite-count2">
                                 {{ count(session('favorites')) }}
                             </span>
                         @else
                             <span class="badge badge-pill badge-danger badge-position rounded-circle"
-                                id="favorite-count"></span>
+                                id="favorite-count2"></span>
                         @endif
                     </a>
                     <small class="">@lang('home.featured')</small>

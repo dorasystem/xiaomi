@@ -819,6 +819,7 @@ $description = isset($matches[1])
 
         function updateCartCount(count) {
             document.getElementById('cart-count').innerText = count; // Updates the cart count badge
+            document.getElementById('cart-count2').innerText = count; // Updates the cart count badge
         }
 
         function toggleFavourite(productId) {
@@ -840,6 +841,7 @@ $description = isset($matches[1])
 
                         // Sevimlilar sonini yangilash
                         $('#favorite-count').text(response.favorites_count);
+                        $('#favorite-count2').text(response.favorites_count);
 
                         // Ico'ni yangilash
                         if (response.message.includes('qo\'shildi')) {
@@ -888,6 +890,7 @@ $description = isset($matches[1])
 
                         // Sevimlilar sonini yangilash
                         $('#compare-count').text(response.compares_count); // Id bo'yicha o'zgarish
+                        $('#compare-count2').text(response.compares_count); // Id bo'yicha o'zgarish
 
                         // Ico'ni yangilash
                         if (response.message.includes('qo\'shildi')) {
