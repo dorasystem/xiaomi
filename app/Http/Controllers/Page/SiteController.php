@@ -32,9 +32,8 @@ class SiteController extends Controller
 
     public function faq()
     {
-        $lang = app()->getLocale(); // Joriy tilni olish
+        $lang = app()->getLocale();
 
-        // Har bir savolga hozirgi til bo‘yicha ma’lumot chiqarish
         $faqs = Faq::all()->map(function ($faq) use ($lang) {
             return [
                 'question' => $faq["question_$lang"],
