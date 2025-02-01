@@ -134,10 +134,9 @@
                                             </div>
 
                                             <!-- Ko'proq ko'rsatish tugmasi -->
-                                            <a id="showMoreBtn"
-                                                class="w-100 btn-orange2 rounded text-center mb-3 btn">Ko'proq
-                                                ko'rsatish</a>
-
+                                            <a id="showMoreBtn" class="w-100 btn-orange2 rounded text-center mb-3 btn">
+                                                @lang('home.show_more')
+                                            </a>
 
                                         </div>
                                     </div>
@@ -226,7 +225,7 @@
                             <form method="GET" action="{{ route('products.filter') }}">
                                 <div class="d-lg-none d-block">
                                     <button class="btn-orange rounded mb-3" type="button" data-bs-toggle="modal"
-                                        data-bs-target="#filtermodal">Filter
+                                        data-bs-target="#filtermodal">@lang('home.filter')
                                     </button>
                                     <div class="modal" id="filtermodal" tabindex="-1"
                                         aria-labelledby="filtermodalLabel" aria-hidden="true">

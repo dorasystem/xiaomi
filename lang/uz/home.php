@@ -125,4 +125,6 @@ return [
    'for_customers' => 'Xaridorlar uchun',
     'order_received' => 'Buyurtmangiz qabul qilindi va Telegramga yuborildi!',
     'faq' => 'Savol va javoblar',
+    'filter' => "Filter",
+
 ];

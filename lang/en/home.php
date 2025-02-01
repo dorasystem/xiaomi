@@ -139,4 +139,5 @@ return [
     'order_received' => 'Your order has been received and sent to Telegram!',
 
     'faq' => ' Home - Frequently Asked Questions',
+    'filter' => "Filter",
 ];
