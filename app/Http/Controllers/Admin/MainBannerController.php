@@ -22,12 +22,13 @@ class MainBannerController extends Controller
             'image2' => 'nullable|image|mimes:jpeg,png,jpg,gif,webp|max:2048',
         ]);
 
-        // Hozirgi rasmlarni olish
-        $updatedImages = $mainBanner->images ?? [];
+        // 🔹 Rasm array mavjud emas bo'lsa, uni bo‘sh massiv qilish
+        $updatedImages = is_array($mainBanner->images) ? $mainBanner->images : [];
 
         // ❌ DELETE: Agar rasm o‘chirilishi kerak bo‘lsa
-        if ($request->has('delete_images')) {
-            $deleteImages = json_decode($request->delete_images, true);
+        if ($request->has('delete_images') && !empty($request->delete_images)) {
+            $deleteImages = json_decode($request->delete_images, true) ?? [];
+
             foreach ($deleteImages as $deleteImage) {
                 if (($key = array_search($deleteImage, $updatedImages)) !== false) {
                     unset($updatedImages[$key]); // Massivdan olib tashlash
@@ -61,13 +62,14 @@ class MainBannerController extends Controller
 
         // 🔄 UPDATE: Ma'lumotlarni yangilash
         $mainBanner->update([
-            'images' => array_values($updatedImages), // Rasm massivini yangilash
+            'images' => array_values($updatedImages), // Massivni qayta indekslash
             'image1' => $image1Path,
             'image2' => $image2Path,
         ]);
 
         return redirect()->back()->with('success', 'Banner muvaffaqiyatli yangilandi!');
     }
+
 
 
 
