@@ -33,6 +33,10 @@ class SiteController extends Controller
     {
         return view('pages.site.payment');
     }
+    public function delivery()
+    {
+        return view('pages.site.free-delivery');
+    }
 
     public function faq()
     {
@@ -47,5 +51,4 @@ class SiteController extends Controller
 
         return view('pages.site.faq', compact('faqs'));
     }
-
 }

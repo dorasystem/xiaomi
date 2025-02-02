@@ -9,7 +9,7 @@ return [
     'service_centers' => 'Servis markazlari',
     'instructions' => 'Yo‘riqnomalar',
     'faq' => 'Savol-javob',
-    'write_text' => 'Matn yozing',
+    'write_text' => 'Xabar yozing',
     'send' => 'Yuborish',
     'information' => 'Ma\'lumot',
     'smart_home' => 'Aqlli uy',

@@ -118,6 +118,7 @@ Route::get('/404', [MainController::class, 'error'])->name('404');
 Route::get('/purchase-online', [SiteController::class, 'purchaseOnline'])->name('purchase.online');
 Route::get('/faq', [SiteController::class, 'faq'])->name('faq');
 Route::get('/payment', [SiteController::class, 'payment'])->name('payment');
+Route::get('/delivery', [SiteController::class, 'delivery'])->name('delivery');
 
 Route::fallback(function () {
     return redirect()->route('404');
