@@ -18,6 +18,9 @@
 .text-grey a {
     color: var(--grey);
 }
+a:hover {
+    color: var(--orange);
+}
 .str_replace ul li {
     width: 100%;
     list-style-type: disc !important;
@@ -241,7 +244,7 @@ input[type="search"]::-webkit-search-cancel-button {
 .text-green {
     color: #14923eff;
 }
-li {
+ul li {
     list-style-type: none;
     white-space: nowrap;
 }
