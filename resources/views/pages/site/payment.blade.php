@@ -11,7 +11,7 @@
         </div>
         <div class=" my-5">
             <div class="row">
-                <div class="col-3">
+                <div class="col-lg-3 d-lg-block d-none">
                     <ul class="p-0">
                         <li class="mb-4">
                             <a href="{{ route('payment') }}"
@@ -24,7 +24,32 @@
 
                     </ul>
                 </div>
-                <div class="col-9 ">
+                <div class="col-lg-3 d-lg-none  d-flex ">
+                    <div class="w-100 mb-4 position-relative">
+                        <button style="border: 2px solid #dee1e6ff; border-radius: 0.375rem" onclick="toggleDiv()"
+                            id="toggleButton"
+                            class="w-100 d-flex justify-content-between p-2 ps-3 drop-shadow bg-transparent ">
+                            @lang('home.payment_text')
+                            <i class="fa-solid fa-chevron-down transition-icon"></i>
+                        </button>
+                        <div id="toggleContent" class="position-absolute drop-shadow hidden-content w-100"
+                            style="z-index: 10; overflow: hidden; max-height: 0; ">
+                            <ul style=" border-width: 1px 2px 2px 2px; border-color:#dee1e6ff; border-style: solid;"
+                                class="d-flex flex-column rounded-bottom bg-white p-3 pb-0">
+                                <li class="mb-3">
+                                    <a href="{{ route('payment') }}"
+                                        class="text-grey hover_text_org {{ request()->routeIs('payment') ? 'active-link' : '' }}">@lang('home.payment_text')</a>
+                                </li>
+                                <li class="mb-3">
+                                    <a href="javascript:void(0)"
+                                        class="text-grey hover_text_org {{ request()->routeIs('delivery') ? 'active-link' : '' }}">@lang('home.delivery')</a>
+                                </li>
+
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-lg-9 ">
                     <h4 class="fw-bold">Оплата картой онлайн</h4>
                     <div class="row align-items-start  my-3">
                         <img class="col-3" src="/assets/images/info-pay.png" alt="">
@@ -56,7 +81,7 @@
                         <img src="/assets/images/paymentbanner.png" alt="" style="max-height:180px;"
                             class="w-100 fit-cover rounded-1">
                     </div>
-                    <div class="d-flex align-items-center gap-3 my-3">
+                    <div class="d-flex flex-wrap align-items-center gap-3 my-3">
                         <img src="/assets/images/mastercard.png" alt="">
                         <img src="/assets/images/mir.png" alt="">
                         <img src="/assets/images/visa.png" alt="">
@@ -197,7 +222,7 @@
 
                         - Решение банка за две минуты
                     </div>
-                    <div class="">Участвуют банки: АО "ТБанк", АО «ОТП Банк», ПАО «Совкомбанк», КБ «Ренессанс Кредит»
+                    <div class="mt-2">Участвуют банки: АО "ТБанк", АО «ОТП Банк», ПАО «Совкомбанк», КБ «Ренессанс Кредит»
                         (ООО), ПАО «МТС-Банк», ООО МФК "ЭйрЛоанс" (Квику)</div>
                     <div class="row my-3">
                         <img class="col-3" src="/assets/images/icons.png" alt="">
@@ -207,4 +232,27 @@
         </div>
 
     </main>
+    <script>
+        function toggleDiv() {
+            var content = document.getElementById("toggleContent");
+            var icon = document.querySelector("#toggleButton i");
+            var btn = document.querySelector("#toggleButton");
+
+            if (content.style.maxHeight === "0px" || content.style.maxHeight === "") {
+                content.style.maxHeight = content.scrollHeight + "px";
+                icon.style.transform = "rotate(180deg)";
+                btn.style.borderWidth = "2px 2px 0";
+                btn.style.borderRadius = "0.375rem 0.375rem 0 0";
+                console.log('open');
+
+
+            } else {
+                content.style.maxHeight = "0px";
+                icon.style.transform = "rotate(0deg)";
+                btn.style.borderWidth = "2px";
+                btn.style.borderRadius = "0.375rem";
+                console.log('close');
+            }
+        }
+    </script>
 @endsection

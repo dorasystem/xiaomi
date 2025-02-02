@@ -1318,6 +1318,16 @@ input[type="range"]:nth-child(2) {
 /*  */
 @media (max-width: 992px) {
     /* lg dan kichik ekranlar */
+    .active-link {
+        color: var(--orange) !important;
+        border-bottom: 0px solid transparent;
+    }
+    .hover_text_org:hover {
+        color: var(--orange) !important;
+        border-bottom: 0px solid transparent;
+        transition: all 0.09s ease-in-out;
+    }
+
     .footer {
         padding: 40px 0 40px;
     }
