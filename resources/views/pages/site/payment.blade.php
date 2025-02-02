@@ -9,15 +9,15 @@
             </div>
             <hr />
         </div>
-        <div class=" my-5">
+        <div class=" mb-5 ">
             <div class="row">
                 <x-page.sidebar></x-page.sidebar>
 
                 <div class="col-lg-9 ">
                     <h4 class="fw-bold">Оплата картой онлайн</h4>
-                    <div class="row align-items-start  my-3">
-                        <img class="col-3" src="/assets/images/info-pay.png" alt="">
-                        <div class="col-9">Вы можете оплатить заказ онлайн с использованием банковской карты.</div>
+                    <div class="row align-items-start my-3">
+                        <img class="col-md-3 col-6" src="/assets/images/info-pay.png" alt="">
+                        <div class="col-md-9">Вы можете оплатить заказ онлайн с использованием банковской карты.</div>
                     </div>
                     <div class="disc">
                         <ul class="">
@@ -40,7 +40,7 @@
                         </div>
                     </div>
 
-                    <h4 class="fw-bold mt-5 mb-1">Способ оплаты "Paygine"</h4>
+                    <h4 class="fw-bold mt-4 mb-1">Способ оплаты "Paygine"</h4>
                     <div class="">
                         <img src="/assets/images/paymentbanner.png" alt="" style="max-height:180px;"
                             class="w-100 fit-cover rounded-1">
@@ -72,7 +72,7 @@
                         которой был произведён платёж
                     </div>
 
-                    <h4 class="fw-bold mt-5 mb-1">Способ оплаты "Яндекс Сплит"</h4>
+                    <h4 class="fw-bold mt-4 mb-1">Способ оплаты "Яндекс Сплит"</h4>
                     <div class="row align-items-start my-4">
                         <img class="col-3" src="/assets/images/split-logo.png" alt="">
                         <div class="col-9">Это простой и безопасный сервис оплаты частями, с которым можно сплитовать
@@ -90,10 +90,10 @@
                     <div class="mt-3">Товар вы получите сразу</div>
                     <div class="mt-3">Ищите "Сплит" в способах оплаты в корзине</div>
 
-                    <h4 class="fw-bold mt-5 mb-1">Рассрочка «Покупай со Сбером»</h4>
-                    <div class="row align-items-center  my-4">
-                        <img class="col-3" src="/assets/images/rass.png" alt="">
-                        <div class="col-9">Владельцы дебетовой банковской карты ПАО Сбербанк, подключившиеся к услуге
+                    <h4 class="fw-bold mt-4 mb-1">Рассрочка «Покупай со Сбером»</h4>
+                    <div class="row align-items-center my-4">
+                        <img class="col-md-3 col-6" src="/assets/images/rass.png" alt="">
+                        <div class="col-md-9">Владельцы дебетовой банковской карты ПАО Сбербанк, подключившиеся к услуге
                             «Мобильный банк» и системе «СберБанк Онлайн», могут совершать покупки в рассрочку, не выходя из
                             дома! </div>
                     </div>
@@ -132,10 +132,10 @@
                         *-временно недоступны
                     </p>
 
-                    <h4 class="fw-bold mt-5 mb-1">Рассрочка «ТБанк»</h4>
+                    <h4 class="fw-bold mt-4 mb-1">Рассрочка «ТБанк»</h4>
                     <div class="row align-items-center  my-4">
-                        <img class="col-3" src="/assets/images/rasst.png" alt="">
-                        <div class="col-9">Совершайте покупки в рассрочку, не выходя из дома! </div>
+                        <img class="col-md-3 col-6" src="/assets/images/rasst.png" alt="">
+                        <div class="col-md-9">Совершайте покупки в рассрочку, не выходя из дома! </div>
                     </div>
                     <h5 class="mt-3 fw-bold">Как оформить рассрочку:</h5>
                     <ol>
