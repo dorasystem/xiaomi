@@ -13,6 +13,7 @@ use App\Http\Controllers\Admin\DescImageController;
 use App\Http\Controllers\Admin\FaqController;
 use App\Http\Controllers\Admin\HistoryController;
 use App\Http\Controllers\Admin\MainBannerController;
+use App\Http\Controllers\Admin\ManualController;
 use App\Http\Controllers\Admin\NewsController;
 use App\Http\Controllers\Admin\OrderController;
 use App\Http\Controllers\Admin\ProductController;
@@ -60,6 +61,7 @@ Route::middleware(['auth'])->prefix('dashboard')->group(function () {
     Route::resource('candidants', CandidantController::class);
     Route::resource('desc-images', DescImageController::class);
     Route::resource('main_banners', MainBannerController::class);
+    Route::resource('manuals', ManualController::class);
     Route::get('/orders', [OrderController::class, 'index'])->name('orders.index');
     Route::put('/orders/{order}', [OrderController::class, 'update'])->name('orders.update');
     Route::get('/orders/{order}/edit', [OrderController::class, 'edit'])->name('orders.edit');
