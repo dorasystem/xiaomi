@@ -33,6 +33,11 @@ class SiteController extends Controller
         return view('pages.site.return-of-goods');
     }
 
+    public function original()
+    {
+        return view('pages.site.original');
+    }
+
     public function payment()
     {
         return view('pages.site.payment');

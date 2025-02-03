@@ -143,6 +143,7 @@ return [
     'goods'  =>  "Return of goods Xiaomi",
     'warranty'  =>  "Warranty on goods",
     'manuals'  =>  "Instructions",
+    'original'  =>  "Authenticity check",
 
 ];
 

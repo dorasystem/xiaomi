@@ -129,4 +129,6 @@ return [
 'goods'  =>  "Tovarni qaytarish Xiaomi",
 'warranty'  =>  "Tovarlar kafolati",
 'manuals'  =>  "Yo‘riqnomalar",
+'original'  =>  "Haqiqiyligini tekshirish",
+
 ];
