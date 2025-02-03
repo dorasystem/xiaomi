@@ -98,6 +98,7 @@ class OrderController extends Controller
 
     public function productsStore(Request $request)
     {
+
         // ✅ 1. So‘rovni tekshirish (Validatsiya)
         $validated = $request->validate([
             'first_name' => 'required|string|max:255',
@@ -107,6 +108,7 @@ class OrderController extends Controller
 
         // ✅ 2. JSON dan massivga o‘girish
         $cartItems = json_decode($validated['cart_items'], true);
+
 
         // ✅ 3. Buyurtmani bazaga saqlash
         $order = Order::create([
@@ -129,13 +131,16 @@ class OrderController extends Controller
                 'quantity' => $cartItem['quantity'],
                 'price' => $price,
                 'total' => $total,
+                'sku' => $cartItem['sku'] ?? null,
             ]);
 
-            // 📝 Telegram xabari uchun mahsulot tafsilotlari
+            // 📝 Telegram xabari uchun mahsulot tafsilotlari (SKU qo‘shildi)
             $orderItemsText .= "📌 <b>" . ($cartItem['name'] ?? 'Noma’lum Mahsulot') . "</b>\n";
+            $orderItemsText .= "🔖 SKU: " . ($cartItem['sku'] ?? 'Noma’lum') . "\n"; // SKU qo‘shildi
             $orderItemsText .= "💰 Narx: " . number_format($price, 0, '.', ' ') . " UZS\n";
             $orderItemsText .= "📦 Miqdor: " . $cartItem['quantity'] . " ta\n\n";
         }
+
 
         // ✅ 5. Savatchani tozalash (Barcha ma’lumotlar bazaga yozilgandan keyin)
         session()->forget('cart');
