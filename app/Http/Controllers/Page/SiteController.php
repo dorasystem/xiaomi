@@ -29,6 +29,10 @@ class SiteController extends Controller
     {
         return view('pages.site.purchase-online');
     }
+    public function returnOfGoods()
+    {
+        return view('pages.site.return-of-goods');
+    }
     public function payment()
     {
         return view('pages.site.payment');
@@ -36,6 +40,14 @@ class SiteController extends Controller
     public function delivery()
     {
         return view('pages.site.free-delivery');
+    }
+
+    public function warranty()
+    {
+        return view('pages.site.warranty');
+    }    public function manuals()
+    {
+        return view('pages.site.manuals');
     }
 
     public function faq()

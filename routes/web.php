@@ -119,6 +119,9 @@ Route::get('/purchase-online', [SiteController::class, 'purchaseOnline'])->name(
 Route::get('/faq', [SiteController::class, 'faq'])->name('faq');
 Route::get('/payment', [SiteController::class, 'payment'])->name('payment');
 Route::get('/delivery', [SiteController::class, 'delivery'])->name('delivery');
+Route::get('/return-of-goods', [SiteController::class, 'returnOfGoods'])->name('return.of.goods');
+Route::get('/warranty', [SiteController::class, 'warranty'])->name('warranty');
+Route::get('/info/manuals', [SiteController::class, 'manuals'])->name('manuals');
 
 Route::fallback(function () {
     return redirect()->route('404');
