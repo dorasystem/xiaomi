@@ -107,7 +107,7 @@ $mainBanner = \App\Models\MainBanner::first();
                     </a>
                     <ul class="nxl-submenu">
                         <li class="nxl-item">
-                            <a href="{{ route('news.index') }}" class="nxl-link">
+                            <a href="{{ route('manuals.index') }}" class="nxl-link">
                                 <span class="nxl-micon"><i class="feather-file-text"></i></span>
                                 <span class="nxl-mtext fs-11">Инструкции  Xiaomi</span>
                             </a>

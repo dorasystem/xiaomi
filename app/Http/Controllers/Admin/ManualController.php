@@ -50,7 +50,7 @@ class ManualController extends Controller
 
         Manual::create($data);
 
-        return redirect()->route('admin.manuals.index')->with('success', 'Manual created successfully');
+        return redirect()->route('manuals.index')->with('success', 'Manual created successfully');
     }
 
     /**
@@ -96,7 +96,7 @@ class ManualController extends Controller
 
         $manual->update($data);
 
-        return redirect()->route('admin.manuals.index')->with('success', 'Manual updated successfully');
+        return redirect()->route('manuals.index')->with('success', 'Manual updated successfully');
     }
 
     /**
@@ -112,6 +112,6 @@ class ManualController extends Controller
 
         $manual->delete();
 
-        return redirect()->route('admin.manuals.index')->with('success', 'Manual deleted successfully');
+        return redirect()->route('manuals.index')->with('success', 'Manual deleted successfully');
     }
 }

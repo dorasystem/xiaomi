@@ -128,4 +128,5 @@ return [
     'filter' => "Filter",
 'goods'  =>  "Tovarni qaytarish Xiaomi",
 'warranty'  =>  "Tovarlar kafolati",
+'manuals'  =>  "Yo‘riqnomalar",
 ];
