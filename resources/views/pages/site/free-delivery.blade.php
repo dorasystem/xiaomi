@@ -14,21 +14,28 @@
                 <x-page.sidebar></x-page.sidebar>
 
                 <div class="col-lg-9 ">
+                    <style>
+                        .aaa img{
+                            width: 100%; /* ✅ Butun containerga sig‘adi */
+                            height: auto;
+                            object-fit: cover;
+                        }
+                    </style>
                     @php
                         $lang = app()->getLocale();
-                        $imagePath = '/assets/images/information/2.png'; // Default rasm
+                        $imagePath = '/assets/images/information/1.png'; // Default rasm
 
                         if ($lang === 'uz') {
                                 $imagePath = '/assets/images/information/2.jpg';
                         } elseif ($lang === 'ru') {
-                        $imagePath = '/assets/images/information/3.jpg';
+                        $imagePath = '/assets/images/information/f3.jpg';
                         } elseif ($lang === 'en') {
                             $imagePath = '/assets/images/information/1.jpg';
                         }
                     @endphp
 
-                    <div class="">
-                        <img style="min-height: 150px" class="w-100 rounded fit-cover" src="{{ $imagePath }}" alt="">
+                    <div class="aaa">
+                        <img  class="w-100 rounded fit-cover" src="{{ $imagePath }}" alt="">
                     </div>
 
                     <h4 class="fw-semibold mt-4">При покупки товаров мы осуществляем бесплатную доставку</h4>

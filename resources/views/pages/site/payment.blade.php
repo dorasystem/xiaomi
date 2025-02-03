@@ -14,6 +14,13 @@
                 <x-page.sidebar></x-page.sidebar>
 
                 <div class="col-lg-9 ">
+                    <style>
+                        .aaa img{
+                            width: 100%; /* ✅ Butun containerga sig‘adi */
+                            height: auto;
+                            object-fit: cover;
+                        }
+                    </style>
                     @php
                         $lang = app()->getLocale();
                         $imagePath = '/assets/images/information/11.png'; // Default rasm
@@ -27,8 +34,8 @@
                         }
                     @endphp
 
-                    <div class="">
-                        <img style="min-height: 150px" class="w-100 rounded fit-cover" src="{{ $imagePath }}" alt="">
+                    <div class="aaa">
+                        <img  class="w-100 rounded fit-cover" src="{{ $imagePath }}" alt="">
                     </div>
                     <h4 class="fw-semibold mt-4">Как оплачивать товары в интернет-магазине «Texnomart»?</h4>
                     <div class="my-3">Мы предлагаем несколько удобных и безопасных способов оплаты для Вашего комфорта:

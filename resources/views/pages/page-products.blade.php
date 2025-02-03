@@ -103,29 +103,46 @@
                                 <div class="accordion-item">
                                     <h2 class="accordion-header" id="panelsStayOpen-headingOne">
                                         <button class="accordion-button " type="button" data-bs-toggle="collapse"
-                                            data-bs-target="#panelsStayOpen-collapseOne" aria-expanded="true"
-                                            aria-controls="panelsStayOpen-collapseOne">
+                                                data-bs-target="#panelsStayOpen-collapseOne" aria-expanded="true"
+                                                aria-controls="panelsStayOpen-collapseOne">
                                             @lang('home.category')
                                         </button>
                                     </h2>
                                     <div id="panelsStayOpen-collapseOne" class="accordion-collapse collapse show"
-                                        aria-labelledby="panelsStayOpen-headingOne">
+                                         aria-labelledby="panelsStayOpen-headingOne">
                                         <div class="accordion-body">
-                                            <!-- 'All' checkbox -->
                                             <div class="form-check mb-3">
-                                                <input class="form-check-input" type="checkbox" id="select-all" />
-                                                <label class="form-check-label" for="select-all">
+                                                <input class="form-check-input" type="checkbox" id="all-categories"
+                                                    {{ request()->has('categories') && count(request('categories', [])) === $categories->count() ? 'checked' : '' }} />
+                                                <label class="form-check-label" for="all-categories">
                                                     <small>@lang('home.all_categories')</small>
                                                 </label>
                                             </div>
+
                                             <!-- Individual checkboxes -->
                                             <div id="category-container">
                                                 @foreach ($categories as $index => $category)
+                                                    @php
+
+                                                        // ✅ 1. Query string orqali kelgan kategoriyalarni olish
+                                                        $selectedCategories = request()->has('categories')
+                                                            ? request('categories')
+                                                            : [];
+
+                                                        // ✅ 2. Agar kategoriya {slug} orqali kelgan bo‘lsa, slug bo‘yicha tekshirish
+                                                        $currentCategorySlug = Route::current()->parameter('category');
+                                                        $isChecked =
+                                                            in_array($category->id, $selectedCategories) ||
+                                                            ($currentCategorySlug &&
+                                                                $category->slug == $currentCategorySlug);
+                                                    @endphp
+
                                                     <div class="form-check mb-3 category-item"
-                                                        style="display: {{ $index < 10 ? 'block' : 'none' }}">
+                                                         style="display: {{ $index < 10 ? 'block' : 'none' }}">
                                                         <input class="form-check-input category-checkbox" type="checkbox"
-                                                            name="categories[]" value="{{ $category->id }}"
-                                                            id="category-{{ $category->id }}" checked />
+                                                               name="categories[]" value="{{ $category->id }}"
+                                                               id="category-{{ $category->id }}"
+                                                            {{ $isChecked ? 'checked' : '' }} />
                                                         <label class="form-check-label" for="category-{{ $category->id }}">
                                                             <small>{{ $category['name_' . $lang] }}</small>
                                                         </label>
@@ -144,64 +161,69 @@
                                 <div class="accordion-item">
                                     <h2 class="accordion-header" id="panelsStayOpen-headingTwo">
                                         <button class="accordion-button" type="button" data-bs-toggle="collapse"
-                                            data-bs-target="#panelsStayOpen-collapseTwo" aria-expanded="true"
-                                            aria-controls="panelsStayOpen-collapseTwo">
+                                                data-bs-target="#panelsStayOpen-collapseTwo" aria-expanded="true"
+                                                aria-controls="panelsStayOpen-collapseTwo">
                                             @lang('home.price')
                                         </button>
                                     </h2>
                                     <div id="panelsStayOpen-collapseTwo" class="accordion-collapse collapse show pt-3"
-                                        aria-labelledby="panelsStayOpen-headingTwo">
+                                         aria-labelledby="panelsStayOpen-headingTwo">
                                         <div class="accordion-body">
                                             <div class="range-slider">
                                                 <div class="slider-container">
                                                     <div class="slider-track"></div>
-                                                    <input type="range" id="rangeMin" min="0" max="40000000"
-                                                        value="{{ request('min_price', 1) }}" />
-                                                    <input type="range" id="rangeMax" min="0" max="40000000"
-                                                        value="{{ request('max_price', 40000000) }}" />
+                                                    <input type="range" id="rangeMin" min="10" max="40000000" step="1000"
+                                                           value="{{ request('min_price', 10) }}" />
+                                                    <input type="range" id="rangeMax" min="10" max="40000000" step="1000"
+                                                           value="{{ request('max_price', 40000000) }}" />
                                                 </div>
                                                 <span id="minValue1" style="font-size: 14px">
-                                                    {{ number_format(request('min_price', 1), 0, ',', ' ') }} so'm
-                                                </span> -
+                                                        {{ number_format(request('min_price', 10), 0, ',', ' ') }} so'm
+                                                    </span> -
                                                 <span id="maxValue1" style="font-size: 14px">
-                                                    {{ number_format(request('max_price', 40000000), 0, ',', ' ') }} so'm
-                                                </span>
-
-                                                <script>
-                                                    document.addEventListener("DOMContentLoaded", function() {
-                                                        let rangeMin = document.getElementById("rangeMin");
-                                                        let rangeMax = document.getElementById("rangeMax");
-                                                        let minValue = document.getElementById("minValue1");
-                                                        let maxValue = document.getElementById("maxValue1");
-
-                                                        function formatPrice(value) {
-                                                            return new Intl.NumberFormat('uz-UZ').format(Number(value)) + " so'm";
-                                                        }
-
-                                                        function updateValues() {
-                                                            minValue.textContent = formatPrice(rangeMin.value);
-                                                            maxValue.textContent = formatPrice(rangeMax.value);
-                                                        }
-
-                                                        rangeMin.addEventListener("input", updateValues);
-                                                        rangeMax.addEventListener("input", updateValues);
-                                                    });
-                                                </script>
-
-
-
-
+                                                        {{ number_format(request('max_price', 40000000), 0, ',', ' ') }} so'm
+                                                    </span>
                                             </div>
+                                            <input type="hidden" name="min_price" id="min_price_hidden"
+                                                   value="{{ request('min_price', 1) }}">
+                                            <input type="hidden" name="max_price" id="max_price_hidden"
+                                                   value="{{ request('max_price', 40000000) }}">
+                                            <script>
+                                                document.addEventListener("DOMContentLoaded", function() {
+                                                    let rangeMin = document.getElementById("rangeMin");
+                                                    let rangeMax = document.getElementById("rangeMax");
+                                                    let minPriceInput = document.getElementById("min_price_hidden");
+                                                    let maxPriceInput = document.getElementById("max_price_hidden");
+                                                    let minValue = document.getElementById("minValue1");
+                                                    let maxValue = document.getElementById("maxValue1");
+
+                                                    function formatPrice(value) {
+                                                        return new Intl.NumberFormat('uz-UZ').format(Number(value)) + " so'm";
+                                                    }
+
+                                                    function updateValues() {
+                                                        minValue.textContent = formatPrice(rangeMin.value);
+                                                        maxValue.textContent = formatPrice(rangeMax.value);
+                                                        minPriceInput.value = rangeMin.value;
+                                                        maxPriceInput.value = rangeMax.value;
+                                                    }
+
+                                                    rangeMin.addEventListener("input", updateValues);
+                                                    rangeMax.addEventListener("input", updateValues);
+                                                });
+                                            </script>
+
                                         </div>
                                     </div>
                                 </div>
+
                             </div>
                             <button type="submit"
-                                class="w-100 btn-orange rounded text-center mb-3">@lang('home.search')</button>
+                                    class="w-100 btn-orange rounded text-center mb-3">@lang('home.search')</button>
                             <button
                                 class="w-100 text-orange bg-transparent rounded text-center border-orange rounded py-1">
                                 <a href="{{ route('products') }}"
-                                    class="w-100 text-orange bg-transparent  text-center  py-1">
+                                   class="w-100 text-orange bg-transparent  text-center  py-1">
                                     @lang('home.reset')
                                 </a>
                             </button>
@@ -216,43 +238,54 @@
                             <form method="GET" action="{{ route('products.filter') }}">
                                 <div class="d-lg-none d-block">
                                     <button class="btn-orange rounded mb-3" type="button" data-bs-toggle="modal"
-                                        data-bs-target="#filtermodal">@lang('home.filter')
+                                            data-bs-target="#filtermodal">@lang('home.filter')
                                     </button>
                                     <div class="modal" id="filtermodal" tabindex="-1"
-                                        aria-labelledby="filtermodalLabel" aria-hidden="true">
+                                         aria-labelledby="filtermodalLabel" aria-hidden="true">
                                         <div class="modal-dialog modal-dialog-centered">
                                             <div style="height: 650px; overflow-y: auto"
-                                                class="modal-content d-flex flex-column justify-content-between">
+                                                 class="modal-content d-flex flex-column justify-content-between">
                                                 <div class="">
                                                     <div class="modal-header position-sticky top-0 bg-white z-3">
                                                         <h2 class="fw-normal">@lang('home.all_filters')</h2>
                                                         <button type="button" class="btn-close" data-bs-dismiss="modal"
-                                                            aria-label="Close"></button>
+                                                                aria-label="Close"></button>
                                                     </div>
                                                     <div class="accordion" id="accordionPanelsStayOpenExample">
                                                         <div class="accordion-item">
                                                             <h2 class="accordion-header" id="panelsStayOpen-headingOne">
                                                                 <button class="accordion-button" type="button"
-                                                                    data-bs-toggle="collapse"
-                                                                    data-bs-target="#panelsStayOpen-collapseOne"
-                                                                    aria-expanded="true"
-                                                                    aria-controls="panelsStayOpen-collapseOne">
+                                                                        data-bs-toggle="collapse"
+                                                                        data-bs-target="#panelsStayOpen-collapseOne"
+                                                                        aria-expanded="true"
+                                                                        aria-controls="panelsStayOpen-collapseOne">
                                                                     @lang('home.category')
                                                                 </button>
                                                             </h2>
                                                             <div id="panelsStayOpen-collapseOne"
-                                                                class="accordion-collapse collapse show"
-                                                                aria-labelledby="panelsStayOpen-headingOne">
-                                                                <div class="accordion-body text-capitalize">
+                                                                 class="accordion-collapse collapse show"
+                                                                 aria-labelledby="panelsStayOpen-headingOne">
+                                                                <div class="accordion-body">
+                                                                    <div class="form-check mb-3">
+                                                                        <input class="form-check-input" type="checkbox"
+                                                                               id="all-categories2"
+                                                                            {{ count(request('categories', [])) === $categories->count() ? 'checked' : '' }} />
+                                                                        <label class="form-check-label"
+                                                                               for="all-categories2">
+                                                                            <small>@lang('home.all_categories')</small>
+                                                                        </label>
+                                                                    </div>
+
                                                                     @foreach ($categories as $category)
                                                                         <div class="form-check mb-3">
-                                                                            <input class="form-check-input"
+                                                                            <input
+                                                                                class="form-check-input category-checkbox"
                                                                                 type="checkbox" name="categories[]"
                                                                                 value="{{ $category->id }}"
                                                                                 id="category-{{ $category->id }}"
                                                                                 {{ in_array($category->id, request('categories', [])) ? 'checked' : '' }} />
                                                                             <label class="form-check-label"
-                                                                                for="category-{{ $category->id }}">
+                                                                                   for="category-{{ $category->id }}">
                                                                                 <small>{{ $category['name_' . $lang] }}</small>
                                                                             </label>
                                                                         </div>
@@ -263,16 +296,16 @@
                                                         <div class="accordion-item">
                                                             <h2 class="accordion-header" id="panelsStayOpen-headingTwo">
                                                                 <button class="accordion-button" type="button"
-                                                                    data-bs-toggle="collapse"
-                                                                    data-bs-target="#panelsStayOpen-collapseTwo"
-                                                                    aria-expanded="true"
-                                                                    aria-controls="panelsStayOpen-collapseTwo">
+                                                                        data-bs-toggle="collapse"
+                                                                        data-bs-target="#panelsStayOpen-collapseTwo"
+                                                                        aria-expanded="true"
+                                                                        aria-controls="panelsStayOpen-collapseTwo">
                                                                     @lang('home.price')
                                                                 </button>
                                                             </h2>
                                                             <div id="panelsStayOpen-collapseTwo"
-                                                                class="accordion-collapse collapse show pt-3"
-                                                                aria-labelledby="panelsStayOpen-headingTwo">
+                                                                 class="accordion-collapse collapse show pt-3"
+                                                                 aria-labelledby="panelsStayOpen-headingTwo">
                                                                 <div class="accordion-body">
                                                                     <div class="range-slider">
                                                                         <div class="slider-container">
@@ -288,11 +321,16 @@
                                                                         <span id="maxValue1" style="font-size: 14px">
                                                     {{ number_format(request('max_price', 40000000), 0, ',', ' ') }} so'm
                                                 </span>
-
+                                                                        <input type="hidden" name="min_price" id="min_price_hidden"
+                                                                               value="{{ request('min_price', 1) }}">
+                                                                        <input type="hidden" name="max_price" id="max_price_hidden"
+                                                                               value="{{ request('max_price', 40000000) }}">
                                                                         <script>
                                                                             document.addEventListener("DOMContentLoaded", function() {
                                                                                 let rangeMin = document.getElementById("rangeMin");
                                                                                 let rangeMax = document.getElementById("rangeMax");
+                                                                                let minPriceInput = document.getElementById("min_price_hidden");
+                                                                                let maxPriceInput = document.getElementById("max_price_hidden");
                                                                                 let minValue = document.getElementById("minValue1");
                                                                                 let maxValue = document.getElementById("maxValue1");
 
@@ -303,6 +341,8 @@
                                                                                 function updateValues() {
                                                                                     minValue.textContent = formatPrice(rangeMin.value);
                                                                                     maxValue.textContent = formatPrice(rangeMax.value);
+                                                                                    minPriceInput.value = rangeMin.value;
+                                                                                    maxPriceInput.value = rangeMax.value;
                                                                                 }
 
                                                                                 rangeMin.addEventListener("input", updateValues);
@@ -322,11 +362,11 @@
                                                 <div class="p-3 position-sticky bottom-0 z-3 bg-white">
                                                     <!-- Submit and Reset Button in Modal -->
                                                     <button type="submit"
-                                                        class="w-100 btn-orange rounded text-center mb-3">@lang('home.search')</button>
+                                                            class="w-100 btn-orange rounded text-center mb-3">@lang('home.search')</button>
                                                     <button
                                                         class="w-100 text-orange bg-transparent rounded text-center border-orange rounded py-1">
                                                         <a href="{{ route('products') }}"
-                                                            class="w-100 text-orange bg-transparent text-center py-1">
+                                                           class="w-100 text-orange bg-transparent text-center py-1">
                                                             @lang('home.reset')
                                                         </a>
                                                     </button>

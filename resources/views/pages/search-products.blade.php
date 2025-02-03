@@ -174,40 +174,47 @@ $categories = \App\Models\Category::all();
                                             <div class="range-slider">
                                                 <div class="slider-container">
                                                     <div class="slider-track"></div>
-                                                    <input type="range" id="rangeMin" min="0" max="40000000"
-                                                        value="{{ request('min_price', 1) }}" />
-                                                    <input type="range" id="rangeMax" min="0" max="40000000"
-                                                        value="{{ request('max_price', 40000000) }}" />
+                                                    <input type="range" id="rangeMin" min="10" max="40000000" step="1000"
+                                                           value="{{ request('min_price', 10) }}" />
+                                                    <input type="range" id="rangeMax" min="10" max="40000000" step="1000"
+                                                           value="{{ request('max_price', 40000000) }}" />
                                                 </div>
                                                 <span id="minValue1" style="font-size: 14px">
-                                                    {{ number_format(request('min_price', 1), 0, ',', ' ') }} so'm
-                                                </span> -
-                                                <span id="maxValue1" style="font-size: 14px">
-                                                    {{ number_format(request('max_price', 40000000), 0, ',', ' ') }} so'm
-                                                </span>
-
-                                                <script>
-                                                    document.addEventListener("DOMContentLoaded", function() {
-                                                        let rangeMin = document.getElementById("rangeMin");
-                                                        let rangeMax = document.getElementById("rangeMax");
-                                                        let minValue = document.getElementById("minValue1");
-                                                        let maxValue = document.getElementById("maxValue1");
-
-                                                        function formatPrice(value) {
-                                                            return new Intl.NumberFormat('uz-UZ').format(Number(value)) + " so'm";
-                                                        }
-
-                                                        function updateValues() {
-                                                            minValue.textContent = formatPrice(rangeMin.value);
-                                                            maxValue.textContent = formatPrice(rangeMax.value);
-                                                        }
-
-                                                        rangeMin.addEventListener("input", updateValues);
-                                                        rangeMax.addEventListener("input", updateValues);
-                                                    });
-                                                </script>
-
+                                                        {{ number_format(request('min_price', 10), 0, ',', ' ') }} so'm
+                                                    </span> -
+                                                                                                <span id="maxValue1" style="font-size: 14px">
+                                                        {{ number_format(request('max_price', 40000000), 0, ',', ' ') }} so'm
+                                                    </span>
                                             </div>
+                                            <input type="hidden" name="min_price" id="min_price_hidden"
+                                                   value="{{ request('min_price', 1) }}">
+                                            <input type="hidden" name="max_price" id="max_price_hidden"
+                                                   value="{{ request('max_price', 40000000) }}">
+                                            <script>
+                                                document.addEventListener("DOMContentLoaded", function() {
+                                                    let rangeMin = document.getElementById("rangeMin");
+                                                    let rangeMax = document.getElementById("rangeMax");
+                                                    let minPriceInput = document.getElementById("min_price_hidden");
+                                                    let maxPriceInput = document.getElementById("max_price_hidden");
+                                                    let minValue = document.getElementById("minValue1");
+                                                    let maxValue = document.getElementById("maxValue1");
+
+                                                    function formatPrice(value) {
+                                                        return new Intl.NumberFormat('uz-UZ').format(Number(value)) + " so'm";
+                                                    }
+
+                                                    function updateValues() {
+                                                        minValue.textContent = formatPrice(rangeMin.value);
+                                                        maxValue.textContent = formatPrice(rangeMax.value);
+                                                        minPriceInput.value = rangeMin.value;
+                                                        maxPriceInput.value = rangeMax.value;
+                                                    }
+
+                                                    rangeMin.addEventListener("input", updateValues);
+                                                    rangeMax.addEventListener("input", updateValues);
+                                                });
+                                            </script>
+
                                         </div>
                                     </div>
                                 </div>
@@ -315,11 +322,16 @@ $categories = \App\Models\Category::all();
                                                                         <span id="maxValue1" style="font-size: 14px">
                                                     {{ number_format(request('max_price', 40000000), 0, ',', ' ') }} so'm
                                                 </span>
-
+                                                                        <input type="hidden" name="min_price" id="min_price_hidden"
+                                                                               value="{{ request('min_price', 1) }}">
+                                                                        <input type="hidden" name="max_price" id="max_price_hidden"
+                                                                               value="{{ request('max_price', 40000000) }}">
                                                                         <script>
                                                                             document.addEventListener("DOMContentLoaded", function() {
                                                                                 let rangeMin = document.getElementById("rangeMin");
                                                                                 let rangeMax = document.getElementById("rangeMax");
+                                                                                let minPriceInput = document.getElementById("min_price_hidden");
+                                                                                let maxPriceInput = document.getElementById("max_price_hidden");
                                                                                 let minValue = document.getElementById("minValue1");
                                                                                 let maxValue = document.getElementById("maxValue1");
 
@@ -330,6 +342,8 @@ $categories = \App\Models\Category::all();
                                                                                 function updateValues() {
                                                                                     minValue.textContent = formatPrice(rangeMin.value);
                                                                                     maxValue.textContent = formatPrice(rangeMax.value);
+                                                                                    minPriceInput.value = rangeMin.value;
+                                                                                    maxPriceInput.value = rangeMax.value;
                                                                                 }
 
                                                                                 rangeMin.addEventListener("input", updateValues);

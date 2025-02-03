@@ -28,7 +28,7 @@
                     @endphp
 
                     <div class="">
-                        <img style="min-height: 150px" class="w-100 rounded fit-cover" src="{{ $imagePath }}" alt="">
+                        <img  class="w-100 rounded fit-cover" src="{{ $imagePath }}" alt="">
                     </div>
                     <h4 class="fw-semibold mt-4">Возврат товара</h4>
                     <p class="fs-14">Если по каким-либо причинам Вы решили отказаться от приобретенного товара, то

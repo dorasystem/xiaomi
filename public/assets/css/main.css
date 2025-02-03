@@ -1253,23 +1253,37 @@ input[type="range"]:nth-child(2) {
     .fs-13 {
         font-size: 13px;
     }
+
     .wh-65 {
-        width: 40px;
-        height: 40px;
+        width: 34px;
+        height: 38px;
     }
 
     .orderImage {
         width: 100px;
     }
+
     .application_modal img {
         width: 90px;
         height: 90px;
     }
+
     .blogimages {
         width: 100%;
     }
+
     .blogcard {
         height: 310px;
+    }
+
+    .carousel-inner img {
+        height: 400px;
+        object-fit: contain;
+
+    }
+
+    .carousel-inner {
+        min-height: 250px !important;
     }
 }
 @media (max-width: 576px) {

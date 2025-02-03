@@ -166,42 +166,51 @@ class MainController extends Controller
     }
     public function filterProducts(Request $request)
     {
-        $minPrice = $request->input('min_price', 1);
-        $maxPrice = $request->input('max_price', 40000000);
+
+        $minPrice = (int) $request->input('min_price', 1);
+        $maxPrice = (int) $request->input('max_price', 40000000);
+
+        if ($minPrice > $maxPrice) {
+            [$minPrice, $maxPrice] = [$maxPrice, $minPrice]; // Narx noto‘g‘ri kiritilsa, almashtiramiz
+        }
+
         $selectedCategories = $request->input('categories', []);
 
-        // Ota kategoriyalarning barcha bolalarini qo‘shish
+        // Ota va bolalar kategoriyalarni olish
         $categoriesToFilter = [];
         if (!empty($selectedCategories)) {
             $categoriesToFilter = Category::whereIn('id', $selectedCategories)
-                ->orWhereIn('parent_id', $selectedCategories) // Ota kategoriyaning barcha bolalarini olish
+                ->orWhereIn('parent_id', $selectedCategories)
                 ->pluck('id')
                 ->toArray();
         }
 
+        // Mahsulotlarni tanlash
         $products = Product::query();
 
+        // Kategoriya bo‘yicha filtrlash
         if (!empty($categoriesToFilter)) {
             $products->whereIn('category_id', $categoriesToFilter);
         }
 
-        $filteredProducts = $products->whereHas('variants', function ($query) use ($minPrice, $maxPrice) {
+        // **Narx bo‘yicha filtr**
+        $products->whereHas('variants', function ($query) use ($minPrice, $maxPrice) {
             $query->whereNotNull('price')
-                ->where('price', '>=', $minPrice)
-                ->where('price', '<=', $maxPrice);
-        })->paginate(9);
+                ->whereBetween('price', [$minPrice, $maxPrice]);
+        });
 
-        if ($filteredProducts->isEmpty() && !empty($categoriesToFilter)) {
-            $products = $products->paginate(9);
-        } else {
-            $products = $filteredProducts;
-        }
+        $products = $products->paginate(9);
+
+        // 🔍 **Tekshiruv uchun SQL so‘rovni chop etish**
+        // dd($products->toSql(), $products->getBindings());
 
         $categories = Category::all();
         $search = $request->input('search');
 
         return view('pages.search-products', compact('products', 'categories', 'search'));
     }
+
+
 
 
 

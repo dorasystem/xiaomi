@@ -512,7 +512,7 @@ $description = isset($matches[1])
                             class="fs-13 col-lg-2  col-6 d-flex flex-md-column flex-row align-items-center text-md-center text-start gap-md-2 gap-3">
                             <img src="/assets/icons/shop-icon.svg" alt="" class="wh-65" />
                             <div class=""><span class="fw-bold d-md-block d-none">@lang('home.pickup') </span></div>
-                            <div>@lang('home.pickup') @lang('home.and') @lang('home.delivery')</div>
+                            <div> @lang('home.delivery')</div>
                         </div>
                         <div
                             class="fs-13 col-lg-2 col-6 d-flex flex-md-column flex-row align-items-center text-md-center text-start gap-md-2 gap-3">

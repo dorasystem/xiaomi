@@ -28,7 +28,7 @@
                     @endphp
 
                     <div class="">
-                        <img style="min-height: 150px" class="w-100 rounded fit-cover" src="{{ $imagePath }}" alt="">
+                        <img  class="w-100 rounded fit-cover" src="{{ $imagePath }}" alt="">
                     </div>
                     <h4 class="fw-semibold mt-4">Гарантия на товары</h4>
                     <div class="disc mt-3">
