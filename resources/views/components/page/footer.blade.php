@@ -89,7 +89,7 @@ $category7 = $categories->skip(6)->first();
                         <li><a href="{{route('warranty')}}"><?= __('messages.warranty') ?></a></li>
                         <li><a href="{{route('return.of.goods')}}"><?= __('messages.return') ?></a></li>
                         <li><a href="#"><?= __('messages.service_centers') ?></a></li>
-                        <li><a href="#"><?= __('messages.instructions') ?></a></li>
+                        <li><a href="{{{route('manuals')}}}"><?= __('messages.instructions') ?></a></li>
                         <li><a href="{{route('faq')}}"><?= __('messages.faq') ?></a></li>
                     </ul>
 

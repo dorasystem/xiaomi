@@ -168,12 +168,21 @@ class MainController extends Controller
     {
         $minPrice = $request->input('min_price', 1);
         $maxPrice = $request->input('max_price', 40000000);
-        $categories = $request->input('categories', []);
+        $selectedCategories = $request->input('categories', []);
+
+        // Ota kategoriyalarning barcha bolalarini qo‘shish
+        $categoriesToFilter = [];
+        if (!empty($selectedCategories)) {
+            $categoriesToFilter = Category::whereIn('id', $selectedCategories)
+                ->orWhereIn('parent_id', $selectedCategories) // Ota kategoriyaning barcha bolalarini olish
+                ->pluck('id')
+                ->toArray();
+        }
 
         $products = Product::query();
 
-        if (!empty($categories)) {
-            $products->whereIn('category_id', $categories);
+        if (!empty($categoriesToFilter)) {
+            $products->whereIn('category_id', $categoriesToFilter);
         }
 
         $filteredProducts = $products->whereHas('variants', function ($query) use ($minPrice, $maxPrice) {
@@ -182,7 +191,7 @@ class MainController extends Controller
                 ->where('price', '<=', $maxPrice);
         })->paginate(9);
 
-        if ($filteredProducts->isEmpty() && !empty($categories)) {
+        if ($filteredProducts->isEmpty() && !empty($categoriesToFilter)) {
             $products = $products->paginate(9);
         } else {
             $products = $filteredProducts;
@@ -193,6 +202,7 @@ class MainController extends Controller
 
         return view('pages.search-products', compact('products', 'categories', 'search'));
     }
+
 
 
 

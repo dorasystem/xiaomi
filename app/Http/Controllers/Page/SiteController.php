@@ -26,10 +26,7 @@ use Illuminate\Support\Facades\DB;
 class SiteController extends Controller
 {
 
-    public function purchaseOnline()
-    {
-        return view('pages.site.purchase-online');
-    }
+
 
     public function returnOfGoods()
     {
