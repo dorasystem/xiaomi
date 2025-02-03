@@ -15,7 +15,7 @@
                     </ul>
                 </div>
                 <div class="page-header-right ms-auto">
-                    <a href="{{ route('histories.create') }}" class="btn btn-primary">Добавить новый чистория</a>
+                    <a href="{{ route('histories.create') }}" class="btn btn-primary">Добавить </a>
                 </div>
             </div>
             <div class="main-content">

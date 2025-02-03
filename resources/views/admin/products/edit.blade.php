@@ -126,6 +126,12 @@
                                                     <input type="text" class="form-control" name="price_24[]" value="{{ $price->price_24 }}">
                                                     <span class="input-group-text">UZS</span>
                                                 </div>
+                                            </div>                                            <div class="form-group pb-3 col-md-3">
+                                                <label for="price_24">SKU:</label>
+                                                <div class="input-group">
+                                                    <input type="text" class="form-control" name="sku[]" value="{{ $price->sku }}">
+                                                    <span class="input-group-text">#</span>
+                                                </div>
                                             </div>
                                             <div class="col-md-12">
                                                 <input type="hidden" name="deleted_variants[]" value="{{ $price->id ?? '' }}">
@@ -365,6 +371,13 @@
                                             <div class="input-group">
                                                 <input type="text" class="form-control" name="price_24[]">
                                                 <span class="input-group-text">UZS</span>
+                                            </div>
+                                        </div>
+                                          <div class="form-group pb-3 col-md-3">
+                                            <label for="price_24">SKU:</label>
+                                            <div class="input-group">
+                                                <input type="text" class="form-control" name="sku[]">
+                                                <span class="input-group-text">#</span>
                                             </div>
                                         </div>
                                         <input type="hidden" name="deleted_variants[]" >

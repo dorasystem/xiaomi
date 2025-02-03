@@ -1,7 +1,8 @@
 @extends('layouts.admin')
 
 @section('content')
-    <form action="{{ route('products.store') }}" method="POST" enctype="multipart/form-data" novalidate class="needs-validation" onsubmit="updateEditorContent()">
+    <form action="{{ route('products.store') }}" method="POST" enctype="multipart/form-data" novalidate
+          class="needs-validation" onsubmit="updateEditorContent()">
         @csrf
 
         <main class="nxl-container">
@@ -14,7 +15,8 @@
                         <ul class="breadcrumb">
                             <li class="breadcrumb-item"><a href="{{ route('admins.dashboard') }}">Главная</a></li>
                             <li class="breadcrumb-item">Продукты</li>
-                        </ul>description_ru
+                        </ul>
+                        description_ru
                     </div>
                     <div class="page-header-right ms-auto">
                         <button type="submit" class="btn btn-primary">Создать</button>
@@ -41,91 +43,113 @@
                                 <div class="card-body p-4">
                                     <ul class="nav-tab-items-wrapper nav nav-justified invoice-overview-tab-item">
                                         <li class="nav-item">
-                                            <a href="#uzContent" class="nav-link active" data-bs-toggle="tab" data-bs-target="#uzContent">O'zbekcha</a>
+                                            <a href="#uzContent" class="nav-link active" data-bs-toggle="tab"
+                                               data-bs-target="#uzContent">O'zbekcha</a>
                                         </li>
                                         <li class="nav-item">
-                                            <a href="#enContent" class="nav-link" data-bs-toggle="tab" data-bs-target="#enContent">English</a>
+                                            <a href="#enContent" class="nav-link" data-bs-toggle="tab"
+                                               data-bs-target="#enContent">English</a>
                                         </li>
                                         <li class="nav-item">
-                                            <a href="#ruContent" class="nav-link" data-bs-toggle="tab" data-bs-target="#ruContent">Русский</a>
+                                            <a href="#ruContent" class="nav-link" data-bs-toggle="tab"
+                                               data-bs-target="#ruContent">Русский</a>
                                         </li>
                                     </ul>
                                     <div class="tab-content pt-3">
                                         @foreach (['uz', 'en', 'ru'] as $lang)
-                                            <div class="tab-pane fade show {{ $lang == 'uz' ? 'active' : '' }}" id="{{ $lang }}Content">
+                                            <div class="tab-pane fade show {{ $lang == 'uz' ? 'active' : '' }}"
+                                                 id="{{ $lang }}Content">
                                                 <div class="form-group pb-3">
-                                                    <label for="name_{{ $lang }}">Заголовок ({{ strtoupper($lang) }}):</label>
-                                                    <input type="text" class="form-control" id="name_{{ $lang }}" name="name_{{ $lang }}"
+                                                    <label for="name_{{ $lang }}">Заголовок ({{ strtoupper($lang) }}
+                                                        ):</label>
+                                                    <input type="text" class="form-control" id="name_{{ $lang }}"
+                                                           name="name_{{ $lang }}"
                                                            value="{{ old('name_' . $lang) }}" required>
                                                 </div>
                                                 <div class="form-group pb-3">
-                                                    <label for="description_{{ $lang }}">Описание ({{ strtoupper($lang) }}):</label>
-                                                    <div id="descriptionEditor_{{ $lang }}" style="height:200px;">{!! old('description_' . $lang) !!}</div>
-                                                    <input type="hidden" id="description_{{ $lang }}" name="description_{{ $lang }}" value="{{ old('description_' . $lang) }}">
+                                                    <label for="description_{{ $lang }}">Описание
+                                                        ({{ strtoupper($lang) }}):</label>
+                                                    <div id="descriptionEditor_{{ $lang }}"
+                                                         style="height:200px;">{!! old('description_' . $lang) !!}</div>
+                                                    <input type="hidden" id="description_{{ $lang }}"
+                                                           name="description_{{ $lang }}"
+                                                           value="{{ old('description_' . $lang) }}">
                                                 </div>
                                                 <div class="form-group pb-3">
-                                                    <label for="content_{{ $lang }}">Характеристики ({{ strtoupper($lang) }}):</label>
-                                                    <div id="contentEditor_{{ $lang }}" style="height:200px;">{!! old('content_' . $lang) !!}</div>
-                                                    <input type="hidden" id="content_{{ $lang }}" name="content_{{ $lang }}" value="{{ old('content_' . $lang) }}">
+                                                    <label for="content_{{ $lang }}">Характеристики
+                                                        ({{ strtoupper($lang) }}):</label>
+                                                    <div id="contentEditor_{{ $lang }}"
+                                                         style="height:200px;">{!! old('content_' . $lang) !!}</div>
+                                                    <input type="hidden" id="content_{{ $lang }}"
+                                                           name="content_{{ $lang }}"
+                                                           value="{{ old('content_' . $lang) }}">
                                                 </div>
                                             </div>
                                         @endforeach
                                     </div>
                                 </div>
-                                    <div id="product-forms">
-                                        <div class="row px-4 pb-2 product-form">
-                                            <div class="form-group pb-3 col-md-4">
-                                                <label for="storage">Место хранения:</label>
-                                                <select class="form-control" id="storage" name="storage[]">
-                                                    <option value="null">Null</option>
-                                                    <option value="2/32GB">2/32 GB</option>
-                                                    <option value="4/64GB">4/64 GB</option>
-                                                    <option value="6/128GB">6/128 GB</option>
-                                                    <option value="8/256GB">8/256 GB</option>
-                                                    <option value="12/256GB">12/256 GB</option>
-                                                    <option value="12/512GB">12/512 GB</option>
-                                                </select>
+                                <div id="product-forms">
+                                    <div class="row px-4 pb-2 product-form">
+                                        <div class="form-group pb-3 col-md-4">
+                                            <label for="storage">Место хранения:</label>
+                                            <select class="form-control" id="storage" name="storage[]">
+                                                <option value="null">Null</option>
+                                                <option value="2/32GB">2/32 GB</option>
+                                                <option value="4/64GB">4/64 GB</option>
+                                                <option value="6/128GB">6/128 GB</option>
+                                                <option value="8/256GB">8/256 GB</option>
+                                                <option value="12/256GB">12/256 GB</option>
+                                                <option value="12/512GB">12/512 GB</option>
+                                            </select>
+                                        </div>
+                                        <div class="form-group pb-3 col-md-4">
+                                            <label for="price">Цена:</label>
+                                            <div class="input-group">
+                                                <input type="text" class="form-control" name="price[]" value="">
+                                                <span class="input-group-text">UZS</span>
                                             </div>
-                                            <div class="form-group pb-3 col-md-4">
-                                                <label for="price">Цена:</label>
-                                                <div class="input-group">
-                                                    <input type="text" class="form-control" name="price[]" value="">
-                                                    <span class="input-group-text">UZS</span>
-                                                </div>
+                                        </div>
+                                        <div class="form-group pb-3 col-md-4">
+                                            <label for="discount_price">Скидочная цена:</label>
+                                            <div class="input-group">
+                                                <input type="text" class="form-control" name="discount_price[]"
+                                                       value="">
+                                                <span class="input-group-text">UZS</span>
                                             </div>
-                                            <div class="form-group pb-3 col-md-4">
-                                                <label for="discount_price">Скидочная цена:</label>
-                                                <div class="input-group">
-                                                    <input type="text" class="form-control" name="discount_price[]" value="">
-                                                    <span class="input-group-text">UZS</span>
-                                                </div>
-                                            </div>
+                                        </div>
 
 
-                                            <div class="form-group pb-3 col-md-3">
-                                                <label for="price_6">Цена за 6 месяцев:</label>
-                                                <div class="input-group">
-                                                    <input type="text" class="form-control" name="price_6[]" value="">
-                                                    <span class="input-group-text">UZS</span>
-                                                </div>
+                                        <div class="form-group pb-3 col-md-3">
+                                            <label for="price_6">Цена за 6 месяцев:</label>
+                                            <div class="input-group">
+                                                <input type="text" class="form-control" name="price_6[]" value="">
+                                                <span class="input-group-text">UZS</span>
                                             </div>
-                                            <div class="form-group pb-3 col-md-3">
-                                                <label for="price_12">Цена за 12 месяцев:</label>
-                                                <div class="input-group">
-                                                    <input type="text" class="form-control" name="price_12[]" value="">
-                                                    <span class="input-group-text">UZS</span>
-                                                </div>
+                                        </div>
+                                        <div class="form-group pb-3 col-md-3">
+                                            <label for="price_12">Цена за 12 месяцев:</label>
+                                            <div class="input-group">
+                                                <input type="text" class="form-control" name="price_12[]" value="">
+                                                <span class="input-group-text">UZS</span>
                                             </div>
-                                            <div class="form-group pb-3 col-md-3">
-                                                <label for="price_24">Цена за 24 месяца:</label>
-                                                <div class="input-group">
-                                                    <input type="text" class="form-control" name="price_24[]" value="">
-                                                    <span class="input-group-text">UZS</span>
-                                                </div>
+                                        </div>
+                                        <div class="form-group pb-3 col-md-3">
+                                            <label for="price_24">Цена за 24 месяца:</label>
+                                            <div class="input-group">
+                                                <input type="text" class="form-control" name="price_24[]" value="">
+                                                <span class="input-group-text">UZS</span>
+                                            </div>
+                                        </div>
+                                        <div class="form-group pb-3 col-md-3">
+                                            <label for="price_24">SKU:</label>
+                                            <div class="input-group">
+                                                <input type="text" class="form-control" name="sku[]" value="">
+                                                <span class="input-group-text">#</span>
                                             </div>
                                         </div>
                                     </div>
-                                    <button type="button" id="add-more" class="btn btn-primary mt-3">Добавить ещё</button>
+                                </div>
+                                <button type="button" id="add-more" class="btn btn-primary mt-3">Добавить ещё</button>
                             </div>
 
                         </div>
@@ -188,7 +212,8 @@
                                     </div>
                                     <div class="form-group pb-3">
                                         <label for="gift_name">Подарок название:</label>
-                                        <input type="text" class="form-control" id="gift_name" name="gift_name" value="{{ old('gift_name') }}">
+                                        <input type="text" class="form-control" id="gift_name" name="gift_name"
+                                               value="{{ old('gift_name') }}">
                                     </div>
 
                                     <div class="form-group pb-3">
@@ -197,11 +222,10 @@
                                     </div>
 
 
-
-{{--                                    <div class="form-group pb-3">--}}
-{{--                                        <label for="slug">Slug:</label>--}}
-{{--                                        <input type="text" class="form-control" id="slug" name="slug" value="{{ old('slug') }}" required>--}}
-{{--                                    </div>--}}
+                                    {{--                                    <div class="form-group pb-3">--}}
+                                    {{--                                        <label for="slug">Slug:</label>--}}
+                                    {{--                                        <input type="text" class="form-control" id="slug" name="slug" value="{{ old('slug') }}" required>--}}
+                                    {{--                                    </div>--}}
                                 </div>
                             </div>
                         </div>
@@ -217,8 +241,8 @@
     <script>
 
         @foreach (['uz', 'en', 'ru'] as $lang)
-        var descriptionEditor{{ ucfirst($lang) }} = new Quill('#descriptionEditor_{{ $lang }}', { theme: 'snow' });
-        var contentEditor{{ ucfirst($lang) }} = new Quill('#contentEditor_{{ $lang }}', { theme: 'snow' });
+        var descriptionEditor{{ ucfirst($lang) }} = new Quill('#descriptionEditor_{{ $lang }}', {theme: 'snow'});
+        var contentEditor{{ ucfirst($lang) }} = new Quill('#contentEditor_{{ $lang }}', {theme: 'snow'});
         @endforeach
 
         function updateEditorContent() {
@@ -229,7 +253,6 @@
             document.getElementById('content_{{ $lang }}').value = contentEditor{{ ucfirst($lang) }}.root.innerHTML;
             @endforeach
         }
-
 
 
         document.getElementById('add-more').addEventListener('click', function () {
