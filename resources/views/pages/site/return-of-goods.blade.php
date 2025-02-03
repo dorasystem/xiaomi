@@ -14,9 +14,21 @@
                 <x-page.sidebar></x-page.sidebar>
 
                 <div class="col-lg-9 ">
+                    @php
+                        $lang = app()->getLocale();
+                        $imagePath = '/assets/images/information/111.png'; // Default rasm
+
+                        if ($lang === 'uz') {
+                                $imagePath = '/assets/images/information/111.jpg';
+                        } elseif ($lang === 'ru') {
+                        $imagePath = '/assets/images/information/113.jpg';
+                        } elseif ($lang === 'en') {
+                            $imagePath = '/assets/images/information/112.jpg';
+                        }
+                    @endphp
+
                     <div class="">
-                        <img style="min-height: 150px" class="w-100 rounded fit-cover" src="/assets/images/12.png"
-                             alt="">
+                        <img style="min-height: 150px" class="w-100 rounded fit-cover" src="{{ $imagePath }}" alt="">
                     </div>
                     <h4 class="fw-semibold mt-4">Возврат товара</h4>
                     <p class="fs-14">Если по каким-либо причинам Вы решили отказаться от приобретенного товара, то

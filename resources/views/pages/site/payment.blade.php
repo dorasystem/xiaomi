@@ -14,9 +14,21 @@
                 <x-page.sidebar></x-page.sidebar>
 
                 <div class="col-lg-9 ">
+                    @php
+                        $lang = app()->getLocale();
+                        $imagePath = '/assets/images/information/11.png'; // Default rasm
+
+                        if ($lang === 'uz') {
+                                $imagePath = '/assets/images/information/12.jpg';
+                        } elseif ($lang === 'ru') {
+                        $imagePath = '/assets/images/information/13.jpg';
+                        } elseif ($lang === 'en') {
+                            $imagePath = '/assets/images/information/11.jpg';
+                        }
+                    @endphp
+
                     <div class="">
-                        <img style="min-height: 150px" class="w-100 rounded fit-cover" src="/assets/images/banner.webp"
-                            alt="">
+                        <img style="min-height: 150px" class="w-100 rounded fit-cover" src="{{ $imagePath }}" alt="">
                     </div>
                     <h4 class="fw-semibold mt-4">Как оплачивать товары в интернет-магазине «Texnomart»?</h4>
                     <div class="my-3">Мы предлагаем несколько удобных и безопасных способов оплаты для Вашего комфорта:

@@ -16,7 +16,7 @@
                 <div class="col-lg-9 ">
                     @php
                         $lang = app()->getLocale();
-                        $imagePath = '/assets/images/delivery.png'; // Default rasm
+                        $imagePath = '/assets/images/information/2.png'; // Default rasm
 
                         if ($lang === 'uz') {
                                 $imagePath = '/assets/images/information/2.jpg';

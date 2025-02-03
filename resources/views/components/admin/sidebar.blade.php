@@ -113,14 +113,7 @@ $mainBanner = \App\Models\MainBanner::first();
                             </a>
                         </li>
                     </ul>
-                    <ul class="nxl-submenu">
-                        <li class="nxl-item">
-                            <a href="{{ route('warranty.edit') }}" class="nxl-link">
-                                <span class="nxl-micon"><i class="feather-file-text"></i></span>
-                                <span class="nxl-mtext fs-11">Warranty  Xiaomi</span>
-                            </a>
-                        </li>
-                    </ul>
+
                 </li>
 
                 <!-- History -->
