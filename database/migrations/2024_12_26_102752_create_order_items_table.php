@@ -17,6 +17,7 @@ return new class extends Migration
             $table->foreignId('product_id')->constrained()->cascadeOnDelete();
             $table->integer('quantity')->default(0);
             $table->text('price')->nullable();
+            $table->text('sku')->nullable();
             $table->decimal('total', 8, 2)->default(0);
             $table->timestamps();
         });

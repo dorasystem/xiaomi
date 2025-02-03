@@ -131,6 +131,7 @@ class OrderController extends Controller
                 'quantity' => $cartItem['quantity'],
                 'price' => $price,
                 'total' => $total,
+                'sku' => $cartItem['sku'] ?? null,
             ]);
 
             // 📝 Telegram xabari uchun mahsulot tafsilotlari (SKU qo‘shildi)
