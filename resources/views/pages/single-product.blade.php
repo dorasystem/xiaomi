@@ -150,7 +150,7 @@ $isInCompare = in_array($product->id, session('compares', []));
                                     </button>
                                 @endif
                             </div>
-                            @if ($product->gift_name)
+                            @if ($product->gift_name_ru)
                                 <div class="rounded-2 bg-grey p-4 mx-lg-5 mt-3 d-flex justify-content-between gap-3">
                                     <div class="d-flex gap-3">
                                         <div
@@ -162,7 +162,7 @@ $isInCompare = in_array($product->id, session('compares', []));
                                                 <img src="/assets/icons/orange_gift.svg" alt="" />
                                                 <span>Подарок</span>
                                             </div>
-                                            <div class="fs-14 fw-semibold">{{ $product->gift_name }}</div>
+                                            <div class="fs-14 fw-semibold">{{ $product['gift_name_'.$lang] }}</div>
                                         </div>
                                     </div>
                                     <div class="">

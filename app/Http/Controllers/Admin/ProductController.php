@@ -61,7 +61,9 @@ class ProductController extends Controller
             'color_en' => 'nullable|string',
             'image' => 'nullable|image|mimes:jpg,png,jpeg,gif,webp',
             'images.*' => 'nullable|image|mimes:jpg,png,jpeg,gif,webp', // multiple image validation
-            'gift_name' => 'nullable|string',
+            'gift_name_uz' => 'nullable|string',
+            'gift_name_ru' => 'nullable|string',
+            'gift_name_en' => 'nullable|string',
             'gift_image' => 'nullable|image|mimes:jpg,png,jpeg,gif,webp',
             'storage' => 'nullable|array',
             'price' => 'nullable|array',
@@ -101,7 +103,9 @@ class ProductController extends Controller
             'color_en' => $request->color_en,
             'image' => $primaryImagePath,
             'images' => $additionalImages, // Store array of image paths directly
-            'gift_name' => $request->gift_name,
+            'gift_name_uz' => $request->gift_name_uz,
+            'gift_name_ru' => $request->gift_name_ru,
+            'gift_name_en' => $request->gift_name_en,
             'gift_image' => $giftImagePath,
         ]);
 
@@ -170,7 +174,9 @@ class ProductController extends Controller
             'images.*' => 'nullable|image|mimes:jpg,png,jpeg,gif,webp|max:2048',
             'edit_images.*' => 'nullable|image|mimes:jpg,png,jpeg,gif,webp|max:2048',
             'deleted_images' => 'nullable|array',
-            'gift_name' => 'nullable|string',
+            'gift_name_uz' => 'nullable|string',
+            'gift_name_ru' => 'nullable|string',
+            'gift_name_en' => 'nullable|string',
             'gift_image' => 'nullable|image|mimes:jpg,png,jpeg,gif,webp|max:2048',
             'storage' => 'nullable|array',
             'price' => 'nullable|array',
@@ -247,7 +253,9 @@ class ProductController extends Controller
             'content_ru' => $validatedData['content_ru'],
             'content_en' => $validatedData['content_en'],
             'color_ru' => $validatedData['color_ru'],
-            'gift_name' => $validatedData['gift_name'],
+            'gift_name_uz' => $validatedData['gift_name_uz'],
+            'gift_name_ru' => $validatedData['gift_name_uz'],
+            'gift_name_en' => $validatedData['gift_name_en'],
         ]);
 
         $slug = Str::slug($request->name_en) . '-' . $product->id; // Combine name and id to create slug

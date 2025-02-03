@@ -24,7 +24,9 @@ return new class extends Migration
             $table->text('content_uz')->nullable();
             $table->text('content_ru')->nullable();
             $table->text('content_en')->nullable();
-            $table->string('gift_name')->nullable();
+            $table->string('gift_name_uz')->nullable();
+            $table->string('gift_name_ru')->nullable();
+            $table->string('gift_name_en')->nullable();
             $table->string('gift_image')->nullable();
             $table->string('color_uz')->nullable();
             $table->string('color_ru')->nullable();

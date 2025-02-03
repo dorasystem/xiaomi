@@ -1,7 +1,8 @@
 @extends('layouts.admin')
 
 @section('content')
-    <form action="{{ route('products.update', $product->id) }}" method="POST" enctype="multipart/form-data" novalidate class="needs-validation" onsubmit="updateEditorContent()">
+    <form action="{{ route('products.update', $product->id) }}" method="POST" enctype="multipart/form-data" novalidate
+          class="needs-validation" onsubmit="updateEditorContent()">
         @csrf
         @method('PUT')
 
@@ -43,32 +44,47 @@
                                 <div class="card-body p-4">
                                     <ul class="nav-tab-items-wrapper nav nav-justified invoice-overview-tab-item">
                                         <li class="nav-item">
-                                            <a href="#uzContent" class="nav-link active" data-bs-toggle="tab" data-bs-target="#uzContent">O'zbekcha</a>
+                                            <a href="#uzContent" class="nav-link active" data-bs-toggle="tab"
+                                               data-bs-target="#uzContent">O'zbekcha</a>
                                         </li>
                                         <li class="nav-item">
-                                            <a href="#enContent" class="nav-link" data-bs-toggle="tab" data-bs-target="#enContent">English</a>
+                                            <a href="#enContent" class="nav-link" data-bs-toggle="tab"
+                                               data-bs-target="#enContent">English</a>
                                         </li>
                                         <li class="nav-item">
-                                            <a href="#ruContent" class="nav-link" data-bs-toggle="tab" data-bs-target="#ruContent">Русский</a>
+                                            <a href="#ruContent" class="nav-link" data-bs-toggle="tab"
+                                               data-bs-target="#ruContent">Русский</a>
                                         </li>
                                     </ul>
                                     <div class="tab-content pt-3">
                                         @foreach (['uz', 'en', 'ru'] as $lang)
-                                            <div class="tab-pane fade show {{ $lang == 'uz' ? 'active' : '' }}" id="{{ $lang }}Content">
+                                            <div class="tab-pane fade show {{ $lang == 'uz' ? 'active' : '' }}"
+                                                 id="{{ $lang }}Content">
                                                 <div class="form-group pb-3">
-                                                    <label for="name_{{ $lang }}">Название ({{ strtoupper($lang) }}):</label>
-                                                    <input type="text" class="form-control" id="name_{{ $lang }}" name="name_{{ $lang }}"
-                                                           value="{{ old('name_' . $lang, $product->{'name_' . $lang}) }}" required>
+                                                    <label for="name_{{ $lang }}">Название ({{ strtoupper($lang) }}
+                                                        ):</label>
+                                                    <input type="text" class="form-control" id="name_{{ $lang }}"
+                                                           name="name_{{ $lang }}"
+                                                           value="{{ old('name_' . $lang, $product->{'name_' . $lang}) }}"
+                                                           required>
                                                 </div>
                                                 <div class="form-group pb-3">
-                                                    <label for="description_{{ $lang }}">Описание ({{ strtoupper($lang) }}):</label>
-                                                    <div id="descriptionEditor_{{ $lang }}" style="height:200px;">{!! old('description_' . $lang , $product['description_' . $lang]) !!}</div>
-                                                    <input type="hidden" id="description_{{ $lang }}" name="description_{{ $lang }}" value="{{ old('description_' . $lang   , $product['description_' . $lang]) }}">
+                                                    <label for="description_{{ $lang }}">Описание
+                                                        ({{ strtoupper($lang) }}):</label>
+                                                    <div id="descriptionEditor_{{ $lang }}"
+                                                         style="height:200px;">{!! old('description_' . $lang , $product['description_' . $lang]) !!}</div>
+                                                    <input type="hidden" id="description_{{ $lang }}"
+                                                           name="description_{{ $lang }}"
+                                                           value="{{ old('description_' . $lang   , $product['description_' . $lang]) }}">
                                                 </div>
                                                 <div class="form-group pb-3">
-                                                    <label for="content_{{ $lang }}">Характеристики ({{ strtoupper($lang) }}):</label>
-                                                    <div id="contentEditor_{{ $lang }}" style="height:200px;">{!! old('content_' . $lang, $product['content_' . $lang]) !!}</div>
-                                                    <input type="hidden" id="content_{{ $lang }}" name="content_{{ $lang }}" value="{{ old('content_' . $lang , $product['content_' . $lang]) }}">
+                                                    <label for="content_{{ $lang }}">Характеристики
+                                                        ({{ strtoupper($lang) }}):</label>
+                                                    <div id="contentEditor_{{ $lang }}"
+                                                         style="height:200px;">{!! old('content_' . $lang, $product['content_' . $lang]) !!}</div>
+                                                    <input type="hidden" id="content_{{ $lang }}"
+                                                           name="content_{{ $lang }}"
+                                                           value="{{ old('content_' . $lang , $product['content_' . $lang]) }}">
                                                 </div>
                                             </div>
 
@@ -81,27 +97,50 @@
                                             <div class="form-group pb-3 col-md-4">
                                                 <label for="storage">Место хранения:</label>
                                                 <select class="form-control" name="storage[]">
-                                                    <option value="null" {{ $price->storage == 'null' ? 'selected' : '' }}>Null</option>
-                                                    <option value="2/32GB" {{ $price->storage == '2/32GB' ? 'selected' : '' }}>2/32 GB</option>
-                                                    <option value="4/64GB" {{ $price->storage == '4/64GB' ? 'selected' : '' }}>4/64 GB</option>
-                                                    <option value="6/128GB" {{ $price->storage == '6/128GB' ? 'selected' : '' }}>6/128 GB</option>
-                                                    <option value="8/256GB" {{ $price->storage == '8/256GB' ? 'selected' : '' }}>8/256 GB</option>
-                                                    <option value="8/256GB" {{ $price->storage == '12/256GB' ? 'selected' : '' }}>12/256 GB</option>
-                                                    <option value="12/512GB" {{ $price->storage == '12/512GB' ? 'selected' : '' }}>12/512 GB</option>
+                                                    <option
+                                                        value="null" {{ $price->storage == 'null' ? 'selected' : '' }}>
+                                                        Null
+                                                    </option>
+                                                    <option
+                                                        value="2/32GB" {{ $price->storage == '2/32GB' ? 'selected' : '' }}>
+                                                        2/32 GB
+                                                    </option>
+                                                    <option
+                                                        value="4/64GB" {{ $price->storage == '4/64GB' ? 'selected' : '' }}>
+                                                        4/64 GB
+                                                    </option>
+                                                    <option
+                                                        value="6/128GB" {{ $price->storage == '6/128GB' ? 'selected' : '' }}>
+                                                        6/128 GB
+                                                    </option>
+                                                    <option
+                                                        value="8/256GB" {{ $price->storage == '8/256GB' ? 'selected' : '' }}>
+                                                        8/256 GB
+                                                    </option>
+                                                    <option
+                                                        value="8/256GB" {{ $price->storage == '12/256GB' ? 'selected' : '' }}>
+                                                        12/256 GB
+                                                    </option>
+                                                    <option
+                                                        value="12/512GB" {{ $price->storage == '12/512GB' ? 'selected' : '' }}>
+                                                        12/512 GB
+                                                    </option>
                                                 </select>
 
                                             </div>
                                             <div class="form-group pb-3 col-md-4">
                                                 <label for="price">Цена:</label>
                                                 <div class="input-group">
-                                                    <input type="text" class="form-control" name="price[]" value="{{ $price->price }}">
+                                                    <input type="text" class="form-control" name="price[]"
+                                                           value="{{ $price->price }}">
                                                     <span class="input-group-text">UZS</span>
                                                 </div>
                                             </div>
                                             <div class="form-group pb-3 col-md-4">
                                                 <label for="discount_price">Скидочная цена:</label>
                                                 <div class="input-group">
-                                                    <input type="text" class="form-control" name="discount_price[]" value="{{ $price->discount_price }}">
+                                                    <input type="text" class="form-control" name="discount_price[]"
+                                                           value="{{ $price->discount_price }}">
                                                     <span class="input-group-text">UZS</span>
                                                 </div>
                                             </div>
@@ -109,33 +148,41 @@
                                             <div class="form-group pb-3 col-md-3">
                                                 <label for="price_6">Цена за 6 месяцев:</label>
                                                 <div class="input-group">
-                                                    <input type="text" class="form-control" name="price_6[]" value="{{ $price->price_6 }}">
+                                                    <input type="text" class="form-control" name="price_6[]"
+                                                           value="{{ $price->price_6 }}">
                                                     <span class="input-group-text">UZS</span>
                                                 </div>
                                             </div>
                                             <div class="form-group pb-3 col-md-3">
                                                 <label for="price_12">Цена за 12 месяцев:</label>
                                                 <div class="input-group">
-                                                    <input type="text" class="form-control" name="price_12[]" value="{{ $price->price_12 }}">
+                                                    <input type="text" class="form-control" name="price_12[]"
+                                                           value="{{ $price->price_12 }}">
                                                     <span class="input-group-text">UZS</span>
                                                 </div>
                                             </div>
                                             <div class="form-group pb-3 col-md-3">
                                                 <label for="price_24">Цена за 24 месяца:</label>
                                                 <div class="input-group">
-                                                    <input type="text" class="form-control" name="price_24[]" value="{{ $price->price_24 }}">
+                                                    <input type="text" class="form-control" name="price_24[]"
+                                                           value="{{ $price->price_24 }}">
                                                     <span class="input-group-text">UZS</span>
                                                 </div>
-                                            </div>                                            <div class="form-group pb-3 col-md-3">
+                                            </div>
+                                            <div class="form-group pb-3 col-md-3">
                                                 <label for="price_24">SKU:</label>
                                                 <div class="input-group">
-                                                    <input type="text" class="form-control" name="sku[]" value="{{ $price->sku }}">
+                                                    <input type="text" class="form-control" name="sku[]"
+                                                           value="{{ $price->sku }}">
                                                     <span class="input-group-text">#</span>
                                                 </div>
                                             </div>
                                             <div class="col-md-12">
-                                                <input type="hidden" name="deleted_variants[]" value="{{ $price->id ?? '' }}">
-                                                <button type="button" class="btn btn-danger btn-sm remove-variant">Удалить</button>
+                                                <input type="hidden" name="deleted_variants[]"
+                                                       value="{{ $price->id ?? '' }}">
+                                                <button type="button" class="btn btn-danger btn-sm remove-variant">
+                                                    Удалить
+                                                </button>
                                             </div>
                                         </div>
                                     @endforeach
@@ -155,7 +202,8 @@
                                         <label for="category_id">Категория:</label>
                                         <select id="category_id" name="category_id" class="form-control" required>
                                             @foreach ($categories as $category)
-                                                <option value="{{ $category->id }}" {{ $product->category_id == $category->id ? 'selected' : '' }}>{{ $category->name_ru }}</option>
+                                                <option
+                                                    value="{{ $category->id }}" {{ $product->category_id == $category->id ? 'selected' : '' }}>{{ $category->name_ru }}</option>
                                             @endforeach
                                         </select>
                                     </div>
@@ -163,14 +211,38 @@
                                     <div class="form-group pb-3">
                                         <label for="color_ru">Цвет RU:</label>
                                         <select class="form-control" id="color_ru" name="color_ru">
-                                            <option value="null" {{ old('color_ru', $product->color_ru) == 'null' ? 'selected' : '' }}>Null</option>
-                                            <option value="red" {{ old('color_ru', $product->color_ru) == 'red' ? 'selected' : '' }}>Красный</option>
-                                            <option value="white" {{ old('color_ru', $product->color_ru) == 'white' ? 'selected' : '' }}>Белый</option>
-                                            <option value="green" {{ old('color_ru', $product->color_ru) == 'green' ? 'selected' : '' }}>Зелёный</option>
-                                            <option value="grey" {{ old('color_ru', $product->color_ru) == 'grey' ? 'selected' : '' }}>Серый</option>
-                                            <option value="blue" {{ old('color_ru', $product->color_ru) == 'blue' ? 'selected' : '' }}>Синий</option>
-                                            <option value="black" {{ old('color_ru', $product->color_ru) == 'black' ? 'selected' : '' }}>Черный</option>
-                                            <option value="brown" {{ old('color_ru', $product->color_ru) == 'brown' ? 'selected' : '' }}>Коричневый</option>
+                                            <option
+                                                value="null" {{ old('color_ru', $product->color_ru) == 'null' ? 'selected' : '' }}>
+                                                Null
+                                            </option>
+                                            <option
+                                                value="red" {{ old('color_ru', $product->color_ru) == 'red' ? 'selected' : '' }}>
+                                                Красный
+                                            </option>
+                                            <option
+                                                value="white" {{ old('color_ru', $product->color_ru) == 'white' ? 'selected' : '' }}>
+                                                Белый
+                                            </option>
+                                            <option
+                                                value="green" {{ old('color_ru', $product->color_ru) == 'green' ? 'selected' : '' }}>
+                                                Зелёный
+                                            </option>
+                                            <option
+                                                value="grey" {{ old('color_ru', $product->color_ru) == 'grey' ? 'selected' : '' }}>
+                                                Серый
+                                            </option>
+                                            <option
+                                                value="blue" {{ old('color_ru', $product->color_ru) == 'blue' ? 'selected' : '' }}>
+                                                Синий
+                                            </option>
+                                            <option
+                                                value="black" {{ old('color_ru', $product->color_ru) == 'black' ? 'selected' : '' }}>
+                                                Черный
+                                            </option>
+                                            <option
+                                                value="brown" {{ old('color_ru', $product->color_ru) == 'brown' ? 'selected' : '' }}>
+                                                Коричневый
+                                            </option>
                                         </select>
                                     </div>
 
@@ -178,7 +250,8 @@
                                         <label for="image">Первое изображение:</label>
                                         <input type="file" class="form-control" id="image" name="image">
                                         @if ($product->image)
-                                            <img src="{{ asset('storage/' . $product->image) }}" alt="Product Image" class="img-fluid mt-2">
+                                            <img src="{{ asset('storage/' . $product->image) }}" alt="Product Image"
+                                                 class="img-fluid mt-2">
                                         @endif
                                     </div>
 
@@ -193,11 +266,17 @@
 
                                         @foreach($images as $key => $image)
                                             <div class="image-container">
-                                                <img src="{{ asset('storage/' . $image) }}" alt="Image" data-key="{{ $key }}">
-                                                <button type="button" class="delete-icon" onclick="deleteImage('{{ $image }}', this)">x</button>
-                                                <input type="file" name="edit_images[{{ $key }}]" class="hidden-input" id="edit_image_{{ $key }}" accept="image/*">
-                                                <input type="hidden" name="current_images[{{ $key }}]" value="{{ $image }}">
-                                                <input type="checkbox" name="deleted_images[]" value="{{ $image }}" class="hidden-checkbox d-none">
+                                                <img src="{{ asset('storage/' . $image) }}" alt="Image"
+                                                     data-key="{{ $key }}">
+                                                <button type="button" class="delete-icon"
+                                                        onclick="deleteImage('{{ $image }}', this)">x
+                                                </button>
+                                                <input type="file" name="edit_images[{{ $key }}]" class="hidden-input"
+                                                       id="edit_image_{{ $key }}" accept="image/*">
+                                                <input type="hidden" name="current_images[{{ $key }}]"
+                                                       value="{{ $image }}">
+                                                <input type="checkbox" name="deleted_images[]" value="{{ $image }}"
+                                                       class="hidden-checkbox d-none">
                                             </div>
                                         @endforeach
 
@@ -205,15 +284,27 @@
 
 
                                     <div class="form-group pb-3 gift-fields ">
-                                        <label for="gift_name">Подарок название:</label>
-                                        <input type="text" class="form-control" id="gift_name" name="gift_name" value="{{ old('gift_name', $product->gift_name) }}">
+                                        <label for="gift_name">Подарок название UZ:</label>
+                                        <input type="text" class="form-control" id="gift_name_uz" name="gift_name_uz"
+                                               value="{{ old('gift_name_uz', $product->gift_name_uz) }}">
+                                    </div>
+                                    <div class="form-group pb-3 gift-fields ">
+                                        <label for="gift_name">Подарок название RU:</label>
+                                        <input type="text" class="form-control" id="gift_name_ru" name="gift_name_ru"
+                                               value="{{ old('gift_name_ru', $product->gift_name_ru) }}">
+                                    </div>
+                                    <div class="form-group pb-3 gift-fields ">
+                                        <label for="gift_name">Подарок название EN:</label>
+                                        <input type="text" class="form-control" id="gift_name_en" name="gift_name_en"
+                                               value="{{ old('gift_name_en', $product->gift_name_en) }}">
                                     </div>
 
                                     <div class="form-group pb-3 gift-fields ">
                                         <label for="gift_image">Изображение Подарок:</label>
                                         <input type="file" class="form-control" id="gift_image" name="gift_image">
                                         @if ($product->gift_image)
-                                            <img src="{{ asset('storage/' . $product->gift_image) }}" alt="Gift Image" class="img-fluid mt-2">
+                                            <img src="{{ asset('storage/' . $product->gift_image) }}" alt="Gift Image"
+                                                 class="img-fluid mt-2">
                                         @endif
                                     </div>
 
@@ -231,8 +322,8 @@
     <script>
 
         @foreach (['uz', 'en', 'ru'] as $lang)
-        var descriptionEditor{{ ucfirst($lang) }} = new Quill('#descriptionEditor_{{ $lang }}', { theme: 'snow' });
-        var contentEditor{{ ucfirst($lang) }} = new Quill('#contentEditor_{{ $lang }}', { theme: 'snow' });
+        var descriptionEditor{{ ucfirst($lang) }} = new Quill('#descriptionEditor_{{ $lang }}', {theme: 'snow'});
+        var contentEditor{{ ucfirst($lang) }} = new Quill('#contentEditor_{{ $lang }}', {theme: 'snow'});
         @endforeach
 
         function updateEditorContent() {

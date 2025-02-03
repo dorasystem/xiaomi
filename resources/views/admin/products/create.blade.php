@@ -211,9 +211,19 @@
                                         <input type="file" class="form-control" id="images" name="images[]" multiple>
                                     </div>
                                     <div class="form-group pb-3">
-                                        <label for="gift_name">Подарок название:</label>
-                                        <input type="text" class="form-control" id="gift_name" name="gift_name"
-                                               value="{{ old('gift_name') }}">
+                                        <label for="gift_name">Подарок название UZ:</label>
+                                        <input type="text" class="form-control" id="gift_name_uz" name="gift_name_uz"
+                                               value="{{ old('gift_name_uz') }}">
+                                    </div>
+                                    <div class="form-group pb-3">
+                                        <label for="gift_name">Подарок название RU:</label>
+                                        <input type="text" class="form-control" id="gift_name_ru" name="gift_name_ru"
+                                               value="{{ old('gift_name_ru') }}">
+                                    </div>
+                                    <div class="form-group pb-3">
+                                        <label for="gift_name">Подарок название EN:</label>
+                                        <input type="text" class="form-control" id="gift_name_en" name="gift_name_en"
+                                               value="{{ old('gift_name_en') }}">
                                     </div>
 
                                     <div class="form-group pb-3">
