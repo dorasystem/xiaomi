@@ -126,5 +126,9 @@ return [
     'order_received' => 'Buyurtmangiz qabul qilindi va Telegramga yuborildi!',
     'faq' => 'Savol va javoblar',
     'filter' => "Filter",
+'goods'  =>  "Tovarni qaytarish Xiaomi",
+'warranty'  =>  "Tovarlar kafolati",
+'manuals'  =>  "Yo‘riqnomalar",
+'original'  =>  "Haqiqiyligini tekshirish",
 
 ];

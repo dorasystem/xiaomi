@@ -69,6 +69,7 @@ class ProductController extends Controller
             'price_6' => 'nullable|array',
             'price_12' => 'nullable|array',
             'price_24' => 'nullable|array',
+            'sku' => 'nullable|array',
         ]);
 
         // Handle image uploads
@@ -120,6 +121,7 @@ class ProductController extends Controller
                     'price_6' => $request->price_6[$index] ?? null,
                     'price_12' => $request->price_12[$index] ?? null,
                     'price_24' => $request->price_24[$index] ?? null,
+                    'sku' => $request->sku[$index] ?? null,
                 ]);
             }
         }
@@ -176,6 +178,7 @@ class ProductController extends Controller
             'price_6' => 'nullable|array',
             'price_12' => 'nullable|array',
             'price_24' => 'nullable|array',
+            'sku' => 'nullable|array',
             'deleted_variants' => 'nullable|array',
         ]);
 
@@ -266,6 +269,7 @@ class ProductController extends Controller
                     'price_6' => $request->price_6[$index] ?? null,
                     'price_12' => $request->price_12[$index] ?? null,
                     'price_24' => $request->price_24[$index] ?? null,
+                    'sku' => $request->sku[$index] ?? null,
                 ]);
 
                 $variant->save();

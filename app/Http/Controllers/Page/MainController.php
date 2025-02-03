@@ -85,7 +85,7 @@ class MainController extends Controller
     }
     public function blog()
     {
-        $blogs = Blog::all();
+        $blogs = Blog::orderBy('created_at', 'desc')->get();
         $blog = Blog::orderBy('created_at', 'desc')->first();
 
         $lang = app()->getLocale();
@@ -123,8 +123,8 @@ class MainController extends Controller
 
     public function news()
     {
-        $news = News::all();
-        $articles = Article::all();
+        $news = News::orderBy('created_at', 'desc')->get();
+        $articles = Article::orderBy('created_at', 'desc')->get();
         return view('pages.page-news', compact('news', 'articles'));
     }
     public function career()
@@ -168,12 +168,21 @@ class MainController extends Controller
     {
         $minPrice = $request->input('min_price', 1);
         $maxPrice = $request->input('max_price', 40000000);
-        $categories = $request->input('categories', []);
+        $selectedCategories = $request->input('categories', []);
+
+        // Ota kategoriyalarning barcha bolalarini qo‘shish
+        $categoriesToFilter = [];
+        if (!empty($selectedCategories)) {
+            $categoriesToFilter = Category::whereIn('id', $selectedCategories)
+                ->orWhereIn('parent_id', $selectedCategories) // Ota kategoriyaning barcha bolalarini olish
+                ->pluck('id')
+                ->toArray();
+        }
 
         $products = Product::query();
 
-        if (!empty($categories)) {
-            $products->whereIn('category_id', $categories);
+        if (!empty($categoriesToFilter)) {
+            $products->whereIn('category_id', $categoriesToFilter);
         }
 
         $filteredProducts = $products->whereHas('variants', function ($query) use ($minPrice, $maxPrice) {
@@ -182,7 +191,7 @@ class MainController extends Controller
                 ->where('price', '<=', $maxPrice);
         })->paginate(9);
 
-        if ($filteredProducts->isEmpty() && !empty($categories)) {
+        if ($filteredProducts->isEmpty() && !empty($categoriesToFilter)) {
             $products = $products->paginate(9);
         } else {
             $products = $filteredProducts;
@@ -196,6 +205,7 @@ class MainController extends Controller
 
 
 
+
     public function checkout()
     {
         return view('pages.checkout');
@@ -206,16 +216,31 @@ class MainController extends Controller
     {
         $locale = app()->getLocale();
 
-        // 1️⃣ Kategoriyani slug orqali topish
-        $category = Category::whereRaw("JSON_UNQUOTE(JSON_EXTRACT(slug, '$.\"$locale\"')) = ?", [$slug])->firstOrFail();
+        // 1️⃣ Avval hozirgi til bo‘yicha tekshirish
+        $category = Category::whereRaw("JSON_UNQUOTE(JSON_EXTRACT(slug, '$.\"$locale\"')) = ?", [$slug])->first();
 
-        // 2️⃣ Ota kategoriyaning bolalarini olish
+        // 2️⃣ Agar topilmasa boshqa tillarda qidirish
+        if (!$category) {
+            $locales = ['uz', 'ru', 'en'];
+            foreach ($locales as $lang) {
+                if ($lang !== $locale) {
+                    $category = Category::whereRaw("JSON_UNQUOTE(JSON_EXTRACT(slug, '$.\"$lang\"')) = ?", [$slug])->first();
+                    if ($category) {
+                        // Topilgach, to‘g‘ri URL ga redirect qilish
+                        return redirect()->route('category.sort', ['slug' => $category->getSlugByLanguage($locale)]);
+                    }
+                }
+            }
+        }
+
+        // 3️⃣ Hali ham topilmasa - 404
+        if (!$category) {
+            abort(404);
+        }
+
         $childCategoryIds = Category::where('parent_id', $category->id)->pluck('id')->toArray();
-
-        // 3️⃣ Ota va bolalar kategoriyalariga tegishli mahsulotlarni olish
         $products = Product::whereIn('category_id', array_merge([$category->id], $childCategoryIds))->paginate(9);
 
-        // 4️⃣ Qidiruv so‘zini olish (Agar qidiruv bo‘lsa)
         $search = $request->input('search');
 
         return view('pages.search-products', compact('products', 'category', 'search'));

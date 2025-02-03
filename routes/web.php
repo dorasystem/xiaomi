@@ -13,6 +13,7 @@ use App\Http\Controllers\Admin\DescImageController;
 use App\Http\Controllers\Admin\FaqController;
 use App\Http\Controllers\Admin\HistoryController;
 use App\Http\Controllers\Admin\MainBannerController;
+use App\Http\Controllers\Admin\ManualController;
 use App\Http\Controllers\Admin\NewsController;
 use App\Http\Controllers\Admin\OrderController;
 use App\Http\Controllers\Admin\ProductController;
@@ -21,6 +22,7 @@ use App\Http\Controllers\Admin\StaticKeywordController;
 use App\Http\Controllers\Admin\StoreController;
 use App\Http\Controllers\Admin\VacancyController;
 use App\Http\Controllers\Admin\VariantController;
+use App\Http\Controllers\Admin\WarrantyController;
 use App\Http\Controllers\Auth\AdminController;
 use App\Http\Controllers\Auth\AuthController;
 use App\Http\Controllers\Auth\SuperAdminController;
@@ -60,6 +62,9 @@ Route::middleware(['auth'])->prefix('dashboard')->group(function () {
     Route::resource('candidants', CandidantController::class);
     Route::resource('desc-images', DescImageController::class);
     Route::resource('main_banners', MainBannerController::class);
+    Route::resource('manuals', ManualController::class);
+    Route::get('/warranty/edit', [WarrantyController::class, 'edit'])->name('warranty.edit');
+    Route::put('/warranty/update', [WarrantyController::class, 'update'])->name('warranty.update');
     Route::get('/orders', [OrderController::class, 'index'])->name('orders.index');
     Route::put('/orders/{order}', [OrderController::class, 'update'])->name('orders.update');
     Route::get('/orders/{order}/edit', [OrderController::class, 'edit'])->name('orders.edit');
@@ -115,10 +120,13 @@ Route::get('/404', [MainController::class, 'error'])->name('404');
 
 
 //  sites blade
-Route::get('/purchase-online', [SiteController::class, 'purchaseOnline'])->name('purchase.online');
 Route::get('/faq', [SiteController::class, 'faq'])->name('faq');
 Route::get('/payment', [SiteController::class, 'payment'])->name('payment');
 Route::get('/delivery', [SiteController::class, 'delivery'])->name('delivery');
+Route::get('/return-of-goods', [SiteController::class, 'returnOfGoods'])->name('return.of.goods');
+Route::get('/warranty', [SiteController::class, 'warranty'])->name('warranty');
+Route::get('/info/manuals', [SiteController::class, 'manuals'])->name('manuals');
+Route::get('/info/original', [SiteController::class, 'original'])->name('original');
 
 Route::fallback(function () {
     return redirect()->route('404');

@@ -49,10 +49,6 @@
                                     </td>
                                     <td class="text-end">
                                         <div class="btn-group" role="group">
-                                            <a href="{{ route('articles.show', $item->id) }}"
-                                               class="avatar-text avatar-md me-2">
-                                                <i class="feather feather-eye"></i>
-                                            </a>
                                             <a href="{{ route('articles.edit', $item->id) }}"
                                                class="avatar-text avatar-md">
                                                 <i class="feather feather-edit"></i>

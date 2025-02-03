@@ -19,6 +19,22 @@
                     <a href="{{ route('delivery') }}"
                         class="fs-5 text-grey hover_text_org {{ request()->routeIs('delivery') ? 'active-link' : '' }}">@lang('home.delivery')</a>
                 </li>
+                <li class="mb-3">
+                    <a href="{{ route('return.of.goods') }}"
+                       class="fs-5 text-grey hover_text_org {{ request()->routeIs('return.of.goods') ? 'active-link' : '' }}">@lang('home.goods')</a>
+                </li>
+                <li class="mb-3">
+                    <a href="{{ route('warranty') }}"
+                       class="fs-5 text-grey hover_text_org {{ request()->routeIs('warranty') ? 'active-link' : '' }}">@lang('home.warranty')</a>
+                </li>
+                <li class="mb-3">
+                    <a href="{{ route('manuals') }}"
+                       class="fs-5 text-grey hover_text_org {{ request()->routeIs('manuals') ? 'active-link' : '' }}">@lang('home.manuals')</a>
+                </li>
+                <li class="mb-3">
+                    <a href="{{ route('original') }}"
+                       class="fs-5 text-grey hover_text_org {{ request()->routeIs('original') ? 'active-link' : '' }}">@lang('home.original')</a>
+                </li>
 
             </ul>
         </div>
@@ -40,6 +56,22 @@
                         <li class="mb-3">
                             <a href="{{ route('delivery') }}"
                                 class="text-grey hover_text_org {{ request()->routeIs('delivery') ? 'active-link' : '' }}">@lang('home.delivery')</a>
+                        </li>
+                        <li class="mb-3">
+                            <a href="{{ route('return.of.goods') }}"
+                                class="text-grey hover_text_org {{ request()->routeIs('return.of.goods') ? 'active-link' : '' }}">@lang('home.goods')</a>
+                        </li>
+                        <li class="mb-3">
+                            <a href="{{ route('warranty') }}"
+                               class="text-grey hover_text_org {{ request()->routeIs('return.of.warranty') ? 'active-link' : '' }}">@lang('home.goods')</a>
+                        </li>
+                        <li class="mb-3">
+                            <a href="{{ route('manuals') }}"
+                               class="text-grey hover_text_org {{ request()->routeIs('return.manuals') ? 'active-link' : '' }}">@lang('home.manuals')</a>
+                        </li>
+                        <li class="mb-3">
+                            <a href="{{ route('original') }}"
+                               class="text-grey hover_text_org {{ request()->routeIs('return.original') ? 'active-link' : '' }}">@lang('home.original')</a>
                         </li>
 
                     </ul>

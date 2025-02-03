@@ -12,6 +12,7 @@ use App\Models\DescImage;
 use App\Models\Faq;
 use App\Models\History;
 use App\Models\MainBanner;
+use App\Models\Manual;
 use App\Models\News;
 use App\Models\Product;
 use App\Models\StaticKeyword;
@@ -25,17 +26,38 @@ use Illuminate\Support\Facades\DB;
 class SiteController extends Controller
 {
 
-    public function purchaseOnline()
+
+
+    public function returnOfGoods()
     {
-        return view('pages.site.purchase-online');
+        return view('pages.site.return-of-goods');
     }
+
+    public function original()
+    {
+        return view('pages.site.original');
+    }
+
     public function payment()
     {
         return view('pages.site.payment');
     }
+
     public function delivery()
     {
         return view('pages.site.free-delivery');
+    }
+
+    public function warranty()
+    {
+        return view('pages.site.warranty');
+    }
+
+    public function manuals()
+    {
+        $lang = App::getLocale();
+        $manuals = Manual::all();
+        return view('pages.site.manuals',compact('manuals','lang'));
     }
 
     public function faq()

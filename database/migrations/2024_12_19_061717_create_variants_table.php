@@ -17,6 +17,7 @@ return new class extends Migration
             $table->text('storage')->nullable();  // Ombor soni
             $table->text('price')->nullable();  // Asosiy narx
             $table->text('discount_price')->nullable();  // Chegirma narxi
+            $table->text('sku')->nullable();  // 3 oy bo'lib to'lash narxi
             $table->text('price_3')->nullable();  // 3 oy bo'lib to'lash narxi
             $table->text('price_6')->nullable();  // 6 oy bo'lib to'lash narxi
             $table->text('price_12')->nullable();  // 12 oy bo'lib to'lash narxi

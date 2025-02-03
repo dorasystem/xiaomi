@@ -25,6 +25,7 @@ class Variant extends Model
         'price_6',
         'price_12',
         'price_24',
+        'sku',
     ];
 
     protected $casts = [

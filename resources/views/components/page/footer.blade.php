@@ -83,13 +83,13 @@ $category7 = $categories->skip(6)->first();
 
                 <div class="collapse d-sm-block" id="companyDropdown">
                     <ul class="list-unstyled text-capitalize aaa">
-                        <li><a href="#"><?= __('messages.delivery') ?></a></li>
+                        <li><a href="{{route('delivery')}}"><?= __('messages.delivery') ?></a></li>
                         <li><a href="{{route('payment')}}"><?= __('messages.payment') ?></a></li>
-                        <li><a href="#"><?= __('messages.authenticity_check') ?></a></li>
-                        <li><a href="#"><?= __('messages.warranty') ?></a></li>
-                        <li><a href="#"><?= __('messages.return') ?></a></li>
+                        <li><a href="{{route('original')}}"><?= __('messages.authenticity_check') ?></a></li>
+                        <li><a href="{{route('warranty')}}"><?= __('messages.warranty') ?></a></li>
+                        <li><a href="{{route('return.of.goods')}}"><?= __('messages.return') ?></a></li>
                         <li><a href="#"><?= __('messages.service_centers') ?></a></li>
-                        <li><a href="#"><?= __('messages.instructions') ?></a></li>
+                        <li><a href="{{{route('manuals')}}}"><?= __('messages.instructions') ?></a></li>
                         <li><a href="{{route('faq')}}"><?= __('messages.faq') ?></a></li>
                     </ul>
 
