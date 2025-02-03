@@ -1277,7 +1277,7 @@ input[type="range"]:nth-child(2) {
     }
 
     .carousel-inner img {
-        height: 400px;
+        height: 250px;
         object-fit: contain;
 
     }
