@@ -63,7 +63,7 @@
                         </li>
                         <li class="mb-3">
                             <a href="{{ route('warranty') }}"
-                               class="text-grey hover_text_org {{ request()->routeIs('return.of.warranty') ? 'active-link' : '' }}">@lang('home.goods')</a>
+                               class="text-grey hover_text_org {{ request()->routeIs('return.of.warranty') ? 'active-link' : '' }}">@lang('home.warranty')</a>
                         </li>
                         <li class="mb-3">
                             <a href="{{ route('manuals') }}"

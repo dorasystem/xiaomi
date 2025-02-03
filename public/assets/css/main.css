@@ -1285,6 +1285,9 @@ input[type="range"]:nth-child(2) {
     .carousel-inner {
         min-height: 250px !important;
     }
+    .fs-20{
+        font-size:19px ;
+    }
 }
 @media (max-width: 576px) {
     .aboutImages {
