@@ -123,7 +123,7 @@ $isInCompare = in_array($product->id, session('compares', []));
                                     @if (count($images) > 0)
                                         @foreach ($images as $key => $image)
                                             <div class="carousel-item {{ $key === 0 ? 'active' : '' }}">
-                                                <img src="{{ asset('storage/' . $image) }}" class="d-block w-100 h-100"
+                                                <img src="{{ asset('storage/' . $image) }}" class="d-block w-100"
                                                     alt="Image {{ $key + 1 }}" />
                                             </div>
                                         @endforeach
@@ -150,6 +150,27 @@ $isInCompare = in_array($product->id, session('compares', []));
                                     </button>
                                 @endif
                             </div>
+                            @if ($product->gift_name)
+                                <div class="rounded-2 bg-grey p-4 mx-lg-5 mt-3 d-flex justify-content-between gap-3">
+                                    <div class="d-flex gap-3">
+                                        <div
+                                            class="rounded-pill p-3 bg-orange plus d-flex align-items-center justify-content-center">
+                                            <img src="/assets/icons/white-plus.svg" alt="" />
+                                        </div>
+                                        <div class="">
+                                            <div class="d-flex align-items-center text-orange gap-1">
+                                                <img src="/assets/icons/orange_gift.svg" alt="" />
+                                                <span>Подарок</span>
+                                            </div>
+                                            <div class="fs-14 fw-semibold">{{ $product->gift_name }}</div>
+                                        </div>
+                                    </div>
+                                    <div class="">
+                                        <img width="70px" src="{{ asset('storage/' . $product->gift_image) }}"
+                                            alt="" />
+                                    </div>
+                                </div>
+                            @endif
                         </div>
 
 
@@ -181,35 +202,39 @@ $isInCompare = in_array($product->id, session('compares', []));
                             </div>
 
                             @php
-                                function formatPrice($price) {
+                                function formatPrice($price)
+                                {
                                     return number_format($price, 0, '.', ' '); // Narxni "1 000 000" formatida chiqarish
                                 }
                             @endphp
 
-                            <div class="fs-24 fw-bold mb-2" >
-                                {{ number_format($variants->first()->price, 0, ',', ' ') }}  <span>UZS</span>
+                            <div class="fs-24 fw-bold mb-2">
+                                {{ number_format($variants->first()->price, 0, ',', ' ') }} <span>UZS</span>
                             </div>
                             <div class="">
                                 <div class="text-grey mb-2 fs-14">@lang('home.installments')</div>
                                 <div class="text-center justify-content-center mb-3 fs-14 p-1 rounded bg-darkgrey border-orange installment-option"
-                                     onclick="selectInstallmentOption(this)">
+                                    onclick="selectInstallmentOption(this)">
                                     @lang('home.full_payment')
                                 </div>
                                 <div class="">
                                     <div class="d-flex gap-2 justify-content-center mb-3 fs-14 p-1 rounded bg-darkgrey price-6 installment-option"
-                                         onclick="selectInstallmentOption(this)">
+                                        onclick="selectInstallmentOption(this)">
                                         <span class="text-orange">6</span> @lang('home.month') <span
-                                            class="text-orange">{{ formatPrice($variants->first()->price_6 ?? 0) }} UZS</span>
+                                            class="text-orange">{{ formatPrice($variants->first()->price_6 ?? 0) }}
+                                            UZS</span>
                                     </div>
                                     <div class="d-flex gap-2 justify-content-center mb-3 fs-14 p-1 rounded bg-darkgrey price-12 installment-option"
-                                         onclick="selectInstallmentOption(this)">
+                                        onclick="selectInstallmentOption(this)">
                                         <span class="text-orange">12</span> @lang('home.month') <span
-                                            class="text-orange">{{ formatPrice($variants->first()->price_12 ?? 0) }} UZS</span>
+                                            class="text-orange">{{ formatPrice($variants->first()->price_12 ?? 0) }}
+                                            UZS</span>
                                     </div>
                                     <div class="d-flex gap-2 justify-content-center mb-3 fs-14 p-1 rounded bg-darkgrey price-24 installment-option"
-                                         onclick="selectInstallmentOption(this)">
+                                        onclick="selectInstallmentOption(this)">
                                         <span class="text-orange">24</span> @lang('home.month') <span
-                                            class="text-orange">{{ formatPrice($variants->first()->price_24 ?? 0) }} UZS</span>
+                                            class="text-orange">{{ formatPrice($variants->first()->price_24 ?? 0) }}
+                                            UZS</span>
                                     </div>
                                 </div>
                             </div>
