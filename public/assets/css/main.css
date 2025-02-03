@@ -35,7 +35,7 @@ a:hover {
     content: "•";
     color: var(--orange);
     font-size: large;
-    
+
 } */
 .fs-14 {
     font-size: 14px !important;
@@ -1044,7 +1044,7 @@ input[type="range"]:nth-child(2) {
 }
 .carousel-inner img {
     height: 400px;
-    object-fit: cover;
+    object-fit: contain;
 }
 
 .carousel-control-prev,

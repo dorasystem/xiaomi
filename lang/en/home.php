@@ -29,7 +29,7 @@ return [
 
     'authorized_store' => 'Authorized store',
 
-    'delivery' => 'Yetkazib berish',
+    'delivery' => 'Delivery',
     'all_over_uzbekistan' => 'All over Uzbekistan',
 
     'pickup' => 'Pickup',
