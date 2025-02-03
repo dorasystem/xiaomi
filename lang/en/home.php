@@ -144,7 +144,7 @@ return [
     'warranty'  =>  "Warranty on goods",
     'manuals'  =>  "Instructions",
     'original'  =>  "Authenticity check",
-
+    'gift' => "Gift" ,
 ];
 
 

@@ -130,5 +130,6 @@ return [
 'warranty'  =>  "Tovarlar kafolati",
 'manuals'  =>  "Yo‘riqnomalar",
 'original'  =>  "Haqiqiyligini tekshirish",
+    'gift' => "Sovg`a" ,
 
 ];

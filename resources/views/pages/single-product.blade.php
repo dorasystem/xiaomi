@@ -160,7 +160,7 @@ $isInCompare = in_array($product->id, session('compares', []));
                                         <div class="">
                                             <div class="d-flex align-items-center text-orange gap-1">
                                                 <img src="/assets/icons/orange_gift.svg" alt="" />
-                                                <span>Подарок</span>
+                                                <span>@lang('home.gift')</span>
                                             </div>
                                             <div class="fs-14 fw-semibold">{{ $product['gift_name_'.$lang] }}</div>
                                         </div>
