@@ -99,6 +99,21 @@ $mainBanner = \App\Models\MainBanner::first();
                         </li>
                     </ul>
                 </li>
+                <li class="nxl-item nxl-hasmenu">
+                    <a href="javascript:void(0);" class="nxl-link">
+                        <span class="nxl-micon"><i class="fa-solid fa-newspaper"></i></span>
+                        <span class="nxl-mtext">Информация</span>
+                        <span class="nxl-arrow"><i class="feather-chevron-right"></i></span>
+                    </a>
+                    <ul class="nxl-submenu">
+                        <li class="nxl-item">
+                            <a href="{{ route('news.index') }}" class="nxl-link">
+                                <span class="nxl-micon"><i class="feather-rss"></i></span>
+                                <span class="nxl-mtext">Инструкции к товарам Xiaomi</span>
+                            </a>
+                        </li>
+                    </ul>
+                </li>
 
                 <!-- History -->
                 <li class="nxl-item">

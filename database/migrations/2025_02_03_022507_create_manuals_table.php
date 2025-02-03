@@ -13,6 +13,12 @@ return new class extends Migration
     {
         Schema::create('manuals', function (Blueprint $table) {
             $table->id();
+            $table->string('name_uz')->nullable();
+            $table->string('name_ru')->nullable();
+            $table->string('name_en')->nullable();
+            $table->text('pdf_uz')->nullable();
+            $table->text('pdf_ru')->nullable();
+            $table->text('pdf_en')->nullable();
             $table->timestamps();
         });
     }
