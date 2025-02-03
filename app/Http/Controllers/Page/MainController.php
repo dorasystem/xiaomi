@@ -206,16 +206,31 @@ class MainController extends Controller
     {
         $locale = app()->getLocale();
 
-        // 1️⃣ Kategoriyani slug orqali topish
-        $category = Category::whereRaw("JSON_UNQUOTE(JSON_EXTRACT(slug, '$.\"$locale\"')) = ?", [$slug])->firstOrFail();
+        // 1️⃣ Avval hozirgi til bo‘yicha tekshirish
+        $category = Category::whereRaw("JSON_UNQUOTE(JSON_EXTRACT(slug, '$.\"$locale\"')) = ?", [$slug])->first();
 
-        // 2️⃣ Ota kategoriyaning bolalarini olish
+        // 2️⃣ Agar topilmasa boshqa tillarda qidirish
+        if (!$category) {
+            $locales = ['uz', 'ru', 'en'];
+            foreach ($locales as $lang) {
+                if ($lang !== $locale) {
+                    $category = Category::whereRaw("JSON_UNQUOTE(JSON_EXTRACT(slug, '$.\"$lang\"')) = ?", [$slug])->first();
+                    if ($category) {
+                        // Topilgach, to‘g‘ri URL ga redirect qilish
+                        return redirect()->route('category.sort', ['slug' => $category->getSlugByLanguage($locale)]);
+                    }
+                }
+            }
+        }
+
+        // 3️⃣ Hali ham topilmasa - 404
+        if (!$category) {
+            abort(404);
+        }
+
         $childCategoryIds = Category::where('parent_id', $category->id)->pluck('id')->toArray();
-
-        // 3️⃣ Ota va bolalar kategoriyalariga tegishli mahsulotlarni olish
         $products = Product::whereIn('category_id', array_merge([$category->id], $childCategoryIds))->paginate(9);
 
-        // 4️⃣ Qidiruv so‘zini olish (Agar qidiruv bo‘lsa)
         $search = $request->input('search');
 
         return view('pages.search-products', compact('products', 'category', 'search'));
