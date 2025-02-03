@@ -71,9 +71,11 @@ class CartController extends Controller
 
         // Faqat savatda bor mahsulotlarni olish
         $variantIds = collect($cart)->pluck('variant_id')->toArray();
+
         $productIds = collect($cart)->pluck('id')->toArray();
 
         $variants = Variant::whereIn('id', $variantIds)->get();
+
         $products = Product::whereIn('id', $productIds)->get();
 
         $cartProducts = [];
@@ -94,6 +96,7 @@ class CartController extends Controller
                 $cartItem['price'] = $variant->price;
                 $cartItem['discount_price'] = $variant->discount_price > 0 ? $variant->discount_price : null;
                 $cartItem['image'] = $product->image;
+                $cartItem['sku'] = $variant->sku;
 
                 // Umumiy narxni hisoblash
                 $totalPrice += $cartItem['price'] * $cartItem['quantity'];
