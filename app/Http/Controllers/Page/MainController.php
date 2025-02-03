@@ -85,7 +85,7 @@ class MainController extends Controller
     }
     public function blog()
     {
-        $blogs = Blog::all();
+        $blogs = Blog::orderBy('created_at', 'desc')->get();
         $blog = Blog::orderBy('created_at', 'desc')->first();
 
         $lang = app()->getLocale();
@@ -123,8 +123,8 @@ class MainController extends Controller
 
     public function news()
     {
-        $news = News::all();
-        $articles = Article::all();
+        $news = News::orderBy('created_at', 'desc')->get();
+        $articles = Article::orderBy('created_at', 'desc')->get();
         return view('pages.page-news', compact('news', 'articles'));
     }
     public function career()
