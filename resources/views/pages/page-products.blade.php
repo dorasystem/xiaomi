@@ -68,7 +68,7 @@
                 <a href="/" class="text-grey fw-bold  fs-14">@lang('home.home') / <span
                         class="text-dark">@lang('home.products')</span></a>
             </div>
-            <hr />
+            <hr/>
         </div>
         <div class="productHeader bg-grey">
             <div class="container py-5 d-flex align-items-center flex-lg-row flex-column justify-content-between">
@@ -80,15 +80,16 @@
                 </div>
                 <div class="productbanner align-items-start gap-4 mt-5">
                     <div class="product_list d-flex align-items-center justify-content-center">
-                        <img src="/assets/images/headphones.png" width="250px" alt="" />
+                        <img src="/assets/images/headphones.png" width="250px" alt=""/>
                     </div>
                     <div class="">
                         <div class="little_product d-flex align-items-center justify-content-center">
-                            <img src="/assets/images/airpods.png" width="120px" alt="" />
+                            <img src="/assets/images/airpods.png" width="120px" alt=""/>
                         </div>
                         <div class="position-relative">
-                            <img class="bottom_product border-orange" src="/assets/images/bottom_product.png" width="120px"
-                                alt="" />
+                            <img class="bottom_product border-orange" src="/assets/images/bottom_product.png"
+                                 width="120px"
+                                 alt=""/>
                         </div>
                     </div>
                 </div>
@@ -139,11 +140,13 @@
 
                                                     <div class="form-check mb-3 category-item"
                                                          style="display: {{ $index < 10 ? 'block' : 'none' }}">
-                                                        <input class="form-check-input category-checkbox" type="checkbox"
+                                                        <input class="form-check-input category-checkbox"
+                                                               type="checkbox"
                                                                name="categories[]" value="{{ $category->id }}"
                                                                id="category-{{ $category->id }}"
                                                             {{ $isChecked ? 'checked' : '' }} />
-                                                        <label class="form-check-label" for="category-{{ $category->id }}">
+                                                        <label class="form-check-label"
+                                                               for="category-{{ $category->id }}">
                                                             <small>{{ $category['name_' . $lang] }}</small>
                                                         </label>
                                                     </div>
@@ -172,10 +175,12 @@
                                             <div class="range-slider">
                                                 <div class="slider-container">
                                                     <div class="slider-track"></div>
-                                                    <input type="range" id="rangeMin" min="10" max="40000000" step="1000"
-                                                           value="{{ request('min_price', 10) }}" />
-                                                    <input type="range" id="rangeMax" min="10" max="40000000" step="1000"
-                                                           value="{{ request('max_price', 40000000) }}" />
+                                                    <input type="range" id="rangeMin" min="10" max="40000000"
+                                                           step="1000"
+                                                           value="{{ request('min_price', 10) }}"/>
+                                                    <input type="range" id="rangeMax" min="10" max="40000000"
+                                                           step="1000"
+                                                           value="{{ request('max_price', 40000000) }}"/>
                                                 </div>
                                                 <span id="minValue1" style="font-size: 14px">
                                                         {{ number_format(request('min_price', 10), 0, ',', ' ') }} so'm
@@ -188,30 +193,7 @@
                                                    value="{{ request('min_price', 1) }}">
                                             <input type="hidden" name="max_price" id="max_price_hidden"
                                                    value="{{ request('max_price', 40000000) }}">
-                                            <script>
-                                                document.addEventListener("DOMContentLoaded", function() {
-                                                    let rangeMin = document.getElementById("rangeMin");
-                                                    let rangeMax = document.getElementById("rangeMax");
-                                                    let minPriceInput = document.getElementById("min_price_hidden");
-                                                    let maxPriceInput = document.getElementById("max_price_hidden");
-                                                    let minValue = document.getElementById("minValue1");
-                                                    let maxValue = document.getElementById("maxValue1");
 
-                                                    function formatPrice(value) {
-                                                        return new Intl.NumberFormat('uz-UZ').format(Number(value)) + " so'm";
-                                                    }
-
-                                                    function updateValues() {
-                                                        minValue.textContent = formatPrice(rangeMin.value);
-                                                        maxValue.textContent = formatPrice(rangeMax.value);
-                                                        minPriceInput.value = rangeMin.value;
-                                                        maxPriceInput.value = rangeMax.value;
-                                                    }
-
-                                                    rangeMin.addEventListener("input", updateValues);
-                                                    rangeMax.addEventListener("input", updateValues);
-                                                });
-                                            </script>
 
                                         </div>
                                     </div>
@@ -310,50 +292,71 @@
                                                                     <div class="range-slider">
                                                                         <div class="slider-container">
                                                                             <div class="slider-track"></div>
-                                                                            <input type="range" id="rangeMin" min="0" max="40000000"
-                                                                                   value="{{ request('min_price', 1) }}" />
-                                                                            <input type="range" id="rangeMax" min="0" max="40000000"
-                                                                                   value="{{ request('max_price', 40000000) }}" />
+                                                                            <input type="range" id="rangeMin2" min="10" max="40000000"
+                                                                                   step="1000"
+                                                                                   value="{{ request('min_price2', 10) }}"/>
+                                                                            <input type="range" id="rangeMax2" min="10" max="40000000"
+                                                                                   step="1000"
+                                                                                   value="{{ request('max_price', 40000000) }}"/>
                                                                         </div>
-                                                                        <span id="minValue1" style="font-size: 14px">
-                                                    {{ number_format(request('min_price', 1), 0, ',', ' ') }} so'm
-                                                </span> -
-                                                                        <span id="maxValue1" style="font-size: 14px">
-                                                    {{ number_format(request('max_price', 40000000), 0, ',', ' ') }} so'm
-                                                </span>
-                                                                        <input type="hidden" name="min_price" id="min_price_hidden"
-                                                                               value="{{ request('min_price', 1) }}">
-                                                                        <input type="hidden" name="max_price" id="max_price_hidden"
-                                                                               value="{{ request('max_price', 40000000) }}">
-                                                                        <script>
-                                                                            document.addEventListener("DOMContentLoaded", function() {
-                                                                                let rangeMin = document.getElementById("rangeMin");
-                                                                                let rangeMax = document.getElementById("rangeMax");
-                                                                                let minPriceInput = document.getElementById("min_price_hidden");
-                                                                                let maxPriceInput = document.getElementById("max_price_hidden");
-                                                                                let minValue = document.getElementById("minValue1");
-                                                                                let maxValue = document.getElementById("maxValue1");
-
-                                                                                function formatPrice(value) {
-                                                                                    return new Intl.NumberFormat('uz-UZ').format(Number(value)) + " so'm";
-                                                                                }
-
-                                                                                function updateValues() {
-                                                                                    minValue.textContent = formatPrice(rangeMin.value);
-                                                                                    maxValue.textContent = formatPrice(rangeMax.value);
-                                                                                    minPriceInput.value = rangeMin.value;
-                                                                                    maxPriceInput.value = rangeMax.value;
-                                                                                }
-
-                                                                                rangeMin.addEventListener("input", updateValues);
-                                                                                rangeMax.addEventListener("input", updateValues);
-                                                                            });
-                                                                        </script>
-
-
-
-
+                                                                        <span id="minValue2" style="font-size: 14px">
+                                                                            {{ number_format(request('min_price', 10), 0, ',', ' ') }} so'm
+                                                                        </span> -
+                                                                                            <span id="maxValue2" style="font-size: 14px">
+                                                                            {{ number_format(request('max_price', 40000000), 0, ',', ' ') }} so'm
+                                                                        </span>
                                                                     </div>
+                                                                    <input type="hidden" name="min_price" id="min_price_hidden2"
+                                                                           value="{{ request('min_price', 1) }}">
+                                                                    <input type="hidden" name="max_price" id="max_price_hidden2"
+                                                                           value="{{ request('max_price', 40000000) }}">
+                                                                    <script>
+                                                                        document.addEventListener("DOMContentLoaded", function () {
+                                                                            let rangeMin = document.querySelectorAll("#rangeMin, #rangeMin2");
+                                                                            let rangeMax = document.querySelectorAll("#rangeMax, #rangeMax2");
+                                                                            let minPriceInputs = document.querySelectorAll("#min_price_hidden, #min_price_hidden2");
+                                                                            let maxPriceInputs = document.querySelectorAll("#max_price_hidden, #max_price_hidden2");
+                                                                            let minValueDisplays = document.querySelectorAll("#minValue1, #minValue2");
+                                                                            let maxValueDisplays = document.querySelectorAll("#maxValue1, #maxValue2");
+                                                                            let categoryCheckboxes = document.querySelectorAll(".category-checkbox");
+                                                                            let allCategoriesCheckbox = document.querySelectorAll("#all-categories, #all-categories2");
+
+                                                                            function formatPrice(value) {
+                                                                                return new Intl.NumberFormat('uz-UZ').format(Number(value)) + " so'm";
+                                                                            }
+
+                                                                            function updateValues() {
+                                                                                rangeMin.forEach((min, index) => {
+                                                                                    let max = rangeMax[index];
+                                                                                    let minInput = minPriceInputs[index];
+                                                                                    let maxInput = maxPriceInputs[index];
+                                                                                    let minValue = minValueDisplays[index];
+                                                                                    let maxValue = maxValueDisplays[index];
+
+                                                                                    minValue.textContent = formatPrice(min.value);
+                                                                                    maxValue.textContent = formatPrice(max.value);
+                                                                                    minInput.value = min.value;
+                                                                                    maxInput.value = max.value;
+                                                                                });
+                                                                            }
+
+                                                                            rangeMin.forEach(min => min.addEventListener("input", updateValues));
+                                                                            rangeMax.forEach(max => max.addEventListener("input", updateValues));
+
+                                                                            function toggleAllCategories() {
+                                                                                let checked = this.checked;
+                                                                                categoryCheckboxes.forEach(checkbox => {
+                                                                                    checkbox.checked = checked;
+                                                                                });
+                                                                            }
+
+                                                                            allCategoriesCheckbox.forEach(checkbox => checkbox.addEventListener("change", toggleAllCategories));
+
+                                                                            updateValues(); // Sahifa yuklanganda narxlarni yangilash
+                                                                        });
+                                                                    </script>
+
+
                                                                 </div>
                                                             </div>
                                                         </div>
@@ -390,31 +393,31 @@
                                                     class="position-absolute like d-flex flex-column gap-3 justify-content-end">
                                                     <a onclick="toggleFavourite({{ $product->id }})">
                                                         <i id="favourite-icon-{{ $product->id }}"
-                                                            class="fa-{{ in_array($product->id, session('favorites', [])) ? 'solid' : 'regular' }} fa-heart fs-4 hover-orange ps-1
+                                                           class="fa-{{ in_array($product->id, session('favorites', [])) ? 'solid' : 'regular' }} fa-heart fs-4 hover-orange ps-1
                                                             {{ in_array($product->id, session('favorites', [])) ? 'text-orange' : '' }}">
                                                         </i>
                                                     </a>
                                                     <a onclick="toggleCompare({{ $product->id }})">
                                                         <svg id="compare-icon-{{ $product->id }}"
-                                                            class="hover-svg {{ in_array($product->id, session('compares', [])) ? 'active-svg' : '' }}"
-                                                            width="30" height="20" viewBox="0 0 102 92"
-                                                            fill="none" xmlns="http://www.w3.org/2000/svg">
+                                                             class="hover-svg {{ in_array($product->id, session('compares', [])) ? 'active-svg' : '' }}"
+                                                             width="30" height="20" viewBox="0 0 102 92"
+                                                             fill="none" xmlns="http://www.w3.org/2000/svg">
                                                             <rect width="11" height="92" rx="2"
-                                                                fill="#000" />
+                                                                  fill="#000"/>
                                                             <rect x="23" y="22" width="11" height="70"
-                                                                rx="2" fill="#000" />
+                                                                  rx="2" fill="#000"/>
                                                             <rect x="46" y="45" width="11" height="47"
-                                                                rx="2" fill="#000" />
+                                                                  rx="2" fill="#000"/>
                                                             <rect x="69" y="23" width="11" height="69"
-                                                                rx="2" fill="#000" />
+                                                                  rx="2" fill="#000"/>
                                                             <rect x="91" y="45" width="11" height="47"
-                                                                rx="2" fill="#000" />
+                                                                  rx="2" fill="#000"/>
                                                         </svg>
                                                     </a>
                                                 </div>
                                                 @if ($cheapestVariant)
                                                     <img class="w-100 pb-4 productImage p-4"
-                                                        src="{{ asset('storage/' . $product->image) }}" alt="" />
+                                                         src="{{ asset('storage/' . $product->image) }}" alt=""/>
                                                     <div
                                                         class="d-flex flex-column justify-content-between product-text p-4 rounded-bottom">
                                                         <div
@@ -441,7 +444,7 @@
                                                                 {{ \Str::words($product['name_' . $lang], 3) }}</div>
                                                         </a>
                                                         <a class="truncate-text"
-                                                            href="{{ route('single.product', $product->slug) }}">
+                                                           href="{{ route('single.product', $product->slug) }}">
                                                             @php
                                                                 // Matndan faqat birinchi <p> tegi ichidagi matnni olish
                                                                 preg_match(
@@ -470,18 +473,18 @@ $description = isset($matches[1])
                                                         </div>
                                                         <div class="d-flex gap-4 mt-1">
                                                             <a class="border-orange bg-transparent rounded p-1 px-3 add-to-cart-btn"
-                                                                href="javascript:void(0);" type="button"
-                                                                onclick="addToCart(this, {{ $product->id }}, '{{ $product['name_' . $lang] }}', {{ $cheapestVariant->discount_price ?? $cheapestVariant->price }}, {{ $cheapestVariant->id }})">
+                                                               href="javascript:void(0);" type="button"
+                                                               onclick="addToCart(this, {{ $product->id }}, '{{ $product['name_' . $lang] }}', {{ $cheapestVariant->discount_price ?? $cheapestVariant->price }}, {{ $cheapestVariant->id }})">
                                                                 <img src="/assets/icons/shopping-cart.svg"
-                                                                    alt="Add to cart" />
+                                                                     alt="Add to cart"/>
                                                             </a>
 
                                                             <button data-bs-toggle="modal" data-bs-target="#largeModal"
-                                                                class="btn-orange rounded w-100 d-flex align-items-center gap-2 justify-content-center"
-                                                                data-product-id="{{ $product->id }}"
-                                                                data-product-name="{{ $product['name_' . $lang] }}"
-                                                                data-product-price="{{ $cheapestVariant->discount_price ?: $cheapestVariant->price }}"
-                                                                data-product-image="{{ asset('storage/' . $product->image) }}">
+                                                                    class="btn-orange rounded w-100 d-flex align-items-center gap-2 justify-content-center"
+                                                                    data-product-id="{{ $product->id }}"
+                                                                    data-product-name="{{ $product['name_' . $lang] }}"
+                                                                    data-product-price="{{ $cheapestVariant->discount_price ?: $cheapestVariant->price }}"
+                                                                    data-product-image="{{ asset('storage/' . $product->image) }}">
                                                                 <span>@lang('home.buy_now')</span>
                                                             </button>
 
@@ -493,7 +496,7 @@ $description = isset($matches[1])
                                     </div>
                                 @endforeach
                             @else
-                                <x-page.not-found />
+                                <x-page.not-found/>
                             @endif
                         </div>
                         {{ $products->links('pagination::bootstrap-4') }}
@@ -507,17 +510,19 @@ $description = isset($matches[1])
                     <form class="row align-items-center" action="{{ route('orders.store.form') }}" method="POST">
                         @csrf
                         <div class="col-lg-3 col-md-6 mb-lg-0 mb-3">
-                            <input class="form-control focus_none py-3" placeholder="@lang('home.message_input1')" type="text"
-                                required name="message" />
+                            <input class="form-control focus_none py-3" placeholder="@lang('home.message_input1')"
+                                   type="text"
+                                   required name="message"/>
                         </div>
                         <div class="col-lg-3 col-md-6 mb-lg-0 mb-3">
-                            <input class="form-control focus_none py-3" placeholder="@lang('home.message_input2')" type="text"
-                                required name="first_name" />
+                            <input class="form-control focus_none py-3" placeholder="@lang('home.message_input2')"
+                                   type="text"
+                                   required name="first_name"/>
                         </div>
                         <div class="col-lg-3 col-md-6 mb-lg-0 mb-3">
                             <input class="form-control focus_none py-3" placeholder="+998 __ ___ ___ ___" type="tel"
-                                name="phone" required pattern="^\+\d{7,}$"
-                                title="Номер телефона должен содержать не менее 7 цифр" />
+                                   name="phone" required pattern="^\+\d{7,}$"
+                                   title="Номер телефона должен содержать не менее 7 цифр"/>
                         </div>
 
                         <div class="col-lg-3 col-md-6">
@@ -549,7 +554,7 @@ $description = isset($matches[1])
                     price: productPrice,
                     storage: 1,
                 },
-                success: function(response) {
+                success: function (response) {
                     if (response.success) {
                         updateCartCount(response.cart_count);
 
@@ -564,10 +569,10 @@ $description = isset($matches[1])
                         alert('Xatolik yuz berdi: ' + response.message);
                     }
                 },
-                error: function(xhr) {
+                error: function (xhr) {
                     alert('Xatolik yuz berdi: ' + xhr.responseText);
                 },
-                complete: function() {
+                complete: function () {
                     // 1 soniyadan keyin loading klassini olib tashlash
                     setTimeout(() => {
                         button.classList.remove("loading");
@@ -575,7 +580,6 @@ $description = isset($matches[1])
                 }
             });
         }
-
 
 
         function updateCartCount(count) {
@@ -591,7 +595,7 @@ $description = isset($matches[1])
                     _token: '{{ csrf_token() }}',
                     id: productId
                 },
-                success: function(response) {
+                success: function (response) {
                     if (response.success) {
                         const toastBody = document.querySelector('#liveToast .toast-body');
                         toastBody.textContent = response.message;
@@ -608,7 +612,7 @@ $description = isset($matches[1])
                         if (response.action === "added") {
                             $('#favourite-icon-' + productId).addClass('text-orange');
                             if (document.getElementById('favourite-icon-' + productId).classList.contains(
-                                    "fa-regular")) {
+                                "fa-regular")) {
                                 document.getElementById('favourite-icon-' + productId).classList.remove(
                                     'fa-regular')
                                 document.getElementById('favourite-icon-' + productId).classList.add('fa-solid')
@@ -617,7 +621,7 @@ $description = isset($matches[1])
                             $('#favourite-icon-' + productId).removeClass(
                                 'text-orange'); // O'chirilganini ko'rsatish
                             if (document.getElementById('favourite-icon-' + productId).classList.contains(
-                                    "fa-solid")) {
+                                "fa-solid")) {
                                 document.getElementById('favourite-icon-' + productId).classList.remove(
                                     'fa-solid')
                                 document.getElementById('favourite-icon-' + productId).classList.add(
@@ -626,7 +630,7 @@ $description = isset($matches[1])
                         }
                     }
                 },
-                error: function(xhr) {
+                error: function (xhr) {
                     alert('Xatolik yuz berdi: ' + xhr.responseText);
                 }
             });
@@ -640,7 +644,7 @@ $description = isset($matches[1])
                     _token: '{{ csrf_token() }}',
                     id: productId
                 },
-                success: function(response) {
+                success: function (response) {
 
                     if (response.success) {
                         const toastBody = document.querySelector('#liveToast .toast-body');
@@ -658,25 +662,26 @@ $description = isset($matches[1])
                         if (response.action === "added") {
                             console.log('1');
                             $('#compare-icon-' + productId).addClass(
-                                'hover-svg'); // Qo'shilganini ko'rsatish
+                                'active-svg'); // Qo'shilganini ko'rsatish
                         } else {
                             console.log('2');
                             $('#compare-icon-' + productId).removeClass(
-                                'hover-svg'); // O'chirilganini ko'rsatish
+                                'hover-svg active-svg'); // O'chirilganini ko'rsatish
                         }
                     }
                 },
-                error: function(xhr) {
+                error: function (xhr) {
                     alert('Xatolik yuz berdi: ' + xhr.responseText);
                 }
             });
         }
-        document.addEventListener("DOMContentLoaded", function() {
+
+        document.addEventListener("DOMContentLoaded", function () {
             const selectAllCheckbox = document.getElementById("select-all");
             const categoryCheckboxes = document.querySelectorAll(".category-checkbox");
 
             // Select all checkboxes when "All" is checked
-            selectAllCheckbox.addEventListener("change", function() {
+            selectAllCheckbox.addEventListener("change", function () {
                 categoryCheckboxes.forEach((checkbox) => {
                     checkbox.checked = selectAllCheckbox.checked;
                 });
@@ -684,7 +689,7 @@ $description = isset($matches[1])
 
             // If any individual checkbox is unchecked, uncheck "All"
             categoryCheckboxes.forEach((checkbox) => {
-                checkbox.addEventListener("change", function() {
+                checkbox.addEventListener("change", function () {
                     if (!checkbox.checked) {
                         selectAllCheckbox.checked = false;
                     } else if (
@@ -719,12 +724,12 @@ $description = isset($matches[1])
         }
     </style>
     <script>
-        document.addEventListener("DOMContentLoaded", function() {
+        document.addEventListener("DOMContentLoaded", function () {
             let hiddenCategories = document.querySelectorAll(".category-item");
             let showMoreBtn = document.getElementById("showMoreBtn");
             let visibleCount = 10; // Boshlang'ich ko'rsatilgan kategoriya soni
 
-            showMoreBtn.addEventListener("click", function() {
+            showMoreBtn.addEventListener("click", function () {
                 let nextVisibleCount = visibleCount + 10;
                 let foundHidden = false;
 

@@ -700,10 +700,10 @@ $categories = \App\Models\Category::all();
                         // Ico'ni yangilash
                         if (response.action === "added") {
                             $('#compare-icon-' + productId).addClass(
-                                'hover-svg'); // Qo'shilganini ko'rsatish
+                                'active-svg'); // Qo'shilganini ko'rsatish
                         } else {
                             $('#compare-icon-' + productId).removeClass(
-                                'hover-svg'); // O'chirilganini ko'rsatish
+                                'hover-svg active-svg'); // O'chirilganini ko'rsatish
                         }
                     }
                 },

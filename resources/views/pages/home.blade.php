@@ -897,7 +897,7 @@ $description = isset($matches[1])
                         if (response.action === "added") {
                             console.log(1);
                             $('#compare-icon-' + productId).addClass(
-                                'hover-svg'); // Qo'shilganini ko'rsatish
+                                'active-svg'); // Qo'shilganini ko'rsatish
                         } else {
                             console.log(2);
                             $('#compare-icon-' + productId).removeClass('hover-svg active-svg');// O'chirilganini ko'rsatish
