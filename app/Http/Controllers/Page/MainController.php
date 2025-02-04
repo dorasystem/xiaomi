@@ -65,7 +65,7 @@ class MainController extends Controller
         $category4 = $categories->firstWhere('id', 3);
         $category5 = $categories->firstWhere('id', 5);
         $category6 =$categories->firstWhere('id', 7);
-        $category7 = $categories->skip(6)->first();
+        $category7 = $categories->firstWhere('id', 8);
         return view('pages.home', compact('new', 'news1', 'news2', 'products', 'locations', 'banner', 'categories', 'category1', 'category2', 'category3', 'category4', 'category5', 'category6', 'category7', 'translations', 'newProducts', 'randomProducts', 'products', 'productsWithoutRandom', 'category37'));
     }
     public function about()
