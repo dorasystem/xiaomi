@@ -21,9 +21,9 @@
     color: var(--grey);
 }
 
-a:hover {
-    color: var(--orange);
-}
+/*a:hover {*/
+/*    color: var(--orange);*/
+/*}*/
 
 .str_replace ul li {
     width: 100%;

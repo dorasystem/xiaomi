@@ -6,7 +6,7 @@
     use App\Models\Category;
 
     $currentLocale = app()->getLocale();
-$categories = Category::whereNull('parent_id')->orderBy('id', 'desc')->get();
+$categories = Category::whereNull('parent_id')->get();
 
     $childCategories = Category::with('children')->get();
     $lang = App::getLocale();
