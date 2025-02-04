@@ -110,9 +110,54 @@
 
     <script>
         var editors = {
-            'uz': new Quill('#editor_uz', { theme: 'snow' }),
-            'en': new Quill('#editor_en', { theme: 'snow' }),
-            'ru': new Quill('#editor_ru', { theme: 'snow' })
+            'uz': new Quill('#editor_uz', { theme: 'snow',
+                modules: {
+                    toolbar: [
+                        [{ 'header': [1, 2, 3, false] }], // Sarlavhalar
+                        ['bold', 'italic', 'underline', 'strike'], // Matn stilizatsiyasi
+                        [{ 'color': [] }, { 'background': [] }], // 📌 **Matn rangi va fon rangi**
+                        [{ 'script': 'sub' }, { 'script': 'super' }], // Yuqori va pastki indeks
+                        [{ 'list': 'ordered' }, { 'list': 'bullet' }], // Ro‘yxatlar
+                        [{ 'indent': '-1' }, { 'indent': '+1' }], // Ichki joylashuv
+                        [{ 'direction': 'rtl' }], // Matn yo‘nalishi
+                        [{ 'align': [] }], // Matnni joylash
+                        ['blockquote', 'code-block'], // Quote va kod bloki
+                        ['link'], // Havola qo‘shish
+                        ['clean'] // Tozalash
+                    ]
+                }  }),
+            'en': new Quill('#editor_en', { theme: 'snow' ,
+                modules: {
+                    toolbar: [
+                        [{ 'header': [1, 2, 3, false] }], // Sarlavhalar
+                        ['bold', 'italic', 'underline', 'strike'], // Matn stilizatsiyasi
+                        [{ 'color': [] }, { 'background': [] }], // 📌 **Matn rangi va fon rangi**
+                        [{ 'script': 'sub' }, { 'script': 'super' }], // Yuqori va pastki indeks
+                        [{ 'list': 'ordered' }, { 'list': 'bullet' }], // Ro‘yxatlar
+                        [{ 'indent': '-1' }, { 'indent': '+1' }], // Ichki joylashuv
+                        [{ 'direction': 'rtl' }], // Matn yo‘nalishi
+                        [{ 'align': [] }], // Matnni joylash
+                        ['blockquote', 'code-block'], // Quote va kod bloki
+                        ['link'], // Havola qo‘shish
+                        ['clean'] // Tozalash
+                    ]
+                } }),
+            'ru': new Quill('#editor_ru', { theme: 'snow',
+                modules: {
+                    toolbar: [
+                        [{ 'header': [1, 2, 3, false] }], // Sarlavhalar
+                        ['bold', 'italic', 'underline', 'strike'], // Matn stilizatsiyasi
+                        [{ 'color': [] }, { 'background': [] }], // 📌 **Matn rangi va fon rangi**
+                        [{ 'script': 'sub' }, { 'script': 'super' }], // Yuqori va pastki indeks
+                        [{ 'list': 'ordered' }, { 'list': 'bullet' }], // Ro‘yxatlar
+                        [{ 'indent': '-1' }, { 'indent': '+1' }], // Ichki joylashuv
+                        [{ 'direction': 'rtl' }], // Matn yo‘nalishi
+                        [{ 'align': [] }], // Matnni joylash
+                        ['blockquote', 'code-block'], // Quote va kod bloki
+                        ['link'], // Havola qo‘shish
+                        ['clean'] // Tozalash
+                    ]
+                }  })
         };
 
         function updateEditorContent() {

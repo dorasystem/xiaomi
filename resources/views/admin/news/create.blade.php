@@ -103,8 +103,38 @@
 
     <script>
         @foreach (['uz', 'en', 'ru'] as $lang)
-        var editor{{ ucfirst($lang) }} = new Quill('#editor_{{ $lang }}', { theme: 'snow' });
-        var descriptionEditor{{ ucfirst($lang) }} = new Quill('#descriptionEditor_{{ $lang }}', { theme: 'snow' });
+        var editor{{ ucfirst($lang) }} = new Quill('#editor_{{ $lang }}', { theme: 'snow' ,
+            modules: {
+                toolbar: [
+                    [{ 'header': [1, 2, 3, false] }], // Sarlavhalar
+                    ['bold', 'italic', 'underline', 'strike'], // Matn stilizatsiyasi
+                    [{ 'color': [] }, { 'background': [] }], // 📌 **Matn rangi va fon rangi**
+                    [{ 'script': 'sub' }, { 'script': 'super' }], // Yuqori va pastki indeks
+                    [{ 'list': 'ordered' }, { 'list': 'bullet' }], // Ro‘yxatlar
+                    [{ 'indent': '-1' }, { 'indent': '+1' }], // Ichki joylashuv
+                    [{ 'direction': 'rtl' }], // Matn yo‘nalishi
+                    [{ 'align': [] }], // Matnni joylash
+                    ['blockquote', 'code-block'], // Quote va kod bloki
+                    ['link'], // Havola qo‘shish
+                    ['clean'] // Tozalash
+                ]
+            } });
+        var descriptionEditor{{ ucfirst($lang) }} = new Quill('#descriptionEditor_{{ $lang }}', { theme: 'snow',
+            modules: {
+                toolbar: [
+                    [{ 'header': [1, 2, 3, false] }], // Sarlavhalar
+                    ['bold', 'italic', 'underline', 'strike'], // Matn stilizatsiyasi
+                    [{ 'color': [] }, { 'background': [] }], // 📌 **Matn rangi va fon rangi**
+                    [{ 'script': 'sub' }, { 'script': 'super' }], // Yuqori va pastki indeks
+                    [{ 'list': 'ordered' }, { 'list': 'bullet' }], // Ro‘yxatlar
+                    [{ 'indent': '-1' }, { 'indent': '+1' }], // Ichki joylashuv
+                    [{ 'direction': 'rtl' }], // Matn yo‘nalishi
+                    [{ 'align': [] }], // Matnni joylash
+                    ['blockquote', 'code-block'], // Quote va kod bloki
+                    ['link'], // Havola qo‘shish
+                    ['clean'] // Tozalash
+                ]
+            }  });
         @endforeach
 
         function updateEditorContent() {

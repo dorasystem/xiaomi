@@ -80,16 +80,15 @@
                 </div>
                 <div class="productbanner align-items-start gap-4 mt-5">
                     <div class="product_list d-flex align-items-center justify-content-center">
-                        <img src="/assets/images/headphones.png" width="250px" alt=""/>
+                        <img src="/assets/images/products/tel.png" width="250px" alt="" />
                     </div>
                     <div class="">
                         <div class="little_product d-flex align-items-center justify-content-center">
-                            <img src="/assets/images/airpods.png" width="120px" alt=""/>
+                            <img src="/assets/images/products/air.png" width="120px" alt="" />
                         </div>
                         <div class="position-relative">
-                            <img class="bottom_product border-orange" src="/assets/images/bottom_product.png"
-                                 width="120px"
-                                 alt=""/>
+                            <img class="bottom_product border-orange" src="/assets/images/products/soat.png" width="120px"
+                                 alt="" />
                         </div>
                     </div>
                 </div>
