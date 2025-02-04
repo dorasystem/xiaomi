@@ -60,9 +60,9 @@ class MainController extends Controller
         $categories = Category::latest()->get();
         $category1 = $categories->firstWhere('id', 1);
         $category37 = $categories->firstWhere('id', 37);
-        $category2 = $categories->firstWhere('id', 15);
+        $category2 = $categories->firstWhere('id', 52);
         $category3 = $categories->firstWhere('id', 2);
-        $category4 = $categories->skip(3)->first();
+        $category4 = $categories->firstWhere('id', 3);
         $category5 = $categories->firstWhere('id', 5);
         $category6 =$categories->firstWhere('id', 7);
         $category7 = $categories->skip(6)->first();
