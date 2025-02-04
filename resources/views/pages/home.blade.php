@@ -659,18 +659,18 @@ $description = isset($matches[1])
                     <div class="col-lg-4 p-0">
                         <div class="row h-100">
                             <div class="col-12">
-                                <a href="{{ route('category.sort', ['slug' => $category4->getSlugByLanguage($lang)]) }}">
-                                    <div style="background-image: url('{{ asset('storage/' . $category4->image) }}')"
+                                <a href="{{ route('category.sort', ['slug' => $category5->getSlugByLanguage($lang)]) }}">
+                                    <div style="background-image: url('{{ asset('storage/' . $category5->image) }}')"
                                         class="fs-5 p-3 category2 rounded h-95 text-white text-shadow">
-                                        {{ $category4['name_' . $lang] }}
+                                        {{ $category5['name_' . $lang] }}
                                     </div>
                                 </a>
                             </div>
                             <div class="col-lg-6">
-                                <a href="{{ route('category.sort', ['slug' => $category5->getSlugByLanguage($lang)]) }}">
-                                    <div style="background-image: url('{{ asset('storage/' . $category5->image) }}')"
+                                <a href="{{ route('category.sort', ['slug' => $category4->getSlugByLanguage($lang)]) }}">
+                                    <div style="background-image: url('{{ asset('storage/' . $category4->image) }}')"
                                         class="fs-5 p-3 category3 rounded h-100 text-white text-shadow">
-                                        {{ $category5['name_' . $lang] }}
+                                        {{ $category4['name_' . $lang] }}
                                     </div>
                                 </a>
                             </div>
