@@ -1,63 +1,44 @@
 @extends('layouts.page')
 
 @section('content')
-    <main class="container ">
+    <main class="container">
         <div class="my-4">
             <div class="d-flex align-items-center gap-1">
-                <a href="/" class="text-grey fw-bold  fs-14">@lang('home.home') / </a>
+                <a href="/" class="text-grey fw-bold fs-14">@lang('home.home') / </a>
                 <span class="text-dark fw-bold">@lang('home.payment_text')</span>
             </div>
             <hr />
         </div>
-        <div class=" mb-5 ">
+
+        @php
+            $content = \App\Models\PageContent::find(1); // ID = 1 bo‘yicha ma'lumot olish
+            $lang = app()->getLocale();
+            $imagePath = $content ? $content->{'image_' . $lang} : '/assets/images/information/11.png'; // Default rasm
+        @endphp
+
+        <div class="mb-5">
             <div class="row">
                 <x-page.sidebar></x-page.sidebar>
 
-                <div class="col-lg-9 ">
-                    <style>
-                        .aaa img{
-                            width: 100%; /* ✅ Butun containerga sig‘adi */
-                            height: auto;
-                            object-fit: cover;
-                        }
-                    </style>
-                    @php
-                        $lang = app()->getLocale();
-                        $imagePath = '/assets/images/information/11.png'; // Default rasm
-
-                        if ($lang === 'uz') {
-                                $imagePath = '/assets/images/information/12.jpg';
-                        } elseif ($lang === 'ru') {
-                        $imagePath = '/assets/images/information/13.jpg';
-                        } elseif ($lang === 'en') {
-                            $imagePath = '/assets/images/information/11.jpg';
-                        }
-                    @endphp
-
+                <div class="col-lg-9">
                     <div class="aaa">
-                        <img  class="w-100 rounded fit-cover" src="{{ $imagePath }}" alt="">
+                        @if($content)
+                            <img class="w-100 rounded fit-cover" src="{{ asset('storage/' . $imagePath) }}" alt="">
+                        @else
+                            <img class="w-100 rounded fit-cover" src="{{ $imagePath }}" alt="">
+                        @endif
                     </div>
-                    <h4 class="fw-semibold mt-4">Как оплачивать товары в интернет-магазине «Texnomart»?</h4>
-                    <div class="my-3">Мы предлагаем несколько удобных и безопасных способов оплаты для Вашего комфорта:
-                        наличными, банковскими картами (Humo,Uzcard), платежными системами Click или Payme для оплаты
-                        онлайн. Для юридических лиц предусмотрена оплата перечислением (с учётом НДС).
 
-                    </div>
-                    <h5 class="fw-semibold mt-4 mb-3">Чтобы совершить покупку необходимо:</h5>
-                    <ol class="">
-                        <li class="mb-3">Скачать мобильное приложение или зайти на сайт.</li>
-                        <li class="mb-3">Авторизоваться</li>
-                        <li class="mb-3">Выбрать необходимый товар и нажать на кнопку "Оформить покупку".</li>
-                        <li class="mb-3">Ввести запрашиваемые данные.</li>
-                        <li class="mb-3">Произвести оплату любым удобным для Вас способом.</li>
-                    </ol>
-                    <div class="">Возникли вопросы? Не понимаете, как оплатить Вашу покупку? Просто закажите обратный
-                        звонок и наши специалисты решат любой возникший вопрос.
-                    </div>
+                    @if($content)
+                        <div class="my-3">{!! $content->{'content_' . $lang} !!}</div>
+                    @else
+                        <h4 class="fw-semibold mt-4">Информация не найдена</h4>
+                        <div class="my-3">Извините, но информация для этой страницы отсутствует.</div>
+                    @endif
+
                 </div>
             </div>
         </div>
-
     </main>
     <script>
         function toggleDiv() {

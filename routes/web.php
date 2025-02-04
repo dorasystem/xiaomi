@@ -16,6 +16,7 @@ use App\Http\Controllers\Admin\MainBannerController;
 use App\Http\Controllers\Admin\ManualController;
 use App\Http\Controllers\Admin\NewsController;
 use App\Http\Controllers\Admin\OrderController;
+use App\Http\Controllers\Admin\PageContentController;
 use App\Http\Controllers\Admin\ProductController;
 use App\Http\Controllers\Admin\ServiceController;
 use App\Http\Controllers\Admin\StaticKeywordController;
@@ -63,6 +64,7 @@ Route::middleware(['auth'])->prefix('dashboard')->group(function () {
     Route::resource('desc-images', DescImageController::class);
     Route::resource('main_banners', MainBannerController::class);
     Route::resource('manuals', ManualController::class);
+    Route::resource('page_contents', PageContentController::class);
     Route::get('/warranty/edit', [WarrantyController::class, 'edit'])->name('warranty.edit');
     Route::put('/warranty/update', [WarrantyController::class, 'update'])->name('warranty.update');
     Route::get('/orders', [OrderController::class, 'index'])->name('orders.index');

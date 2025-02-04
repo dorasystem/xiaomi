@@ -111,6 +111,10 @@ $mainBanner = \App\Models\MainBanner::first();
                                 <span class="nxl-micon"><i class="feather-file-text"></i></span>
                                 <span class="nxl-mtext fs-11">Инструкции  Xiaomi</span>
                             </a>
+                            <a href="{{ route('page_contents.index') }}" class="nxl-link">
+                                <span class="nxl-micon"><i class="feather-file-text"></i></span>
+                                <span class="nxl-mtext fs-11">Footer 4 pages</span>
+                            </a>
                         </li>
                     </ul>
 
