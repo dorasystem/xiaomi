@@ -166,7 +166,6 @@ class MainController extends Controller
     }
     public function filterProducts(Request $request)
     {
-
         $minPrice = (int) $request->input('min_price', 1);
         $maxPrice = (int) $request->input('max_price', 40000000);
 
@@ -198,6 +197,11 @@ class MainController extends Controller
             $query->whereNotNull('price')
                 ->whereBetween('price', [$minPrice, $maxPrice]);
         });
+
+        // **Popular mahsulotlarni filterga qo‘shish**
+        if ($request->has('popular')) {
+            $products->where('popular', true);
+        }
 
         $products = $products->paginate(9);
 

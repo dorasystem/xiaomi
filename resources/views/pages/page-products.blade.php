@@ -101,6 +101,34 @@
                     <div style="top:30px;" class="bg-white p-4 rounded position-sticky ">
                         <form method="GET" action="{{ route('products.filter') }}">
                             <div class="accordion" id="accordionPanelsStayOpenExample">
+                                <!-- 📌 POPULAR MAHSULOTLAR FILTRI -->
+                                <div class="accordion-item">
+                                    <h2 class="accordion-header"
+                                        id="panelsStayOpen-headingThree">
+                                        <button class="accordion-button" type="button"
+                                                data-bs-toggle="collapse"
+                                                data-bs-target="#panelsStayOpen-collapseThree"
+                                                aria-expanded="true"
+                                                aria-controls="panelsStayOpen-collapseThree">
+                                            @lang('home.popular_products')
+                                        </button>
+                                    </h2>
+                                    <div id="panelsStayOpen-collapseThree"
+                                         class="accordion-collapse collapse show"
+                                         aria-labelledby="panelsStayOpen-headingThree">
+                                        <div class="accordion-body">
+                                            <div class="form-check mb-3">
+                                                <input class="form-check-input" type="checkbox"
+                                                       name="popular" id="popular-checkbox"
+                                                    {{ request('popular') ? 'checked' : '' }} />
+                                                <label class="form-check-label"
+                                                       for="popular-checkbox">
+                                                    <small>@lang('home.only_popular')</small>
+                                                </label>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
                                 <div class="accordion-item">
                                     <h2 class="accordion-header" id="panelsStayOpen-headingOne">
                                         <button class="accordion-button " type="button" data-bs-toggle="collapse"
@@ -234,6 +262,34 @@
                                                                 aria-label="Close"></button>
                                                     </div>
                                                     <div class="accordion" id="accordionPanelsStayOpenExample">
+                                                        <!-- 📌 POPULAR MAHSULOTLAR FILTRI -->
+                                                        <div class="accordion-item">
+                                                            <h2 class="accordion-header"
+                                                                id="panelsStayOpen-headingThree">
+                                                                <button class="accordion-button" type="button"
+                                                                        data-bs-toggle="collapse"
+                                                                        data-bs-target="#panelsStayOpen-collapseThree"
+                                                                        aria-expanded="true"
+                                                                        aria-controls="panelsStayOpen-collapseThree">
+                                                                    @lang('home.popular_products')
+                                                                </button>
+                                                            </h2>
+                                                            <div id="panelsStayOpen-collapseThree"
+                                                                 class="accordion-collapse collapse show"
+                                                                 aria-labelledby="panelsStayOpen-headingThree">
+                                                                <div class="accordion-body">
+                                                                    <div class="form-check mb-2">
+                                                                        <input class="form-check-input" type="checkbox"
+                                                                               name="popular" id="popular-checkbox"
+                                                                            {{ request('popular') ? 'checked' : '' }} />
+                                                                        <label class="form-check-label"
+                                                                               for="popular-checkbox">
+                                                                            <small>@lang('home.only_popular')</small>
+                                                                        </label>
+                                                                    </div>
+                                                                </div>
+                                                            </div>
+                                                        </div>
                                                         <div class="accordion-item">
                                                             <h2 class="accordion-header" id="panelsStayOpen-headingOne">
                                                                 <button class="accordion-button" type="button"

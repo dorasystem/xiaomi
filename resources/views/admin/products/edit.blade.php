@@ -124,6 +124,13 @@
                                                     <option
                                                         value="12/512GB" {{ $price->storage == '12/512GB' ? 'selected' : '' }}>
                                                         12/512 GB
+                                                    </option>                                                    <option
+                                                        value="12/1TB" {{ $price->storage == '12/1TB' ? 'selected' : '' }}>
+                                                        12/1 TB
+                                                    </option>
+                                                    <option
+                                                        value="16/1TB" {{ $price->storage == '16/1TB' ? 'selected' : '' }}>
+                                                        16/1 TB
                                                     </option>
                                                 </select>
 
@@ -207,6 +214,13 @@
                                             @endforeach
                                         </select>
                                     </div>
+                                    <!-- Popular checkbox -->
+                                    <div class="form-check pb-3">
+                                        <input type="checkbox" id="popular" name="popular" class="form-check-input"
+                                            {{ old('popular', isset($product) && $product->popular ? 'checked' : '') }}>
+                                        <label for="popular" class="form-check-label">Популярный продукт</label>
+                                    </div>
+
 
                                     <div class="form-group pb-3">
                                         <label for="color_ru">Цвет RU:</label>

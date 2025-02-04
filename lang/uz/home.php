@@ -131,5 +131,6 @@ return [
 'manuals'  =>  "Yo‘riqnomalar",
 'original'  =>  "Haqiqiyligini tekshirish",
     'gift' => "Sovg‘a" ,
-
+    'popular_products' => 'Mashhur mahsulotlar',
+    'only_popular' => 'Faqat mashhurlar',
 ];

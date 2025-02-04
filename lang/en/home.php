@@ -145,6 +145,8 @@ return [
     'manuals'  =>  "Instructions",
     'original'  =>  "Authenticity check",
     'gift' => "Gift" ,
+    'popular_products' => 'Popular products',
+    'only_popular' => 'Only popular',
 ];
 
 

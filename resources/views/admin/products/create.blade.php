@@ -100,6 +100,8 @@
                                                 <option value="8/256GB">8/256 GB</option>
                                                 <option value="12/256GB">12/256 GB</option>
                                                 <option value="12/512GB">12/512 GB</option>
+                                                <option value="12/1TB">12/1 TB</option>
+                                                <option value="16/1TB">16/1 TB</option>
                                             </select>
                                         </div>
                                         <div class="form-group pb-3 col-md-4">
@@ -167,6 +169,13 @@
                                             @endforeach
                                         </select>
                                     </div>
+                                    <!-- Popular checkbox -->
+                                    <div class="form-check pb-3">
+                                        <input type="checkbox" id="popular" name="popular" class="form-check-input"
+                                            {{ old('popular', $product->popular ?? false) ? 'checked' : '' }}>
+                                        <label for="popular" class="form-check-label">Популярный продукт</label>
+                                    </div>
+
                                     <div class="form-group pb-3 ">
                                         <label for="color_ru">Цвет RU:</label>
                                         <select class="form-control" id="color_ru" name="color_ru">

@@ -30,7 +30,8 @@ class Product extends Model
         'images',
         'color_uz',
         'color_ru',
-        'color_en'
+        'color_en',
+        'popular'
     ];
 
     protected $casts = [
