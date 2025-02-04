@@ -449,10 +449,10 @@ $categories = \App\Models\Category::all();
 
                                                         <div
                                                             class="d-flex align-items-center justify-content-between w-100">
-                                                            @if ($cheapestVariant->price_12 > 0)
+                                                            @if ($cheapestVariant->price_24 > 0)
                                                                 <span
                                                                     class="px-2 productmonth-border small text-orange rounded-1">
-                                                                    {{ number_format($cheapestVariant->price_12, 0, ',', ' ') }}
+                                                                    {{ number_format($cheapestVariant->price_24, 0, ',', ' ') }}
                                                                     UZS/@lang('home.month')
                                                                 </span>
                                                             @endif
@@ -727,6 +727,9 @@ $categories = \App\Models\Category::all();
 
         .btn-orange2:hover {
             background-color: #e65c00;
+        }
+        input[type="range"]::-webkit-slider-thumb {
+            background: linear-gradient(to right, #FF6600, #FFCC00);
         }
     </style>
     <script>

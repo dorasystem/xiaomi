@@ -208,9 +208,9 @@ $description = isset($matches[1])
                                             <p class="text-grey">{{ $description }}</p>
                                         </a>
                                         <div class="d-flex align-items-center justify-content-between w-100">
-                                            @if ($cheapestVariant->price_12 > 0)
+                                            @if ($cheapestVariant->price_24 > 0)
                                                 <span class="px-2 productmonth-border small text-orange rounded-1">
-                                                    {{ number_format($cheapestVariant->price_12, 0, ',', ' ') }}
+                                                    {{ number_format($cheapestVariant->price_24, 0, ',', ' ') }}
                                                     UZS/@lang('home.month')
                                                 </span>
                                             @endif
@@ -322,9 +322,9 @@ $description = isset($matches[1])
                                             <p class="text-grey">{{ $description }}</p>
                                         </a>
                                         <div class="d-flex align-items-center justify-content-between w-100">
-                                            @if ($cheapestVariant->price_12 > 0)
+                                            @if ($cheapestVariant->price_24 > 0)
                                                 <span class="px-2 productmonth-border small text-orange rounded-1">
-                                                    {{ number_format($cheapestVariant->price_12, 0, ',', ' ') }}
+                                                    {{ number_format($cheapestVariant->price_24, 0, ',', ' ') }}
                                                     UZS/@lang('home.month')
                                                 </span>
                                             @endif
@@ -452,9 +452,9 @@ $description = isset($matches[1])
                                 <p class="text-grey">{{ $description }}</p>
                             </a>
                             <div class="d-flex align-items-center justify-content-between w-100">
-                                @if ($cheapestVariant->price_12 > 0)
+                                @if ($cheapestVariant->price_24 > 0)
                                     <span class="px-2 productmonth-border small text-orange rounded-1">
-                                        {{ number_format($cheapestVariant->price_12, 0, ',', ' ') }}
+                                        {{ number_format($cheapestVariant->price_24, 0, ',', ' ') }}
                                         UZS/@lang('home.month')
                                     </span>
                                 @endif
@@ -495,13 +495,13 @@ $description = isset($matches[1])
                 <div class="p-4 px-lg-4 px-2">
                     <div class="row gy-5 justify-content-evenly text-white">
                         <div
-                            class="fs-13 col-lg-2  col-6 d-flex flex-md-column flex-row align-items-center text-md-center text-start gap-md-2 gap-3">
-                            <img src="/assets/icons/check-icon.svg" alt="" class="wh-65" />
+                            class="fs-13 col-md-3  col-6 d-flex flex-md-column flex-row align-items-center text-md-center text-start gap-md-2 gap-2">
+                            <img src="/assets/icons/check-icon.svg" alt="" class="wh-65 ml-sm" />
                             <div class=""><span class="fw-bold d-md-block d-none">Xiaomi</span></div>
-                            <div>@lang('home.authorized_store')</div>
+                            <div class="ml-sm">@lang('home.authorized_store')</div>
                         </div>
                         <div
-                            class="fs-13 col-lg-2  col-6 d-flex flex-md-column flex-row align-items-center text-md-center text-start gap-md-2 gap-3">
+                            class="fs-13 col-md-3  col-6 d-flex flex-md-column flex-row align-items-center text-md-center text-start gap-md-2 gap-2">
                             <img src="/assets/icons/settings.svg" alt="" class="wh-65" />
                             <div class="">
                                 <span class="fw-bold d-md-block d-none">@lang('home.free')</span>
@@ -509,13 +509,13 @@ $description = isset($matches[1])
                             <div>@lang('home.device_setup')</div>
                         </div>
                         <div
-                            class="fs-13 col-lg-2  col-6 d-flex flex-md-column flex-row align-items-center text-md-center text-start gap-md-2 gap-3">
+                            class="fs-13 col-md-3  col-6 d-flex flex-md-column flex-row align-items-center text-md-center text-start gap-md-2 gap-2">
                             <img src="/assets/icons/shop-icon.svg" alt="" class="wh-65" />
                             <div class=""><span class="fw-bold d-md-block d-none">@lang('home.pickup') </span></div>
                             <div> @lang('home.delivery')</div>
                         </div>
                         <div
-                            class="fs-13 col-lg-2 col-6 d-flex flex-md-column flex-row align-items-center text-md-center text-start gap-md-2 gap-3">
+                            class="fs-13 col-md-3 col-6 d-flex flex-md-column flex-row align-items-center text-md-center text-start gap-md-2 gap-2">
                             <img src="/assets/icons/calendar.svg" alt="" class="wh-65" />
                             <div class=""><span class="fw-bold d-md-block d-none">@lang('home.favorable_installment_plan')</span></div>
                             <div>@lang('home.without_prepayment')</div>
