@@ -60,11 +60,11 @@ class MainController extends Controller
         $categories = Category::latest()->get();
         $category1 = $categories->firstWhere('id', 1);
         $category37 = $categories->firstWhere('id', 37);
-        $category2 = $categories->firstWhere('id', 2);
-        $category3 = $categories->skip(2)->first();
+        $category2 = $categories->firstWhere('id', 15);
+        $category3 = $categories->firstWhere('id', 2);
         $category4 = $categories->skip(3)->first();
-        $category5 = $categories->skip(4)->first();
-        $category6 = $categories->skip(5)->first();
+        $category5 = $categories->firstWhere('id', 5);
+        $category6 =$categories->firstWhere('id', 7);
         $category7 = $categories->skip(6)->first();
         return view('pages.home', compact('new', 'news1', 'news2', 'products', 'locations', 'banner', 'categories', 'category1', 'category2', 'category3', 'category4', 'category5', 'category6', 'category7', 'translations', 'newProducts', 'randomProducts', 'products', 'productsWithoutRandom', 'category37'));
     }

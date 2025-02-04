@@ -659,10 +659,10 @@ $description = isset($matches[1])
                     <div class="col-lg-4 p-0">
                         <div class="row h-100">
                             <div class="col-12">
-                                <a href="{{ route('category.sort', ['slug' => $category4->getSlugByLanguage($lang)]) }}">
+                                <a href="{{ route('category.sort', ['slug' => $category37->getSlugByLanguage($lang)]) }}">
                                     <div style="background-image: url('{{ asset('storage/' . $category4->image) }}')"
                                         class="fs-5 p-3 category2 rounded h-95 text-white text-shadow">
-                                        {{ $category4['name_' . $lang] }}
+                                        {{ $category37['name_' . $lang] }}
                                     </div>
                                 </a>
                             </div>
@@ -720,8 +720,8 @@ $description = isset($matches[1])
                     href="{{ route('category.sort', ['slug' => $category3->getSlugByLanguage($lang)]) }}"
                     class="category1 rounded fs-5 fw-bold p-2 text-white">{{ $category3['name_' . $lang] }}</a>
                 <a style="background-image: url('{{ asset('storage/' . $category4->image) }}')"
-                    href="{{ route('category.sort', ['slug' => $category4->getSlugByLanguage($lang)]) }}"
-                    class="category2 rounded fs-5 fw-bold p-2 text-white">{{ $category4['name_' . $lang] }}</a>
+                    href="{{ route('category.sort', ['slug' => $category37->getSlugByLanguage($lang)]) }}"
+                    class="category2 rounded fs-5 fw-bold p-2 text-white">{{ $category37['name_' . $lang] }}</a>
                 <a style="background-image: url('{{ asset('storage/' . $category5->image) }}')"
                     href="{{ route('category.sort', ['slug' => $category5->getSlugByLanguage($lang)]) }}"
                     class="category3 rounded fs-5 fw-bold p-2 text-white">{{ $category5['name_' . $lang] }}</a>
