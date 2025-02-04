@@ -42,6 +42,7 @@
                                 </div>
                                 <div class="card-body p-4">
                                     <div class="row">
+                                        <!-- Ko'p rasm yuklash (images[]) -->
                                         <div class="col-md-4">
                                             <div class="form-group pb-3">
                                                 <input type="file" name="images[]" id="images" class="form-control" multiple>
@@ -52,10 +53,24 @@
                                                     @if ($mainBanner->images)
                                                         @foreach ($mainBanner->images as $key => $image)
                                                             <div class="image-preview m-2 position-relative">
-                                                                <img src="{{ asset('storage/' . $image) }}" alt="image" style="width: 100px; height: 100px; object-fit: cover;">
-                                                                <button type="button" class="btn btn-danger btn-sm delete-image-btn" data-image="{{ $image }}" style="position: absolute; top: 0; right: 0;">
-                                                                    X
+                                                                <a href="{{ isset($mainBanner->product_ids[$key]) ? route('products.show', $mainBanner->product_ids[$key]) : '#' }}">
+                                                                    <img src="{{ asset('storage/' . $image) }}" alt="image"
+                                                                         style="width: 100px; height: 100px; object-fit: cover;">
+                                                                </a>
+                                                                <button type="button" class="btn btn-danger btn-sm delete-image-btn" data-image="{{ $image }}"
+                                                                        style="position: absolute; top: 0; right: 0;">X
                                                                 </button>
+
+                                                                <!-- Mahsulot tanlash -->
+                                                                <select name="product_ids[]" class="form-control mt-2">
+                                                                    <option value="">Выберите продукт</option>
+                                                                    @foreach ($products as $product)
+                                                                        <option value="{{ $product->id }}"
+                                                                            {{ isset($mainBanner->product_ids[$key]) && $mainBanner->product_ids[$key] == $product->id ? 'selected' : '' }}>
+                                                                            {{ $product->name_ru }}
+                                                                        </option>
+                                                                    @endforeach
+                                                                </select>
                                                             </div>
                                                         @endforeach
                                                     @else
@@ -65,10 +80,7 @@
                                             </div>
                                         </div>
 
-                                        <!-- Yashirin input, o'chiriladigan rasm nomlarini saqlaydi -->
-                                        <input type="hidden" name="delete_images" id="delete_images" value="">
-
-
+                                        <!-- Image1 yuklash va ko‘rsatish -->
                                         <div class="col-md-4">
                                             <div class="form-group pb-3">
                                                 <input type="file" name="image1" id="image1" class="form-control">
@@ -83,11 +95,13 @@
                                                 @endif
                                             </div>
                                         </div>
+
+                                        <!-- Image2 yuklash va ko‘rsatish -->
                                         <div class="col-md-4">
                                             <div class="form-group pb-3">
                                                 <input type="file" name="image2" id="image2" class="form-control">
                                             </div>
-                                             <div class="form-group pb-3">
+                                            <div class="form-group pb-3">
                                                 <label class="mb-3" for="image2">Текущее изображение 2:</label>
                                                 @if ($mainBanner->image2)
                                                     <div class="mb-3 position-relative">
@@ -97,7 +111,11 @@
                                                 @endif
                                             </div>
                                         </div>
+
                                     </div>
+
+                                    <!-- Yashirin input, o'chiriladigan rasm nomlarini saqlaydi -->
+                                    <input type="hidden" name="delete_images" id="delete_images" value="">
 
                                 </div>
                             </div>
@@ -106,11 +124,6 @@
                 </div>
             </div>
         </main>
-    </form>
-
-    <form id="deleteImageForm" method="POST" style="display: none;">
-        @csrf
-        @method('DELETE')
     </form>
 
     <script>
@@ -134,6 +147,5 @@
                 });
             });
         });
-
     </script>
 @endsection

@@ -9,10 +9,11 @@ class MainBanner extends Model
 {
     use HasFactory;
 
-    protected $fillable = ['images', 'image1', 'image2'];
-
+    protected $fillable = ['images', 'image1', 'image2', 'product_ids'];
     protected $casts = [
         'images' => 'array',
+        'product_ids' => 'array',
     ];
+
 }
 

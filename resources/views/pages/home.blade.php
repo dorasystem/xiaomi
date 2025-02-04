@@ -46,10 +46,18 @@ foreach ($keywords as $keyword) {
                         <!-- Carousel inner (slides) -->
                         <div class="carousel-inner rounded">
                             @foreach ($banner->images as $index => $item)
-                                <div class="carousel-item  {{ $index === 0 ? 'active' : '' }}">
-                                    <img src="{{ asset('storage/' . $item) }}" class="d-block w-100" alt="Slide 1" />
+                                <div class="carousel-item {{ $index === 0 ? 'active' : '' }}">
+                                    @php
+                                        $productId = $banner->product_ids[$index] ?? null; // Mahsulot ID olish
+                                        $product = $productId ? \App\Models\Product::find($productId) : null; // Mahsulotni bazadan olish
+                                        $productUrl = $product ? route('single.product', $product->slug) : '#'; // Mahsulot sahifasiga slug orqali yo‘naltirish
+                                    @endphp
+                                    <a href="{{ $productUrl }}">
+                                        <img src="{{ asset('storage/' . $item) }}" class="d-block w-100" alt="Slide {{ $index + 1 }}" />
+                                    </a>
                                 </div>
                             @endforeach
+
                         </div>
 
                         <!-- Carousel controls -->
