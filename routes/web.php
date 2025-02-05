@@ -32,6 +32,7 @@ use App\Http\Controllers\CompareController;
 use App\Http\Controllers\LanguageController;
 use App\Http\Controllers\Page\MainController;
 use App\Http\Controllers\Page\SiteController;
+use App\Http\Controllers\TranslationController;
 use Illuminate\Support\Facades\Route;
 
 
@@ -47,6 +48,10 @@ Route::post('logout', [AuthController::class, 'logout'])->name('logout');
 Route::middleware(['auth'])->prefix('dashboard')->group(function () {
     Route::get('/', [SuperAdminController::class, 'superAdmin'])->name('superAdmin.dashboard');
     Route::get('/admin', [AdminController::class, 'admin'])->name('admins.dashboard');
+    Route::get('/translation', [TranslationController::class, 'index'])->name('translations.index');
+    Route::post('/translations/update', [TranslationController::class, 'update'])->name('translations.update');
+    Route::get('/translations/get', [TranslationController::class, 'getTranslation']);
+
     Route::resource('abouts', AboutController::class);
     Route::resource('news', NewsController::class);
     Route::resource('articles', ArticleController::class);

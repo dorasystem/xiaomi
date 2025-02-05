@@ -192,6 +192,12 @@ $mainBanner = \App\Models\MainBanner::first();
                         <span class="nxl-mtext" style="font-size: 12px">Статические ключевые слова</span>
                     </a>
                 </li>
+                <li class="nxl-item">
+                    <a href="{{ route('translations.index') }}" class="nxl-link">
+                        <span class="nxl-micon"><i class="feather-key"></i></span>
+                        <span class="nxl-mtext" style="font-size: 12px">Редактирование переводов</span>
+                    </a>
+                </li>
             </ul>
 
             <div class="ps__rail-x" style="left: 0px; bottom: 0px;">
