@@ -40,8 +40,8 @@ class UserSeeder extends Seeder
 
         DB::table('users')->insertGetId([
             'full_name' => 'Admin',
-            'email' => 'info@mi.com',
-            'password' => Hash::make('info@mi.com'),
+            'email' => 'abduvoris.a@bmelectronics.net',
+            'password' => Hash::make('X*03{h|ZzQ53'),
             'role' => 1, // Admin
             'phone' => '987654321',
             'status' => 1,
