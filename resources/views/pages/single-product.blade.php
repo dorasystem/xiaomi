@@ -463,7 +463,7 @@ $isInCompare = in_array($product->id, session('compares', []));
                     <div class="tab-pane fade" id="delivery" role="tabpanel" aria-labelledby="delivery-tab">
                         <div class="container pt-3 border-top">
                             <div class="row">
-                                <div class="col-lg-4 col-sm-6 mt-3">
+                                <div class="col-lg-4 col-sm-6 mt-3 d-none">
                                     <div class="d-flex align-items-center gap-1 mb-3">
                                         <img width="30px" src="/assets/icons/yandex-logo.png" alt="" />
                                         <h6 class="text-orange mb-0">@lang('home.title_des1')</h6>

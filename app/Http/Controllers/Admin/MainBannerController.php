@@ -18,40 +18,56 @@ class MainBannerController extends Controller
 
     public function update(Request $request, MainBanner $mainBanner)
     {
-
         $request->validate([
-            'images.*' => 'nullable|image|mimes:jpeg,png,jpg,gif,webp|max:2048',
+            'images.uz.*' => 'nullable|image|mimes:jpeg,png,jpg,gif,webp|max:2048',
+            'images.ru.*' => 'nullable|image|mimes:jpeg,png,jpg,gif,webp|max:2048',
+            'images.en.*' => 'nullable|image|mimes:jpeg,png,jpg,gif,webp|max:2048',
             'image1' => 'nullable|image|mimes:jpeg,png,jpg,gif,webp|max:2048',
             'image2' => 'nullable|image|mimes:jpeg,png,jpg,gif,webp|max:2048',
-            'product_ids' => 'nullable|array',
-            'product_ids.*' => 'nullable|exists:products,id', // Mahsulot mavjudligini tekshirish
+            'product_ids.uz' => 'nullable|array',
+            'product_ids.ru' => 'nullable|array',
+            'product_ids.en' => 'nullable|array',
+            'product_ids.uz.*' => 'nullable|exists:products,id',
+            'product_ids.ru.*' => 'nullable|exists:products,id',
+            'product_ids.en.*' => 'nullable|exists:products,id',
         ]);
 
+        // 🔹 Rasm va mahsulot ID larini olish yoki bo'sh qilish
+        $updatedImages = $mainBanner->images ?? ['uz' => [], 'ru' => [], 'en' => []];
+        $updatedProductIds = $request->input('product_ids', ['uz' => [], 'ru' => [], 'en' => []]);
 
-        // 🔹 Rasm array mavjud emas bo‘lsa, uni bo‘sh massiv qilish
-        $updatedImages = is_array($mainBanner->images) ? $mainBanner->images : [];
-        $updatedProductIds = $request->has('product_ids') ? $request->input('product_ids') : [];
+        // ❌ DELETE: Rasm o‘chirish
+        $deleteImages = json_decode($request->input('delete_images', '{}'), true);
 
+        if (!empty($deleteImages)) {
+            foreach (['uz', 'ru', 'en'] as $lang) {
+                if (isset($deleteImages[$lang])) {
+                    foreach ($deleteImages[$lang] as $deleteImage) {
+                        // Rasm `updatedImages[$lang]` da bormi tekshiramiz
+                        if (($key = array_search($deleteImage, $updatedImages[$lang])) !== false) {
+                            unset($updatedImages[$lang][$key]); // Massivdan olib tashlash
+                            unset($updatedProductIds[$lang][$key]); // Tegishli mahsulot ID ni ham olib tashlash
 
-
-        // ❌ DELETE: Agar rasm o‘chirilishi kerak bo‘lsa
-        if ($request->has('delete_images') && !empty($request->delete_images)) {
-            $deleteImages = json_decode($request->delete_images, true) ?? [];
-
-            foreach ($deleteImages as $deleteImage) {
-                if (($key = array_search($deleteImage, $updatedImages)) !== false) {
-                    unset($updatedImages[$key]); // Massivdan olib tashlash
-                    unset($updatedProductIds[$key]); // Tegishli mahsulot ID ni ham olib tashlash
-                    Storage::disk('public')->delete($deleteImage); // Fizik faylni o‘chirish
+                            // Fayl mavjudligini tekshirib, keyin o‘chirish
+                            if (Storage::disk('public')->exists($deleteImage)) {
+                                Storage::disk('public')->delete($deleteImage);
+                            }
+                        }
+                    }
+                    // 🔹 Massiv indekslarini qayta tartiblash
+                    $updatedImages[$lang] = array_values($updatedImages[$lang]);
+                    $updatedProductIds[$lang] = array_values($updatedProductIds[$lang]);
                 }
             }
         }
 
-        // ✅ ADD: Yangi yuklangan rasmlarni qo‘shish va mahsulot ID larini bog‘lash
-        if ($request->hasFile('images')) {
-            foreach ($request->file('images') as $index => $image) {
-                $updatedImages[] = $image->store('main_banners', 'public');
-                $updatedProductIds[] = $request->product_ids[$index] ?? null; // Agar mahsulot tanlanmagan bo‘lsa, null bo‘ladi
+        // ✅ ADD: Yangi yuklangan rasmlarni qo‘shish
+        foreach (['uz', 'ru', 'en'] as $lang) {
+            if ($request->hasFile("images.$lang")) {
+                foreach ($request->file("images.$lang") as $index => $image) {
+                    $updatedImages[$lang][] = $image->store('main_banners', 'public');
+                    $updatedProductIds[$lang][] = $request->input("product_ids.$lang")[$index] ?? null;
+                }
             }
         }
 
@@ -73,14 +89,17 @@ class MainBannerController extends Controller
 
         // 🔄 UPDATE: Ma'lumotlarni yangilash
         $mainBanner->update([
-            'images' => array_values($updatedImages), // Massivni qayta indekslash
-            'product_ids' => array_values($updatedProductIds), // Mahsulot ID larni ham yangilash
+            'images' => $updatedImages,
+            'product_ids' => $updatedProductIds,
             'image1' => $image1Path,
             'image2' => $image2Path,
         ]);
 
         return redirect()->back()->with('success', 'Banner muvaffaqiyatli yangilandi!');
     }
+
+
+
 
     public function destroy(MainBanner $mainBanner)
     {
