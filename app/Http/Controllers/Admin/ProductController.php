@@ -255,7 +255,7 @@ class ProductController extends Controller
             'content_en' => $validatedData['content_en'],
             'color_ru' => $validatedData['color_ru'],
             'gift_name_uz' => $validatedData['gift_name_uz'],
-            'gift_name_ru' => $validatedData['gift_name_uz'],
+            'gift_name_ru' => $validatedData['gift_name_ru'],
             'gift_name_en' => $validatedData['gift_name_en'],
             'popular' => $request->has('popular'),
         ]);
