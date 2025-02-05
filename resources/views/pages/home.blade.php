@@ -35,30 +35,30 @@ foreach ($keywords as $keyword) {
                     <div id="carouselExample" class="carousel slide" data-bs-ride="carousel" data-bs-interval="3000">
                         <!-- Indicators (optional) -->
                         <div class="carousel-indicators">
-                            @foreach ($banner->images as $index => $item)
+                            @foreach ($banner->images[app()->getLocale()] ?? [] as $index => $item)
                                 <button type="button" data-bs-target="#carouselExample"
-                                    data-bs-slide-to="{{ $index }}" class="{{ $index === 0 ? 'active' : '' }}"
-                                    aria-current="{{ $index === 0 ? 'true' : 'false' }}"
-                                    aria-label="Slide {{ $index + 1 }}"></button>
+                                        data-bs-slide-to="{{ $index }}" class="{{ $index === 0 ? 'active' : '' }}"
+                                        aria-current="{{ $index === 0 ? 'true' : 'false' }}"
+                                        aria-label="Slide {{ $index + 1 }}"></button>
                             @endforeach
                         </div>
 
                         <!-- Carousel inner (slides) -->
                         <div class="carousel-inner rounded">
-                            @foreach ($banner->images as $index => $item)
+                            @foreach ($banner->images[app()->getLocale()] ?? [] as $index => $item)
                                 <div class="carousel-item {{ $index === 0 ? 'active' : '' }}">
                                     @php
-                                        $productId = $banner->product_ids[$index] ?? null; // Mahsulot ID olish
-                                        $product = $productId ? \App\Models\Product::find($productId) : null; // Mahsulotni bazadan olish
-                                        $productUrl = $product ? route('single.product', $product->slug) : '#'; // Mahsulot sahifasiga slug orqali yo‘naltirish
+                                        $productId = $banner->product_ids[app()->getLocale()][$index] ?? null;
+                                        $product = $productId ? \App\Models\Product::find($productId) : null;
+                                        $productUrl = $product ? route('single.product', $product->slug) : '#';
                                     @endphp
                                     <a href="{{ $productUrl }}">
                                         <img src="{{ asset('storage/' . $item) }}" class="d-block w-100" alt="Slide {{ $index + 1 }}" />
                                     </a>
                                 </div>
                             @endforeach
-
                         </div>
+
 
                         <!-- Carousel controls -->
                         <button class="carousel-control-prev" type="button" data-bs-target="#carouselExample"
