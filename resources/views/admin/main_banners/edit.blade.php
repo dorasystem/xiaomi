@@ -80,7 +80,7 @@
                         @endforeach
                     </div>
 
-                    <div class="row">
+                    <div class="row mt-2">
                         <div class="col-lg-6">
                             <div class="card stretch">
                                 <div class="card-header">
