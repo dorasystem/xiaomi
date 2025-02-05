@@ -391,7 +391,7 @@ $isInCompare = in_array($product->id, session('compares', []));
                                 @lang('home.inst_desc')
                             </div>
                             <div class="col-lg-6 order-lg-2 order-1 pt-5">
-                                <img class="w-100" src="/assets/images/product-installment.png" alt="" />
+                                <img class="w-100" src="/assets/images/5555.png" alt="" />
                             </div>
                         </div>
                     </div>
