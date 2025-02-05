@@ -464,6 +464,8 @@
                                                 <option value="6/128GB">6/128 GB</option>
                                                 <option value="8/256GB">8/256 GB</option>
                                                 <option value="12/512GB">12/512 GB</option>
+                                                <option value="12/1TB">12/1 TB</option>
+                                                <option value="16/1TB">16/1 TB</option>
                                             </select>
                                         </div>
                                         <div class="form-group pb-3 col-md-4">
@@ -480,13 +482,7 @@
                                                 <span class="input-group-text">UZS</span>
                                             </div>
                                         </div>
-                                        <div class="form-group pb-3 col-md-3">
-                                            <label for="price_3">Цена за 3 месяца:</label>
-                                            <div class="input-group">
-                                                <input type="text" class="form-control" name="price_3[]" >
-                                                <span class="input-group-text">UZS</span>
-                                            </div>
-                                        </div>
+
                                         <div class="form-group pb-3 col-md-3">
                                             <label for="price_6">Цена за 6 месяцев:</label>
                                             <div class="input-group">
