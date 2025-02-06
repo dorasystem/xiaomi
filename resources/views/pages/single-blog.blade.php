@@ -10,11 +10,7 @@
         </div>
         <div class="blogdes">
             <h1 class="mb-4">{{ $blog['title_' . $lang] }}</h1>
-            <div style="font-size: 18px" class="">
-                {!! implode(' ', array_slice(explode(' ', $blog['description_' . $lang]), -15)) ?? 'Redmi Watch 5 Lite получили тонкий и лёгкий корпус весом 29.2 грамм, они почти не ощущаются на запястье.
-                Дизайн минималистичный и универсальный, часы сочетаются хоть со спортивным,
-                хоть с деловым костюмом.' !!}
-            </div>
+
             <div class="row align-items-center">
                 <div class="col-md-6 my-3">
                     <h4 class="">
