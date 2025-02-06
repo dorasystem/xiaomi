@@ -1415,7 +1415,7 @@ input[type="range"]:nth-child(2) {
 }
 
 .wh-65 {
-    width: 65px;
+    /*width: 65px;*/
     height: 65px;
 }
 
@@ -1476,7 +1476,7 @@ input[type="range"]:nth-child(2) {
     }
 
     .wh-65 {
-        width: 50px;
+        /*width: 50px;*/
         height: 38px;
     }
 
