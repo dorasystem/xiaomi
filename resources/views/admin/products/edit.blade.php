@@ -110,6 +110,10 @@
                                                         4/64 GB
                                                     </option>
                                                     <option
+                                                        value="4/128GB" {{ $price->storage == '4/128GB' ? 'selected' : '' }}>
+                                                        4/128 GB
+                                                    </option>
+                                                    <option
                                                         value="6/128GB" {{ $price->storage == '6/128GB' ? 'selected' : '' }}>
                                                         6/128 GB
                                                     </option>
@@ -118,13 +122,18 @@
                                                         8/256 GB
                                                     </option>
                                                     <option
-                                                        value="8/256GB" {{ $price->storage == '12/256GB' ? 'selected' : '' }}>
+                                                        value="6/256GB" {{ $price->storage == '6/256GB' ? 'selected' : '' }}>
+                                                        6/256 GB
+                                                    </option>
+                                                    <option
+                                                        value="12/256GB" {{ $price->storage == '12/256GB' ? 'selected' : '' }}>
                                                         12/256 GB
                                                     </option>
                                                     <option
                                                         value="12/512GB" {{ $price->storage == '12/512GB' ? 'selected' : '' }}>
                                                         12/512 GB
-                                                    </option>                                                    <option
+                                                    </option>
+                                                    <option
                                                         value="12/1TB" {{ $price->storage == '12/1TB' ? 'selected' : '' }}>
                                                         12/1 TB
                                                     </option>
@@ -336,38 +345,42 @@
     <script>
 
         @foreach (['uz', 'en', 'ru'] as $lang)
-        var descriptionEditor{{ ucfirst($lang) }} = new Quill('#descriptionEditor_{{ $lang }}', {theme: 'snow',
+        var descriptionEditor{{ ucfirst($lang) }} = new Quill('#descriptionEditor_{{ $lang }}', {
+            theme: 'snow',
             modules: {
                 toolbar: [
-                    [{ 'header': [1, 2, 3, false] }], // Sarlavhalar
+                    [{'header': [1, 2, 3, false]}], // Sarlavhalar
                     ['bold', 'italic', 'underline', 'strike'], // Matn stilizatsiyasi
-                    [{ 'color': [] }, { 'background': [] }], // 📌 **Matn rangi va fon rangi**
-                    [{ 'script': 'sub' }, { 'script': 'super' }], // Yuqori va pastki indeks
-                    [{ 'list': 'ordered' }, { 'list': 'bullet' }], // Ro‘yxatlar
-                    [{ 'indent': '-1' }, { 'indent': '+1' }], // Ichki joylashuv
-                    [{ 'direction': 'rtl' }], // Matn yo‘nalishi
-                    [{ 'align': [] }], // Matnni joylash
+                    [{'color': []}, {'background': []}], // 📌 **Matn rangi va fon rangi**
+                    [{'script': 'sub'}, {'script': 'super'}], // Yuqori va pastki indeks
+                    [{'list': 'ordered'}, {'list': 'bullet'}], // Ro‘yxatlar
+                    [{'indent': '-1'}, {'indent': '+1'}], // Ichki joylashuv
+                    [{'direction': 'rtl'}], // Matn yo‘nalishi
+                    [{'align': []}], // Matnni joylash
                     ['blockquote', 'code-block'], // Quote va kod bloki
                     ['link'], // Havola qo‘shish
                     ['clean'] // Tozalash
                 ]
-            } });
-        var contentEditor{{ ucfirst($lang) }} = new Quill('#contentEditor_{{ $lang }}', {theme: 'snow',
+            }
+        });
+        var contentEditor{{ ucfirst($lang) }} = new Quill('#contentEditor_{{ $lang }}', {
+            theme: 'snow',
             modules: {
                 toolbar: [
-                    [{ 'header': [1, 2, 3, false] }], // Sarlavhalar
+                    [{'header': [1, 2, 3, false]}], // Sarlavhalar
                     ['bold', 'italic', 'underline', 'strike'], // Matn stilizatsiyasi
-                    [{ 'color': [] }, { 'background': [] }], // 📌 **Matn rangi va fon rangi**
-                    [{ 'script': 'sub' }, { 'script': 'super' }], // Yuqori va pastki indeks
-                    [{ 'list': 'ordered' }, { 'list': 'bullet' }], // Ro‘yxatlar
-                    [{ 'indent': '-1' }, { 'indent': '+1' }], // Ichki joylashuv
-                    [{ 'direction': 'rtl' }], // Matn yo‘nalishi
-                    [{ 'align': [] }], // Matnni joylash
+                    [{'color': []}, {'background': []}], // 📌 **Matn rangi va fon rangi**
+                    [{'script': 'sub'}, {'script': 'super'}], // Yuqori va pastki indeks
+                    [{'list': 'ordered'}, {'list': 'bullet'}], // Ro‘yxatlar
+                    [{'indent': '-1'}, {'indent': '+1'}], // Ichki joylashuv
+                    [{'direction': 'rtl'}], // Matn yo‘nalishi
+                    [{'align': []}], // Matnni joylash
                     ['blockquote', 'code-block'], // Quote va kod bloki
                     ['link'], // Havola qo‘shish
                     ['clean'] // Tozalash
                 ]
-            } });
+            }
+        });
         @endforeach
 
         function updateEditorContent() {
@@ -461,7 +474,9 @@
                                                 <option value="null">Null</option>
                                                 <option value="2/32GB">2/32 GB</option>
                                                 <option value="4/64GB">4/64 GB</option>
+                                                <option value="4/128GB">4/128 GB</option>
                                                 <option value="6/128GB">6/128 GB</option>
+                                                <option value="6/256GB">6/256 GB</option>
                                                 <option value="8/256GB">8/256 GB</option>
                                                 <option value="12/512GB">12/512 GB</option>
                                                 <option value="12/1TB">12/1 TB</option>
