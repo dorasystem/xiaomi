@@ -41,7 +41,7 @@ class NewsController extends Controller
             'content_ru' => 'nullable|string',
             'content_en' => 'nullable|string',
             'date' => 'nullable|string',
-            'status' => 'nullable|string',
+            'status' => 'nullable|string|in:popular',
             'image' => 'nullable|image|mimes:jpeg,png,jpg,gif,webp|max:2048',
         ]);
 
@@ -53,10 +53,8 @@ class NewsController extends Controller
         }
 
         $news = News::create($data);
-        // Generate and set the slug
         $news->slug = Str::slug($request->title_en) . '-' . $news->id;
         $news->save();
-
         return redirect()->route('news.index')->with('success', 'News created successfully.');
     }
 
@@ -82,7 +80,7 @@ class NewsController extends Controller
             'content_ru' => 'nullable|string',
             'content_en' => 'nullable|string',
             'date' => 'nullable|string',
-            'status' => 'nullable|string',
+            'status' => 'nullable|string|in:popular',
             'image' => 'nullable|image|mimes:jpeg,png,jpg,gif,webp|max:2048',
         ]);
 

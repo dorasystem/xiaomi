@@ -56,7 +56,7 @@ class MainController extends Controller
         $products = Product::latest()->take(6)->get();
         $new = News::latest()->first();
         $news1 = News::orderBy('date', 'desc')->skip(1)->take(4)->get();
-        $news2 = News::orderBy('date', 'desc')->skip(4)->take(4)->get();
+        $news2 = News::orderBy('status', 'popular')->skip(4)->take(4)->get();
         $categories = Category::latest()->get();
         $category1 = $categories->firstWhere('id', 1);
         $category37 = $categories->firstWhere('id', 37);

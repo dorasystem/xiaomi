@@ -92,6 +92,14 @@
                                         <label for="date">Дата:</label>
                                         <input type="date" class="form-control" id="date" name="date" value="{{ old('date', $news->date ? \Carbon\Carbon::parse($news->date)->format('Y-m-d') : '') }}">
                                     </div>
+                                    <div class="form-group pb-3">
+                                        <label>
+                                            <input type="checkbox" id="status" name="status" value="popular"
+                                                {{ old('status', $news->status ?? '') === 'popular' ? 'checked' : '' }}>
+                                            Popular
+                                        </label>
+                                    </div>
+
                                 </div>
                             </div>
                         </div>

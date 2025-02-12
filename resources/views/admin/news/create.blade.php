@@ -89,6 +89,13 @@
                                         <label for="date">Дата:</label>
                                         <input type="date" class="form-control" id="date" name="date">
                                     </div>
+                                    <div class="form-group pb-3">
+                                        <label>
+                                            <input type="checkbox" id="status" name="status" value="popular">
+                                            Popular
+                                        </label>
+                                    </div>
+
                                 </div>
                             </div>
                         </div>
