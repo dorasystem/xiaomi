@@ -209,8 +209,14 @@ $isInCompare = in_array($product->id, session('compares', []));
                             @endphp
 
                             <div class="fs-24 fw-bold mb-2">
-                                {{ number_format($variants->first()->discount_price, 0, ',', ' ') }} <span>UZS</span>
+                                @if (!empty($variants->first()->discount_price))
+                                    {{ number_format((float) $variants->first()->discount_price, 0, ',', ' ') }}
+                                @else
+                                    {{ number_format((float) $variants->first()->price, 0, ',', ' ') }}
+                                @endif
+                                <span>UZS</span>
                             </div>
+
                             <div class="">
                                 <div class="text-grey mb-2 fs-14">@lang('home.installments')</div>
                                 <div class="text-center justify-content-center mb-3 fs-14 p-1 rounded bg-darkgrey border-orange installment-option"

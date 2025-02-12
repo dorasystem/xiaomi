@@ -477,7 +477,7 @@
                                                         class="d-flex flex-column justify-content-between product-text p-4 rounded-bottom">
                                                         <div
                                                             class="d-flex align-items-end justify-content-between gap-3 pt-2">
-                                                            @if ($cheapestVariant->discount_price !== null)
+                                                            @if ($cheapestVariant->discount_price )
                                                                 <div class="fw-bold text-orange ">
                                                                     {{ number_format($cheapestVariant->discount_price, 0, ',', ' ') }}
                                                                     UZS
