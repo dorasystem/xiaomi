@@ -55,9 +55,11 @@
                                                                 <img src="{{ asset('storage/' . $image) }}" alt="image"
                                                                      style="width: 100px; height: 100px; object-fit: cover;">
                                                             </a>
-                                                            <button type="button" class="btn btn-danger btn-sm delete-image-btn" data-lang="{{ $lang }}" data-image="{{ $image }}"
-                                                                    style="position: absolute; top: 0; right: 0;">X
-                                                            </button>
+                                                            <div class="image-container" style="position: relative; display: inline-block;">
+                                                            <button type="button" class="btn btn-danger btn-sm delete-image-btn"
+                                                                    data-lang="{{ $lang }}"
+                                                                    data-image="{{ $image }}"
+                                                                    style="position: absolute; top: 0; right: 0;">X</button> </div>
                                                             <select name="product_ids[{{ $lang }}][]" class="form-control mt-2">
                                                                 <option value="">Выберите продукт</option>
                                                                 @foreach ($products as $product)
@@ -124,4 +126,37 @@
             </div>
         </main>
     </form>
+    <script>
+        document.addEventListener("DOMContentLoaded", function () {
+            let deleteImagesInput = document.getElementById("delete_images");
+
+            document.querySelectorAll(".delete-image-btn").forEach(button => {
+                button.addEventListener("click", function () {
+                    let lang = this.dataset.lang;
+                    let image = this.dataset.image;
+
+                    // delete_images maydonidagi mavjud ma'lumotlarni olish
+                    let deleteImages = JSON.parse(deleteImagesInput.value || "{}");
+
+                    // Agar tildagi massiv mavjud bo'lmasa, uni yaratamiz
+                    if (!deleteImages[lang]) {
+                        deleteImages[lang] = [];
+                    }
+
+                    // Rasmni ro‘yxatga qo‘shamiz
+                    if (!deleteImages[lang].includes(image)) {
+                        deleteImages[lang].push(image);
+                    }
+
+                    // Yangi ma'lumotni inputga yozamiz
+                    deleteImagesInput.value = JSON.stringify(deleteImages);
+
+                    // ✅ HTML dan rasmni o‘chirish
+                    this.closest(".image-container").remove();
+                });
+            });
+        });
+
+    </script>
+
 @endsection

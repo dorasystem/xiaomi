@@ -39,6 +39,7 @@ class MainBannerController extends Controller
         // ❌ DELETE: Rasm o‘chirish
         $deleteImages = json_decode($request->input('delete_images', '{}'), true);
 
+
         if (!empty($deleteImages)) {
             foreach (['uz', 'ru', 'en'] as $lang) {
                 if (isset($deleteImages[$lang])) {
