@@ -106,6 +106,10 @@
                                                         2/32 GB
                                                     </option>
                                                     <option
+                                                        value="3/64GB" {{ $price->storage == '3/64GB' ? 'selected' : '' }}>
+                                                        3/64 GB
+                                                    </option>
+                                                    <option
                                                         value="4/64GB" {{ $price->storage == '4/64GB' ? 'selected' : '' }}>
                                                         4/64 GB
                                                     </option>
@@ -473,6 +477,7 @@
                                             <select class="form-control" name="storage[]">
                                                 <option value="null">Null</option>
                                                 <option value="2/32GB">2/32 GB</option>
+                                                <option value="3/64GB">3/64 GB</option>
                                                 <option value="4/64GB">4/64 GB</option>
                                                 <option value="4/128GB">4/128 GB</option>
                                                 <option value="6/128GB">6/128 GB</option>
