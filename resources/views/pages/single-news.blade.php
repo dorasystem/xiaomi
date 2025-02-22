@@ -18,9 +18,12 @@ $lang = \Illuminate\Support\Facades\App::getLocale();
                 <div class="text-grey">{{ \Carbon\Carbon::parse($news['date'])->format('d.m.Y') }}</div>
             </div>
         </div> --}}
+        <img src="{{ asset('storage/' . $news->image) }}" alt="" width="100%" class="d-block d-sm-none rounded "  style="margin-bottom:10px ">
          <div class="col-12 pe-lg-5 pe-2 mb-4 d-sm-block d-none">
             <div class="newbanner w-100 rounded text-white d-flex flex-column justify-content-end"
                 style="background-image: url('{{ asset('storage/' . $news->image) }}'); height:400px;" >
+
+
                 <h1 class="mb-4">
                     {{ $news['title_' . $locale] ?? ' ' }}
                 </h1>
