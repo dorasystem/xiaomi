@@ -105,6 +105,11 @@
                                                         value="2/32GB" {{ $price->storage == '2/32GB' ? 'selected' : '' }}>
                                                         2/32 GB
                                                     </option>
+
+                                                    <option
+                                                        value="2/64GB" {{ $price->storage == '2/64GB' ? 'selected' : '' }}>
+                                                        2/64 GB
+                                                    </option>
                                                     <option
                                                         value="3/64GB" {{ $price->storage == '3/64GB' ? 'selected' : '' }}>
                                                         3/64 GB
@@ -120,6 +125,9 @@
                                                     <option
                                                         value="6/128GB" {{ $price->storage == '6/128GB' ? 'selected' : '' }}>
                                                         6/128 GB
+                                                    </option>                                                    <option
+                                                        value="8/128GB" {{ $price->storage == '8/128GB' ? 'selected' : '' }}>
+                                                        8/128 GB
                                                     </option>
                                                     <option
                                                         value="8/256GB" {{ $price->storage == '8/256GB' ? 'selected' : '' }}>
@@ -477,10 +485,12 @@
                                             <select class="form-control" name="storage[]">
                                                 <option value="null">Null</option>
                                                 <option value="2/32GB">2/32 GB</option>
+                                                <option value="2/64GB">2/64 GB</option>
                                                 <option value="3/64GB">3/64 GB</option>
                                                 <option value="4/64GB">4/64 GB</option>
                                                 <option value="4/128GB">4/128 GB</option>
                                                 <option value="6/128GB">6/128 GB</option>
+                                                <option value="8/128GB">8/128 GB</option>
                                                 <option value="6/256GB">6/256 GB</option>
                                                 <option value="8/256GB">8/256 GB</option>
                                                 <option value="12/512GB">12/512 GB</option>
