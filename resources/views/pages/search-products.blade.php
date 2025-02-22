@@ -438,7 +438,7 @@ $categories = \App\Models\Category::all();
                             </form>
 
                         </div>
-                        <div class="row">
+                        <div class="row AAD">
                             @if (!empty($products) && $products->count())
                                 @foreach ($products as $product)
                                     @php
@@ -612,6 +612,13 @@ $categories = \App\Models\Category::all();
     @endif
 
     <script>
+
+
+        document.addEventListener("DOMContentLoaded", function() {
+            document.querySelectorAll(".AAD strong").forEach(el => el.remove());
+        });
+
+
         document.addEventListener('DOMContentLoaded', function() {
             const allCategoriesCheckbox = document.getElementById('all-categories');
             const allCategoriesCheckbox2 = document.getElementById('all-categories2');
