@@ -190,7 +190,7 @@ class MainController extends Controller
 
                     if ($discountPrice) {
                         // Agar chegirma mavjud bo'lsa, eski narxni `del` bilan ko'rsatish
-                        $price = '<del style="color:black; margin-right:5px;">' . number_format($originalPrice, 0, ',', ' ') . ' сум</del> ' .
+                        $price = '<del style="color:gray; margin-right:5px;">' . number_format($originalPrice, 0, ',', ' ') . ' сум</del> ' .
                             '<span style="color:#ff6700;">' . number_format($discountPrice, 0, ',', ' ') . ' сум</span>';
                     } else {
                         // Agar chegirma yo‘q bo‘lsa, faqat oddiy narx chiqsin
@@ -201,17 +201,22 @@ class MainController extends Controller
                 }
 
                 $output .= '
-        <div class="suggestion-item">
-            <img src="' . asset('storage/' . $product->image) . '" width="50">
-            <div>
-                <strong>' . $product->{"name_$lang"} . '</strong><br>
-                ' . $price . '
-            </div>
-        </div>';
+
+            <a href="' . route('single.product', $product->slug) . '" style="text-decoration: none; color: inherit;">
+               <div class="suggestion-item ">
+                <img src="' . asset('storage/' . $product->image) . '" width="50">
+                <div class="mx-2">
+                    <strong style="color:gray;">' . $product->{"name_$lang"} . '</strong><br>
+                    ' . $price . '
+                </div>
+                </div>
+            </a>
+        ';
             }
         } else {
             $output = '<div class="suggestion-item">Natija topilmadi</div>';
         }
+
 
 
         return response()->json($output);
