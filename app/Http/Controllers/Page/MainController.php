@@ -190,7 +190,7 @@ class MainController extends Controller
 
                     if ($discountPrice) {
                         // Agar chegirma mavjud bo'lsa, eski narxni `del` bilan ko'rsatish
-                        $price = '<del style="color:gray; margin-right:5px;">' . number_format($originalPrice, 0, ',', ' ') . ' сум</del> ' .
+                        $price = '<del style="color:black; margin-right:5px;">' . number_format($originalPrice, 0, ',', ' ') . ' сум</del> ' .
                             '<span style="color:#ff6700;">' . number_format($discountPrice, 0, ',', ' ') . ' сум</span>';
                     } else {
                         // Agar chegirma yo‘q bo‘lsa, faqat oddiy narx chiqsin
