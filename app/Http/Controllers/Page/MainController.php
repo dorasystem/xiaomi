@@ -38,7 +38,10 @@ class MainController extends Controller
 
         $productsWithoutRandom = $products->reject(function ($product) use ($randomProducts) {
             return $randomProducts->contains('id', $product->id);
+        })->filter(function ($product) {
+            return $product->discount_status; // Faqat discount_status = true bo'lgan mahsulotlarni qoldiramiz
         });
+
 
         // Bir nechta kalit so'zlarni olish
         $keywords = StaticKeyword::all(); // yoki filterlab olish

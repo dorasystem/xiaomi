@@ -196,7 +196,7 @@ foreach ($keywords as $keyword) {
                                         </div>
                                         <a href="{{ route('single.product', $product->slug) }}">
                                             <div class="productName fw-bold">
-                                                {{ \Str::words($product['name_' . $lang], 3) }}</div>
+                                                {{ \Str::words($product['name_' . $lang]) }}</div>
                                         </a>
                                         <a class="truncate-text" href="{{ route('single.product', $product->slug) }}">
                                             @php
@@ -310,7 +310,7 @@ $description = isset($matches[1])
                                         </div>
                                         <a href="{{ route('single.product', $product->slug) }}">
                                             <div class="productName fw-bold">
-                                                {{ \Str::words($product['name_' . $lang], 3) }}</div>
+                                                {{ \Str::words($product['name_' . $lang]) }}</div>
                                         </a>
                                         <a class="truncate-text" href="{{ route('single.product', $product->slug) }}">
                                             @php
