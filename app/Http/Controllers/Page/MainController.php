@@ -58,8 +58,6 @@ class MainController extends Controller
         $news1 = News::orderBy('date', 'desc')->skip(1)->take(4)->get();
         $news2 = News::where('status', 'popular')
             ->orderBy('created_at', 'desc')
-            ->skip(4)
-            ->take(4)
             ->get();
         $categories = Category::latest()->get();
         $category1 = $categories->firstWhere('id', 1);
