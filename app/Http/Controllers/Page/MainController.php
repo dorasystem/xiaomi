@@ -214,7 +214,7 @@ class MainController extends Controller
         ';
             }
         } else {
-            $output = '<div class="suggestion-item">' . __('messages.no_results') . '</div>';
+            $output = '<div class="suggestion-item">' . __('messages.not_available') . '</div>';
 
         }
 
