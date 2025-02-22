@@ -117,6 +117,7 @@ Route::post('/toggle-favorite', [CartController::class, 'toggleFavorite'])->name
 Route::post('/comments', [CommentController::class, 'store'])->name('comments.store');
 
 Route::get('/products/search/ajax', [MainController::class, 'ajaxSearch'])->name('products.search.ajax');
+Route::post('/products/{id}/duplicate', [ProductController::class, 'duplicate'])->name('products.duplicate');
 
 Route::get('/products/search', [MainController::class, 'productSearch'])->name('products.search');
 Route::get('/products/filter', [MainController::class, 'filterProducts'])->name('products.filter');

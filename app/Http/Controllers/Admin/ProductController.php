@@ -11,6 +11,32 @@ use Illuminate\Support\Facades\Storage;
 use Illuminate\Support\Str; // Add this import
 class ProductController extends Controller
 {
+
+    public function duplicate($id)
+    {
+        $product = Product::findOrFail($id); // Asosiy mahsulotni topish
+        $newProduct = $product->replicate(); // Nusxa olish
+
+        // Yangi slug yaratish
+        $newProduct->slug = $product->slug . '-' . Str::random(5);
+
+        // Nomlarni o'zgartirish
+        $newProduct->name_uz = $product->name_uz . ' (Copy)';
+        $newProduct->name_ru = $product->name_ru . ' (Copy)';
+        $newProduct->name_en = $product->name_en . ' (Copy)';
+
+        $newProduct->save(); // Yangi mahsulotni saqlash
+
+        foreach ($product->variants as $variant) {
+            $newVariant = $variant->replicate(); // Variantni nusxalash
+            $newVariant->product_id = $newProduct->id; // Yangi mahsulotga bog'lash
+            $newVariant->sku = $variant->sku . '-' . Str::random(3); // SKU unikal qilish
+            $newVariant->save(); // Variantni saqlash
+        }
+
+        return redirect()->route('products.index')->with('success', 'Mahsulot va variantlari nusxalandi!');
+    }
+
     public function deleteVariant($id)
     {
         // Variantni topish

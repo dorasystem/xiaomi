@@ -64,6 +64,10 @@
                                                         </a>
                                                     </button>
                                                 </form>
+                                                <form action="{{ route('products.duplicate', $product->id) }}" method="POST" style="display:none;">
+                                                    @csrf
+                                                    <button type="submit" class="btn btn-warning">Dubl</button>
+                                                </form>
                                             </div>
                                         </td>
                                     </tr>
