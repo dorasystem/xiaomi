@@ -241,6 +241,11 @@
                                             {{ old('popular', isset($product) && $product->popular ? 'checked' : '') }}>
                                         <label for="popular" class="form-check-label">Популярный продукт</label>
                                     </div>
+                                    <div class="form-check pb-3">
+                                        <input type="checkbox" id="discount_status" name="discount_status" class="form-check-input"
+                                            {{ old('discount_status', isset($product) && $product->discount_status   ? 'checked' : '' )}}>
+                                        <label for="discount_status" class="form-check-label">Скидка на продукт</label>
+                                    </div>
 
 
                                     <div class="form-group pb-3">
