@@ -44,7 +44,7 @@
                                             <img src="{{ asset('storage/' . $product->image) }}" alt="Image"
                                                 style="width: 50px; height: 50px; object-fit: cover;">
                                         </td>
-                                        <td>{{ \Str::words($product->name_uz, 3) }}</td>
+                                        <td>{{ \Str::words($product->name_uz) }}</td>
                                         <td class="text-end">
                                             <div class="btn-group" role="group">
                                                 <a href="{{ route('products.edit', $product->id) }}"
