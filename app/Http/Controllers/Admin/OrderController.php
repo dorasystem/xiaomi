@@ -43,7 +43,6 @@ class OrderController extends Controller
             'product_id' => 'required|integer|exists:products,id', // Validate product_id
         ]);
 
-
         // Create the order
         $order = Order::create([
             'first_name' => $validated['first_name'],
@@ -53,10 +52,30 @@ class OrderController extends Controller
         // Add the product as an order item
         $orderItem = OrderItem::create([
             'order_id' => $order->id,
-            'product_id' => $validated['product_id'], // Now using the correct product_id
-            'quantity' => 1, // Default to 1 for now
+            'product_id' => $validated['product_id'],
+            'quantity' => 1,
             'price' => $validated['product_price'],
             'total' => $validated['product_price'],
+        ]);
+
+        // ✅ Telegramga xabar jo‘natish
+        $apiKey = "7538620633:AAH1UhziRkCXnTDXRKB9kgPh-IPDm_z5tY8"; // API Key
+        $chatId = "7422505676"; // Telegram Chat ID
+
+        $message = "<b>🛍 Yangi Buyurtma</b>\n\n";
+        $message .= "👤 <b>Ism:</b> " . $validated['first_name'] . "\n";
+        $message .= "📞 <b>Telefon:</b> " . $validated['phone'] . "\n";
+        $message .= "🛒 <b>Mahsulot:</b> " . $validated['product_name'] . "\n";
+        $message .= "💰 <b>Narx:</b> " . number_format($validated['product_price'], 2) . " so'm\n";
+        if (!empty($validated['product_image'])) {
+            $message .= "🖼 <b>Rasm:</b> " . $validated['product_image'] . "\n";
+        }
+        $message .= "<b>📅 Sana:</b> " . now()->format('Y-m-d H:i') . "\n";
+
+        Http::post("https://api.telegram.org/bot{$apiKey}/sendMessage", [
+            'chat_id' => $chatId,
+            'text' => $message,
+            'parse_mode' => 'HTML',
         ]);
 
         // Redirect or return success message
