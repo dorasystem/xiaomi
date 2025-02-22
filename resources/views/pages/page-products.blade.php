@@ -554,7 +554,9 @@ $description = isset($matches[1])
                                 <x-page.not-found/>
                             @endif
                         </div>
-                        {{ $products->links('pagination::bootstrap-4') }}
+                        {{ $products->onEachSide(1)->links('pagination::bootstrap-4') }}
+
+
                     </div>
                 </div>
             </div>
@@ -780,6 +782,18 @@ $description = isset($matches[1])
         input[type="range"]::-webkit-slider-thumb {
             background: linear-gradient(to right, #FF6600, #FFCC00);
         }
+        @media (max-width: 576px) {
+            .pagination {
+                flex-wrap: wrap;
+                justify-content: center;
+            }
+
+            .pagination li {
+                margin: 2px;
+                font-size: 14px;
+            }
+        }
+
     </style>
     <script>
         document.addEventListener("DOMContentLoaded", function () {
