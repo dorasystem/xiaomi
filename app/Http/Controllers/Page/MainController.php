@@ -310,7 +310,10 @@ class MainController extends Controller
         }
 
         $childCategoryIds = Category::where('parent_id', $category->id)->pluck('id')->toArray();
-        $products = Product::whereIn('category_id', array_merge([$category->id], $childCategoryIds))->paginate(9);
+        $products = Product::whereIn('category_id', array_merge([$category->id], $childCategoryIds))
+            ->orderBy('created_at', 'desc')
+            ->paginate(9);
+
 
         $search = $request->input('search');
 
