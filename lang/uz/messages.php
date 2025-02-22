@@ -1,7 +1,7 @@
 <?php
 
 return array (
-  'delivery' => 'Yetkazib berish test',
+  'delivery' => 'Yetkazib berish',
   'payment' => 'To‘lov',
   'authenticity_check' => 'Haqiqiylikni tekshirish',
   'warranty' => 'Kafolat',
