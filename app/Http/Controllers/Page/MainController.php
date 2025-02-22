@@ -214,7 +214,8 @@ class MainController extends Controller
         ';
             }
         } else {
-            $output = '<div class="suggestion-item">Natija topilmadi</div>';
+            $output = '<div class="suggestion-item">' . __('messages.no_results') . '</div>';
+
         }
 
 

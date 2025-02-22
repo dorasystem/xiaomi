@@ -15,4 +15,5 @@ return array (
   'smart_home' => 'Умный дом',
   'not_available' => 'Недоступно',
   'all' => 'Все',
+    'no_results' => 'Результат не найден',
 );
