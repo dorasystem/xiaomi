@@ -32,9 +32,8 @@ class MainController extends Controller
 
         $newProducts = Product::orderBy('created_at', 'desc')->take(5)->get();
 
-        $products = Product::orderBy('created_at', 'desc')->limit(PHP_INT_MAX)->offset(5)->get();
 
-        $randomProducts = $products->random(5);
+        $randomProducts = Product::where('recommend_status',1)->get();
 
         $productsWithoutRandom = Product::where('discount_status',1)->get();
 

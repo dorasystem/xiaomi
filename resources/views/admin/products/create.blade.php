@@ -181,9 +181,17 @@
                                         <label for="popular" class="form-check-label">Популярный продукт</label>
                                     </div>
                                     <div class="form-check pb-3">
-                                        <input type="checkbox" id="discount_status" name="discount_status" class="form-check-input"
+                                        <input type="checkbox" id="discount_status" name="discount_status"
+                                               class="form-check-input"
                                             {{ old('discount_status', $product->discount_status ?? false) ? 'checked' : '' }}>
                                         <label for="discount_status" class="form-check-label">Скидка на продукт</label>
+                                    </div>
+                                    <div class="form-check pb-3">
+                                        <input type="checkbox" id="recommend_status" name="recommend_status"
+                                               class="form-check-input"
+                                            {{ old('recommend_status', $product->recommend_status ?? false) ? 'checked' : '' }}>
+                                        <label for="recommend_status" class="form-check-label">Recommend на
+                                            продукт</label>
                                     </div>
 
 
@@ -271,38 +279,42 @@
     <script>
 
         @foreach (['uz', 'en', 'ru'] as $lang)
-        var descriptionEditor{{ ucfirst($lang) }} = new Quill('#descriptionEditor_{{ $lang }}', {theme: 'snow',
+        var descriptionEditor{{ ucfirst($lang) }} = new Quill('#descriptionEditor_{{ $lang }}', {
+            theme: 'snow',
             modules: {
                 toolbar: [
-                    [{ 'header': [1, 2, 3, false] }], // Sarlavhalar
+                    [{'header': [1, 2, 3, false]}], // Sarlavhalar
                     ['bold', 'italic', 'underline', 'strike'], // Matn stilizatsiyasi
-                    [{ 'color': [] }, { 'background': [] }], // 📌 **Matn rangi va fon rangi**
-                    [{ 'script': 'sub' }, { 'script': 'super' }], // Yuqori va pastki indeks
-                    [{ 'list': 'ordered' }, { 'list': 'bullet' }], // Ro‘yxatlar
-                    [{ 'indent': '-1' }, { 'indent': '+1' }], // Ichki joylashuv
-                    [{ 'direction': 'rtl' }], // Matn yo‘nalishi
-                    [{ 'align': [] }], // Matnni joylash
+                    [{'color': []}, {'background': []}], // 📌 **Matn rangi va fon rangi**
+                    [{'script': 'sub'}, {'script': 'super'}], // Yuqori va pastki indeks
+                    [{'list': 'ordered'}, {'list': 'bullet'}], // Ro‘yxatlar
+                    [{'indent': '-1'}, {'indent': '+1'}], // Ichki joylashuv
+                    [{'direction': 'rtl'}], // Matn yo‘nalishi
+                    [{'align': []}], // Matnni joylash
                     ['blockquote', 'code-block'], // Quote va kod bloki
                     ['link'], // Havola qo‘shish
                     ['clean'] // Tozalash
                 ]
-            } });
-        var contentEditor{{ ucfirst($lang) }} = new Quill('#contentEditor_{{ $lang }}', {theme: 'snow',
+            }
+        });
+        var contentEditor{{ ucfirst($lang) }} = new Quill('#contentEditor_{{ $lang }}', {
+            theme: 'snow',
             modules: {
                 toolbar: [
-                    [{ 'header': [1, 2, 3, false] }], // Sarlavhalar
+                    [{'header': [1, 2, 3, false]}], // Sarlavhalar
                     ['bold', 'italic', 'underline', 'strike'], // Matn stilizatsiyasi
-                    [{ 'color': [] }, { 'background': [] }], // 📌 **Matn rangi va fon rangi**
-                    [{ 'script': 'sub' }, { 'script': 'super' }], // Yuqori va pastki indeks
-                    [{ 'list': 'ordered' }, { 'list': 'bullet' }], // Ro‘yxatlar
-                    [{ 'indent': '-1' }, { 'indent': '+1' }], // Ichki joylashuv
-                    [{ 'direction': 'rtl' }], // Matn yo‘nalishi
-                    [{ 'align': [] }], // Matnni joylash
+                    [{'color': []}, {'background': []}], // 📌 **Matn rangi va fon rangi**
+                    [{'script': 'sub'}, {'script': 'super'}], // Yuqori va pastki indeks
+                    [{'list': 'ordered'}, {'list': 'bullet'}], // Ro‘yxatlar
+                    [{'indent': '-1'}, {'indent': '+1'}], // Ichki joylashuv
+                    [{'direction': 'rtl'}], // Matn yo‘nalishi
+                    [{'align': []}], // Matnni joylash
                     ['blockquote', 'code-block'], // Quote va kod bloki
                     ['link'], // Havola qo‘shish
                     ['clean'] // Tozalash
                 ]
-            } });
+            }
+        });
         @endforeach
 
         function updateEditorContent() {

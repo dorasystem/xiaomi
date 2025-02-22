@@ -246,6 +246,12 @@
                                             {{ old('discount_status', isset($product) && $product->discount_status   ? 'checked' : '' )}}>
                                         <label for="discount_status" class="form-check-label">Скидка на продукт</label>
                                     </div>
+                                    <div class="form-check pb-3">
+                                        <input type="checkbox" id="recommend_status" name="recommend_status"
+                                               class="form-check-input"
+                                            {{ old('recommend_status', isset($product) && $product->recommend_status   ? 'checked' : '' )}}>
+                                        <label for="recommend_status" class="form-check-label">Recommend на продукт</label>
+                                    </div>
 
 
                                     <div class="form-group pb-3">

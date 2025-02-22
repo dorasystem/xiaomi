@@ -135,6 +135,7 @@ class ProductController extends Controller
             'gift_image' => $giftImagePath,
             'popular' => $request->has('popular'),
             'discount_status' => $request->has('discount_status'),
+            'recommend_status' => $request->has('recommend_status'),
         ]);
 
         // Generate and set the slug
@@ -286,6 +287,7 @@ class ProductController extends Controller
             'gift_name_en' => $validatedData['gift_name_en'],
             'popular' => $request->has('popular'),
             'discount_status' => $request->has('discount_status'),
+            'recommend_status' => $request->has('recommend_status'),
         ]);
 
         $slug = Str::slug($request->name_en) . '-' . $product->id; // Combine name and id to create slug
