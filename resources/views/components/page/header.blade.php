@@ -205,43 +205,67 @@ $categories = Category::whereNull('parent_id')->get();
                                 <span class="d-lg-block d-none text-nowrap"> @lang('footer.catalog')</span>
                             </button>
                             <div class="w-100">
-                                <form method="GET" action="{{ route('products.search') }}">
-                                    <div class="d-flex align-items-center w-100 nav_form">
-                                        <button class="border-0 bg-transparent text-dark search-btn-dark ps-4"
-                                                type="submit" disabled>
-                                            <i class="fas fa-search"></i>
-                                        </button>
+
+                                <form id="searchForm">
+                                    <div class="d-flex align-items-center w-100 nav_form position-relative">
                                         <input id="searchInput" name="search"
                                                class="form-control border-0 bg-transparent mr-sm-2 search-bar focus_none text-white"
-                                               type="search" aria-label="Search" placeholder="@lang('home.search')"
-                                               value="{{ request()->query('search') }}"/>
-                                        <button class="border-0 px-4 bg-transparent text-white search-btn" type="submit"
-                                                disabled>
-                                            <i class="fas fa-search"></i>
-                                        </button>
+                                               type="search" aria-label="Search" placeholder="@lang('home.search')" />
+
+                                        <div id="suggestions" class="suggestions-box"></div>
                                     </div>
                                 </form>
+
+                                <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
                                 <script>
-                                    document.addEventListener('DOMContentLoaded', function () {
-                                        const searchInput = document.getElementById('searchInput');
-                                        const searchButtons = document.querySelectorAll('.search-btn, .search-btn-dark');
+                                    $(document).ready(function () {
+                                        $("#searchInput").on("input", function () {
+                                            let query = $(this).val();
+                                            if (query.length > 1) {
+                                                $.ajax({
+                                                    url: "{{ route('products.search.ajax') }}",
+                                                    type: "GET",
+                                                    data: { search: query },
+                                                    success: function (data) {
+                                                        $("#suggestions").html(data).show();
+                                                    },
+                                                });
+                                            } else {
+                                                $("#suggestions").hide();
+                                            }
+                                        });
 
-                                        // Tugmachalarni dastlab o‘chirish (agar input bo‘sh bo‘lsa)
-                                        toggleSearchButtons();
-
-                                        // Input qiymati o'zgarganda tugmachalarni faollashtirish yoki o'chirish
-                                        searchInput.addEventListener('input', toggleSearchButtons);
-
-                                        function toggleSearchButtons() {
-                                            const isInputEmpty = searchInput.value.trim() === '';
-                                            searchButtons.forEach(button => {
-                                                button.disabled = isInputEmpty; // Tugmachani faollashtirish yoki o'chirish
-                                                button.style.opacity = isInputEmpty ? '0.5' : '1'; // Tugmachaning ko'rinishini boshqarish
-                                                button.style.cursor = isInputEmpty ? 'not-allowed' : 'pointer'; // Tugmachaning ko'rinishini boshqarish
-                                            });
-                                        }
+                                        $(document).on("click", function (event) {
+                                            if (!$("#searchForm").is(event.target) && $("#searchForm").has(event.target).length === 0) {
+                                                $("#suggestions").hide();
+                                            }
+                                        });
                                     });
                                 </script>
+                                <style>
+                                    .suggestions-box {
+                                        position: absolute;
+                                        top: 46px;
+                                        left: 0;
+                                        width: 100%;
+                                        background: white;
+                                        border: 1px solid #ddd;
+                                        border-radius: 0 0 5px 5px;
+                                        box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.1);
+                                        display: none;
+                                        z-index: 10;
+                                    }
+                                    .suggestion-item {
+                                        display: flex;
+                                        align-items: center;
+                                        padding: 10px;
+                                        border-bottom: 1px solid #eee;
+                                        cursor: pointer;
+                                    }
+                                    .suggestion-item:hover {
+                                        background: #f5f5f5;
+                                    }
+                                </style>
                             </div>
                         </div>
                     </div>

@@ -168,6 +168,57 @@ class MainController extends Controller
 
         return view('pages.search-products', compact('products', 'lang', 'search'));
     }
+
+    public function ajaxSearch(Request $request)
+    {
+        $lang = app()->getLocale();
+        $search = $request->input('search');
+
+        $products = Product::where("name_$lang", 'like', "%$search%")
+            ->with('variants') // Eager load variants
+            ->limit(5)
+            ->get();
+
+        $output = "";
+        if ($products->count() > 0) {
+            foreach ($products as $product) {
+                $variant = $product->variants->first(); // Get the first variant
+
+                if ($variant) {
+                    $discountPrice = $variant->discount_price;
+                    $originalPrice = $variant->price;
+
+                    if ($discountPrice) {
+                        // Agar chegirma mavjud bo'lsa, eski narxni `del` bilan ko'rsatish
+                        $price = '<del style="color:gray; margin-right:5px;">' . number_format($originalPrice, 0, ',', ' ') . ' сум</del> ' .
+                            '<span style="color:#ff6700;">' . number_format($discountPrice, 0, ',', ' ') . ' сум</span>';
+                    } else {
+                        // Agar chegirma yo‘q bo‘lsa, faqat oddiy narx chiqsin
+                        $price = '<span style="color:#ff6700;">' . number_format($originalPrice, 0, ',', ' ') . ' сум</span>';
+                    }
+                } else {
+                    $price = 'N/A';
+                }
+
+                $output .= '
+        <div class="suggestion-item">
+            <img src="' . asset('storage/' . $product->image) . '" width="50">
+            <div>
+                <strong>' . $product->{"name_$lang"} . '</strong><br>
+                ' . $price . '
+            </div>
+        </div>';
+            }
+        } else {
+            $output = '<div class="suggestion-item">Natija topilmadi</div>';
+        }
+
+
+        return response()->json($output);
+
+
+    }
+
     public function filterProducts(Request $request)
     {
         $minPrice = (int) $request->input('min_price', 1);

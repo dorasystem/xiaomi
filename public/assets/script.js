@@ -201,13 +201,17 @@ function openKatalog() {
 
 // Katalogni yopish
 function closeKatalog() {
-    katalog.style.display = "none";
-    overlay.style.display = "none";
-    document.body.style.overflow = "auto";
+    let katalog = document.getElementById("katalog");
+    let overlay = document.getElementById("overlay");
+    let toggleButtons = document.querySelector(".toggle-buttons"); // Agar class bo'lsa
 
-    // Tugma ikonkasini asl holatga qaytarish
-    toggleButtons.classList.remove("active");
+    if (katalog) katalog.style.display = "none";
+    if (overlay) overlay.style.display = "none";
+    if (toggleButtons) toggleButtons.classList.remove("active");
+
+    document.body.style.overflow = "auto";
 }
+
 
 // Hover holatini boshqarish
 const hoverItems = document.querySelectorAll(".hover-content");
