@@ -174,7 +174,6 @@ class MainController extends Controller
 
         $products = Product::where("name_$lang", 'like', "%$search%")
             ->with('variants') // Eager load variants
-            ->limit(5)
             ->get();
 
         $output = "";
