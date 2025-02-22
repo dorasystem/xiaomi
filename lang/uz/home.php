@@ -8,7 +8,7 @@ return array (
   'featured' => 'Sevimlilar',
   'special_offers' => 'Maxsus takliflar',
   'product_on_sale' => 'Sotuvdagi mahsulotlar',
-  'new_items' => 'Yangi elementlar',
+  'new_items' => 'Yangiliklar',
   'payment_text' => 'To\'lov',
   'useful_articles' => 'Foydali maqolalar',
   'show_more' => 'Ko\'proq ko\'rish',
@@ -49,24 +49,15 @@ return array (
   'no_other_news' => 'Boshqa yangiliklar hozircha yo‘q',
   'desc' => 'Tavsif',
   'specifications' => 'Xusisiyatlar',
-  'installment' => 'Bo`lib to`lash va Kredit',
+  'installment' => 'Bo`lib to`lash',
   'review' => 'Fikrlar',
   'payment' => 'Yetkazib berish va To`lov',
-  'inst_desc' => 'Hozir xarid qiling, keyinroq to\'lang kredit dasturlari va bo\'lib to\'lash imkoniyatlari bilan! Xaridni 36 oygacha kredit yoki bo\'lib to\'lash asosida dastlabki to\'lovsiz va ortiqcha to\'lovlarsiz amalga oshiring.
-
-                    Jarayonni yakunlash uchun bir nechta oddiy qadamni bajaring:
-
-                    3,000 dan 1,000,000 rublgacha bo\'lgan summaga mos keladigan mahsulotni tanlang.
-                    Savatchada Bo\'lib to\'lash to\'lov usulini tanlang, Sberbank Online tizimida avtorizatsiyadan o\'ting va bo\'lib to\'lash yoki kredit uchun ariza to\'ldiring.
-                    Bank arizangizni ko\'rib chiqishini kuting — bu bir necha daqiqa davom etadi.
-                    Agar arizangiz ma\'qullansa, mablag\' avtomatik ravishda do\'konga o\'tkaziladi.
-                    Buyurtmangizni o\'zingizga qulay usulda oling.
-                    Kredit Rossiya Sberbanki AJ tomonidan taqdim etiladi, Rossiya Bankining bank operatsiyalarini amalga oshirish uchun umumiy litsenziyasi ostida.',
+  'inst_desc' => 'Hoziroq xarid qiling va keyin to‘lang! 24 oygacha bo‘lib to‘lash imkoniyatini rasmiylashtiring, oldindan to‘lov talab qilinmaydi. Buning uchun faqat pasport va bank kartasi kifoya. Rasmiylashtirish bir necha daqiqa davom etadi — mahsulotni tanlang, "Bo‘lib to‘lash" opsiyasini tanlang va operator qo‘ng‘irog‘ini kuting.',
   'pay_des1' => 'Tez yetkazib berish onlayn to‘lov qilinganda amalga oshiriladi. Buyurtma agar soat 20:00 gacha amalga oshirilgan bo‘lsa, o‘sha kuni yetkaziladi',
-  'pay_des2' => 'Agar buyurtma soat 18:00 gacha amalga oshirilgan bo‘lsa, Toshkent bo‘ylab kuryer orqali yetkazib berish har qanday buyurtma summasida ertasi kuni amalga oshiriladi. Standart yetkazib berish narxi 490 ₽ ni tashkil etadi, agar buyurtma summasi 10 000 ₽ dan oshsa, yetkazib berish bepul. Katta hajmdagi mahsulotlarni yetkazib berish narxi mahsulot kartasi va savatchada ko‘rsatilgan.',
-  'pay_des3' => 'Xiaomi ning 26 rasmiy do‘konidan birida kerakli mahsulotni bron qiling. Buyurtma tasdiqlangandan so‘ng, uni tanlangan do‘konda to‘lab va olib ketishingiz mumkin',
-  'pay_des4' => 'Buyurtmani bank kartalari yoki naqd pul bilan do‘konda yoki kuryer orqali olish paytida to‘lashingiz mumkin. Hisob-faktura buyurtmani tasdiqlash paytida menejer tomonidan chiqariladi. Hisob-faktura chiqarilgandan so‘ng, mahsulot 2 kunga zaxiraga qo‘yiladi. Shu vaqt ichida mahsulot uchun to‘lovni amalga oshirish va menejerga xabar berish kerak.',
-  'pay_des5' => 'Agar kompaniya ehtiyojlari uchun xarid qilishni rejalashtirsangiz, biz sizga yuridik shaxslar uchun hisob-faktura orqali to‘lashni taklif etamiz. Hisob-faktura buyurtmani tasdiqlash paytida menejer tomonidan chiqariladi. Hisob-faktura chiqarilgandan so‘ng, mahsulot 3 kunga zaxiraga qo‘yiladi. Shu vaqt ichida mahsulot uchun to‘lovni amalga oshirish va menejerga xabar berish kerak.',
+  'pay_des2' => 'Buyurtma rasmiylashtirilgandan so‘ng, menejerimiz siz bilan bog‘lanib, buyurtmani tasdiqlaydi va yetkazib berish manzilini aniqlashtiradi. Manzil va har qanday o‘zgarishlarni menejerimiz bilan kelishish muhimdir. Biz sizning tovaringizni belgilangan muddatda yetkazib berish uchun qo‘limizdan kelganini qilamiz va barcha tafsilotlar aniqlangandan so‘ng aniq muddatlarni ma’lum qilamiz.',
+  'pay_des3' => 'Kerakli tovarni Xiaomi rasmiy do‘konlaridan birida bron qiling. Buyurtma tasdiqlangandan so‘ng, siz uni tanlangan do‘konda to‘lab, olib ketishingiz mumkin.',
+  'pay_des4' => 'Buyurtmani bank kartalari yoki naqd pul orqali do‘kon kassasida yoki yetkazib beruvchiga topshirilganida to‘lashingiz mumkin. Hisob-faktura buyurtma tasdiqlangandan so‘ng menejer tomonidan taqdim etiladi. Hisob-faktura chiqarilgandan so‘ng, tovar 2 kun davomida zaxiraga olinadi. Shu vaqt ichida to‘lovni amalga oshirish va bu haqda menejerga xabar berish kerak.',
+  'pay_des5' => 'Agar kompaniyangiz ehtiyojlari uchun xarid qilishni rejalashtirayotgan bo‘lsangiz, biz yuridik shaxslar uchun hisob-faktura orqali to‘lov imkoniyatini taklif qilamiz. Hisob-faktura buyurtma tasdiqlangandan so‘ng menejer tomonidan taqdim etiladi. Hisob-faktura chiqarilgandan so‘ng, tovar 3 kun davomida zaxiraga olinadi. Shu vaqt ichida to‘lovni amalga oshirish va bu haqda menejerga xabar berish kerak.',
   'title_des1' => 'Yandex. 4 soat ichida yetkazib berish',
   'title_des2' => 'Kuryer orqali yetkazib berish',
   'title_des3' => 'Do‘kondan olib ketish',
