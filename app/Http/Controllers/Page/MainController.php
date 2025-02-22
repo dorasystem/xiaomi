@@ -37,7 +37,7 @@ class MainController extends Controller
         $randomProducts = $products->random(5);
 
         $productsWithoutRandom = Product::where('discount_status',1)->get();
-        dd($productsWithoutRandom);
+
 
 
         // Bir nechta kalit so'zlarni olish
