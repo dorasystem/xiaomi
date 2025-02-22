@@ -444,7 +444,7 @@ $description = isset($matches[1])
                                 @endif
                             </div>
                             <a href="{{ route('single.product', $product->slug) }}">
-                                <div class="productName fw-bold"> {{ \Str::words($product['name_' . $lang], 3) }}</div>
+                                <div class="productName fw-bold"> {{ \Str::words($product['name_' . $lang]) }}</div>
                             </a>
                             <a class="truncate-text" href="{{ route('single.product', $product->slug) }}">
                                 @php

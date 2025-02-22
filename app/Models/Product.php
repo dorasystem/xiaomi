@@ -32,7 +32,8 @@ class Product extends Model
         'color_ru',
         'color_en',
         'popular',
-        'discount_status'
+        'discount_status',
+         'recommend_status',
     ];
 
     protected $casts = [
