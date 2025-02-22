@@ -20,7 +20,7 @@ $lang = \Illuminate\Support\Facades\App::getLocale();
         </div> --}}
          <div class="col-12 pe-lg-5 pe-2 mb-4 d-sm-block d-none">
             <div class="newbanner w-100 rounded text-white d-flex flex-column justify-content-end"
-                style="background-image: url('{{ asset('storage/' . $news->image) }}'); height:400px;">
+                style="background-image: url('{{ asset('storage/' . $news->image) }}'); height:400px;" >
                 <h1 class="mb-4">
                     {{ $news['title_' . $locale] ?? ' ' }}
                 </h1>
@@ -28,10 +28,11 @@ $lang = \Illuminate\Support\Facades\App::getLocale();
                     {{ \Carbon\Carbon::parse($news['date'])->format('d.m.Y') }}</small>
             </div>
         </div>
-        <div class="mb-5">
-            {!! $news['description_' . $locale] ?? 'Китайская компания готовит к выпуску свои новейшие флагманы –Xiaomi 15 и 15 Pro. Анонс состоится на специальном мероприятии: дата выхода Xiaomi 15 ожидается' !!}
+        <div class="news-content mb-5">
+            {!! $news['description_' . $locale] ?? 'Китайская компания готовит к выпуску...' !!}
             {!! $news['content_' . $locale] !!}
         </div>
+
         <h1 class="fw-normal hover-orange mb-4 mt-5 text-history">@lang('home.other_news')</h1>
         <div style="overflow: hidden" class="news container py-3 position-relative">
             <div class="swiper-wrapper">
@@ -64,4 +65,13 @@ $lang = \Illuminate\Support\Facades\App::getLocale();
             <div id="products-prev" class="swiper-button-prev start-0"></div>
         </div>
     </main>
+    <style>
+        .news-content img {
+            max-width: 100%;
+            height: auto;
+            display: block;
+            margin: 10px auto;
+        }
+    </style>
+
 @endsection
