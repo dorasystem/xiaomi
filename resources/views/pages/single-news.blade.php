@@ -42,7 +42,7 @@ $lang = \Illuminate\Support\Facades\App::getLocale();
                                class="mb-3">
                                 <img height="250px" class="w-100 fit-cover rounded-top"
                                      src="{{ asset('storage/' . $item->image) ?? '/assets/images/news1.jpg' }}"
-                                     alt="" />
+                                     alt="" width="100"/>
                                 <div class="p-4 bg-darkgrey">
                                     <div class="d-flex align-items-center gap-2">
                                         <img src="/assets/icons/calendar-icon.svg" alt="" />
