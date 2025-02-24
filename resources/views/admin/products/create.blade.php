@@ -195,40 +195,43 @@
                                     </div>
 
 
-                                    <div class="form-group pb-3 ">
+                                    <div class="form-group pb-3">
                                         <label for="color_ru">Цвет RU:</label>
                                         <select class="form-control" id="color_ru" name="color_ru">
-                                            <option value="null" {{ old('color_ru') == 'null' ? 'selected' : '' }}>
-                                                Null
-                                            </option>
-                                            <option value="red" {{ old('color_ru') == 'red' ? 'selected' : '' }}>
-                                                Красный
-                                            </option> <!-- Russian for Red -->
-                                            <option
-                                                value="white" {{ old('color_ru') == 'white' ? 'selected' : '' }}>
-                                                Белый
-                                            </option> <!-- Russian for Green -->
-                                            <option
-                                                value="green" {{ old('color_ru') == 'green' ? 'selected' : '' }}>
-                                                Зелёный
-                                            </option> <!-- Russian for Green -->
-                                            <option
-                                                value="grey" {{ old('color_ru') == 'grey' ? 'selected' : '' }}>
-                                                Серый
-                                            </option> <!-- Russian for Green -->
-                                            <option value="blue" {{ old('color_ru') == 'blue' ? 'selected' : '' }}>
-                                                Синий
-                                            </option> <!-- Russian for Blue -->
-                                            <option
-                                                value="black" {{ old('color_ru') == 'black' ? 'selected' : '' }}>
-                                                Черный
-                                            </option> <!-- Russian for Black -->
-                                            <option
-                                                value="brown" {{ old('color_ru') == 'brown' ? 'selected' : '' }}>
-                                                Коричневый
-                                            </option> <!-- Russian for Brown -->
+                                            <option value="Null" {{ old('color_ru') == 'Null' ? 'selected' : '' }}>Null</option>
+                                            <option value="Red" {{ old('color_ru') == 'Red' ? 'selected' : '' }}>Красный</option>
+                                            <option value="White" {{ old('color_ru') == 'White' ? 'selected' : '' }}>Белый</option>
+                                            <option value="Green" {{ old('color_ru') == 'Green' ? 'selected' : '' }}>Зелёный</option>
+                                            <option value="Grey" {{ old('color_ru') == 'Grey' ? 'selected' : '' }}>Серый</option>
+                                            <option value="Blue" {{ old('color_ru') == 'Blue' ? 'selected' : '' }}>Синий</option>
+                                            <option value="Black" {{ old('color_ru') == 'Black' ? 'selected' : '' }}>Черный</option>
+                                            <option value="Brown" {{ old('color_ru') == 'Brown' ? 'selected' : '' }}>Коричневый</option>
+                                            <option value="Aurora Purple" {{ old('color_ru') == 'Aurora Purple' ? 'selected' : '' }}>Aurora Purple</option>
+                                            <option value="Ocean Blue" {{ old('color_ru') == 'Ocean Blue' ? 'selected' : '' }}>Ocean Blue</option>
+                                            <option value="Lavender Purple" {{ old('color_ru') == 'Lavender Purple' ? 'selected' : '' }}>Lavender Purple</option>
+                                            <option value="Frost Blue" {{ old('color_ru') == 'Frost Blue' ? 'selected' : '' }}>Frost Blue</option>
+                                            <option value="Midnight Black" {{ old('color_ru') == 'Midnight Black' ? 'selected' : '' }}>Midnight Black</option>
+                                            <option value="Lite Blue" {{ old('color_ru') == 'Lite Blue' ? 'selected' : '' }}>Lite Blue</option>
+                                            <option value="Lite Pink" {{ old('color_ru') == 'Lite Pink' ? 'selected' : '' }}>Lite Pink</option>
+                                            <option value="Sage Green" {{ old('color_ru') == 'Sage Green' ? 'selected' : '' }}>Sage Green</option>
+                                            <option value="Starry Blue" {{ old('color_ru') == 'Starry Blue' ? 'selected' : '' }}>Starry Blue</option>
+                                            <option value="Clover Green" {{ old('color_ru') == 'Clover Green' ? 'selected' : '' }}>Clover Green</option>
+                                            <option value="Dreamy Purple" {{ old('color_ru') == 'Dreamy Purple' ? 'selected' : '' }}>Dreamy Purple</option>
+                                            <option value="Sandy Gold" {{ old('color_ru') == 'Sandy Gold' ? 'selected' : '' }}>Sandy Gold</option>
+                                            <option value="Pearl Pink" {{ old('color_ru') == 'Pearl Pink' ? 'selected' : '' }}>Pearl Pink</option>
+                                            <option value="Sky Blue" {{ old('color_ru') == 'Sky Blue' ? 'selected' : '' }}>Sky Blue</option>
+                                            <option value="Dark Gray" {{ old('color_ru') == 'Dark Gray' ? 'selected' : '' }}>Dark Gray</option>
+                                            <option value="Light Gray" {{ old('color_ru') == 'Light Gray' ? 'selected' : '' }}>Light Gray</option>
+                                            <option value="Mint Green" {{ old('color_ru') == 'Mint Green' ? 'selected' : '' }}>Mint Green</option>
+                                            <option value="Mist Blue" {{ old('color_ru') == 'Mist Blue' ? 'selected' : '' }}>Mist Blue</option>
+                                            <option value="Gold" {{ old('color_ru') == 'Gold' ? 'selected' : '' }}>Gold</option>
+                                            <option value="Gravity Gray" {{ old('color_ru') == 'Gravity Gray' ? 'selected' : '' }}>Gravity Gray</option>
+                                            <option value="Aurora Green" {{ old('color_ru') == 'Aurora Green' ? 'selected' : '' }}>Aurora Green</option>
+                                            <option value="Graphite Gray" {{ old('color_ru') == 'Graphite Gray' ? 'selected' : '' }}>Graphite Gray</option>
+                                            <option value="Moonlight Silver" {{ old('color_ru') == 'Moonlight Silver' ? 'selected' : '' }}>Moonlight Silver</option>
                                         </select>
                                     </div>
+
                                     <div class="form-group pb-3">
                                         <label for="image">Первое изображение:</label>
                                         <input type="file" class="form-control" id="image" name="image">

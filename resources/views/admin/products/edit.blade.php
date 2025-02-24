@@ -125,7 +125,8 @@
                                                     <option
                                                         value="6/128GB" {{ $price->storage == '6/128GB' ? 'selected' : '' }}>
                                                         6/128 GB
-                                                    </option>                                                    <option
+                                                    </option>
+                                                    <option
                                                         value="8/128GB" {{ $price->storage == '8/128GB' ? 'selected' : '' }}>
                                                         8/128 GB
                                                     </option>
@@ -242,7 +243,8 @@
                                         <label for="popular" class="form-check-label">Популярный продукт</label>
                                     </div>
                                     <div class="form-check pb-3">
-                                        <input type="checkbox" id="discount_status" name="discount_status" class="form-check-input"
+                                        <input type="checkbox" id="discount_status" name="discount_status"
+                                               class="form-check-input"
                                             {{ old('discount_status', isset($product) && $product->discount_status   ? 'checked' : '' )}}>
                                         <label for="discount_status" class="form-check-label">Скидка на продукт</label>
                                     </div>
@@ -250,47 +252,132 @@
                                         <input type="checkbox" id="recommend_status" name="recommend_status"
                                                class="form-check-input"
                                             {{ old('recommend_status', isset($product) && $product->recommend_status   ? 'checked' : '' )}}>
-                                        <label for="recommend_status" class="form-check-label">Recommend на продукт</label>
+                                        <label for="recommend_status" class="form-check-label">Recommend на
+                                            продукт</label>
                                     </div>
 
 
                                     <div class="form-group pb-3">
                                         <label for="color_ru">Цвет RU:</label>
                                         <select class="form-control" id="color_ru" name="color_ru">
-                                            <option
-                                                value="null" {{ old('color_ru', $product->color_ru) == 'null' ? 'selected' : '' }}>
+                                            <option value="Null" {{ $product->color_ru == 'Null' ? 'selected' : '' }}>
                                                 Null
                                             </option>
-                                            <option
-                                                value="red" {{ old('color_ru', $product->color_ru) == 'red' ? 'selected' : '' }}>
+                                            <option value="Red" {{ $product->color_ru == 'Red' ? 'selected' : '' }}>
                                                 Красный
                                             </option>
-                                            <option
-                                                value="white" {{ old('color_ru', $product->color_ru) == 'white' ? 'selected' : '' }}>
+                                            <option value="White" {{ $product->color_ru == 'White' ? 'selected' : '' }}>
                                                 Белый
                                             </option>
-                                            <option
-                                                value="green" {{ old('color_ru', $product->color_ru) == 'green' ? 'selected' : '' }}>
+                                            <option value="Green" {{ $product->color_ru == 'Green' ? 'selected' : '' }}>
                                                 Зелёный
                                             </option>
-                                            <option
-                                                value="grey" {{ old('color_ru', $product->color_ru) == 'grey' ? 'selected' : '' }}>
+                                            <option value="Grey" {{ $product->color_ru == 'Grey' ? 'selected' : '' }}>
                                                 Серый
                                             </option>
-                                            <option
-                                                value="blue" {{ old('color_ru', $product->color_ru) == 'blue' ? 'selected' : '' }}>
+                                            <option value="Blue" {{ $product->color_ru == 'Blue' ? 'selected' : '' }}>
                                                 Синий
                                             </option>
-                                            <option
-                                                value="black" {{ old('color_ru', $product->color_ru) == 'black' ? 'selected' : '' }}>
+                                            <option value="Black" {{ $product->color_ru == 'Black' ? 'selected' : '' }}>
                                                 Черный
                                             </option>
-                                            <option
-                                                value="brown" {{ old('color_ru', $product->color_ru) == 'brown' ? 'selected' : '' }}>
+                                            <option value="Brown" {{ $product->color_ru == 'Brown' ? 'selected' : '' }}>
                                                 Коричневый
+                                            </option>
+                                            <option
+                                                value="Aurora Purple" {{ $product->color_ru == 'Aurora Purple' ? 'selected' : '' }}>
+                                                Aurora Purple
+                                            </option>
+                                            <option
+                                                value="Ocean Blue" {{ $product->color_ru == 'Ocean Blue' ? 'selected' : '' }}>
+                                                Ocean Blue
+                                            </option>
+                                            <option
+                                                value="Lavender Purple" {{ $product->color_ru == 'Lavender Purple' ? 'selected' : '' }}>
+                                                Lavender Purple
+                                            </option>
+                                            <option
+                                                value="Frost Blue" {{ $product->color_ru == 'Frost Blue' ? 'selected' : '' }}>
+                                                Frost Blue
+                                            </option>
+                                            <option
+                                                value="Midnight Black" {{ $product->color_ru == 'Midnight Black' ? 'selected' : '' }}>
+                                                Midnight Black
+                                            </option>
+                                            <option
+                                                value="Lite Blue" {{ $product->color_ru == 'Lite Blue' ? 'selected' : '' }}>
+                                                Lite Blue
+                                            </option>
+                                            <option
+                                                value="Lite Pink" {{ $product->color_ru == 'Lite Pink' ? 'selected' : '' }}>
+                                                Lite Pink
+                                            </option>
+                                            <option
+                                                value="Sage Green" {{ $product->color_ru == 'Sage Green' ? 'selected' : '' }}>
+                                                Sage Green
+                                            </option>
+                                            <option
+                                                value="Starry Blue" {{ $product->color_ru == 'Starry Blue' ? 'selected' : '' }}>
+                                                Starry Blue
+                                            </option>
+                                            <option
+                                                value="Clover Green" {{ $product->color_ru == 'Clover Green' ? 'selected' : '' }}>
+                                                Clover Green
+                                            </option>
+                                            <option
+                                                value="Dreamy Purple" {{ $product->color_ru == 'Dreamy Purple' ? 'selected' : '' }}>
+                                                Dreamy Purple
+                                            </option>
+                                            <option
+                                                value="Sandy Gold" {{ $product->color_ru == 'Sandy Gold' ? 'selected' : '' }}>
+                                                Sandy Gold
+                                            </option>
+                                            <option
+                                                value="Pearl Pink" {{ $product->color_ru == 'Pearl Pink' ? 'selected' : '' }}>
+                                                Pearl Pink
+                                            </option>
+                                            <option
+                                                value="Sky Blue" {{ $product->color_ru == 'Sky Blue' ? 'selected' : '' }}>
+                                                Sky Blue
+                                            </option>
+                                            <option
+                                                value="Dark Gray" {{ $product->color_ru == 'Dark Gray' ? 'selected' : '' }}>
+                                                Dark Gray
+                                            </option>
+                                            <option
+                                                value="Light Gray" {{ $product->color_ru == 'Light Gray' ? 'selected' : '' }}>
+                                                Light Gray
+                                            </option>
+                                            <option
+                                                value="Mint Green" {{ $product->color_ru == 'Mint Green' ? 'selected' : '' }}>
+                                                Mint Green
+                                            </option>
+                                            <option
+                                                value="Mist Blue" {{ $product->color_ru == 'Mist Blue' ? 'selected' : '' }}>
+                                                Mist Blue
+                                            </option>
+                                            <option value="Gold" {{ $product->color_ru == 'Gold' ? 'selected' : '' }}>
+                                                Gold
+                                            </option>
+                                            <option
+                                                value="Gravity Gray" {{ $product->color_ru == 'Gravity Gray' ? 'selected' : '' }}>
+                                                Gravity Gray
+                                            </option>
+                                            <option
+                                                value="Aurora Green" {{ $product->color_ru == 'Aurora Green' ? 'selected' : '' }}>
+                                                Aurora Green
+                                            </option>
+                                            <option
+                                                value="Graphite Gray" {{ $product->color_ru == 'Graphite Gray' ? 'selected' : '' }}>
+                                                Graphite Gray
+                                            </option>
+                                            <option
+                                                value="Moonlight Silver" {{ $product->color_ru == 'Moonlight Silver' ? 'selected' : '' }}>
+                                                Moonlight Silver
                                             </option>
                                         </select>
                                     </div>
+
 
                                     <div class="form-group pb-3">
                                         <label for="image">Первое изображение:</label>
