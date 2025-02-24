@@ -80,15 +80,16 @@
                 </div>
                 <div class="productbanner align-items-start gap-4 mt-5">
                     <div class="product_list d-flex align-items-center justify-content-center">
-                        <img src="/assets/images/products/tel.png" width="250px" alt="" />
+                        <img src="/assets/images/products/tel.png" width="250px" alt=""/>
                     </div>
                     <div class="">
                         <div class="little_product d-flex align-items-center justify-content-center">
-                            <img src="/assets/images/products/air.png" width="120px" alt="" />
+                            <img src="/assets/images/products/air.png" width="120px" alt=""/>
                         </div>
                         <div class="position-relative">
-                            <img class="bottom_product border-orange" src="/assets/images/products/soat.png" width="120px"
-                                 alt="" />
+                            <img class="bottom_product border-orange" src="/assets/images/products/soat.png"
+                                 width="120px"
+                                 alt=""/>
                         </div>
                     </div>
                 </div>
@@ -347,23 +348,27 @@
                                                                     <div class="range-slider">
                                                                         <div class="slider-container">
                                                                             <div class="slider-track"></div>
-                                                                            <input type="range" id="rangeMin2" min="10" max="40000000"
+                                                                            <input type="range" id="rangeMin2" min="10"
+                                                                                   max="40000000"
                                                                                    step="1000"
                                                                                    value="{{ request('min_price2', 10) }}"/>
-                                                                            <input type="range" id="rangeMax2" min="10" max="40000000"
+                                                                            <input type="range" id="rangeMax2" min="10"
+                                                                                   max="40000000"
                                                                                    step="1000"
                                                                                    value="{{ request('max_price', 40000000) }}"/>
                                                                         </div>
                                                                         <span id="minValue2" style="font-size: 14px">
                                                                             {{ number_format(request('min_price', 10), 0, ',', ' ') }} so'm
                                                                         </span> -
-                                                                                            <span id="maxValue2" style="font-size: 14px">
+                                                                        <span id="maxValue2" style="font-size: 14px">
                                                                             {{ number_format(request('max_price', 40000000), 0, ',', ' ') }} so'm
                                                                         </span>
                                                                     </div>
-                                                                    <input type="hidden" name="min_price" id="min_price_hidden2"
+                                                                    <input type="hidden" name="min_price"
+                                                                           id="min_price_hidden2"
                                                                            value="{{ request('min_price', 1) }}">
-                                                                    <input type="hidden" name="max_price" id="max_price_hidden2"
+                                                                    <input type="hidden" name="max_price"
+                                                                           id="max_price_hidden2"
                                                                            value="{{ request('max_price', 40000000) }}">
                                                                     <script>
                                                                         document.addEventListener("DOMContentLoaded", function () {
@@ -581,7 +586,10 @@ $description = isset($matches[1])
                                    name="phone" required pattern="^\+\d{7,}$"
                                    title="Номер телефона должен содержать не менее 7 цифр"/>
                         </div>
-                        <div class="h-captcha" data-sitekey="{{ env('8732acf0-3290-46da-8d72-c18628ce8554') }}"></div>
+                        <div class="col-lg-3 col-md-6 mb-lg-0 mb-3">
+                            <div class="h-captcha"
+                                 data-sitekey="{{ env('8732acf0-3290-46da-8d72-c18628ce8554') }}"></div>
+                        </div>
                         <div class="col-lg-3 col-md-6">
                             <button class="btn-orange rounded px-5 py-3 w-100" type="submit">@lang('home.send')</button>
                         </div>
@@ -779,9 +787,11 @@ $description = isset($matches[1])
         .btn-orange2:hover {
             background-color: #e65c00;
         }
+
         input[type="range"]::-webkit-slider-thumb {
             background: linear-gradient(to right, #FF6600, #FFCC00);
         }
+
         @media (max-width: 576px) {
             .pagination {
                 flex-wrap: wrap;
