@@ -602,7 +602,7 @@ $description = isset($matches[1])
     </main>
 
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/toastify-js/src/toastify.min.css">
-
+    <script src="https://js.hcaptcha.com/1/api.js" async defer></script>
     <script src="https://cdn.jsdelivr.net/npm/toastify-js"></script>
 
     <script>
