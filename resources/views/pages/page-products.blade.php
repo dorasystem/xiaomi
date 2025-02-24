@@ -581,7 +581,7 @@ $description = isset($matches[1])
                                    name="phone" required pattern="^\+\d{7,}$"
                                    title="Номер телефона должен содержать не менее 7 цифр"/>
                         </div>
-
+                        <div class="h-captcha" data-sitekey="{{ env('8732acf0-3290-46da-8d72-c18628ce8554') }}"></div>
                         <div class="col-lg-3 col-md-6">
                             <button class="btn-orange rounded px-5 py-3 w-100" type="submit">@lang('home.send')</button>
                         </div>
