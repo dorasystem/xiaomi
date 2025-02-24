@@ -586,9 +586,7 @@ $description = isset($matches[1])
                                    name="phone" required pattern="^\+\d{7,}$"
                                    title="Номер телефона должен содержать не менее 7 цифр"/>
                         </div>
-                        <div class="col-lg-3 col-md-6 mb-lg-0 mb-3">
 
-                        </div>
                         <div class="col-lg-3 col-md-6">
 {{--                            <div class="h-captcha" data-sitekey="8732acf0-3290-46da-8d72-c18628ce8554"></div>--}}
 
