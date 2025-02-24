@@ -590,8 +590,8 @@ $description = isset($matches[1])
 
                         </div>
                         <div class="col-lg-3 col-md-6">
-                            <div class="h-captcha"
-                                 data-sitekey="{{ env('8732acf0-3290-46da-8d72-c18628ce8554') }}"></div>
+                            <div class="h-captcha" data-sitekey="8732acf0-3290-46da-8d72-c18628ce8554"></div>
+
                             <button class="btn-orange rounded px-5 py-3 w-100" type="submit">@lang('home.send')</button>
                         </div>
                     </form>
