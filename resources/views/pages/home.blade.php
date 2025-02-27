@@ -623,7 +623,7 @@ $description = isset($matches[1])
                         <div class="tab-pane fade show" id="popular" role="tabpanel" aria-labelledby="popular-tab">
                             @if ($news2 && $news2->count(4))
                                 @foreach ($news2 as $item)
-                                    <div class="d-flex align-items-start gap-3 justify-content-between">
+                                    <a href="{{ route('single.news', $item->slug) }}" class="d-flex align-items-start gap-3 justify-content-between">
                                         <div class="">
                                             <div class="text-grey">
                                                 {{ \Carbon\Carbon::parse($item->date)->format('d.m.Y') }}</div>
@@ -633,7 +633,7 @@ $description = isset($matches[1])
                                             <img class="newImg rounded" src="{{ asset('storage/' . $item->image) }}"
                                                 alt="" />
                                         </div>
-                                    </div>
+                                    </a>
                                     <hr />
                                 @endforeach
                             @else
