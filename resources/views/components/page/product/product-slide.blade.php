@@ -10,12 +10,12 @@
         ->get();
 @endphp
 
-<div class="swiper-wrapper">
+<div class="swiper-wrapper AAD">
     @foreach ($products as $product)
         @php
             $cheapestVariant = $product->variants->sortBy('price')->first();
         @endphp
-        <div class="swiper-slide product shadow-sm position-relative rounded">
+        <div class=" swiper-slide product shadow-sm position-relative rounded">
             <div class="position-absolute like d-flex flex-column gap-3 justify-content-end">
                 <a onclick="toggleFavourite({{ $product->id }})">
                     <i id="favourite-icon-{{ $product->id }}"
