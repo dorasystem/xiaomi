@@ -206,15 +206,16 @@ $categories = Category::whereNull('parent_id')->get();
                             </button>
                             <div class="w-100">
 
-                                <form id="searchForm">
+                                <form id="searchForm" action="{{ route('products.search') }}" method="GET">
                                     <div class="d-flex align-items-center w-100 nav_form position-relative">
                                         <input id="searchInput" name="search"
                                                class="form-control border-0 bg-transparent mr-sm-2 search-bar focus_none text-white"
-                                               type="search" aria-label="Search" placeholder="@lang('home.search')" />
+                                               type="search" aria-label="Search" placeholder="@lang('home.search')" autocomplete="off" />
 
                                         <div id="suggestions" class="suggestions-box"></div>
                                     </div>
                                 </form>
+
 
                                 <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
                                 <script>
