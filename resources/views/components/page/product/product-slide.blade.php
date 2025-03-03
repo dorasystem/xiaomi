@@ -10,7 +10,7 @@
         ->get();
 @endphp
 
-<div class="swiper-wrapper AAD">
+<div class="swiper-wrapper ">
     @foreach ($products as $product)
         @php
             $cheapestVariant = $product->variants->sortBy('price')->first();
