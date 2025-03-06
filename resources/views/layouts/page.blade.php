@@ -4,7 +4,47 @@
 <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Xiaomi</title>
+    <link rel="alternate" hreflang="en" href="https://mi.uz/en">
+    <link rel="alternate" hreflang="ru" href="https://mi.uz/ru">
+    <link rel="alternate" hreflang="uz" href="https://mi.uz/uz">
+
+    <!-- Title -->
+    <title>Xiaomi Store — официальный магазин Xiaomi в Узбекистане</title>
+
+    <!-- Meta Settings by DORA® -->
+    <meta name="description"
+          content="Xiaomi Store — официальный магазин компании Xiaomi. ⚡️ Просторный и удобный шоурум в Ташкенте! ⚡️ Быстрая доставка по всему Узбекистану!">
+    <meta name="keywords"
+          content="Xiaomi, Xiaomi Store, официальный магазин Xiaomi, купить Xiaomi в Узбекистане, шоурум Xiaomi Ташкент, доставка Xiaomi Узбекистан, смартфоны Xiaomi, техника Xiaomi, аксессуары Xiaomi, оригинальная продукция Xiaomi">
+
+    <meta name="author" content="DORA®">
+    <meta name="robots" content="index, follow">
+    <meta name="googlebot" content="index, follow">
+
+    <!-- Facebook Meta Tags -->
+    <meta property="og:url" content="https://mi.uz/">
+    <meta property="og:type" content="website">
+    <meta property="og:title" content="Xiaomi Store — официальный магазин Xiaomi в Узбекистане">
+    <meta property="og:description"
+          content="Xiaomi Store — официальный магазин компании Xiaomi. ⚡️ Просторный и удобный шоурум в Ташкенте! ⚡️ Быстрая доставка по всему Узбекистану!">
+    <meta property="og:image" content="/assets/images/seo_image_by_dora.png">
+
+    <!-- Twitter Meta Tags -->
+    <meta name="twitter:card" content="summary_large_image">
+    <meta property="twitter:domain" content="mi.uz">
+    <meta property="twitter:url" content="https://mi.uz/">
+    <meta name="twitter:title" content="Xiaomi Store — официальный магазин Xiaomi в Узбекистане">
+    <meta name="twitter:description"
+          content="Xiaomi Store — официальный магазин компании Xiaomi. ⚡️ Просторный и удобный шоурум в Ташкенте! ⚡️ Быстрая доставка по всему Узбекистану!">
+    <meta name="twitter:image" content="/assets/images/seo_image_by_dora.png">
+
+
+    <link rel="icon" type="image/png" href="/assets/images/favicon/favicon-96x96.png" sizes="96x96" />
+    <link rel="icon" type="image/svg+xml" href="/assets/images/favicon/favicon.svg" />
+    <link rel="shortcut icon" href="/assets/images/favicon/favicon.ico" />
+    <link rel="apple-touch-icon" sizes="180x180" href="/assets/images/favicon/apple-touch-icon.png" />
+    <meta name="apple-mobile-web-app-title" content="Xiaomi Store UZ" />
+    <link rel="manifest" href="/assets/images/favicon/site.webmanifest" />
 
     <!-- Meta Pixel Code -->
     <script>
@@ -39,8 +79,7 @@
         crossorigin="anonymous" referrerpolicy="no-referrer" />
     <link rel="stylesheet" href="https://unpkg.com/swiper/swiper-bundle.min.css" />
     <link rel="stylesheet" href="/assets/css/main.css" />
-    <!-- Favicon  -->
-    <link rel="shortcut icon" href="https://xiaomistore.md/media/site_settings/logo/Logo.png" />
+
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/toastify-js/src/toastify.min.css">
     <meta name="csrf-token" content="{{ csrf_token() }}">
 
