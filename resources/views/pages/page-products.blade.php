@@ -583,7 +583,7 @@ $description = isset($matches[1])
                         </div>
                         <div class="col-lg-3 col-md-6 mb-lg-0 mb-3">
                             <input class="form-control focus_none py-3" placeholder="+998 __ ___ ___ ___" type="tel"
-                                   name="phone" required pattern="^\+\d{7,}$"
+                                   name="phone" required
                                    title="Номер телефона должен содержать не менее 7 цифр"/>
                         </div>
 
