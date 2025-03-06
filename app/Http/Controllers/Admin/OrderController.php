@@ -84,16 +84,7 @@ class OrderController extends Controller
 
     public function storeForm(Request $request)
     {
-        $response = Http::asForm()->post('https://api.hcaptcha.com/siteverify', [
-            'secret' => 'ES_1e8062b055cd4afc980041144cfddb9f',
-            'response' => $request->input('h-captcha-response'),
-        ]);
 
-        $data = $response->json();
-
-        if (!$data['success']) {
-            return back()->withErrors(['captcha' => 'Captcha tasdiqlanmadi!']);
-        }
         // Validate the request data
         $validated = $request->all();
 
