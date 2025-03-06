@@ -42,11 +42,11 @@
                                     <td>{{ $order->first_name }} {{ $order->last_name }}</td>
                                     <td>{{ $order->phone }}</td>
                                     <td> {{ \Illuminate\Support\Str::words($order->message, 5) }}</td>
-                                    <td style="width: 100px!important;">
+                                    <td >
                                         <form action="{{ route('orders.update', $order->id) }}" method="POST">
                                             @csrf
                                             @method('PUT')
-                                            <select name="status" onchange="this.form.submit()" class="form-select form-select-sm">
+                                            <select name="status" onchange="this.form.submit()" class="form-select form-select-sm" style="width: 100px!important;">
                                                 <option value="new" {{ $order->status === 'new' ? 'selected' : '' }}>Новый</option>
                                                 <option value="processing" {{ $order->status === 'processing' ? 'selected' : '' }}>В процессе</option>
                                                 <option value="completed" {{ $order->status === 'completed' ? 'selected' : '' }}>Завершён</option>
