@@ -42,7 +42,7 @@
                                     <td>{{ $order->first_name }} {{ $order->last_name }}</td>
                                     <td>{{ $order->phone }}</td>
                                     <td> {{ \Illuminate\Support\Str::words($order->message, 5) }}</td>
-                                    <td width="100px">
+                                    <td style="width: 100px!important;">
                                         <form action="{{ route('orders.update', $order->id) }}" method="POST">
                                             @csrf
                                             @method('PUT')
