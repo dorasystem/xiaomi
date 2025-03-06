@@ -10,6 +10,7 @@
         "guzzlehttp/promises": "^2.0",
         "guzzlehttp/psr7": "^2.7",
         "http-interop/http-factory-guzzle": "^1.2",
+        "jenssegers/agent": "^2.6",
         "laravel/framework": "^11.9",
         "laravel/sanctum": "^4.0",
         "laravel/scout": "^10.13",
