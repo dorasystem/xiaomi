@@ -439,10 +439,11 @@ $categories = \App\Models\Category::all();
 
                         </div>
                         <div class="row AAD">
-                            @if (!empty($products) && $products->count())
+                            @if ($products->isNotEmpty())
                                 @foreach ($products as $product)
                                     @php
                                         $cheapestVariant = $product->variants->sortBy('price')->first();
+                                          dump($product->id, $cheapestVariant);
                                     @endphp
                                     <div class="col-lg-4 col-md-6 mb-4">
                                         <div class="product border position-relative rounded">
