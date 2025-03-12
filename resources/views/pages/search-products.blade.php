@@ -616,9 +616,11 @@ $categories = \App\Models\Category::all();
 
     <script>
         document.addEventListener("DOMContentLoaded", function() {
-            document.querySelectorAll("AAD strong").forEach(strong => {
-                strong.replaceWith(...strong.childNodes);
-            });
+            setTimeout(function() {
+                document.querySelectorAll("AAD strong").forEach(strong => {
+                    strong.replaceWith(...strong.childNodes);
+                });
+            }, 3000);
         });
 
 
