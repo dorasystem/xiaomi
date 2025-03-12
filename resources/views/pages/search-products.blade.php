@@ -618,7 +618,10 @@ $categories = \App\Models\Category::all();
 
 
         document.addEventListener("DOMContentLoaded", function() {
-            document.querySelectorAll(".AAD strong").classList.add('row');
+            document.querySelectorAll(".AAD strong").forEach(el => {
+                el.classList.add('row');
+            });
+
         });
 
 
