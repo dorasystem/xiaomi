@@ -615,14 +615,13 @@ $categories = \App\Models\Category::all();
     @endif
 
     <script>
-
-
         document.addEventListener("DOMContentLoaded", function() {
-            document.querySelectorAll(".AAD strong").forEach(el => {
-                el.classList.add('row');
+            document.querySelectorAll("AAD strong").forEach(strong => {
+                strong.replaceWith(...strong.childNodes);
             });
-
         });
+
+
 
 
         document.addEventListener('DOMContentLoaded', function() {
