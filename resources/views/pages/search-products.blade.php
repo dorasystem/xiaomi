@@ -501,8 +501,6 @@ $categories = \App\Models\Category::all();
                                                             <div class="productName fw-bold">
                                                                 {{ \Str::words($product['name_' . $lang]) }}</div>
                                                         </a>
-
-
                                                         <div
                                                             class="d-flex align-items-center justify-content-between w-100">
                                                             @if ($cheapestVariant->price_24 > 0)
