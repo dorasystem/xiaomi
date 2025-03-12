@@ -438,7 +438,7 @@ $categories = \App\Models\Category::all();
                             </form>
 
                         </div>
-                        <div class="row ">
+                        <div class="row AAD">
                             @if ($products->isNotEmpty())
                                 @foreach ($products as $product)
                                     @php
@@ -473,6 +473,7 @@ $categories = \App\Models\Category::all();
                                                         </svg>
                                                     </a>
                                                 </div>
+                                                @if ($cheapestVariant)
                                                     <img class="w-100 pb-4 productImage p-4"
                                                         src="{{ asset('storage/' . $product->image) }}" alt="" />
                                                     <div
@@ -533,6 +534,7 @@ $categories = \App\Models\Category::all();
 
                                                         </div>
                                                     </div>
+                                                @endif
                                             </div>
                                         </div>
                                     </div>
