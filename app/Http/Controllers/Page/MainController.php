@@ -161,8 +161,7 @@ class MainController extends Controller
         $search = $request->input('search');
         $products = Product::where('name_' . $lang, 'like', '%' . $search . '%')
             ->orWhere('description_' . $lang, 'like', '%' . $search . '%')
-            ->get();
-
+            ->paginate(150);
 
         return view('pages.search-products', compact('products', 'lang', 'search'));
     }
