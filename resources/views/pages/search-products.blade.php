@@ -562,7 +562,10 @@ $categories = \App\Models\Category::all();
                             @endif
 
                         </div>
-                        {{ $products->onEachSide(1)->links('pagination::bootstrap-4') }}
+                        @if($products instanceof \Illuminate\Pagination\LengthAwarePaginator)
+                            {{ $products->onEachSide(1)->links('pagination::bootstrap-4') }}
+                        @endif
+
                     </div>
                 </div>
             </div>

@@ -161,7 +161,7 @@ class MainController extends Controller
         $search = $request->input('search');
         $products = Product::where("name_$lang", 'like', "%$search%")
             ->with('variants') // Eager load variants
-            ->paginate(150);
+            ->get();
 
         return view('pages.search-products', compact('products', 'lang', 'search'));
     }
