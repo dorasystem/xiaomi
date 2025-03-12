@@ -162,7 +162,6 @@ class MainController extends Controller
         $products = Product::where("name_$lang", 'like', "%$search%")
             ->with('variants') // Eager load variants
             ->get();
-        dd($products);
 
         return view('pages.search-products', compact('products', 'lang', 'search'));
     }
