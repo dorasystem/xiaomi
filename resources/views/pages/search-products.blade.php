@@ -497,11 +497,11 @@ $categories = \App\Models\Category::all();
                                                             @endif
                                                         </div>
 
-
-                                                        <a class="truncate-text"
-                                                            href="{{ route('single.product', $product->slug) }}">
-                                                            <p class="text-grey">{!! \Str::words($product['description_' . $lang], 10) !!}</p>
+                                                        <a href="{{ route('single.product', $product->slug) }}">
+                                                            <div class="productName fw-bold">
+                                                                {{ \Str::words($product['name_' . $lang]) }}</div>
                                                         </a>
+
 
                                                         <div
                                                             class="d-flex align-items-center justify-content-between w-100">
