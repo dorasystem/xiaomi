@@ -158,11 +158,9 @@ class MainController extends Controller
     public function  productSearch(Request $request)
     {
         $lang = app()->getLocale();
-        $search = trim($request->input('search'));
-        $products = Product::whereRaw("REPLACE(LOWER(name_$lang), ' ', '') LIKE LOWER(?)", ["%$search%"])
-            ->with('variants')
+        $search = $request->input('search');
+        $products = Product::where("name_$lang", 'like', "%$search%")
             ->get();
-
 
         return view('pages.search-products', compact('products', 'lang', 'search'));
     }
@@ -170,10 +168,10 @@ class MainController extends Controller
     public function ajaxSearch(Request $request)
     {
         $lang = app()->getLocale();
-        $search = trim($request->input('search'));
+        $search = $request->input('search');
 
-        $products = Product::whereRaw("REPLACE(LOWER(name_$lang), ' ', '') LIKE LOWER(?)", ["%$search%"])
-            ->with('variants')
+        $products = Product::where("name_$lang", 'like', "%$search%")
+            ->with('variants') // Eager load variants
             ->get();
 
         $output = "";
