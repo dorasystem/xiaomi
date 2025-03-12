@@ -438,7 +438,7 @@ $categories = \App\Models\Category::all();
                             </form>
 
                         </div>
-                        <div class="row ">
+                        <div class="row  AAD ">
                             @if ($products->isNotEmpty())
                                 @foreach ($products as $product)
                                     @php
@@ -618,7 +618,7 @@ $categories = \App\Models\Category::all();
 
 
         document.addEventListener("DOMContentLoaded", function() {
-            document.querySelectorAll(".AAD strong").forEach(el => el.remove());
+            document.querySelectorAll(".AAD strong").classList.add('row');
         });
 
 
