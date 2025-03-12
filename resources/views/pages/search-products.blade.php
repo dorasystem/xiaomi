@@ -473,7 +473,7 @@ $categories = \App\Models\Category::all();
                                                         </svg>
                                                     </a>
                                                 </div>
-                                                Test
+
                                             </div>
                                         </div>
                                     </div>
@@ -555,11 +555,9 @@ $categories = \App\Models\Category::all();
 
     <script>
         document.addEventListener("DOMContentLoaded", function() {
-            setTimeout(function() {
-                document.querySelectorAll("AAD strong").forEach(strong => {
-                    strong.replaceWith(...strong.childNodes);
-                });
-            }, 3000);
+            document.querySelectorAll("AAD strong").forEach(strong => {
+                strong.replaceWith(...strong.childNodes);
+            });
         });
 
 
