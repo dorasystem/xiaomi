@@ -478,12 +478,26 @@ $categories = \App\Models\Category::all();
                                                         src="{{ asset('storage/' . $product->image) }}" alt="" />
                                                     <div
                                                         class="d-flex flex-column justify-content-between product-text p-4 rounded-bottom">
+                                                        <div
+                                                            class="d-flex align-items-end justify-content-between gap-3 pt-2">
+                                                            @if ($cheapestVariant->discount_price)
+                                                                <div class="fw-bold text-orange ">
+                                                                    {{ number_format($cheapestVariant->discount_price, 0, ',', ' ') }}
+                                                                    UZS
+                                                                </div>
+                                                                <del class="text-grey">
+                                                                    <small>{{ number_format($cheapestVariant->price, 0, ',', ' ') }}
+                                                                        UZS</small>
+                                                                </del>
+                                                            @else
+                                                                <div class="fw-bold text-orange">
+                                                                    {{ number_format($cheapestVariant->price, 0, ',', ' ') }}
+                                                                    UZS
+                                                                </div>
+                                                            @endif
+                                                        </div>
 
 
-                                                        <a href="{{ route('single.product', $product->slug) }}">
-                                                            <div class="productName fw-bold">
-                                                                {{ \Str::words($product['name_' . $lang]) }}</div>
-                                                        </a>
                                                         <a class="truncate-text"
                                                             href="{{ route('single.product', $product->slug) }}">
                                                             <p class="text-grey">{!! \Str::words($product['description_' . $lang], 10) !!}</p>
