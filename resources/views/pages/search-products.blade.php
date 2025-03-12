@@ -438,7 +438,7 @@ $categories = \App\Models\Category::all();
                             </form>
 
                         </div>
-                        <div class="row AAD">
+                        <div class="row ">
                             @if ($products->isNotEmpty())
                                 @foreach ($products as $product)
                                     @php
