@@ -158,7 +158,7 @@ class MainController extends Controller
     public function  productSearch(Request $request)
     {
         $lang = app()->getLocale();
-        $search = $request->input('search');
+        $search = trim($request->input('search'));
         $products = Product::whereRaw("REPLACE(LOWER(name_$lang), ' ', '') LIKE LOWER(?)", ["%$search%"])
             ->with('variants')
             ->get();
@@ -170,7 +170,7 @@ class MainController extends Controller
     public function ajaxSearch(Request $request)
     {
         $lang = app()->getLocale();
-        $search = $request->input('search');
+        $search = trim($request->input('search'));
 
         $products = Product::whereRaw("REPLACE(LOWER(name_$lang), ' ', '') LIKE LOWER(?)", ["%$search%"])
             ->with('variants')
