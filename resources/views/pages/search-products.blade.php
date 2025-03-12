@@ -474,6 +474,52 @@ $categories = \App\Models\Category::all();
                                                     </a>
                                                 </div>
 
+                                                @if ($cheapestVariant)
+                                                    <img class="w-100 pb-4 productImage p-4"
+                                                        src="{{ asset('storage/' . $product->image) }}" alt="" />
+                                                    <div
+                                                        class="d-flex flex-column justify-content-between product-text p-4 rounded-bottom">
+
+
+                                                        <a href="{{ route('single.product', $product->slug) }}">
+                                                            <div class="productName fw-bold">
+                                                                {{ \Str::words($product['name_' . $lang]) }}</div>
+                                                        </a>
+                                                        <a class="truncate-text"
+                                                            href="{{ route('single.product', $product->slug) }}">
+                                                            <p class="text-grey">{!! \Str::words($product['description_' . $lang], 10) !!}</p>
+                                                        </a>
+
+                                                        <div
+                                                            class="d-flex align-items-center justify-content-between w-100">
+                                                            @if ($cheapestVariant->price_24 > 0)
+                                                                <span
+                                                                    class="px-2 productmonth-border small text-orange rounded-1">
+                                                                    {{ number_format($cheapestVariant->price_24, 0, ',', ' ') }}
+                                                                    UZS/@lang('home.month')
+                                                                </span>
+                                                            @endif
+                                                        </div>
+                                                        <div class="d-flex gap-4 mt-1">
+                                                            <a class="border-orange bg-transparent rounded p-1 px-3 add-to-cart-btn"
+                                                                href="javascript: void(0);" type="button"
+                                                                onclick="addToCart(this,{{ $product->id }}, '{{ $product['name_' . $lang] }}', {{ $cheapestVariant->discount_price ?? $cheapestVariant->price }}, {{ $cheapestVariant->id }})">
+                                                                <img src="/assets/icons/shopping-cart.svg"
+                                                                    alt="" />
+                                                            </a>
+                                                            <button data-bs-toggle="modal" data-bs-target="#largeModal"
+                                                                class="btn-orange rounded w-100 d-flex align-items-center gap-2 justify-content-center"
+                                                                data-product-id="{{ $product->id }}"
+                                                                data-product-name="{{ $product['name_' . $lang] }}"
+                                                                data-product-price="{{ $cheapestVariant->discount_price ?: $cheapestVariant->price }}"
+                                                                data-product-image="{{ asset('storage/' . $product->image) }}">
+                                                                <span>@lang('home.buy_now')</span>
+                                                            </button>
+
+                                                        </div>
+                                                    </div>
+                                                @endif
+
                                             </div>
                                         </div>
                                     </div>
