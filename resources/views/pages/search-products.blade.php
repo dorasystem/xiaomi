@@ -445,6 +445,7 @@ $categories = \App\Models\Category::all();
                                         $cheapestVariant = $product->variants->sortBy('price')->first();
                                           dump($product->id, $cheapestVariant);
                                           dump($products);
+                                          dump($cheapestVariant->count());
                                     @endphp
                                     <div class="col-lg-4 col-md-6 mb-4">
                                         <div class="product border position-relative rounded">
