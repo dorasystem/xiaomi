@@ -160,7 +160,6 @@ class MainController extends Controller
         $lang = app()->getLocale();
         $search = $request->input('search');
         $products = Product::where('name_' . $lang, 'like', '%' . $search . '%')
-            ->orWhere('description_' . $lang, 'like', '%' . $search . '%')
             ->paginate(150);
 
         return view('pages.search-products', compact('products', 'lang', 'search'));
