@@ -160,7 +160,6 @@ class MainController extends Controller
         $lang = app()->getLocale();
         $search = $request->input('search');
         $products = Product::whereRaw("REPLACE(LOWER(name_$lang), ' ', '') LIKE LOWER(?)", ["%$search%"])
-            ->orWhereRaw("LOWER(description_$lang) LIKE LOWER(?)", ["%$search%"])
             ->with('variants')
             ->get();
 
@@ -174,7 +173,6 @@ class MainController extends Controller
         $search = $request->input('search');
 
         $products = Product::whereRaw("REPLACE(LOWER(name_$lang), ' ', '') LIKE LOWER(?)", ["%$search%"])
-            ->orWhereRaw("LOWER(description_$lang) LIKE LOWER(?)", ["%$search%"])
             ->with('variants')
             ->get();
 
