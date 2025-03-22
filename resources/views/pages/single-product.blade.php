@@ -320,11 +320,11 @@ $isInCompare = in_array($product->id, session('compares', []));
                     <div class="tab-pane fade show active" id="description" role="tabpanel"
                         aria-labelledby="description-tab">
                         <div class="pt-3 border-top container">
-                            <div class="row align-items-center">
+                            <div class="row ">
                                 @foreach ($descImages as $descImage)
                                     <div class="mt-4 col-lg-4 rounded-2">
                                         <img class="w-100 fit-cover rounded-top"
-                                            src="{{ asset('storage/' . $descImage->image) }}" alt="" />
+                                            src="{{ asset('storage/' . $descImage->image) }}" alt="" height="250px" />
                                         <div class="bg-darkgrey p-4 rounded-bottom">
                                             <h6 class="fw-bold d-none">Интелектуальная система связи</h6>
                                             <div class="fs-sm-14">
