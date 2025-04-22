@@ -79,7 +79,7 @@ foreach ($keywords as $keyword) {
                             <div style="background-image: url({{ asset('storage/' . $banner->image1) }});"
                                 class="banner1 rounded p-lg-4 p-2 d-flex flex-column justify-content-between align-items-start">
                                 <div class="fw-bold">@lang('footer.smartphones')</div>
-                                <a href="{{ route('category.sort', ['slug' => $category2->getSlugByLanguage($lang)]) }}"
+                                <a href="{{ route('category.sort', ['slug' => $category3->getSlugByLanguage($lang)]) }}"
                                     class="btn-orange rounded px-4 py-1">@lang('home.smartphonesAll')</a>
                             </div>
                         </div>
