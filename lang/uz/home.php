@@ -1,13 +1,13 @@
 <?php
 
 return array (
-  'official' => 'O\'zbekistondagi rasmiy Xiaomi do\'koni test',
+  'official' => 'O\'zbekistondagi rasmiy Xiaomi do\'koni',
   'smartphonesAll' => 'Barchasini ko\'rish',
   'search' => 'Mahsulotlarni qidirish',
   'comparison' => 'Taqqoslash',
   'featured' => 'Sevimlilar',
   'special_offers' => 'Maxsus takliflar',
-  'product_on_sale' => 'Sotuvdagi mahsulotlar',
+  'product_on_sale' => 'Aksiya tovarlari',
   'new_items' => 'Yangiliklar',
   'payment_text' => 'To\'lov',
   'useful_articles' => 'Foydali maqolalar',
