@@ -204,7 +204,8 @@ function closeKatalog() {
     let katalog = document.getElementById("katalog");
     let overlay = document.getElementById("overlay");
     let toggleButtons = document.querySelector(".toggle-buttons"); // Agar class bo'lsa
-    katalog.style.display = "none";
+    document.getElementById("Katalog").style.display = "none";
+
     if (katalog) katalog.style.display = "none";
     if (overlay) overlay.style.display = "none";
 
