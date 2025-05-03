@@ -479,7 +479,7 @@ $categories = Category::whereNull('parent_id')->get();
             </script>
 
             <hr class="d-sm-none d-block"/>
-            <ul class="gap-3 d-sm-none d-block">
+            <ul class="gap-3 d-sm-none d-block pb-5">
                 <li class="mb-3"><a class="hover-orange" href="{{ route('news') }}">Новости</a></li>
                 <li class="mb-3"><a class="hover-orange" href="{{ route('products') }}">Обзоры</a></li>
                 <li class="mb-3"><a class="hover-orange" href="/about">О нас</a></li>
@@ -489,19 +489,6 @@ $categories = Category::whereNull('parent_id')->get();
         </div>
     </div>
     {{--    Katalog modal end--}}
-    <div style="display: none" class="rounded-bottom container px-0 katalog">
-        <div class="py-2 pt-4">
-
-            <ul class="gap-3 d-sm-none d-block pb-5">
-                <li class="mb-3"><a class="hover-orange" href="{{ route('about') }}">@lang('footer.about_us')</a></li>
-                <li class="mb-3"><a class="hover-orange" href="{{ route('products') }}">@lang('footer.products')</a>
-                </li>
-                <li class="mb-3"><a class="hover-orange" href="{{ route('news') }}">@lang('footer.news')</a></li>
-                <li class="mb-3"><a class="hover-orange" href="{{ route('blog') }}">@lang('footer.blog')</a></li>
-                <li class="mb-3"><a class="hover-orange" href="{{ route('contact') }}">@lang('footer.contacts')</a></li>
-            </ul>
-        </div>
-    </div>
 
 </nav>
 <style>
