@@ -169,7 +169,7 @@ $category7 = $categories->skip(6)->first();
                     <span class="mx-2">{{ $links->phone }} </span>
                 </a>
                 <br>
-                <a href="tel:998772828800" class="">
+                <a href="tel:998772828800" class="mt-3">
                     b2b
                     <span class="mx-2">+998 77 282 88 00 </span>
                 </a>
