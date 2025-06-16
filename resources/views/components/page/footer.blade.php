@@ -168,6 +168,10 @@ $category7 = $categories->skip(6)->first();
                     <i class="fa-solid fa-phone"></i>
                     <span class="mx-2">{{ $links->phone }} </span>
                 </a>
+                <a href="tel:998772828800" class="">
+                    b2b
+                    <span class="mx-2">+998 77 282 88 00 </span>
+                </a>
 
                 <p class="mt-3"><i class="fa-regular fa-clock"></i>
                     <span class="mx-2">{{ $translations['work_time'] }} </span></p>
