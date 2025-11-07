@@ -171,7 +171,7 @@ $category7 = $categories->skip(6)->first();
                 <br>
                 <br>
                 <a href="tel:998772828800" class="mt-3">
-                    b2b
+                    B2B
                     <span class="mx-2">+998 77 282 88 00 </span>
                 </a>
 
@@ -179,7 +179,7 @@ $category7 = $categories->skip(6)->first();
                     <span class="mx-2">{{ $translations['work_time'] }} </span></p>
                 <form id="contactForm">
                     <div class="mb-2 mt-sm-0 mt-5">
-                        <textarea class="form-control focus_none" id="message" rows="3" placeholder="<?= __('messages.write_text') ?>"></textarea>
+                        <input type="number" class="form-control focus_none" id="message" placeholder="<?= __('messages.write_text') ?>">
                     </div>
                     <button type="submit" class="btn btn-orange rounded w-100"><?= __('messages.send') ?></button>
                 </form>

@@ -9,7 +9,7 @@ return [
     'service_centers' => 'Service Centers',
     'instructions' => 'Instructions',
     'faq' => 'FAQ',
-    'write_text' => 'Write text',
+    'write_text' => '+998 90 123 45 67',
     'send' => 'Send',
     'information' => 'Information',
     'smart_home' => 'Smart Home',

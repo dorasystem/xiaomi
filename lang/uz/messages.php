@@ -9,7 +9,7 @@ return array (
   'service_centers' => 'Servis markazlari',
   'instructions' => 'Yo‘riqnomalar',
   'faq' => 'Savol-javob',
-  'write_text' => 'Xabar yozing',
+  'write_text' => '+998 90 123 45 67',
   'send' => 'Yuborish',
   'information' => 'Ma\'lumot',
   'smart_home' => 'Aqlli uy',

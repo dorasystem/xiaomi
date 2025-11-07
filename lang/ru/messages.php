@@ -9,7 +9,7 @@ return array (
   'service_centers' => 'Сервисные центры',
   'instructions' => 'Инструкции',
   'faq' => 'Вопрос-ответ',
-  'write_text' => 'Напишите текст',
+  'write_text' => '+998 90 123 45 67',
   'send' => 'Отправить',
   'information' => 'Информация',
   'smart_home' => 'Умный дом',
