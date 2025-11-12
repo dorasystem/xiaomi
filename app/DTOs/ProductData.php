@@ -44,4 +44,19 @@ class ProductData
             }
         }
     }
+
+    public static function fromRequest($request): self
+    {
+        $data = new self($request->all());
+
+        $data->image = $request->file('image');
+        $data->gift_image = $request->file('gift_image');
+        $data->images = $request->file('images', []);
+
+        $data->popular = $request->has('popular');
+        $data->discount_status = $request->has('discount_status');
+        $data->recommend_status = $request->has('recommend_status');
+
+        return $data;
+    }
 }

@@ -27,8 +27,6 @@ use App\Http\Controllers\Admin\WarrantyController;
 use App\Http\Controllers\Auth\AdminController;
 use App\Http\Controllers\Auth\AuthController;
 use App\Http\Controllers\Auth\SuperAdminController;
-use App\Http\Controllers\Auth\UserController;
-use App\Http\Controllers\CompareController;
 use App\Http\Controllers\LanguageController;
 use App\Http\Controllers\Page\MainController;
 use App\Http\Controllers\Page\SiteController;
