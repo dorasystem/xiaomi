@@ -16,8 +16,15 @@ class ProductRepository
     {
         try {
 
-            return  DB::transaction(function () use ($data, $imagePath, $giftImagePath, $additionalImages) {
+            return  DB::transaction(function () use ($data) {
 
+                $imagePath = $this->uploadImage($data->image);
+                $giftImagePath = $this->uploadImage($data->gift_image);
+
+                $additionalImages = [];
+                foreach ($data->images as $img) {
+                    $additionalImages[] = $this->uploadImage($img);
+                }
                 $product = Product::create([
                     'code' => $data->code,
                     'category_id' => $data->category_id,
@@ -44,11 +51,42 @@ class ProductRepository
                     'recommend_status' => $data->recommend_status,
                 ]);
 
+                $product->slug = Str::slug($product->name_en) . '-' . $product->id;
+                $product->save();
+                $this->createVariants($product->id, $data);
+
+
                 return $product;
             });
         } catch (\Exception $exception) {
             Log::error('exception', ['message' => $exception->getMessage()]);
             return null;
+        }
+    }
+
+    protected function uploadImage(?UploadedFile $file): ?string
+    {
+        return $file ? $file->store('products', 'public') : null;
+    }
+
+    protected function createVariants(int $productId, ProductData $data)
+    {
+        try {
+            foreach ($data->storage as $index => $storage) {
+                Variant::create([
+                    'product_id' => $productId,
+                    'storage' => $storage,
+                    'price' => $data->price[$index] ?? null,
+                    'discount_price' => $data->discount_price[$index] ?? null,
+                    'price_6' => $data->price_6[$index] ?? null,
+                    'price_12' => $data->price_12[$index] ?? null,
+                    'price_24' => $data->price_24[$index] ?? null,
+                    'sku' => $data->sku[$index] ?? null,
+                ]);
+            }
+        } catch (\Exception $exception) {
+            Log::error($exception->getMessage());
+            return ['message' => 'Error'];
         }
     }
 }

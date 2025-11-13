@@ -15,46 +15,15 @@ class ProductService
 {
 
     protected ProductRepository $productRepository;
-    protected VariantRepository $variantRepository;
 
-    public function __construct(ProductRepository $productRepository, VariantRepository $variantRepository)
+    public function __construct(ProductRepository $productRepository)
     {
         $this->productRepository = $productRepository;
-        $this->variantRepository = $variantRepository;
     }
 
     public function createProduct(ProductData $data)
     {
-        // Service
-        $imagePath = $this->uploadImage($data->image);
-        return $this->productRepository->createProduct($data, $imagePath);
-
-
-        $imagePath = $this->uploadImage($data->image);
-        $giftImagePath = $this->uploadImage($data->gift_image);
-
-        $additionalImages = [];
-        foreach ($data->images as $img) {
-            $additionalImages[] = $this->uploadImage($img);
-        }
-
         return $this->productRepository->createProduct($data);
-    }
-
-    public function createVariants(ProductData $data, Product $product)
-    {
-        $product->slug = Str::slug($product->name_en) . '-' . $product->id;
-        $product->save();
-
-        // $this->createVariants($product->id, $data);
-        $variant = $this->variantRepository->createVariants($data, $product);
-    }
-
-
-
-    protected function uploadImage(?UploadedFile $file): ?string
-    {
-        return $file ? $file->store('products', 'public') : null;
     }
 
     public function update(Product $product, ProductData $data): Product
