@@ -15,19 +15,19 @@
         }
     ],
     "paths": {
-        "/api/products/update-by-code/{code}": {
-            "patch": {
+        "/api/products/{code}/update": {
+            "put": {
                 "tags": [
                     "Products"
                 ],
                 "summary": "Update product variant by code",
-                "description": "Updates price fields of the first variant of a product identified by its code",
-                "operationId": "updateProductVariantByCode",
+                "description": "Updates the price and other variant fields of a product by its code",
+                "operationId": "updateProductByCode",
                 "parameters": [
                     {
                         "name": "code",
                         "in": "path",
-                        "description": "Product code to identify the product",
+                        "description": "Product code",
                         "required": true,
                         "schema": {
                             "type": "string"
@@ -43,32 +43,32 @@
                                     "price": {
                                         "type": "number",
                                         "format": "float",
-                                        "example": 2199000
+                                        "example": 120.5
                                     },
                                     "discount_price": {
                                         "type": "number",
                                         "format": "float",
-                                        "example": 1999000
+                                        "example": 110
                                     },
                                     "price_3": {
                                         "type": "number",
                                         "format": "float",
-                                        "example": 750000
+                                        "example": 115
                                     },
                                     "price_6": {
                                         "type": "number",
                                         "format": "float",
-                                        "example": 380000
+                                        "example": 110
                                     },
                                     "price_12": {
                                         "type": "number",
                                         "format": "float",
-                                        "example": 200000
+                                        "example": 105
                                     },
                                     "price_24": {
                                         "type": "number",
                                         "format": "float",
-                                        "example": 110000
+                                        "example": 100
                                     }
                                 },
                                 "type": "object"
@@ -83,6 +83,10 @@
                             "application/json": {
                                 "schema": {
                                     "properties": {
+                                        "status": {
+                                            "type": "string",
+                                            "example": "success"
+                                        },
                                         "message": {
                                             "type": "string",
                                             "example": "Variant updated successfully"
@@ -93,41 +97,30 @@
                                                     "type": "integer",
                                                     "example": 1
                                                 },
-                                                "product_id": {
-                                                    "type": "integer",
-                                                    "example": 5
-                                                },
                                                 "price": {
                                                     "type": "number",
-                                                    "example": 2199000
+                                                    "format": "float",
+                                                    "example": 120.5
                                                 },
                                                 "discount_price": {
                                                     "type": "number",
-                                                    "example": 1999000
+                                                    "example": 110
                                                 },
                                                 "price_3": {
                                                     "type": "number",
-                                                    "example": 750000
+                                                    "example": 115
                                                 },
                                                 "price_6": {
                                                     "type": "number",
-                                                    "example": 380000
+                                                    "example": 110
                                                 },
                                                 "price_12": {
                                                     "type": "number",
-                                                    "example": 200000
+                                                    "example": 105
                                                 },
                                                 "price_24": {
                                                     "type": "number",
-                                                    "example": 110000
-                                                },
-                                                "created_at": {
-                                                    "type": "string",
-                                                    "format": "date-time"
-                                                },
-                                                "updated_at": {
-                                                    "type": "string",
-                                                    "format": "date-time"
+                                                    "example": 100
                                                 }
                                             },
                                             "type": "object"
@@ -138,15 +131,95 @@
                             }
                         }
                     },
-                    "404": {
-                        "description": "Product or Variant not found",
+                    "400": {
+                        "description": "Price value missing",
                         "content": {
                             "application/json": {
                                 "schema": {
                                     "properties": {
+                                        "status": {
+                                            "type": "string",
+                                            "example": "error"
+                                        },
+                                        "message": {
+                                            "type": "string",
+                                            "example": "Price value missing"
+                                        }
+                                    },
+                                    "type": "object"
+                                }
+                            }
+                        }
+                    },
+                    "404": {
+                        "description": "Product or variant not found",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "properties": {
+                                        "status": {
+                                            "type": "string",
+                                            "example": "error"
+                                        },
                                         "message": {
                                             "type": "string",
                                             "example": "Product not found"
+                                        }
+                                    },
+                                    "type": "object"
+                                }
+                            }
+                        }
+                    },
+                    "422": {
+                        "description": "Validation error",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "properties": {
+                                        "status": {
+                                            "type": "string",
+                                            "example": "error"
+                                        },
+                                        "message": {
+                                            "type": "string",
+                                            "example": "Validation failed"
+                                        },
+                                        "errors": {
+                                            "properties": {
+                                                "price": {
+                                                    "type": "array",
+                                                    "items": {
+                                                        "type": "string",
+                                                        "example": "The price field is required."
+                                                    }
+                                                }
+                                            },
+                                            "type": "object"
+                                        }
+                                    },
+                                    "type": "object"
+                                }
+                            }
+                        }
+                    },
+                    "500": {
+                        "description": "Server error / Exception",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "properties": {
+                                        "status": {
+                                            "type": "string",
+                                            "example": "error"
+                                        },
+                                        "message": {
+                                            "type": "string",
+                                            "example": "Server error"
+                                        },
+                                        "error": {
+                                            "type": "string",
+                                            "example": "Database connection lost"
                                         }
                                     },
                                     "type": "object"

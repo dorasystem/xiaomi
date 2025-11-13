@@ -4,7 +4,10 @@ namespace App\Http\Controllers\Api;
 
 use App\Http\Controllers\Controller;
 use App\Models\Product;
+use App\Traits\SendsTelegramNotification;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\DB;
+use Illuminate\Support\Facades\Log;
 
 /**
  * @OA\Info(
@@ -22,100 +25,175 @@ use Illuminate\Http\Request;
 
 class ProductController extends Controller
 {
+    use SendsTelegramNotification;
     /**
-     * @OA\Patch(
-     *     path="/api/products/update-by-code/{code}",
-     *     summary="Update product variant by code",
-     *     description="Updates price fields of the first variant of a product identified by its code",
-     *     operationId="updateProductVariantByCode",
+     * @OA\Put(
+     *     path="/api/products/{code}/update",
+     *     operationId="updateProductByCode",
      *     tags={"Products"},
-     *     
+     *     summary="Update product variant by code",
+     *     description="Updates the price and other variant fields of a product by its code",
      *     @OA\Parameter(
      *         name="code",
      *         in="path",
-     *         description="Product code to identify the product",
+     *         description="Product code",
      *         required=true,
      *         @OA\Schema(type="string")
      *     ),
-     *     
      *     @OA\RequestBody(
      *         required=true,
      *         @OA\JsonContent(
-     *             type="object",
-     *             @OA\Property(property="price", type="number", format="float", example=2199000),
-     *             @OA\Property(property="discount_price", type="number", format="float", example=1999000),
-     *             @OA\Property(property="price_3", type="number", format="float", example=750000),
-     *             @OA\Property(property="price_6", type="number", format="float", example=380000),
-     *             @OA\Property(property="price_12", type="number", format="float", example=200000),
-     *             @OA\Property(property="price_24", type="number", format="float", example=110000)
+     *             @OA\Property(property="price", type="number", format="float", example=120.5),
+     *             @OA\Property(property="discount_price", type="number", format="float", example=110.0),
+     *             @OA\Property(property="price_3", type="number", format="float", example=115.0),
+     *             @OA\Property(property="price_6", type="number", format="float", example=110.0),
+     *             @OA\Property(property="price_12", type="number", format="float", example=105.0),
+     *             @OA\Property(property="price_24", type="number", format="float", example=100.0)
      *         )
      *     ),
-     *     
      *     @OA\Response(
      *         response=200,
      *         description="Variant updated successfully",
      *         @OA\JsonContent(
-     *             type="object",
+     *             @OA\Property(property="status", type="string", example="success"),
      *             @OA\Property(property="message", type="string", example="Variant updated successfully"),
      *             @OA\Property(property="data", type="object",
      *                 @OA\Property(property="id", type="integer", example=1),
-     *                 @OA\Property(property="product_id", type="integer", example=5),
-     *                 @OA\Property(property="price", type="number", example=2199000),
-     *                 @OA\Property(property="discount_price", type="number", example=1999000),
-     *                 @OA\Property(property="price_3", type="number", example=750000),
-     *                 @OA\Property(property="price_6", type="number", example=380000),
-     *                 @OA\Property(property="price_12", type="number", example=200000),
-     *                 @OA\Property(property="price_24", type="number", example=110000),
-     *                 @OA\Property(property="created_at", type="string", format="date-time"),
-     *                 @OA\Property(property="updated_at", type="string", format="date-time")
+     *                 @OA\Property(property="price", type="number", format="float", example=120.5),
+     *                 @OA\Property(property="discount_price", type="number", example=110.0),
+     *                 @OA\Property(property="price_3", type="number", example=115.0),
+     *                 @OA\Property(property="price_6", type="number", example=110.0),
+     *                 @OA\Property(property="price_12", type="number", example=105.0),
+     *                 @OA\Property(property="price_24", type="number", example=100.0)
      *             )
      *         )
      *     ),
-     *     
+     *     @OA\Response(
+     *         response=400,
+     *         description="Price value missing",
+     *         @OA\JsonContent(
+     *             @OA\Property(property="status", type="string", example="error"),
+     *             @OA\Property(property="message", type="string", example="Price value missing")
+     *         )
+     *     ),
      *     @OA\Response(
      *         response=404,
-     *         description="Product or Variant not found",
+     *         description="Product or variant not found",
      *         @OA\JsonContent(
-     *             type="object",
+     *             @OA\Property(property="status", type="string", example="error"),
      *             @OA\Property(property="message", type="string", example="Product not found")
+     *         )
+     *     ),
+     *     @OA\Response(
+     *         response=422,
+     *         description="Validation error",
+     *         @OA\JsonContent(
+     *             @OA\Property(property="status", type="string", example="error"),
+     *             @OA\Property(property="message", type="string", example="Validation failed"),
+     *             @OA\Property(property="errors", type="object",
+     *                 @OA\Property(property="price", type="array",
+     *                     @OA\Items(type="string", example="The price field is required.")
+     *                 )
+     *             )
+     *         )
+     *     ),
+     *     @OA\Response(
+     *         response=500,
+     *         description="Server error / Exception",
+     *         @OA\JsonContent(
+     *             @OA\Property(property="status", type="string", example="error"),
+     *             @OA\Property(property="message", type="string", example="Server error"),
+     *             @OA\Property(property="error", type="string", example="Database connection lost")
      *         )
      *     )
      * )
      */
-    public function  updateByCode(Request $request, $code)
+
+
+    public function updateByCode(Request $request, $code)
     {
-        $product = Product::where('code', $code)->first();
+        DB::beginTransaction();
 
-        if (!$product) {
+        try {
+            $product = Product::where('code', $code)->first();
+
+            if (! $product) {
+                $msg = "<b>Xatolik:</b> Mahsulot topilmadi!\n"
+                    . "<b>Kod:</b> {$code}\n"
+                    .  now()->format('Y-m-d H:i:s');
+                $this->sendTelegramNotification($msg);
+                Log::warning("Product not found: {$code}");
+                return response()->json(['message' => 'Product not found'], 404);
+            }
+
+            $variant = $product->variants()->first();
+
+            if (! $variant) {
+                $msg = " <b>Xatolik:</b> Variant topilmadi!\n"
+                    . " <b>Mahsulot:</b> {$product->name}\n"
+                    . " <b>Kod:</b> {$code}\n"
+                    . now()->format('Y-m-d H:i:s');
+                $this->sendTelegramNotification($msg);
+                Log::warning("Variant not found for product: {$code}");
+                return response()->json(['message' => 'Variant not found'], 404);
+            }
+
+            $newPrice = $request->input('price');
+            if ($newPrice === null) {
+                $msg = " <b>Ogohlantirish:</b> So‘rovda yangi narx yuborilmagan!\n"
+                    . " <b>Mahsulot:</b> {$product->name}\n"
+                    . " <b>Kod:</b> {$code}\n"
+                    . now()->format('Y-m-d H:i:s');
+                $this->sendTelegramNotification($msg);
+                Log::warning("Price value missing for product: {$code}");
+                return response()->json(['message' => 'Price value missing'], 400);
+            }
+
+            $oldPrice = $variant->price;
+
+            $variant->update($request->only([
+                'price',
+                'discount_price',
+                'price_3',
+                'price_6',
+                'price_12',
+                'price_24',
+            ]));
+
+            DB::commit();
+
+            Log::info("Variant updated successfully", [
+                'product_code' => $code,
+                'old_price'    => $oldPrice,
+                'new_price'    => $variant->price,
+            ]);
+
             return response()->json([
-                'message' => 'Product not found'
-            ], 404);
-        }
+                'message' => 'Variant updated successfully',
+                'data' => $variant,
+            ]);
+        } catch (\Throwable $e) {
+            DB::rollBack();
 
-        $variant = $product->variants()->first();
+            $msg = "<b>Exception yuz berdi!</b>\n"
+                . " <b>Xatolik:</b> {$e->getMessage()}\n"
+                . now()->format('Y-m-d H:i:s');
 
-        if (!$variant) {
+            $this->sendTelegramNotification($msg);
+            Log::error('Unexpected error while updating variant', [
+                'error' => $e->getMessage(),
+            ]);
+
             return response()->json([
-                'message' => 'Variant not found'
-            ], 404);
+                'message' => 'Server error',
+                'error' => $e->getMessage(),
+            ], 500);
         }
-
-
-        $variant->update($request->only([
-            'price',
-            'discount_price',
-            'price_3',
-            'price_6',
-            'price_12',
-            'price_24',
-        ]));
-
-
-        return response()->json([
-            'message' => 'Varinat updated successfully',
-            'data' => $variant,
-        ]);
     }
+
+
+
+
     /**
      * @OA\Get(
      *      path="/api/products",
