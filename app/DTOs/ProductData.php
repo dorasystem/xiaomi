@@ -7,6 +7,8 @@ use Illuminate\Http\UploadedFile;
 class ProductData
 {
     public ?int $category_id = null;
+    public ?string $code = null;
+
     public string $name_uz = '';
     public string $name_ru = '';
     public string $name_en = '';

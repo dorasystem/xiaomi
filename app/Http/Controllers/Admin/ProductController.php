@@ -16,7 +16,7 @@ class ProductController extends Controller
 
     public function __construct(protected ProductService $productService) {}
 
-    public function duplicate($id, ProductService $service)
+    public function duplicate(int $id, ProductService $service)
     {
         $service->duplicate($id);
 
@@ -52,7 +52,7 @@ class ProductController extends Controller
     {
         $productData = new ProductData($request->validated());
 
-        $this->productService->create($productData);
+        $this->productService->createProduct($productData);
 
         return redirect()->route('products.index')->with('success', 'Product created successfully!');
     }

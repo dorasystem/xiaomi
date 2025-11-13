@@ -1,0 +1,457 @@
+{
+    "openapi": "3.0.0",
+    "info": {
+        "title": "Product API",
+        "description": "API for managing products",
+        "contact": {
+            "email": "support@example.com"
+        },
+        "version": "1.0.0"
+    },
+    "servers": [
+        {
+            "url": "http://localhost:8000",
+            "description": "API Server"
+        }
+    ],
+    "paths": {
+        "/api/products/update-by-code/{code}": {
+            "patch": {
+                "tags": [
+                    "Products"
+                ],
+                "summary": "Update product variant by code",
+                "description": "Updates price fields of the first variant of a product identified by its code",
+                "operationId": "updateProductVariantByCode",
+                "parameters": [
+                    {
+                        "name": "code",
+                        "in": "path",
+                        "description": "Product code to identify the product",
+                        "required": true,
+                        "schema": {
+                            "type": "string"
+                        }
+                    }
+                ],
+                "requestBody": {
+                    "required": true,
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "properties": {
+                                    "price": {
+                                        "type": "number",
+                                        "format": "float",
+                                        "example": 2199000
+                                    },
+                                    "discount_price": {
+                                        "type": "number",
+                                        "format": "float",
+                                        "example": 1999000
+                                    },
+                                    "price_3": {
+                                        "type": "number",
+                                        "format": "float",
+                                        "example": 750000
+                                    },
+                                    "price_6": {
+                                        "type": "number",
+                                        "format": "float",
+                                        "example": 380000
+                                    },
+                                    "price_12": {
+                                        "type": "number",
+                                        "format": "float",
+                                        "example": 200000
+                                    },
+                                    "price_24": {
+                                        "type": "number",
+                                        "format": "float",
+                                        "example": 110000
+                                    }
+                                },
+                                "type": "object"
+                            }
+                        }
+                    }
+                },
+                "responses": {
+                    "200": {
+                        "description": "Variant updated successfully",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "properties": {
+                                        "message": {
+                                            "type": "string",
+                                            "example": "Variant updated successfully"
+                                        },
+                                        "data": {
+                                            "properties": {
+                                                "id": {
+                                                    "type": "integer",
+                                                    "example": 1
+                                                },
+                                                "product_id": {
+                                                    "type": "integer",
+                                                    "example": 5
+                                                },
+                                                "price": {
+                                                    "type": "number",
+                                                    "example": 2199000
+                                                },
+                                                "discount_price": {
+                                                    "type": "number",
+                                                    "example": 1999000
+                                                },
+                                                "price_3": {
+                                                    "type": "number",
+                                                    "example": 750000
+                                                },
+                                                "price_6": {
+                                                    "type": "number",
+                                                    "example": 380000
+                                                },
+                                                "price_12": {
+                                                    "type": "number",
+                                                    "example": 200000
+                                                },
+                                                "price_24": {
+                                                    "type": "number",
+                                                    "example": 110000
+                                                },
+                                                "created_at": {
+                                                    "type": "string",
+                                                    "format": "date-time"
+                                                },
+                                                "updated_at": {
+                                                    "type": "string",
+                                                    "format": "date-time"
+                                                }
+                                            },
+                                            "type": "object"
+                                        }
+                                    },
+                                    "type": "object"
+                                }
+                            }
+                        }
+                    },
+                    "404": {
+                        "description": "Product or Variant not found",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "properties": {
+                                        "message": {
+                                            "type": "string",
+                                            "example": "Product not found"
+                                        }
+                                    },
+                                    "type": "object"
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        },
+        "/api/products": {
+            "get": {
+                "tags": [
+                    "Products"
+                ],
+                "summary": "Get list of products",
+                "operationId": "getProductsList",
+                "responses": {
+                    "200": {
+                        "description": "Successful operation",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "properties": {
+                                        "current_page": {
+                                            "type": "integer"
+                                        },
+                                        "data": {
+                                            "type": "array",
+                                            "items": {
+                                                "$ref": "#/components/schemas/Product"
+                                            }
+                                        },
+                                        "total": {
+                                            "type": "integer"
+                                        }
+                                    },
+                                    "type": "object"
+                                }
+                            }
+                        }
+                    }
+                }
+            },
+            "post": {
+                "tags": [
+                    "Products"
+                ],
+                "summary": "Create a new product",
+                "operationId": "storeProduct",
+                "requestBody": {
+                    "required": true,
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "$ref": "#/components/schemas/Product"
+                            }
+                        }
+                    }
+                },
+                "responses": {
+                    "201": {
+                        "description": "Product created successfully",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/Product"
+                                }
+                            }
+                        }
+                    },
+                    "422": {
+                        "description": "Validation error"
+                    }
+                }
+            }
+        },
+        "/api/products/{id}": {
+            "get": {
+                "tags": [
+                    "Products"
+                ],
+                "summary": "Get product by ID",
+                "operationId": "getProductById",
+                "parameters": [
+                    {
+                        "name": "id",
+                        "in": "path",
+                        "description": "Product ID",
+                        "required": true,
+                        "schema": {
+                            "type": "integer"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Successful operation",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/Product"
+                                }
+                            }
+                        }
+                    },
+                    "404": {
+                        "description": "Product not found"
+                    }
+                }
+            },
+            "put": {
+                "tags": [
+                    "Products"
+                ],
+                "summary": "Update an existing product",
+                "operationId": "updateProduct",
+                "parameters": [
+                    {
+                        "name": "id",
+                        "in": "path",
+                        "required": true,
+                        "schema": {
+                            "type": "integer"
+                        }
+                    }
+                ],
+                "requestBody": {
+                    "required": true,
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "$ref": "#/components/schemas/Product"
+                            }
+                        }
+                    }
+                },
+                "responses": {
+                    "200": {
+                        "description": "Product updated successfully",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/Product"
+                                }
+                            }
+                        }
+                    },
+                    "404": {
+                        "description": "Product not found"
+                    }
+                }
+            },
+            "delete": {
+                "tags": [
+                    "Products"
+                ],
+                "summary": "Delete a product",
+                "operationId": "deleteProduct",
+                "parameters": [
+                    {
+                        "name": "id",
+                        "in": "path",
+                        "required": true,
+                        "schema": {
+                            "type": "integer"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Product deleted successfully"
+                    },
+                    "404": {
+                        "description": "Product not found"
+                    }
+                }
+            }
+        }
+    },
+    "components": {
+        "schemas": {
+            "Product": {
+                "required": [
+                    "category_id",
+                    "slug",
+                    "name_uz",
+                    "description_uz"
+                ],
+                "properties": {
+                    "code": {
+                        "type": "string",
+                        "example": "00-000001"
+                    },
+                    "id": {
+                        "type": "integer",
+                        "readOnly": true
+                    },
+                    "category_id": {
+                        "type": "integer"
+                    },
+                    "slug": {
+                        "type": "string"
+                    },
+                    "name_uz": {
+                        "type": "string"
+                    },
+                    "name_ru": {
+                        "type": "string",
+                        "nullable": true
+                    },
+                    "name_en": {
+                        "type": "string",
+                        "nullable": true
+                    },
+                    "description_uz": {
+                        "type": "string"
+                    },
+                    "description_ru": {
+                        "type": "string",
+                        "nullable": true
+                    },
+                    "description_en": {
+                        "type": "string",
+                        "nullable": true
+                    },
+                    "content_uz": {
+                        "type": "string",
+                        "nullable": true
+                    },
+                    "content_ru": {
+                        "type": "string",
+                        "nullable": true
+                    },
+                    "content_en": {
+                        "type": "string",
+                        "nullable": true
+                    },
+                    "gift_name_uz": {
+                        "type": "string",
+                        "nullable": true
+                    },
+                    "gift_name_ru": {
+                        "type": "string",
+                        "nullable": true
+                    },
+                    "gift_name_en": {
+                        "type": "string",
+                        "nullable": true
+                    },
+                    "gift_image": {
+                        "type": "string",
+                        "nullable": true
+                    },
+                    "image": {
+                        "type": "string",
+                        "nullable": true
+                    },
+                    "images": {
+                        "type": "string",
+                        "nullable": true
+                    },
+                    "color_uz": {
+                        "type": "string",
+                        "nullable": true
+                    },
+                    "color_ru": {
+                        "type": "string",
+                        "nullable": true
+                    },
+                    "color_en": {
+                        "type": "string",
+                        "nullable": true
+                    },
+                    "popular": {
+                        "type": "boolean",
+                        "nullable": true
+                    },
+                    "discount_status": {
+                        "type": "boolean",
+                        "nullable": true
+                    },
+                    "recommend_status": {
+                        "type": "boolean",
+                        "nullable": true
+                    },
+                    "created_at": {
+                        "type": "string",
+                        "format": "date-time",
+                        "readOnly": true
+                    },
+                    "updated_at": {
+                        "type": "string",
+                        "format": "date-time",
+                        "readOnly": true
+                    }
+                },
+                "type": "object"
+            }
+        }
+    },
+    "tags": [
+        {
+            "name": "Products",
+            "description": "Products"
+        }
+    ]
+}

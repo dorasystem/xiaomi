@@ -2,6 +2,7 @@
 
 use App\Http\Controllers\Admin\CommentController;
 use App\Http\Controllers\Admin\TestimonialController;
+use App\Http\Controllers\Api\ProductController;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 
@@ -17,3 +18,10 @@ Route::middleware('auth:sanctum')->group(function () {
 
 Route::post('/comments', [CommentController::class, 'store']);
 Route::get('/products/{product}/comments', [CommentController::class, 'getByProduct']);
+
+Route::get('products', [ProductController::class, 'index']);
+Route::get('products/{id}', [ProductController::class, 'show']);
+Route::post('products', [ProductController::class, 'store']);
+Route::put('products/{id}', [ProductController::class, 'update']);
+Route::delete('products/{id}', [ProductController::class, 'destroy']);
+Route::patch('/products/update-by-code/{code}', [ProductController::class, 'updateByCode']);
