@@ -17,16 +17,85 @@ use Illuminate\Support\Facades\Log;
  *      @OA\Contact(email="support@example.com")
  * )
  *
- * @OA\Server(
- *      url=L5_SWAGGER_CONST_HOST,
- *      description="API Server"
+ *
+ * @OA\SecurityScheme(
+ *     securityScheme="basicAuth",
+ *     type="http",
+ *     scheme="basic"
  * )
  */
-
 class ProductController extends Controller
 {
     use SendsTelegramNotification;
-  
+    /**
+     * @OA\Post(
+     *     path="api/products/code",
+     *     tags={"Products"},
+     *     summary="Update multiple product variant prices by product code",
+     *     description="Updates variant prices for multiple products using their code. 
+         Each item is processed individually. Missing code, product not found, 
+         variant not found, or missing price will be skipped with logging and Telegram notifications.",
+     *
+     *     @OA\RequestBody(
+     *         required=true,
+     *         @OA\JsonContent(
+     *             type="array",
+     *             @OA\Items(
+     *                 type="object",
+     *                 @OA\Property(property="code", type="string", example="PRD-001"),
+     *                 @OA\Property(property="price", type="number", example=150000),
+     *                 @OA\Property(property="discount_price", type="number", nullable=true, example=130000),
+     *                 @OA\Property(property="price_3", type="number", nullable=true, example=50000),
+     *                 @OA\Property(property="price_6", type="number", nullable=true, example=27000),
+     *                 @OA\Property(property="price_12", type="number", nullable=true, example=15000),
+     *                 @OA\Property(property="price_24", type="number", nullable=true, example=9000)
+     *             )
+     *         )
+     *     ),
+     *
+     *     @OA\Response(
+     *         response=200,
+     *         description="Variants successfully updated",
+     *         @OA\JsonContent(
+     *             @OA\Property(property="message", type="string", example="Variants updated successfully"),
+     *             @OA\Property(
+     *                 property="data",
+     *                 type="array",
+     *                 @OA\Items(
+     *                     @OA\Property(property="id", type="integer", example=12),
+     *                     @OA\Property(property="product_id", type="integer", example=5),
+     *                     @OA\Property(property="price", type="number", example=150000),
+     *                     @OA\Property(property="discount_price", type="number", example=130000),
+     *                     @OA\Property(property="price_3", type="number", example=50000),
+     *                     @OA\Property(property="price_6", type="number", example=27000),
+     *                     @OA\Property(property="price_12", type="number", example=15000),
+     *                     @OA\Property(property="price_24", type="number", example=9000),
+     *                     @OA\Property(property="updated_at", type="string", example="2025-11-14 19:22:10")
+     *                 )
+     *             )
+     *         )
+     *     ),
+     *
+     *     @OA\Response(
+     *         response=400,
+     *         description="Invalid request format",
+     *         @OA\JsonContent(
+     *             @OA\Property(property="message", type="string", example="Invalid data format, expected array")
+     *         )
+     *     ),
+     *
+     *     @OA\Response(
+     *         response=500,
+     *         description="Unexpected server error",
+     *         @OA\JsonContent(
+     *             @OA\Property(property="message", type="string", example="Server error"),
+     *             @OA\Property(property="error", type="string", example="SQLSTATE[23000]: Integrity constraint violation")
+     *         )
+     *     )
+     * )
+     */
+
+
     public function updateMultiple(Request $request)
     {
         $productsData = $request->all();

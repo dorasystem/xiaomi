@@ -8,122 +8,117 @@
         },
         "version": "1.0.0"
     },
-    "servers": [
-        {
-            "url": "http://localhost:8000",
-            "description": "API Server"
-        }
-    ],
     "paths": {
-        "/api/products/{code}/update": {
-            "put": {
+        "api/products/code": {
+            "post": {
                 "tags": [
                     "Products"
                 ],
-                "summary": "Update product variant by code",
-                "description": "Updates the price and other variant fields of a product by its code",
-                "operationId": "updateProductByCode",
-                "parameters": [
-                    {
-                        "name": "code",
-                        "in": "path",
-                        "description": "Product code",
-                        "required": true,
-                        "schema": {
-                            "type": "string"
-                        }
-                    }
-                ],
+                "summary": "Update multiple product variant prices by product code",
+                "description": "Updates variant prices for multiple products using their code. \n         Each item is processed individually. Missing code, product not found, \n         variant not found, or missing price will be skipped with logging and Telegram notifications.",
+                "operationId": "d406222628b1d56c35e5fb98dcb1e5b7",
                 "requestBody": {
                     "required": true,
                     "content": {
                         "application/json": {
                             "schema": {
-                                "properties": {
-                                    "price": {
-                                        "type": "number",
-                                        "format": "float",
-                                        "example": 120.5
+                                "type": "array",
+                                "items": {
+                                    "properties": {
+                                        "code": {
+                                            "type": "string",
+                                            "example": "PRD-001"
+                                        },
+                                        "price": {
+                                            "type": "number",
+                                            "example": 150000
+                                        },
+                                        "discount_price": {
+                                            "type": "number",
+                                            "example": 130000,
+                                            "nullable": true
+                                        },
+                                        "price_3": {
+                                            "type": "number",
+                                            "example": 50000,
+                                            "nullable": true
+                                        },
+                                        "price_6": {
+                                            "type": "number",
+                                            "example": 27000,
+                                            "nullable": true
+                                        },
+                                        "price_12": {
+                                            "type": "number",
+                                            "example": 15000,
+                                            "nullable": true
+                                        },
+                                        "price_24": {
+                                            "type": "number",
+                                            "example": 9000,
+                                            "nullable": true
+                                        }
                                     },
-                                    "discount_price": {
-                                        "type": "number",
-                                        "format": "float",
-                                        "example": 110
-                                    },
-                                    "price_3": {
-                                        "type": "number",
-                                        "format": "float",
-                                        "example": 115
-                                    },
-                                    "price_6": {
-                                        "type": "number",
-                                        "format": "float",
-                                        "example": 110
-                                    },
-                                    "price_12": {
-                                        "type": "number",
-                                        "format": "float",
-                                        "example": 105
-                                    },
-                                    "price_24": {
-                                        "type": "number",
-                                        "format": "float",
-                                        "example": 100
-                                    }
-                                },
-                                "type": "object"
+                                    "type": "object"
+                                }
                             }
                         }
                     }
                 },
                 "responses": {
                     "200": {
-                        "description": "Variant updated successfully",
+                        "description": "Variants successfully updated",
                         "content": {
                             "application/json": {
                                 "schema": {
                                     "properties": {
-                                        "status": {
-                                            "type": "string",
-                                            "example": "success"
-                                        },
                                         "message": {
                                             "type": "string",
-                                            "example": "Variant updated successfully"
+                                            "example": "Variants updated successfully"
                                         },
                                         "data": {
-                                            "properties": {
-                                                "id": {
-                                                    "type": "integer",
-                                                    "example": 1
+                                            "type": "array",
+                                            "items": {
+                                                "properties": {
+                                                    "id": {
+                                                        "type": "integer",
+                                                        "example": 12
+                                                    },
+                                                    "product_id": {
+                                                        "type": "integer",
+                                                        "example": 5
+                                                    },
+                                                    "price": {
+                                                        "type": "number",
+                                                        "example": 150000
+                                                    },
+                                                    "discount_price": {
+                                                        "type": "number",
+                                                        "example": 130000
+                                                    },
+                                                    "price_3": {
+                                                        "type": "number",
+                                                        "example": 50000
+                                                    },
+                                                    "price_6": {
+                                                        "type": "number",
+                                                        "example": 27000
+                                                    },
+                                                    "price_12": {
+                                                        "type": "number",
+                                                        "example": 15000
+                                                    },
+                                                    "price_24": {
+                                                        "type": "number",
+                                                        "example": 9000
+                                                    },
+                                                    "updated_at": {
+                                                        "type": "string",
+                                                        "example": "2025-11-14 19:22:10"
+                                                    }
                                                 },
-                                                "price": {
-                                                    "type": "number",
-                                                    "format": "float",
-                                                    "example": 120.5
-                                                },
-                                                "discount_price": {
-                                                    "type": "number",
-                                                    "example": 110
-                                                },
-                                                "price_3": {
-                                                    "type": "number",
-                                                    "example": 115
-                                                },
-                                                "price_6": {
-                                                    "type": "number",
-                                                    "example": 110
-                                                },
-                                                "price_12": {
-                                                    "type": "number",
-                                                    "example": 105
-                                                },
-                                                "price_24": {
-                                                    "type": "number",
-                                                    "example": 100
-                                                }
-                                            },
-                                            "type": "object"
+                                                "type": "object"
+                                            }
                                         }
                                     },
                                     "type": "object"
@@ -132,70 +127,14 @@
                         }
                     },
                     "400": {
-                        "description": "Price value missing",
+                        "description": "Invalid request format",
                         "content": {
                             "application/json": {
                                 "schema": {
                                     "properties": {
-                                        "status": {
-                                            "type": "string",
-                                            "example": "error"
-                                        },
                                         "message": {
                                             "type": "string",
-                                            "example": "Price value missing"
-                                        }
-                                    },
-                                    "type": "object"
-                                }
-                            }
-                        }
-                    },
-                    "404": {
-                        "description": "Product or variant not found",
-                        "content": {
-                            "application/json": {
-                                "schema": {
-                                    "properties": {
-                                        "status": {
-                                            "type": "string",
-                                            "example": "error"
-                                        },
-                                        "message": {
-                                            "type": "string",
-                                            "example": "Product not found"
-                                        }
-                                    },
-                                    "type": "object"
-                                }
-                            }
-                        }
-                    },
-                    "422": {
-                        "description": "Validation error",
-                        "content": {
-                            "application/json": {
-                                "schema": {
-                                    "properties": {
-                                        "status": {
-                                            "type": "string",
-                                            "example": "error"
-                                        },
-                                        "message": {
-                                            "type": "string",
-                                            "example": "Validation failed"
-                                        },
-                                        "errors": {
-                                            "properties": {
-                                                "price": {
-                                                    "type": "array",
-                                                    "items": {
-                                                        "type": "string",
-                                                        "example": "The price field is required."
-                                                    }
-                                                }
-                                            },
-                                            "type": "object"
+                                            "example": "Invalid data format, expected array"
                                         }
                                     },
                                     "type": "object"
@@ -204,22 +143,18 @@
                         }
                     },
                     "500": {
-                        "description": "Server error / Exception",
+                        "description": "Unexpected server error",
                         "content": {
                             "application/json": {
                                 "schema": {
                                     "properties": {
-                                        "status": {
-                                            "type": "string",
-                                            "example": "error"
-                                        },
                                         "message": {
                                             "type": "string",
                                             "example": "Server error"
                                         },
                                         "error": {
                                             "type": "string",
-                                            "example": "Database connection lost"
+                                            "example": "SQLSTATE[23000]: Integrity constraint violation"
                                         }
                                     },
                                     "type": "object"
@@ -403,23 +338,16 @@
     "components": {
         "schemas": {
             "Product": {
-                "required": [
-                    "category_id",
-                    "slug",
-                    "name_uz",
-                    "description_uz"
-                ],
+                "title": "Product Model",
                 "properties": {
-                    "code": {
-                        "type": "string",
-                        "example": "00-000001"
-                    },
                     "id": {
-                        "type": "integer",
-                        "readOnly": true
+                        "type": "integer"
                     },
                     "category_id": {
                         "type": "integer"
+                    },
+                    "code": {
+                        "type": "string"
                     },
                     "slug": {
                         "type": "string"
@@ -428,96 +356,73 @@
                         "type": "string"
                     },
                     "name_ru": {
-                        "type": "string",
-                        "nullable": true
+                        "type": "string"
                     },
                     "name_en": {
-                        "type": "string",
-                        "nullable": true
+                        "type": "string"
                     },
                     "description_uz": {
                         "type": "string"
                     },
                     "description_ru": {
-                        "type": "string",
-                        "nullable": true
+                        "type": "string"
                     },
                     "description_en": {
-                        "type": "string",
-                        "nullable": true
+                        "type": "string"
                     },
                     "content_uz": {
-                        "type": "string",
-                        "nullable": true
+                        "type": "string"
                     },
                     "content_ru": {
-                        "type": "string",
-                        "nullable": true
+                        "type": "string"
                     },
                     "content_en": {
-                        "type": "string",
-                        "nullable": true
+                        "type": "string"
                     },
                     "gift_name_uz": {
-                        "type": "string",
-                        "nullable": true
+                        "type": "string"
                     },
                     "gift_name_ru": {
-                        "type": "string",
-                        "nullable": true
+                        "type": "string"
                     },
                     "gift_name_en": {
-                        "type": "string",
-                        "nullable": true
+                        "type": "string"
                     },
                     "gift_image": {
-                        "type": "string",
-                        "nullable": true
+                        "type": "string"
                     },
                     "image": {
-                        "type": "string",
-                        "nullable": true
+                        "type": "string"
                     },
                     "images": {
-                        "type": "string",
-                        "nullable": true
+                        "type": "string"
                     },
                     "color_uz": {
-                        "type": "string",
-                        "nullable": true
+                        "type": "string"
                     },
                     "color_ru": {
-                        "type": "string",
-                        "nullable": true
+                        "type": "string"
                     },
                     "color_en": {
-                        "type": "string",
-                        "nullable": true
+                        "type": "string"
                     },
                     "popular": {
-                        "type": "boolean",
-                        "nullable": true
+                        "type": "boolean"
                     },
                     "discount_status": {
-                        "type": "boolean",
-                        "nullable": true
+                        "type": "boolean"
                     },
                     "recommend_status": {
-                        "type": "boolean",
-                        "nullable": true
-                    },
-                    "created_at": {
-                        "type": "string",
-                        "format": "date-time",
-                        "readOnly": true
-                    },
-                    "updated_at": {
-                        "type": "string",
-                        "format": "date-time",
-                        "readOnly": true
+                        "type": "boolean"
                     }
                 },
                 "type": "object"
+            }
+        },
+        "securitySchemes": {
+            "basicAuth": {
+                "type": "http",
+                "scheme": "basic"
             }
         }
     },

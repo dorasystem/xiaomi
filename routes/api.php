@@ -3,7 +3,6 @@
 use App\Http\Controllers\Admin\CommentController;
 use App\Http\Controllers\Admin\TestimonialController;
 use App\Http\Controllers\Api\ProductController;
-use App\Http\Controllers\Auth\AuthController;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 
@@ -15,17 +14,10 @@ Route::middleware('auth:sanctum')->group(function () {
     Route::post('products/{productId}/testimonials', [TestimonialController::class, 'store']);
     Route::get('testimonials/{id}', [TestimonialController::class, 'show']);
 });
-Route::get('/dashboard', function () {
-    return 'OK';
-})->middleware('basic.custom');
 
 
 Route::post('/comments', [CommentController::class, 'store']);
 Route::get('/products/{product}/comments', [CommentController::class, 'getByProduct']);
-
-
-Route::post('register', [AuthController::class, 'register']);
-Route::post('login', [AuthController::class, 'login']);
 
 Route::middleware('auth.basic')->group(function () {
     Route::get('products', [ProductController::class, 'index']);
