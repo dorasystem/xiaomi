@@ -9,14 +9,14 @@
         "version": "1.0.0"
     },
     "paths": {
-        "api/products/code": {
+        "/api/products/code": {
             "post": {
                 "tags": [
                     "Products"
                 ],
                 "summary": "Update multiple product variant prices by product code",
                 "description": "Updates variant prices for multiple products using their code. \n         Each item is processed individually. Missing code, product not found, \n         variant not found, or missing price will be skipped with logging and Telegram notifications.",
-                "operationId": "d406222628b1d56c35e5fb98dcb1e5b7",
+                "operationId": "d2b2f1cf3c7d6349ea7bfd08380bb30f",
                 "requestBody": {
                     "required": true,
                     "content": {
@@ -36,26 +36,6 @@
                                         "discount_price": {
                                             "type": "number",
                                             "example": 130000,
-                                            "nullable": true
-                                        },
-                                        "price_3": {
-                                            "type": "number",
-                                            "example": 50000,
-                                            "nullable": true
-                                        },
-                                        "price_6": {
-                                            "type": "number",
-                                            "example": 27000,
-                                            "nullable": true
-                                        },
-                                        "price_12": {
-                                            "type": "number",
-                                            "example": 15000,
-                                            "nullable": true
-                                        },
-                                        "price_24": {
-                                            "type": "number",
-                                            "example": 9000,
                                             "nullable": true
                                         }
                                     },
@@ -95,22 +75,6 @@
                                                     "discount_price": {
                                                         "type": "number",
                                                         "example": 130000
-                                                    },
-                                                    "price_3": {
-                                                        "type": "number",
-                                                        "example": 50000
-                                                    },
-                                                    "price_6": {
-                                                        "type": "number",
-                                                        "example": 27000
-                                                    },
-                                                    "price_12": {
-                                                        "type": "number",
-                                                        "example": 15000
-                                                    },
-                                                    "price_24": {
-                                                        "type": "number",
-                                                        "example": 9000
                                                     },
                                                     "updated_at": {
                                                         "type": "string",

@@ -29,7 +29,7 @@ class ProductController extends Controller
     use SendsTelegramNotification;
     /**
      * @OA\Post(
-     *     path="api/products/code",
+     *     path="/api/products/code",
      *     tags={"Products"},
      *     summary="Update multiple product variant prices by product code",
      *     description="Updates variant prices for multiple products using their code. 
@@ -45,10 +45,6 @@ class ProductController extends Controller
      *                 @OA\Property(property="code", type="string", example="PRD-001"),
      *                 @OA\Property(property="price", type="number", example=150000),
      *                 @OA\Property(property="discount_price", type="number", nullable=true, example=130000),
-     *                 @OA\Property(property="price_3", type="number", nullable=true, example=50000),
-     *                 @OA\Property(property="price_6", type="number", nullable=true, example=27000),
-     *                 @OA\Property(property="price_12", type="number", nullable=true, example=15000),
-     *                 @OA\Property(property="price_24", type="number", nullable=true, example=9000)
      *             )
      *         )
      *     ),
@@ -66,10 +62,6 @@ class ProductController extends Controller
      *                     @OA\Property(property="product_id", type="integer", example=5),
      *                     @OA\Property(property="price", type="number", example=150000),
      *                     @OA\Property(property="discount_price", type="number", example=130000),
-     *                     @OA\Property(property="price_3", type="number", example=50000),
-     *                     @OA\Property(property="price_6", type="number", example=27000),
-     *                     @OA\Property(property="price_12", type="number", example=15000),
-     *                     @OA\Property(property="price_24", type="number", example=9000),
      *                     @OA\Property(property="updated_at", type="string", example="2025-11-14 19:22:10")
      *                 )
      *             )
