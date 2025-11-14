@@ -61,11 +61,6 @@
                                             <div class="tab-pane fade show {{ $lang == 'uz' ? 'active' : '' }}"
                                                 id="{{ $lang }}Content">
                                                 <div class="form-group pb-3">
-                                                    <div class="form-group pb-3">
-                                                        <label for="code">Code</label>
-                                                        <input type="text" class="form-control" id="code"
-                                                            name="code" value="{{ old('code', $product->code ?? '') }}">
-                                                    </div>
 
                                                     <label for="name_{{ $lang }}">Название ({{ strtoupper($lang) }}
                                                         ):</label>
@@ -234,6 +229,12 @@
                                 </div>
                                 <div class="card-body p-4">
                                     <div class="form-group pb-3">
+                                        <div class="form-group pb-3">
+                                            <label for="code">Code</label>
+                                            <input type="text" class="form-control" id="code" name="code"
+                                                value="{{ old('code', $product->code ?? '') }}" required>
+                                        </div>
+
                                         <label for="category_id">Категория:</label>
                                         <select id="category_id" name="category_id" class="form-control" required>
                                             @foreach ($categories as $category)

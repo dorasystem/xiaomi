@@ -165,6 +165,12 @@ class ProductController extends Controller
             }
 
             DB::commit();
+            if (empty($updatedVariants)) {
+                return response()->json([
+                    'message' => 'Hech qanday variant update qilinmadi. Ehtimol mahsulotlar topilmadi yoki price mavjud emas.'
+                ], 404); // yoki 400, sizga mos
+            }
+
 
             return response()->json([
                 'message' => 'Variants updated successfully',
