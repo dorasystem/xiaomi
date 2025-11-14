@@ -26,163 +26,95 @@ use Illuminate\Support\Facades\Log;
 class ProductController extends Controller
 {
     use SendsTelegramNotification;
-    /**
-     * @OA\Put(
-     *     path="/api/products/{code}/update",
-     *     operationId="updateProductByCode",
-     *     tags={"Products"},
-     *     summary="Update product variant by code",
-     *     description="Updates the price and other variant fields of a product by its code",
-     *     @OA\Parameter(
-     *         name="code",
-     *         in="path",
-     *         description="Product code",
-     *         required=true,
-     *         @OA\Schema(type="string")
-     *     ),
-     *     @OA\RequestBody(
-     *         required=true,
-     *         @OA\JsonContent(
-     *             @OA\Property(property="price", type="number", format="float", example=120.5),
-     *             @OA\Property(property="discount_price", type="number", format="float", example=110.0),
-     *             @OA\Property(property="price_3", type="number", format="float", example=115.0),
-     *             @OA\Property(property="price_6", type="number", format="float", example=110.0),
-     *             @OA\Property(property="price_12", type="number", format="float", example=105.0),
-     *             @OA\Property(property="price_24", type="number", format="float", example=100.0)
-     *         )
-     *     ),
-     *     @OA\Response(
-     *         response=200,
-     *         description="Variant updated successfully",
-     *         @OA\JsonContent(
-     *             @OA\Property(property="status", type="string", example="success"),
-     *             @OA\Property(property="message", type="string", example="Variant updated successfully"),
-     *             @OA\Property(property="data", type="object",
-     *                 @OA\Property(property="id", type="integer", example=1),
-     *                 @OA\Property(property="price", type="number", format="float", example=120.5),
-     *                 @OA\Property(property="discount_price", type="number", example=110.0),
-     *                 @OA\Property(property="price_3", type="number", example=115.0),
-     *                 @OA\Property(property="price_6", type="number", example=110.0),
-     *                 @OA\Property(property="price_12", type="number", example=105.0),
-     *                 @OA\Property(property="price_24", type="number", example=100.0)
-     *             )
-     *         )
-     *     ),
-     *     @OA\Response(
-     *         response=400,
-     *         description="Price value missing",
-     *         @OA\JsonContent(
-     *             @OA\Property(property="status", type="string", example="error"),
-     *             @OA\Property(property="message", type="string", example="Price value missing")
-     *         )
-     *     ),
-     *     @OA\Response(
-     *         response=404,
-     *         description="Product or variant not found",
-     *         @OA\JsonContent(
-     *             @OA\Property(property="status", type="string", example="error"),
-     *             @OA\Property(property="message", type="string", example="Product not found")
-     *         )
-     *     ),
-     *     @OA\Response(
-     *         response=422,
-     *         description="Validation error",
-     *         @OA\JsonContent(
-     *             @OA\Property(property="status", type="string", example="error"),
-     *             @OA\Property(property="message", type="string", example="Validation failed"),
-     *             @OA\Property(property="errors", type="object",
-     *                 @OA\Property(property="price", type="array",
-     *                     @OA\Items(type="string", example="The price field is required.")
-     *                 )
-     *             )
-     *         )
-     *     ),
-     *     @OA\Response(
-     *         response=500,
-     *         description="Server error / Exception",
-     *         @OA\JsonContent(
-     *             @OA\Property(property="status", type="string", example="error"),
-     *             @OA\Property(property="message", type="string", example="Server error"),
-     *             @OA\Property(property="error", type="string", example="Database connection lost")
-     *         )
-     *     )
-     * )
-     */
-
-
-    public function updateByCode(Request $request, $code)
+  
+    public function updateMultiple(Request $request)
     {
+        $productsData = $request->all();
+
+        if (!is_array($productsData)) {
+            return response()->json(['message' => 'Invalid data format, expected array'], 400);
+        }
+
         DB::beginTransaction();
 
         try {
-            $product = Product::where('code', $code)->first();
+            $codes = collect($productsData)->pluck('code')->filter()->unique();
+            $products = Product::with('variants')->whereIn('code', $codes)->get()->keyBy('code');
 
-            if (! $product) {
-                $msg = "<b>Xatolik:</b> Mahsulot topilmadi!\n"
-                    . "<b>Kod:</b> {$code}\n"
-                    .  now()->format('Y-m-d H:i:s');
-                $this->sendTelegramNotification($msg);
-                Log::warning("Product not found: {$code}");
-                return response()->json(['message' => 'Product not found'], 404);
+            $updatedVariants = [];
+
+            foreach ($productsData as $item) {
+                $code = $item['code'] ?? null;
+                $newPrice = $item['price'] ?? null;
+
+                if (!$code) {
+                    Log::warning("Missing code in request item", ['item' => $item]);
+                    continue;
+                }
+
+                $product = $products->get($code);
+
+                if (!$product) {
+                    $msg = "<b>Xatolik:</b> Mahsulot topilmadi!\n<b>Kod:</b> {$code}\n" . now()->format('Y-m-d H:i:s');
+                    $this->sendTelegramNotification($msg);
+                    Log::warning("Product not found: {$code}");
+                    continue;
+                }
+
+                $variant = $product->variants->first();
+                if (!$variant) {
+                    $msg = "<b>Xatolik:</b> Variant topilmadi!\n<b>Mahsulot:</b> {$product->name}\n<b>Kod:</b> {$code}\n" . now()->format('Y-m-d H:i:s');
+                    $this->sendTelegramNotification($msg);
+                    Log::warning("Variant not found for product: {$code}");
+                    continue;
+                }
+
+                if ($newPrice === null) {
+                    $msg = "<b>Ogohlantirish:</b> So‘rovda yangi narx yuborilmagan!\n<b>Mahsulot:</b> {$product->name}\n<b>Kod:</b> {$code}\n" . now()->format('Y-m-d H:i:s');
+                    $this->sendTelegramNotification($msg);
+                    Log::warning("Price value missing for product: {$code}");
+                    continue;
+                }
+
+                $oldPrice = $variant->price;
+
+                // Eloquent mass update
+                $variant->update(array_merge($variant->only([
+                    'discount_price',
+                    'price_3',
+                    'price_6',
+                    'price_12',
+                    'price_24'
+                ]), [
+                    'price' => $newPrice,
+                    'discount_price' => $item['discount_price'] ?? $variant->discount_price,
+                    'price_3' => $item['price_3'] ?? $variant->price_3,
+                    'price_6' => $item['price_6'] ?? $variant->price_6,
+                    'price_12' => $item['price_12'] ?? $variant->price_12,
+                    'price_24' => $item['price_24'] ?? $variant->price_24,
+                ]));
+
+                Log::info("Variant updated successfully", [
+                    'product_code' => $code,
+                    'old_price' => $oldPrice,
+                    'new_price' => $variant->price,
+                ]);
+
+                $updatedVariants[] = $variant;
             }
-
-            $variant = $product->variants()->first();
-
-            if (! $variant) {
-                $msg = " <b>Xatolik:</b> Variant topilmadi!\n"
-                    . " <b>Mahsulot:</b> {$product->name}\n"
-                    . " <b>Kod:</b> {$code}\n"
-                    . now()->format('Y-m-d H:i:s');
-                $this->sendTelegramNotification($msg);
-                Log::warning("Variant not found for product: {$code}");
-                return response()->json(['message' => 'Variant not found'], 404);
-            }
-
-            $newPrice = $request->input('price');
-            if ($newPrice === null) {
-                $msg = " <b>Ogohlantirish:</b> So‘rovda yangi narx yuborilmagan!\n"
-                    . " <b>Mahsulot:</b> {$product->name}\n"
-                    . " <b>Kod:</b> {$code}\n"
-                    . now()->format('Y-m-d H:i:s');
-                $this->sendTelegramNotification($msg);
-                Log::warning("Price value missing for product: {$code}");
-                return response()->json(['message' => 'Price value missing'], 400);
-            }
-
-            $oldPrice = $variant->price;
-
-            $variant->update($request->only([
-                'price',
-                'discount_price',
-                'price_3',
-                'price_6',
-                'price_12',
-                'price_24',
-            ]));
 
             DB::commit();
 
-            Log::info("Variant updated successfully", [
-                'product_code' => $code,
-                'old_price'    => $oldPrice,
-                'new_price'    => $variant->price,
-            ]);
-
             return response()->json([
-                'message' => 'Variant updated successfully',
-                'data' => $variant,
+                'message' => 'Variants updated successfully',
+                'data' => $updatedVariants,
             ]);
         } catch (\Throwable $e) {
             DB::rollBack();
 
-            $msg = "<b>Exception yuz berdi!</b>\n"
-                . " <b>Xatolik:</b> {$e->getMessage()}\n"
-                . now()->format('Y-m-d H:i:s');
-
+            $msg = "<b>Exception yuz berdi!</b>\n<b>Xatolik:</b> {$e->getMessage()}\n" . now()->format('Y-m-d H:i:s');
             $this->sendTelegramNotification($msg);
-            Log::error('Unexpected error while updating variant', [
-                'error' => $e->getMessage(),
-            ]);
+            Log::error('Unexpected error while updating variants', ['error' => $e->getMessage()]);
 
             return response()->json([
                 'message' => 'Server error',
@@ -190,6 +122,8 @@ class ProductController extends Controller
             ], 500);
         }
     }
+
+
 
 
 
