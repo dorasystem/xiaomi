@@ -31,19 +31,36 @@ class ProductService
         if ($data->image) {
             if ($product->image) Storage::disk('public')->delete($product->image);
             $product->image = $data->image->store('products', 'public');
+        } elseif ($data->remove_image ?? false) {
+            if ($product->image) Storage::disk('public')->delete($product->image);
+            $product->image = null;
         }
 
         if ($data->gift_image) {
             if ($product->gift_image) Storage::disk('public')->delete($product->gift_image);
             $product->gift_image = $data->gift_image->store('gift_images', 'public');
+        } elseif ($data->remove_gift_image ?? false) {
+            if ($product->gift_image) Storage::disk('public')->delete($product->gift_image);
+            $product->gift_image = null;
         }
 
-        $images = is_array($product->images) ? $product->images : (json_decode($product->images, true) ?? []);
-        foreach ($data->images as $image) {
-            $images[] = $image->store('products', 'public');
-        }
-        $product->images = array_values($images);
+        $existingImages = [];
 
+        if (!empty($data->images)) {
+            foreach ($data->images as $image) {
+                $existingImages[] = $image->store('products', 'public');
+            }
+        }
+
+        if (!empty($data->remove_images) && is_array($data->remove_images)) {
+            foreach ($data->remove_images as $imgToRemove) {
+                if (Storage::disk('public')->exists($imgToRemove)) {
+                    Storage::disk('public')->delete($imgToRemove);
+                }
+            }
+        }
+
+        $product->images = array_values($existingImages);
         $product->fill([
             'code' => ($data->code) ? $data->code : null,
             'category_id' => $data->category_id,
@@ -103,6 +120,8 @@ class ProductService
                 Storage::disk('public')->delete($img);
             }
         }
+
+        $product->descImages()->delete();
         $product->variants()->delete();
 
         $product->delete();

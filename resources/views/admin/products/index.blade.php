@@ -24,6 +24,11 @@
                 <div class="card">
                     <div class="card-header">
                         <h5 class="mb-0">Продукты</h5>
+                        <form action="{{ route('products.index') }}" method="GET">
+                            <input type="text" name="search" value="{{ request('search') }}" placeholder="Qidirish..."
+                                class="form-control">
+                        </form>
+
                     </div>
                     <div class="table-responsive">
                         <table class="table mb-0">
@@ -64,7 +69,8 @@
                                                         </a>
                                                     </button>
                                                 </form>
-                                                <form action="{{ route('products.duplicate', $product->id) }}" method="POST" style="display:none;">
+                                                <form action="{{ route('products.duplicate', $product->id) }}"
+                                                    method="POST" style="display:none;">
                                                     @csrf
                                                     <button type="submit" class="btn btn-warning">Dubl</button>
                                                 </form>

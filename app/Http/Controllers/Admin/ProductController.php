@@ -10,6 +10,7 @@ use App\Models\Product;
 use App\Models\Variant;
 use App\Models\Category;
 use App\Services\ProductService;
+use Illuminate\Http\Request;
 
 class ProductController extends Controller
 {
@@ -36,9 +37,24 @@ class ProductController extends Controller
         return response()->json(['success' => true]);
     }
 
-    public function index()
+    public function index(Request $request)
     {
         $products = Product::orderBy('id', 'desc')->get();
+
+        $query = Product::query();
+
+        if ($request->search) {
+            $search = $request->search;
+
+            $query->where(function ($q) use ($search) {
+                $q->where('name_uz', 'like', "%{$search}%")
+                    ->orWhere('name_ru', 'like', "%{$search}%")
+                    ->orWhere('name_en', 'like', "%{$search}%")
+                    ->orWhere('code', 'like', "%{$search}%");
+            });
+        }
+
+        $products = $query->latest()->paginate(20);
         return view('admin.products.index', compact('products'));
     }
 

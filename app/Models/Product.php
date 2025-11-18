@@ -89,31 +89,10 @@ class Product extends Model
     }
     public function descImages()
     {
-        return $this->hasMany(DescImage::class);
+        return $this->hasMany(DescImage::class, 'product_id', 'id');
     }
     public function comments()
     {
         return $this->hasMany(Comment::class);
     }
-
-
-    // protected static function boot()
-    // {
-    //     parent::boot();
-    //     static::creating(function ($model) {
-    //         $model->slug = json_encode([
-    //             'uz' => Str::slug($model->name_uz ?? ''),
-    //             'ru' => Str::slug($model->name_ru ?? ''),
-    //             'en' => Str::slug($model->name_en ?? ''),
-    //         ]);
-    //     });
-    //     static::updating(function ($model) {
-    //         $model->slug = json_encode([
-    //             'uz' => Str::slug($model->name_uz ?? ''),
-    //             'ru' => Str::slug($model->name_ru ?? ''),
-    //             'en' => Str::slug($model->name_en ?? ''),
-    //         ]);
-    //     });
-    // }
-
 }
