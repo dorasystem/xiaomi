@@ -78,8 +78,12 @@
                                         </td>
                                     </tr>
                                 @endforeach
+                                <hr>
                             </tbody>
                         </table>
+                        <div class="mt-3 d-flex justify-content-center">
+                            {{ $products->links('pagination::bootstrap-5') }}
+                        </div>
                     </div>
                     @if ($products->isEmpty())
                         <div class="card-body">
@@ -89,7 +93,48 @@
                 </div>
             </div>
         </div>
+
     </main>
+    <style>
+        .pagination {
+            display: flex;
+            list-style: none;
+            padding-left: 0;
+            margin-left: 70%
+        }
+
+        .pagination .page-item {
+            margin: 0 4px;
+        }
+
+        .pagination .page-link {
+            padding: 0.375rem 0.75rem;
+            font-size: 1rem;
+            color: #0d6efd;
+            background-color: #fff;
+            border: 1px solid #dee2e6;
+            border-radius: 0.25rem;
+            text-decoration: none;
+        }
+
+        .pagination .page-item:hover .page-link {
+            background-color: #e9ecef;
+            color: #0d6efd;
+        }
+
+        .pagination .page-item.active .page-link {
+            background-color: #0d6efd;
+            color: #fff;
+            border-color: #0d6efd;
+        }
+
+        .pagination .page-item.disabled .page-link {
+            color: #6c757d;
+            pointer-events: none;
+            background-color: #fff;
+            border-color: #dee2e6;
+        }
+    </style>
     <script>
         function addToCart(productId) {
             $.ajax({

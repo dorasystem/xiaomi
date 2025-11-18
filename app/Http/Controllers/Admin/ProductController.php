@@ -39,13 +39,10 @@ class ProductController extends Controller
 
     public function index(Request $request)
     {
-        $products = Product::orderBy('id', 'desc')->get();
-
         $query = Product::query();
 
         if ($request->search) {
             $search = $request->search;
-
             $query->where(function ($q) use ($search) {
                 $q->where('name_uz', 'like', "%{$search}%")
                     ->orWhere('name_ru', 'like', "%{$search}%")
@@ -54,7 +51,9 @@ class ProductController extends Controller
             });
         }
 
-        $products = $query->latest()->paginate(20);
+        // ASC → offset bo‘yicha sahifa 1 → 1–30, sahifa 2 → 31–60
+        $products = $query->orderBy('id', 'asc')->paginate(30)->withQueryString();
+
         return view('admin.products.index', compact('products'));
     }
 
