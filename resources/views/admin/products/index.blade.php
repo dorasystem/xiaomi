@@ -44,7 +44,8 @@
                             <tbody>
                                 @foreach ($products as $product)
                                     <tr>
-                                        <td>{{ ($products->currentPage() -1) * $products->perPage() + $loop->iteration }}</td>
+                                        <td>{{ ($products->currentPage() - 1) * $products->perPage() + $loop->iteration }}
+                                        </td>
                                         <td>
                                             <img src="{{ asset('storage/' . $product->image) }}" alt="Image"
                                                 style="width: 50px; height: 50px; object-fit: cover;">
@@ -81,7 +82,7 @@
                                 <hr>
                             </tbody>
                         </table>
-                        <div class="mt-3 d-flex justify-content-center">
+                        <div class="mt-3 d-flex justify-content-center pagination">
                             {{ $products->links('pagination::bootstrap-5') }}
                         </div>
                     </div>
@@ -96,43 +97,56 @@
 
     </main>
     <style>
-        .pagination {
-            display: flex;
-            list-style: none;
-            padding-left: 0;
-            margin-left: 70%
+        .pagination{
+            margin-left: 30%
         }
-
-        .pagination .page-item {
-            margin: 0 4px;
-        }
-
+        /* ---------------- Light mode (default) ---------------- */
         .pagination .page-link {
-            padding: 0.375rem 0.75rem;
-            font-size: 1rem;
-            color: #0d6efd;
-            background-color: #fff;
-            border: 1px solid #dee2e6;
-            border-radius: 0.25rem;
-            text-decoration: none;
+            background-color: #ffffff !important;
+            /* oq fon */
+            border: 1px solid #dee2e6 !important;
+            color: #0d6efd !important;
         }
 
         .pagination .page-item:hover .page-link {
-            background-color: #e9ecef;
-            color: #0d6efd;
+            background-color: #e9ecef !important;
         }
 
         .pagination .page-item.active .page-link {
-            background-color: #0d6efd;
-            color: #fff;
-            border-color: #0d6efd;
+            background-color: #0d6efd !important;
+            border-color: #0d6efd !important;
+            color: #ffffff !important;
         }
 
         .pagination .page-item.disabled .page-link {
-            color: #6c757d;
+            background-color: #ffffff !important;
+            border-color: #dee2e6 !important;
+            color: #6c757d !important;
             pointer-events: none;
-            background-color: #fff;
-            border-color: #dee2e6;
+        }
+
+        /* ---------------- Dark mode (app-skin-dark class bilan) ---------------- */
+        html.app-skin-dark .pagination .page-link {
+            background-color: #000000 !important;
+            /* qora fon */
+            border-color: #444 !important;
+            color: #a8c4ff !important;
+        }
+
+        html.app-skin-dark .pagination .page-item:hover .page-link {
+            background-color: #1a1a1a !important;
+        }
+
+        html.app-skin-dark .pagination .page-item.active .page-link {
+            background-color: #3d6df8 !important;
+            border-color: #3d6df8 !important;
+            color: #ffffff !important;
+        }
+
+        html.app-skin-dark .pagination .page-item.disabled .page-link {
+            background-color: #000000 !important;
+            border-color: #444 !important;
+            color: #555 !important;
         }
     </style>
     <script>
