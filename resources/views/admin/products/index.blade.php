@@ -44,7 +44,7 @@
                             <tbody>
                                 @foreach ($products as $product)
                                     <tr>
-                                        <td>{{ $loop->iteration }}</td>
+                                        <td>{{ ($products->currentPage() -1) * $products->perPage() + $loop->iteration }}</td>
                                         <td>
                                             <img src="{{ asset('storage/' . $product->image) }}" alt="Image"
                                                 style="width: 50px; height: 50px; object-fit: cover;">
